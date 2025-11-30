@@ -17,7 +17,6 @@ background-color: #ffffff;
 color: #000000;
 }
 
-/* Header Layout */
 header {
 display: flex;
 justify-content: space-between;
@@ -27,9 +26,8 @@ background-color: #f4f4f4;
 border-bottom: 2px solid #ddd;
 }
 
-/* Bigger Logo */
 header img {
-height: 100px; /* Increased size */
+height: 100px;
 }
 
 .call-button {
@@ -46,7 +44,6 @@ border-radius: 6px;
 background-color: #218838;
 }
 
-/* Main Content */
 main {
 padding: 20px;
 max-width: 900px;
@@ -66,7 +63,43 @@ ul {
 padding-left: 20px;
 }
 
-/* Footer */
+/* Contact Form */
+.contact-form {
+margin-top: 30px;
+padding: 20px;
+background: #f4f4f4;
+border-radius: 10px;
+border: 1px solid #ddd;
+}
+
+.contact-form label {
+font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+width: 100%;
+padding: 12px;
+margin: 8px 0 20px 0;
+border: 1px solid #ccc;
+border-radius: 6px;
+font-size: 16px;
+}
+
+.contact-form button {
+background-color: #28a745;
+color: white;
+padding: 14px 25px;
+border: none;
+border-radius: 6px;
+font-size: 18px;
+cursor: pointer;
+}
+
+.contact-form button:hover {
+background-color: #218838;
+}
+
 footer {
 text-align: center;
 padding: 20px;
@@ -105,7 +138,6 @@ margin-top: 30px;
 }
 },
 "telephone": "07735873694",
-"email": "martinsteel940@gmail.com",
 "url": "https://steely1968.github.io/"
 }
 </script>
@@ -115,10 +147,7 @@ margin-top: 30px;
 <body>
 
 <header>
-<!-- Larger Top-Left Logo -->
 <img src="logo.png" alt="Home Maintenance Services Logo - Askern Handyman">
-
-<!-- Top-Right Call Button -->
 <a href="tel:07735873694" class="call-button">Call 07735 873694</a>
 </header>
 
@@ -127,13 +156,8 @@ margin-top: 30px;
 
 <p>
 Welcome to your trusted local home maintenance service based in Askern, Doncaster (DN6).
-With a friendly, reliable and professional approach, I offer a wide range of small to medium repairs,
-general maintenance and improvement jobs around your home — all at affordable, honest prices.
-</p>
-
-<p>
-Whether you need help with repairs, decorating, assembling, fixing or outdoor tasks, you’ll get
-quality workmanship and a service you can rely on. No job too small.
+Offering friendly, reliable and professional workmanship for all kinds of small to medium
+home repair and improvement tasks. No job too small.
 </p>
 
 <h2>Services I Provide</h2>
@@ -144,20 +168,31 @@ quality workmanship and a service you can rely on. No job too small.
 <li>Joinery & small carpentry work</li>
 <li>Flat-pack assembly & household fixes</li>
 <li>Garden tidy-ups & exterior repairs</li>
-<li>Hanging shelves, mirrors, blinds, TV brackets</li>
-<li>Small plumbing jobs (taps, leaks, fittings)</li>
+<li>Hanging blinds, mirrors, shelves, TV brackets</li>
+<li>Small plumbing jobs (leaks, taps, fittings)</li>
 </ul>
 
-<p>
-I cover Askern and surrounding areas within a <strong>5-mile radius</strong>.
-</p>
+<h2>Contact Me</h2>
 
-<h2>Contact</h2>
-<p>
-📞 <strong>07735 873694</strong><br>
-📧 <a href="mailto:martinsteel940@gmail.com">martinsteel940@gmail.com</a><br>
-📍 35 Airstone Road, Askern, Doncaster DN6 0QA
-</p>
+<!-- Secure Contact Form (email stays hidden) -->
+<form class="contact-form" action="https://formsubmit.co/martinsteel940@gmail.com" method="POST">
+
+<!-- Email Hidden from Users -->
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+
+<label for="name">Your Name:</label>
+<input type="text" id="name" name="name" required>
+
+<label for="phone">Phone Number:</label>
+<input type="text" id="phone" name="phone" required>
+
+<label for="message">Your Message:</label>
+<textarea id="message" name="message" rows="6" required></textarea>
+
+<button type="submit">Send Message</button>
+</form>
+
 </main>
 
 <footer>
