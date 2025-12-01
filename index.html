@@ -5,9 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Handyman & Home Maintenance Services | Askern & Doncaster DN6</title>
+<meta name="description" content="Reliable handyman and home maintenance services in Askern & Doncaster DN6. Repairs, gutter work, decorating, garden jobs, installations and more. Local, affordable and friendly service.">
 
-<meta name="description" content="Local handyman and home maintenance services in Askern & Doncaster (DN6). Repairs, decorating, gutter clearing, exterior painting, garden work, rubbish removal and more. Reliable and affordable local handyman.">
-
+<!-- Accessible, fast, clean design -->
 <style>
 body {
 margin: 0;
@@ -17,7 +17,6 @@ color: #000;
 line-height: 1.6;
 }
 
-/* HEADER */
 header {
 display: flex;
 justify-content: space-between;
@@ -31,15 +30,18 @@ header img {
 height: 90px;
 }
 
-.home-link {
+.home-link, .call-button {
 font-size: 18px;
 font-weight: bold;
 text-decoration: none;
-margin-right: 20px;
+border-radius: 6px;
+padding: 10px 18px;
+display: inline-block;
+}
+
+.home-link {
 color: #000;
 border: 2px solid #000;
-padding: 6px 14px;
-border-radius: 6px;
 }
 
 .home-link:hover {
@@ -47,20 +49,14 @@ background: #e2e2e2;
 }
 
 .call-button {
-background-color: #28a745;
+background-color: #1a7f33;
 color: #ffffff;
-padding: 14px 25px;
-text-decoration: none;
-font-size: 18px;
-font-weight: bold;
-border-radius: 6px;
 }
 
 .call-button:hover {
-background-color: #218838;
+background-color: #166b2b;
 }
 
-/* MAIN LAYOUT */
 main {
 padding: 20px;
 max-width: 900px;
@@ -71,7 +67,6 @@ h1, h2 {
 margin-top: 10px;
 }
 
-/* SERVICE CARDS */
 .service-list a {
 display: flex;
 align-items: center;
@@ -80,17 +75,11 @@ padding: 14px 18px;
 margin: 12px 0;
 border-radius: 8px;
 border: 1px solid #ddd;
-font-weight: bold;
 text-decoration: none;
 color: #000;
-transition: 0.25s;
 font-size: 17px;
-}
-
-.service-list a span.icon {
-font-size: 22px;
-width: 35px;
-display: inline-block;
+font-weight: bold;
+transition: 0.25s;
 }
 
 .service-list a:hover {
@@ -99,7 +88,12 @@ border-color: #28a745;
 transform: translateX(4px);
 }
 
-/* CONTACT FORM */
+.icon {
+font-size: 22px;
+width: 35px;
+display: inline-block;
+}
+
 .contact-form {
 margin-top: 30px;
 padding: 20px;
@@ -123,7 +117,7 @@ font-size: 16px;
 }
 
 .contact-form button {
-background-color: #28a745;
+background-color: #1a7f33;
 color: #fff;
 padding: 14px 25px;
 border: none;
@@ -133,7 +127,7 @@ cursor: pointer;
 }
 
 .contact-form button:hover {
-background-color: #218838;
+background-color: #166b2b;
 }
 
 footer {
@@ -146,7 +140,7 @@ border-top: 1px solid #ddd;
 }
 
 footer a {
-color: #1877F2;
+color: #1864d8;
 font-weight: bold;
 text-decoration: none;
 }
@@ -160,15 +154,15 @@ display: none !important;
 }
 </style>
 
-<!-- SCHEMA.ORG -->
+<!-- SCHEMA.ORG: LocalBusiness + FAQ + BreadcrumbList -->
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
-"@type": "HomeAndConstructionBusiness",
+"@type": "LocalBusiness",
 "name": "Home Maintenance Services",
-"image": "logo.png",
+"image": "https://steely1968.github.io/logo.png",
 "url": "https://steely1968.github.io/",
-"telephone": "07735873694",
+"telephone": "+447735873694",
 "priceRange": "£",
 "address": {
 "@type": "PostalAddress",
@@ -183,20 +177,60 @@ display: none !important;
 "latitude": 53.616,
 "longitude": -1.153
 },
-"areaServed": {
-"@type": "Place",
-"geoRadius": 8046,
-"address": {
-"@type": "PostalAddress",
-"postalCode": "DN6"
-}
-},
 "openingHoursSpecification": [{
 "@type": "OpeningHoursSpecification",
-"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+"dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
 "opens": "08:00",
 "closes": "18:00"
 }]
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "BreadcrumbList",
+"itemListElement": [
+{
+"@type": "ListItem",
+"position": 1,
+"name": "Home",
+"item": "https://steely1968.github.io/"
+}
+]
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "Which areas do you cover?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "I cover all of Askern and the wider Doncaster DN6 region."
+}
+},
+{
+"@type": "Question",
+"name": "Do you do small jobs?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes — no job is too small. From hanging shelves to fixing leaks, I can help."
+}
+},
+{
+"@type": "Question",
+"name": "Do you charge a call-out fee?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "No, I never charge a call-out fee."
+}
+}
+]
 }
 </script>
 
@@ -205,76 +239,41 @@ display: none !important;
 <body>
 
 <header>
-<img src="logo.png" alt="Home Maintenance Services Askern Logo">
-<a class="home-link" href="https://steely1968.github.io/">Home</a>
-<a href="tel:07735873694" class="call-button">Call 07735 873694</a>
+<img src="logo.png" alt="Home Maintenance Services Logo">
+<a class="home-link" href="/" aria-label="Return to homepage">Home</a>
+<a href="tel:07735873694" class="call-button" aria-label="Call Home Maintenance Services">Call 07735 873694</a>
 </header>
 
 <main>
 
 <h1>Handyman & Home Maintenance Services in Askern & Doncaster (DN6)</h1>
 
-<p>
-I provide friendly, reliable and affordable handyman services across Askern and the wider Doncaster DN6 area.
-No job is too small — from repairs and maintenance to outdoor work and installations.
-</p>
+<p>I provide reliable, friendly and affordable handyman services across Askern and the wider Doncaster DN6 region. No job is too small — I handle repairs, maintenance, installations, outdoor work and more.</p>
 
 <h2>Services I Provide</h2>
 
 <div class="service-list">
 
-<a href="https://steely1968.github.io/services/general-home-repairs">
-<span class="icon">🔧</span> General home repairs & maintenance
-</a>
-
-<a href="https://steely1968.github.io/services/painting-decorating">
-<span class="icon">🎨</span> Painting, decorating & plaster patching
-</a>
-
-<a href="https://steely1968.github.io/services/external-decorating">
-<span class="icon">🏠</span> External house painting & exterior decorating
-</a>
-
-<a href="https://steely1968.github.io/services/joinery-carpentry">
-<span class="icon">🪚</span> Joinery & small carpentry work
-</a>
-
-<a href="https://steely1968.github.io/services/flat-pack-assembly">
-<span class="icon">📦</span> Flat-pack assembly & household fixes
-</a>
-
-<a href="https://steely1968.github.io/services/gutter-clearing">
-<span class="icon">🪜</span> Gutter clearing, cleaning & maintenance
-</a>
-
-<a href="https://steely1968.github.io/services/gutter-repair-replacement">
-<span class="icon">🔩</span> Gutter repairs & replacement
-</a>
-
-<a href="https://steely1968.github.io/services/garden-maintenance">
-<span class="icon">🌿</span> Garden tidy-ups & exterior repairs
-</a>
-
-<a href="https://steely1968.github.io/services/hanging-installations">
-<span class="icon">🖼️</span> Hanging blinds, mirrors, shelves & TV brackets
-</a>
-
-<a href="https://steely1968.github.io/services/plumbing-small-jobs">
-<span class="icon">🚰</span> Small plumbing jobs (leaks, taps, fittings)
-</a>
-
-<a href="https://steely1968.github.io/services/rubbish-removal">
-<span class="icon">🗑️</span> Rubbish removal & small house clearances
-</a>
+<a href="/services/general-home-repairs"><span class="icon">🔧</span>General home repairs & maintenance</a>
+<a href="/services/painting-decorating"><span class="icon">🎨</span>Painting, decorating & plaster patching</a>
+<a href="/services/external-decorating"><span class="icon">🏠</span>External house painting</a>
+<a href="/services/joinery-carpentry"><span class="icon">🪚</span>Joinery & small carpentry tasks</a>
+<a href="/services/flat-pack-assembly"><span class="icon">📦</span>Flat-pack assembly</a>
+<a href="/services/gutter-clearing"><span class="icon">🪜</span>Gutter clearing & cleaning</a>
+<a href="/services/gutter-repair-replacement"><span class="icon">🔩</span>Gutter repairs & replacements</a>
+<a href="/services/garden-maintenance"><span class="icon">🌿</span>Garden tidy-ups</a>
+<a href="/services/hanging-installations"><span class="icon">🖼️</span>Hanging blinds, mirrors & TV brackets</a>
+<a href="/services/plumbing-small-jobs"><span class="icon">🚰</span>Small plumbing jobs</a>
+<a href="/services/rubbish-removal"><span class="icon">🗑️</span>Rubbish removal & small clearances</a>
 
 </div>
 
 <h2>Why Choose Me?</h2>
 <ul>
-<li>Local Askern handyman with fast, friendly service</li>
+<li>Local Askern handyman — fast, friendly service</li>
 <li>No call-out fee</li>
 <li>Fair, honest pricing</li>
-<li>Tidy and professional</li>
+<li>Tidy, reliable and professional</li>
 <li>Most small jobs completed the same day</li>
 </ul>
 
@@ -288,10 +287,10 @@ No job is too small — from repairs and maintenance to outdoor work and install
 <input type="text" name="_honey" class="hidden-field">
 
 <label for="name">Your Name:</label>
-<input type="text" id="name" name="name" required>
+<input type="text" id="name" name="name" autocomplete="name" required>
 
 <label for="phone">Phone Number:</label>
-<input type="text" id="phone" name="phone" required>
+<input type="tel" id="phone" name="phone" autocomplete="tel" required>
 
 <label for="message">Your Message:</label>
 <textarea id="message" name="message" rows="6" required></textarea>
@@ -304,7 +303,7 @@ No job is too small — from repairs and maintenance to outdoor work and install
 <footer>
 © 2025 Home Maintenance Services – Askern, Doncaster DN6
 <br><br>
-<a href="https://facebook.com" target="_blank">Find us on Facebook</a>
+<a href="https://facebook.com" target="_blank" rel="noopener">Find us on Facebook</a>
 </footer>
 
 </body>
