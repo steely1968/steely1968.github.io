@@ -4,17 +4,18 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home Maintenance Services | Askern DN6</title>
+<title>Home Maintenance & Handyman Services | Askern & Doncaster DN6</title>
 
-<meta name="description" content="Reliable home maintenance and repair services in Askern, Doncaster (DN6). Covering a 5-mile radius. Friendly, affordable and professional handyman service.">
+<meta name="description" content="Reliable, affordable home maintenance and handyman services in Askern, Doncaster (DN6). Covering a 5-mile radius. Friendly professional help for repairs, painting, carpentry, plumbing, garden work and more.">
 
+<!-- Styles -->
 <style>
 body {
-font-family: Arial, sans-serif;
 margin: 0;
-padding: 0;
+font-family: Arial, sans-serif;
 background-color: #ffffff;
-color: #000000;
+color: #000;
+line-height: 1.6;
 }
 
 header {
@@ -38,6 +39,7 @@ text-decoration: none;
 font-size: 18px;
 font-weight: bold;
 border-radius: 6px;
+display: inline-block;
 }
 
 .call-button:hover {
@@ -52,15 +54,15 @@ margin: auto;
 
 h1, h2 {
 color: #000;
+margin-top: 10px;
 }
 
-p, ul {
-font-size: 18px;
-line-height: 1.6;
+ul {
+padding-left: 20px;
 }
 
 ul li a {
-color: #000000;
+color: #000;
 text-decoration: none;
 font-weight: bold;
 }
@@ -87,7 +89,7 @@ font-weight: bold;
 .contact-form textarea {
 width: 100%;
 padding: 12px;
-margin: 8px 0 20px 0;
+margin: 8px 0 20px;
 border: 1px solid #ccc;
 border-radius: 6px;
 font-size: 16px;
@@ -95,7 +97,7 @@ font-size: 16px;
 
 .contact-form button {
 background-color: #28a745;
-color: white;
+color: rgba(255, 255, 255, 0.98);
 padding: 14px 25px;
 border: none;
 border-radius: 6px;
@@ -107,6 +109,7 @@ cursor: pointer;
 background-color: #218838;
 }
 
+/* Footer */
 footer {
 text-align: center;
 padding: 20px;
@@ -114,15 +117,23 @@ font-size: 14px;
 color: #666;
 margin-top: 30px;
 }
+
+/* Honeypot (hidden field) */
+.hidden-field {
+display: none !important;
+}
 </style>
 
-<!-- Local Business Schema -->
+<!-- LocalBusiness Schema -->
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
-"@type": "LocalBusiness",
+"@type": "HomeAndConstructionBusiness",
 "name": "Home Maintenance Services",
 "image": "logo.png",
+"url": "https://steely1968.github.io/",
+"telephone": "07735873694",
+"priceRange": "£",
 "address": {
 "@type": "PostalAddress",
 "streetAddress": "35 Airstone Road",
@@ -141,11 +152,24 @@ margin-top: 30px;
 "geoRadius": 8046,
 "address": {
 "@type": "PostalAddress",
-"postalCode": "DN6 0QA"
+"postalCode": "DN6"
 }
 },
-"telephone": "07735873694",
-"url": "https://steely1968.github.io/"
+"openingHoursSpecification": [{
+"@type": "OpeningHoursSpecification",
+"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+"opens": "08:00",
+"closes": "18:00"
+}],
+"serviceType": [
+"General Home Repairs",
+"Painting & Decorating",
+"Joinery",
+"Flat-Pack Assembly",
+"Garden Maintenance",
+"Hanging & Installations",
+"Small Plumbing Jobs"
+]
 }
 </script>
 
@@ -154,17 +178,17 @@ margin-top: 30px;
 <body>
 
 <header>
-<img src="logo.png" alt="Home Maintenance Services Logo">
+<img src="logo.png" alt="Home Maintenance Services Askern Logo">
 <a href="tel:07735873694" class="call-button">Call 07735 873694</a>
 </header>
 
 <main>
-<h1>Reliable Home Maintenance Services in Askern & Doncaster</h1>
+<h1>Home Maintenance & Handyman Services in Askern & Doncaster (DN6)</h1>
 
 <p>
-Welcome to your trusted local home maintenance and handyman service based in Askern, Doncaster (DN6).
-I offer friendly, reliable and professional workmanship for all small to medium home repair and
-improvement tasks — with fair pricing and no job too small.
+Welcome to your local trusted home maintenance and handyman service based in Askern, Doncaster.
+I provide reliable, friendly and affordable help for a wide range of home repairs, installations
+and improvements — with no job too small.
 </p>
 
 <h2>Services I Provide</h2>
@@ -179,11 +203,24 @@ improvement tasks — with fair pricing and no job too small.
 <li><a href="https://steely1968.github.io/services/plumbing-small-jobs">Small plumbing jobs (leaks, taps, fittings)</a></li>
 </ul>
 
+<h2>Why Choose Me?</h2>
+<ul>
+<li>Local Askern handyman — quick response</li>
+<li>No call-out fee</li>
+<li>Fair, honest pricing</li>
+<li>Friendly and reliable service</li>
+<li>Most small jobs completed the same day</li>
+</ul>
+
 <h2>Contact Me</h2>
 
 <form class="contact-form" action="https://formsubmit.co/martinsteel940@gmail.com" method="POST">
 <input type="hidden" name="_captcha" value="false">
 <input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="https://steely1968.github.io/thank-you.html">
+
+<!-- Honeypot field (spam protection) -->
+<input type="text" name="_honey" class="hidden-field">
 
 <label for="name">Your Name:</label>
 <input type="text" id="name" name="name" required>
