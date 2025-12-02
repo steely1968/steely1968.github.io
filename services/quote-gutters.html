@@ -3,39 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gutter Quote Calculator | Home Maintenance Services Askern DN6</title>
-<meta name="description" content="Get an instant quote for gutter cleaning, repairs, and replacement. Enter your step count around your property and calculate your price at £5 per step.">
-<link rel="canonical" href="https://steely1968.github.io/our-services/gutter-quote-calculator/">
+<title>Gutter Replacement, Repairs & Cleaning | Home Maintenance Services Askern DN6</title>
+<meta name="description" content="Professional gutter replacement, repair, cleaning, and instant quote calculator in Askern & Doncaster DN6. Enter your step count and select a service to get your price.">
+<link rel="canonical" href="https://steely1968.github.io/our-services/gutter-replacement-repairs-clearing/">
 
 <!-- Open Graph / Social -->
-<meta property="og:title" content="Gutter Quote Calculator | Home Maintenance Services Askern DN6">
-<meta property="og:description" content="Quick and easy online gutter quote calculator. Calculate your price instantly by entering your step count around your property.">
-<meta property="og:url" content="https://steely1968.github.io/our-services/gutter-quote-calculator/">
+<meta property="og:title" content="Gutter Replacement, Repairs & Cleaning | Home Maintenance Services Askern DN6">
+<meta property="og:description" content="Professional gutter replacement, repair, cleaning, and instant quote calculator in Askern & Doncaster DN6. Affordable, local, and reliable handyman services.">
+<meta property="og:url" content="https://steely1968.github.io/our-services/gutter-replacement-repairs-clearing/">
 <meta property="og:image" content="https://steely1968.github.io/logo.png">
 <meta name="twitter:card" content="summary_large_image">
 
 <style>
 body {margin:0;font-family:Arial,sans-serif;line-height:1.6;color:#000;background:#fff;}
-header, footer {background:#f4f4f4;padding:15px 20px;text-align:center;}
-main {padding:20px;max-width:600px;margin:auto;}
-h1, h2 {margin-top:10px;}
-input[type="number"] {padding:10px;width:100%;max-width:200px;margin:10px 0;border-radius:5px;border:1px solid #ccc;}
-button {padding:10px 20px;background:#1a7f33;color:#fff;border:none;border-radius:5px;cursor:pointer;}
-button:hover {background:#166b2b;}
-.result {margin-top:20px;padding:15px;background:#f8f8f8;border-radius:8px;border:1px solid #ddd;font-weight:bold;}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:15px 20px;background:#f4f4f4;border-bottom:2px solid #ddd;}
+header img{height:90px;}
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:15px;}
+nav a{font-weight:bold;text-decoration:none;padding:10px 16px;border-radius:6px;color:#000;}
+nav a:hover{background:#e2e2e2;}
+.call-button{background-color:#1a7f33;color:#fff;}
+.call-button:hover{background-color:#166b2b;}
+main{padding:20px;max-width:900px;margin:auto;}
+h1,h2{margin-top:10px;}
+ul{padding-left:20px;}
+.quick-facts{background:#f8f8f8;padding:20px;border-radius:10px;border:1px solid #ddd;margin:25px 0;}
+.quick-facts ul{padding-left:20px;}
+footer{padding:25px;text-align:center;font-size:14px;color:#666;border-top:1px solid #ddd;}
+footer a{color:#1864d8;font-weight:bold;text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+/* Quote Calculator Styles */
+.calculator {background:#f8f8f8;padding:20px;border-radius:10px;border:1px solid #ddd;margin:25px 0;}
+.calculator input[type="number"], .calculator select {padding:10px;width:100%;max-width:250px;margin:10px 0;border-radius:5px;border:1px solid #ccc;}
+.calculator button {padding:10px 20px;background:#1a7f33;color:#fff;border:none;border-radius:5px;cursor:pointer;}
+.calculator button:hover {background:#166b2b;}
+.calculator .result {margin-top:20px;padding:15px;background:#e2ffe8;border-radius:8px;border:1px solid #c6f0c8;font-weight:bold;}
 </style>
+
+<!-- LocalBusiness Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "LocalBusiness",
+"name": "Home Maintenance Services",
+"image": "https://steely1968.github.io/logo.png",
+"url": "https://steely1968.github.io/",
+"telephone": "+447735873694",
+"priceRange": "£",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "35 Airstone Road",
+"addressLocality": "Askern",
+"addressRegion": "Doncaster",
+"postalCode": "DN6 0QA",
+"addressCountry": "UK"
+},
+"geo": {
+"@type": "GeoCoordinates",
+"latitude": 53.616,
+"longitude": -1.153
+},
+"openingHoursSpecification": [{
+"@type": "OpeningHoursSpecification",
+"dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+"opens": "08:00",
+"closes": "18:00"
+}],
+"sameAs": [
+"https://facebook.com"
+]
+}
+</script>
+
+<!-- Service-specific Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Service",
+"name": "Gutter Replacement, Repairs & Cleaning",
+"serviceType": "Gutter cleaning, repair, and replacement",
+"provider": {
+"@type": "LocalBusiness",
+"name": "Home Maintenance Services",
+"telephone": "+447735873694",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "35 Airstone Road",
+"addressLocality": "Askern",
+"addressRegion": "Doncaster",
+"postalCode": "DN6 0QA",
+"addressCountry": "UK"
+}
+},
+"areaServed": {
+"@type": "Place",
+"address": {
+"@type": "PostalAddress",
+"addressLocality": "Askern",
+"addressRegion": "Doncaster",
+"addressCountry": "UK"
+}
+}
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "Do you charge a call-out fee for gutter services?",
+"acceptedAnswer": { "@type": "Answer", "text": "No, we never charge a call-out fee." }
+},
+{
+"@type": "Question",
+"name": "Can you replace damaged gutters?",
+"acceptedAnswer": { "@type": "Answer", "text": "Yes, we can replace damaged gutters to ensure they are fully functional." }
+},
+{
+"@type": "Question",
+"name": "Do you clean gutters safely?",
+"acceptedAnswer": { "@type": "Answer", "text": "Absolutely, we follow safe procedures to clean and maintain your gutters." }
+},
+{
+"@type": "Question",
+"name": "Which areas do you serve?",
+"acceptedAnswer": { "@type": "Answer", "text": "Askern, Doncaster DN6, and surrounding South Yorkshire areas." }
+}
+]
+}
+</script>
 
 </head>
 <body>
 
 <header>
-<h1>Home Maintenance Services – Gutter Quote Calculator</h1>
-<p>Askern & Doncaster DN6</p>
+<img src="https://steely1968.github.io/logo.png" alt="Home Maintenance Services Logo">
+<nav role="navigation">
+<a href="/">Home</a>
+<a href="/our-services/">Our Services</a>
+<a href="/contact">Contact</a>
+<a href="tel:07735873694" class="call-button">Call 07735 873694</a>
+</nav>
 </header>
 
-<main>
-<h2>Calculate Your Gutter Service Quote</h2>
-<p>Walk around the outside of your property and count your steps. Enter the total number of steps below to get an instant quote.</p>
+<main role="main">
+<h1>Gutter Replacement, Repairs & Cleaning in Askern & Doncaster (DN6)</h1>
+
+<p>Ensure your home is protected from water damage with our professional gutter services. From cleaning blocked gutters to repairing or replacing damaged sections, we offer reliable solutions for all properties.</p>
+
+<h2>Our Gutter Services Include:</h2>
+<ul>
+<li>Gutter cleaning to remove debris, leaves, and moss</li>
+<li>Repairing leaks and damage to ensure proper water flow</li>
+<li>Full replacement of worn or broken gutters</li>
+<li>Inspection and maintenance advice for long-lasting performance</li>
+</ul>
+
+<h2>Get an Instant Gutter Quote</h2>
+<p>Walk around your property and count your steps. Select the service type and enter the number of steps to get your price.</p>
+
+<div class="calculator">
+<label for="serviceType">Service Type:</label>
+<select id="serviceType">
+<option value="cleaning" data-price="5">Cleaning (£5 per step)</option>
+<option value="repair" data-price="8">Repair (£8 per step)</option>
+<option value="replacement" data-price="12">Replacement (£12 per step)</option>
+</select>
 
 <label for="steps">Number of steps around your property:</label>
 <input type="number" id="steps" min="0" placeholder="Enter step count">
@@ -43,28 +179,84 @@ button:hover {background:#166b2b;}
 <button onclick="calculateQuote()">Get Quote</button>
 
 <div class="result" id="quoteResult" aria-live="polite" style="display:none;"></div>
+</div>
 
 <script>
 function calculateQuote() {
 const stepCount = parseInt(document.getElementById("steps").value);
+const serviceSelect = document.getElementById("serviceType");
+const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+const pricePerStep = parseInt(selectedOption.dataset.price);
+
 if (isNaN(stepCount) || stepCount < 0) {
 alert("Please enter a valid number of steps.");
 return;
 }
-const pricePerStep = 5; // £5 per step
+
 const totalPrice = stepCount * pricePerStep;
 const resultDiv = document.getElementById("quoteResult");
 resultDiv.style.display = "block";
-resultDiv.textContent = `Estimated Quote: £${totalPrice.toLocaleString()}`;
+resultDiv.textContent = `Estimated Quote for ${selectedOption.text}: £${totalPrice.toLocaleString()}`;
+
+// Dynamic Offer Schema for Google rich results
+const offerSchema = {
+"@context": "https://schema.org",
+"@type": "Offer",
+"name": `${selectedOption.text} - Gutter Service`,
+"priceCurrency": "GBP",
+"price": totalPrice,
+"url": window.location.href,
+"availability": "https://schema.org/InStock",
+"validFrom": new Date().toISOString()
+};
+
+const oldScript = document.getElementById("dynamicOfferSchema");
+if (oldScript) oldScript.remove();
+
+const script = document.createElement("script");
+script.type = "application/ld+json";
+script.id = "dynamicOfferSchema";
+script.text = JSON.stringify(offerSchema);
+document.head.appendChild(script);
 }
 </script>
+
+<h2>Other Services You May Be Interested In</h2>
+<ul>
+<li><a href="/our-services/upvc-restoration">UPVC Restoration</a> – Revive doors, windows, and conservatories</li>
+<li><a href="/our-services/gardening-services">Gardening Services</a> – Lawn care, pruning, and garden tidy-ups</li>
+<li><a href="/our-services/exterior-carpentry">Exterior Carpentry</a> – Shed construction, decking, and timber repairs</li>
+<li><a href="/our-services/fence-construction-repairs">Fence Construction & Repairs</a> – Privacy, security, and aesthetics</li>
+<li><a href="/our-services/pressure-washing">Pressure Washing</a> – Clean driveways, patios, walls, decking, and paths</li>
+<li><a href="/our-services/exterior-decorating">Exterior Decorating</a> – Painting, staining, and exterior finishes</li>
+</ul>
+
+<h2>Quick Facts About Our Gutter Services</h2>
+<div class="quick-facts">
+<ul>
+<li>Local, professional handyman and property maintenance service in Askern & Doncaster DN6</li>
+<li>No call-out fees and fair pricing</li>
+<li>Fully insured and experienced in gutter work</li>
+<li>Most small jobs completed the same day</li>
+<li>Serving homes, gardens, and commercial properties</li>
+<li>Reliable, friendly, and professional service</li>
+</ul>
+</div>
+
+<h2>Contact Us</h2>
+<p>For gutter replacement, repairs, or cleaning, contact us today for advice or a free quote.</p>
+<p><strong>Call:</strong> <a href="tel:07735873694">07735 873694</a></p>
 
 </main>
 
 <footer>
 <p>&copy; <span id="currentYear"></span> Home Maintenance Services – Askern, Doncaster DN6</p>
-<script>document.getElementById("currentYear").textContent = new Date().getFullYear();</script>
+<p><a href="https://facebook.com" target="_blank" rel="noopener">Find us on Facebook</a></p>
 </footer>
+
+<script>
+document.getElementById("currentYear").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
