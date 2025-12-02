@@ -141,7 +141,7 @@ footer a:hover{text-decoration:underline;}
 
 <header>
 <img src="https://steely1968.github.io/logo.png" alt="Home Maintenance Services Logo">
-<nav role="navigation">
+<nav role="navigation" aria-label="Main Navigation">
 <a href="/">Home</a>
 <a href="/our-services/">Our Services</a>
 <a href="/contact">Contact</a>
@@ -168,56 +168,61 @@ footer a:hover{text-decoration:underline;}
 <div class="calculator">
 <label for="serviceType">Service Type:</label>
 <select id="serviceType">
-<option value="cleaning" data-price="5">Cleaning (£5 per step)</option>
-<option value="replacement" data-price="14">Replacement (£12 per step)</option>
+<option value="cleaning" data-price="2.5">Clean Gutters</option>
+<option value="replacement" data-price="14">Replace Gutters</option>
 </select>
 
 <label for="steps">Number of steps around your property:</label>
-<input type="number" id="steps" min="0" placeholder="Enter step count">
+<input type="number" id="steps" min="1" placeholder="Enter step count">
 
-<button onclick="calculateQuote()">Get Quote</button>
+<button id="calculateBtn">Get Quote</button>
 
 <div class="result" id="quoteResult" aria-live="polite" style="display:none;"></div>
 </div>
 
 <script>
-function calculateQuote() {
-const stepCount = parseInt(document.getElementById("steps").value);
-const serviceSelect = document.getElementById("serviceType");
-const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
-const pricePerStep = parseInt(selectedOption.dataset.price);
+document.getElementById("calculateBtn").addEventListener("click", function() {
+const stepInput = document.getElementById("steps");
+let steps = parseInt(stepInput.value);
 
-if (isNaN(stepCount) || stepCount < 0) {
-alert("Please enter a valid number of steps.");
+if (isNaN(steps) || steps < 1) {
+alert("Please enter a valid number of steps (1 or more).");
 return;
 }
 
-const totalPrice = stepCount * pricePerStep;
+const serviceSelect = document.getElementById("serviceType");
+const selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+const pricePerStep = parseFloat(selectedOption.dataset.price);
+
+const totalPrice = steps * pricePerStep;
+const formattedPrice = totalPrice.toFixed(2);
+
 const resultDiv = document.getElementById("quoteResult");
 resultDiv.style.display = "block";
-resultDiv.textContent = `Estimated Quote for ${selectedOption.text}: £${totalPrice.toLocaleString()}`;
+resultDiv.textContent = `Estimated Quote for ${selectedOption.text}: £${formattedPrice}`;
 
-// Dynamic Offer Schema for Google rich results
+// Remove old schema if exists
+const oldScript = document.getElementById("dynamicOfferSchema");
+if (oldScript) oldScript.remove();
+
+// Add dynamic Offer schema
 const offerSchema = {
 "@context": "https://schema.org",
 "@type": "Offer",
 "name": `${selectedOption.text} - Gutter Service`,
 "priceCurrency": "GBP",
-"price": totalPrice,
+"price": formattedPrice,
 "url": window.location.href,
 "availability": "https://schema.org/InStock",
 "validFrom": new Date().toISOString()
 };
 
-const oldScript = document.getElementById("dynamicOfferSchema");
-if (oldScript) oldScript.remove();
-
 const script = document.createElement("script");
 script.type = "application/ld+json";
 script.id = "dynamicOfferSchema";
-script.text = JSON.stringify(offerSchema);
+script.textContent = JSON.stringify(offerSchema);
 document.head.appendChild(script);
-}
+});
 </script>
 
 <h2>Other Services You May Be Interested In</h2>
@@ -250,7 +255,7 @@ document.head.appendChild(script);
 
 <footer>
 <p>&copy; <span id="currentYear"></span> Home Maintenance Services – Askern, Doncaster DN6</p>
-<p><a href="https://facebook.com" target="_blank" rel="noopener">Find us on Facebook</a></p>
+<p><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Find us on Facebook</a></p>
 </footer>
 
 <script>
