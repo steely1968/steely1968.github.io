@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gutter Clearing & Home Repairs Bentley | HomeRepairs4U</title>
+<meta name="description" content="Professional gutter clearing and home repair services in Bentley. Prevent damp, water damage, and costly repairs with HomeRepairs4U.">
+
+<style>
+body { font-family: Arial,sans-serif; line-height:1.65; margin:20px; color:#333; }
+h1,h2,h3 { line-height:1.3; }
+.cta-btn { background:#2ecc71; color:#fff; padding:12px 20px; text-decoration:none; border-radius:6px; display:inline-block; font-weight:bold; }
+.cta-btn:hover { background:#27ae60; }
+ul { margin-left:20px; }
+footer { font-size:0.9em; margin-top:30px; color:#555; }
+</style>
+</head>
+<body>
+
+<h1>Gutter Clearing & Home Repairs in Bentley</h1>
+
+<a class="cta-btn" href="https://homerepairs4u.com/our-services/gutter-replacement-repairs-clearing.html">Book Gutter Clearing in Bentley</a>
+
+<p>Keeping your gutters clear is essential to prevent damp and water damage. At <strong>HomeRepairs4U</strong>, we provide professional gutter clearing and home repair services throughout Bentley and surrounding 5-mile areas. From blocked gutters and downpipes to minor home maintenance, our local experts ensure your property stays safe and well-maintained.</p>
+
+<h2>Our Bentley Services</h2>
+<ul>
+<li>Gutter clearing and inspection</li>
+<li>Downpipe unblocking</li>
+<li>Roof maintenance and minor repairs</li>
+<li>Home maintenance advice and minor fixes</li>
+<li>Preventative property care to avoid costly damage</li>
+</ul>
+
+<h2>Why Choose Us?</h2>
+<ul>
+<li>Local expertise in Bentley homes</li>
+<li>Affordable pricing (£30–£1000)</li>
+<li>Fast response times</li>
+<li>Fully insured for peace of mind</li>
+<li>Friendly and reliable service</li>
+</ul>
+
+<h2>Quick Facts</h2>
+<ul>
+<li>Blocked gutters are a leading cause of damp in South Yorkshire.</li>
+<li>Most Bentley homes need gutter clearing twice per year.</li>
+<li>Overflowing gutters can damage brickwork and foundations.</li>
+<li>Regular maintenance increases gutter lifespan.</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<h3>How often should Bentley gutters be cleared?</h3>
+<p>Twice per year is typical, more frequently if your property is near trees.</p>
+<h3>Do you offer emergency gutter clearing?</h3>
+<p>Yes, especially after storms or heavy rain.</p>
+<h3>Do you cover nearby areas?</h3>
+<p>Yes, including Askern, Arksey, Scawsby, Adwick-le-Street, Wheatley, and Toll Bar.</p>
+
+<footer>
+<strong>HomeRepairs4U</strong><br>
+Tel: 07735 873694<br>
+Address: Airstone Road, Askern, South Yorkshire, DN6 0QA<br>
+<a href="https://homerepairs4u.com">homerepairs4u.com</a>
+</footer>
+
+<!-- LocalBusiness + Service + FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":"HomeRepairs4U",
+"image":"https://homerepairs4u.com/images/home-repairs.jpg",
+"telephone":"07735873694",
+"address":{
+"@type":"PostalAddress",
+"streetAddress":"Airstone Road",
+"addressLocality":"Askern",
+"addressRegion":"South Yorkshire",
+"postalCode":"DN6 0QA",
+"addressCountry":"GB"
+},
+"priceRange":"£30 - £1000",
+"url":"https://homerepairs4u.com",
+"description":"Gutter clearing and home repairs in Bentley and nearby areas."
+}
+</script>
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{"@type":"Question","name":"How often should gutters be cleared?","acceptedAnswer":{"@type":"Answer","text":"Bentley homes should be cleared twice yearly; more often if near trees."}},
+{"@type":"Question","name":"Do you offer emergency service?","acceptedAnswer":{"@type":"Answer","text":"Yes, especially after storms."}},
+{"@type":"Question","name":"Do you cover surrounding areas?","acceptedAnswer":{"@type":"Answer","text":"Yes, including Askern, Arksey, Scawsby, Adwick-le-Street, Wheatley, and Toll Bar."}}
+]
+}
+</script>
+
+</body>
+</html>
