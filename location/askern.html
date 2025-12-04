@@ -14,7 +14,7 @@
 <style>
 body {margin:0;font-family:Arial,sans-serif;line-height:1.6;background:#fff;color:#000;}
 header {display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background:#f4f4f4;border-bottom:2px solid #ddd;}
-header img{height:90px;}
+header img{height:90px; max-width:100%; height:auto;}
 nav{display:flex;align-items:center;gap:15px;}
 nav a{padding:10px 16px;border-radius:6px;font-weight:bold;text-decoration:none;color:#000;}
 nav a:hover{background:#e2e2e2;}
@@ -33,7 +33,7 @@ footer a:hover{text-decoration:underline;}
 
 <header>
 <img src="https://steely1968.github.io/logo.png" alt="Home Maintenance Services Logo - Askern DN6 Exterior Decorator">
-<nav>
+<nav aria-label="Main navigation">
 <a href="/">Home</a>
 <a href="/our-services/exterior-decorating">Exterior Decorating</a>
 <a href="/contact">Contact</a>
@@ -103,22 +103,53 @@ footer a:hover{text-decoration:underline;}
 document.getElementById("currentYear").textContent = new Date().getFullYear();
 </script>
 
+<!-- Structured Data -->
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "HomeAndConstructionBusiness",
 "name": "Home Maintenance Services Askern DN6",
-"url": "https://steely1968.github.io/location/askern",
 "image": "https://steely1968.github.io/logo.png",
+"url": "https://steely1968.github.io/location/askern",
 "telephone": "07735873694",
 "description": "Exterior house painting and professional exterior decorating services across Askern DN6, including masonry painting, fence painting, and wood staining.",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "Your Street Address", // <-- replace with actual address
+"addressLocality": "Askern",
+"postalCode": "DN6",
+"addressCountry": "GB"
+},
+"geo": {
+"@type": "GeoCoordinates",
+"latitude": 53.556, // <-- replace with actual latitude
+"longitude": -1.056 // <-- replace with actual longitude
+},
 "areaServed": [
 { "@type": "City", "name": "Askern" },
 { "@type": "AdministrativeArea", "name": "DN6" }
 ],
-"serviceType": ["Exterior Decorating","Exterior House Painting","Masonry Painting","Fence Painting","Wood Staining"],
-"sameAs":["https://www.facebook.com/profile.php?id=61584395621256"],
-"priceRange":"££"
+"serviceType": [
+"Exterior Decorating",
+"Exterior House Painting",
+"Masonry Painting",
+"Fence Painting",
+"Wood Staining"
+],
+"sameAs": ["https://www.facebook.com/profile.php?id=61584395621256"],
+"priceRange": "££",
+"openingHours": "Mo-Fr 09:00-17:00"
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Organization",
+"name": "Home Maintenance Services Askern DN6",
+"url": "https://steely1968.github.io/location/askern",
+"logo": "https://steely1968.github.io/logo.png",
+"sameAs": ["https://www.facebook.com/profile.php?id=61584395621256"]
 }
 </script>
 
