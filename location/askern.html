@@ -14,7 +14,11 @@
 <style>
 body {margin:0;font-family:Arial,sans-serif;line-height:1.6;background:#fff;color:#000;}
 header {display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background:#f4f4f4;border-bottom:2px solid #ddd;}
-header img{height:90px; max-width:100%; height:auto;}
+header img {
+height: 90px; /* fixed height */
+width: auto; /* scales proportionally */
+max-width: none; /* prevents stretching */
+}
 nav{display:flex;align-items:center;gap:15px;}
 nav a{padding:10px 16px;border-radius:6px;font-weight:bold;text-decoration:none;color:#000;}
 nav a:hover{background:#e2e2e2;}
