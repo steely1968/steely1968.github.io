@@ -1,299 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handyman Services</title>
 
-<title>Exterior Decorating | Exterior House Painting Askern & Doncaster (DN6)</title>
+<!-- Preload logo -->
+<link rel="preload" href="images/logo.webp" as="image" type="image/webp">
 
-<meta name="description" content="Professional exterior decorating and house painting services in Askern & Doncaster DN6. High-quality Sandtex finishes, masonry painting, fence painting, staining and surface preparation. Affordable handyman decorating services.">
-
-<link rel="canonical" href="steely1968.github.io">
-
-<!-- Preload image for SEO + speed -->
-<link rel="preload" as="image" href="/images/house-before-after.webp">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Exterior Decorating Services | Askern & Doncaster DN6">
-<meta property="og:description" content="Exterior house painting and decorating services in Askern & Doncaster DN6. Professional Sandtex finishes, fence & wall painting, and full surface preparation.">
-<meta property="og:url" content="steely1968.github.io">
-<meta property="og:image" content="steely1968.github.io">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="800">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="steely1968.github.io">
-
+<!-- Basic styling for header + footer -->
 <style>
-body{margin:0;font-family:Arial,sans-serif;line-height:1.6;color:#000;background:#fff; overflow-x: hidden; /* FIX: Prevents horizontal scrollbar on mobile */ }
-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background:#f4f4f4;border-bottom:2px solid #ddd;}
-header img{height:90px;}
-nav{display:flex;align-items:center;gap:15px;}
-nav a{font-weight:bold;text-decoration:none;padding:10px 16px;border-radius:6px;color:#000;}
-nav a:hover{background:#e2e2e2;}
-.call-button{background-color:#1a7f33;color:#fff;}
-.call-button:hover{background-color:#166b2b;}
-main{padding:20px;max-width:900px;margin:auto;}
-h1,h2{margin-top:10px;}
-ul{padding-left:20px;}
-.quick-facts{background:#f8f8f8;padding:20px;border-radius:10px;border:1px solid #ddd;margin:25px 0;}
-.quick-facts ul{padding-left:20px;}
-footer{padding:25px;text-align:center;font-size:14px;color:#666;border-top:1px solid #ddd;}
-footer a{color:#1864d8;font-weight:bold;text-decoration:none;}
-footer a:hover{text-decoration:underline;}
-
-/* FIX: Responsive images and added cursor pointer for click indication */
-img {
-  max-width: 100%; 
-  height: auto;    
-  box-sizing: border-box;
-  cursor: pointer; /* Indicates the image is clickable */
-}
-picture {
-  display: block;
-  max-width: 100%;
-}
-
-/* New CSS for the Lightbox/Overlay */
-#image-overlay {
-  display: none; 
-  position: fixed; 
-  z-index: 100; 
-  padding-top: 50px; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto;
-  background-color: rgba(0,0,0,0.9); 
-  text-align: center;
-}
-
-#image-overlay img {
-  margin: auto;
-  display: block;
-  width: 90%;
-  max-width: 1200px;
-  /* Re-apply basic responsive rules to the zoomed image */
-  max-width: 100%; 
-  height: auto;
-  cursor: default; /* Remove pointer cursor when zoomed */
-}
-
-#close-overlay {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 101;
-}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;line-height:1.55;color:#111;background:#fff}
+header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background:#f4f4f4;border-bottom:2px solid #ddd}
+header img{max-width:160px;height:auto}
+nav a{margin:0 10px;text-decoration:none;color:#333;font-weight:600}
+nav a:hover{text-decoration:underline;color:#000}
+footer{text-align:center;padding:20px;background:#f4f4f4;border-top:2px solid #ddd;margin-top:40px}
 </style>
-
-<!-- LocalBusiness Schema -->
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "LocalBusiness",
-"name": "Home Maintenance Services",
-"image": [
-"steely1968.github.io",
-"steely1968.github.io"
-],
-"url": "steely1968.github.io",
-"telephone": "+447735873694",
-"priceRange": "£",
-"address": {
-"@type": "PostalAddress",
-"streetAddress": "35 Airstone Road",
-"addressLocality": "Askern",
-"addressRegion": "Doncaster",
-"postalCode": "DN6 0QA",
-"addressCountry": "UK"
-}
-}
-</script>
-
-<!-- Service Schema -->
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "Service",
-"name": "Exterior Decorating",
-"serviceType": "Exterior house painting, staining, masonry painting, finish coatings",
-"provider": {
-"@type": "LocalBusiness",
-"name": "Home Maintenance Services",
-"telephone": "+447735873694"
-},
-"areaServed": {
-"@type": "Place",
-"address": {
-"@type": "PostalAddress",
-"addressLocality": "Askern",
-"addressRegion": "Doncaster",
-"addressCountry": "UK"
-}
-}
-}
-</script>
-
-<!-- ImageObject Schema -->
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "ImageObject",
-"contentUrl": "steely1968.github.io",
-"description": "Before and after exterior decorating project in Askern using Sandtex Brick Red masonry paint.",
-"name": "Exterior Decorating Before and After",
-"author": {
-"@type": "LocalBusiness",
-"name": "Home Maintenance Services"
-}
-}
-</script>
-
-<!-- FAQ Schema -->
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "FAQPage",
-"mainEntity": [
-{
-"@type": "Question",
-"name": "Do you prepare exterior surfaces?",
-"acceptedAnswer": { "@type": "Answer", "text": "Yes, all surfaces are cleaned, sanded and primed before painting to ensure a long-lasting professional finish." }
-},
-{
-"@type": "Question",
-"name": "Which exterior surfaces do you paint?",
-"acceptedAnswer": { "@type": "Answer", "text": "Walls, masonry, fences, gates, exterior woodwork, doors, windows, and more." }
-},
-{
-"@type": "Question",
-"name": "Do you serve the whole Doncaster area?",
-"acceptedAnswer": { "@type": "Answer", "text": "We cover Askern, Doncaster DN6 and all surrounding South Yorkshire areas." }
-}
-]
-}
-</script>
-
 </head>
+
 <body>
 
 <header>
-<img src="steely1968.github.io" alt="Home Maintenance Services Logo" style="cursor: default;"> <!-- Removed cursor pointer from logo -->
+<img src="images/logo.webp" alt="Home Maintenance Services Logo">
 <nav>
-<a href="/">Home</a>
-<a href="/contact">Contact</a>
-<a href="tel:07735873694" class="call-button">Call 07735 873694</a>
+<a href="/index.html">Home</a>
+<a href="/our-services/">Services</a>
+<a href="/location/">Locations</a>
+<a href="/contact.html">Contact</a>
 </nav>
 </header>
 
+<!-- PAGE CONTENT STARTS HERE -->
 <main>
+<h1>Askern Handyman Services</h1>
 
-<h1>Exterior Decorating & House Painting in Askern & Doncaster (DN6)</h1>
+<section id="about">
+<h2>About Us</h2>
+<p>Welcome to Askern Handyman Services! We are your trusted local experts for all external home repairs, external decorating, and fencing solutions within a 7-mile radius of Askern. Whether you need minor repairs, large-scale projects, or professional maintenance, we provide reliable, professional, and high-quality services to enhance and protect the exterior of your home.</p>
+<p>Our team understands that the exterior of your home is not just the first thing people see—it’s also essential for safety, durability, and curb appeal. That’s why we use skilled workmanship and quality materials to ensure every job is done right the first time. No project is too big or too small, and we take pride in helping homeowners in Askern maintain and improve their properties with care and professionalism.</p>
+<p>We have years of experience in the handyman industry and specialize in external services. Our approach is practical, efficient, and tailored to your needs, making us a go-to choice for homeowners looking for dependable local expertise. Every client receives a personalised service, ensuring that your specific requirements are understood and met with precision.</p>
+</section>
 
-<p>Transform and protect your property with our professional exterior decorating services. We specialise in exterior house painting, masonry painting, fence and gate painting, wood staining, and protective coatings for all outdoor surfaces. With years of experience and attention to detail, we provide reliable, high-quality workmanship across Askern and Doncaster DN6.</p>
-
-<!-- BEFORE / AFTER IMAGE -->
-<h2>Recent Exterior Painting Project</h2>
-<p>Here’s a before and after example of a home recently painted using <strong>Sandtex Brick Red masonry paint</strong> — giving the property a modern, protected, and refreshed look.</p>
-
-<picture>
-<source srcset="steely1968.github.ioimages/house-before-after.webp" type="image/webp">
-<img src="steely1968.github.ioimages/house-before-after.webp"
-alt="Before and after exterior house painting using Sandtex Brick Red paint in Askern DN6."
-loading="lazy"
-width="1200"
-height="800"
-id="main-house-image"> <!-- ADDED ID FOR JAVASCRIPT -->
-</picture>
-
-<h2>Our Exterior Decorating Services</h2>
+<section id="services">
+<h2>Our Services</h2>
+<p>We offer a wide range of external home services in Askern and the surrounding areas within a 7-mile radius, including:</p>
 <ul>
-<li>Exterior wall & masonry painting</li>
-<li>Fence, gate & shed painting</li>
-<li>Wood staining & varnishing</li>
-<li>Surface preparation (cleaning, sanding, priming)</li>
-<li>Weatherproof protective coatings</li>
-<li>Colour matching & finish advice</li>
+<li><strong>External Home Repairs:</strong> From fixing gutters, fences, doors, and windows to repairing external walls and pathways, we ensure your home stays safe, functional, and visually appealing.</li>
+<li><strong>External Decorating:</strong> Freshen up your home’s exterior with professional painting and decorating. We handle walls, fences, gates, and other surfaces to give your property a polished, updated look.</li>
+<li><strong>Fencing:</strong> Installation, repair, and maintenance of all types of fences to protect your property and improve its aesthetics. We provide timber, panel, and bespoke fencing solutions tailored to your needs.</li>
 </ul>
+<p>We pride ourselves on reliability, professionalism, and attention to detail. Every project is completed to the highest standard, ensuring long-lasting results that you can be proud of. Our services are flexible and affordable, allowing homeowners to maintain their properties without hassle or compromise.</p>
+</section>
 
-<h2>Why Customers Choose Us</h2>
-<div class="quick-facts">
+<section id="why-choose-us">
+<h2>Why Choose Askern Handyman Services?</h2>
+<p>Choosing the right handyman is crucial for maintaining and improving your home. Here’s why homeowners in Askern trust us:</p>
 <ul>
-<li>Trusted local handyman in Askern & Doncaster DN6</li>
-<li>Professional finish with premium paints (including Sandtex)</li>
-<li>Reliable, friendly, fully insured service</li>
-<li>No call-out fees – fair pricing</li>
-<li>Residential and commercial properties covered</li>
+<li><strong>Local Expertise:</strong> Serving Askern and a 7-mile radius, we understand the specific needs of homes in the area.</li>
+<li><strong>Professionalism:</strong> We arrive on time, communicate clearly, and treat every property with respect.</li>
+<li><strong>Quality Work:</strong> We use high-quality materials and ensure meticulous workmanship on every project.</li>
+<li><strong>Versatility:</strong> From minor repairs to major fencing installations, we handle it all.</li>
+<li><strong>Customer Satisfaction:</strong> Our work isn’t done until you are fully happy with the results.</li>
 </ul>
+<p>By choosing Askern Handyman Services, you are choosing peace of mind. Every job is approached with care, professionalism, and a commitment to exceeding expectations. We listen carefully to your needs, provide clear advice, and deliver solutions that enhance the value and appearance of your home.</p>
+</section>
+
+<section id="contact">
+<h2>Contact Us</h2>
+<p>If you need a reliable handyman for external home repairs, decorating, or fencing in Askern or within a 7-mile radius, get in touch today!</p>
+<div class="contact-info" style="background-color:#e9f0f5; padding:15px; margin-top:20px; border-left:4px solid #2e3d49;">
+<p><strong>Phone:</strong> 01234 567890</p>
+<p><strong>Email:</strong> info@askernhandyman.co.uk</p>
+<p><strong>Location:</strong> Askern, Doncaster, South Yorkshire</p>
 </div>
-
-<h2>Related Services</h2>
-<ul>
-<li><a href="/our-services/gutter-replacement-repairs-clearing">Gutter Replacement, Repairs & Cleaning</a></li>
-<li><a href="/our-services/upvc-restoration">UPVC Restoration</a></li>
-<li><a href="/our-services/gardening-services">Gardening Services</a></li>
-<li><a href="/our-services/exterior-carpentry">Exterior Carpentry</a></li>
-<li><a href="/our-services/fence-construction-repairs">Fence Construction & Repairs</a></li>
-<li><a href="/our-services/pressure-washing">Pressure Washing</a></li>
-</ul>
-
-<h2>Get a Free Exterior Decorating Quote</h2>
-<p>For exterior house painting or property decorating, contact us today for free advice or a no-obligation quote.</p>
-
-<p><strong>Call:</strong> <a href="tel:07735873694">07735 873694</a></p>
-
+<p>We provide free quotes and honest advice for all projects. Let us help you enhance your home’s exterior today with quality workmanship and professional service you can trust.</p>
+</section>
 </main>
-
-<!-- New HTML for the Image Overlay/Lightbox -->
-<div id="image-overlay">
-  <span id="close-overlay">&times;</span>
-  <img id="zoomed-image" src="" alt="Zoomed image">
-</div>
+<!-- PAGE CONTENT ENDS HERE -->
 
 <footer>
-<p>&copy; <span id="currentYear"></span> Home Maintenance Services – Askern, Doncaster DN6</p>
-<p><a href="www.facebook.com" target="_blank" rel="noopener noreferrer">Visit our Facebook Profile</a></p>
+© 2025 Handyman Services | Askern & Doncaster (DN6)
 </footer>
-
-<script>
-document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-// JavaScript for the Image Overlay/Lightbox functionality
-var overlay = document.getElementById("image-overlay");
-var mainImage = document.getElementById("main-house-image"); 
-var zoomedImg = document.getElementById("zoomed-image");
-var closeBtn = document.getElementById("close-overlay");
-
-// Open the modal when the main image is clicked/touched
-mainImage.onclick = function(){
-  overlay.style.display = "block";
-  zoomedImg.src = this.src; // Load the same image source into the overlay
-  // Prevent body scrolling while overlay is open (optional)
-  document.body.style.overflow = 'hidden'; 
-}
-
-// Close the modal when the 'x' is clicked
-closeBtn.onclick = function() {
-  overlay.style.display = "none";
-  document.body.style.overflow = 'auto'; // Re-enable body scrolling
-}
-
-// Close the overlay if the user taps the dark background
-window.onclick = function(event) {
-  if (event.target == overlay) {
-    overlay.style.display = "none";
-    document.body.style.overflow = 'auto'; // Re-enable body scrolling
-  }
-}
-</script>
 
 </body>
 </html>
