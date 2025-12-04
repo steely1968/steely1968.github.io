@@ -9,7 +9,7 @@
 
 <meta name="description" content="Professional exterior decorating and house painting services in Askern & Doncaster DN6. High-quality Sandtex finishes, masonry painting, fence painting, staining and surface preparation. Affordable handyman decorating services.">
 
-<link rel="canonical" href="https://steely1968.github.io/our-services/exterior-decorating/">
+<link rel="canonical" href="steely1968.github.io">
 
 <!-- Preload image for SEO + speed -->
 <link rel="preload" as="image" href="/images/house-before-after.webp">
@@ -17,17 +17,17 @@
 <!-- Open Graph -->
 <meta property="og:title" content="Exterior Decorating Services | Askern & Doncaster DN6">
 <meta property="og:description" content="Exterior house painting and decorating services in Askern & Doncaster DN6. Professional Sandtex finishes, fence & wall painting, and full surface preparation.">
-<meta property="og:url" content="https://steely1968.github.io/our-services/exterior-decorating/">
-<meta property="og:image" content="https://steely1968.github.io/house-before-after.webp">
+<meta property="og:url" content="steely1968.github.io">
+<meta property="og:image" content="steely1968.github.io">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="800">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://steely1968.github.io/house-before-after.webp">
+<meta name="twitter:image" content="steely1968.github.io">
 
 <style>
-body{margin:0;font-family:Arial,sans-serif;line-height:1.6;color:#000;background:#fff;}
+body{margin:0;font-family:Arial,sans-serif;line-height:1.6;color:#000;background:#fff; overflow-x: hidden; /* FIX: Prevents horizontal scrollbar on mobile */ }
 header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background:#f4f4f4;border-bottom:2px solid #ddd;}
 header img{height:90px;}
 nav{display:flex;align-items:center;gap:15px;}
@@ -43,17 +43,54 @@ ul{padding-left:20px;}
 footer{padding:25px;text-align:center;font-size:14px;color:#666;border-top:1px solid #ddd;}
 footer a{color:#1864d8;font-weight:bold;text-decoration:none;}
 footer a:hover{text-decoration:underline;}
+
+/* FIX: Responsive images and added cursor pointer for click indication */
 img {
-  max-width: 100%;
-  height: auto;  
-  box-sizing: border-box; 
+  max-width: 100%; 
+  height: auto;    
+  box-sizing: border-box;
+  cursor: pointer; /* Indicates the image is clickable */
 }
 picture {
   display: block;
-  max-width: 100%; 
+  max-width: 100%;
 }
-body {
-  overflow-x: hidden;
+
+/* New CSS for the Lightbox/Overlay */
+#image-overlay {
+  display: none; 
+  position: fixed; 
+  z-index: 100; 
+  padding-top: 50px; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(0,0,0,0.9); 
+  text-align: center;
+}
+
+#image-overlay img {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 1200px;
+  /* Re-apply basic responsive rules to the zoomed image */
+  max-width: 100%; 
+  height: auto;
+  cursor: default; /* Remove pointer cursor when zoomed */
+}
+
+#close-overlay {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 101;
 }
 </style>
 
@@ -64,10 +101,10 @@ body {
 "@type": "LocalBusiness",
 "name": "Home Maintenance Services",
 "image": [
-"https://steely1968.github.io/logo.png",
-"https://steely1968.github.io/house-before-after.webp"
+"steely1968.github.io",
+"steely1968.github.io"
 ],
-"url": "https://steely1968.github.io/",
+"url": "steely1968.github.io",
 "telephone": "+447735873694",
 "priceRange": "£",
 "address": {
@@ -110,7 +147,7 @@ body {
 {
 "@context": "https://schema.org",
 "@type": "ImageObject",
-"contentUrl": "https://steely1968.github.io/house-before-after.webp",
+"contentUrl": "steely1968.github.io",
 "description": "Before and after exterior decorating project in Askern using Sandtex Brick Red masonry paint.",
 "name": "Exterior Decorating Before and After",
 "author": {
@@ -149,7 +186,7 @@ body {
 <body>
 
 <header>
-<img src="https://steely1968.github.io/logo.png" alt="Home Maintenance Services Logo">
+<img src="steely1968.github.io" alt="Home Maintenance Services Logo" style="cursor: default;"> <!-- Removed cursor pointer from logo -->
 <nav>
 <a href="/">Home</a>
 <a href="/contact">Contact</a>
@@ -168,12 +205,13 @@ body {
 <p>Here’s a before and after example of a home recently painted using <strong>Sandtex Brick Red masonry paint</strong> — giving the property a modern, protected, and refreshed look.</p>
 
 <picture>
-<source srcset="https://steely1968.github.io/images/house-before-after.webp" type="image/webp">
-<img src="https://steely1968.github.io/images/house-before-after.webp"
+<source srcset="steely1968.github.ioimages/house-before-after.webp" type="image/webp">
+<img src="steely1968.github.ioimages/house-before-after.webp"
 alt="Before and after exterior house painting using Sandtex Brick Red paint in Askern DN6."
 loading="lazy"
 width="1200"
-height="800">
+height="800"
+id="main-house-image"> <!-- ADDED ID FOR JAVASCRIPT -->
 </picture>
 
 <h2>Our Exterior Decorating Services</h2>
@@ -214,13 +252,47 @@ height="800">
 
 </main>
 
+<!-- New HTML for the Image Overlay/Lightbox -->
+<div id="image-overlay">
+  <span id="close-overlay">&times;</span>
+  <img id="zoomed-image" src="" alt="Zoomed image">
+</div>
+
 <footer>
 <p>&copy; <span id="currentYear"></span> Home Maintenance Services – Askern, Doncaster DN6</p>
-<p><a href="https://www.facebook.com/profile.php?id=61584395621256" target="_blank" rel="noopener noreferrer">Visit our Facebook Profile</a></p>
+<p><a href="www.facebook.com" target="_blank" rel="noopener noreferrer">Visit our Facebook Profile</a></p>
 </footer>
 
 <script>
 document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+// JavaScript for the Image Overlay/Lightbox functionality
+var overlay = document.getElementById("image-overlay");
+var mainImage = document.getElementById("main-house-image"); 
+var zoomedImg = document.getElementById("zoomed-image");
+var closeBtn = document.getElementById("close-overlay");
+
+// Open the modal when the main image is clicked/touched
+mainImage.onclick = function(){
+  overlay.style.display = "block";
+  zoomedImg.src = this.src; // Load the same image source into the overlay
+  // Prevent body scrolling while overlay is open (optional)
+  document.body.style.overflow = 'hidden'; 
+}
+
+// Close the modal when the 'x' is clicked
+closeBtn.onclick = function() {
+  overlay.style.display = "none";
+  document.body.style.overflow = 'auto'; // Re-enable body scrolling
+}
+
+// Close the overlay if the user taps the dark background
+window.onclick = function(event) {
+  if (event.target == overlay) {
+    overlay.style.display = "none";
+    document.body.style.overflow = 'auto'; // Re-enable body scrolling
+  }
+}
 </script>
 
 </body>
