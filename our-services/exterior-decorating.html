@@ -43,6 +43,26 @@ ul{padding-left:20px;}
 footer{padding:25px;text-align:center;font-size:14px;color:#666;border-top:1px solid #ddd;}
 footer a{color:#1864d8;font-weight:bold;text-decoration:none;}
 footer a:hover{text-decoration:underline;}
+  /* 1. Make all images responsive by default */
+img {
+  max-width: 100%; /* Ensures the image doesn't overflow its parent container */
+  height: auto;    /* Maintains the image's aspect ratio correctly */
+  box-sizing: border-box; /* Ensures padding/borders don't add to the width */
+}
+
+/* 2. Target the specific picture element container if needed */
+picture {
+  display: block; /* Ensures the picture behaves like a block element */
+  max-width: 100%; /* Ensures the container itself is responsive */
+}
+
+/* 3. Prevent the main body from showing a horizontal scrollbar if anything overflows accidentally */
+body {
+  overflow-x: hidden;
+}
+
+/* --- FIXES FOR SCROLLBAR ISSUE END HERE --- */
+
 </style>
 
 <!-- LocalBusiness Schema -->
