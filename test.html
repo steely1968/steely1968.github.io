@@ -141,3 +141,85 @@ resultHTML += `</ul><p><strong>Total price: £${total}</strong></p>`;
 document.getElementById('quoteResult').innerHTML = resultHTML;
 }
 </script>
+
+
+<section id="pressure-wash-quote" style="max-width:900px;margin:30px auto;padding:25px;background:#fff;border:1px solid #ccc;">
+<h2>Instant Pressure Washing Quote</h2>
+<p>Use this calculator to get an estimate for your pressure washing service. Prices are in GBP (£).</p>
+
+<form id="quoteForm">
+<label for="sqm">How many square metres?*</label><br>
+<input type="number" id="sqm" name="sqm" min="1" step="0.01" required style="width:100%;padding:8px;margin:6px 0;"><br>
+
+<input type="checkbox" id="jetwash" name="jetwash" checked>
+<label for="jetwash">Jet wash only (£2.50 per m²)</label><br>
+
+<input type="checkbox" id="fungicide" name="fungicide">
+<label for="fungicide">Fungicide treatment (£0.80 per m²)</label><br>
+
+<input type="checkbox" id="hardbrush" name="hardbrush">
+<label for="hardbrush">Hard brush (£0.60 per m²)</label><br>
+
+<input type="checkbox" id="resanding" name="resanding">
+<label for="resanding">Resanding (£1.50 per m²)</label><br>
+
+<input type="checkbox" id="sealing" name="sealing">
+<label for="sealing">Sealing (£1.20 per m²)</label><br>
+
+<button type="button" onclick="calculateQuote()" style="margin-top:15px;padding:12px 24px;background:#000;color:#fff;border:2px solid #000;border-radius:6px;font-weight:bold;">Get Quote</button>
+</form>
+
+<div id="quoteResult" style="margin-top:20px;font-size:18px;font-weight:bold;"></div>
+</section>
+
+<script>
+function calculateQuote() {
+// Read value and replace commas with periods (UK decimal format)
+const sqmInput = document.getElementById('sqm').value.trim().replace(',', '.');
+const sqm = parseFloat(sqmInput);
+
+if(isNaN(sqm) || sqm <= 0){
+alert("Please enter a valid number of square metres.");
+return;
+}
+
+let total = 40; // Base service cost
+let selectedOptions = [];
+
+if(document.getElementById('jetwash').checked){
+let price = sqm * 2.5;
+selectedOptions.push(`Jet wash only: £${price.toFixed(2)}`);
+total += price;
+}
+if(document.getElementById('fungicide').checked){
+let price = sqm * 0.8;
+selectedOptions.push(`Fungicide treatment: £${price.toFixed(2)}`);
+total += price;
+}
+if(document.getElementById('hardbrush').checked){
+let price = sqm * 0.6;
+selectedOptions.push(`Hard brush: £${price.toFixed(2)}`);
+total += price;
+}
+if(document.getElementById('resanding').checked){
+let price = sqm * 1.5;
+selectedOptions.push(`Resanding: £${price.toFixed(2)}`);
+total += price;
+}
+if(document.getElementById('sealing').checked){
+let price = sqm * 1.2;
+selectedOptions.push(`Sealing: £${price.toFixed(2)}`);
+total += price;
+}
+
+total = total.toFixed(2);
+
+let resultHTML = `<p><strong>You selected:</strong></p><ul>`;
+selectedOptions.forEach(option => {
+resultHTML += `<li>${option}</li>`;
+});
+resultHTML += `</ul><p><strong>Total price: £${total}</strong></p>`;
+
+document.getElementById('quoteResult').innerHTML = resultHTML;
+}
+</script>
