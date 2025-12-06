@@ -7,19 +7,19 @@
 <input type="number" id="sqm" name="sqm" min="1" required style="width:100%;padding:8px;margin:6px 0;"><br>
 
 <input type="checkbox" id="jetwash" name="jetwash" checked>
-<label for="jetwash">Jet wash only (£2.50 per m²)</label><br>
+<label for="jetwash">Jet wash only</label><br>
 
 <input type="checkbox" id="fungicide" name="fungicide">
-<label for="fungicide">Fungicide treatment (£0.80 per m²)</label><br>
+<label for="fungicide">Fungicide treatment</label><br>
 
 <input type="checkbox" id="hardbrush" name="hardbrush">
-<label for="hardbrush">Hard brush (£0.60 per m²)</label><br>
+<label for="hardbrush">Hard brush with cleaning solution</label><br>
 
 <input type="checkbox" id="resanding" name="resanding">
-<label for="resanding">Resanding (£1.50 per m²)</label><br>
+<label for="resanding">Resanding paving blocks</label><br>
 
 <input type="checkbox" id="sealing" name="sealing">
-<label for="sealing">Sealing (£1.20 per m²)</label><br>
+<label for="sealing">Sealing</label><br>
 
 <button type="button" onclick="calculateQuote()" style="margin-top:15px;padding:12px 24px;background:#000;color:#fff;border:2px solid #000;border-radius:6px;font-weight:bold;">Get Quote</button>
 </form>
@@ -44,13 +44,13 @@ if(document.getElementById('fungicide').checked){
 total += sqm * 0.8;
 }
 if(document.getElementById('hardbrush').checked){
-total += sqm * 0.6;
+total += sqm * 0.8;
 }
 if(document.getElementById('resanding').checked){
-total += sqm * 1.5;
+total += sqm * 2.0;
 }
 if(document.getElementById('sealing').checked){
-total += sqm * 1.2;
+total += sqm * 4.0;
 }
 
 // Round to 2 decimals
