@@ -1,80 +1,116 @@
-<section id="pressure-wash-quote" style="max-width:900px;margin:30px auto;padding:25px;background:#fff;border:1px solid #ccc;">
-<h2>Instant Pressure Washing Quote</h2>
-<p>Use this calculator to get an estimate for your pressure washing service. Prices are in GBP (£).</p>
+<!-- PRESSURE WASHING QUOTE CALCULATOR -->
+<section style="max-width:800px;margin:0 auto;padding:20px;">
 
-<form id="quoteForm">
-<label for="sqm">How many square metres?*</label><br>
-<input type="number" id="sqm" name="sqm" min="1" step="0.01" required style="width:100%;padding:8px;margin:6px 0;"><br>
+<h1>Instant Pressure Washing Quote</h1>
+<p>Receive an instant estimate based on the size of your surface and the treatments you require.</p>
 
-<input type="checkbox" id="jetwash" name="jetwash" checked>
-<label for="jetwash">Jet wash only (£2.50 per m²)</label><br>
+<label for="sqm">How many square metres?</label>
+<input type="number" id="sqm" min="1" placeholder="Enter m²" style="width:100%;padding:10px;margin-bottom:15px;">
 
-<input type="checkbox" id="fungicide" name="fungicide">
-<label for="fungicide">Fungicide treatment (£0.80 per m²)</label><br>
+<label><input type="checkbox" id="jetwash"> Jet wash only (£2.50 per m²)</label><br>
+<label><input type="checkbox" id="fungicide"> Fungicide treatment (£0.80 per m²)</label><br>
+<label><input type="checkbox" id="hardbrush"> Hard brush (£0.60 per m²)</label><br>
+<label><input type="checkbox" id="resand"> Resanding (£1.50 per m²)</label><br>
+<label><input type="checkbox" id="sealing"> Sealing (£1.20 per m²)</label><br><br>
 
-<input type="checkbox" id="hardbrush" name="hardbrush">
-<label for="hardbrush">Hard brush (£0.60 per m²)</label><br>
+<button onclick="calculateQuote()"
+style="padding:12px 24px;background:#000;color:#fff;border:2px solid #000;border-radius:6px;font-weight:bold;">
+Get Quote
+</button>
 
-<input type="checkbox" id="resanding" name="resanding">
-<label for="resanding">Resanding (£1.50 per m²)</label><br>
+<div id="quoteResult" style="margin-top:25px;font-size:1.1rem;"></div>
 
-<input type="checkbox" id="sealing" name="sealing">
-<label for="sealing">Sealing (£1.20 per m²)</label><br>
-
-<button type="button" onclick="calculateQuote()" style="margin-top:15px;padding:12px 24px;background:#000;color:#fff;border:2px solid #000;border-radius:6px;font-weight:bold;">Get Quote</button>
-</form>
-
-<div id="quoteResult" style="margin-top:20px;font-size:18px;font-weight:bold;"></div>
 </section>
 
 <script>
 function calculateQuote() {
-// Read value and replace commas with periods (UK decimal format)
-const sqmInput = document.getElementById('sqm').value.trim().replace(',', '.');
-const sqm = parseFloat(sqmInput);
 
-if(isNaN(sqm) || sqm <= 0){
-alert("Please enter a valid number of square metres.");
+const sqm = parseFloat(document.getElementById('sqm').value);
+
+if (isNaN(sqm) || sqm <= 0) {
+document.getElementById('quoteResult').innerHTML =
+`<p style="color:red;font-weight:bold;">Error: Please enter a valid number of square metres.</p>`;
 return;
 }
 
-let total = 40; // Base service cost
-let selectedOptions = [];
+let total = 40; // Base fee
+let breakdown = [];
+let emailBreakdown = [];
 
-if(document.getElementById('jetwash').checked){
-let price = sqm * 2.5;
-selectedOptions.push(`Jet wash only: £${price.toFixed(2)}`);
-total += price;
-}
-if(document.getElementById('fungicide').checked){
-let price = sqm * 0.8;
-selectedOptions.push(`Fungicide treatment: £${price.toFixed(2)}`);
-total += price;
-}
-if(document.getElementById('hardbrush').checked){
-let price = sqm * 0.6;
-selectedOptions.push(`Hard brush: £${price.toFixed(2)}`);
-total += price;
-}
-if(document.getElementById('resanding').checked){
-let price = sqm * 1.5;
-selectedOptions.push(`Resanding: £${price.toFixed(2)}`);
-total += price;
-}
-if(document.getElementById('sealing').checked){
-let price = sqm * 1.2;
-selectedOptions.push(`Sealing: £${price.toFixed(2)}`);
-total += price;
+// Jet wash
+if (document.getElementById('jetwash').checked) {
+let cost = sqm * 2.5;
+breakdown.push(`Jet wash only: £${cost.toFixed(2)}`);
+emailBreakdown.push(`Jet wash only: £${cost.toFixed(2)}`);
+total += cost;
 }
 
-total = total.toFixed(2);
+// Fungicide
+if (document.getElementById('fungicide').checked) {
+let cost = sqm * 0.8;
+breakdown.push(`Fungicide treatment: £${cost.toFixed(2)}`);
+emailBreakdown.push(`Fungicide treatment: £${cost.toFixed(2)}`);
+total += cost;
+}
 
-let resultHTML = `<p><strong>You selected:</strong></p><ul>`;
-selectedOptions.forEach(option => {
-resultHTML += `<li>${option}</li>`;
-});
-resultHTML += `</ul><p><strong>Total price: £${total}</strong></p>`;
+// Hard brush
+if (document.getElementById('hardbrush').checked) {
+let cost = sqm * 0.6;
+breakdown.push(`Hard brush: £${cost.toFixed(2)}`);
+emailBreakdown.push(`Hard brush: £${cost.toFixed(2)}`);
+total += cost;
+}
 
-document.getElementById('quoteResult').innerHTML = resultHTML;
+// Resanding
+if (document.getElementById('resand').checked) {
+let cost = sqm * 1.5;
+breakdown.push(`Resanding: £${cost.toFixed(2)}`);
+emailBreakdown.push(`Resanding: £${cost.toFixed(2)}`);
+total += cost;
+}
+
+// Sealing
+if (document.getElementById('sealing').checked) {
+let cost = sqm * 1.2;
+breakdown.push(`Sealing: £${cost.toFixed(2)}`);
+emailBreakdown.push(`Sealing: £${cost.toFixed(2)}`);
+total += cost;
+}
+
+let optionsDisplay = breakdown.join("<br>") || "No additional options selected";
+
+// EMAIL BODY CONTENT
+let emailBody =
+`You have received a pressure washing quote request:
+
+Square Metres: ${sqm} m²
+
+Options Selected:
+${emailBreakdown.join("\n") || "None"}
+
+Base Fee: £40.00 (covers travel, setup and preparation)
+
+Total Price: £${total.toFixed(2)}
+
+Please contact me to confirm this estimate.
+`;
+
+let mailtoLink = `mailto:YOUR_EMAIL_HERE?subject=Pressure Washing Quote Request&body=${encodeURIComponent(emailBody)}`;
+
+// HTML output
+document.getElementById('quoteResult').innerHTML = `
+<h3>Your Quote</h3>
+<p><strong>Square Metres:</strong> ${sqm} m²</p>
+<p><strong>Base service fee:</strong> £40.00<br>
+<small>This £40 covers travel, setup and preparation time.</small></p>
+<p><strong>You selected:</strong><br>${optionsDisplay}</p>
+<h3>Total Price: £${total.toFixed(2)}</h3>
+
+<a href="${mailtoLink}">
+<button style="margin-top:15px;padding:12px 24px;background:#000;color:#fff;border:2px solid #000;border-radius:6px;font-weight:bold;">
+Email This Quote
+</button>
+</a>
+`;
 }
 </script>
