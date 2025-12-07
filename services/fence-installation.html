@@ -157,6 +157,91 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 
 <h1>Fence Installation & Gate Fitting in Askern DN6</h1>
 
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garden Fence Quote Calculator | Instant Online Estimate</title>
+<meta name="description" content="Get an instant garden fence quote. Enter fence length, number of gates, and receive a cost breakdown.">
+<style>
+body { font-family: Arial, sans-serif; background: #f8f8f8; color: #222; margin:0; padding:0; line-height:1.6; }
+main { max-width:900px; margin:30px auto; padding:25px; background:#fff; border:1px solid #ccc; }
+h1, h2 { color:#000; }
+label { font-weight: bold; display:block; margin-top:15px; }
+input[type=number] { width:100%; padding:10px; font-size:16px; margin-top:5px; }
+button { margin-top:20px; padding:12px 24px; background:#000; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
+button:hover, button:focus { background:#333; outline:none; }
+#fenceResult ul { padding-left:20px; }
+</style>
+</head>
+<body>
+<main>
+<h1>Instant Garden Fence Quote</h1>
+<section aria-labelledby="quote-form-title">
+<h2 id="quote-form-title">Calculate Your Fence Cost</h2>
+<p>Enter the length of your fence and number of gates to get a cost breakdown.</p>
+
+<form id="fenceForm">
+<label for="length">Length of fencing (metres)*</label>
+<input type="number" id="length" name="length" min="1" step="0.01" required aria-required="true">
+
+<label for="numGates">Number of gates</label>
+<input type="number" id="numGates" name="numGates" min="0" step="1" value="0" aria-required="true">
+
+<button type="button" onclick="calculateFenceQuote()">Get Quote</button>
+</form>
+
+<div id="fenceResult" aria-live="polite"></div>
+</section>
+</main>
+
+<script defer>
+function calculateFenceQuote() {
+const lengthInput = document.getElementById('length').value.trim().replace(',', '.');
+const fenceLength = parseFloat(lengthInput);
+if (isNaN(fenceLength) || fenceLength <= 0) {
+alert("Please enter a valid length in metres.");
+return;
+}
+
+const numGates = parseInt(document.getElementById('numGates').value) || 0;
+const panelLength = 1.82;
+const panelCost = 40;
+const postCost = 18;
+const gravelBoardCost = 20;
+const postcreteCost = 7;
+const labourRate = 50;
+
+const chargeableLength = fenceLength - numGates; // Deduct 1m per gate
+const panels = Math.ceil(chargeableLength / panelLength);
+const posts = panels + 2;
+const cementBags = posts * 2;
+const gravelBoards = panels;
+const labour = chargeableLength * labourRate;
+const gateCost = numGates * 150;
+
+const panelsTotal = panels * panelCost;
+const postsTotal = posts * postCost;
+const gravelTotal = gravelBoards * gravelBoardCost;
+const postcreteTotal = cementBags * postcreteCost;
+const total = panelsTotal + postsTotal + gravelTotal + postcreteTotal + labour + gateCost;
+
+let resultHTML = `<p><strong>Quote breakdown:</strong></p><ul>`;
+resultHTML += `<li>Fence panels (${panels} × £${panelCost}): £${panelsTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Concrete posts (${posts} × £${postCost}): £${postsTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Gravel boards (${gravelBoards} × £${gravelBoardCost}): £${gravelTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Postcrete bags (${cementBags} × £${postcreteCost}): £${postcreteTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Labour (${chargeableLength.toFixed(2)} m × £${labourRate}): £${labour.toFixed(2)}</li>`;
+if (numGates > 0) resultHTML += `<li>Gates (${numGates} × £150): £${gateCost.toFixed(2)}</li>`;
+resultHTML += `</ul><p><strong>Total price: £${total.toFixed(2)}</strong></p>`;
+
+document.getElementById('fenceResult').innerHTML = resultHTML;
+}
+</script>
+</body>
+</html>
+
 <p>
 Welcome to <strong>Home Repairs 4U</strong> — your trusted local installer for <strong>fencing, gates, sheds, and timber storage</strong> across Askern DN6 and surrounding areas.
 Whether you need a brand new boundary fence, a secure garden gate, repairs after storm damage, or a custom-built wooden shed, we provide high-quality workmanship designed to last.
