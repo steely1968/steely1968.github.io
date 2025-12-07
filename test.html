@@ -1,86 +1,206 @@
-<section id="pressure-wash-quote" style="max-width:900px;margin:30px auto;padding:25px;background:#fff;border:1px solid #ccc;">
-<h2>Instant Pressure Washing Quote</h2>
-<p>Use this calculator to get an estimate for your pressure washing service.</p>
+<section id="fence-quote" style="max-width:900px;margin:30px auto;padding:25px;background:#fff;border:1px solid #ccc;">
+<h2>Instant Garden Fence Quote</h2>
+<p>Enter the length of your fence and see a visual layout along with the cost.</p>
 
-<form id="quoteForm">
-<label for="sqm">How many square metres?*</label><br>
-<input type="number" id="sqm" name="sqm" min="1" step="0.01" required style="width:100%;padding:10px;margin-bottom:15px;font-size16px;"><br>
+<form id="fenceForm">
+<label for="length">Length of fencing (metres)*</label><br>
+<input type="number" id="length" name="length" min="1" step="0.01" required style="width:100%;padding:10px;margin-bottom:15px;font-size:16px;"><br>
 
-<input type="checkbox" id="jetwash" name="jetwash" checked>
-<label for="jetwash">Jet wash only</label><br>
+<label for="numGates">Number of gates:</label><br>
+<input type="number" id="numGates" name="numGates" min="0" step="1" value="0" style="width:100%;padding:10px;margin-bottom:15px;font-size:16px;"><br>
 
-<input type="checkbox" id="fungicide" name="fungicide">
-<label for="fungicide">Fungicide treatment</label><br>
-
-<input type="checkbox" id="hardbrush" name="hardbrush">
-<label for="hardbrush">Hard brush</label><br>
-
-<input type="checkbox" id="resanding" name="resanding">
-<label for="resanding">Resanding</label><br>
-
-<input type="checkbox" id="sealing" name="sealing">
-<label for="sealing">Sealing</label><br>
-
-<button type="button" onclick="calculateQuote()" style="margin-top:15px;padding:12px 24px;background:#000;color:#fff;border:2px solid #000;border-radius:6px;font-weight:bold;">Get Quote</button>
+<button type="button" onclick="calculateFenceQuote()" style="margin-top:15px;padding:12px 24px;background:#000;color:#fff;border:2px solid #000;border-radius:6px;font-weight:bold;">Get Quote</button>
 </form>
 
-<div id="quoteResult" style="margin-top:20px;font-size:18px;font-weight:bold;"></div>
+<div id="fenceResult" style="margin-top:20px;font-size:18px;font-weight:bold;"></div>
+
+<canvas id="fenceCanvas" width="800" height="120" style="border:1px solid #ccc;margin-top:20px;cursor:pointer;"></canvas>
+<div id="tooltip" style="position:absolute;padding:5px 10px;background:#333;color:#fff;border-radius:4px;font-size:14px;display:none;pointer-events:none;"></div>
+<div id="clickInfo" style="margin-top:10px;font-size:16px;font-weight:bold;"></div>
 </section>
 
 <script>
-function calculateQuote() {
-// Accept comma or dot decimals
-const sqmInput = document.getElementById('sqm').value.trim().replace(',', '.');
-const sqm = parseFloat(sqmInput);
+let elements = [];
+let gateElements = [];
+let selectedElement = null;
+let draggingGate = null;
+let fenceLength = 0;
 
-if (isNaN(sqm) || sqm <= 0) {
-alert("Please enter a valid number of square metres.");
+function calculateFenceQuote() {
+const lengthInput = document.getElementById('length').value.trim().replace(',', '.');
+fenceLength = parseFloat(lengthInput);
+if (isNaN(fenceLength) || fenceLength <= 0) {
+alert("Please enter a valid length in metres.");
 return;
 }
 
-let total = 40; // Base service fee
-let selectedOptions = [];
+const numGatesInput = parseInt(document.getElementById('numGates').value);
+const numGates = isNaN(numGatesInput) ? 0 : Math.max(0, numGatesInput);
 
-// Add explanation for the base fee (always included)
-selectedOptions.push(`Base service fee (travel, setup & loading): £40.00`);
-
-// Options
-if (document.getElementById('jetwash').checked) {
-let price = sqm * 2.5;
-selectedOptions.push(`Jet wash only: £${price.toFixed(2)}`);
-total += price;
-}
-if (document.getElementById('fungicide').checked) {
-let price = sqm * 0.8;
-selectedOptions.push(`Fungicide treatment: £${price.toFixed(2)}`);
-total += price;
-}
-if (document.getElementById('hardbrush').checked) {
-let price = sqm * 0.7;
-selectedOptions.push(`Hard brush: £${price.toFixed(2)}`);
-total += price;
-}
-if (document.getElementById('resanding').checked) {
-let price = sqm * 3.5;
-selectedOptions.push(`Resanding: £${price.toFixed(2)}`);
-total += price;
-}
-if (document.getElementById('sealing').checked) {
-let price = sqm * 4.5;
-selectedOptions.push(`Sealing: £${price.toFixed(2)}`);
-total += price;
+drawFence(numGates);
+updateQuote(numGates);
 }
 
-total = total.toFixed(2);
+// Draw fence with multiple gates
+function drawFence(numGates) {
+const canvas = document.getElementById('fenceCanvas');
+const ctx = canvas.getContext('2d');
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+elements = [];
+gateElements = [];
+selectedElement = null;
 
-// Build HTML Output
-let resultHTML = `<p><strong>You selected:</strong></p><ul>`;
-selectedOptions.forEach(option => {
-resultHTML += `<li>${option}</li>`;
+const panelLength = 1.82;
+const postHeight = 80;
+const canvasWidth = canvas.width - 20;
+
+// Calculate panels
+let availableLength = fenceLength - numGates; // 1m per gate
+const panels = Math.ceil(availableLength / panelLength);
+const posts = panels + 2;
+const unit = canvasWidth / (posts - 1);
+
+// Draw posts
+for (let i = 0; i < posts; i++) {
+const x = 10 + i * unit;
+ctx.fillStyle = 'brown';
+ctx.fillRect(x, 10, 5, postHeight);
+elements.push({type:'post', x:x, y:10, width:5, height:postHeight, text:`Post ${i+1} (£18)`});
+}
+
+// Draw panels
+ctx.fillStyle = 'sandybrown';
+for (let i = 0; i < panels; i++) {
+const x = 10 + i * unit + 5;
+ctx.fillRect(x, 10, unit - 5, postHeight);
+elements.push({type:'panel', x:x, y:10, width:unit-5, height:postHeight, text:`Panel ${i+1} (£40)`});
+}
+
+// Draw gates evenly spaced
+for (let g = 0; g < numGates; g++) {
+const gateX = 10 + ((g + 1) * canvasWidth) / (numGates + 1) - unit/2;
+ctx.fillStyle = 'green';
+ctx.fillRect(gateX, 10, unit, postHeight);
+ctx.fillStyle = 'black';
+ctx.fillText('Gate', gateX + unit/4, 50);
+const gateEl = {type:'gate', x:gateX, y:10, width:unit, height:postHeight, text:`Gate ${g+1} (£150)`};
+elements.push(gateEl);
+gateElements.push(gateEl);
+}
+}
+
+// Update quote dynamically
+function updateQuote(numGates) {
+const panelLength = 1.82;
+const panelCost = 40;
+const postCost = 18;
+const gravelBoardCost = 20;
+const postcreteCost = 7;
+const labourRate = 50;
+
+let availableLength = fenceLength - numGates;
+const panels = Math.ceil(availableLength / panelLength);
+const posts = panels + 2;
+const gravelBoards = panels;
+const cementBags = posts * 2;
+const labour = availableLength * labourRate;
+const gateCost = numGates * 150;
+
+const panelsTotal = panels * panelCost;
+const postsTotal = posts * postCost;
+const gravelTotal = gravelBoards * gravelBoardCost;
+const postcreteTotal = cementBags * postcreteCost;
+const total = panelsTotal + postsTotal + gravelTotal + postcreteTotal + labour + gateCost;
+
+let resultHTML = `<p><strong>Quote breakdown:</strong></p><ul>`;
+resultHTML += `<li>Fence panels (${panels} × £${panelCost}): £${panelsTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Concrete posts (${posts} × £${postCost}): £${postsTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Gravel boards (${gravelBoards} × £${gravelBoardCost}): £${gravelTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Postcrete bags (${cementBags} × £${postcreteCost}): £${postcreteTotal.toFixed(2)}</li>`;
+resultHTML += `<li>Labour (${availableLength.toFixed(2)} m × £${labourRate}): £${labour.toFixed(2)}</li>`;
+if (numGates > 0) resultHTML += `<li>Gates (${numGates} × £150): £${gateCost.toFixed(2)}</li>`;
+resultHTML += `</ul><p><strong>Total price: £${total.toFixed(2)}</strong></p>`;
+document.getElementById('fenceResult').innerHTML = resultHTML;
+}
+
+// Mouse events for multiple draggable gates
+const canvas = document.getElementById('fenceCanvas');
+const tooltip = document.getElementById('tooltip');
+const clickInfo = document.getElementById('clickInfo');
+
+canvas.addEventListener('mousemove', function(e) {
+const rect = canvas.getBoundingClientRect();
+const mouseX = e.clientX - rect.left;
+const mouseY = e.clientY - rect.top;
+let found = false;
+
+for (let el of elements) {
+if (mouseX >= el.x && mouseX <= el.x + el.width &&
+mouseY >= el.y && mouseY <= el.y + el.height) {
+tooltip.style.display = 'block';
+tooltip.style.left = (e.clientX + 10) + 'px';
+tooltip.style.top = (e.clientY + 10) + 'px';
+tooltip.innerText = el.text;
+found = true;
+break;
+}
+}
+if (!found) tooltip.style.display = 'none';
+
+if (draggingGate) {
+let newX = mouseX - draggingGate.width / 2;
+const minX = 10;
+const maxX = canvas.width - 10 - draggingGate.width;
+draggingGate.x = Math.min(Math.max(newX, minX), maxX);
+drawFence(gateElements.length);
+updateQuote(gateElements.length);
+}
 });
-resultHTML += `</ul><p><strong>Total price: £${total}</strong></p>`;
 
-document.getElementById('quoteResult').innerHTML = resultHTML;
+canvas.addEventListener('mousedown', function(e) {
+const rect = canvas.getBoundingClientRect();
+const mouseX = e.clientX - rect.left;
+const mouseY = e.clientY - rect.top;
+
+draggingGate = null;
+for (let gate of gateElements) {
+if (mouseX >= gate.x && mouseX <= gate.x + gate.width &&
+mouseY >= gate.y && mouseY <= gate.y + gate.height) {
+draggingGate = gate;
+clickInfo.innerText = 'Dragging gate...';
+break;
 }
+}
+});
+
+canvas.addEventListener('mouseup', function() {
+if (draggingGate) clickInfo.innerText = 'Gate position updated';
+draggingGate = null;
+});
+
+canvas.addEventListener('mouseleave', function() {
+tooltip.style.display = 'none';
+draggingGate = null;
+});
+
+canvas.addEventListener('click', function(e) {
+const rect = canvas.getBoundingClientRect();
+const mouseX = e.clientX - rect.left;
+const mouseY = e.clientY - rect.top;
+let clicked = false;
+
+for (let el of elements) {
+if (mouseX >= el.x && mouseX <= el.x + el.width &&
+mouseY >= el.y && mouseY <= el.y + el.height) {
+selectedElement = el;
+clicked = true;
+clickInfo.innerText = `You clicked: ${el.text}`;
+break;
+}
+}
+if (!clicked) {
+selectedElement = null;
+clickInfo.innerText = '';
+}
+});
 </script>
-<p>
