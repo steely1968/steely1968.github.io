@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Garden Fence Quote Calculator | Instant Online Estimate</title>
-<meta name="description" content="Get an instant garden fence quote. Enter fence length, number of gates, and see a visual layout with cost breakdown.">
-
+<meta name="description" content="Get an instant garden fence quote. Enter fence length, number of gates, and receive a cost breakdown.">
 <style>
 body { font-family: Arial, sans-serif; background: #f8f8f8; color: #222; margin:0; padding:0; line-height:1.6; }
 main { max-width:900px; margin:30px auto; padding:25px; background:#fff; border:1px solid #ccc; }
@@ -15,8 +14,6 @@ input[type=number] { width:100%; padding:10px; font-size:16px; margin-top:5px; }
 button { margin-top:20px; padding:12px 24px; background:#000; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
 button:hover, button:focus { background:#333; outline:none; }
 #fenceResult ul { padding-left:20px; }
-canvas { border:1px solid #ccc; margin-top:20px; width:100%; height:120px; }
-#tooltip { position:absolute; padding:5px 10px; background:#333; color:#fff; border-radius:4px; font-size:14px; display:none; pointer-events:none; }
 </style>
 </head>
 <body>
@@ -24,7 +21,7 @@ canvas { border:1px solid #ccc; margin-top:20px; width:100%; height:120px; }
 <h1>Instant Garden Fence Quote</h1>
 <section aria-labelledby="quote-form-title">
 <h2 id="quote-form-title">Calculate Your Fence Cost</h2>
-<p>Enter the length of your fence and number of gates to get a cost breakdown and visual layout.</p>
+<p>Enter the length of your fence and number of gates to get a cost breakdown.</p>
 
 <form id="fenceForm">
 <label for="length">Length of fencing (metres)*</label>
@@ -37,19 +34,13 @@ canvas { border:1px solid #ccc; margin-top:20px; width:100%; height:120px; }
 </form>
 
 <div id="fenceResult" aria-live="polite"></div>
-
-<canvas id="fenceCanvas" width="800" height="120" role="img" aria-label="Visual layout of the fence showing panels, posts, and gates"></canvas>
-<div id="tooltip" role="tooltip"></div>
 </section>
 </main>
 
 <script defer>
-let elements = [];
-
 function calculateFenceQuote() {
 const lengthInput = document.getElementById('length').value.trim().replace(',', '.');
 const fenceLength = parseFloat(lengthInput);
-
 if (isNaN(fenceLength) || fenceLength <= 0) {
 alert("Please enter a valid length in metres.");
 return;
@@ -63,7 +54,7 @@ const gravelBoardCost = 20;
 const postcreteCost = 7;
 const labourRate = 50;
 
-const chargeableLength = fenceLength - numGates;
+const chargeableLength = fenceLength - numGates; // Deduct 1m per gate
 const panels = Math.ceil(chargeableLength / panelLength);
 const posts = panels + 2;
 const cementBags = posts * 2;
@@ -85,68 +76,10 @@ resultHTML += `<li>Postcrete bags (${cementBags} × £${postcreteCost}): £${pos
 resultHTML += `<li>Labour (${chargeableLength.toFixed(2)} m × £${labourRate}): £${labour.toFixed(2)}</li>`;
 if (numGates > 0) resultHTML += `<li>Gates (${numGates} × £150): £${gateCost.toFixed(2)}</li>`;
 resultHTML += `</ul><p><strong>Total price: £${total.toFixed(2)}</strong></p>`;
+
 document.getElementById('fenceResult').innerHTML = resultHTML;
-
-drawFence(panels, posts, numGates);
 }
-
-function drawFence(panels, posts, numGates) {
-const canvas = document.getElementById('fenceCanvas');
-const ctx = canvas.getContext('2d');
-ctx.clearRect(0, 0, canvas.width, canvas.height);
-elements = [];
-
-const canvasWidth = canvas.width - 20;
-const postHeight = 80;
-const unit = canvasWidth / (posts - 1);
-
-for (let i = 0; i < posts; i++) {
-const x = 10 + i * unit;
-ctx.fillStyle = 'brown';
-ctx.fillRect(x, 10, 5, postHeight);
-elements.push({type:'post', x:x, y:10, width:5, height:postHeight, text:`Post ${i+1}`});
-}
-
-ctx.fillStyle = 'sandybrown';
-for (let i = 0; i < panels; i++) {
-const x = 10 + i * unit + 5;
-ctx.fillRect(x, 10, unit-5, postHeight);
-elements.push({type:'panel', x:x, y:10, width:unit-5, height:postHeight, text:`Panel ${i+1}`});
-}
-
-for (let g = 0; g < numGates; g++) {
-const gateIndex = Math.floor((g + 1) * panels / (numGates + 1));
-const x = 10 + gateIndex * unit + 5;
-ctx.fillStyle = 'green';
-ctx.fillRect(x, 10, unit, postHeight);
-ctx.fillStyle = 'black';
-ctx.fillText('Gate', x + unit/4, 50);
-elements.push({type:'gate', x:x, y:10, width:unit, height:postHeight, text:`Gate ${g+1} (£150)`});
-}
-}
-
-const canvas = document.getElementById('fenceCanvas');
-const tooltip = document.getElementById('tooltip');
-
-canvas.addEventListener('mousemove', e => {
-const rect = canvas.getBoundingClientRect();
-const mouseX = e.clientX - rect.left;
-const mouseY = e.clientY - rect.top;
-let found = false;
-
-for (let el of elements) {
-if (mouseX >= el.x && mouseX <= el.x + el.width &&
-mouseY >= el.y && mouseY <= el.y + el.height) {
-tooltip.style.display = 'block';
-tooltip.style.left = `${e.clientX + 10}px`;
-tooltip.style.top = `${e.clientY + 10}px`;
-tooltip.innerText = el.text;
-found = true;
-break;
-}
-}
-if (!found) tooltip.style.display = 'none';
-});
-
-canvas.addEventListener('mouseleave', () => tooltip.style.display = 'none');
 </script>
+</body>
+</html>
+
