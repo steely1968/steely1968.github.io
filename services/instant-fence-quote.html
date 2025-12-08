@@ -5,47 +5,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Instant Garden Fence Quote | Transparent Online Pricing</title>
 <meta name="description" content="Get an instant garden fence quote with fully transparent pricing. Enter your fence length and gates to receive a detailed cost breakdown online.">
-<link rel="canonical" href="https://steely1968.github.io/">
+<link rel="canonical" href="https://steely1968.github.io/instant-fence-quote.html">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
 <style>
+/* Base styles */
 body { font-family: Arial, sans-serif; background:#f8f8f8; color:#222; margin:0; padding:0; line-height:1.6; }
 a { color:#000; text-decoration:none; }
 a:focus { outline:3px solid #27ae60; outline-offset:2px; }
 main { max-width:1000px; margin:30px auto; padding:25px; background:#fff; border:1px solid #ccc; }
 
-header{ text-align:center; padding:25px 10px; background:#fff; border-bottom:4px solid #27ae60; }
-.logo{ max-height:90px; width:auto; }
-.call-btn{ display:inline-block; margin-top:18px; padding:14px 28px; background:#000; color:#fff; font-size:19px; text-decoration:none; font-weight:bold; border-radius:6px; border:2px solid #000; }
-.call-btn:hover, .call-btn:focus{ background:#333; color:#fff; outline:none; }
+/* Header */
+header { text-align:center; padding:25px 10px; background:#fff; border-bottom:4px solid #27ae60; }
+.logo { max-height:90px; width:auto; }
+.call-btn { display:inline-block; margin-top:18px; padding:14px 28px; background:#000; color:#fff; font-size:19px; font-weight:bold; border-radius:6px; border:2px solid #000; }
+.call-btn:hover, .call-btn:focus { background:#333; color:#fff; outline:none; }
 
-h1,h2,h3 { color:#000; }
+/* Headings */
+h1, h2, h3 { color:#000; }
 h1 { margin-bottom:15px; }
 h2 { margin-top:25px; }
 p { margin:15px 0; }
 
+/* Form & Calculator */
 label { font-weight:bold; display:block; margin-top:15px; }
 input[type=number] { width:100%; padding:10px; font-size:16px; margin-top:5px; }
 button { margin-top:20px; padding:12px 24px; background:#000; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
 button:hover, button:focus { background:#333; outline:3px solid #27ae60; }
 
+/* Quote table */
 #fenceResult table { width:100%; border-collapse:collapse; margin-top:15px; }
 #fenceResult td, #fenceResult th { border:1px solid #ccc; padding:8px; text-align:left; }
 #fenceResult th { background:#27ae60; color:#fff; }
 
-.faq-item { margin-bottom:10px; border-bottom:1px solid #ccc; }
-.faq-item button { width:100%; text-align:left; padding:10px; font-weight:bold; background:#f0f0f0; border:none; cursor:pointer; border-radius:4px; }
-.faq-item button:focus { outline:3px solid #27ae60; }
-.faq-item .faq-answer { display:none; padding:10px; background:#fff; }
+/* FAQ */
+.faq-item { margin-bottom:15px; }
+.faq-item button {
+width:100%;
+text-align:left;
+padding:12px 15px;
+font-weight:bold;
+font-size:1rem;
+background:#e0f2f1;
+color:#00332a;
+border:none;
+border-radius:6px;
+cursor:pointer;
+transition: background 0.2s;
+}
+.faq-item button:hover, .faq-item button:focus { background:#b2dfdb; outline:3px solid #27ae60; }
+.faq-answer { display:none; padding:12px 15px; margin-top:5px; background:#f5f5f5; color:#222; border-left:4px solid #27ae60; border-radius:4px; font-size:0.95rem; line-height:1.6; }
 
+/* Navigation links */
 .page-nav ul { list-style:none; padding:0; display:flex; gap:15px; flex-wrap:wrap; margin-bottom:20px; }
 .page-nav a { background:#27ae60; color:#fff; padding:8px 12px; border-radius:4px; }
 
-.site-footer{ background:#000; color:#fff; text-align:center; padding:25px 15px; margin-top:40px; font-size:14px; }
-.footer-services{ background-color:black; padding:20px; text-align:center; margin-top:15px; }
-.footer-services a{ color:white; margin:0 10px; }
+/* Footer */
+.site-footer { background:#000; color:#fff; text-align:center; padding:25px 15px; margin-top:40px; font-size:14px; }
+.footer-services { background-color:black; padding:20px; text-align:center; margin-top:15px; }
+.footer-services a { color:white; margin:0 10px; }
 </style>
 </head>
 <body>
@@ -71,7 +91,7 @@ button:hover, button:focus { background:#333; outline:3px solid #27ae60; }
 </ul>
 </nav>
 
-<p>Our <strong>Instant Online Fence Quote Tool</strong> gives you a transparent price instantly. Enter your fence length and number of gates to see a full cost breakdown including panels, posts, gravel boards, postcrete, gates, and labour.</p>
+<p>Use our <strong>Instant Online Fence Quote Tool</strong> to get a fully transparent price for your garden fencing. Enter your fence length and number of gates to see a detailed cost breakdown, including all materials, labour, and gate installation. No hidden fees – everything is clearly displayed.</p>
 
 <section id="calculator" aria-labelledby="quote-form-title">
 <h2 id="quote-form-title">Calculate Your Fence Cost Instantly</h2>
@@ -90,7 +110,7 @@ button:hover, button:focus { background:#333; outline:3px solid #27ae60; }
 
 <section id="how-it-works">
 <h2>How Our Fence Quote Calculator Works</h2>
-<p>Enter your fence length and gates. The calculator will provide costs for all materials, labour, and gate installation.</p>
+<p>Enter your fence length and number of gates, and the calculator will give you a breakdown of:</p>
 <ul>
 <li>Fence panels</li>
 <li>Concrete posts</li>
@@ -101,27 +121,30 @@ button:hover, button:focus { background:#333; outline:3px solid #27ae60; }
 </ul>
 <h2>Why Use an Online Fence Quote?</h2>
 <ul>
-<li>Fast and transparent pricing</li>
-<li>Budget-friendly planning</li>
-<li>Adjustable and instant updates</li>
-<li>Based on real UK costs</li>
+<li>Instant and transparent pricing</li>
+<li>Plan your budget effectively</li>
+<li>Adjustable – update your inputs anytime</li>
+<li>Based on real UK fencing costs</li>
 </ul>
 </section>
 
 <section id="faq" aria-labelledby="faq-title">
 <h2 id="faq-title">Frequently Asked Questions</h2>
+
 <div class="faq-item">
 <button aria-expanded="false" aria-controls="faq1" id="faq1-button">How do I get a fence quote online?</button>
 <div id="faq1" class="faq-answer" role="region" aria-labelledby="faq1-button">
 <p>Use our Instant Online Fence Quote calculator. Enter your fence length and number of gates to receive a detailed cost breakdown instantly.</p>
 </div>
 </div>
+
 <div class="faq-item">
 <button aria-expanded="false" aria-controls="faq2" id="faq2-button">Does the quote include labour and materials?</button>
 <div id="faq2" class="faq-answer" role="region" aria-labelledby="faq2-button">
 <p>Yes, the quote includes panels, posts, gravel boards, postcrete, gates, and professional labour.</p>
 </div>
 </div>
+
 <div class="faq-item">
 <button aria-expanded="false" aria-controls="faq3" id="faq3-button">Can I adjust the quote if I change my fence length?</button>
 <div id="faq3" class="faq-answer" role="region" aria-labelledby="faq3-button">
@@ -170,7 +193,7 @@ document.getElementById('fenceResult').innerHTML = tableHTML;
 document.getElementById('downloadPDF').style.display = 'inline-block';
 }
 
-// PDF with logo, green header bar, and contact info
+// PDF with logo, green header, and contact info
 document.getElementById('downloadPDF').addEventListener('click', async ()=>{
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF();
@@ -178,17 +201,13 @@ const img = new Image();
 img.src='/images/logo.webp';
 await img.decode();
 
-// Logo
 doc.addImage(img, 'WEBP', 14, 10, 60, 20);
-
-// Green header bar
 doc.setFillColor(39,174,96);
 doc.rect(0, 35, 210, 15, 'F');
 doc.setTextColor(255,255,255);
 doc.setFontSize(16);
 doc.text("Instant Fence Quote", 14, 45);
 
-// Table
 const tableEl = document.querySelector('#fenceResult table');
 const rows = [];
 for(let i=1;i<tableEl.rows.length;i++){
@@ -203,10 +222,9 @@ theme:'grid',
 headStyles:{fillColor:[39,174,96], textColor:255},
 });
 
-// Contact info
+const pageHeight = doc.internal.pageSize.height;
 doc.setFontSize(10);
 doc.setTextColor(0,0,0);
-const pageHeight = doc.internal.pageSize.height;
 doc.text("Home Repairs 4U | Askern DN6 | Call 07735 873694 | https://steely1968.github.io/",14,pageHeight-15);
 
 doc.save("Fence-Quote.pdf");
