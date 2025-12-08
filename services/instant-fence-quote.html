@@ -3,11 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instant Garden Fence Quote | Transparent Online Pricing</title>
+<title>Instant Garden Fence Quote | Home Maintenance Doncaster</title>
 <meta name="description" content="Get an instant garden fence quote with fully transparent pricing. Enter your fence length and gates to receive a detailed cost breakdown online.">
 <link rel="canonical" href="https://steely1968.github.io/instant-fence-quote.html">
 
-<!-- Minimal inline CSS for critical rendering -->
+<!-- jsPDF and AutoTable -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js" defer></script>
+
 <style>
 body{font-family:Arial,sans-serif;background:#f8f8f8;color:#222;margin:0;padding:0;line-height:1.6;}
 a{color:#000;text-decoration:none;}
@@ -19,6 +22,7 @@ header{padding:25px 10px;text-align:center;background:#fff;border-bottom:4px sol
 h1,h2,h3{color:#000;margin-top:0;}
 label{font-weight:bold;display:block;margin-top:15px;}
 input[type=number]{width:100%;padding:10px;font-size:16px;margin-top:5px;}
+input:focus{outline:3px solid #27ae60;}
 button{margin-top:20px;padding:12px 24px;background:#000;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer;}
 button:hover,button:focus{background:#333;outline:3px solid #27ae60;}
 #fenceResult table{width:100%;border-collapse:collapse;margin-top:15px;}
@@ -77,6 +81,7 @@ button:hover,button:focus{background:#333;outline:3px solid #27ae60;}
 
 <section id="how-it-works">
 <h2>How Our Fence Quote Calculator Works</h2>
+<p>The calculator provides a complete cost breakdown for your garden fencing:</p>
 <ul>
 <li>Fence panels</li>
 <li>Concrete posts</li>
@@ -134,68 +139,66 @@ button:hover,button:focus{background:#333;outline:3px solid #27ae60;}
 </footer>
 
 <script defer>
+// Calculator
 const getQuoteButton = document.getElementById('getQuoteButton');
 const fenceResult = document.getElementById('fenceResult');
 getQuoteButton.addEventListener('click', ()=>{
-const lengthInputEl=document.getElementById('length');
-const gatesInputEl=document.getElementById('numGates');
-const length=parseFloat(lengthInputEl.value.replace(',', '.'));
-const gates=parseInt(gatesInputEl.value)||0;
-if(isNaN(length)||length<=0){alert("Enter a valid fence length.");lengthInputEl.focus();lengthInputEl.setAttribute('aria-invalid','true');return;}
-else lengthInputEl.setAttribute('aria-invalid','false');
-const panelLength=1.82,panelCost=40,postCost=18,gravelBoardCost=20,postcreteCost=7,labourRate=50;
-const chargeableLength=length-gates;
-const panels=Math.ceil(chargeableLength/panelLength),posts=panels+2,cementBags=posts*2,gravelBoards=panels;
-const labour=chargeableLength*labourRate,gateCost=gates*150;
-const panelsTotal=panels*panelCost,postsTotal=posts*postCost,gravelTotal=gravelBoards*gravelBoardCost,postcreteTotal=cementBags*postcreteCost;
+const lengthInputEl = document.getElementById('length');
+const gatesInputEl = document.getElementById('numGates');
+const length = parseFloat(lengthInputEl.value.replace(',', '.'));
+const gates = parseInt(gatesInputEl.value) || 0;
+if(isNaN(length) || length<=0){alert("Enter a valid fence length."); lengthInputEl.focus(); return;}
+const panelLength=1.82, panelCost=40, postCost=18, gravelBoardCost=20, postcreteCost=7, labourRate=50;
+const chargeableLength=length-gates, panels=Math.ceil(chargeableLength/panelLength), posts=panels+2, cementBags=posts*2, gravelBoards=panels;
+const labour=chargeableLength*labourRate, gateCost=gates*150;
+const panelsTotal=panels*panelCost, postsTotal=posts*postCost, gravelTotal=gravelBoards*gravelBoardCost, postcreteTotal=cementBags*postcreteCost;
 const total=panelsTotal+postsTotal+gravelTotal+postcreteTotal+labour+gateCost;
+
 let tableHTML=`<table><tr><th>Item</th><th>Cost</th></tr>`;
 tableHTML+=`<tr><td>Fence panels (${panels} × £${panelCost})</td><td>£${panelsTotal.toFixed(2)}</td></tr>`;
 tableHTML+=`<tr><td>Concrete posts (${posts} × £${postCost})</td><td>£${postsTotal.toFixed(2)}</td></tr>`;
 tableHTML+=`<tr><td>Gravel boards (${gravelBoards} × £${gravelBoardCost})</td><td>£${gravelTotal.toFixed(2)}</td></tr>`;
 tableHTML+=`<tr><td>Postcrete bags (${cementBags} × £${postcreteCost})</td><td>£${postcreteTotal.toFixed(2)}</td></tr>`;
 tableHTML+=`<tr><td>Labour (${chargeableLength.toFixed(2)} m × £${labourRate})</td><td>£${labour.toFixed(2)}</td></tr>`;
-if(gates>0)tableHTML+=`<tr><td>Gates (${gates} × £150)</td><td>£${gateCost.toFixed(2)}</td></tr>`;
+if(gates>0) tableHTML+=`<tr><td>Gates (${gates} × £150)</td><td>£${gateCost.toFixed(2)}</td></tr>`;
 tableHTML+=`<tr><td><strong>Total</strong></td><td><strong>£${total.toFixed(2)}</strong></td></tr></table>`;
 fenceResult.innerHTML=tableHTML;
-fenceResult.setAttribute('aria-live','polite');
-fenceResult.focus();
 document.getElementById('downloadPDF').style.display='inline-block';
 });
 
-// Minimal PDF generation deferred until needed
+// PDF download
 document.getElementById('downloadPDF').addEventListener('click', ()=>{
-import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js').then(jsPDFModule=>{
-const { jsPDF }=jsPDFModule;
-const doc=new jsPDF();
-doc.setFontSize(22);doc.text("Home Maintenance Doncaster",14,20);
-doc.setFillColor(39,174,96);doc.rect(0,30,210,15,'F');
-doc.setTextColor(255,255,255);doc.setFontSize(16);doc.text("Instant Fence Quote",14,40);
-const tableEl=document.querySelector('#fenceResult table');
-let lastY=50;
+const doc = new window.jspdf.jsPDF();
+doc.setFontSize(22); doc.text("Home Maintenance Doncaster",14,20);
+doc.setFillColor(39,174,96); doc.rect(0,30,210,15,'F');
+doc.setTextColor(255,255,255); doc.setFontSize(16); doc.text("Instant Fence Quote",14,40);
+
+const tableEl = document.querySelector('#fenceResult table');
+let lastY = 50;
 if(tableEl){
 const rows=[];
-for(let i=1;i<tableEl.rows.length;i++)rows.push([tableEl.rows[i].cells[0].innerText,tableEl.rows[i].cells[1].innerText]);
+for(let i=1;i<tableEl.rows.length;i++){
+rows.push([tableEl.rows[i].cells[0].innerText,tableEl.rows[i].cells[1].innerText]);
+}
 doc.autoTable({startY:50,head:[['Item','Cost']],body:rows,theme:'grid',headStyles:{fillColor:[39,174,96],textColor:255},didDrawPage:(data)=>{lastY=data.cursor.y;}});
 }
-doc.setFontSize(10);doc.setTextColor(0,0,0);
+doc.setFontSize(10); doc.setTextColor(0,0,0);
 doc.text("© HomeRepairs4U.com",14,lastY+10);
 doc.text("Airstone Road, Askern, Doncaster DN6 0QA",14,lastY+16);
 doc.save("Fence-Quote.pdf");
 });
-});
 
-// FAQ accordion
+// FAQ Accordion
 document.querySelectorAll('.faq-item button').forEach(btn=>{
-btn.addEventListener('click',()=>{
-const expanded=btn.getAttribute('aria-expanded')==='true';
-btn.setAttribute('aria-expanded',!expanded);
+btn.addEventListener('click', ()=>{
+const expanded = btn.getAttribute('aria-expanded')==='true';
+btn.setAttribute('aria-expanded', !expanded);
 const answer=document.getElementById(btn.getAttribute('aria-controls'));
-answer.style.display=expanded?'none':'block';
-answer.setAttribute('aria-hidden',expanded);
+answer.style.display = expanded?'none':'block';
+answer.setAttribute('aria-hidden', expanded);
 if(!expanded) answer.focus();
 });
-btn.addEventListener('keydown', (e)=>{ if(e.key==="Enter"||e.key===" ") { e.preventDefault(); btn.click(); } });
+btn.addEventListener('keydown', (e)=>{if(e.key==="Enter"||e.key===" "){ e.preventDefault(); btn.click(); }});
 });
 </script>
 
