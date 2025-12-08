@@ -7,8 +7,9 @@
 <meta name="description" content="Get an instant garden fence quote with fully transparent pricing. Enter your fence length and gates to receive a detailed cost breakdown online.">
 <link rel="canonical" href="https://steely1968.github.io/instant-fence-quote.html">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+<!-- jsPDF for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js" defer></script>
 
 <style>
 /* Base styles */
@@ -19,8 +20,8 @@ main { max-width:1000px; margin:30px auto; padding:25px; background:#fff; border
 
 /* Header */
 header { text-align:center; padding:25px 10px; background:#fff; border-bottom:4px solid #27ae60; }
-.logo { max-height:90px; width:auto; }
-.call-btn { display:inline-block; margin-top:18px; padding:14px 28px; background:#000; color:#fff; font-size:19px; font-weight:bold; border-radius:6px; border:2px solid #000; }
+.logo { max-height:90px; width:auto; display:block; margin:0 auto; }
+.call-btn { display:inline-block; margin-top:18px; padding:14px 28px; background:#000; color:#fff; font-size:19px; font-weight:bold; border-radius:6px; border:2px solid #000; text-align:center; }
 .call-btn:hover, .call-btn:focus { background:#333; color:#fff; outline:none; }
 
 /* Headings */
@@ -73,7 +74,7 @@ transition: background 0.2s;
 <a href="#maincontent" style="position:absolute;left:-999px;top:auto;background:#27ae60;color:#fff;padding:8px;z-index:100;">Skip to main content</a>
 
 <header>
-<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="1200" height="400" loading="lazy">
 <div style="text-align:center; margin-top:10px;">
 <a href="https://steely1968.github.io/" style="font-size:20px; font-weight:600;">Home</a>
 </div>
@@ -193,20 +194,19 @@ document.getElementById('fenceResult').innerHTML = tableHTML;
 document.getElementById('downloadPDF').style.display = 'inline-block';
 }
 
-// PDF with logo, green header, and contact info
+// PDF generation with high-res logo
 document.getElementById('downloadPDF').addEventListener('click', async ()=>{
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF();
 const img = new Image();
-img.src='/images/logo.webp';
+img.src='/images/logo.webp'; // ideally 1200x400 high-res
 await img.decode();
-
-doc.addImage(img, 'WEBP', 14, 10, 60, 20);
+doc.addImage(img, 'WEBP', 14, 10, 120, 40);
 doc.setFillColor(39,174,96);
-doc.rect(0, 35, 210, 15, 'F');
+doc.rect(0, 55, 210, 15, 'F');
 doc.setTextColor(255,255,255);
 doc.setFontSize(16);
-doc.text("Instant Fence Quote", 14, 45);
+doc.text("Instant Fence Quote", 14, 65);
 
 const tableEl = document.querySelector('#fenceResult table');
 const rows = [];
@@ -215,7 +215,7 @@ rows.push([tableEl.rows[i].cells[0].innerText, tableEl.rows[i].cells[1].innerTex
 }
 
 doc.autoTable({
-startY:55,
+startY:75,
 head:[['Item','Cost']],
 body:rows,
 theme:'grid',
@@ -230,13 +230,16 @@ doc.text("Home Repairs 4U | Askern DN6 | Call 07735 873694 | https://steely1968.
 doc.save("Fence-Quote.pdf");
 });
 
-// FAQ Accordion
+// FAQ accordion keyboard support
 document.querySelectorAll('.faq-item button').forEach(btn=>{
 btn.addEventListener('click', ()=>{
 const expanded=btn.getAttribute('aria-expanded')==='true';
 btn.setAttribute('aria-expanded', !expanded);
 const answer=document.getElementById(btn.getAttribute('aria-controls'));
 answer.style.display=expanded?'none':'block';
+});
+btn.addEventListener('keydown', (e)=>{
+if(e.key==="Enter"||e.key===" ") { e.preventDefault(); btn.click(); }
 });
 });
 </script>
