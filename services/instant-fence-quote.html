@@ -206,41 +206,41 @@ resultEl.setAttribute('aria-live','polite');
 document.getElementById('downloadPDF').style.display = 'inline-block';
 }
 
-// PDF generation with working logo
-document.getElementById('downloadPDF').addEventListener('click', async ()=>{
+// PDF generation without logo
+document.getElementById('downloadPDF').addEventListener('click', () => {
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF();
-const img = new Image();
-img.src='/images/logo.webp'; // use your current working logo
-await img.decode();
-doc.addImage(img, 'WEBP', 14, 10, 120, 40);
 
-doc.setFillColor(39,174,96);
-doc.rect(0, 55, 210, 15, 'F');
-doc.setTextColor(255,255,255);
+doc.setFontSize(22);
+doc.setTextColor(0, 0, 0);
+doc.text("Home Maintenance Doncaster", 14, 20);
+
+doc.setFillColor(39, 174, 96);
+doc.rect(0, 30, 210, 15, 'F');
+doc.setTextColor(255, 255, 255);
 doc.setFontSize(16);
-doc.text("Instant Fence Quote", 14, 65);
+doc.text("Instant Fence Quote", 14, 40);
 
 const tableEl = document.querySelector('#fenceResult table');
 if(tableEl){
 const rows = [];
-for(let i=1;i<tableEl.rows.length;i++){
+for(let i = 1; i < tableEl.rows.length; i++){
 rows.push([tableEl.rows[i].cells[0].innerText, tableEl.rows[i].cells[1].innerText]);
 }
 
 doc.autoTable({
-startY:75,
-head:[['Item','Cost']],
-body:rows,
-theme:'grid',
-headStyles:{fillColor:[39,174,96], textColor:255},
+startY: 50,
+head: [['Item','Cost']],
+body: rows,
+theme: 'grid',
+headStyles: { fillColor: [39, 174, 96], textColor: 255 }
 });
 }
 
 const pageHeight = doc.internal.pageSize.height;
 doc.setFontSize(10);
-doc.setTextColor(0,0,0);
-doc.text("Home Repairs 4U | Askern DN6 | Call 07735 873694 | https://steely1968.github.io/",14,pageHeight-15);
+doc.setTextColor(0, 0, 0);
+doc.text("Home Repairs 4U | Askern DN6 | Call 07735 873694 | https://steely1968.github.io/", 14, pageHeight - 15);
 
 doc.save("Fence-Quote.pdf");
 });
