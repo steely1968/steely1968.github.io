@@ -7,82 +7,47 @@
 <meta name="description" content="Get an instant garden fence quote with fully transparent pricing. Enter your fence length and gates to receive a detailed cost breakdown online.">
 <link rel="canonical" href="https://steely1968.github.io/instant-fence-quote.html">
 
-<!-- jsPDF for PDF generation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js" defer></script>
-
+<!-- Minimal inline CSS for critical rendering -->
 <style>
-/* Base styles */
-body { font-family: Arial, sans-serif; background:#f8f8f8; color:#222; margin:0; padding:0; line-height:1.6; }
-a { color:#000; text-decoration:none; }
-a:focus { outline:3px solid #27ae60; outline-offset:2px; }
-main { max-width:1000px; margin:30px auto; padding:25px; background:#fff; border:1px solid #ccc; }
-
-/* Header */
-header { text-align:center; padding:25px 10px; background:#fff; border-bottom:4px solid #27ae60; }
-.logo { max-height:90px; width:auto; display:block; margin:0 auto; }
-.call-btn { display:inline-block; margin-top:18px; padding:14px 28px; background:#000; color:#fff; font-size:19px; font-weight:bold; border-radius:6px; border:2px solid #000; text-align:center; }
-.call-btn:hover, .call-btn:focus { background:#333; color:#fff; outline:none; }
-
-/* Headings */
-h1, h2, h3 { color:#000; }
-h1 { margin-bottom:15px; }
-h2 { margin-top:25px; }
-p { margin:15px 0; }
-
-/* Form & Calculator */
-label { font-weight:bold; display:block; margin-top:15px; }
-input[type=number] { width:100%; padding:10px; font-size:16px; margin-top:5px; }
-input:focus { outline:3px solid #27ae60; }
-button { margin-top:20px; padding:12px 24px; background:#000; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
-button:hover, button:focus { background:#333; outline:3px solid #27ae60; }
-
-/* Quote table */
-#fenceResult table { width:100%; border-collapse:collapse; margin-top:15px; }
-#fenceResult td, #fenceResult th { border:1px solid #ccc; padding:8px; text-align:left; }
-#fenceResult th { background:#27ae60; color:#fff; }
-
-/* FAQ */
-.faq-item { margin-bottom:15px; }
-.faq-item button {
-width:100%;
-text-align:left;
-padding:12px 15px;
-font-weight:bold;
-font-size:1rem;
-background:#004d40;
-color:#ffffff;
-border:none;
-border-radius:6px;
-cursor:pointer;
-transition: background 0.2s;
-}
-.faq-item button:hover, .faq-item button:focus { background:#00695c; outline:3px solid #27ae60; }
-.faq-answer { display:none; padding:12px 15px; margin-top:5px; background:#e0f2f1; color:#000; border-left:4px solid #27ae60; border-radius:4px; font-size:0.95rem; line-height:1.6; }
-
-/* Navigation links */
-.page-nav ul { list-style:none; padding:0; display:flex; gap:15px; flex-wrap:wrap; margin-bottom:20px; }
-.page-nav a { background:#27ae60; color:#fff; padding:8px 12px; border-radius:4px; }
-
-/* Footer */
-.site-footer { background:#000; color:#fff; text-align:center; padding:25px 15px; margin-top:40px; font-size:14px; }
-.footer-services { background-color:black; padding:20px; text-align:center; margin-top:15px; }
-.footer-services a { color:white; margin:0 10px; }
+body{font-family:Arial,sans-serif;background:#f8f8f8;color:#222;margin:0;padding:0;line-height:1.6;}
+a{color:#000;text-decoration:none;}
+a:focus{outline:3px solid #27ae60;outline-offset:2px;}
+main{max-width:1000px;margin:30px auto;padding:25px;background:#fff;border:1px solid #ccc;}
+header{padding:25px 10px;text-align:center;background:#fff;border-bottom:4px solid #27ae60;}
+.call-btn{display:inline-block;margin-top:18px;padding:14px 28px;background:#000;color:#fff;font-size:19px;font-weight:bold;border-radius:6px;border:2px solid #000;text-align:center;}
+.call-btn:hover,.call-btn:focus{background:#333;outline:3px solid #27ae60;}
+h1,h2,h3{color:#000;margin-top:0;}
+label{font-weight:bold;display:block;margin-top:15px;}
+input[type=number]{width:100%;padding:10px;font-size:16px;margin-top:5px;}
+button{margin-top:20px;padding:12px 24px;background:#000;color:#fff;border:none;border-radius:6px;font-weight:bold;cursor:pointer;}
+button:hover,button:focus{background:#333;outline:3px solid #27ae60;}
+#fenceResult table{width:100%;border-collapse:collapse;margin-top:15px;}
+#fenceResult td,#fenceResult th{border:1px solid #ccc;padding:8px;text-align:left;}
+#fenceResult th{background:#27ae60;color:#fff;}
+.faq-item{margin-bottom:15px;}
+.faq-item button{width:100%;text-align:left;padding:12px 15px;font-weight:bold;font-size:1rem;background:#004d40;color:#fff;border:none;border-radius:6px;cursor:pointer;transition:background 0.2s;}
+.faq-item button:hover,.faq-item button:focus{background:#00695c;outline:3px solid #27ae60;}
+.faq-answer{display:none;padding:12px 15px;margin-top:5px;background:#e0f2f1;color:#000;border-left:4px solid #27ae60;border-radius:4px;font-size:0.95rem;line-height:1.6;}
+.page-nav ul{list-style:none;padding:0;display:flex;gap:15px;flex-wrap:wrap;margin-bottom:20px;}
+.page-nav a{background:#27ae60;color:#fff;padding:8px 12px;border-radius:4px;}
+.site-footer{background:#000;color:#fff;text-align:center;padding:25px 15px;margin-top:40px;font-size:14px;}
+.footer-services{background-color:black;padding:20px;text-align:center;margin-top:15px;}
+.footer-services a{color:white;margin:0 10px;}
 </style>
 </head>
 <body>
 
-<a href="#maincontent" style="position:absolute;left:-999px;top:auto;background:#27ae60;color:#fff;padding:8px;z-index:100;">Skip to main content</a>
+<a href="#maincontent" class="skip-link">Skip to main content</a>
 
-<header>
-<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="lazy">
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/" style="font-size:20px; font-weight:600;">Home</a>
+<header role="banner">
+<h1 class="visually-hidden">Home Maintenance Doncaster</h1>
+<div style="text-align:center;margin-top:10px;">
+<a href="https://steely1968.github.io/" style="font-size:20px;font-weight:600;">Home</a>
 </div>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </header>
 
-<main id="maincontent">
+<main id="maincontent" role="main">
 <h1>Instant Garden Fence Quote – Transparent Online Pricing</h1>
 
 <nav class="page-nav" aria-label="Page sections">
@@ -103,16 +68,15 @@ transition: background 0.2s;
 <input type="number" id="length" name="length" min="1" step="0.01" required aria-required="true">
 <label for="numGates">Number of gates</label>
 <input type="number" id="numGates" name="numGates" min="0" step="1" value="0" aria-required="true">
-<button type="button" onclick="calculateFenceQuote()">Get Quote</button>
+<button type="button" id="getQuoteButton">Get Quote</button>
 </form>
 
-<div id="fenceResult" aria-live="polite"></div>
+<div id="fenceResult" role="region" aria-live="polite" aria-atomic="true"></div>
 <button id="downloadPDF" style="margin-top:15px; display:none;">Download Quote as PDF</button>
 </section>
 
 <section id="how-it-works">
 <h2>How Our Fence Quote Calculator Works</h2>
-<p>Enter your fence length and number of gates, and the calculator will give you a breakdown of:</p>
 <ul>
 <li>Fence panels</li>
 <li>Concrete posts</li>
@@ -156,8 +120,9 @@ transition: background 0.2s;
 </section>
 </main>
 
-<footer class="site-footer">
-© Home Repairs 4U | Fencing • Gate Fitting • Repairs • Sheds • Timber Storage | Askern DN6 | Call 07735 873694
+<footer class="site-footer" role="contentinfo">
+© HomeRepairs4U.com
+<div>Airstone Road, Askern, Doncaster DN6 0QA</div>
 <div class="footer-services">
 <p style="color:white;">Our Services:</p>
 <a href="/services/Exterior-decorating.html">Exterior Decorating</a>
@@ -169,94 +134,68 @@ transition: background 0.2s;
 </footer>
 
 <script defer>
-// Calculator
-function calculateFenceQuote() {
-const length = parseFloat(document.getElementById('length').value.replace(',', '.'));
-const gates = parseInt(document.getElementById('numGates').value) || 0;
-const lengthInputEl = document.getElementById('length');
-
-if(isNaN(length) || length<=0) {
-alert("Enter a valid fence length.");
-lengthInputEl.setAttribute('aria-invalid', 'true');
-return;
-} else {
-lengthInputEl.setAttribute('aria-invalid', 'false');
-}
-
-const panelLength=1.82, panelCost=40, postCost=18, gravelBoardCost=20, postcreteCost=7, labourRate=50;
-const chargeableLength = length - gates;
-const panels=Math.ceil(chargeableLength/panelLength), posts=panels+2, cementBags=posts*2, gravelBoards=panels;
-const labour=chargeableLength*labourRate, gateCost=gates*150;
-const panelsTotal=panels*panelCost, postsTotal=posts*postCost, gravelTotal=gravelBoards*gravelBoardCost, postcreteTotal=cementBags*postcreteCost;
+const getQuoteButton = document.getElementById('getQuoteButton');
+const fenceResult = document.getElementById('fenceResult');
+getQuoteButton.addEventListener('click', ()=>{
+const lengthInputEl=document.getElementById('length');
+const gatesInputEl=document.getElementById('numGates');
+const length=parseFloat(lengthInputEl.value.replace(',', '.'));
+const gates=parseInt(gatesInputEl.value)||0;
+if(isNaN(length)||length<=0){alert("Enter a valid fence length.");lengthInputEl.focus();lengthInputEl.setAttribute('aria-invalid','true');return;}
+else lengthInputEl.setAttribute('aria-invalid','false');
+const panelLength=1.82,panelCost=40,postCost=18,gravelBoardCost=20,postcreteCost=7,labourRate=50;
+const chargeableLength=length-gates;
+const panels=Math.ceil(chargeableLength/panelLength),posts=panels+2,cementBags=posts*2,gravelBoards=panels;
+const labour=chargeableLength*labourRate,gateCost=gates*150;
+const panelsTotal=panels*panelCost,postsTotal=posts*postCost,gravelTotal=gravelBoards*gravelBoardCost,postcreteTotal=cementBags*postcreteCost;
 const total=panelsTotal+postsTotal+gravelTotal+postcreteTotal+labour+gateCost;
-
 let tableHTML=`<table><tr><th>Item</th><th>Cost</th></tr>`;
-tableHTML += `<tr><td>Fence panels (${panels} × £${panelCost})</td><td>£${panelsTotal.toFixed(2)}</td></tr>`;
-tableHTML += `<tr><td>Concrete posts (${posts} × £${postCost})</td><td>£${postsTotal.toFixed(2)}</td></tr>`;
-tableHTML += `<tr><td>Gravel boards (${gravelBoards} × £${gravelBoardCost})</td><td>£${gravelTotal.toFixed(2)}</td></tr>`;
-tableHTML += `<tr><td>Postcrete bags (${cementBags} × £${postcreteCost})</td><td>£${postcreteTotal.toFixed(2)}</td></tr>`;
-tableHTML += `<tr><td>Labour (${chargeableLength.toFixed(2)} m × £${labourRate})</td><td>£${labour.toFixed(2)}</td></tr>`;
-if(gates>0) tableHTML += `<tr><td>Gates (${gates} × £150)</td><td>£${gateCost.toFixed(2)}</td></tr>`;
-tableHTML += `<tr><td><strong>Total</strong></td><td><strong>£${total.toFixed(2)}</strong></td></tr></table>`;
-
-const resultEl=document.getElementById('fenceResult');
-resultEl.innerHTML = tableHTML;
-resultEl.setAttribute('aria-live','polite');
-
-document.getElementById('downloadPDF').style.display = 'inline-block';
-}
-
-// PDF generation without logo
-document.getElementById('downloadPDF').addEventListener('click', () => {
-const { jsPDF } = window.jspdf;
-const doc = new jsPDF();
-
-doc.setFontSize(22);
-doc.setTextColor(0, 0, 0);
-doc.text("Home Maintenance Doncaster", 14, 20);
-
-doc.setFillColor(39, 174, 96);
-doc.rect(0, 30, 210, 15, 'F');
-doc.setTextColor(255, 255, 255);
-doc.setFontSize(16);
-doc.text("Instant Fence Quote", 14, 40);
-
-const tableEl = document.querySelector('#fenceResult table');
-if(tableEl){
-const rows = [];
-for(let i = 1; i < tableEl.rows.length; i++){
-rows.push([tableEl.rows[i].cells[0].innerText, tableEl.rows[i].cells[1].innerText]);
-}
-
-doc.autoTable({
-startY: 50,
-head: [['Item','Cost']],
-body: rows,
-theme: 'grid',
-headStyles: { fillColor: [39, 174, 96], textColor: 255 }
+tableHTML+=`<tr><td>Fence panels (${panels} × £${panelCost})</td><td>£${panelsTotal.toFixed(2)}</td></tr>`;
+tableHTML+=`<tr><td>Concrete posts (${posts} × £${postCost})</td><td>£${postsTotal.toFixed(2)}</td></tr>`;
+tableHTML+=`<tr><td>Gravel boards (${gravelBoards} × £${gravelBoardCost})</td><td>£${gravelTotal.toFixed(2)}</td></tr>`;
+tableHTML+=`<tr><td>Postcrete bags (${cementBags} × £${postcreteCost})</td><td>£${postcreteTotal.toFixed(2)}</td></tr>`;
+tableHTML+=`<tr><td>Labour (${chargeableLength.toFixed(2)} m × £${labourRate})</td><td>£${labour.toFixed(2)}</td></tr>`;
+if(gates>0)tableHTML+=`<tr><td>Gates (${gates} × £150)</td><td>£${gateCost.toFixed(2)}</td></tr>`;
+tableHTML+=`<tr><td><strong>Total</strong></td><td><strong>£${total.toFixed(2)}</strong></td></tr></table>`;
+fenceResult.innerHTML=tableHTML;
+fenceResult.setAttribute('aria-live','polite');
+fenceResult.focus();
+document.getElementById('downloadPDF').style.display='inline-block';
 });
+
+// Minimal PDF generation deferred until needed
+document.getElementById('downloadPDF').addEventListener('click', ()=>{
+import('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js').then(jsPDFModule=>{
+const { jsPDF }=jsPDFModule;
+const doc=new jsPDF();
+doc.setFontSize(22);doc.text("Home Maintenance Doncaster",14,20);
+doc.setFillColor(39,174,96);doc.rect(0,30,210,15,'F');
+doc.setTextColor(255,255,255);doc.setFontSize(16);doc.text("Instant Fence Quote",14,40);
+const tableEl=document.querySelector('#fenceResult table');
+let lastY=50;
+if(tableEl){
+const rows=[];
+for(let i=1;i<tableEl.rows.length;i++)rows.push([tableEl.rows[i].cells[0].innerText,tableEl.rows[i].cells[1].innerText]);
+doc.autoTable({startY:50,head:[['Item','Cost']],body:rows,theme:'grid',headStyles:{fillColor:[39,174,96],textColor:255},didDrawPage:(data)=>{lastY=data.cursor.y;}});
 }
-
-const pageHeight = doc.internal.pageSize.height;
-doc.setFontSize(10);
-doc.setTextColor(0, 0, 0);
-doc.text("Home Repairs 4U | Askern DN6 | Call 07735 873694 | https://steely1968.github.io/", 14, pageHeight - 15);
-
+doc.setFontSize(10);doc.setTextColor(0,0,0);
+doc.text("© HomeRepairs4U.com",14,lastY+10);
+doc.text("Airstone Road, Askern, Doncaster DN6 0QA",14,lastY+16);
 doc.save("Fence-Quote.pdf");
+});
 });
 
 // FAQ accordion
 document.querySelectorAll('.faq-item button').forEach(btn=>{
-btn.addEventListener('click', ()=>{
+btn.addEventListener('click',()=>{
 const expanded=btn.getAttribute('aria-expanded')==='true';
-btn.setAttribute('aria-expanded', !expanded);
+btn.setAttribute('aria-expanded',!expanded);
 const answer=document.getElementById(btn.getAttribute('aria-controls'));
 answer.style.display=expanded?'none':'block';
-answer.setAttribute('aria-hidden', expanded);
+answer.setAttribute('aria-hidden',expanded);
+if(!expanded) answer.focus();
 });
-btn.addEventListener('keydown', (e)=>{
-if(e.key==="Enter"||e.key===" ") { e.preventDefault(); btn.click(); }
-});
+btn.addEventListener('keydown', (e)=>{ if(e.key==="Enter"||e.key===" ") { e.preventDefault(); btn.click(); } });
 });
 </script>
 
