@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Instant Garden Fence Quote | Transparent Online Pricing</title>
 <meta name="description" content="Get an instant garden fence quote with fully transparent pricing. Enter your fence length and gates to receive a detailed cost breakdown online.">
+<link rel="canonical" href="https://steely1968.github.io/instant-fence-quote.html">
 
 <style>
 /* ----------------------------
@@ -18,6 +19,9 @@ margin:0;
 padding:0;
 line-height:1.6;
 }
+
+a { color:#000; text-decoration:none; }
+a:focus { outline:3px solid #27ae60; outline-offset:2px; }
 
 main {
 max-width:1000px;
@@ -55,9 +59,11 @@ border-radius:6px;
 border:2px solid #000;
 }
 
-.call-btn:hover{
+.call-btn:hover,
+.call-btn:focus{
 background:#333;
 color:#fff;
+outline:none;
 }
 
 /* ----------------------------
@@ -96,7 +102,7 @@ cursor:pointer;
 
 button:hover, button:focus {
 background:#333;
-outline:none;
+outline:3px solid #27ae60;
 }
 
 #fenceResult ul { padding-left:20px; }
@@ -125,9 +131,49 @@ color:white;
 margin:0 10px;
 }
 </style>
+
+<!-- ===========================
+FAQ SCHEMA JSON-LD
+=========================== -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "How do I get a fence quote online?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Use our Instant Online Fence Quote calculator. Enter your fence length and number of gates to receive a detailed cost breakdown instantly."
+}
+},
+{
+"@type": "Question",
+"name": "Does the quote include labour and materials?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, the quote includes panels, posts, gravel boards, postcrete, gates, and professional labour."
+}
+},
+{
+"@type": "Question",
+"name": "Can I adjust the quote if I change my fence length?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Absolutely. The calculator updates instantly when you change the fence length or number of gates."
+}
+}
+]
+}
+</script>
+
 </head>
 
 <body>
+
+<!-- Skip link for accessibility -->
+<a href="#maincontent" class="skip-link" style="position:absolute;left:-999px;top:auto;background:#27ae60;color:#fff;padding:8px;z-index:100;">Skip to main content</a>
 
 <!-- ===========================
 HEADER
@@ -139,12 +185,11 @@ class="logo"
 width="600" height="200"
 loading="eager">
 
+<nav aria-label="Main navigation">
 <div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<a href="https://steely1968.github.io/" style="font-size:20px; font-weight:600;">Home</a>
 </div>
-
-<br>
+</nav>
 
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </header>
@@ -153,7 +198,7 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <!-- ===========================
 MAIN CONTENT
 =========================== -->
-<main>
+<main id="maincontent">
 
 <h1>Instant Garden Fence Quote – Transparent Online Pricing</h1>
 
@@ -165,7 +210,9 @@ CALCULATOR NEAR TOP
 <section aria-labelledby="quote-form-title">
 <h2 id="quote-form-title">Calculate Your Fence Cost Instantly</h2>
 
-<form id="fenceForm">
+<form id="fenceForm" aria-describedby="fenceCalculatorDesc">
+<p id="fenceCalculatorDesc">Enter the length of your fence in metres and the number of gates to get an instant detailed quote.</p>
+
 <label for="length">Length of fencing (metres)*</label>
 <input type="number" id="length" name="length" min="1" step="0.01" required aria-required="true">
 
@@ -229,7 +276,6 @@ DETAILED SEO TEXT BELOW
 
 </main>
 
-
 <!-- ===========================
 FOOTER
 =========================== -->
@@ -246,13 +292,11 @@ FOOTER
 </div>
 </footer>
 
-
 <!-- ===========================
 JAVASCRIPT
 =========================== -->
 <script defer>
 function calculateFenceQuote() {
-
 const lengthInput = document.getElementById('length').value.trim().replace(',', '.');
 const fenceLength = parseFloat(lengthInput);
 
