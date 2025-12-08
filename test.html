@@ -3,134 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Garden Fence Quote Calculator | Instant Online Estimate</title>
-<meta name="description" content="Get an instant garden fence quote. Enter fence length, number of gates, and receive a cost breakdown.">
+<title>Instant Garden Fence Quote | Transparent Online Pricing</title>
+<meta name="description" content="Get an instant garden fence quote with fully transparent pricing. Enter your fence length and gates to receive a detailed cost breakdown online.">
 
 <style>
-/* ---------------- GLOBAL ---------------- */
+/* ----------------------------
+GLOBAL STYLES
+----------------------------- */
 body {
 font-family: Arial, sans-serif;
 background: #f8f8f8;
-color: #222;
-margin: 0;
-padding: 0;
-line-height: 1.6;
+color:#222;
+margin:0;
+padding:0;
+line-height:1.6;
 }
 
-/* ---------------- HEADER ---------------- */
-header {
-text-align: center;
-padding: 25px 10px;
-background: #fff;
-border-bottom: 4px solid #27ae60;
-}
-
-.logo {
-max-height: 90px;
-width: auto;
-}
-
-.call-btn {
-display: inline-block;
-margin-top: 18px;
-padding: 14px 28px;
-background: #000;
-color: #fff;
-font-size: 19px;
-text-decoration: none;
-font-weight: bold;
-border-radius: 6px;
-border: 2px solid #000;
-}
-.call-btn:hover {
-background: #333;
-}
-
-/* ---------------- MAIN ---------------- */
 main {
-max-width: 900px;
-margin: 30px auto;
-padding: 25px;
-background: #fff;
-border: 1px solid #ccc;
+max-width:1000px;
+margin:30px auto;
+padding:25px;
+background:#fff;
+border:1px solid #ccc;
 }
 
-h1, h2 {
-color: #000;
+/* ----------------------------
+HEADER
+----------------------------- */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #27ae60;
 }
+
+.logo{
+max-height:90px;
+width:auto;
+}
+
+.call-btn{
+display:inline-block;
+margin-top:18px;
+padding:14px 28px;
+background:#000;
+color:#fff;
+font-size:19px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+border:2px solid #000;
+}
+
+.call-btn:hover{
+background:#333;
+color:#fff;
+}
+
+/* ----------------------------
+FORM ELEMENTS
+----------------------------- */
+h1, h2 { color:#000; }
+
+h1 { margin-bottom:15px; }
+h2 { margin-top:25px; }
+
+p { margin:15px 0; }
 
 label {
 font-weight: bold;
-display: block;
-margin-top: 15px;
+display:block;
+margin-top:15px;
 }
 
 input[type=number] {
-width: 100%;
-padding: 10px;
-font-size: 16px;
-margin-top: 5px;
+width:100%;
+padding:10px;
+font-size:16px;
+margin-top:5px;
 }
 
 button {
-margin-top: 20px;
-padding: 12px 24px;
-background: #000;
-color: #fff;
-border: none;
-border-radius: 6px;
-font-weight: bold;
-cursor: pointer;
+margin-top:20px;
+padding:12px 24px;
+background:#000;
+color:#fff;
+border:none;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
 }
+
 button:hover, button:focus {
-background: #333;
+background:#333;
+outline:none;
 }
 
-#fenceResult ul {
-padding-left: 20px;
+#fenceResult ul { padding-left:20px; }
+
+/* ----------------------------
+FOOTER
+----------------------------- */
+.site-footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+font-size:14px;
 }
 
-/* ---------------- FOOTER ---------------- */
-.site-footer {
-background: #000;
-color: #fff;
-text-align: center;
-padding: 25px 15px;
-margin-top: 40px;
-font-size: 14px;
+.footer-services{
+background-color:black;
+padding:20px;
+text-align:center;
+margin-top:15px;
 }
 
-.footer-services {
-background-color: black;
-padding: 20px;
-text-align: center;
-margin-top: 15px;
-}
-
-.footer-services a {
-color: white;
-margin: 0 10px;
+.footer-services a{
+color:white;
+margin:0 10px;
 }
 </style>
 </head>
 
-
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- ===========================
+HEADER
+=========================== -->
 <header>
 <img src="/images/logo.webp"
 alt="Home Repairs 4U logo"
 class="logo"
-width="600"
-height="200"
+width="600" height="200"
 loading="eager">
 
 <div style="text-align:center; margin-top:10px;">
 <a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">
-Home
-</a>
+style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
 </div>
 
 <br>
@@ -139,14 +150,20 @@ Home
 </header>
 
 
-
-<!-- ================= MAIN CONTENT ================= -->
+<!-- ===========================
+MAIN CONTENT
+=========================== -->
 <main>
-<h1>Instant Garden Fence Quote</h1>
 
+<h1>Instant Garden Fence Quote – Transparent Online Pricing</h1>
+
+<p>Getting a new fence shouldn't be confusing or time-consuming. Our <strong>Instant Online Fence Quote Tool</strong> gives you a clear, honest price based on real materials and real labour costs. No waiting for callbacks. No hidden extras. Just straightforward, transparent pricing you can trust.</p>
+
+<!-- ===========================
+CALCULATOR NEAR TOP
+=========================== -->
 <section aria-labelledby="quote-form-title">
-<h2 id="quote-form-title">Calculate Your Fence Cost</h2>
-<p>Enter the length of your fence and number of gates to get a cost breakdown.</p>
+<h2 id="quote-form-title">Calculate Your Fence Cost Instantly</h2>
 
 <form id="fenceForm">
 <label for="length">Length of fencing (metres)*</label>
@@ -160,17 +177,67 @@ Home
 
 <div id="fenceResult" aria-live="polite"></div>
 </section>
+
+<!-- ===========================
+DETAILED SEO TEXT BELOW
+=========================== -->
+<h2>How Our Fence Quote Calculator Works</h2>
+<p>Simply enter your fence length and the number of gates you need. The system will instantly calculate the cost of:</p>
+<ul>
+<li>Fence panels</li>
+<li>Concrete posts</li>
+<li>Gravel boards</li>
+<li>Postcrete</li>
+<li>Labour</li>
+<li>Gate installation (if selected)</li>
+</ul>
+<p>Every component is itemised clearly so you can see exactly where your money goes and plan your budget effectively. Adjust the fence length or number of gates to see how the price changes in real time.</p>
+
+<h2>Why Use an Online Fence Quote?</h2>
+<ul>
+<li><strong>Fast results –</strong> no waiting for a callback or appointment.</li>
+<li><strong>Transparent pricing –</strong> every part of your fence is listed with its cost.</li>
+<li><strong>Budget-friendly planning –</strong> ideal for homeowners, landlords, or anyone preparing a garden project.</li>
+<li><strong>Based on real UK costs –</strong> including materials, labour, and local pricing standards.</li>
+<li><strong>Easy to adjust –</strong> change the length or gates to see the new price immediately.</li>
+</ul>
+
+<h2>What’s Included in the Quote?</h2>
+<ul>
+<li><strong>Fence Panels:</strong> Durable timber panels, measured at 1.82m, built to last.</li>
+<li><strong>Concrete Posts:</strong> Properly reinforced posts to ensure stability and longevity.</li>
+<li><strong>Gravel Boards:</strong> Protect timber from rot and ground moisture.</li>
+<li><strong>Postcrete:</strong> Fast-setting concrete to secure posts in the ground.</li>
+<li><strong>Labour:</strong> Calculated per metre to cover professional installation.</li>
+<li><strong>Gates:</strong> Secure timber gates with quality hinges and latches.</li>
+</ul>
+
+<h2>Who Is This Quote Tool For?</h2>
+<p>It’s perfect for:</p>
+<ul>
+<li>Homeowners planning garden improvements</li>
+<li>Landlords checking replacement or repair costs</li>
+<li>Buyers budgeting for renovations</li>
+<li>Anyone wanting a fast, no-obligation estimate</li>
+</ul>
+
+<h2>Accurate, Not Guesswork</h2>
+<p>Unlike generic online calculators, our tool uses real trade pricing for panels, posts, labour and gates. The results reflect what you would actually pay for a professionally installed fence. This is accurate, practical, and useful for genuine planning.</p>
+
+<h2>Start Your Instant Fence Quote Above</h2>
+<p>Enter your fence length and number of gates to receive your complete cost breakdown instantly. There’s no obligation to continue – the quote is yours to use for budgeting, planning, or discussion with our team.</p>
+
 </main>
 
 
-
-<!-- ================= FOOTER ================= -->
+<!-- ===========================
+FOOTER
+=========================== -->
 <footer class="site-footer">
 © Home Repairs 4U | Fencing • Gate Fitting • Repairs • Sheds • Timber Storage | Askern DN6 | Call 07735 873694
 
 <div class="footer-services">
-<p>Our Services:</p>
-
+<p style="color:white;">Our Services:</p>
 <a href="/services/Exterior-decorating.html">Exterior Decorating</a>
 <a href="/services/garden.html">Garden</a>
 <a href="/services/guttering.html">Guttering</a>
@@ -180,10 +247,12 @@ Home
 </footer>
 
 
-
-<!-- ================= SCRIPT ================= -->
-<script>
+<!-- ===========================
+JAVASCRIPT
+=========================== -->
+<script defer>
 function calculateFenceQuote() {
+
 const lengthInput = document.getElementById('length').value.trim().replace(',', '.');
 const fenceLength = parseFloat(lengthInput);
 
@@ -213,7 +282,6 @@ const panelsTotal = panels * panelCost;
 const postsTotal = posts * postCost;
 const gravelTotal = gravelBoards * gravelBoardCost;
 const postcreteTotal = cementBags * postcreteCost;
-
 const total = panelsTotal + postsTotal + gravelTotal + postcreteTotal + labour + gateCost;
 
 let resultHTML = `<p><strong>Quote breakdown:</strong></p><ul>`;
@@ -222,11 +290,7 @@ resultHTML += `<li>Concrete posts (${posts} × £${postCost}): £${postsTotal.to
 resultHTML += `<li>Gravel boards (${gravelBoards} × £${gravelBoardCost}): £${gravelTotal.toFixed(2)}</li>`;
 resultHTML += `<li>Postcrete bags (${cementBags} × £${postcreteCost}): £${postcreteTotal.toFixed(2)}</li>`;
 resultHTML += `<li>Labour (${chargeableLength.toFixed(2)} m × £${labourRate}): £${labour.toFixed(2)}</li>`;
-
-if (numGates > 0) {
-resultHTML += `<li>Gates (${numGates} × £150): £${gateCost.toFixed(2)}</li>`;
-}
-
+if (numGates > 0) resultHTML += `<li>Gates (${numGates} × £150): £${gateCost.toFixed(2)}</li>`;
 resultHTML += `</ul><p><strong>Total price: £${total.toFixed(2)}</strong></p>`;
 
 document.getElementById('fenceResult').innerHTML = resultHTML;
@@ -235,4 +299,3 @@ document.getElementById('fenceResult').innerHTML = resultHTML;
 
 </body>
 </html>
-
