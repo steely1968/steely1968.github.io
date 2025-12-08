@@ -33,6 +33,7 @@ p { margin:15px 0; }
 /* Form & Calculator */
 label { font-weight:bold; display:block; margin-top:15px; }
 input[type=number] { width:100%; padding:10px; font-size:16px; margin-top:5px; }
+input:focus { outline:3px solid #27ae60; }
 button { margin-top:20px; padding:12px 24px; background:#000; color:#fff; border:none; border-radius:6px; font-weight:bold; cursor:pointer; }
 button:hover, button:focus { background:#333; outline:3px solid #27ae60; }
 
@@ -49,15 +50,15 @@ text-align:left;
 padding:12px 15px;
 font-weight:bold;
 font-size:1rem;
-background:#e0f2f1;
-color:#00332a;
+background:#004d40;
+color:#ffffff;
 border:none;
 border-radius:6px;
 cursor:pointer;
 transition: background 0.2s;
 }
-.faq-item button:hover, .faq-item button:focus { background:#b2dfdb; outline:3px solid #27ae60; }
-.faq-answer { display:none; padding:12px 15px; margin-top:5px; background:#f5f5f5; color:#222; border-left:4px solid #27ae60; border-radius:4px; font-size:0.95rem; line-height:1.6; }
+.faq-item button:hover, .faq-item button:focus { background:#00695c; outline:3px solid #27ae60; }
+.faq-answer { display:none; padding:12px 15px; margin-top:5px; background:#e0f2f1; color:#000; border-left:4px solid #27ae60; border-radius:4px; font-size:0.95rem; line-height:1.6; }
 
 /* Navigation links */
 .page-nav ul { list-style:none; padding:0; display:flex; gap:15px; flex-wrap:wrap; margin-bottom:20px; }
@@ -74,7 +75,8 @@ transition: background 0.2s;
 <a href="#maincontent" style="position:absolute;left:-999px;top:auto;background:#27ae60;color:#fff;padding:8px;z-index:100;">Skip to main content</a>
 
 <header>
-<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="1200" height="400" loading="lazy">
+<!-- Use a high-res SVG or PNG logo here -->
+<img src="/images/logo-highres.png" alt="Home Repairs 4U logo" class="logo" width="1200" height="400" loading="lazy">
 <div style="text-align:center; margin-top:10px;">
 <a href="https://steely1968.github.io/" style="font-size:20px; font-weight:600;">Home</a>
 </div>
@@ -134,21 +136,21 @@ transition: background 0.2s;
 
 <div class="faq-item">
 <button aria-expanded="false" aria-controls="faq1" id="faq1-button">How do I get a fence quote online?</button>
-<div id="faq1" class="faq-answer" role="region" aria-labelledby="faq1-button">
+<div id="faq1" class="faq-answer" role="region" aria-labelledby="faq1-button" aria-hidden="true">
 <p>Use our Instant Online Fence Quote calculator. Enter your fence length and number of gates to receive a detailed cost breakdown instantly.</p>
 </div>
 </div>
 
 <div class="faq-item">
 <button aria-expanded="false" aria-controls="faq2" id="faq2-button">Does the quote include labour and materials?</button>
-<div id="faq2" class="faq-answer" role="region" aria-labelledby="faq2-button">
+<div id="faq2" class="faq-answer" role="region" aria-labelledby="faq2-button" aria-hidden="true">
 <p>Yes, the quote includes panels, posts, gravel boards, postcrete, gates, and professional labour.</p>
 </div>
 </div>
 
 <div class="faq-item">
 <button aria-expanded="false" aria-controls="faq3" id="faq3-button">Can I adjust the quote if I change my fence length?</button>
-<div id="faq3" class="faq-answer" role="region" aria-labelledby="faq3-button">
+<div id="faq3" class="faq-answer" role="region" aria-labelledby="faq3-button" aria-hidden="true">
 <p>Yes, the calculator updates instantly when you change the fence length or number of gates.</p>
 </div>
 </div>
@@ -172,7 +174,15 @@ transition: background 0.2s;
 function calculateFenceQuote() {
 const length = parseFloat(document.getElementById('length').value.replace(',', '.'));
 const gates = parseInt(document.getElementById('numGates').value) || 0;
-if(isNaN(length) || length<=0) { alert("Enter valid length."); return; }
+const lengthInputEl = document.getElementById('length');
+
+if(isNaN(length) || length<=0) {
+alert("Enter a valid fence length.");
+lengthInputEl.setAttribute('aria-invalid', 'true');
+return;
+} else {
+lengthInputEl.setAttribute('aria-invalid', 'false');
+}
 
 const panelLength=1.82, panelCost=40, postCost=18, gravelBoardCost=20, postcreteCost=7, labourRate=50;
 const chargeableLength = length - gates;
@@ -190,7 +200,10 @@ tableHTML += `<tr><td>Labour (${chargeableLength.toFixed(2)} m × £${labourRate
 if(gates>0) tableHTML += `<tr><td>Gates (${gates} × £150)</td><td>£${gateCost.toFixed(2)}</td></tr>`;
 tableHTML += `<tr><td><strong>Total</strong></td><td><strong>£${total.toFixed(2)}</strong></td></tr></table>`;
 
-document.getElementById('fenceResult').innerHTML = tableHTML;
+const resultEl=document.getElementById('fenceResult');
+resultEl.innerHTML = tableHTML;
+resultEl.setAttribute('aria-live','polite');
+
 document.getElementById('downloadPDF').style.display = 'inline-block';
 }
 
@@ -199,14 +212,14 @@ document.getElementById('downloadPDF').addEventListener('click', async ()=>{
 const { jsPDF } = window.jspdf;
 const doc = new jsPDF();
 const img = new Image();
-img.src='/images/logo.webp'; // ideally 1200x400 high-res
+img.src='/images/logo-highres.png'; // high-res PNG or SVG
 await img.decode();
-doc.addImage(img, 'WEBP', 14, 10, 120, 40);
+doc.addImage(img, 'PNG', 14, 10, 180, 60);
 doc.setFillColor(39,174,96);
-doc.rect(0, 55, 210, 15, 'F');
+doc.rect(0, 75, 210, 15, 'F');
 doc.setTextColor(255,255,255);
 doc.setFontSize(16);
-doc.text("Instant Fence Quote", 14, 65);
+doc.text("Instant Fence Quote", 14, 85);
 
 const tableEl = document.querySelector('#fenceResult table');
 const rows = [];
@@ -215,7 +228,7 @@ rows.push([tableEl.rows[i].cells[0].innerText, tableEl.rows[i].cells[1].innerTex
 }
 
 doc.autoTable({
-startY:75,
+startY:95,
 head:[['Item','Cost']],
 body:rows,
 theme:'grid',
@@ -237,6 +250,7 @@ const expanded=btn.getAttribute('aria-expanded')==='true';
 btn.setAttribute('aria-expanded', !expanded);
 const answer=document.getElementById(btn.getAttribute('aria-controls'));
 answer.style.display=expanded?'none':'block';
+answer.setAttribute('aria-hidden', expanded);
 });
 btn.addEventListener('keydown', (e)=>{
 if(e.key==="Enter"||e.key===" ") { e.preventDefault(); btn.click(); }
