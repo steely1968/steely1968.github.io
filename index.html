@@ -11,6 +11,7 @@
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
+/* ========== Base styles ========== */
 body{
 margin:0;
 padding:0;
@@ -41,19 +42,14 @@ font-weight:bold;
 border-radius:6px;
 border:2px solid #000;
 }
-.call-btn:hover{
-background:#333;
-color:#fff;
-}
+.call-btn:hover{ background:#333; }
 main{
 max-width:900px;
 margin:0 auto;
 background:#fff;
 padding:25px 15px;
 }
-h1,h2,h3{
-color:#111;
-}
+h1,h2,h3{ color:#111; }
 .service-btn{
 display:inline-block;
 margin-top:15px;
@@ -66,10 +62,7 @@ font-weight:bold;
 border-radius:6px;
 border:2px solid #000;
 }
-.service-btn:hover{
-background:#333;
-color:#fff;
-}
+.service-btn:hover{ background:#333; }
 footer{
 background:#000;
 color:#fff;
@@ -79,7 +72,7 @@ margin-top:40px;
 font-size:14px;
 }
 
-/* === LIGHTBOX CSS === */
+/* ========== Lightbox styles ========== */
 .lightbox {
 display: none;
 position: fixed;
@@ -98,14 +91,10 @@ max-height: 95%;
 border-radius: 6px;
 box-shadow: 0 0 20px #000;
 }
-.lightbox:target {
-display: flex;
-}
-/* === END LIGHTBOX === */
-
+.lightbox:target { display: flex; }
 </style>
 
-<!-- HOME PAGE SCHEMA -->
+<!-- Business Schema -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
@@ -144,61 +133,27 @@ display: flex;
 }
 </script>
 
-<!-- FAQ SCHEMA -->
+<!-- FAQ Schema -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
 "@type":"FAQPage",
 "mainEntity":[
-{
-"@type":"Question",
-"name":"Which areas do you cover?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"We serve Askern DN6 and a 10-mile radius including Campsall, Norton, Skellow, Carcroft, Adwick, Bentley, and surrounding villages."
-}
-},
-{
-"@type":"Question",
-"name":"Are your services insured?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Yes, all our services are fully insured to ensure peace of mind and reliable workmanship."
-}
-},
-{
-"@type":"Question",
-"name":"Can I book multiple services at the same time?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Yes, we can schedule multiple services together for convenience and efficiency."
-}
-},
-{
-"@type":"Question",
-"name":"Do you offer free consultations?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."
-}
-}
+{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a 10-mile radius including Campsall, Norton, Skellow, Carcroft, Adwick, Bentley, and surrounding villages."}},
+{"@type":"Question","name":"Are your services insured?","acceptedAnswer":{"@type":"Answer","text":"Yes, all our services are fully insured to ensure peace of mind and reliable workmanship."}},
+{"@type":"Question","name":"Can I book multiple services at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we can schedule multiple services together for convenience and efficiency."}},
+{"@type":"Question","name":"Do you offer free consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."}}
 ]
 }
 </script>
 
 </head>
-
 <body>
 
 <header>
-<img src="/images/logo.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
 <div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<a href="/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
@@ -209,18 +164,16 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <h1>Welcome to Home Repairs 4U – Professional Home Services in Askern DN6</h1>
 
 <p>
-At <strong>Home Repairs 4U</strong>, we provide expert home and garden services to homeowners across Askern DN6 and surrounding villages. From enhancing your property’s exterior with decorating, fencing, or landscaping, to restoring uPVC windows and maintaining gutters, we combine years of experience with high-quality materials and workmanship.
-Our team is fully insured, reliable, and committed to delivering results that improve the appearance, function, and value of your home.
-Whether it’s a small one-off job or a comprehensive project covering multiple areas, we are here to make your property look its very best.
+At <strong>Home Repairs 4U</strong> we provide expert home and garden services across Askern DN6 and surrounding areas. From exterior decorating and fencing to guttering, pressure washing and uPVC restoration — our experienced, insured team delivers high-quality workmanship and lasting results.
 </p>
 
+<!-- Exterior Decorating -->
 <h2>Exterior Decorating</h2>
 <p>
-Our professional <strong>exterior decorating service</strong> transforms homes, fences, and iron railings with premium paints and coatings. We take pride in careful surface preparation, including cleaning, sanding, and priming to ensure long-lasting results. From brickwork to timber cladding, our team applies weather-resistant finishes that protect surfaces from rain, frost, and UV damage.
-We tailor every project to your preferences, assisting with colour choice, finish type, and design, so your home stands out with a refreshed, modern, or classic look. With over 30 years of experience, we complete jobs efficiently while maintaining the highest quality standards.
+Our <strong>exterior decorating</strong> service refreshes brickwork, cladding, fences and railings using weather-resistant paints and careful surface preparation (clean, sand, prime). We help with colour selection and finishes to ensure a durable, attractive result that enhances kerb appeal.
 </p>
 
-<!-- CLICKABLE IMAGE + LIGHTBOX -->
+<!-- Decorating Lightbox -->
 <a href="#decorating-lightbox">
 <img src="/images/house-before-after.webp"
 alt="Exterior decorating before and after example"
@@ -230,64 +183,77 @@ loading="lazy">
 
 <div id="decorating-lightbox" class="lightbox">
 <a href="#">
-<img src="/images/house-before-after.webp"
-alt="Exterior decorating before and after example enlarged">
+<img src="/images/house-before-after.webp" alt="Exterior decorating before and after example enlarged">
 </a>
 </div>
-<!-- END LIGHTBOX IMAGE -->
 
 <a href="/services/exterior-decorating.html" class="service-btn">View Exterior Decorating</a>
 
+<!-- Fence Installation -->
 <h2>Fence Installation</h2>
 <p>
-We offer complete <strong>fence installation and gate fitting</strong> services, covering all types of timber fences, including closeboard, feather edge, lap panels, and decorative designs. Our team installs posts with precision, ensures panels are level, and uses quality fixings for long-lasting results.
-In addition to full installations, we carry out repairs for broken or leaning fences, including post replacement and storm damage restoration. Whether you require boundary fencing, garden dividers, or bespoke timber solutions, our service guarantees structural integrity, security, and aesthetic appeal.
+We install and repair all types of timber fencing — closeboard, feather edge, lap panels, decorative panels and bespoke solutions. Posts are set securely and panels fitted to provide strength, privacy and a neat finish. We also repair storm damage and fit gates to measure.
 </p>
+
+<!-- Fence Lightbox (corrected path) -->
+<a href="#fence-lightbox">
+<img src="/images/fence-before-after.webp"
+alt="Fence installation before and after example"
+style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
+loading="lazy">
+</a>
+
+<div id="fence-lightbox" class="lightbox">
+<a href="#">
+<img src="/images/fence-before-after.webp" alt="Fence installation before and after example enlarged">
+</a>
+</div>
+
 <a href="/services/fence-installation.html" class="service-btn">View Fence Installation</a>
 
+<!-- Garden Maintenance -->
 <h2>Garden Maintenance</h2>
 <p>
-Our <strong>garden services</strong> cater to every requirement, from small one-off jobs to full landscaping projects. We handle lawn care, hedge trimming, weeding, planting, and seasonal maintenance, ensuring your garden remains tidy, healthy, and visually appealing.
-For larger projects, we design and implement landscaping solutions, including patios, decorative gravel, raised beds, turfing, and soft planting. Every project is tailored to your space, style, and budget, combining practicality with visual impact. Regular garden maintenance prevents overgrowth, enhances plant health, and creates inviting outdoor spaces for family and entertaining.
+From one-off tidy-ups to regular maintenance and landscaping, we offer lawn care, hedge trimming, weeding, planting, turfing, patios and raised beds. We create practical, low-maintenance gardens that look great year-round.
 </p>
 <a href="/services/garden.html" class="service-btn">View Garden Services</a>
 
+<!-- Guttering -->
 <h2>Gutter Replacement</h2>
 <p>
-Keeping your gutters, fascias, and downpipes in top condition protects your property from water damage. Our <strong>gutter replacement services</strong> include inspection, removal of old or damaged gutters, and installation of high-quality, weather-resistant systems.
-We also provide cleaning, downpipe maintenance, and fascia restoration. Properly maintained gutters prevent leaks, structural damage, and staining to your property exterior. Our expert team ensures installations are secure, aligned, and durable, providing long-term protection and peace of mind.
+Proper guttering protects your property from water damage. We replace gutters, repair leaks, maintain downpipes and restore fascias and soffits using durable, weather-resistant products.
 </p>
 <a href="/services/guttering.html" class="service-btn">View Gutter Services</a>
 
+<!-- Pressure Washing -->
 <h2>Pressure Washing</h2>
 <p>
-Our <strong>pressure washing services</strong> refresh and restore all exterior surfaces, including patios, driveways, decking, paths, and brickwork. We remove moss, algae, dirt, and staining to reveal clean, attractive surfaces.
-Pressure washing improves safety by reducing slippery surfaces and enhances kerb appeal, increasing the value of your property. We use professional-grade equipment and safe cleaning methods suitable for all surfaces. Both domestic and commercial properties benefit from our high-quality, reliable exterior cleaning solutions.
+Our pressure washing refreshes driveways, patios, decking, paths and brickwork by removing algae, moss and staining — improving safety and kerb appeal.
 </p>
 <a href="/services/pressure-washing.html" class="service-btn">View Pressure Washing</a>
 
+<!-- uPVC Restoration -->
 <h2>uPVC Restoration</h2>
 <p>
-Our <strong>uPVC restoration services</strong> bring windows, doors, and conservatories back to their original condition. We clean and restore uPVC frames, sills, and fittings, remove stains, algae, and weathering, and polish surfaces for long-lasting protection.
-Services include conservatory roof cleaning, gutter and fascia maintenance, and full internal and external valets. We use professional, safe products and techniques to ensure a thorough restoration without damaging seals or frames. A restored uPVC exterior enhances both the appearance and value of your property while ensuring functionality for years to come.
+We restore uPVC windows, doors and conservatories using professional products and techniques to remove discolouration and grime without harming seals or frames.
 </p>
 <a href="/services/upvc-restoration.html" class="service-btn">View uPVC Restoration</a>
 
 </main>
 
 <footer>
-© Home Repairs 4U | Exterior Decorating • Fence Installation • Garden Maintenance • Gutter Replacement • Pressure Washing • uPVC Restoration | Askern DN6 | Call 07735 873694
+<p>© Home Repairs 4U – Askern DN6</p>
+<p>Exterior Decorating • Fence Installation • Garden Maintenance • Gutter Replacement • Pressure Washing • uPVC Restoration</p>
+<p>📞 Call 07735 873694</p>
 
-<br><br>
-
-<p style="color: white;">Our Services:</p>
-<a href="/services/exterior-decorating.html" style="color: white; margin: 0 10px;">Exterior Decorating</a>
-<a href="/services/fence-installation.html" style="color: white; margin: 0 10px;">Fence Installation</a>
-<a href="/services/garden.html" style="color: white; margin: 0 10px;">Garden</a>
-<a href="/services/guttering.html" style="color: white; margin: 0 10px;">Guttering</a>
-<a href="/services/pressure-washing.html" style="color: white; margin: 0 10px;">Pressure Washing</a>
-<a href="/services/upvc-restoration.html" style="color: white; margin: 0 10px;">uPVC Restoration</a>
-
+<p style="margin-top:16px;">
+<a href="/services/exterior-decorating.html" style="color:white; margin:0 8px;">Exterior Decorating</a>
+<a href="/services/fence-installation.html" style="color:white; margin:0 8px;">Fence Installation</a>
+<a href="/services/garden.html" style="color:white; margin:0 8px;">Garden</a>
+<a href="/services/guttering.html" style="color:white; margin:0 8px;">Guttering</a>
+<a href="/services/pressure-washing.html" style="color:white; margin:0 8px;">Pressure Washing</a>
+<a href="/services/upvc-restoration.html" style="color:white; margin:0 8px;">uPVC Restoration</a>
+</p>
 </footer>
 
 </body>
