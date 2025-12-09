@@ -78,6 +78,31 @@ padding:25px 15px;
 margin-top:40px;
 font-size:14px;
 }
+
+/* === LIGHTBOX CSS === */
+.lightbox {
+display: none;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.85);
+align-items: center;
+justify-content: center;
+}
+.lightbox img {
+max-width: 95%;
+max-height: 95%;
+border-radius: 6px;
+box-shadow: 0 0 20px #000;
+}
+.lightbox:target {
+display: flex;
+}
+/* === END LIGHTBOX === */
+
 </style>
 
 <!-- HOME PAGE SCHEMA -->
@@ -194,10 +219,23 @@ Whether it’s a small one-off job or a comprehensive project covering multiple 
 Our professional <strong>exterior decorating service</strong> transforms homes, fences, and iron railings with premium paints and coatings. We take pride in careful surface preparation, including cleaning, sanding, and priming to ensure long-lasting results. From brickwork to timber cladding, our team applies weather-resistant finishes that protect surfaces from rain, frost, and UV damage.
 We tailor every project to your preferences, assisting with colour choice, finish type, and design, so your home stands out with a refreshed, modern, or classic look. With over 30 years of experience, we complete jobs efficiently while maintaining the highest quality standards.
 </p>
-  <img src="/images/house-before-after.webp"
+
+<!-- CLICKABLE IMAGE + LIGHTBOX -->
+<a href="#decorating-lightbox">
+<img src="/images/house-before-after.webp"
 alt="Exterior decorating before and after example"
 style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
 loading="lazy">
+</a>
+
+<div id="decorating-lightbox" class="lightbox">
+<a href="#">
+<img src="/images/house-before-after.webp"
+alt="Exterior decorating before and after example enlarged">
+</a>
+</div>
+<!-- END LIGHTBOX IMAGE -->
+
 <a href="/services/exterior-decorating.html" class="service-btn">View Exterior Decorating</a>
 
 <h2>Fence Installation</h2>
@@ -239,14 +277,17 @@ Services include conservatory roof cleaning, gutter and fascia maintenance, and 
 
 <footer>
 © Home Repairs 4U | Exterior Decorating • Fence Installation • Garden Maintenance • Gutter Replacement • Pressure Washing • uPVC Restoration | Askern DN6 | Call 07735 873694
-  <footer style="background-color: black; padding: 20px; text-align: center;">
+
+<br><br>
+
 <p style="color: white;">Our Services:</p>
-<a href="/services/Exterior-decorating.html" style="color: white; margin: 0 10px;">Exterior Decorating</a>
+<a href="/services/exterior-decorating.html" style="color: white; margin: 0 10px;">Exterior Decorating</a>
 <a href="/services/fence-installation.html" style="color: white; margin: 0 10px;">Fence Installation</a>
 <a href="/services/garden.html" style="color: white; margin: 0 10px;">Garden</a>
 <a href="/services/guttering.html" style="color: white; margin: 0 10px;">Guttering</a>
-<a href="/services/Pressure-washing.html" style="color: white; margin: 0 10px;">Pressure Washing</a>
+<a href="/services/pressure-washing.html" style="color: white; margin: 0 10px;">Pressure Washing</a>
 <a href="/services/upvc-restoration.html" style="color: white; margin: 0 10px;">uPVC Restoration</a>
+
 </footer>
 
 </body>
