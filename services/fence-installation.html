@@ -207,7 +207,7 @@ return;
 }
 
 const numGates = parseInt(document.getElementById('numGates').value) || 0;
-const panelLength = 1.82;
+const panelLength = 1.87;
 const panelCost = 40;
 const postCost = 18;
 const gravelBoardCost = 20;
@@ -216,7 +216,7 @@ const labourRate = 50;
 
 const chargeableLength = fenceLength - numGates; // Deduct 1m per gate
 const panels = Math.ceil(chargeableLength / panelLength);
-const posts = panels + 2;
+const posts = panels + 1;
 const cementBags = posts * 2;
 const gravelBoards = panels;
 const labour = chargeableLength * labourRate;
