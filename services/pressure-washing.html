@@ -57,7 +57,26 @@ border:2px solid #000;
 background:#333;
 color:#fff;
 }
-
+ .lightbox {
+display: none;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.85);
+align-items: center;
+justify-content: center;
+}
+.lightbox img {
+max-width: 95%;
+max-height: 95%;
+border-radius: 6px;
+box-shadow: 0 0 20px #000;
+}
+.lightbox:target { display: flex; } 
+}
 /* CONTENT */
 main{
 max-width:900px;
