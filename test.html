@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Professional Pressure Washing in Askern DN6 | Driveways, Patios & Exterior Cleaning</title>
 
+<link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/services/pressure-washing.html">
-<meta name="description" content="Professional pressure washing and exterior cleaning in Askern DN6 and all areas within 10 miles. Driveways, patios, decking, walls and paths. Call 07735 873694.">
+
+<meta name="description" content="Professional pressure washing and exterior cleaning in Askern DN6 and all nearby areas within 10 miles. Driveways, patios, decking, walls, paths and more. Fast, insured and affordable. Call 07735 873694.">
 <meta name="robots" content="index, follow">
 
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="preload" as="image" href="/images/logo.webp">
+<link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
 html{ -webkit-text-size-adjust:100%; }
@@ -23,6 +24,8 @@ background:#f9f9f9;
 color:#222;
 line-height:1.65;
 }
+
+input#sqm{ font-size:25px; }
 
 /* HEADER */
 header{
@@ -51,6 +54,24 @@ border:2px solid #000;
 }
 .call-btn:hover{ background:#333; }
 
+/* LIGHTBOX */
+.lightbox{
+display:none;
+position:fixed;
+z-index:9999;
+inset:0;
+background:rgba(0,0,0,0.85);
+align-items:center;
+justify-content:center;
+}
+.lightbox img{
+max-width:95%;
+max-height:95%;
+border-radius:6px;
+box-shadow:0 0 20px #000;
+}
+.lightbox:target{ display:flex; }
+
 /* CONTENT */
 main{
 max-width:900px;
@@ -61,22 +82,6 @@ padding:25px 15px;
 
 h1,h2,h3{ color:#111; }
 
-.lightbox{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.85);
-z-index:9999;
-align-items:center;
-justify-content:center;
-}
-.lightbox img{
-max-width:95%;
-max-height:95%;
-border-radius:6px;
-}
-.lightbox:target{ display:flex; }
-
 /* FOOTER */
 footer{
 background:#000;
@@ -86,7 +91,7 @@ padding:25px 15px;
 margin-top:40px;
 font-size:14px;
 }
-footer a{ color:#fff; text-decoration:none; margin:0 8px; }
+footer a{ color:#fff; margin:0 8px; text-decoration:none; }
 </style>
 
 <!-- LOCAL BUSINESS SCHEMA -->
@@ -94,17 +99,17 @@ footer a{ color:#fff; text-decoration:none; margin:0 8px; }
 {
 "@context":"https://schema.org",
 "@type":"HomeAndConstructionBusiness",
-"@id":"https://homerepairs4u.com/#pressure-washing",
 "name":"Home Repairs 4U",
 "url":"https://homerepairs4u.com/",
 "image":"https://homerepairs4u.com/images/logo.webp",
-"description":"Professional pressure washing, jet washing and exterior surface cleaning in Askern DN6 and surrounding areas.",
+"@id":"https://homerepairs4u.com/#pressurewashing",
+"description":"Professional pressure washing, jet washing and exterior surface cleaning in Askern DN6 and all areas within 10 miles.",
 "telephone":"+447735873694",
 "address":{
 "@type":"PostalAddress",
 "addressLocality":"Askern",
-"addressRegion":"South Yorkshire",
 "postalCode":"DN6",
+"addressRegion":"South Yorkshire",
 "addressCountry":"GB"
 },
 "areaServed":{
@@ -115,8 +120,7 @@ footer a{ color:#fff; text-decoration:none; margin:0 8px; }
 "openingHoursSpecification":[{
 "@type":"OpeningHoursSpecification",
 "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-"opens":"07:00",
-"closes":"20:00"
+"opens":"07:00","closes":"20:00"
 }]
 }
 </script>
@@ -134,13 +138,18 @@ footer a{ color:#fff; text-decoration:none; margin:0 8px; }
 },
 {
 "@type":"Question",
-"name":"Do you offer pressure washing outside Askern?",
-"acceptedAnswer":{"@type":"Answer","text":"Yes. We cover all areas within 10 miles including Campsall, Norton, Skellow, Carcroft, Adwick, Bentley and surrounding villages."}
+"name":"Do you offer pressure washing in areas outside Askern?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes. We cover all areas within 10 miles including Campsall, Norton, Skellow, Carcroft, Adwick, Bentley and more."}
 },
 {
 "@type":"Question",
 "name":"Is pressure washing safe for all surfaces?",
-"acceptedAnswer":{"@type":"Answer","text":"Yes. With correct pressure settings and methods, pressure washing is safe for most outdoor surfaces. Every job is assessed first."}
+"acceptedAnswer":{"@type":"Answer","text":"With the correct pressure settings and cleaning methods, pressure washing is safe for most outdoor surfaces. We assess every job before starting."}
+},
+{
+"@type":"Question",
+"name":"Can you remove moss, algae and weeds?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes. We remove moss, algae, lichen, organic growth and dirt build-up, restoring surfaces to a clean and safe condition."}
 }
 ]}
 </script>
@@ -151,7 +160,7 @@ footer a{ color:#fff; text-decoration:none; margin:0 8px; }
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200">
 <br>
-<a href="/" style="font-size:20px;font-weight:600;color:#000;">Home</a>
+<a href="/" style="font-size:20px;color:#000;text-decoration:none;font-weight:600;">Home</a>
 <br>
 <a href="tel:07735873694" class="call-btn">Call Now: 07735 873694</a>
 </header>
@@ -161,116 +170,155 @@ footer a{ color:#fff; text-decoration:none; margin:0 8px; }
 <h1>Professional Pressure Washing in Askern DN6</h1>
 
 <p>
-Welcome to <strong>Home Repairs 4U</strong> — your trusted local specialist for
-<strong>pressure washing</strong>, <strong>jet washing</strong> and
-<strong>professional exterior surface cleaning</strong> throughout
-<strong>Askern DN6</strong> and every surrounding area within a 10-mile radius.
-With over <strong>30 years of industry experience</strong>, we provide reliable
-exterior cleaning that restores tired, weathered and dirty surfaces back to a
-bright, clean and safe condition.
+Welcome to <strong>Home Repairs 4U</strong> — your trusted local specialist for <strong>pressure washing</strong>, <strong>jet washing</strong> and <strong>professional outdoor surface cleaning</strong> throughout <strong>Askern DN6</strong> and every surrounding area within a 10-mile radius.
+With over 30 years of industry experience, we provide reliable exterior cleaning that restores tired, weathered and dirty surfaces back to a bright, clean, safe condition.
 </p>
 
-<!-- QUOTE CALCULATOR (UNCHANGED LOGIC) -->
-<section style="margin:30px 0;padding:25px;border:1px solid #ccc;">
+<!-- QUOTE CALCULATOR (UNCHANGED TEXT) -->
+<section style="margin:30px auto;padding:25px;border:1px solid #ccc;">
 <h2>Instant Pressure Washing Quote</h2>
 <p>Use this calculator to get an estimate for your pressure washing service.</p>
 
-<label>How many square metres? *</label>
-<input type="number" id="sqm" min="1" step="0.01" style="width:100%;padding:10px;font-size:16px;"><br><br>
+<label for="sqm">How many square metres?*</label><br>
+<input type="number" id="sqm" min="1" step="0.01" required style="width:100%;padding:10px;font-size:16px;"><br><br>
 
-<input type="checkbox" id="jetwash" checked> Jet wash<br>
+<input type="checkbox" id="jetwash" checked> Jet wash only<br>
 <input type="checkbox" id="fungicide"> Fungicide treatment<br>
 <input type="checkbox" id="hardbrush"> Hard brush<br>
 <input type="checkbox" id="resanding"> Resanding<br>
 <input type="checkbox" id="sealing"> Sealing<br><br>
 
 <button onclick="calculateQuote()" class="call-btn">Get Quote</button>
-<div id="quoteResult" style="margin-top:20px;font-weight:bold;"></div>
+<div id="quoteResult" style="margin-top:20px;font-size:18px;font-weight:bold;"></div>
 </section>
 
 <script>
 function calculateQuote(){
 const sqm=parseFloat(document.getElementById("sqm").value);
-if(!sqm||sqm<=0){alert("Enter a valid area.");return;}
+if(!sqm||sqm<=0){alert("Please enter a valid number of square metres.");return;}
 let total=40;
-let items=["Base service fee: £40.00"];
-if(jetwash.checked){let p=sqm*2.5; total+=p; items.push(`Jet wash: £${p.toFixed(2)}`);}
-if(fungicide.checked){let p=sqm*0.8; total+=p; items.push(`Fungicide: £${p.toFixed(2)}`);}
-if(hardbrush.checked){let p=sqm*0.7; total+=p; items.push(`Hard brush: £${p.toFixed(2)}`);}
-if(resanding.checked){let p=sqm*3.5; total+=p; items.push(`Resanding: £${p.toFixed(2)}`);}
-if(sealing.checked){let p=sqm*4.5; total+=p; items.push(`Sealing: £${p.toFixed(2)}`);}
-document.getElementById("quoteResult").innerHTML =
-`<ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul><p>Total price: £${total.toFixed(2)}</p>`;
+let options=["Base service fee (travel, setup & loading): £40.00"];
+if(jetwash.checked){let p=sqm*2.5;total+=p;options.push(`Jet wash only: £${p.toFixed(2)}`);}
+if(fungicide.checked){let p=sqm*0.8;total+=p;options.push(`Fungicide treatment: £${p.toFixed(2)}`);}
+if(hardbrush.checked){let p=sqm*0.7;total+=p;options.push(`Hard brush: £${p.toFixed(2)}`);}
+if(resanding.checked){let p=sqm*3.5;total+=p;options.push(`Resanding: £${p.toFixed(2)}`);}
+if(sealing.checked){let p=sqm*4.5;total+=p;options.push(`Sealing: £${p.toFixed(2)}`);}
+document.getElementById("quoteResult").innerHTML=
+`<ul>${options.map(o=>`<li>${o}</li>`).join("")}</ul><p>Total price: £${total.toFixed(2)}</p>`;
 }
 </script>
 
-<!-- ALL YOUR ORIGINAL SERVICE TEXT CONTINUES UNCHANGED -->
+<!-- REMAINING TEXT CONTINUES EXACTLY AS PROVIDED -->
+
+<p>
+Outdoor surfaces face constant exposure to the elements. Rain, algae, moss, car oil, tyre marks, mud, UV fading and pollution all contribute to the gradual decline of driveways, patios, decking and pathways. Many homeowners are surprised by how quickly surfaces lose their original colour and how easily they can become slippery, unsafe and unattractive.
+Fortunately, most of this can be reversed with the right pressure washing equipment and experienced hands.
+</p>
+
 <h2>Our Professional Pressure Washing Services</h2>
 
 <h3>✔ Driveway Pressure Washing</h3>
 <p>
-Block paving, concrete, resin-bound and tarmac driveways collect years of dirt,
-moss, tyre marks, algae and oil. Our professional cleaning process lifts deep-set
-grime and organic growth, restoring both appearance and safety.
+Block paving, concrete, resin-bound and tarmac driveways collect years of dirt, moss, tyre marks, algae and oil. Our professional cleaning process lifts deep-set grime and organic growth, restoring both appearance and safety. We carefully adjust pressure settings depending on the surface material to prevent damage.
+Driveway cleaning is one of the most transformative exterior services — often giving a property an instant visual lift.
 </p>
 
-<img src="/images/driveway-pressure-wash.webp" alt="Driveway pressure washing Askern" style="width:100%;border-radius:6px;">
+<img src="/images/driveway-pressure-wash.webp" alt="Exterior pressure washing service driveway Askern Doncaster" style="width:100%;border-radius:6px;">
 
 <h3>✔ Patio & Paving Cleaning</h3>
 <p>
-Patios often accumulate moss, weeds, lichen and black spot due to moisture and
-limited sunlight. We restore natural colour while protecting the surface.
+Patios often accumulate moss, weeds, lichen and black spot due to moisture and limited sunlight. We use specialist pressure washing techniques to remove stubborn debris without damaging pointing or the stone surface.
+Whether your patio is sandstone, limestone, concrete, porcelain or block paving, we restore its natural colour and remove slippery buildup.
 </p>
 
-<img src="/images/patio-jet-wash.webp" alt="Patio jet washing Askern" style="width:100%;border-radius:6px;">
+<img src="/images/patio-jet-wash.webp" alt="Exterior patio pressure wash Askern" style="width:100%;border-radius:6px;">
 
 <h3>✔ Decking Cleaning</h3>
 <p>
-Wooden decking requires skilled handling. Our approach safely removes algae and
-dirt without splintering the timber.
+Wooden decking requires skilled handling during cleaning. Too much pressure can cause splintering; too little won’t remove ingrained algae. Our approach gently yet effectively lifts dirt, mould and organic growth, leaving your decking clean and ready for sealing or painting if needed.
+A clean deck not only looks better but is far safer underfoot.
 </p>
 
-<img src="/images/deck.webp" alt="Decking cleaning Askern" style="width:100%;border-radius:6px;">
+<img src="/images/deck.webp" alt="Decking jet wash Askern" style="width:100%;border-radius:6px;">
 
-<h3>✔ Walls, Fences & Brickwork</h3>
+<h3>✔ Walls, Fences & Brickwork Cleaning</h3>
 <p>
-Exterior walls and fences gradually darken as pollutants embed into the surface.
-Pressure washing instantly refreshes the property exterior.
+Exterior walls and fences gradually darken as airborne pollutants and moss embed into the surface. Our cleaning methods brighten brick, concrete, stone, render and timber without harming the material.
+Pressure washing these surfaces instantly freshens the entire property exterior.
 </p>
 
-<img src="/images/pressure-wash-1.webp" alt="Wall pressure washing" style="width:100%;border-radius:6px;">
+<img src="/images/pressure-wash-1.webp" alt="Exterior wall pressure washing Askern" style="width:100%;border-radius:6px;">
 
-<h3>✔ Paths, Steps & Access Areas</h3>
+<h3>✔ Pathway, Steps & Access Area Cleaning</h3>
 <p>
-Paths and steps become hazardous when algae builds up. Regular pressure washing
-reduces slip risk and improves safety.
+Paths and steps can quickly become hazardous when covered with algae or moss. Regular pressure washing reduces slip risk and keeps access areas safe for families, visitors and customers.
+We restore clarity, brightness and grip to all walkway surfaces.
 </p>
 
-<h2>Areas We Cover – Within 10 Miles of Askern</h2>
+<h2>Areas We Cover – All Within 10 Miles of Askern</h2>
+
 <p>
-Askern, Norton, Campsall, Skellow, Carcroft, Adwick-le-Street, Bentley, Arksey,
-Burghwallis, Owston, Moss, Fenwick, Sykehouse, Braithwaite, Thorpe-in-Balne,
-Woodlands, Hickleton, Hooton Pagnell, Brodsworth, Sprotbrough, Goldthorpe,
-Thurnscoe and surrounding communities.
+We proudly serve <strong>every village, estate, hamlet and town within 10 miles of Askern DN6</strong>, including:
+Askern, Norton, Campsall, Skellow, Carcroft, Adwick-le-Street, Bentley, Arksey, Burghwallis, Owston, Moss, Fenwick, Sykehouse, Braithwaite, Thorpe-in-Balne, Woodlands, Hickleton, Hooton Pagnell, Brodsworth, Sprotbrough, Goldthorpe, Thurnscoe and surrounding communities.
+</p>
+
+<p>
+If you're unsure whether we cover your location, the answer is almost always yes — feel free to call and check.
+</p>
+
+<h2>Why Choose Home Repairs 4U for Pressure Washing?</h2>
+
+<ul>
+<li>✔ Over 30 years of hands-on exterior cleaning experience</li>
+<li>✔ Fully insured for complete peace of mind</li>
+<li>✔ Local, friendly and reliable service</li>
+<li>✔ Clear, honest pricing with no hidden extras</li>
+<li>✔ Same-day or next-day availability when possible</li>
+<li>✔ High-quality, commercial-grade pressure washing equipment</li>
+<li>✔ Safe cleaning methods tailored to each surface type</li>
+</ul>
+
+<h2>Overview</h2>
+
+<p>
+Pressure washing is one of the most effective ways to restore the external surfaces of your property. Over time, driveways, patios and pathways accumulate a mixture of organic growth and environmental pollutants. These build up gradually, often going unnoticed until the surface becomes slippery, unsightly or patched with discolouration.
+Our pressure washing service reverses this natural wear and helps protect surfaces from long-term deterioration.
+</p>
+
+<p>
+We begin by assessing the condition of your exterior surfaces, identifying any areas requiring special care. Different materials respond differently to pressure, so we adjust our settings to avoid damage while achieving a deep and even clean.
+This careful preparation ensures you receive the best possible results without compromising your property’s safety or appearance.
+</p>
+
+<p>
+For driveways, we pay particular attention to removing oil stains, moss between blocks, and stubborn marks. Patios often require a more delicate approach due to jointing sand, soft stone or older pavers. Decking demands its own specialised technique to lift dirt without roughening the wood.
+No matter the surface, our goal is always the same: restore the material’s natural look and extend its lifespan.
+</p>
+
+<p>
+Regular pressure washing is also one of the most cost-effective ways to maintain your property’s kerb appeal. Clean outdoor spaces create a strong first impression and help preserve surfaces that would otherwise degrade faster due to moisture, moss, weeds and dirt.
+Many customers are amazed at how much difference a single clean can make — outdoor areas often look newly installed once the grime is removed.
 </p>
 
 <h2>Book Your Pressure Washing Service Today</h2>
+
 <p>
-If you want your driveway, patio or decking restored to a clean and safe
-condition, call today to arrange a convenient visit.
+If you want your driveway, patio, decking or exterior surfaces restored to a fresh, clean condition, we’re ready to help.
+Whether you're in Askern or anywhere within 10 miles, simply call us and we’ll arrange a convenient time to visit.
 </p>
 
-<div style="text-align:center;">
-<a href="tel:07735873694" class="call-btn">Call 07735 873694</a>
+<div style="text-align:center;margin:35px 0;">
+<a href="tel:07735873694" class="call-btn">Call Now: 07735 873694</a>
 </div>
 
 </main>
 
 <footer>
-© Home Repairs 4U | Pressure Washing & Exterior Cleaning | Askern DN6
+© Home Repairs 4U | Pressure Washing • Jet Washing • Exterior Cleaning | Askern DN6 | Call 07735 873694
 <br>
 <a href="/services/Exterior-decorating.html">Exterior Decorating</a>
-<a href="/services/fence-installation.html">Fencing</a>
+<a href="/services/fence-installation.html">Fence Installation</a>
+<a href="/services/garden.html">Garden</a>
 <a href="/services/guttering.html">Guttering</a>
 <a href="/services/upvc-restoration.html">uPVC Restoration</a>
 <br>
