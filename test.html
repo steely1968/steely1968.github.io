@@ -8,7 +8,7 @@
 
 <link rel="canonical" href="https://homerepairs4u.com/local/gutter-services-sprotbrough.html">
 
-<meta name="description" content="Professional gutter clearing, cleaning, repairs and replacement in Sprotbrough, Doncaster. Prevent leaks, damp and water damage. Call 07735 873694.">
+<meta name="description" content="Trusted gutter clearing, cleaning, repairs and replacement in Sprotbrough, Doncaster. Prevent leaks and damp. Call 07735 873694 for fast local service.">
 
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="preload" as="image" href="/images/logo.webp">
@@ -36,19 +36,66 @@ footer{background:#000;color:#fff;text-align:center;padding:26px 15px;margin-top
 footer a{color:#fff;text-decoration:none;padding:8px 12px;display:inline-block;}
 </style>
 
-<!-- Business Schema -->
+<!-- LocalBusiness Schema -->
 <script type="application/ld+json">
 {
-"@context":"https://schema.org",
-"@type":"HomeAndConstructionBusiness",
-"name":"Home Repairs 4U",
-"url":"https://homerepairs4u.com/",
-"logo":"https://homerepairs4u.com/images/logo.webp",
-"image":"https://homerepairs4u.com/images/logo.webp",
-"telephone":"+447735873694",
-"openingHours":"Mo-Su 07:00-20:00",
-"areaServed":["Sprotbrough","Doncaster","Scawthorpe","Bentley","Balby"],
-"priceRange":"£50–£3000"
+"@context": "https://schema.org",
+"@type": "LocalBusiness",
+"name": "Home Repairs 4U",
+"image": "https://homerepairs4u.com/images/logo.webp",
+"url": "https://homerepairs4u.com/",
+"telephone": "+447735873694",
+"priceRange": "£50–£3000",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "Sprotbrough",
+"addressLocality": "Sprotbrough",
+"addressRegion": "South Yorkshire",
+"postalCode": "DN5",
+"addressCountry": "GB"
+},
+"geo": {
+"@type": "GeoCoordinates",
+"latitude": 53.5166,
+"longitude": -1.0976
+},
+"openingHours": "Mo-Su 07:00-20:00",
+"areaServed": ["Sprotbrough", "Doncaster", "Scawthorpe", "Bentley", "Balby"],
+"sameAs": ["https://www.facebook.com/people/Handyman-services/61584395621256/"]
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "How often should gutters be cleaned?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Gutters should be cleaned at least twice a year, ideally in spring and autumn, or more frequently if there are nearby trees."
+}
+},
+{
+"@type": "Question",
+"name": "Do you repair or replace damaged gutters?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "We provide both repairs for minor damage and full replacement for gutters beyond repair."
+}
+},
+{
+"@type": "Question",
+"name": "Can I get a quote without a site visit?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, you can use our instant gutter quote calculator to get an estimate based on gutter length and selected services."
+}
+}
+]
 }
 </script>
 
@@ -59,24 +106,18 @@ footer a{color:#fff;text-decoration:none;padding:8px 12px;display:inline-block;}
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200">
 <br>
 <a href="/" style="font-size:20px;font-weight:600;color:#000;">Home</a><br>
-<a href="tel:07735873694" class="call-btn">Call 07735 873694</a>
+<a href="tel:+447735873694" class="call-btn">Call 07735 873694</a>
 </header>
 
 <main>
 
 <h1>Gutter Clearing, Cleaning & Replacement in Sprotbrough, Doncaster</h1>
 
-<p>
-Home Repairs 4U provides reliable gutter services for properties throughout Sprotbrough. Our work focuses on keeping rainwater flowing safely away from your home, helping to prevent damp, leaks, and long-term structural issues.
-</p>
+<p>Home Repairs 4U provides reliable gutter services for properties throughout Sprotbrough. Our work focuses on keeping rainwater flowing safely away from your home, helping to prevent damp, leaks, and long-term structural issues.</p>
 
-<p>
-Blocked or damaged guttering is one of the most common causes of water damage in residential properties. When gutters overflow, water can soak brickwork, penetrate rooflines, and damage fascia boards. Regular maintenance helps avoid these problems and protects the overall condition of your property.
-</p>
+<p>Blocked or damaged guttering is one of the most common causes of water damage in residential properties. When gutters overflow, water can soak brickwork, penetrate rooflines, and damage fascia boards. Regular maintenance helps avoid these problems and protects the overall condition of your property.</p>
 
-<p>
-We work on houses, bungalows, and small commercial buildings across the area. Every job is approached with care, using safe access methods and appropriate equipment to deliver consistent results without unnecessary disruption.
-</p>
+<p>We work on houses, bungalows, and small commercial buildings across the area. Every job is approached with care, using safe access methods and appropriate equipment to deliver consistent results without unnecessary disruption.</p>
 
 <h2>Instant Gutter Quote Calculator</h2>
 
@@ -106,14 +147,21 @@ We work on houses, bungalows, and small commercial buildings across the area. Ev
 
 <script>
 function calculateQuote(){
-const m=parseFloat(document.getElementById('metres').value);
-if(!m||m<=0){alert("Please enter a valid length.");return;}
-let total=0;
-let items=[];
-if(clearing.checked){let p=m*5;total+=p;items.push(`Gutter clearing: £${p.toFixed(2)}`);}
-if(cleaning.checked){let p=m*5;total+=p;items.push(`Gutter cleaning: £${p.toFixed(2)}`);}
-if(replacement.checked){let p=m*21.5;total+=p;items.push(`Gutter replacement: £${p.toFixed(2)}`);}
-document.getElementById("quoteResult").innerHTML=
+const m = parseFloat(document.getElementById('metres').value);
+if(!m || m <= 0){ alert("Please enter a valid length."); return; }
+
+const clearing = document.getElementById('clearing');
+const cleaning = document.getElementById('cleaning');
+const replacement = document.getElementById('replacement');
+
+let total = 0;
+let items = [];
+
+if(clearing.checked){ let p = m*5; total+=p; items.push(`Gutter clearing: £${p.toFixed(2)}`);}
+if(cleaning.checked){ let p = m*5; total+=p; items.push(`Gutter cleaning: £${p.toFixed(2)}`);}
+if(replacement.checked){ let p = m*21.5; total+=p; items.push(`Gutter replacement: £${p.toFixed(2)}`);}
+
+document.getElementById("quoteResult").innerHTML =
 items.length
 ? `<ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul><p><strong>Estimated total: £${total.toFixed(2)}</strong></p>`
 : "<p>Please select at least one service.</p>";
@@ -123,49 +171,28 @@ items.length
 <h2>Our Gutter Services</h2>
 
 <h3>Gutter Clearing</h3>
-<p>
-Gutter clearing removes leaves, moss, and debris that build up over time. This is particularly important in areas like Sprotbrough where nearby trees and changing weather conditions can cause rapid blockages.
-</p>
-
-<a href="#clearing-lightbox">
-<img src="/images/clearing-service.webp" alt="Gutter clearing service in Sprotbrough Doncaster" class="service-image">
-</a>
-<div id="clear-lightbox" class="lightbox"><a href="#"><img src="/images/clearing-service.webp" alt=""></a></div>
+<p>Gutter clearing removes leaves, moss, and debris that build up over time. This is particularly important in areas like Sprotbrough where nearby trees and changing weather conditions can cause rapid blockages.</p>
+<a href="#clearing-lightbox"><img src="/images/clearing-service.webp" alt="Gutter clearing service in Sprotbrough Doncaster" class="service-image"></a>
+<div id="clearing-lightbox" class="lightbox"><a href="#"><img src="/images/clearing-service.webp" alt="Gutter clearing service in Sprotbrough Doncaster"></a></div>
 
 <h3>Gutter Cleaning</h3>
-<p>
-External gutter cleaning improves the appearance of your property by removing algae, staining, and built-up grime. Clean gutters also dry more effectively, helping to extend their lifespan.
-</p>
-
-<a href="#cleaned-lightbox">
-<img src="/images/cleaned-gutters.webp" alt="Gutter cleaning in Sprotbrough Doncaster" class="service-image">
-</a>
-<div id="cleaned-lightbox" class="lightbox"><a href="#"><img src="/images/cleaned-gutters.webp" alt=""></a></div>
+<p>External gutter cleaning improves the appearance of your property by removing algae, staining, and built-up grime. Clean gutters also dry more effectively, helping to extend their lifespan.</p>
+<a href="#cleaned-lightbox"><img src="/images/cleaned-gutters.webp" alt="Cleaned gutters in Sprotbrough Doncaster" class="service-image"></a>
+<div id="cleaned-lightbox" class="lightbox"><a href="#"><img src="/images/cleaned-gutters.webp" alt="Cleaned gutters in Sprotbrough Doncaster"></a></div>
 
 <h3>Gutter Repairs & Replacement</h3>
-<p>
-Loose joints, leaks, and sagging sections can often be repaired if addressed early. Where guttering is damaged beyond repair, we provide full replacement using durable materials designed for long-term reliability.
-</p>
-
-<a href="#replaced-lightbox">
-<img src="/images/replaced-gutter.webp" alt="Gutter replacement work in Sprotbrough Doncaster" class="service-image">
-</a>
-<div id="replaced-lightbox" class="lightbox"><a href="#"><img src="/images/replaced-gutter.webp" alt=""></a></div>
+<p>Loose joints, leaks, and sagging sections can often be repaired if addressed early. Where guttering is damaged beyond repair, we provide full replacement using durable materials designed for long-term reliability.</p>
+<a href="#replaced-lightbox"><img src="/images/replaced-gutter.webp" alt="Gutter replacement in Sprotbrough Doncaster" class="service-image"></a>
+<div id="replaced-lightbox" class="lightbox"><a href="#"><img src="/images/replaced-gutter.webp" alt="Gutter replacement in Sprotbrough Doncaster"></a></div>
 
 <h2>Why Gutter Maintenance Is Important</h2>
-
-<p>
-Well-maintained gutters help protect walls, foundations, and rooflines from water damage. Regular inspections and cleaning reduce the risk of unexpected repairs and help maintain the overall condition of your property.
-</p>
+<p>Well-maintained gutters help protect walls, foundations, and rooflines from water damage. Regular inspections and cleaning reduce the risk of unexpected repairs and help maintain the overall condition of your property.</p>
 
 <h2>Book Gutter Services in Sprotbrough</h2>
-
-<p>
-If your gutters are overflowing, leaking, or showing signs of wear, Home Repairs 4U is here to help. We provide dependable gutter clearing, cleaning, repairs, and replacement throughout Sprotbrough and surrounding areas.
-</p>
+<p>If your gutters are overflowing, leaking, or showing signs of wear, Home Repairs 4U is here to help. We provide dependable gutter clearing, cleaning, repairs, and replacement throughout Sprotbrough and surrounding areas.</p>
 
 <div style="text-align:center;margin:36px 0;">
-<a href="tel:07735873694" class="call-btn">Call 07735 873694</a>
+<a href="tel:+447735873694" class="call-btn">Call 07735 873694</a>
 </div>
 
 </main>
