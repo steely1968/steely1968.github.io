@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Gutter Clearing & Replacement in Skellow, Doncaster | Home Repairs 4U</title>
+
+<link rel="canonical" href="https://homerepairs4u.com/local/gutter-services-skellow.html">
+
+<meta name="description" content="Local gutter clearing, cleaning and replacement services in Skellow, Doncaster. Protect your home from leaks and water damage. Call 07735 873694.">
+
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="preload" as="image" href="/images/logo.webp">
+
+<style>
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;font-family:Arial,sans-serif;background:#f8f8f8;color:#222;line-height:1.7;}
+header{background:#fff;padding:26px 12px;text-align:center;border-bottom:4px solid #27ae60;}
+.logo{max-height:90px;width:auto;}
+.call-btn{display:inline-block;margin-top:18px;padding:15px 30px;background:#000;color:#fff;font-size:19px;font-weight:bold;text-decoration:none;border-radius:6px;min-height:48px;}
+.call-btn:hover{background:#333;}
+main{max-width:950px;margin:0 auto;background:#fff;padding:28px 18px;}
+h1,h2,h3{color:#111;}
+label{font-weight:bold;display:block;margin-bottom:6px;}
+input[type="number"]{width:100%;padding:12px;font-size:16px;margin-bottom:18px;}
+.form-row{display:flex;align-items:center;gap:14px;padding:12px 10px;margin-bottom:12px;}
+.form-row input{width:22px;height:22px;}
+button{cursor:pointer;min-height:48px;}
+button:focus,a:focus,input:focus{outline:3px solid #27ae60;outline-offset:2px;}
+.service-image{width:100%;max-width:900px;display:block;margin:20px auto;border-radius:6px;}
+.lightbox{display:none;position:fixed;z-index:9999;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;}
+.lightbox img{max-width:95%;max-height:95%;border-radius:6px;box-shadow:0 0 25px #000;}
+.lightbox:target{display:flex;}
+footer{background:#000;color:#fff;text-align:center;padding:26px 15px;margin-top:40px;font-size:14px;}
+footer a{color:#fff;text-decoration:none;padding:8px 12px;display:inline-block;}
+#quoteResult ul{padding-left:20px;}
+</style>
+
+<!-- LocalBusiness Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":"Home Repairs 4U",
+"image":"https://homerepairs4u.com/images/logo.webp",
+"url":"https://homerepairs4u.com/",
+"telephone":"+447735873694",
+"priceRange":"£50–£3000",
+"address":{
+"@type":"PostalAddress",
+"addressLocality":"Skellow",
+"addressRegion":"South Yorkshire",
+"postalCode":"DN6",
+"addressCountry":"GB"
+},
+"geo":{
+"@type":"GeoCoordinates",
+"latitude":53.5855,
+"longitude":-1.1284
+},
+"openingHours":"Mo-Su 07:00-20:00",
+"areaServed":["Skellow","Adwick-le-Street","Bentley","Doncaster"],
+"sameAs":["https://www.facebook.com/people/Handyman-services/61584395621256/"]
+}
+</script>
+
+</head>
+<body>
+
+<header>
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200">
+<br>
+<a href="/" style="font-size:20px;font-weight:600;color:#000;">Home</a><br>
+<a href="tel:+447735873694" class="call-btn">Call 07735 873694</a>
+</header>
+
+<main>
+
+<h1>Professional Gutter Services in Skellow, Doncaster</h1>
+
+<p>
+Home Repairs 4U delivers reliable gutter maintenance and replacement services for homeowners and small businesses in Skellow. Gutters play a crucial role in protecting your property, yet they are often overlooked until problems appear. Overflowing or damaged guttering can allow water to soak into walls, rooflines, and foundations.
+</p>
+
+<p>
+Our aim is to help prevent these issues before they cause expensive damage. Whether your gutters need clearing, a thorough clean, or full replacement, we provide a dependable service carried out with care and attention to detail.
+</p>
+
+<h2>Instant Gutter Quote Calculator</h2>
+
+<form id="quoteForm">
+<label for="metres">Total gutter length (metres)</label>
+<input type="number" id="metres" min="1" step="0.1" required>
+
+<div class="form-row">
+<input type="checkbox" id="clearing">
+<label for="clearing">Gutter clearing</label>
+</div>
+
+<div class="form-row">
+<input type="checkbox" id="cleaning">
+<label for="cleaning">Gutter cleaning</label>
+</div>
+
+<div class="form-row">
+<input type="checkbox" id="replacement">
+<label for="replacement">Gutter replacement</label>
+</div>
+
+<button type="button" onclick="calculateQuote()" class="call-btn">Get Estimate</button>
+</form>
+
+<div id="quoteResult" style="margin-top:22px;font-size:18px;font-weight:bold;"></div>
+
+<script>
+function calculateQuote(){
+const m = parseFloat(document.getElementById('metres').value);
+if(!m || m <= 0){ alert("Please enter a valid length."); return; }
+
+const clearing = document.getElementById('clearing');
+const cleaning = document.getElementById('cleaning');
+const replacement = document.getElementById('replacement');
+
+let total = 0;
+let items = [];
+
+if(clearing.checked){ let p = m*5; total+=p; items.push(`Gutter clearing: £${p.toFixed(2)}`);}
+if(cleaning.checked){ let p = m*5; total+=p; items.push(`Gutter cleaning: £${p.toFixed(2)}`);}
+if(replacement.checked){ let p = m*21.5; total+=p; items.push(`Gutter replacement: £${p.toFixed(2)}`);}
+
+document.getElementById("quoteResult").innerHTML =
+items.length
+? `<ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul><p><strong>Estimated total: £${total.toFixed(2)}</strong></p>`
+: "<p>Please select at least one service.</p>";
+}
+</script>
+
+<h2>Why Looking After Your Gutters Matters</h2>
+
+<p>
+In Skellow, seasonal weather and nearby trees often cause leaves, moss, and debris to collect inside gutters. When water cannot drain properly, it spills over the edge and runs down exterior walls. Over time, this can lead to damp patches, internal staining, and deterioration of brickwork and timber.
+</p>
+
+<p>
+Routine maintenance helps avoid these problems and keeps rainwater moving safely away from your home. It also reduces strain on gutter joints and fixings, helping the system last longer.
+</p>
+
+<h2>Our Gutter Services</h2>
+
+<h3>Gutter Clearing</h3>
+<p>
+Clearing removes built-up debris that blocks water flow. We safely clear gutters by hand or using professional tools, ensuring downpipes are free-flowing and working as they should.
+</p>
+
+<a href="#clearing-lightbox">
+<img src="/images/clearing-service.webp" alt="Gutter clearing work carried out in Skellow Doncaster" class="service-image">
+</a>
+<div id="clearing-lightbox" class="lightbox"><a href="#"><img src="/images/clearing-service.webp" alt="Gutter clearing work carried out in Skellow Doncaster"></a></div>
+
+<h3>Gutter Cleaning</h3>
+<p>
+External gutter cleaning improves the appearance of your property by removing algae, grime, and staining. This service is particularly useful for maintaining kerb appeal and preventing long-term surface damage.
+</p>
+
+<a href="#cleaned-lightbox">
+<img src="/images/cleaned-gutters.webp" alt="Freshly cleaned gutters on a property in Skellow" class="service-image">
+</a>
+<div id="cleaned-lightbox" class="lightbox"><a href="#"><img src="/images/cleaned-gutters.webp" alt="Freshly cleaned gutters on a property in Skellow"></a></div>
+
+<h3>Gutter Repairs and Replacement</h3>
+<p>
+Small issues such as leaks or loose sections can often be repaired if caught early. When guttering is worn, cracked, or beyond repair, we offer full replacement using durable materials designed to withstand the British climate.
+</p>
+
+<a href="#replaced-lightbox">
+<img src="/images/replaced-gutter.webp" alt="New gutter installation on a home in Skellow Doncaster" class="service-image">
+</a>
+<div id="replaced-lightbox" class="lightbox"><a href="#"><img src="/images/replaced-gutter.webp" alt="New gutter installation on a home in Skellow Doncaster"></a></div>
+
+<h2>Why Homeowners in Skellow Choose Home Repairs 4U</h2>
+
+<ul>
+<li>Local, reliable service</li>
+<li>Fully insured and experienced team</li>
+<li>Safe access methods for all property types</li>
+<li>Clear pricing with no pressure sales</li>
+<li>Emergency support when problems arise</li>
+</ul>
+
+<h2>Book Gutter Services in Skellow</h2>
+
+<p>
+If your gutters are overflowing, leaking, or simply overdue for attention, Home Repairs 4U is ready to help. Use the calculator above for a quick estimate or call us directly to arrange a visit at a time that suits you.
+</p>
+
+<div style="text-align:center;margin:36px 0;">
+<a href="tel:+447735873694" class="call-btn">Call 07735 873694</a>
+</div>
+
+</main>
+
+<footer>
+© Home Repairs 4U | Gutter Services Skellow, Doncaster
+<br>
+<a href="/services/guttering.html">Guttering</a>
+<a href="/services/fence-installation.html">Fencing</a>
+<a href="/services/upvc-restoration.html">uPVC Restoration</a>
+<br>
+<a href="https://www.facebook.com/people/Handyman-services/61584395621256/">Facebook</a>
+</footer>
+
+</body>
+</html>
