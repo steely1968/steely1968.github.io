@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Gutter Clearing, Repairs & Replacement in Darrington, Doncaster | Home Repairs 4U</title>
+
+<link rel="canonical" href="https://homerepairs4u.com/local/gutter-services-darrington.html">
+
+<meta name="description" content="Local gutter clearing, cleaning, repairs and replacement in Darrington, Doncaster. Reliable service to protect your property. Call 07735 873694.">
+
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="preload" as="image" href="/images/logo.webp">
+
+<style>
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f7f7;color:#222;line-height:1.8;}
+header{background:#fff;padding:26px 12px;text-align:center;border-bottom:4px solid #27ae60;}
+.logo{max-height:90px;width:auto;}
+.call-btn{display:inline-block;margin-top:18px;padding:15px 32px;background:#000;color:#fff;font-size:19px;font-weight:bold;text-decoration:none;border-radius:6px;min-height:48px;}
+.call-btn:hover{background:#333;}
+main{max-width:1000px;margin:0 auto;background:#fff;padding:32px 22px;}
+h1,h2,h3{color:#111;}
+label{font-weight:bold;display:block;margin-bottom:6px;}
+input[type="number"]{width:100%;padding:12px;font-size:16px;margin-bottom:18px;}
+.form-row{display:flex;align-items:center;gap:14px;padding:12px 10px;margin-bottom:12px;}
+.form-row input{width:22px;height:22px;}
+button{cursor:pointer;min-height:48px;}
+button:focus,a:focus,input:focus{outline:3px solid #27ae60;outline-offset:2px;}
+.service-image{width:100%;max-width:900px;display:block;margin:28px auto;border-radius:6px;}
+footer{background:#000;color:#fff;text-align:center;padding:28px 15px;margin-top:40px;font-size:14px;}
+#quoteResult ul{padding-left:22px;}
+.breadcrumbs{font-size:14px;margin-bottom:18px;color:#000;}
+.breadcrumbs span{margin:0 6px;}
+.internal-links a{color:#000;text-decoration:underline;}
+</style>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"BreadcrumbList",
+"itemListElement":[
+{"@type":"ListItem","position":1,"name":"Home","item":"https://homerepairs4u.com/"},
+{"@type":"ListItem","position":2,"name":"Guttering Services","item":"https://homerepairs4u.com/services/guttering.html"},
+{"@type":"ListItem","position":3,"name":"Darrington, Doncaster","item":"https://homerepairs4u.com/local/gutter-services-darrington.html"}
+]
+}
+</script>
+
+<!-- LocalBusiness Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":"Home Repairs 4U",
+"url":"https://homerepairs4u.com/",
+"telephone":"+447735873694",
+"priceRange":"£50–£3000",
+"address":{
+"@type":"PostalAddress",
+"addressLocality":"Darrington",
+"addressRegion":"South Yorkshire",
+"postalCode":"WF8",
+"addressCountry":"GB"
+},
+"openingHours":"Mo-Su 07:00-20:00",
+"areaServed":["Darrington","Pontefract","Doncaster","West Yorkshire"]
+}
+</script>
+
+</head>
+<body>
+
+<header>
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200">
+<br>
+<a href="/" style="font-size:20px;font-weight:600;color:#000;">Home</a><br>
+<a href="tel:+447735873694" class="call-btn">Call 07735 873694</a>
+</header>
+
+<main>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+Home <span>›</span> Guttering Services <span>›</span> <strong>Darrington, Doncaster</strong>
+</nav>
+
+<h1>Gutter Services in Darrington, Doncaster</h1>
+
+<p>
+Home Repairs 4U delivers reliable gutter maintenance and repair services for homes in Darrington. Gutters are an essential part of a property’s drainage system, quietly managing rainwater and helping protect walls, roofs, and foundations from damage.
+</p>
+
+<p>
+In Darrington, properties are often exposed to open surroundings, seasonal rainfall, and wind-driven debris. These conditions make regular gutter maintenance especially important to prevent overflow, staining, and gradual structural deterioration.
+</p>
+
+<h2>Instant Gutter Quote Calculator</h2>
+
+<form id="quoteForm">
+<label for="metres">Total gutter length (metres)</label>
+<input type="number" id="metres" min="1" step="0.1" required>
+
+<div class="form-row">
+<input type="checkbox" id="clearing">
+<label for="clearing">Gutter clearing</label>
+</div>
+
+<div class="form-row">
+<input type="checkbox" id="cleaning">
+<label for="cleaning">Gutter cleaning</label>
+</div>
+
+<div class="form-row">
+<input type="checkbox" id="replacement">
+<label for="replacement">Gutter replacement</label>
+</div>
+
+<button type="button" onclick="calculateQuote()" class="call-btn">Get Estimate</button>
+</form>
+
+<div id="quoteResult" role="alert" aria-live="polite" style="margin-top:22px;font-size:18px;font-weight:bold;"></div>
+
+<script>
+function calculateQuote(){
+const m = parseFloat(document.getElementById('metres').value);
+if(!m || m <= 0){ alert("Please enter a valid length."); return; }
+
+const clearing = document.getElementById('clearing');
+const cleaning = document.getElementById('cleaning');
+const replacement = document.getElementById('replacement');
+
+let total = 0;
+let items = [];
+
+if(clearing.checked){ let p = m*5; total+=p; items.push(`Gutter clearing: £${p.toFixed(2)}`);}
+if(cleaning.checked){ let p = m*5; total+=p; items.push(`Gutter cleaning: £${p.toFixed(2)}`);}
+if(replacement.checked){ let p = m*21.5; total+=p; items.push(`Gutter replacement: £${p.toFixed(2)}`);}
+
+document.getElementById("quoteResult").innerHTML =
+items.length
+? `<ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul><p><strong>Estimated total: £${total.toFixed(2)}</strong></p>`
+: "<p>Please select at least one service.</p>";
+}
+</script>
+
+<h2>Understanding Gutter Wear in Darrington</h2>
+
+<p>
+Gutters in Darrington properties are subject to a combination of weather exposure and natural debris. Over time, small issues such as minor blockages or misaligned sections can develop into larger problems if left unchecked.
+</p>
+
+<p>
+Routine maintenance allows problems to be identified early, reducing the likelihood of water damage and helping maintain the overall condition of the property.
+</p>
+
+<h2>Our Gutter Services</h2>
+
+<h3>Gutter Clearing</h3>
+<p>
+Internal clearing removes leaves, moss, and sediment that prevent water from flowing freely through the gutter system.
+</p>
+
+<img src="/images/clearing-service.webp" alt="Gutter clearing carried out on a home in Darrington" class="service-image">
+
+<h3>Gutter Cleaning</h3>
+<p>
+External cleaning removes staining and surface build-up, improving appearance and helping gutters dry efficiently after rainfall.
+</p>
+
+<img src="/images/cleaned-gutters.webp" alt="Gutters cleaned on a Darrington property" class="service-image">
+
+<h3>Gutter Repairs and Replacement</h3>
+<p>
+Where guttering is damaged or worn beyond repair, replacement provides a long-term solution using modern materials suited to local conditions.
+</p>
+
+<img src="/images/replaced-gutter.webp" alt="New gutter replacement installed on a Darrington home" class="service-image">
+
+<h2>Serving Darrington and Nearby Areas</h2>
+
+<p class="internal-links">
+In addition to Darrington, Home Repairs 4U also provides gutter services in nearby locations including
+<a href="/local/gutter-services-askern.html">Askern</a>,
+<a href="/local/gutter-services-campsall.html">Campsall</a>, and
+<a href="/local/gutter-services-carcroft.html">Carcroft</a>.
+This local coverage allows us to respond efficiently and understand the varying property types across the area.
+</p>
+
+<h2>Why Choose Home Repairs 4U</h2>
+
+<ul>
+<li>Experience with local housing styles</li>
+<li>Clear, honest assessments</li>
+<li>Safe working methods</li>
+<li>Transparent pricing</li>
+<li>Dependable local service</li>
+</ul>
+
+<h2>Book Gutter Services in Darrington</h2>
+
+<p>
+If your gutters are leaking, blocked, or showing signs of wear, Home Repairs 4U is ready to help. Use the calculator above or contact us directly to arrange an inspection.
+</p>
+
+<div style="text-align:center;margin:40px 0;">
+<a href="tel:+447735873694" class="call-btn">Call 07735 873694</a>
+</div>
+
+</main>
+
+<footer>
+© Home Repairs 4U | Gutter Services Darrington, Doncaster
+</footer>
+
+</body>
+</html>
