@@ -3,17 +3,15 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-
 <title>Home Repairs 4U – Exterior Decorating, Fencing, Garden, Gutters, Pressure Washing & uPVC Services in Askern DN6</title>
-
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/">
-
 <meta name="description" content="Home Repairs 4U provides professional exterior decorating, fence installation, garden maintenance, gutter replacement, pressure washing, and uPVC restoration in Askern DN6 and nearby areas. Call 07735 873694.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
+/* ========== Base styles ========== */
 body{
 margin:0;
 padding:0;
@@ -74,26 +72,26 @@ margin-top:40px;
 font-size:14px;
 }
 
-/* Lightbox */
-.lightbox{
-display:none;
-position:fixed;
-z-index:9999;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.85);
-align-items:center;
-justify-content:center;
+/* ========== Lightbox styles ========== */
+.lightbox {
+display: none;
+position: fixed;
+z-index: 9999;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.85);
+align-items: center;
+justify-content: center;
 }
-.lightbox img{
-max-width:95%;
-max-height:95%;
-border-radius:6px;
-box-shadow:0 0 20px #000;
+.lightbox img {
+max-width: 95%;
+max-height: 95%;
+border-radius: 6px;
+box-shadow: 0 0 20px #000;
 }
-.lightbox:target{ display:flex; }
+.lightbox:target { display: flex; }
 </style>
 
 <!-- Business Schema -->
@@ -113,12 +111,39 @@ box-shadow:0 0 20px #000;
 "addressCountry":"GB"
 },
 "description":"Professional home services in Askern DN6 including exterior decorating, fence installation, garden maintenance, gutter replacement, pressure washing, and uPVC restoration.",
+"areaServed":{
+"@type":"GeoCircle",
+"geoMidpoint":{"@type":"GeoCoordinates","latitude":53.616,"longitude":-1.152},
+"geoRadius":16093
+},
 "openingHoursSpecification":[{
 "@type":"OpeningHoursSpecification",
 "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
 "opens":"07:00",
 "closes":"20:00"
-}]
+}],
+"makesOffer":[
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Exterior Decorating"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Garden Maintenance"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Gutter Replacement"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Pressure Washing"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"uPVC Restoration"}}
+]
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a 10-mile radius including Campsall, Norton, Skellow, Carcroft, Adwick, Bentley, and surrounding villages."}},
+{"@type":"Question","name":"Are your services insured?","acceptedAnswer":{"@type":"Answer","text":"Yes, all our services are fully insured to ensure peace of mind and reliable workmanship."}},
+{"@type":"Question","name":"Can I book multiple services at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we can schedule multiple services together for convenience and efficiency."}},
+{"@type":"Question","name":"Do you offer free consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."}}
+]
 }
 </script>
 
@@ -127,6 +152,9 @@ box-shadow:0 0 20px #000;
 
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
+<div style="text-align:center; margin-top:10px;">
+<a href="/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+</div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </header>
@@ -142,15 +170,21 @@ At <strong>Home Repairs 4U</strong> we provide expert home and garden services a
 <!-- Exterior Decorating -->
 <h2>Exterior Decorating</h2>
 <p>
-Our <strong>exterior decorating</strong> service refreshes brickwork, cladding, fences and railings using weather-resistant paints and careful surface preparation.
+Our <strong>exterior decorating</strong> service refreshes brickwork, cladding, fences and railings using weather-resistant paints and careful surface preparation (clean, sand, prime). We help with colour selection and finishes to ensure a durable, attractive result that enhances kerb appeal.
 </p>
 
+<!-- Decorating Lightbox -->
 <a href="#decorating-lightbox">
-<img src="/images/house-before-after.webp" alt="Exterior decorating before and after example" style="width:100%;max-width:900px;display:block;margin:20px auto;border-radius:6px;" loading="lazy">
+<img src="/images/house-before-after.webp"
+alt="Exterior decorating before and after example"
+style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
+loading="lazy">
 </a>
 
 <div id="decorating-lightbox" class="lightbox">
-<a href="#"><img src="/images/house-before-after.webp" alt=""></a>
+<a href="#">
+<img src="/images/house-before-after.webp" alt="Exterior decorating before and after example enlarged">
+</a>
 </div>
 
 <a href="/services/exterior-decorating.html" class="service-btn">View Exterior Decorating</a>
@@ -158,41 +192,50 @@ Our <strong>exterior decorating</strong> service refreshes brickwork, cladding, 
 <!-- Fence Installation -->
 <h2>Fence Installation</h2>
 <p>
-We install and repair all types of timber fencing including closeboard, feather edge and decorative panels.
+We install and repair all types of timber fencing — closeboard, feather edge, lap panels, decorative panels and bespoke solutions. Posts are set securely and panels fitted to provide strength, privacy and a neat finish. We also repair storm damage and fit gates to measure.
 </p>
 
+<!-- Fence Lightbox -->
 <a href="#fence-lightbox">
-<img src="/images/fence-before-after.webp" alt="Fence installation before and after example" style="width:100%;max-width:900px;display:block;margin:20px auto;border-radius:6px;" loading="lazy">
+<img src="/images/fence-before-after.webp"
+alt="Fence installation before and after example"
+style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
+loading="lazy">
 </a>
 
 <div id="fence-lightbox" class="lightbox">
-<a href="#"><img src="/images/fence-before-after.webp" alt=""></a>
+<a href="#">
+<img src="/images/fence-before-after.webp" alt="Fence installation before and after example enlarged">
+</a>
 </div>
 
 <a href="/services/fence-installation.html" class="service-btn">View Fence Installation</a>
 
-<!-- Garden -->
+<!-- Garden Maintenance -->
 <h2>Garden Maintenance</h2>
 <p>
-From one-off tidy-ups to regular maintenance and landscaping, we offer lawn care, hedge trimming and planting.
+From one-off tidy-ups to regular maintenance and landscaping, we offer lawn care, hedge trimming, weeding, planting, turfing, patios and raised beds. We create practical, low-maintenance gardens that look great year-round.
 </p>
 
 <a href="#garden-lightbox">
-<img src="/images/gardening.webp" alt="Garden maintenance services" style="width:100%;max-width:900px;display:block;margin:20px auto;border-radius:6px;" loading="lazy">
+<img src="/images/gardening.webp"
+alt="Regular and one off gardening services "
+style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
+loading="lazy">
 </a>
 
 <div id="garden-lightbox" class="lightbox">
-<a href="#"><img src="/images/gardening.webp" alt=""></a>
+<a href="#">
+<img src="/images/gardening.webp" alt="Regular and one off gardening services Askern Doncaster">
+</a>
 </div>
-
 <a href="/services/garden.html" class="service-btn">View Garden Services</a>
 
 <!-- Guttering -->
 <h2>Gutter Replacement</h2>
 <p>
-Proper guttering protects your property from water damage. We replace gutters, repair leaks and maintain downpipes.
+Proper guttering protects your property from water damage. We replace gutters, repair leaks, maintain downpipes and restore fascias and soffits using durable, weather-resistant products.
 </p>
-
 <p>
 Our guttering services are available across multiple local areas.
 See all locations we cover on our
@@ -200,11 +243,16 @@ See all locations we cover on our
 </p>
 
 <a href="#guttering-lightbox">
-<img src="/images/gutter-repairs.webp" alt="Gutter repairs and replacement" style="width:100%;max-width:900px;display:block;margin:20px auto;border-radius:6px;" loading="lazy">
+<img src="/images/gutter-repairs.webp"
+alt="Gutter cleaning, clearing, repairs and replacement Doncaster."
+style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
+loading="lazy">
 </a>
 
 <div id="guttering-lightbox" class="lightbox">
-<a href="#"><img src="/images/gutter-repairs.webp" alt=""></a>
+<a href="#">
+<img src="/images/gutter-repairs.webp" alt="Gutter cleaning, clearing, repairs and replacement Doncaster example enlarged">
+</a>
 </div>
 
 <a href="/services/guttering.html" class="service-btn">View Gutter Services</a>
@@ -212,47 +260,57 @@ See all locations we cover on our
 <!-- Pressure Washing -->
 <h2>Pressure Washing</h2>
 <p>
-Our pressure washing refreshes driveways, patios, decking and brickwork.
+Our pressure washing refreshes driveways, patios, decking, paths and brickwork by removing algae, moss and staining — improving safety and kerb appeal.
 </p>
 
 <a href="#pressure-lightbox">
-<img src="/images/pressure-washing.webp" alt="Pressure washing services" style="width:100%;max-width:900px;display:block;margin:20px auto;border-radius:6px;" loading="lazy">
+<img src="/images/pressure-washing.webp"
+alt="Exterior pressure washing service Askern Doncaster"
+style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
+loading="lazy">
 </a>
 
 <div id="pressure-lightbox" class="lightbox">
-<a href="#"><img src="/images/pressure-washing.webp" alt=""></a>
+<a href="#">
+<img src="/images/pressure-washing.webp" alt="Exterior pressure washing service Askern Doncaster example enlarged">
+</a>
 </div>
 
-<a href="/services/pressure-washing.html" class="service-btn">View Pressure Washing</a>
-
-<!-- uPVC -->
+<!-- uPVC Restoration -->
 <h2>uPVC Restoration</h2>
 <p>
-We restore uPVC windows, doors and conservatories to remove discolouration and grime.
+We restore uPVC windows, doors and conservatories using professional products and techniques to remove discolouration and grime without harming seals or frames.
 </p>
 
 <a href="#upvc-lightbox">
-<img src="/images/upvc.webp" alt="uPVC restoration services" style="width:100%;max-width:900px;display:block;margin:20px auto;border-radius:6px;" loading="lazy">
+<img src="/images/upvc.webp"
+alt="uPVC facia, gutter, framework, window frames, and conservatory valets. "
+style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;"
+loading="lazy">
 </a>
 
 <div id="upvc-lightbox" class="lightbox">
-<a href="#"><img src="/images/upvc.webp" alt=""></a>
+<a href="#">
+<img src="/images/upvc.webp" alt="uPVC facia, gutter, framework, window frames, and conservatory valets. Example enlarged">
+</a>
 </div>
-
 <a href="/services/upvc-restoration.html" class="service-btn">View uPVC Restoration</a>
 
 </main>
 
 <footer>
 <p>📞 Call 07735 873694</p>
-<p>
-<a href="/services/guttering.html" style="color:#fff;text-decoration:underline;">Guttering</a> |
-<a href="/services/pressure-washing.html" style="color:#fff;text-decoration:underline;">Pressure Washing</a> |
-<a href="/services/fence-installation.html" style="color:#fff;text-decoration:underline;">Fencing</a> |
-<a href="/services/upvc-restoration.html" style="color:#fff;text-decoration:underline;">uPVC Restoration</a> |
-<a href="/services/service-areas.html" style="color:#fff;text-decoration:underline;">Service Areas</a>
-</p>
-<p>© Home Repairs 4U | Doncaster</p>
+<div>
+<a href="/services/guttering.html" style="color:#fff; text-decoration:underline; margin:0 6px;">Guttering</a> |
+<a href="/services/pressure-washing.html" style="color:#fff; text-decoration:underline; margin:0 6px;">Pressure Washing</a> |
+<a href="/services/fence-installation.html" style="color:#fff; text-decoration:underline; margin:0 6px;">Fencing</a> |
+<a href="/services/upvc-restoration.html" style="color:#fff; text-decoration:underline; margin:0 6px;">uPVC Restoration</a> |
+<a href="/services/service-areas.html" style="color:#fff; text-decoration:underline; margin:0 6px;">Service Areas</a>
+<br><br>
+<a href="https://www.facebook.com/people/Handyman-services/61584395621256/" target="_blank" rel="noopener" style="color:#fff; text-decoration:underline;">Facebook</a>
+<br><br>
+© Home Repairs 4U | Service Areas, Doncaster
+</div>
 </footer>
 
 </body>
