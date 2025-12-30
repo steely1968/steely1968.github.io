@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" user-scalable=no/>
-<title>Exterior Painting & Maintenance Calculator | Home Repairs 4U</title>
+<title>External Makeover Calculator | Home Repairs 4U</title>
 <link rel="icon" href="/favicon.png" type="image/png">
 <style>
 body { font-family: Arial, Helvetica, sans-serif; background:#f2f2f2; padding:20px; margin:0; }
@@ -21,6 +21,7 @@ button { margin-top:30px; background:#1c7c45; color:#fff; border:none; padding:1
 button:hover { background:#155f35; }
 .result { margin-top:30px; padding:25px; background:#eef7f0; border-radius:6px; font-size:20px; text-align:center; }
 .extra-group { background:#fafafa; padding:15px; border-radius:5px; margin-top:15px; }
+.small { font-size:14px; color:#555; margin-top:5px; }
 </style>
 </head>
 
@@ -36,7 +37,7 @@ button:hover { background:#155f35; }
 </header>
 
 <div class="calculator">
-<h1>Exterior Painting & Maintenance Calculator</h1>
+<h1>External Makeover Calculator</h1>
 
 <!-- Property Details -->
 <h3>1. Property Type</h3>
@@ -47,6 +48,7 @@ button:hover { background:#155f35; }
 <option value="semi">Semi-detached</option>
 <option value="detached">Detached</option>
 </select>
+<p class="small">We ask about your property type to tailor the service to your building structure and for future pricing adjustments. This helps us provide a more accurate quote as we expand our calculator.</p>
 
 <h3>2. Number of Bedrooms</h3>
 <select id="bedrooms" required>
@@ -57,6 +59,7 @@ button:hover { background:#155f35; }
 <option value="4">4</option>
 <option value="5+">5+</option>
 </select>
+<p class="small">Providing the number of bedrooms helps us plan services like UPVC restoration or painting coverage. This is optional for now.</p>
 
 <h3>3. UPVC Conservatory</h3>
 <select id="conservatory" required>
@@ -64,6 +67,7 @@ button:hover { background:#155f35; }
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
+<p class="small">Let us know if you have a conservatory so we can offer UPVC or roof cleaning services. Optional at this stage.</p>
 
 <h3>4. Number of Storeys</h3>
 <select id="storeys">
@@ -74,6 +78,7 @@ button:hover { background:#155f35; }
 
 <!-- Elevations -->
 <h3>5. Elevations to Paint (metres)</h3>
+<p class="small">Painting is optional. Enter lengths only if you want exterior walls painted as part of your makeover.</p>
 <label>Front <input type="number" id="front" step="0.1"></label>
 <label>Rear <input type="number" id="rear" step="0.1"></label>
 <label>Side left <input type="number" id="sideLeft" step="0.1"></label>
@@ -96,6 +101,7 @@ button:hover { background:#155f35; }
 
 <!-- Section 1: Guttering -->
 <h3>8. Optional Extras – Guttering</h3>
+<p class="small">All guttering services are optional. Enter lengths only if you want these services included.</p>
 <div class="extra-group">
 <label><input type="checkbox" id="gc"> Gutter clearing</label><input type="number" id="gcm" step="0.1">
 <label><input type="checkbox" id="gw"> Gutter & fascia washing</label><input type="number" id="gwm" step="0.1">
@@ -104,6 +110,7 @@ button:hover { background:#155f35; }
 
 <!-- Section 2: UPVC Restoration -->
 <h3>9. Optional Extras – UPVC Restoration</h3>
+<p class="small">UPVC restoration is optional. Select only the services you want included.</p>
 <div class="extra-group">
 <label><input type="checkbox" id="upvcRestore"> UPVC frames restoration</label>
 <label><input type="checkbox" id="upvcConservatory"> Restore UPVC conservatory</label>
@@ -112,6 +119,7 @@ button:hover { background:#155f35; }
 
 <!-- Section 3: Pressure Washing -->
 <h3>10. Optional Extras – Pressure Washing</h3>
+<p class="small">Pressure washing is optional. Include only areas you want cleaned or treated.</p>
 <div class="extra-group">
 <label>Total area to pressure wash (m²): <input type="number" id="pwArea" step="0.1"></label>
 <label><input type="checkbox" id="pwJet"> Jet wash only</label>
@@ -123,6 +131,7 @@ button:hover { background:#155f35; }
 
 <!-- Section 4: Fence Installation -->
 <h3>11. Optional Extras – Fence Installation</h3>
+<p class="small">Fence installation is optional. Enter length only if you want a fence included in your makeover.</p>
 <div class="extra-group">
 <label>Length of fence to install (metres): <input type="number" id="fenceLength" step="0.1"></label>
 </div>
@@ -146,8 +155,6 @@ const sideLVal = parseFloat(document.getElementById("sideLeft").value) || 0;
 const sideRVal = parseFloat(document.getElementById("sideRight").value) || 0;
 
 const totalLength = frontVal + rearVal + sideLVal + sideRVal;
-if(totalLength === 0){alert("Enter at least one elevation length."); return;}
-
 const area = totalLength * storeysVal * 2.5;
 let wallCost = area * surfaceRate;
 if(storeysVal===2) wallCost *=1.15;
