@@ -2,61 +2,27 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Exterior Painting Quote Calculator</title>
-
+<title>Exterior Painting & Maintenance Calculator</title>
 <style>
-body {
-font-family: Arial, Helvetica, sans-serif;
-background: #f2f2f2;
-padding: 20px;
-}
-.calculator {
-max-width: 900px;
-margin: auto;
-background: #ffffff;
-padding: 30px;
-border-radius: 8px;
-}
-h1 { text-align: center; }
-h3 {
-margin-top: 30px;
-border-bottom: 1px solid #ddd;
-padding-bottom: 5px;
-}
-label { display: block; margin: 8px 0; }
-input[type="number"], select { width: 220px; padding: 6px; }
-button {
-margin-top: 30px;
-background: #1c7c45;
-color: #fff;
-border: none;
-padding: 15px 30px;
-font-size: 18px;
-border-radius: 5px;
-cursor: pointer;
-}
-.result {
-margin-top: 30px;
-padding: 25px;
-background: #eef7f0;
-border-radius: 6px;
-font-size: 20px;
-}
-.small { font-size: 14px; color: #555; }
-.extra-group {
-background: #fafafa;
-padding: 15px;
-border-radius: 5px;
-}
+body { font-family: Arial, Helvetica, sans-serif; background:#f2f2f2; padding:20px; }
+.calculator { max-width: 950px; margin:auto; background:#fff; padding:30px; border-radius:8px; }
+h1 { text-align:center; }
+h3 { margin-top:30px; border-bottom:1px solid #ddd; padding-bottom:5px; }
+label { display:block; margin:8px 0; }
+input[type="number"], select { width:220px; padding:6px; }
+button { margin-top:30px; background:#1c7c45; color:#fff; border:none; padding:15px 30px; font-size:18px; border-radius:5px; cursor:pointer; }
+button:hover { background:#155f35; }
+.result { margin-top:30px; padding:25px; background:#eef7f0; border-radius:6px; font-size:20px; }
+.small { font-size:14px; color:#555; }
+.extra-group { background:#fafafa; padding:15px; border-radius:5px; margin-top:15px; }
 </style>
 </head>
 
 <body>
-
 <div class="calculator">
-<h1>Exterior Painting Quote Calculator</h1>
+<h1>Exterior Painting & Maintenance Calculator</h1>
 
-<!-- PROPERTY TYPE -->
+<!-- Property Details -->
 <h3>1. Property Type</h3>
 <select id="propertyType" required>
 <option value="">-- Select --</option>
@@ -66,7 +32,6 @@ border-radius: 5px;
 <option value="detached">Detached</option>
 </select>
 
-<!-- BEDROOMS -->
 <h3>2. Number of Bedrooms</h3>
 <select id="bedrooms" required>
 <option value="">-- Select --</option>
@@ -74,10 +39,9 @@ border-radius: 5px;
 <option value="2">2</option>
 <option value="3">3</option>
 <option value="4">4</option>
-<option value="5">5+</option>
+<option value="5+">5+</option>
 </select>
 
-<!-- CONSERVATORY -->
 <h3>3. UPVC Conservatory</h3>
 <select id="conservatory" required>
 <option value="">-- Select --</option>
@@ -85,7 +49,6 @@ border-radius: 5px;
 <option value="no">No</option>
 </select>
 
-<!-- STOREYS -->
 <h3>4. Number of Storeys</h3>
 <select id="storeys">
 <option value="1">1</option>
@@ -93,14 +56,13 @@ border-radius: 5px;
 <option value="3">3</option>
 </select>
 
-<!-- ELEVATIONS -->
+<!-- Elevations -->
 <h3>5. Elevations to Paint (metres)</h3>
 <label>Front <input type="number" id="front" step="0.1"></label>
 <label>Rear <input type="number" id="rear" step="0.1"></label>
 <label>Side left <input type="number" id="sideLeft" step="0.1"></label>
 <label>Side right <input type="number" id="sideRight" step="0.1"></label>
 
-<!-- SURFACE -->
 <h3>6. Wall Surface</h3>
 <select id="surface">
 <option value="28">Render</option>
@@ -110,112 +72,103 @@ border-radius: 5px;
 <option value="38">Stone</option>
 </select>
 
-<!-- ACCESS -->
 <h3>7. Access Required</h3>
 <label><input type="radio" name="access" value="0" checked> Ladders</label>
 <label><input type="radio" name="access" value="450"> Scaffold tower</label>
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
-<!-- OPTIONAL EXTRAS: GUTTERING -->
+<!-- Section 1: Guttering -->
 <h3>8. Optional Extras – Guttering</h3>
 <div class="extra-group">
-<label><input type="checkbox" id="gc"> Gutter clearing (£5/m)</label>
-<input type="number" id="gcm" step="0.1">
-<label><input type="checkbox" id="gw"> Gutter & fascia washing (£5/m)</label>
-<input type="number" id="gwm" step="0.1">
-<label><input type="checkbox" id="gr"> Gutter replacement (£15/m)</label>
-<input type="number" id="grm" step="0.1">
+<label><input type="checkbox" id="gc"> Gutter clearing (£5/m)</label><input type="number" id="gcm" step="0.1">
+<label><input type="checkbox" id="gw"> Gutter & fascia washing (£5/m)</label><input type="number" id="gwm" step="0.1">
+<label><input type="checkbox" id="gr"> Gutter replacement (£15/m)</label><input type="number" id="grm" step="0.1">
 </div>
 
-<!-- OPTIONAL EXTRAS: UPVC -->
+<!-- Section 2: UPVC Restoration -->
 <h3>9. Optional Extras – UPVC Restoration</h3>
 <div class="extra-group">
 <label><input type="checkbox" id="upvcRestore"> UPVC frames restoration</label>
-
 <label><input type="checkbox" id="upvcConservatory"> Restore UPVC conservatory (+£40)</label>
 <label><input type="checkbox" id="upvcRoof"> Clean conservatory roof (+£60)</label>
 </div>
 
-<button onclick="calculateQuote()">Calculate Fixed Price</button>
-
-<div class="result" id="result"></div>
-
+<!-- Section 3: Pressure Washing -->
+<h3>10. Optional Extras – Pressure Washing</h3>
+<div class="extra-group">
+<label>Total area to pressure wash (m²): <input type="number" id="pwArea" step="0.1"></label>
+<label><input type="checkbox" id="pwJet"> Jet wash only (£2.75/m²)</label>
+<label><input type="checkbox" id="pwFung"> Fungicide treatment (£0.90/m²)</label>
+<label><input type="checkbox" id="pwScrub"> Hard scrub (£0.75/m²)</label>
+<label><input type="checkbox" id="pwResand"> Resanding (£3.90/m²)</label>
+<label><input type="checkbox" id="pwSeal"> Sealing (£4.50/m²)</label>
 </div>
+
+<button onclick="calculateQuote()">Calculate Fixed Price</button>
+<div class="result" id="result"></div>
 
 <script>
 function calculateQuote() {
+const propertyVal = document.getElementById("propertyType").value;
+const bedsVal = document.getElementById("bedrooms").value;
+const conservVal = document.getElementById("conservatory").value;
+if(!propertyVal || !bedsVal || !conservVal) { alert("Complete property info."); return; }
 
-const property = propertyType.value;
-const beds = bedrooms.value;
-const conserv = conservatory.value;
-if (!property || !beds || !conserv) {
-alert("Please complete property details.");
-return;
-}
+const storeysVal = parseInt(document.getElementById("storeys").value);
+const surfaceRate = parseFloat(document.getElementById("surface").value);
 
-const storeys = parseInt(document.getElementById("storeys").value);
-const surfaceRate = parseFloat(surface.value);
+const frontVal = parseFloat(document.getElementById("front").value) || 0;
+const rearVal = parseFloat(document.getElementById("rear").value) || 0;
+const sideLVal = parseFloat(document.getElementById("sideLeft").value) || 0;
+const sideRVal = parseFloat(document.getElementById("sideRight").value) || 0;
 
-const totalLength =
-(parseFloat(front.value) || 0) +
-(parseFloat(rear.value) || 0) +
-(parseFloat(sideLeft.value) || 0) +
-(parseFloat(sideRight.value) || 0);
+const totalLength = frontVal + rearVal + sideLVal + sideRVal;
+if(totalLength === 0){alert("Enter at least one elevation length."); return;}
 
-if (totalLength === 0) {
-alert("Enter at least one elevation length.");
-return;
-}
-
-const area = totalLength * storeys * 2.5;
+const area = totalLength * storeysVal * 2.5;
 let wallCost = area * surfaceRate;
-if (storeys === 2) wallCost *= 1.15;
-if (storeys === 3) wallCost *= 1.3;
+if(storeysVal===2) wallCost *=1.15;
+if(storeysVal===3) wallCost *=1.3;
 
 const accessCost = parseFloat(document.querySelector('input[name="access"]:checked').value);
 
+/* Guttering */
 let gutterCost = 0;
-if (gc.checked) gutterCost += (parseFloat(gcm.value) || 0) * 5;
-if (gw.checked) gutterCost += (parseFloat(gwm.value) || 0) * 5;
-if (gr.checked) gutterCost += (parseFloat(grm.value) || 0) * 15;
+if(gc.checked) gutterCost += (parseFloat(gcm.value)||0)*5;
+if(gw.checked) gutterCost += (parseFloat(gwm.value)||0)*5;
+if(gr.checked) gutterCost += (parseFloat(grm.value)||0)*15;
 
-/* UPVC RESTORATION */
+/* UPVC */
 let upvcCost = 0;
-if (upvcRestore.checked) {
-
-const baseTable = {
-"bungalow-1": 30,
-"terraced-2": 40,
-"semi-2": 50,
-"detached-2": 60,
-"terraced-3": 50,
-"semi-3": 60,
-"detached-3": 70
-};
-
-const key = `${property}-${storeys}`;
-upvcCost = baseTable[key] || 0;
-
-const extraBeds = Math.max(0, parseInt(beds) - 1);
-upvcCost += extraBeds * 10;
-
-if (upvcConservatory.checked && conserv === "yes") upvcCost += 40;
-if (upvcRoof.checked && conserv === "yes") upvcCost += 60;
+if(upvcRestore.checked){
+const baseTable = {"bungalow-1":30,"terraced-2":40,"semi-2":50,"detached-2":60,"terraced-3":50,"semi-3":60,"detached-3":70};
+const key = `${propertyVal}-${storeysVal}`;
+upvcCost = baseTable[key]||0;
+const extraBeds = Math.max(0, parseInt(bedsVal)-1); upvcCost+=extraBeds*10;
+if(upvcConservatory.checked && conservVal==="yes") upvcCost+=40;
+if(upvcRoof.checked && conservVal==="yes") upvcCost+=60;
 }
 
-const total = wallCost + accessCost + gutterCost + upvcCost;
+/* Pressure Washing */
+let pwCost = 0;
+const pwArea = parseFloat(document.getElementById("pwArea").value) || 0;
+if(pwArea>0 && (pwJet.checked||pwFung.checked||pwScrub.checked||pwResand.checked||pwSeal.checked)){
+pwCost += 50; // setup fee
+if(pwJet.checked) pwCost += pwArea*2.75;
+if(pwFung.checked) pwCost += pwArea*0.9;
+if(pwScrub.checked) pwCost += pwArea*0.75;
+if(pwResand.checked) pwCost += pwArea*3.9;
+if(pwSeal.checked) pwCost += pwArea*4.5;
+}
 
-result.innerHTML = `
-<strong>Your Fixed Exterior Maintenance Price</strong><br><br>
-<span style="font-size:26px;">£${total.toFixed(0)}</span><br><br>
-<span class="small">
-Area: ${area.toFixed(1)} m²<br>
-Includes labour & materials
-</span>
-`;
+const total = wallCost + accessCost + gutterCost + upvcCost + pwCost;
+
+result.innerHTML = `<strong>Total Fixed Price</strong><br><br>
+£${total.toFixed(0)}<br><br>
+<span class="small">Area: ${area.toFixed(1)} m²</span>`;
 }
 </script>
-
+</div>
 </body>
 </html>
