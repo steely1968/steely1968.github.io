@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UK Exterior Painting Fixed Price Calculator</title>
 
+<style>
+body {
+font-family: Arial, Helvetica, sans-serif;
+background: #f2f2f2;
+padding: 20px;
+}
+.calculator {
+max-width: 900px;
+margin: auto;
+background: #ffffff;
+padding: 30px;
+border-radius: 8px;
+}
+h1 {
+text-align: center;
+margin-bottom: 10px;
+}
+h3 {
+margin-top: 30px;
+border-bottom: 1px solid #ddd;
+padding-bottom: 5px;
+}
+label {
+display: block;
+margin: 8px 0;
+}
+select, input[type="checkbox"] {
+margin-right: 8px;
+}
+button {
+margin-top: 30px;
+background: #1c7c45;
+color: #fff;
+border: none;
+padding: 15px 30px;
+font-size: 18px;
+border-radius: 5px;
+cursor: pointer;
+}
+button:hover {
+background: #155f35;
+}
+.result {
+margin-top: 30px;
+padding: 25px;
+background: #eef7f0;
+border-radius: 6px;
+font-size: 20px;
+}
+.small {
+font-size: 14px;
+color: #555;
+}
+.breakdown {
+margin-top: 15px;
+font-size: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+<h1>Exterior Painting Fixed Price Calculator</h1>
+<p class="small" style="text-align:center;">
+UK-based pricing • Labour & materials included • No obligation
+</p>
+
+<!-- PROPERTY -->
+<h3>1. Property Details</h3>
+
+<label>
+Property type:
+<select id="property">
+<option value="terraced">Terraced</option>
+<option value="semi">Semi-detached</option>
+<option value="detached">Detached</option>
+<option value="bungalow">Bungalow</option>
+</select>
+</label>
+
+<label>
+Number of storeys:
+<select id="storeys">
+<option value="1">1 storey</option>
+<option value="1.15">2 storeys</option>
+<option value="1.3">3+ storeys</option>
+</select>
+</label>
+
+<!-- ELEVATIONS -->
+<h3>2. Elevations to Paint</h3>
+<label><input type="checkbox" class="elevation"> Front</label>
+<label><input type="checkbox" class="elevation"> Rear</label>
+<label><input type="checkbox" class="elevation"> Side (left)</label>
+<label><input type="checkbox" class="elevation"> Side (right)</label>
+
+<!-- SURFACE -->
+<h3>3. Wall Surface</h3>
+<select id="surface">
+<option value="28">Render</option>
+<option value="32">Pebbledash</option>
+<option value="30">Painted brick</option>
+<option value="35">Unpainted brick</option>
+<option value="38">Stone</option>
+</select>
+
+<!-- CONDITION -->
+<h3>4. Current Condition</h3>
+<select id="condition">
+<option value="1">Excellent</option>
+<option value="1.15">Fair</option>
+<option value="1.3">Poor</option>
+<option value="1.5">Very poor</option>
+</select>
+
+<!-- PAINT -->
+<h3>5. Paint System</h3>
+<select id="paint">
+<option value="1">Trade masonry (2 coats)</option>
+<option value="1.2">Silicone masonry</option>
+<option value="1.3">Elastomeric coating</option>
+<option value="1.4">Lime paint (heritage)</option>
+</select>
+
+<!-- ACCESS -->
+<h3>6. Access Required</h3>
+<select id="access">
+<option value="0">Ladders only</option>
+<option value="450">Scaffold tower</option>
+<option value="1200">Full scaffold</option>
+</select>
+
+<!-- EXTRAS -->
+<h3>7. Optional Extras</h3>
+<label><input type="checkbox" class="extra" value="450"> Fascias & soffits</label>
+<label><input type="checkbox" class="extra" value="250"> Gutters & downpipes</label>
+<label><input type="checkbox" class="extra" value="180"> Window frames (up to 5)</label>
+<label><input type="checkbox" class="extra" value="120"> External door</label>
+<label><input type="checkbox" class="extra" value="300"> Metal railings / gates</label>
+<label><input type="checkbox" class="extra" value="250"> Fungicidal wash</label>
+<label><input type="checkbox" class="extra" value="350"> Waterproof coating</label>
+
+<button onclick="calculateQuote()">Calculate Fixed Price</button>
+
+<div class="result" id="result"></div>
+
+<p class="small">
+* Fixed price estimate based on customer-provided information.
+Final price confirmed after site inspection only if details differ.
+</p>
+
+</div>
+
+<script>
+function calculateQuote() {
+
+const elevationAreas = {
+terraced: 35,
+semi: 40,
+detached: 45,
+bungalow: 30
+};
+
+let property = document.getElementById("property").value;
+let storeyMultiplier = parseFloat(document.getElementById("storeys").value);
+let surfaceRate = parseFloat(document.getElementById("surface").value);
+let conditionMultiplier = parseFloat(document.getElementById("condition").value);
+let paintMultiplier = parseFloat(document.getElementById("paint").value);
+let accessCost = parseFloat(document.getElementById("access").value);
+
+let elevationCount = document.querySelectorAll(".elevation:checked").length;
+if (elevationCount === 0) {
+alert("Please select at least one elevation.");
+return;
+}
+
+let baseArea = elevationAreas[property];
+let wallCost = baseArea * surfaceRate;
+wallCost *= conditionMultiplier;
+wallCost *= paintMultiplier;
+wallCost *= storeyMultiplier;
+wallCost *= elevationCount;
+
+let extrasCost = 0;
+document.querySelectorAll(".extra:checked").forEach(item => {
+extrasCost += parseFloat(item.value);
+});
+
+let total = wallCost + accessCost + extrasCost;
+
+document.getElementById("result").innerHTML = `
+<strong>Your Fixed Exterior Painting Price</strong><br><br>
+<span style="font-size:26px;">£${total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span>
+<div class="breakdown">
+<br>✔ Labour & materials
+<br>✔ Professional preparation
+<br>✔ Two full coats
+<br>✔ Fixed price (subject to confirmation)
+</div>
+`;
+}
+</script>
+
+</body>
+</html>
