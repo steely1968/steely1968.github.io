@@ -57,6 +57,12 @@ font-size: 20px;
 font-size: 14px;
 color: #555;
 }
+.extra-group {
+background: #fafafa;
+padding: 15px;
+border-radius: 5px;
+margin-top: 15px;
+}
 </style>
 </head>
 
@@ -105,9 +111,7 @@ UK-based pricing • Calculated by square metres
 <input type="number" id="sideRight" min="0" step="0.1"> m
 </label>
 
-<p class="small">
-Leave any elevation blank if not required.
-</p>
+<p class="small">Leave blank if not required.</p>
 
 <!-- SURFACE -->
 <h3>4. Wall Surface</h3>
@@ -126,12 +130,35 @@ Leave any elevation blank if not required.
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
+<!-- OPTIONAL EXTRAS: GUTTERING -->
+<h3>6. Optional Extras – Guttering Services</h3>
+
+<div class="extra-group">
+<label>
+<input type="checkbox" id="gutterClearCheck">
+Gutter clearing (£5 per metre)
+</label>
+<input type="number" id="gutterClearMetres" min="0" step="0.1" placeholder="Metres">
+
+<label>
+<input type="checkbox" id="gutterWashCheck">
+Gutter & fascia washing (£5 per metre)
+</label>
+<input type="number" id="gutterWashMetres" min="0" step="0.1" placeholder="Metres">
+
+<label>
+<input type="checkbox" id="gutterReplaceCheck">
+Gutter replacement (£15 per metre)
+</label>
+<input type="number" id="gutterReplaceMetres" min="0" step="0.1" placeholder="Metres">
+</div>
+
 <button onclick="calculateQuote()">Calculate Fixed Price</button>
 
 <div class="result" id="result"></div>
 
 <p class="small">
-* Fixed price estimate based on measurements provided.
+* Fixed price estimate based on information provided.
 Final price confirmed on site if details differ.
 </p>
 
@@ -155,19 +182,15 @@ const sideLeft = parseFloat(document.getElementById("sideLeft").value) || 0;
 const sideRight = parseFloat(document.getElementById("sideRight").value) || 0;
 
 const totalLength = front + rear + sideLeft + sideRight;
-
 if (totalLength === 0) {
 alert("Please enter at least one elevation length.");
 return;
 }
 
-/* UK standard storey height */
 const storeyHeight = 2.5;
 const totalArea = totalLength * storeys * storeyHeight;
 
 let wallCost = totalArea * surfaceRate;
-
-/* Height multiplier */
 if (storeys === 2) wallCost *= 1.15;
 if (storeys === 3) wallCost *= 1.30;
 
@@ -175,16 +198,28 @@ const accessCost = parseFloat(
 document.querySelector('input[name="access"]:checked').value
 );
 
-const total = wallCost + accessCost;
+/* Guttering extras */
+let gutterExtras = 0;
+
+if (document.getElementById("gutterClearCheck").checked) {
+gutterExtras += (parseFloat(document.getElementById("gutterClearMetres").value) || 0) * 5;
+}
+if (document.getElementById("gutterWashCheck").checked) {
+gutterExtras += (parseFloat(document.getElementById("gutterWashMetres").value) || 0) * 5;
+}
+if (document.getElementById("gutterReplaceCheck").checked) {
+gutterExtras += (parseFloat(document.getElementById("gutterReplaceMetres").value) || 0) * 15;
+}
+
+const total = wallCost + accessCost + gutterExtras;
 
 document.getElementById("result").innerHTML = `
-<strong>Your Fixed Exterior Painting Price</strong><br><br>
+<strong>Your Fixed Exterior Maintenance Price</strong><br><br>
 <span style="font-size:26px;">
 £${total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
 </span>
 <br><br>
 <span class="small">
-Property type: ${propertyType.replace(/^\w/, c => c.toUpperCase())}<br>
 Calculated area: ${totalArea.toFixed(1)} m²<br>
 Includes labour & materials
 </span>
