@@ -19,7 +19,7 @@ label { display:block; margin:8px 0; }
 input[type="number"], select { width:220px; padding:6px; }
 button { margin-top:30px; background:#1c7c45; color:#fff; border:none; padding:15px 30px; font-size:18px; border-radius:5px; cursor:pointer; }
 button:hover { background:#155f35; }
-.result { margin-top:30px; padding:25px; background:#eef7f0; border-radius:6px; font-size:20px; }
+.result { margin-top:30px; padding:25px; background:#eef7f0; border-radius:6px; font-size:20px; text-align:center; }
 .small { font-size:14px; color:#555; }
 .extra-group { background:#fafafa; padding:15px; border-radius:5px; margin-top:15px; }
 </style>
@@ -129,7 +129,7 @@ button:hover { background:#155f35; }
 <span class="small">Cost: £145 per metre</span>
 </div>
 
-<button onclick="calculateQuote()">Calculate Fixed Price</button>
+<button onclick="calculateQuote()">Get Estimate</button>
 <div class="result" id="result"></div>
 
 <script>
@@ -178,7 +178,7 @@ if(upvcRoof.checked && conservVal==="yes") upvcCost+=60;
 let pwCost = 0;
 const pwArea = parseFloat(document.getElementById("pwArea").value) || 0;
 if(pwArea>0 && (pwJet.checked||pwFung.checked||pwScrub.checked||pwResand.checked||pwSeal.checked)){
-pwCost += 50; // setup fee
+pwCost += 50;
 if(pwJet.checked) pwCost += pwArea*2.75;
 if(pwFung.checked) pwCost += pwArea*0.9;
 if(pwScrub.checked) pwCost += pwArea*0.75;
@@ -194,10 +194,8 @@ if(fenceLength>0) fenceCost = fenceLength * 145;
 /* Total */
 const total = wallCost + accessCost + gutterCost + upvcCost + pwCost + fenceCost;
 
-result.innerHTML = `<strong>Total Fixed Price</strong><br><br>
-£${total.toFixed(0)}<br><br>
-<span class="small">Area: ${area.toFixed(1)} m²</span>
-${fenceCost>0?`<br><span class="small">Fence Installation Cost: £${fenceCost.toFixed(0)}</span>`:''}`;
+// Show only total price
+result.innerHTML = `<strong>Your Total Fixed Price:</strong><br><br>£${total.toFixed(0)}`;
 }
 </script>
 </div>
