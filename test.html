@@ -49,7 +49,7 @@ padding:30px 20px;
 }
 h1,h2,h3{color:#111;}
 label{display:block;margin:8px 0;}
-input[type="number"],select{width:240px;padding:6px;}
+input[type="number"],select{width:240px;padding:6px; margin-bottom:12px;}
 button{
 margin-top:30px;
 background:#000;
@@ -81,7 +81,7 @@ margin-top:15px;
 
 <body>
 
-<!-- HEADER EXACT MATCH -->
+<!-- HEADER -->
 <header>
 <img src="/images/logo.webp"
 alt="Home Repairs 4U logo"
@@ -142,10 +142,14 @@ We ask this to understand your property structure, access requirements, and to a
 
 <h3>Exterior Painting (Optional)</h3>
 <p class="small">Leave blank if painting is not required.</p>
-<label>Front elevation length (m)<input type="number" id="front" step="0.1"></label>
-<label>Rear elevation length (m)<input type="number" id="rear" step="0.1"></label>
-<label>Side left elevation length (m)<input type="number" id="sideLeft" step="0.1"></label>
-<label>Side right elevation length (m)<input type="number" id="sideRight" step="0.1"></label>
+<label>Front elevation length (m)</label>
+<input type="number" id="front" step="0.1">
+<label>Rear elevation length (m)</label>
+<input type="number" id="rear" step="0.1">
+<label>Side left elevation length (m)</label>
+<input type="number" id="sideLeft" step="0.1">
+<label>Side right elevation length (m)</label>
+<input type="number" id="sideRight" step="0.1">
 
 <h3>Wall Surface</h3>
 <select id="surface">
@@ -269,7 +273,7 @@ document.getElementById("result").innerHTML=breakdown;
 
 </main>
 
-<!-- FOOTER EXACT MATCH -->
+<!-- FOOTER -->
 <footer>
 <p>📞 Call 07735 873694</p>
 <footer style="background:#000; color:#fff; text-align:center; padding:28px 15px; font-size:14px;">
