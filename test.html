@@ -20,7 +20,6 @@ input[type="number"], select { width:220px; padding:6px; }
 button { margin-top:30px; background:#1c7c45; color:#fff; border:none; padding:15px 30px; font-size:18px; border-radius:5px; cursor:pointer; }
 button:hover { background:#155f35; }
 .result { margin-top:30px; padding:25px; background:#eef7f0; border-radius:6px; font-size:20px; text-align:center; }
-.small { font-size:14px; color:#555; }
 .extra-group { background:#fafafa; padding:15px; border-radius:5px; margin-top:15px; }
 </style>
 </head>
@@ -98,35 +97,34 @@ button:hover { background:#155f35; }
 <!-- Section 1: Guttering -->
 <h3>8. Optional Extras – Guttering</h3>
 <div class="extra-group">
-<label><input type="checkbox" id="gc"> Gutter clearing (£5/m)</label><input type="number" id="gcm" step="0.1">
-<label><input type="checkbox" id="gw"> Gutter & fascia washing (£5/m)</label><input type="number" id="gwm" step="0.1">
-<label><input type="checkbox" id="gr"> Gutter replacement (£15/m)</label><input type="number" id="grm" step="0.1">
+<label><input type="checkbox" id="gc"> Gutter clearing</label><input type="number" id="gcm" step="0.1">
+<label><input type="checkbox" id="gw"> Gutter & fascia washing</label><input type="number" id="gwm" step="0.1">
+<label><input type="checkbox" id="gr"> Gutter replacement</label><input type="number" id="grm" step="0.1">
 </div>
 
 <!-- Section 2: UPVC Restoration -->
 <h3>9. Optional Extras – UPVC Restoration</h3>
 <div class="extra-group">
 <label><input type="checkbox" id="upvcRestore"> UPVC frames restoration</label>
-<label><input type="checkbox" id="upvcConservatory"> Restore UPVC conservatory (+£40)</label>
-<label><input type="checkbox" id="upvcRoof"> Clean conservatory roof (+£60)</label>
+<label><input type="checkbox" id="upvcConservatory"> Restore UPVC conservatory</label>
+<label><input type="checkbox" id="upvcRoof"> Clean conservatory roof</label>
 </div>
 
 <!-- Section 3: Pressure Washing -->
 <h3>10. Optional Extras – Pressure Washing</h3>
 <div class="extra-group">
 <label>Total area to pressure wash (m²): <input type="number" id="pwArea" step="0.1"></label>
-<label><input type="checkbox" id="pwJet"> Jet wash only (£2.75/m²)</label>
-<label><input type="checkbox" id="pwFung"> Fungicide treatment (£0.90/m²)</label>
-<label><input type="checkbox" id="pwScrub"> Hard scrub (£0.75/m²)</label>
-<label><input type="checkbox" id="pwResand"> Resanding (£3.90/m²)</label>
-<label><input type="checkbox" id="pwSeal"> Sealing (£4.50/m²)</label>
+<label><input type="checkbox" id="pwJet"> Jet wash only</label>
+<label><input type="checkbox" id="pwFung"> Fungicide treatment</label>
+<label><input type="checkbox" id="pwScrub"> Hard scrub</label>
+<label><input type="checkbox" id="pwResand"> Resanding</label>
+<label><input type="checkbox" id="pwSeal"> Sealing</label>
 </div>
 
 <!-- Section 4: Fence Installation -->
 <h3>11. Optional Extras – Fence Installation</h3>
 <div class="extra-group">
 <label>Length of fence to install (metres): <input type="number" id="fenceLength" step="0.1"></label>
-<span class="small">Cost: £145 per metre</span>
 </div>
 
 <button onclick="calculateQuote()">Get Estimate</button>
