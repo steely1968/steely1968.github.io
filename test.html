@@ -144,7 +144,6 @@ We ask this to understand your property structure, access requirements, and to a
 <p class="small">All services below are optional. Leave blank if you do not require a specific service.</p>
 
 <h3>Exterior Painting (Optional)</h3>
-<p class="small">Leave blank if painting is not required.</p>
 <label>Front elevation length (m)</label>
 <input type="number" id="front" step="0.1">
 <label>Rear elevation length (m)</label>
@@ -165,12 +164,14 @@ We ask this to understand your property structure, access requirements, and to a
 </select>
 
 <h3>Access Required</h3>
+<p class="small">In your opinion what type of equipment do you feel we might need to paint your property.</p>
 <label><input type="radio" name="access" value="0" checked> Ladders</label>
 <label><input type="radio" name="access" value="450"> Scaffold tower</label>
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
 <h3>Optional – Guttering</h3>
+<p class="small">If you require any guttering services let us know here, if not leave blank.</p>
 <div class="extra-group">
 <label><input type="checkbox" id="gc"> Gutter clearing</label><input type="number" id="gcm">
 <label><input type="checkbox" id="gw"> Gutter & fascia washing</label><input type="number" id="gwm">
@@ -178,6 +179,7 @@ We ask this to understand your property structure, access requirements, and to a
 </div>
 
 <h3>Optional – UPVC Restoration</h3>
+<p class="small">We may be able to restore some or all your uPVC and windows to new condition leave blank if not required.</p>
 <div class="extra-group">
 <label><input type="checkbox" id="upvcRestore"> Restore UPVC frames</label>
 <label><input type="checkbox" id="upvcConservatory"> Restore conservatory frames</label>
@@ -185,6 +187,7 @@ We ask this to understand your property structure, access requirements, and to a
 </div>
 
 <h3>Optional – Pressure Washing</h3>
+<p class="small">Do you require any pressure washing servives if not leave blank. If so enter how many square metres required.</p>
 <div class="extra-group">
 <label>Total area (m²)<input type="number" id="pwArea"></label>
 <label><input type="checkbox" id="pwJet"> Jet washing</label>
@@ -195,6 +198,7 @@ We ask this to understand your property structure, access requirements, and to a
 </div>
 
 <h3>Optional – Fence Installation</h3>
+<p class="small">Do you rquire fence installation? If so enter how many metres if not leave blank.</p>
 <label>Fence length (m)<input type="number" id="fenceMetres"></label>
 
 <button onclick="calculateQuote()">Get Fixed Price Estimate</button>
