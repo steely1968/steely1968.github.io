@@ -1,35 +1,79 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>External Makeover Calculator | Home Repairs 4U</title>
+<meta charset="UTF-8">
+<title>External Property Makeover Estimate Calculator</title>
 
 <style>
-body{font-family:Arial,Helvetica,sans-serif;background:#f2f2f2;margin:0;padding:20px}
-.calculator{max-width:950px;margin:auto;background:#fff;padding:30px;border-radius:8px}
-h1{text-align:center}
-h3{margin-top:30px;border-bottom:1px solid #ddd;padding-bottom:5px;cursor:pointer}
-label{display:block;margin:8px 0}
-input[type=number],select{width:240px;padding:6px}
-button{margin-top:30px;background:#1c7c45;color:#fff;border:none;padding:15px 30px;font-size:18px;border-radius:5px;cursor:pointer}
-button:hover{background:#155f35}
-.result{margin-top:30px;padding:25px;background:#eef7f0;border-radius:6px;font-size:18px;text-align:center}
-.small{font-size:14px;color:#555}
-.extra-group{background:#fafafa;padding:15px;border-radius:5px;margin-top:5px;display:none}
-.optional::after{content:" ▼"}
-.optional.active::after{content:" ▲"}
-ul{text-align:left;max-width:420px;margin:15px auto}
+body {
+font-family: Arial, Helvetica, sans-serif;
+background:#f2f2f2;
+padding:20px;
+}
+.calculator {
+max-width: 950px;
+margin:auto;
+background:#fff;
+padding:30px;
+border-radius:8px;
+}
+h1 { text-align:center; }
+h3 {
+margin-top:30px;
+border-bottom:1px solid #ddd;
+padding-bottom:5px;
+}
+label { display:block; margin:8px 0; }
+input[type="number"], select {
+width:240px;
+padding:6px;
+}
+button {
+margin-top:30px;
+background:#1c7c45;
+color:#fff;
+border:none;
+padding:15px 30px;
+font-size:18px;
+border-radius:5px;
+cursor:pointer;
+}
+button:hover { background:#155f35; }
+.result {
+margin-top:30px;
+padding:25px;
+background:#eef7f0;
+border-radius:6px;
+}
+.small {
+font-size:14px;
+color:#555;
+}
+.extra-group {
+background:#fafafa;
+padding:15px;
+border-radius:5px;
+margin-top:15px;
+}
+.breakdown ul {
+margin-top:10px;
+}
 </style>
 </head>
 
 <body>
 
 <div class="calculator">
-<h1>External Makeover Estimate Calculator</h1>
 
-<!-- REQUIRED -->
-<h3>1. Property Type (required)</h3>
+<h1>External Property Makeover Estimate Calculator</h1>
+
+<p class="small">
+This calculator provides a fixed-price estimate for full external makeovers.
+Only the basic property details are required — all services below are optional.
+</p>
+
+<!-- REQUIRED PROPERTY DETAILS -->
+<h3>1. Property Type</h3>
 <select id="propertyType" required>
 <option value="">-- Select --</option>
 <option value="bungalow">Bungalow</option>
@@ -37,38 +81,51 @@ ul{text-align:left;max-width:420px;margin:15px auto}
 <option value="semi">Semi-detached</option>
 <option value="detached">Detached</option>
 </select>
-<p class="small">We ask this to tailor access, working methods and future pricing.</p>
+<p class="small">
+This helps us understand your property structure, access requirements and allows accurate future pricing.
+</p>
 
-<h3>2. Number of Bedrooms (required)</h3>
+<h3>2. Number of Bedrooms</h3>
 <select id="bedrooms" required>
 <option value="">-- Select --</option>
-<option value="1">1</option><option value="2">2</option>
-<option value="3">3</option><option value="4">4</option>
-<option value="5">5+</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5+">5+</option>
 </select>
 
-<h3>3. UPVC Conservatory (required)</h3>
+<h3>3. UPVC Conservatory</h3>
 <select id="conservatory" required>
 <option value="">-- Select --</option>
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
 
-<h3>4. Number of Storeys (required)</h3>
+<h3>4. Number of Storeys</h3>
 <select id="storeys" required>
 <option value="1">1</option>
 <option value="2">2</option>
 <option value="3">3</option>
 </select>
 
-<!-- OPTIONAL PAINTING -->
-<h3 class="optional">5. Exterior Painting (optional)</h3>
-<div class="extra-group">
-<label>Front elevation (m) <input type="number" id="front" step="0.1"></label>
-<label>Rear elevation (m) <input type="number" id="rear" step="0.1"></label>
-<label>Side left (m) <input type="number" id="sideLeft" step="0.1"></label>
-<label>Side right (m) <input type="number" id="sideRight" step="0.1"></label>
+<!-- PAINTING -->
+<h3>5. Exterior Painting (Optional)</h3>
+<p class="small">Leave blank if painting is not required.</p>
 
+<label>Front elevation length (metres)
+<input type="number" id="front" step="0.1"></label>
+
+<label>Rear elevation length (metres)
+<input type="number" id="rear" step="0.1"></label>
+
+<label>Side left elevation length (metres)
+<input type="number" id="sideLeft" step="0.1"></label>
+
+<label>Side right elevation length (metres)
+<input type="number" id="sideRight" step="0.1"></label>
+
+<h3>Wall Surface Type</h3>
 <select id="surface">
 <option value="28">Render</option>
 <option value="32">Pebbledash</option>
@@ -77,38 +134,40 @@ ul{text-align:left;max-width:420px;margin:15px auto}
 <option value="38">Stone</option>
 </select>
 
+<h3>Access Required</h3>
 <label><input type="radio" name="access" value="0" checked> Ladders</label>
 <label><input type="radio" name="access" value="450"> Scaffold tower</label>
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
-</div>
 
 <!-- GUTTERING -->
-<h3 class="optional">6. Guttering Services (optional)</h3>
+<h3>6. Optional – Guttering Services</h3>
 <div class="extra-group">
 <label><input type="checkbox" id="gc"> Gutter clearing</label>
-<input type="number" id="gcm" step="0.1">
+<input type="number" id="gcm" placeholder="Metres">
 
 <label><input type="checkbox" id="gw"> Gutter & fascia washing</label>
-<input type="number" id="gwm" step="0.1">
+<input type="number" id="gwm" placeholder="Metres">
 
 <label><input type="checkbox" id="gr"> Gutter replacement</label>
-<input type="number" id="grm" step="0.1">
+<input type="number" id="grm" placeholder="Metres">
 </div>
 
 <!-- UPVC -->
-<h3 class="optional">7. UPVC Restoration (optional)</h3>
+<h3>7. Optional – UPVC Restoration</h3>
 <div class="extra-group">
-<label><input type="checkbox" id="upvcRestore"> UPVC frames restoration</label>
-<label><input type="checkbox" id="upvcConservatory"> Conservatory frames</label>
-<label><input type="checkbox" id="upvcRoof"> Conservatory roof cleaning</label>
+<label><input type="checkbox" id="upvcRestore"> Restore UPVC frames</label>
+<label><input type="checkbox" id="upvcConservatory"> Restore conservatory frames</label>
+<label><input type="checkbox" id="upvcRoof"> Clean conservatory roof</label>
 </div>
 
 <!-- PRESSURE WASHING -->
-<h3 class="optional">8. Pressure Washing (optional)</h3>
+<h3>8. Optional – Pressure Washing</h3>
 <div class="extra-group">
-<label>Total area (m²) <input type="number" id="pwArea" step="0.1"></label>
-<label><input type="checkbox" id="pwJet"> Jet wash</label>
+<label>Total area to clean (m²)
+<input type="number" id="pwArea"></label>
+
+<label><input type="checkbox" id="pwJet"> Jet washing</label>
 <label><input type="checkbox" id="pwFung"> Fungicide treatment</label>
 <label><input type="checkbox" id="pwScrub"> Hard scrub</label>
 <label><input type="checkbox" id="pwResand"> Re-sanding</label>
@@ -116,83 +175,102 @@ ul{text-align:left;max-width:420px;margin:15px auto}
 </div>
 
 <!-- FENCING -->
-<h3 class="optional">9. Fence Installation (optional)</h3>
-<div class="extra-group">
-<label>Fence length (metres) <input type="number" id="fenceLength" step="0.1"></label>
-</div>
+<h3>9. Optional – Fence Installation</h3>
+<label>Fence length (metres)
+<input type="number" id="fenceMetres"></label>
 
-<button onclick="calculateQuote()">Get Estimate</button>
+<button onclick="calculateQuote()">Get Fixed Price Estimate</button>
 
 <div class="result" id="result"></div>
-</div>
 
 <script>
-// toggle optional sections
-document.querySelectorAll(".optional").forEach(h=>{
-h.onclick=()=>{h.classList.toggle("active");h.nextElementSibling.style.display=h.classList.contains("active")?"block":"none";}
-});
-
 function calculateQuote(){
-let total=0,breakdown=[];
 
-const p=document.getElementById("propertyType").value;
-const b=document.getElementById("bedrooms").value;
-const c=document.getElementById("conservatory").value;
-const s=parseInt(document.getElementById("storeys").value);
-if(!p||!b||!c||!s){alert("Please complete all required property details.");return;}
-
-// Painting
-let len=(+front.value||0)+(+rear.value||0)+(+sideLeft.value||0)+(+sideRight.value||0);
-if(len>0){
-let area=len*s*2.5;
-let cost=area*(+surface.value);
-if(s===2)cost*=1.15;if(s===3)cost*=1.3;
-let access=+document.querySelector('input[name="access"]:checked').value;
-total+=cost+access;
-breakdown.push(["Exterior painting",cost]);
-if(access>0)breakdown.push(["Access equipment",access]);
+/* REQUIRED */
+if(!propertyType.value || !bedrooms.value || !conservatory.value || !storeys.value){
+alert("Please complete all required property details.");
+return;
 }
 
-// Guttering
-let g=0;
-if(gc.checked)g+=(+gcm.value||0)*5;
-if(gw.checked)g+=(+gwm.value||0)*5;
-if(gr.checked)g+=(+grm.value||0)*15;
-if(g>0){total+=g;breakdown.push(["Guttering services",g]);}
+const property = propertyType.value;
+const beds = bedrooms.value;
+const conserv = conservatory.value;
+const storeysVal = parseInt(storeys.value);
 
-// UPVC
-let u=0;
+/* PAINTING – PRICE HALVED */
+let paintCost = 0;
+const totalLength =
+(parseFloat(front.value)||0) +
+(parseFloat(rear.value)||0) +
+(parseFloat(sideLeft.value)||0) +
+(parseFloat(sideRight.value)||0);
+
+if(totalLength > 0){
+let area = totalLength * storeysVal * 2.5;
+let rate = parseFloat(surface.value);
+paintCost = (area * rate) * 0.5; // 50% reduction
+if(storeysVal === 2) paintCost *= 1.15;
+if(storeysVal === 3) paintCost *= 1.3;
+}
+
+/* ACCESS */
+const accessCost = parseFloat(document.querySelector('input[name="access"]:checked').value);
+
+/* GUTTERING */
+let gutterCost = 0;
+if(gc.checked) gutterCost += (parseFloat(gcm.value)||0)*5;
+if(gw.checked) gutterCost += (parseFloat(gwm.value)||0)*5;
+if(gr.checked) gutterCost += (parseFloat(grm.value)||0)*15;
+
+/* UPVC */
+let upvcCost = 0;
 if(upvcRestore.checked){
-const base={"bungalow-1":30,"terraced-2":40,"semi-2":50,"detached-2":60,"terraced-3":50,"semi-3":60,"detached-3":70};
-u=base[`${p}-${s}`]||0;
-u+=Math.max(0,b-1)*10;
-if(upvcConservatory.checked&&c==="yes")u+=40;
-if(upvcRoof.checked&&c==="yes")u+=60;
+const table = {
+"bungalow-1":30,"terraced-2":40,"semi-2":50,"detached-2":60,
+"terraced-3":50,"semi-3":60,"detached-3":70
+};
+upvcCost = table[`${property}-${storeysVal}`] || 0;
+const bedCount = beds==="5+" ? 5 : parseInt(beds);
+if(bedCount > 1) upvcCost += (bedCount-1)*10;
+if(conserv==="yes" && upvcConservatory.checked) upvcCost += 40;
+if(conserv==="yes" && upvcRoof.checked) upvcCost += 60;
 }
-if(u>0){total+=u;breakdown.push(["UPVC restoration",u]);}
 
-// Pressure washing
-let pw=0,pa=+pwArea.value||0;
-if(pa>0&&(pwJet.checked||pwFung.checked||pwScrub.checked||pwResand.checked||pwSeal.checked)){
-pw+=50;
-if(pwJet.checked)pw+=pa*2.75;
-if(pwFung.checked)pw+=pa*0.9;
-if(pwScrub.checked)pw+=pa*0.75;
-if(pwResand.checked)pw+=pa*3.9;
-if(pwSeal.checked)pw+=pa*4.5;
+/* PRESSURE WASHING */
+let pwCost = 0;
+const pwAreaVal = parseFloat(pwArea.value)||0;
+if(pwAreaVal > 0){
+pwCost += 50;
+if(pwJet.checked) pwCost += pwAreaVal*2.75;
+if(pwFung.checked) pwCost += pwAreaVal*0.9;
+if(pwScrub.checked) pwCost += pwAreaVal*0.75;
+if(pwResand.checked) pwCost += pwAreaVal*3.9;
+if(pwSeal.checked) pwCost += pwAreaVal*4.5;
 }
-if(pw>0){total+=pw;breakdown.push(["Pressure washing",pw]);}
 
-// Fence
-let fl=+fenceLength.value||0;
-if(fl>0){let fc=fl*145;total+=fc;breakdown.push(["Fence installation",fc]);}
+/* FENCING */
+let fenceCost = (parseFloat(fenceMetres.value)||0) * 145;
 
-let html=`<strong>Your Total Fixed Price</strong><br><br><span style="font-size:28px;">£${total.toFixed(0)}</span><br><br><strong>Price Breakdown</strong><ul>`;
-breakdown.forEach(i=>html+=`<li>${i[0]}: £${i[1].toFixed(0)}</li>`);
-html+="</ul>";
-result.innerHTML=html;
+/* TOTAL */
+const total = paintCost + accessCost + gutterCost + upvcCost + pwCost + fenceCost;
+
+result.innerHTML = `
+<strong>Your Fixed Price Estimate</strong><br><br>
+£${total.toFixed(0)}
+<div class="breakdown">
+<ul>
+${paintCost?'<li>Exterior painting included</li>':''}
+${accessCost?'<li>Access equipment included</li>':''}
+${gutterCost?'<li>Guttering services included</li>':''}
+${upvcCost?'<li>UPVC restoration included</li>':''}
+${pwCost?'<li>Pressure washing included</li>':''}
+${fenceCost?'<li>Fence installation included</li>':''}
+</ul>
+</div>
+`;
 }
 </script>
 
+</div>
 </body>
 </html>
