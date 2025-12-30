@@ -122,6 +122,13 @@ button:hover { background:#155f35; }
 <label><input type="checkbox" id="pwSeal"> Sealing (£4.50/m²)</label>
 </div>
 
+<!-- Section 4: Fence Installation -->
+<h3>11. Optional Extras – Fence Installation</h3>
+<div class="extra-group">
+<label>Length of fence to install (metres): <input type="number" id="fenceLength" step="0.1"></label>
+<span class="small">Cost: £145 per metre</span>
+</div>
+
 <button onclick="calculateQuote()">Calculate Fixed Price</button>
 <div class="result" id="result"></div>
 
@@ -179,11 +186,18 @@ if(pwResand.checked) pwCost += pwArea*3.9;
 if(pwSeal.checked) pwCost += pwArea*4.5;
 }
 
-const total = wallCost + accessCost + gutterCost + upvcCost + pwCost;
+/* Fence Installation */
+let fenceCost = 0;
+const fenceLength = parseFloat(document.getElementById("fenceLength").value) || 0;
+if(fenceLength>0) fenceCost = fenceLength * 145;
+
+/* Total */
+const total = wallCost + accessCost + gutterCost + upvcCost + pwCost + fenceCost;
 
 result.innerHTML = `<strong>Total Fixed Price</strong><br><br>
 £${total.toFixed(0)}<br><br>
-<span class="small">Area: ${area.toFixed(1)} m²</span>`;
+<span class="small">Area: ${area.toFixed(1)} m²</span>
+${fenceCost>0?`<br><span class="small">Fence Installation Cost: £${fenceCost.toFixed(0)}</span>`:''}`;
 }
 </script>
 </div>
