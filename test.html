@@ -30,7 +30,7 @@ display: block;
 margin: 8px 0;
 }
 input[type="number"], select {
-width: 180px;
+width: 200px;
 padding: 6px;
 }
 button {
@@ -84,8 +84,27 @@ UK-based pricing • Calculated by square metres
 <option value="detached">Detached</option>
 </select>
 
+<!-- BEDROOMS -->
+<h3>2. Number of Bedrooms</h3>
+<select id="bedrooms" required>
+<option value="">-- Select --</option>
+<option value="1">1 bedroom</option>
+<option value="2">2 bedrooms</option>
+<option value="3">3 bedrooms</option>
+<option value="4">4 bedrooms</option>
+<option value="5+">5+ bedrooms</option>
+</select>
+
+<!-- CONSERVATORY -->
+<h3>3. UPVC Conservatory</h3>
+<select id="conservatory" required>
+<option value="">-- Select --</option>
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+
 <!-- STOREYS -->
-<h3>2. Number of Storeys</h3>
+<h3>4. Number of Storeys</h3>
 <select id="storeys">
 <option value="1">1 storey</option>
 <option value="2">2 storeys</option>
@@ -93,7 +112,7 @@ UK-based pricing • Calculated by square metres
 </select>
 
 <!-- ELEVATIONS -->
-<h3>3. Elevations to Paint (Length in metres)</h3>
+<h3>5. Elevations to Paint (Length in metres)</h3>
 
 <label>Front elevation length:
 <input type="number" id="front" min="0" step="0.1"> m
@@ -114,7 +133,7 @@ UK-based pricing • Calculated by square metres
 <p class="small">Leave blank if not required.</p>
 
 <!-- SURFACE -->
-<h3>4. Wall Surface</h3>
+<h3>6. Wall Surface</h3>
 <select id="surface">
 <option value="28">Render (£28 / m²)</option>
 <option value="32">Pebbledash (£32 / m²)</option>
@@ -124,14 +143,14 @@ UK-based pricing • Calculated by square metres
 </select>
 
 <!-- ACCESS -->
-<h3>5. Access Required</h3>
+<h3>7. Access Required</h3>
 <label><input type="radio" name="access" value="0" checked> Ladders</label>
 <label><input type="radio" name="access" value="450"> Scaffold tower</label>
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
 <!-- OPTIONAL EXTRAS: GUTTERING -->
-<h3>6. Optional Extras – Guttering Services</h3>
+<h3>8. Optional Extras – Guttering Services</h3>
 
 <div class="extra-group">
 <label>
@@ -168,8 +187,11 @@ Final price confirmed on site if details differ.
 function calculateQuote() {
 
 const propertyType = document.getElementById("propertyType").value;
-if (propertyType === "") {
-alert("Please select a property type.");
+const bedrooms = document.getElementById("bedrooms").value;
+const conservatory = document.getElementById("conservatory").value;
+
+if (!propertyType || !bedrooms || !conservatory) {
+alert("Please complete property type, bedrooms, and conservatory fields.");
 return;
 }
 
@@ -198,9 +220,7 @@ const accessCost = parseFloat(
 document.querySelector('input[name="access"]:checked').value
 );
 
-/* Guttering extras */
 let gutterExtras = 0;
-
 if (document.getElementById("gutterClearCheck").checked) {
 gutterExtras += (parseFloat(document.getElementById("gutterClearMetres").value) || 0) * 5;
 }
@@ -220,8 +240,10 @@ document.getElementById("result").innerHTML = `
 </span>
 <br><br>
 <span class="small">
-Calculated area: ${totalArea.toFixed(1)} m²<br>
-Includes labour & materials
+Property: ${propertyType}<br>
+Bedrooms: ${bedrooms}<br>
+UPVC Conservatory: ${conservatory === "yes" ? "Yes" : "No"}<br>
+Calculated area: ${totalArea.toFixed(1)} m²
 </span>
 `;
 }
