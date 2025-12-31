@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>External Property Service Calculator | Home Repairs 4U</title>
+<title>External Property Makeover Calculator | Home Repairs 4U</title>
+<meta name="description" content="Use our External Property Makeover Calculator to get an instant estimate for exterior painting, guttering, uPVC restoration, pressure washing, and fence installation in Doncaster.">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="preload" as="image" href="/images/logo.webp" />
 
@@ -49,17 +50,9 @@ padding:30px 20px;
 }
 h1,h2,h3{color:#111;}
 label{display:block;margin:8px 0;}
-input[type="number"], select{
-width:100%;
-max-width:240px;
-display:block;
-padding:6px;
-margin-bottom:12px;
-}
+input[type="number"],select{width:240px;padding:6px; margin-bottom:12px;}
 button{
-display:block;
 margin-top:20px;
-clear:both;
 background:#000;
 color:#fff;
 border:none;
@@ -68,6 +61,7 @@ font-size:18px;
 border-radius:6px;
 cursor:pointer;
 font-weight:bold;
+display:block;
 }
 button:hover{background:#333;}
 .result{
@@ -89,54 +83,57 @@ background:#000;
 color:#fff;
 padding:8px;
 border-radius:4px;
+margin-top:20px;
 }
 </style>
 
 <!-- FAQ Schema -->
 <script type="application/ld+json">
 {
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
 {
-"@type":"Question",
-"name":"How does the calculator work?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Select your property type, number of bedrooms, conservatory details, storeys, and optional services. The calculator provides an instant estimated cost for your property makeover."
+"@type": "Question",
+"name": "How does the calculator work?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Select your property type, number of bedrooms, conservatory details, storeys, and optional services. The calculator provides an instant estimated cost for your property makeover."
 }
 },
 {
-"@type":"Question",
-"name":"Which services are optional?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"All services such as Exterior Painting, Guttering, UPVC Restoration, Pressure Washing, and Fence Installation are optional. You can leave any service blank if not required."
+"@type": "Question",
+"name": "Which services are optional?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "All services such as Exterior Painting, Guttering, UPVC Restoration, Pressure Washing, and Fence Installation are optional. You can leave any service blank if not required."
 }
 },
 {
-"@type":"Question",
-"name":"Is the quote from this calculator final?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"The quote is an estimate. Final prices may vary based on site inspection and specific requirements."
+"@type": "Question",
+"name": "Is the quote from this calculator final?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "The quote is an estimate. Final prices may vary based on site inspection and specific requirements."
 }
 },
 {
-"@type":"Question",
-"name":"Which areas does this calculator cover?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"This calculator provides estimates for properties in Doncaster and surrounding areas."
+"@type": "Question",
+"name": "Which areas does this calculator cover?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "This calculator provides estimates for properties in Doncaster and surrounding areas."
 }
 }
 ]
+}
 </script>
 
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
 <div style="text-align:center; margin-top:10px;">
@@ -154,7 +151,9 @@ border-radius:4px;
 This calculator is for our full external property services. Only the core property details are required — all services below are optional. You can select one or more services.
 </p>
 
-<h3>Property Type</h3>
+<h2>Property Details</h2>
+
+<label for="propertyType">Property Type</label>
 <select id="propertyType" required>
 <option value="">-- Select --</option>
 <option value="bungalow">Bungalow</option>
@@ -162,9 +161,11 @@ This calculator is for our full external property services. Only the core proper
 <option value="semi">Semi-detached</option>
 <option value="detached">Detached</option>
 </select>
-<p class="small">We ask this to understand your property structure, access requirements, and to allow accurate pricing for optional services.</p>
+<p class="small">
+We ask this to understand your property structure, access requirements, and to allow accurate pricing for optional services.
+</p>
 
-<h3>Number of Bedrooms</h3>
+<label for="bedrooms">Number of Bedrooms</label>
 <select id="bedrooms" required>
 <option value="">-- Select --</option>
 <option value="1">1</option>
@@ -174,41 +175,44 @@ This calculator is for our full external property services. Only the core proper
 <option value="5+">5+</option>
 </select>
 
-<h3>UPVC Conservatory</h3>
+<label for="conservatory">UPVC Conservatory</label>
 <select id="conservatory" required>
 <option value="">-- Select --</option>
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
 
-<h3>Number of Storeys</h3>
+<label for="storeys">Number of Storeys</label>
 <select id="storeys" required>
 <option value="1">1</option>
 <option value="2">2</option>
 <option value="3">3</option>
 </select>
 
-<h3>Choose one or more optional services</h3>
-<p class="small">All services below are optional. Leave blank if you do not require a specific service.</p>
+<h2>Optional Services</h2>
 
-<h3 class="optional-title">Service 1 Exterior Painting (Optional)</h3>
+<h3 class="optional-title">Exterior Painting (Optional)</h3>
 <p class="small">Leave blank if painting is not required.</p>
 <details>
 <summary>More about Exterior Painting</summary>
-<p>We provide professional exterior painting for your property. This includes surface preparation, priming, and application of weather-resistant paint. We cover all elevations and provide colour advice to enhance kerb appeal.</p>
-<p>Optional extras include: textured finishes, protective coatings, and maintenance tips to prolong the life of your paintwork.</p>
+<p>
+We provide professional exterior painting for your property. This includes surface preparation, priming, and application of weather-resistant paint. We cover all elevations and provide colour advice to enhance kerb appeal.
+</p>
+<p>
+Optional extras include: textured finishes, protective coatings, and maintenance tips to prolong the life of your paintwork.
+</p>
 </details>
 
-<label>Front property width metres or large strides</label>
+<label for="front">Front property width metres or large strides</label>
 <input type="number" id="front" step="0.1">
-<label>Rear property width metres or large strides</label>
+<label for="rear">Rear property width metres or large strides</label>
 <input type="number" id="rear" step="0.1">
-<label>Left property width metres or large strides</label>
+<label for="sideLeft">Left property width metres or large strides</label>
 <input type="number" id="sideLeft" step="0.1">
-<label>Right property width metres or large strides</label>
+<label for="sideRight">Right property width metres or large strides</label>
 <input type="number" id="sideRight" step="0.1">
 
-<h3>Wall Surface For Painting</h3>
+<label for="surface">Wall Surface For Painting</label>
 <select id="surface">
 <option value="18">Render</option>
 <option value="22">Pebbledash</option>
@@ -224,7 +228,7 @@ This calculator is for our full external property services. Only the core proper
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
-<h3 class="optional-title">Service 2 Optional Guttering</h3>
+<h3 class="optional-title">Optional Guttering</h3>
 <p class="small">Measure in metres or large strides under wherever you have guttering.</p>
 <div class="extra-group">
 <label><input type="checkbox" id="gc"> Gutter clearing</label>
@@ -235,16 +239,16 @@ This calculator is for our full external property services. Only the core proper
 <input type="number" id="grm">
 </div>
 
-<h3 class="optional-title">Service 3 Optional UPVC Restoration</h3>
+<h3 class="optional-title">Optional UPVC Restoration</h3>
 <div class="extra-group">
 <label><input type="checkbox" id="upvcRestore"> Restore UPVC frames</label>
 <label><input type="checkbox" id="upvcConservatory"> Restore conservatory frames</label>
 <label><input type="checkbox" id="upvcRoof"> Clean conservatory roof</label>
 </div>
 
-<h3 class="optional-title">Service 4 Optional Pressure Washing</h3>
+<h3 class="optional-title">Optional Pressure Washing</h3>
 <div class="extra-group">
-<label>Total area (m²)</label>
+<label for="pwArea">Total area (m²)</label>
 <input type="number" id="pwArea">
 <label><input type="checkbox" id="pwJet"> Jet washing</label>
 <label><input type="checkbox" id="pwFung"> Fungicide treatment</label>
@@ -253,11 +257,11 @@ This calculator is for our full external property services. Only the core proper
 <label><input type="checkbox" id="pwSeal"> Sealing</label>
 </div>
 
-<h3 class="optional-title">Service 5 Optional Fence Installation</h3>
-<label>Fence length (m)</label>
+<h3 class="optional-title">Optional Fence Installation</h3>
+<label for="fenceMetres">Fence length (m)</label>
 <input type="number" id="fenceMetres">
 
-<!-- Button now fixed under last input -->
+<!-- Button placed after the last input -->
 <button onclick="calculateQuote()">Get Fixed Price Estimate</button>
 <div class="result" id="result"></div>
 
@@ -331,6 +335,7 @@ document.getElementById("result").innerHTML=breakdown;
 
 </main>
 
+<!-- FOOTER -->
 <footer style="background:#000; color:#fff; text-align:center; padding:25px 15px; margin-top:40px; font-size:14px;">
 <p>📞 Call 07735 873694</p>
 <div>
