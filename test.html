@@ -47,7 +47,12 @@ margin:0 auto;
 background:#fff;
 padding:30px 20px;
 }
-h1,h2,h3{color:#111;}
+h1,h2,h3{
+color:#fff;
+background:#000;
+padding:8px;
+border-radius:4px;
+}
 label{display:block;margin:8px 0;}
 input[type="number"],select{width:240px;padding:6px; margin-bottom:12px;}
 button{
@@ -77,6 +82,48 @@ border-radius:5px;
 margin-top:15px;
 }
 </style>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{
+"@type":"Question",
+"name":"How does the calculator work?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"Select your property type, number of bedrooms, conservatory details, storeys, and optional services. The calculator provides an instant estimated cost for your property makeover."
+}
+},
+{
+"@type":"Question",
+"name":"Which services are optional?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"All services such as Exterior Painting, Guttering, UPVC Restoration, Pressure Washing, and Fence Installation are optional. You can leave any service blank if not required."
+}
+},
+{
+"@type":"Question",
+"name":"Is the quote from this calculator final?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"The quote is an estimate. Final prices may vary based on site inspection and specific requirements."
+}
+},
+{
+"@type":"Question",
+"name":"Which areas does this calculator cover?",
+"acceptedAnswer":{
+"@type":"Answer",
+"text":"This calculator provides estimates for properties in Doncaster and surrounding areas."
+}
+}
+]
+</script>
+
 </head>
 
 <body>
@@ -169,21 +216,21 @@ We ask this to understand your property structure, access requirements, and to a
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
-<h3>Optional – Guttering</h3>
+<h3>Optional Guttering</h3>
 <div class="extra-group">
 <label><input type="checkbox" id="gc"> Gutter clearing</label><input type="number" id="gcm">
 <label><input type="checkbox" id="gw"> Gutter & fascia washing</label><input type="number" id="gwm">
 <label><input type="checkbox" id="gr"> Gutter replacement</label><input type="number" id="grm">
 </div>
 
-<h3>Optional – UPVC Restoration</h3>
+<h3>Optional UPVC Restoration</h3>
 <div class="extra-group">
 <label><input type="checkbox" id="upvcRestore"> Restore UPVC frames</label>
 <label><input type="checkbox" id="upvcConservatory"> Restore conservatory frames</label>
 <label><input type="checkbox" id="upvcRoof"> Clean conservatory roof</label>
 </div>
 
-<h3>Optional – Pressure Washing</h3>
+<h3>Optional Pressure Washing</h3>
 <div class="extra-group">
 <label>Total area (m²)<input type="number" id="pwArea"></label>
 <label><input type="checkbox" id="pwJet"> Jet washing</label>
@@ -193,7 +240,7 @@ We ask this to understand your property structure, access requirements, and to a
 <label><input type="checkbox" id="pwSeal"> Sealing</label>
 </div>
 
-<h3>Optional – Fence Installation</h3>
+<h3>Optional Fence Installation</h3>
 <label>Fence length (m)<input type="number" id="fenceMetres"></label>
 
 <button onclick="calculateQuote()">Get Fixed Price Estimate</button>
