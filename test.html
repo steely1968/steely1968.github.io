@@ -232,6 +232,9 @@ Select ladders if unsure!
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
 <h3 class="optional-title">Service 2 Optional Guttering</h3>
+<p class="small">
+Measure in metres or large strides under wherever you have guttering.
+</p>
 <div class="extra-group">
 <label><input type="checkbox" id="gc"> Gutter clearing</label><input type="number" id="gcm">
 <label><input type="checkbox" id="gw"> Gutter & fascia washing</label><input type="number" id="gwm">
@@ -308,7 +311,7 @@ if(pwResand.checked)pwCost+=pwA*3.9;
 if(pwSeal.checked)pwCost+=pwA*4.5;
 }
 
-let fenceCost=(+fenceMetres.value||0)*145;
+let fenceCost=(+fenceMetres.value||0)*130;
 
 const total=paintCost+accessCost+gutterCost+upvcCost+pwCost+fenceCost;
 
