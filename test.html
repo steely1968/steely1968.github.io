@@ -249,6 +249,7 @@ We ask this to understand your property structure, access requirements, and to a
 
 <script>
 function calculateQuote(){
+// Calculator logic unchanged
 if(!propertyType.value||!bedrooms.value||!conservatory.value||!storeys.value){
 alert("Please complete required property details.");
 return;
@@ -258,7 +259,6 @@ const beds=bedrooms.value==="5+"?5:+bedrooms.value;
 const conserv=conservatory.value;
 const storeysVal=parseInt(storeys.value);
 
-/* Painting 50% reduced */
 let paintCost=0;
 const totalLength=(+front.value||0)+(+rear.value||0)+(+sideLeft.value||0)+(+sideRight.value||0);
 if(totalLength>0){
@@ -268,16 +268,13 @@ if(storeysVal===2)paintCost*=1.15;
 if(storeysVal===3)paintCost*=1.3;
 }
 
-/* Access */
 const accessCost=parseFloat(document.querySelector('input[name="access"]:checked').value);
 
-/* Guttering */
 let gutterCost=0;
 if(gc.checked)gutterCost+=(+gcm.value||0)*5;
 if(gw.checked)gutterCost+=(+gwm.value||0)*5;
 if(gr.checked)gutterCost+=(+grm.value||0)*15;
 
-/* UPVC */
 let upvcCost=0;
 if(upvcRestore.checked){
 const table={"bungalow-1":30,"terraced-2":40,"semi-2":50,"detached-2":60,"terraced-3":50,"semi-3":60,"detached-3":70};
@@ -287,7 +284,6 @@ if(conserv==="yes"&&upvcConservatory.checked)upvcCost+=40;
 if(conserv==="yes"&&upvcRoof.checked)upvcCost+=60;
 }
 
-/* Pressure washing */
 let pwCost=0;
 const pwA=+pwArea.value||0;
 if(pwA>0){
@@ -299,10 +295,8 @@ if(pwResand.checked)pwCost+=pwA*3.9;
 if(pwSeal.checked)pwCost+=pwA*4.5;
 }
 
-/* Fence */
 let fenceCost=(+fenceMetres.value||0)*145;
 
-/* Total & Breakdown Table */
 const total=paintCost+accessCost+gutterCost+upvcCost+pwCost+fenceCost;
 
 let breakdown="<table style='width:100%;border-collapse:collapse;'>"+
@@ -327,7 +321,7 @@ document.getElementById("result").innerHTML=breakdown;
 <!-- FOOTER -->
 <footer>
 <p>📞 Call 07735 873694</p>
-<footer style="background:#000; color:#fff; text-align:center; padding:28px 15px; font-size:14px;">
+<div style="background:#000; color:#fff; text-align:center; padding:28px 15px; font-size:14px;">
 <div>
 © Home Repairs 4U | Service Areas, Doncaster
 <br><br>
@@ -335,6 +329,7 @@ document.getElementById("result").innerHTML=breakdown;
 <a href="/services/pressure-washing.html" style="color:#fff; text-decoration:underline;">Pressure Washing</a> |
 <a href="/services/fence-installation.html" style="color:#fff; text-decoration:underline;">Fencing</a> |
 <a href="/services/upvc-restoration.html" style="color:#fff; text-decoration:underline;">uPVC Restoration</a>
+</div>
 </div>
 </footer>
 
