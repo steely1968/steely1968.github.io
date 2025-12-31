@@ -49,9 +49,17 @@ padding:30px 20px;
 }
 h1,h2,h3{color:#111;}
 label{display:block;margin:8px 0;}
-input[type="number"],select{width:240px;padding:6px; margin-bottom:12px;}
+input[type="number"], select{
+width:100%;
+max-width:240px;
+display:block;
+padding:6px;
+margin-bottom:12px;
+}
 button{
-margin-top:30px;
+display:block;
+margin-top:20px;
+clear:both;
 background:#000;
 color:#fff;
 border:none;
@@ -129,16 +137,10 @@ border-radius:4px;
 
 <body>
 
-<!-- HEADER -->
 <header>
-<img src="/images/logo.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
 <div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
@@ -160,9 +162,7 @@ This calculator is for our full external property services. Only the core proper
 <option value="semi">Semi-detached</option>
 <option value="detached">Detached</option>
 </select>
-<p class="small">
-We ask this to understand your property structure, access requirements, and to allow accurate pricing for optional services.
-</p>
+<p class="small">We ask this to understand your property structure, access requirements, and to allow accurate pricing for optional services.</p>
 
 <h3>Number of Bedrooms</h3>
 <select id="bedrooms" required>
@@ -193,17 +193,12 @@ We ask this to understand your property structure, access requirements, and to a
 
 <h3 class="optional-title">Service 1 Exterior Painting (Optional)</h3>
 <p class="small">Leave blank if painting is not required.</p>
-
 <details>
 <summary>More about Exterior Painting</summary>
-<p>
-We provide professional exterior painting for your property. This includes surface preparation, priming, and application of weather-resistant paint. We cover all elevations and provide colour advice to enhance kerb appeal.
-</p>
-<p>
-Optional extras include: textured finishes, protective coatings, and maintenance tips to prolong the life of your paintwork.
-</p>
+<p>We provide professional exterior painting for your property. This includes surface preparation, priming, and application of weather-resistant paint. We cover all elevations and provide colour advice to enhance kerb appeal.</p>
+<p>Optional extras include: textured finishes, protective coatings, and maintenance tips to prolong the life of your paintwork.</p>
 </details>
- 
+
 <label>Front property width metres or large strides</label>
 <input type="number" id="front" step="0.1">
 <label>Rear property width metres or large strides</label>
@@ -223,22 +218,21 @@ Optional extras include: textured finishes, protective coatings, and maintenance
 </select>
 
 <h3>Access Required</h3>
-<p class="small">
-Select ladders if unsure!
-</p>
+<p class="small">Select ladders if unsure!</p>
 <label><input type="radio" name="access" value="0" checked> Ladders</label>
 <label><input type="radio" name="access" value="450"> Scaffold tower</label>
 <label><input type="radio" name="access" value="750"> Scaffold over conservatory</label>
 <label><input type="radio" name="access" value="1200"> Full scaffold</label>
 
 <h3 class="optional-title">Service 2 Optional Guttering</h3>
-<p class="small">
-Measure in metres or large strides under wherever you have guttering.
-</p>
+<p class="small">Measure in metres or large strides under wherever you have guttering.</p>
 <div class="extra-group">
-<label><input type="checkbox" id="gc"> Gutter clearing</label><input type="number" id="gcm">
-<label><input type="checkbox" id="gw"> Gutter & fascia washing</label><input type="number" id="gwm">
-<label><input type="checkbox" id="gr"> Gutter replacement</label><input type="number" id="grm">
+<label><input type="checkbox" id="gc"> Gutter clearing</label>
+<input type="number" id="gcm">
+<label><input type="checkbox" id="gw"> Gutter & fascia washing</label>
+<input type="number" id="gwm">
+<label><input type="checkbox" id="gr"> Gutter replacement</label>
+<input type="number" id="grm">
 </div>
 
 <h3 class="optional-title">Service 3 Optional UPVC Restoration</h3>
@@ -251,7 +245,7 @@ Measure in metres or large strides under wherever you have guttering.
 <h3 class="optional-title">Service 4 Optional Pressure Washing</h3>
 <div class="extra-group">
 <label>Total area (m²)</label>
-<input type="number" id="pwArea"></label>
+<input type="number" id="pwArea">
 <label><input type="checkbox" id="pwJet"> Jet washing</label>
 <label><input type="checkbox" id="pwFung"> Fungicide treatment</label>
 <label><input type="checkbox" id="pwScrub"> Hard scrub</label>
@@ -261,8 +255,9 @@ Measure in metres or large strides under wherever you have guttering.
 
 <h3 class="optional-title">Service 5 Optional Fence Installation</h3>
 <label>Fence length (m)</label>
-<input type="number" id="fenceMetres"></label>
+<input type="number" id="fenceMetres">
 
+<!-- Button now fixed under last input -->
 <button onclick="calculateQuote()">Get Fixed Price Estimate</button>
 <div class="result" id="result"></div>
 
@@ -336,7 +331,6 @@ document.getElementById("result").innerHTML=breakdown;
 
 </main>
 
-<!-- FOOTER -->
 <footer style="background:#000; color:#fff; text-align:center; padding:25px 15px; margin-top:40px; font-size:14px;">
 <p>📞 Call 07735 873694</p>
 <div>
@@ -354,4 +348,3 @@ document.getElementById("result").innerHTML=breakdown;
 
 </body>
 </html>
-
