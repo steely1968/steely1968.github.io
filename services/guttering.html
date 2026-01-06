@@ -11,6 +11,20 @@ gtag('js', new Date());
 
 gtag('config', 'AW-17853901540');
 </script>
+  <script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-17853901540/OgEcCPrext0bEOTVs8FC',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Gutter Replacement, Cleaning & Clearing | Askern DN6 | Home Repairs 4U</title>
