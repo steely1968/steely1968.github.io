@@ -15,6 +15,7 @@
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
+/* HEADER */
 header{
 text-align:center;
 padding:25px 10px;
@@ -36,6 +37,7 @@ border:2px solid #000;
 }
 .call-btn:hover{background:#333;}
 
+/* MAIN */
 main{
 max-width:950px;
 margin:40px auto;
@@ -52,7 +54,6 @@ padding:10px;
 margin-top:5px;
 font-size:16px;
 }
-.checkbox-group label{font-weight:normal;}
 button{
 margin-top:20px;
 padding:14px 30px;
@@ -81,6 +82,7 @@ font-size:20px;
 padding:14px 30px;
 }
 
+/* FOOTER */
 .site-footer{
 background:#000;
 color:#fff;
@@ -98,6 +100,13 @@ margin-top:15px;
 color:white;
 margin:0 10px;
 text-decoration:none;
+}
+
+.note{
+font-style:italic;
+font-size:0.95em;
+margin-top:5px;
+color:#555;
 }
 </style>
 </head>
@@ -152,26 +161,19 @@ text-decoration:none;
 
 <h2>Do I Need Fungicide Treatment?</h2>
 <label>Select an option:</label>
-<select id="needFungicide" onchange="toggleFungicide()">
+<select id="needFungicide" onchange="updateNotes()">
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
-<p><em>Fungicide treatment is useful if your walls have existing algae, mould, or damp areas. It helps prevent re-growth and ensures a longer-lasting paint finish. If your walls are dry, clean, and free of mould, fungicide may not be necessary.</em></p>
+<p id="fungicideNote" class="note">Fungicide treatment is useful if your walls have existing algae, mould, or damp areas. It helps prevent re-growth and ensures a longer-lasting paint finish. If your walls are dry, clean, and free of mould, fungicide may not be necessary. Adds £2.50 per m² if selected.</p>
 
 <h2>Do I Need Sealing?</h2>
 <label>Select an option:</label>
-<select id="needSealing" onchange="toggleSealing()">
+<select id="needSealing" onchange="updateNotes()">
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
-<p><em>Sealing helps smooth porous surfaces and ensures paint adheres properly. If your walls are already smooth and in good condition, sealing may not be required.</em></p>
-
-<h2>Optional Treatments (per m²)</h2>
-<div class="checkbox-group">
-<label><input type="checkbox" id="fungicide"> Fungicide treatment (£2.50 per m²)</label>
-<label><input type="checkbox" id="sealer"> Sealing coat (£3.00 per m²)</label>
-<label><input type="checkbox" id="paint"> Paint finish (£5.00 per m²)</label>
-</div>
+<p id="sealingNote" class="note">Sealing helps smooth porous surfaces and ensures paint adheres properly. If your walls are already smooth and in good condition, sealing may not be required. Adds £3.00 per m² if selected.</p>
 
 <h2>Doors & Windows (Deductions)</h2>
 <label>Windows (£7 off each)</label>
@@ -211,6 +213,19 @@ Enter measurements to calculate your quote.
 </footer>
 
 <script>
+function updateNotes(){
+const fung = document.getElementById('needFungicide').value;
+const seal = document.getElementById('needSealing').value;
+
+document.getElementById('fungicideNote').textContent = fung === 'yes' ?
+'Fungicide treatment is selected. Adds £2.50 per m².' :
+'Fungicide treatment not selected. No extra cost.';
+
+document.getElementById('sealingNote').textContent = seal === 'yes' ?
+'Sealing is selected. Adds £3.00 per m².' :
+'Sealing not selected. No extra cost.';
+}
+
 function calculate(){
 const height = parseFloat(document.getElementById('storeys').value);
 
@@ -227,10 +242,15 @@ const baseRate = 12;
 
 let total = area * baseRate * surfaceMultiplier;
 
-if(document.getElementById('fungicide').checked){ total += area * 2.5; }
-if(document.getElementById('sealer').checked){ total += area * 3; }
-if(document.getElementById('paint').checked){ total += area * 5; }
+// Always apply paint (£5/m²)
+total += area * 5;
 
+// Apply fungicide if dropdown yes
+if(document.getElementById('needFungicide').value === 'yes'){ total += area * 2.5; }
+// Apply sealing if dropdown yes
+if(document.getElementById('needSealing').value === 'yes'){ total += area * 3; }
+
+// Deductions
 total -= (parseInt(document.getElementById('windows').value)||0) * 7;
 total -= (parseInt(document.getElementById('doors').value)||0) * 10;
 total -= (parseInt(document.getElementById('patio').value)||0) * 20;
@@ -243,15 +263,8 @@ document.getElementById('result').innerHTML =
 document.getElementById('cta').style.display = 'block';
 }
 
-function toggleFungicide(){
-const select = document.getElementById('needFungicide');
-document.getElementById('fungicide').checked = select.value === 'yes';
-}
-
-function toggleSealing(){
-const select = document.getElementById('needSealing');
-document.getElementById('sealer').checked = select.value === 'yes';
-}
+// Initialize notes
+updateNotes();
 </script>
 
 </body>
