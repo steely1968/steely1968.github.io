@@ -5,65 +5,67 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>Exterior House Painting Quote Calculator | Askern DN6 | Home Repairs 4U</title>
+<title>Complete Exterior House Painting Quote Calculator | Askern DN6</title>
 
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/house-painting.html">
 
-<meta name="description" content="Get an instant exterior house painting quote in Askern DN6 and nearby areas. Our online calculator gives homeowners a quick, transparent estimate before booking.">
+<meta name="description" content="Get an instant exterior house painting quote in Askern DN6 and within a six mile radius. Our calculator estimates costs based on size, height, surface type, treatments, doors and windows.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
-/* HEADER STYLING */
+/* HEADER */
 header{
 text-align:center;
 padding:25px 10px;
 background:#fff;
 border-bottom:4px solid #27ae60;
 }
-
-.logo{
-max-height:90px;
-width:auto;
-}
-
-/* CALL BUTTON */
+.logo{max-height:90px;width:auto;}
 .call-btn{
-display:inline-block;
-margin-top:18px;
-padding:14px 28px;
-background:#000;
-color:#fff;
-font-size:19px;
-text-decoration:none;
-font-weight:bold;
-border-radius:6px;
-border:2px solid #000;
+display:inline-block;margin-top:18px;padding:14px 28px;
+background:#000;color:#fff;font-size:19px;
+text-decoration:none;font-weight:bold;border-radius:6px;border:2px solid #000;
 }
-.call-btn:hover{
-background:#333;
-color:#fff;
-}
+.call-btn:hover{background:#333;}
 
-/* MAIN CONTENT */
+/* MAIN */
 main{
-max-width:900px;
+max-width:950px;
 margin:40px auto;
 padding:0 15px;
-font-family:Arial, sans-serif;
-line-height:1.7;
+font-family:Arial,sans-serif;
+line-height:1.6;
 color:#222;
 }
-
-h1{
-font-size:2em;
-margin-bottom:15px;
-color:#000;
+h1,h2{color:#000;}
+label{display:block;margin-top:12px;font-weight:bold;}
+input,select{
+width:100%;
+padding:10px;
+margin-top:5px;
+font-size:16px;
 }
-
-p{
-margin-bottom:18px;
+.checkbox-group label{font-weight:normal;}
+button{
+margin-top:20px;
+padding:14px 30px;
+font-size:18px;
+background:#27ae60;
+color:#fff;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+button:hover{background:#1f8a4c;}
+.result{
+margin-top:25px;
+padding:20px;
+background:#f4f4f4;
+border-radius:6px;
+font-size:18px;
+font-weight:bold;
 }
 
 /* FOOTER */
@@ -75,14 +77,11 @@ padding:25px 15px;
 margin-top:40px;
 font-size:14px;
 }
-
 .footer-services{
-background-color:black;
+background:black;
 padding:20px;
-text-align:center;
 margin-top:15px;
 }
-
 .footer-services a{
 color:white;
 margin:0 10px;
@@ -93,7 +92,7 @@ text-decoration:none;
 
 <body>
 
-<!-- ✅ HEADER -->
+<!-- HEADER -->
 <header>
 <img src="/images/logo.webp"
 alt="Home Repairs 4U logo"
@@ -111,24 +110,68 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </header>
 
-<!-- ✅ MAIN CONTENT -->
+<!-- MAIN CONTENT -->
 <main>
 
-<h1>Exterior House Painting Quote Calculator</h1>
+<h1>Complete Exterior House Painting Quote Calculator</h1>
 
-<p>Our exterior house painting quote calculator has been created to give homeowners a fast, clear idea of cost before committing to any work. If you live in Askern DN6 or within a six mile radius, this tool allows you to estimate the price of a complete exterior house paint without waiting for a site visit.</p>
+<p>This calculator has been created to help homeowners in <strong>Askern DN6 and within a six mile radius</strong> get a fast, realistic estimate for a complete exterior house paint. It removes guesswork by calculating real wall areas, surface types, treatments and deductions.</p>
 
-<p>Many customers want to understand potential costs upfront. This calculator helps remove uncertainty by considering key factors such as property size, number of exterior walls, surface condition, and access requirements. It provides a realistic guide price so you can plan your budget with confidence.</p>
+<h2>House Size & Height</h2>
 
-<p>The calculator is designed to save time for both you and us. Instead of guessing or searching online for vague price ranges, you receive a tailored estimate based on real exterior painting scenarios. This makes it easier to decide whether to move forward with a full quotation and inspection.</p>
+<label>Number of storeys</label>
+<select id="storeys">
+<option value="2">1 Storey (2 metres)</option>
+<option value="5">2 Storeys (5 metres)</option>
+<option value="7.5">3 Storeys (7.5 metres)</option>
+</select>
 
-<p>Once you receive your instant estimate, we can then arrange a proper assessment to confirm details, prepare surfaces, and recommend the best exterior paint system for long-lasting protection against UK weather conditions.</p>
+<label>Front of house (metres)</label>
+<input type="number" id="front" min="0" step="0.1">
 
-<p><strong>Home Repairs 4U specialises in complete exterior house painting in Askern DN6 and surrounding areas.</strong> Our aim is to provide transparent pricing, professional workmanship, and a reliable service from start to finish.</p>
+<label>Back of house (metres)</label>
+<input type="number" id="back" min="0" step="0.1">
+
+<label>Side of house (metres)</label>
+<input type="number" id="side" min="0" step="0.1">
+
+<h2>Surface Type</h2>
+<select id="surface">
+<option value="1">Smooth</option>
+<option value="1.2">Porous</option>
+<option value="1.35">Pebble Dash</option>
+<option value="1.5">Stone</option>
+</select>
+
+<h2>Optional Treatments (per m²)</h2>
+<div class="checkbox-group">
+<label><input type="checkbox" id="fungicide"> Fungicide treatment (£4 per m²)</label>
+<label><input type="checkbox" id="sealer"> Sealing coat (£5 per m²)</label>
+<label><input type="checkbox" id="paint"> Paint finish (£9 per m²)</label>
+</div>
+
+<h2>Doors & Windows (Deductions)</h2>
+
+<label>Windows (£7 off each)</label>
+<input type="number" id="windows" min="0">
+
+<label>Doors (£10 off each)</label>
+<input type="number" id="doors" min="0">
+
+<label>Patio doors (£20 off each)</label>
+<input type="number" id="patio" min="0">
+
+<button onclick="calculate()">Calculate Quote</button>
+
+<div class="result" id="result">
+Enter your details to receive an instant estimate.
+</div>
+
+<p><small>This calculator provides a guide price. Final quotations may vary after an on-site inspection.</small></p>
 
 </main>
 
-<!-- ✅ FOOTER -->
+<!-- FOOTER -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 
@@ -141,6 +184,36 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <a href="/services/upvc-restoration.html">uPVC Restoration</a>
 </div>
 </footer>
+
+<script>
+function calculate(){
+const height = parseFloat(document.getElementById('storeys').value);
+const front = parseFloat(document.getElementById('front').value)||0;
+const back = parseFloat(document.getElementById('back').value)||0;
+const side = parseFloat(document.getElementById('side').value)||0;
+
+const perimeter = front + back + (side * 2);
+const area = perimeter * height;
+
+const surfaceMultiplier = parseFloat(document.getElementById('surface').value);
+const baseRate = 12;
+
+let total = area * baseRate * surfaceMultiplier;
+
+if(document.getElementById('fungicide').checked){ total += area * 4; }
+if(document.getElementById('sealer').checked){ total += area * 5; }
+if(document.getElementById('paint').checked){ total += area * 9; }
+
+total -= (parseInt(document.getElementById('windows').value)||0) * 7;
+total -= (parseInt(document.getElementById('doors').value)||0) * 10;
+total -= (parseInt(document.getElementById('patio').value)||0) * 20;
+
+total = Math.max(total,0);
+
+document.getElementById('result').innerHTML =
+`Estimated Exterior Painting Cost:<br>£${total.toFixed(2)}`;
+}
+</script>
 
 </body>
 </html>
