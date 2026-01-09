@@ -15,7 +15,6 @@
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
-/* HEADER */
 header{
 text-align:center;
 padding:25px 10px;
@@ -37,7 +36,6 @@ border:2px solid #000;
 }
 .call-btn:hover{background:#333;}
 
-/* MAIN */
 main{
 max-width:950px;
 margin:40px auto;
@@ -83,7 +81,6 @@ font-size:20px;
 padding:14px 30px;
 }
 
-/* FOOTER */
 .site-footer{
 background:#000;
 color:#fff;
@@ -152,6 +149,22 @@ text-decoration:none;
 <option value="1.30">Pebble dash (+30% labour & paint)</option>
 <option value="1.45">Stone (+45% labour & paint)</option>
 </select>
+
+<h2>Do I Need Fungicide Treatment?</h2>
+<label>Select an option:</label>
+<select id="needFungicide" onchange="toggleFungicide()">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<p><em>Fungicide treatment is useful if your walls have existing algae, mould, or damp areas. It helps prevent re-growth and ensures a longer-lasting paint finish. If your walls are dry, clean, and free of mould, fungicide may not be necessary.</em></p>
+
+<h2>Do I Need Sealing?</h2>
+<label>Select an option:</label>
+<select id="needSealing" onchange="toggleSealing()">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
+<p><em>Sealing helps smooth porous surfaces and ensures paint adheres properly. If your walls are already smooth and in good condition, sealing may not be required.</em></p>
 
 <h2>Optional Treatments (per m²)</h2>
 <div class="checkbox-group">
@@ -228,6 +241,16 @@ document.getElementById('result').innerHTML =
 `Estimated Exterior Painting Cost:<br>£${total.toFixed(2)}`;
 
 document.getElementById('cta').style.display = 'block';
+}
+
+function toggleFungicide(){
+const select = document.getElementById('needFungicide');
+document.getElementById('fungicide').checked = select.value === 'yes';
+}
+
+function toggleSealing(){
+const select = document.getElementById('needSealing');
+document.getElementById('sealer').checked = select.value === 'yes';
 }
 </script>
 
