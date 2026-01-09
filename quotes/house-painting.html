@@ -10,12 +10,11 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/house-painting.html">
 
-<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and nearby areas. Measure front, back and sides to estimate a complete exterior house paint.">
+<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and nearby areas. Measure front, back and side walls to estimate a full exterior house paint.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
-/* HEADER */
 header{
 text-align:center;
 padding:25px 10px;
@@ -37,7 +36,6 @@ border:2px solid #000;
 }
 .call-btn:hover{background:#333;}
 
-/* MAIN */
 main{
 max-width:950px;
 margin:40px auto;
@@ -75,7 +73,6 @@ font-size:18px;
 font-weight:bold;
 }
 
-/* FOOTER */
 .site-footer{
 background:#000;
 color:#fff;
@@ -99,37 +96,27 @@ text-decoration:none;
 
 <body>
 
-<!-- HEADER -->
 <header>
-<img src="/images/logo.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
-
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
 <div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<a href="https://steely1968.github.io/" style="font-size:20px;color:#000;text-decoration:none;font-weight:600;">Home</a>
 </div>
-
 <br>
-
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </header>
 
-<!-- MAIN -->
 <main>
 
 <h1>Exterior House Painting Quote Calculator</h1>
 
-<p>Use this calculator to estimate the cost of a <strong>complete exterior house paint</strong> in Askern DN6 and surrounding areas. Simply measure each wall that will be painted. If a wall does not exist, enter <strong>0</strong>.</p>
+<p>Measure only the walls that will be painted. If a wall does not exist, enter <strong>0</strong>. This calculator provides a realistic guide price for exterior house painting in Askern DN6 and surrounding areas.</p>
 
 <h2>House Height</h2>
 <label>Number of storeys</label>
 <select id="storeys">
 <option value="2">1 Storey (2 metres)</option>
-<option value="5">2 Storeys (5 metres)</option>
-<option value="7.5">3 Storeys (7.5 metres)</option>
+<option value="4">2 Storeys (4 metres)</option>
+<option value="6">3 Storeys (6 metres)</option>
 </select>
 
 <h2>Wall Measurements (metres)</h2>
@@ -145,19 +132,19 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <label>Side wall 2</label>
 <input type="number" id="side2" min="0" step="0.1">
 
-<h2>Surface Type</h2>
+<h2>Surface Type (affects labour & paint usage)</h2>
 <select id="surface">
-<option value="1">Smooth</option>
-<option value="1.2">Porous</option>
-<option value="1.35">Pebble Dash</option>
-<option value="1.5">Stone</option>
+<option value="1.0">Smooth render or masonry (standard rate)</option>
+<option value="1.15">Porous render (+15% labour & paint)</option>
+<option value="1.30">Pebble dash (+30% labour & paint)</option>
+<option value="1.45">Stone (+45% labour & paint)</option>
 </select>
 
 <h2>Optional Treatments (per m²)</h2>
 <div class="checkbox-group">
-<label><input type="checkbox" id="fungicide"> Fungicide treatment (£4 per m²)</label>
-<label><input type="checkbox" id="sealer"> Sealing coat (£5 per m²)</label>
-<label><input type="checkbox" id="paint"> Paint finish (£9 per m²)</label>
+<label><input type="checkbox" id="fungicide"> Fungicide treatment (£2.50 per m²)</label>
+<label><input type="checkbox" id="sealer"> Sealing coat (£3.00 per m²)</label>
+<label><input type="checkbox" id="paint"> Paint finish (£5.00 per m²)</label>
 </div>
 
 <h2>Doors & Windows (Deductions)</h2>
@@ -176,11 +163,10 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 Enter measurements to calculate your quote.
 </div>
 
-<p><small>This calculator provides a guide price only. Final costs may vary after an on-site inspection.</small></p>
+<p><small>This calculator provides a guide price only. Final pricing may vary following an on-site inspection.</small></p>
 
 </main>
 
-<!-- FOOTER -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 <div class="footer-services">
@@ -210,9 +196,9 @@ const baseRate = 12;
 
 let total = area * baseRate * surfaceMultiplier;
 
-if(document.getElementById('fungicide').checked){ total += area * 4; }
-if(document.getElementById('sealer').checked){ total += area * 5; }
-if(document.getElementById('paint').checked){ total += area * 9; }
+if(document.getElementById('fungicide').checked){ total += area * 2.5; }
+if(document.getElementById('sealer').checked){ total += area * 3; }
+if(document.getElementById('paint').checked){ total += area * 5; }
 
 total -= (parseInt(document.getElementById('windows').value)||0) * 7;
 total -= (parseInt(document.getElementById('doors').value)||0) * 10;
