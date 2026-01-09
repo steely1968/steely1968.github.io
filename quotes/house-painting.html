@@ -10,7 +10,7 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/house-painting.html">
 
-<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and nearby areas. Calculates costs based on house type, size, height, surface type, treatments, doors and windows.">
+<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and nearby areas. Measure front, back and sides to estimate a complete exterior house paint.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
 
@@ -24,9 +24,16 @@ border-bottom:4px solid #27ae60;
 }
 .logo{max-height:90px;width:auto;}
 .call-btn{
-display:inline-block;margin-top:18px;padding:14px 28px;
-background:#000;color:#fff;font-size:19px;
-text-decoration:none;font-weight:bold;border-radius:6px;border:2px solid #000;
+display:inline-block;
+margin-top:18px;
+padding:14px 28px;
+background:#000;
+color:#fff;
+font-size:19px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+border:2px solid #000;
 }
 .call-btn:hover{background:#333;}
 
@@ -110,20 +117,12 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </header>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <main>
 
 <h1>Exterior House Painting Quote Calculator</h1>
 
-<p>This calculator provides a fast, realistic estimate for a <strong>complete exterior house paint</strong> in Askern DN6 and within a six mile radius. Wall areas are calculated accurately by adjusting for property type, height, surface condition, treatments, and deductions.</p>
-
-<h2>House Type</h2>
-<label>Property type</label>
-<select id="houseType">
-<option value="2">Terraced (2 sides)</option>
-<option value="3">Semi-detached (3 sides)</option>
-<option value="4">Detached (4 sides)</option>
-</select>
+<p>Use this calculator to estimate the cost of a <strong>complete exterior house paint</strong> in Askern DN6 and surrounding areas. Simply measure each wall that will be painted. If a wall does not exist, enter <strong>0</strong>.</p>
 
 <h2>House Height</h2>
 <label>Number of storeys</label>
@@ -133,15 +132,18 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <option value="7.5">3 Storeys (7.5 metres)</option>
 </select>
 
-<h2>House Widths (metres)</h2>
+<h2>Wall Measurements (metres)</h2>
 <label>Front of house</label>
 <input type="number" id="front" min="0" step="0.1">
 
 <label>Back of house</label>
 <input type="number" id="back" min="0" step="0.1">
 
-<label>Side of house</label>
-<input type="number" id="side" min="0" step="0.1">
+<label>Side wall 1</label>
+<input type="number" id="side1" min="0" step="0.1">
+
+<label>Side wall 2</label>
+<input type="number" id="side2" min="0" step="0.1">
 
 <h2>Surface Type</h2>
 <select id="surface">
@@ -171,10 +173,10 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <button onclick="calculate()">Calculate Quote</button>
 
 <div class="result" id="result">
-Enter your details to calculate your quote.
+Enter measurements to calculate your quote.
 </div>
 
-<p><small>This calculator provides a guide price only. Final quotations may vary following an on-site inspection.</small></p>
+<p><small>This calculator provides a guide price only. Final costs may vary after an on-site inspection.</small></p>
 
 </main>
 
@@ -194,13 +196,13 @@ Enter your details to calculate your quote.
 <script>
 function calculate(){
 const height = parseFloat(document.getElementById('storeys').value);
-const sideCount = parseInt(document.getElementById('houseType').value);
 
 const front = parseFloat(document.getElementById('front').value)||0;
 const back = parseFloat(document.getElementById('back').value)||0;
-const side = parseFloat(document.getElementById('side').value)||0;
+const side1 = parseFloat(document.getElementById('side1').value)||0;
+const side2 = parseFloat(document.getElementById('side2').value)||0;
 
-const totalWidth = front + back + (side * sideCount);
+const totalWidth = front + back + side1 + side2;
 const area = totalWidth * height;
 
 const surfaceMultiplier = parseFloat(document.getElementById('surface').value);
