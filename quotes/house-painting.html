@@ -165,7 +165,8 @@ color:#555;
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
-<p id="fungicideNote" class="note">Fungicide treatment is useful if your walls have existing algae, mould, or damp areas. It helps prevent re-growth and ensures a longer-lasting paint finish. If your walls are dry, clean, and free of mould, fungicide may not be necessary. Adds £2.50 per m² if selected.</p>
+<p><em>Fungicide treatment is useful if your walls have existing algae, mould, or damp areas. It helps prevent re-growth and ensures a longer-lasting paint finish. If your walls are dry, clean, and free of mould, fungicide may not be necessary.</em></p>
+<p id="fungicideNote" class="note"></p>
 
 <h2>Do I Need Sealing?</h2>
 <label>Select an option:</label>
@@ -173,7 +174,8 @@ color:#555;
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
-<p id="sealingNote" class="note">Sealing helps smooth porous surfaces and ensures paint adheres properly. If your walls are already smooth and in good condition, sealing may not be required. Adds £3.00 per m² if selected.</p>
+<p><em>Sealing helps smooth porous surfaces and ensures paint adheres properly. If your walls are already smooth and in good condition, sealing may not be required.</em></p>
+<p id="sealingNote" class="note"></p>
 
 <h2>Doors & Windows (Deductions)</h2>
 <label>Windows (£7 off each)</label>
@@ -218,12 +220,12 @@ const fung = document.getElementById('needFungicide').value;
 const seal = document.getElementById('needSealing').value;
 
 document.getElementById('fungicideNote').textContent = fung === 'yes' ?
-'Fungicide treatment is selected. Adds £2.50 per m².' :
-'Fungicide treatment not selected. No extra cost.';
+'This will add £2.50 per m² to your total cost.' :
+'No extra cost for fungicide treatment.';
 
 document.getElementById('sealingNote').textContent = seal === 'yes' ?
-'Sealing is selected. Adds £3.00 per m².' :
-'Sealing not selected. No extra cost.';
+'This will add £3.00 per m² to your total cost.' :
+'No extra cost for sealing.';
 }
 
 function calculate(){
@@ -242,7 +244,7 @@ const baseRate = 12;
 
 let total = area * baseRate * surfaceMultiplier;
 
-// Always apply paint (£5/m²)
+// Paint is compulsory
 total += area * 5;
 
 // Apply fungicide if dropdown yes
@@ -263,7 +265,7 @@ document.getElementById('result').innerHTML =
 document.getElementById('cta').style.display = 'block';
 }
 
-// Initialize notes
+// Initialize notes on load
 updateNotes();
 </script>
 
