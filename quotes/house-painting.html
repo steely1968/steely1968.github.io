@@ -10,7 +10,7 @@
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/house-painting.html">
 
-<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and nearby areas. Measure front, back and side walls to estimate a full exterior house paint.">
+<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and a 6-mile radius. Measure front, back and side walls to estimate a full exterior house paint.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
 
@@ -77,9 +77,23 @@ font-weight:bold;
 margin-top:15px;
 text-align:center;
 }
-.cta .call-btn{
+.cta .call-btn, .cta .color-btn{
 font-size:20px;
 padding:14px 30px;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+gap:8px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+.cta .color-btn{
+background:#27ae60;
+color:#fff;
+}
+.cta .color-btn:hover{
+background:#1f8a4c;
 }
 
 /* FOOTER */
@@ -126,7 +140,7 @@ color:#555;
 
 <h1>Exterior House Painting Quote Calculator</h1>
 
-<p>Measure only the walls that will be painted. If a wall does not exist, enter <strong>0</strong>. This calculator provides a realistic guide price for exterior house painting in Askern DN6 and surrounding areas.</p>
+<p>Measure only the walls that will be painted. If a wall does not exist, enter <strong>0</strong>. This calculator provides a realistic guide price for exterior house painting in Askern DN6 and surrounding areas within a 6-mile radius.</p>
 
 <p><em>In some cases, scaffolding may be required; however, we always aim to avoid it unless absolutely necessary. If you’re unsure, please give us a call.</em></p>
 
@@ -197,9 +211,11 @@ Enter measurements to calculate your quote.
 <p>If this sounds like a realistic price for you, give us a ring!</p>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 
-<!-- New colour range section -->
+<!-- Colour range link with icon -->
 <p style="margin-top:15px;">Write your price down and explore our standard colour range:</p>
-<a href="https://homerepairs4u.com/quotes/colour-range.html" class="call-btn">Visit Colour Range</a>
+<a href="https://homerepairs4u.com/quotes/colour-range.html" class="color-btn">
+<span>🎨</span> Visit Colour Range
+</a>
 </div>
 
 <p><small>This calculator provides a guide price only. Final pricing may vary following an on-site inspection.</small></p>
@@ -271,6 +287,48 @@ document.getElementById('cta').style.display = 'block';
 
 // Initialize notes on load
 updateNotes();
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "How does the exterior painting quote calculator work?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Measure the front, back, and sides of your house in metres. Select the house height, surface type, and optional treatments such as fungicide or sealing. The calculator will estimate a guide price."
+}
+},
+{
+"@type": "Question",
+"name": "Do you operate outside Askern?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "We operate within Askern DN6 and a 6-mile radius, covering surrounding towns and villages for exterior painting services."
+}
+},
+{
+"@type": "Question",
+"name": "Is paint included in the quote?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, the paint finish is compulsory and included at £5 per m²."
+}
+},
+{
+"@type": "Question",
+"name": "Do I need fungicide or sealing?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Fungicide is recommended for walls with algae, mould, or damp spots. Sealing helps paint adhere to porous surfaces. Both are optional and add extra cost if selected."
+}
+}
+]
+}
 </script>
 
 </body>
