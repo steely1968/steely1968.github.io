@@ -122,6 +122,8 @@ text-decoration:none;
 
 <p>Measure only the walls that will be painted. If a wall does not exist, enter <strong>0</strong>. This calculator provides a realistic guide price for exterior house painting in Askern DN6 and surrounding areas.</p>
 
+<p><em>In some cases, scaffolding may be required; however, we always aim to avoid it unless absolutely necessary. If you’re unsure, please give us a call.</em></p>
+
 <h2>House Height</h2>
 <label>Number of storeys</label>
 <select id="storeys">
@@ -225,7 +227,6 @@ total = Math.max(total,0);
 document.getElementById('result').innerHTML =
 `Estimated Exterior Painting Cost:<br>£${total.toFixed(2)}`;
 
-// Show call-to-action button
 document.getElementById('cta').style.display = 'block';
 }
 </script>
