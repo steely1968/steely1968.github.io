@@ -5,12 +5,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>Complete Exterior House Painting Quote Calculator | Askern DN6</title>
+<title>Exterior House Painting Quote Calculator | Askern DN6</title>
 
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/house-painting.html">
 
-<meta name="description" content="Get an instant exterior house painting quote in Askern DN6 and within a six mile radius. Our calculator estimates costs based on size, height, surface type, treatments, doors and windows.">
+<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and nearby areas. Calculates costs based on house type, size, height, surface type, treatments, doors and windows.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
 
@@ -113,12 +113,19 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <!-- MAIN CONTENT -->
 <main>
 
-<h1>Complete Exterior House Painting Quote Calculator</h1>
+<h1>Exterior House Painting Quote Calculator</h1>
 
-<p>This calculator has been created to help homeowners in <strong>Askern DN6 and within a six mile radius</strong> get a fast, realistic estimate for a complete exterior house paint. It removes guesswork by calculating real wall areas, surface types, treatments and deductions.</p>
+<p>This calculator provides a fast, realistic estimate for a <strong>complete exterior house paint</strong> in Askern DN6 and within a six mile radius. Wall areas are calculated accurately by adjusting for property type, height, surface condition, treatments, and deductions.</p>
 
-<h2>House Size & Height</h2>
+<h2>House Type</h2>
+<label>Property type</label>
+<select id="houseType">
+<option value="2">Terraced (2 sides)</option>
+<option value="3">Semi-detached (3 sides)</option>
+<option value="4">Detached (4 sides)</option>
+</select>
 
+<h2>House Height</h2>
 <label>Number of storeys</label>
 <select id="storeys">
 <option value="2">1 Storey (2 metres)</option>
@@ -126,13 +133,14 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <option value="7.5">3 Storeys (7.5 metres)</option>
 </select>
 
-<label>Front of house (metres)</label>
+<h2>House Widths (metres)</h2>
+<label>Front of house</label>
 <input type="number" id="front" min="0" step="0.1">
 
-<label>Back of house (metres)</label>
+<label>Back of house</label>
 <input type="number" id="back" min="0" step="0.1">
 
-<label>Side of house (metres)</label>
+<label>Side of house</label>
 <input type="number" id="side" min="0" step="0.1">
 
 <h2>Surface Type</h2>
@@ -151,7 +159,6 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </div>
 
 <h2>Doors & Windows (Deductions)</h2>
-
 <label>Windows (£7 off each)</label>
 <input type="number" id="windows" min="0">
 
@@ -164,17 +171,16 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <button onclick="calculate()">Calculate Quote</button>
 
 <div class="result" id="result">
-Enter your details to receive an instant estimate.
+Enter your details to calculate your quote.
 </div>
 
-<p><small>This calculator provides a guide price. Final quotations may vary after an on-site inspection.</small></p>
+<p><small>This calculator provides a guide price only. Final quotations may vary following an on-site inspection.</small></p>
 
 </main>
 
 <!-- FOOTER -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
-
 <div class="footer-services">
 <p style="color: white;">Our Services:</p>
 <a href="/services/Exterior-decorating.html">Exterior Decorating</a>
@@ -188,12 +194,14 @@ Enter your details to receive an instant estimate.
 <script>
 function calculate(){
 const height = parseFloat(document.getElementById('storeys').value);
+const sideCount = parseInt(document.getElementById('houseType').value);
+
 const front = parseFloat(document.getElementById('front').value)||0;
 const back = parseFloat(document.getElementById('back').value)||0;
 const side = parseFloat(document.getElementById('side').value)||0;
 
-const perimeter = front + back + (side * 2);
-const area = perimeter * height;
+const totalWidth = front + back + (side * sideCount);
+const area = totalWidth * height;
 
 const surfaceMultiplier = parseFloat(document.getElementById('surface').value);
 const baseRate = 12;
