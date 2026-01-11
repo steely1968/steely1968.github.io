@@ -66,11 +66,6 @@ user-select:none;
 }
 #lightbox-prev{left:20px;}
 #lightbox-next{right:20px;}
-.no-scroll{
-overflow: hidden;
-position: fixed;
-width: 100%;
-}
 </style>
 </head>
 
@@ -225,10 +220,9 @@ currentIndex = index;
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lightbox-img');
 
-// store scroll and disable background scroll
+// lock scroll without wobble
 scrollPosition = window.pageYOffset;
-document.body.style.top = `-${scrollPosition}px`;
-document.body.classList.add('no-scroll');
+document.body.style.overflow = 'hidden';
 
 lbImg.src = images[currentIndex];
 lb.style.display = 'flex';
@@ -238,8 +232,8 @@ function closeLightbox(){
 const lb = document.getElementById('lightbox');
 lb.style.display = 'none';
 document.getElementById('lightbox-img').src = '';
-document.body.classList.remove('no-scroll');
-document.body.style.top = '';
+
+document.body.style.overflow = '';
 window.scrollTo(0, scrollPosition);
 }
 
