@@ -23,9 +23,11 @@ font-weight:bold;border-radius:6px;border:2px solid #000;
 .call-btn:hover,.quote-btn:hover{background:#333;color:#fff;}
 main{max-width:900px;margin:40px auto;padding:0 15px;}
 h1{text-align:center;}
+h2{text-align:center;margin-top:30px;}
 .colour-block{text-align:center;margin-bottom:50px;}
 .colour-block img{
 width:100%;height:auto;border-radius:6px;border:2px solid #ddd;
+cursor:zoom-in;
 }
 .description{max-width:800px;margin:15px auto;text-align:left;}
 .site-footer{
@@ -34,12 +36,30 @@ padding:25px 15px;margin-top:40px;font-size:14px;
 }
 .footer-services{background:#000;padding:20px;text-align:center;margin-top:15px;}
 .footer-services a{color:#fff;margin:0 10px;}
+
+/* LIGHTBOX */
+#lightbox{
+display:none;
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;align-items:center;
+z-index:9999;
+}
+#lightbox img{
+max-width:95%;
+max-height:95%;
+border-radius:6px;
+}
+#lightbox-close{
+position:absolute;
+top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer;
+}
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
 <div style="margin-top:10px;">
@@ -54,13 +74,13 @@ padding:25px 15px;margin-top:40px;font-size:14px;
 
 <!-- ORIGINAL HOUSE -->
 <div class="colour-block">
-<img src="https://steely1968.github.io/images/house-to-paint.webp" alt="Original house before painting" width="800" height="500" loading="eager">
+<img src="https://steely1968.github.io/images/house-to-paint.webp" alt="Original house before painting" width="800" height="500" loading="eager" onclick="openLightbox(this)">
 <p>Original House</p>
 </div>
 
 <!-- CORNISH CREAM -->
 <div class="colour-block">
-<img src="https://steely1968.github.io/images/cornish-cream.webp" alt="Sandtex Cornish Cream exterior paint" width="800" height="500" loading="lazy">
+<img src="https://steely1968.github.io/images/cornish-cream.webp" alt="Sandtex Cornish Cream exterior paint" width="800" height="500" loading="lazy" onclick="openLightbox(this)">
 <h2>Cornish Cream – Sandtex</h2>
 <div class="description">
 Sandtex Cornish Cream is a warm, welcoming shade that gives homes a bright but soft appearance. It works especially well on traditional houses, bungalows and cottages, but also looks clean and modern on newer properties. The creamy tone reflects light nicely, helping homes look larger and fresher without being too stark or white.
@@ -74,7 +94,7 @@ As a Sandtex exterior paint, Cornish Cream offers strong protection against rain
 
 <!-- BITTER CHOCOLATE -->
 <div class="colour-block">
-<img src="https://steely1968.github.io/images/bitter-chocolate.webp" alt="Sandtex Bitter Chocolate exterior paint" width="800" height="500" loading="lazy">
+<img src="https://steely1968.github.io/images/bitter-chocolate.webp" alt="Sandtex Bitter Chocolate exterior paint" width="800" height="500" loading="lazy" onclick="openLightbox(this)">
 <h2>Bitter Chocolate – Sandtex</h2>
 <div class="description">
 Sandtex Bitter Chocolate is a deep, rich brown that gives homes a bold and premium appearance. It is ideal for customers who want something darker and more dramatic than creams or greys. This shade works particularly well on large properties, detached houses and homes with lots of greenery around them.
@@ -88,7 +108,7 @@ As with all Sandtex finishes, Bitter Chocolate is made to handle harsh British w
 
 <!-- VERMONT GREY -->
 <div class="colour-block">
-<img src="https://steely1968.github.io/images/vermont-grey.webp" alt="Sandtex Vermont Grey exterior paint" width="800" height="500" loading="lazy">
+<img src="https://steely1968.github.io/images/vermont-grey.webp" alt="Sandtex Vermont Grey exterior paint" width="800" height="500" loading="lazy" onclick="openLightbox(this)">
 <h2>Vermont Grey – Sandtex</h2>
 <div class="description">
 Sandtex Vermont Grey is a modern, neutral shade that suits almost any style of property. It is ideal for customers who want a clean, smart look without going too dark or too light. This colour works well on render, brick, pebble dash and stone.
@@ -102,7 +122,7 @@ Sandtex Vermont Grey offers excellent weather protection and long life, helping 
 
 <!-- BRICK RED -->
 <div class="colour-block">
-<img src="https://steely1968.github.io/images/brick-red.webp" alt="Sandtex Brick Red exterior paint" width="800" height="500" loading="lazy">
+<img src="https://steely1968.github.io/images/brick-red.webp" alt="Sandtex Brick Red exterior paint" width="800" height="500" loading="lazy" onclick="openLightbox(this)">
 <h2>Brick Red – Sandtex</h2>
 <div class="description">
 Sandtex Brick Red is a strong, traditional colour that stands out and adds character. It is ideal for homes that want a bold, classic look. This shade works very well on rendered or pebbled houses and looks great with white or cream windows and doors.
@@ -116,7 +136,7 @@ As a Sandtex exterior paint, Brick Red is built to handle rain, frost and sunlig
 
 <!-- OLIVE -->
 <div class="colour-block">
-<img src="https://steely1968.github.io/images/olive.webp" alt="Sandtex Olive exterior paint" width="800" height="500" loading="lazy">
+<img src="https://steely1968.github.io/images/olive.webp" alt="Sandtex Olive exterior paint" width="800" height="500" loading="lazy" onclick="openLightbox(this)">
 <h2>Olive – Sandtex</h2>
 <div class="description">
 Sandtex Olive is a natural, earthy colour that blends perfectly with gardens, trees and countryside surroundings. It is a great choice for homes in rural areas or for anyone who wants their property to feel calm and in tune with nature.
@@ -128,18 +148,23 @@ Like all Sandtex paints, Olive is breathable, weather-resistant and long-lasting
 <a href="https://homerepairs4u.com/quotes/house-painting.html" class="quote-btn">Get a Quote</a>
 </div>
 
+<!-- NEW TITLE AND PARAGRAPH BEFORE CHART -->
+<h2>More Sandtex Colour Options</h2>
+<p>
+The chart below shows more Sandtex exterior colours, providing additional choices if the main examples above are not quite right for your home.
+</p>
+
 <!-- SANDTEX CHART -->
 <div class="colour-block">
-<img src="https://steely1968.github.io/images/sandtex-paint-chart-1.webp" alt="Sandtex exterior paint colour chart" width="800" height="500" loading="lazy">
+<img src="https://steely1968.github.io/images/sandtex-paint-chart-1.webp" alt="Sandtex exterior paint colour chart" width="800" height="500" loading="lazy" onclick="openLightbox(this)">
 <p>Sandtex Colour Chart</p>
 </div>
 
 <p style="text-align:center;">Home Repairs 4U proudly serves Askern and surrounding areas within 6 miles.</p>
-
 <a href="tel:07735873694" class="call-btn" style="display:block;text-align:center;">📞 Call Now: 07735 873694</a>
+
 </main>
 
-<!-- FOOTER -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 <div class="footer-services">
@@ -151,6 +176,25 @@ Like all Sandtex paints, Olive is breathable, weather-resistant and long-lasting
 <a href="/services/upvc-restoration.html">uPVC Restoration</a>
 </div>
 </footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+<span id="lightbox-close" onclick="closeLightbox()">×</span>
+<img id="lightbox-img" alt="">
+</div>
+
+<script>
+function openLightbox(img){
+var lb=document.getElementById('lightbox');
+var lbImg=document.getElementById('lightbox-img');
+lbImg.src=img.src;
+lb.style.display='flex';
+}
+function closeLightbox(){
+document.getElementById('lightbox').style.display='none';
+document.getElementById('lightbox-img').src='';
+}
+</script>
 
 </body>
 </html>
