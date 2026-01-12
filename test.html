@@ -1,36 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Postcode Lookup</title>
-</head>
 <body>
 
-<h2>Enter your postcode</h2>
-<input id="postcode">
-<button onclick="check()">Check</button>
-<div id="result"></div>
+<h2>Postcode check</h2>
+<input id="p">
+<button onclick="go()">Check</button>
+<div id="r"></div>
 
 <script>
 const postcodes = {
-"DN60QA": "Works for DN6 0QA",
-"EH101AA": "Works for EH10 1AA"
-"DN4000": "Works for EH10 1AA"
+"DN60QA": "YES – works for DN6 0QA",
+"EH101AA": "YES – works for EH10 1AA"
 };
 
-function normalize(v){
-return v.replace(/\s+/g,"").toUpperCase();
-}
-
-function check(){
-const raw = document.getElementById("postcode").value;
-const key = normalize(raw);
-
-if(postcodes[key]){
-document.getElementById("result").innerText = postcodes[key];
-} else {
-document.getElementById("result").innerText =
-"Not found. Normalized input = " + key;
-}
+function go(){
+let v = document.getElementById("p").value;
+let k = v.replace(/\s+/g,"").toUpperCase();
+document.getElementById("r").innerText =
+postcodes[k] || ("Not found. Normalized = " + k);
 }
 </script>
 
