@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>Postcode Lookup</title>
+</head>
 <body>
 
-<h2>Postcode Lookup</h2>
-<input id="p" placeholder="Enter postcode">
-<button onclick="check()">Check</button>
-<div id="r"></div>
+<h2>Enter your postcode:</h2>
+<input id="postcode" placeholder="e.g., DN6 0QA">
+<button onclick="checkPostcode()">Check</button>
+
+<div id="result" style="margin-top:20px; font-weight:bold;"></div>
 
 <script>
+// Postcode list – make sure keys are uppercase & no spaces
 const postcodes = {
 "DN60QA": "Result for DN6 0QA",
-"EH101AA": "Result for EH10 1AA",
-"LS11AA": "Result for LS1 1AA"
-"DN4000": "WOW for LS1 1AA"
+"EH101AA": "Result for EH10 1AA"
 };
 
-function check(){
-const raw = document.getElementById("p").value;
-const key = raw.replace(/\s+/g, "").toUpperCase();
-
-if(postcodes[key]){
-document.getElementById("r").innerText = postcodes[key];
-} else {
-document.getElementById("r").innerText = "Not found: " + key;
-}
+function checkPostcode() {
+const input = document.getElementById("postcode").value;
+const normalized = input.replace(/\s+/g,'').toUpperCase();
+const result = postcodes[normalized];
+document.getElementById("result").innerText = result || "Postcode not found";
 }
 </script>
 
