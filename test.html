@@ -2,59 +2,35 @@
 <html>
 <head>
 <title>Postcode Lookup</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; }
-h2 { color: #333; }
-input { padding: 10px; width: 250px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
-button { padding: 10px 15px; font-size: 16px; margin-left: 5px; border: none; border-radius: 4px; background-color: #4CAF50; color: white; cursor: pointer; }
-button:hover { background-color: #45a049; }
-#result { margin-top: 20px; font-weight: bold; font-size: 18px; }
-#notfound { color: red; }
-#found { color: green; }
-</style>
 </head>
 <body>
 
-<h2>Enter Your Postcode:</h2>
-<input type="text" id="postcodeInput" placeholder="e.g., DN6 0QA">
-<button onclick="checkPostcode()">Check</button>
-
+<h2>Enter your postcode</h2>
+<input id="postcode">
+<button onclick="check()">Check</button>
 <div id="result"></div>
 
 <script>
-// Replace this example list with your full 2000+ postcode entries
 const postcodes = {
-"DN60QA": "Delivery available in this area",
-"AB123CD": "No delivery in this area",
-"XYZ987": "Special offer for this postcode"
-"DN60QB": "Special offer for this postcodeX"
-// Add your remaining postcodes here in the format:
-// "NORMALIZED_POSTCODE": "Result you want to show"
+"DN60QA": "Works for DN6 0QA",
+"EH101AA": "Works for EH10 1AA"
 };
 
-// Normalize input: remove spaces and make uppercase
-function normalize(input) {
-return input.replace(/\s+/g, '').toUpperCase();
+function normalize(v){
+return v.replace(/\s+/g,"").toUpperCase();
 }
 
-// Lookup function
-function checkPostcode() {
-const input = document.getElementById('postcodeInput').value;
-const normalized = normalize(input);
-const resultDiv = document.getElementById('result');
+function check(){
+const raw = document.getElementById("postcode").value;
+const key = normalize(raw);
 
-if(postcodes[normalized]) {
-resultDiv.innerHTML = `<span id="found">${postcodes[normalized]}</span>`;
+if(postcodes[key]){
+document.getElementById("result").innerText = postcodes[key];
 } else {
-resultDiv.innerHTML = `<span id="notfound">Postcode not found.</span>`;
+document.getElementById("result").innerText =
+"Not found. Normalized input = " + key;
 }
 }
-
-// Allow pressing Enter to trigger lookup
-document.getElementById('postcodeInput')
-.addEventListener('keypress', function(e) {
-if (e.key === 'Enter') checkPostcode();
-});
 </script>
 
 </body>
