@@ -2,22 +2,27 @@
 <html>
 <body>
 
-<h2>Postcode check</h2>
-<input id="p">
-<button onclick="go()">Check</button>
+<h2>Postcode Lookup</h2>
+<input id="p" placeholder="Enter postcode">
+<button onclick="check()">Check</button>
 <div id="r"></div>
 
 <script>
 const postcodes = {
-"DN60QA": "YES – works for DN6 0QA",
-"EH101AA": "YES – works for EH10 1AA"
+"DN60QA": "Result for DN6 0QA",
+"EH101AA": "Result for EH10 1AA",
+"LS11AA": "Result for LS1 1AA"
 };
 
-function go(){
-let v = document.getElementById("p").value;
-let k = v.replace(/\s+/g,"").toUpperCase();
-document.getElementById("r").innerText =
-postcodes[k] || ("Not found. Normalized = " + k);
+function check(){
+const raw = document.getElementById("p").value;
+const key = raw.replace(/\s+/g, "").toUpperCase();
+
+if(postcodes[key]){
+document.getElementById("r").innerText = postcodes[key];
+} else {
+document.getElementById("r").innerText = "Not found: " + key;
+}
 }
 </script>
 
