@@ -2,17 +2,12 @@
 
 <script>
 (function(){
-const postcodes = {
-"DN60QA": "Delivery available in DN6 0QA",
-"EH101AA": "No delivery in EH10 1AA",
-"LS11AA": "Service available in LS1 1AA",
-"DN4000": "Service available in DN4 000"
-};
+const servedAreas = ["DN1","DN2","DN3","DN4","DN5","DN6"]; // all DN areas you serve
 
 const box = document.getElementById("postcode-widget");
 box.style.fontFamily = "Arial, sans-serif";
 box.style.maxWidth = "400px";
-box.style.padding = "15px";
+box.style.padding = "20px";
 box.style.border = "1px solid #ddd";
 box.style.borderRadius = "6px";
 box.style.background = "#fafafa";
@@ -22,12 +17,12 @@ title.textContent = "Check Your Postcode";
 title.style.marginTop = "0";
 
 const input = document.createElement("input");
-input.placeholder = "Enter postcode";
+input.placeholder = "Enter your postcode";
 input.style.padding = "10px";
-input.style.fontSize = "16px";
 input.style.width = "100%";
 input.style.boxSizing = "border-box";
 input.style.marginBottom = "10px";
+input.style.fontSize = "16px";
 
 const button = document.createElement("button");
 button.type = "button";
@@ -40,17 +35,12 @@ button.style.color = "#fff";
 button.style.border = "2px solid #000";
 button.style.borderRadius = "4px";
 
-button.onmouseover = () => {
-button.style.background = "#fff";
-button.style.color = "#000";
-};
-button.onmouseout = () => {
-button.style.background = "#000";
-button.style.color = "#fff";
-};
+// Hover effect
+button.onmouseover = () => { button.style.background="#fff"; button.style.color="#000"; };
+button.onmouseout = () => { button.style.background="#000"; button.style.color="#fff"; };
 
 const result = document.createElement("div");
-result.style.marginTop = "12px";
+result.style.marginTop = "15px";
 result.style.fontWeight = "bold";
 
 box.appendChild(title);
@@ -58,17 +48,19 @@ box.appendChild(input);
 box.appendChild(button);
 box.appendChild(result);
 
-function normalize(v){
-return v.replace(/\s+/g,"").toUpperCase();
+function normalize(str){
+return str.replace(/\s+/g,"").toUpperCase();
 }
 
 function check(){
 const key = normalize(input.value);
-if(postcodes[key]){
-result.textContent = postcodes[key];
+const positive = servedAreas.some(area => key.startsWith(area));
+
+if(positive){
+result.textContent = "Yes — we cover this area";
 result.style.color = "green";
 } else {
-result.textContent = "Postcode not found: " + key;
+result.textContent = "Sorry — we do not cover this area";
 result.style.color = "red";
 }
 }
