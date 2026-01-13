@@ -10,18 +10,50 @@ const postcodes = {
 };
 
 const box = document.getElementById("postcode-widget");
+box.style.fontFamily = "Arial, sans-serif";
+box.style.maxWidth = "400px";
+box.style.padding = "15px";
+box.style.border = "1px solid #ddd";
+box.style.borderRadius = "6px";
+box.style.background = "#fafafa";
+
+const title = document.createElement("h3");
+title.textContent = "Check Your Postcode";
+title.style.marginTop = "0";
 
 const input = document.createElement("input");
 input.placeholder = "Enter postcode";
+input.style.padding = "10px";
+input.style.fontSize = "16px";
+input.style.width = "100%";
+input.style.boxSizing = "border-box";
+input.style.marginBottom = "10px";
 
 const button = document.createElement("button");
-button.type = "button"; // stops page refresh
+button.type = "button";
 button.textContent = "Check";
+button.style.padding = "10px 15px";
+button.style.fontSize = "16px";
+button.style.cursor = "pointer";
+button.style.background = "#000";
+button.style.color = "#fff";
+button.style.border = "2px solid #000";
+button.style.borderRadius = "4px";
+
+button.onmouseover = () => {
+button.style.background = "#fff";
+button.style.color = "#000";
+};
+button.onmouseout = () => {
+button.style.background = "#000";
+button.style.color = "#fff";
+};
 
 const result = document.createElement("div");
-result.style.marginTop = "10px";
+result.style.marginTop = "12px";
 result.style.fontWeight = "bold";
 
+box.appendChild(title);
 box.appendChild(input);
 box.appendChild(button);
 box.appendChild(result);
@@ -34,8 +66,10 @@ function check(){
 const key = normalize(input.value);
 if(postcodes[key]){
 result.textContent = postcodes[key];
+result.style.color = "green";
 } else {
 result.textContent = "Postcode not found: " + key;
+result.style.color = "red";
 }
 }
 
