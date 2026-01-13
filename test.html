@@ -1,31 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Postcode Lookup</title>
-</head>
-<body>
-
-<h2>Enter your postcode:</h2>
-<input id="postcode" placeholder="e.g., DN6 0QA">
-<button onclick="checkPostcode()">Check</button>
-
-<div id="result" style="margin-top:20px; font-weight:bold;"></div>
+<!-- Begin Postcode Lookup Widget -->
+<div id="postcode-widget"></div>
 
 <script>
-// Postcode list – make sure keys are uppercase & no spaces
+(function(){
+// Your postcode list
 const postcodes = {
-"DN60QA": "Result for DN6 0QA",
-"EH101AA": "Result for EH10 1AA"
+"DN60QA": "Delivery available in DN6 0QA",
+"EH101AA": "No delivery in EH10 1AA",
+"LS11AA": "Service available in LS1 1AA"
+// Add your 2000+ postcodes here
 };
 
-function checkPostcode() {
-const input = document.getElementById("postcode").value;
-const normalized = input.replace(/\s+/g,'').toUpperCase();
-const result = postcodes[normalized];
-document.getElementById("result").innerText = result || "Postcode not found";
-}
-</script>
+// Create the elements dynamically
+const container = document.getElementById('postcode-widget');
+const input = document.createElement('input');
+input.placeholder = 'Enter postcode';
+input.id = 'postcode-input';
+const button = document.createElement('button');
+button.innerText = 'Check';
+const result = document.createElement('div');
+result.id = 'postcode-result';
+result.style.marginTop = '10px';
+result.style.fontWeight = 'bold';
 
-</body>
-</html>
+container.appendChild(input);
+container.appendChild(button);
+container.appendChild(result);
+
+// Normalize input
+function normalize(str) {
+return str.replace(/\s+/g,'').toUpperCase();
+}
+
+function checkPostcode() {
+const key = normalize(input.value);
+if(postcodes[key]){
+result.innerHTML = `<span style="color:green">${postcodes[key]}</span>`;
+} else {
+result.innerHTML = `<span style="color:red">Postcode not found: ${key}</span>`;
+}
+}
+
+button.addEventListener('click', checkPostcode);
+input.addEventListener('keypress', function(e){
+if(e.key === 'Enter') checkPostcode();
+});
+})();
+</script>
+<!-- End Postcode Lookup Widget -->
