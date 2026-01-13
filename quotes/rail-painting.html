@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>Exterior House Painting Quote Calculator | Askern DN6</title>
+<title>Metal Fence & Gate Painting Quote | Askern DN6</title>
 <link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/house-painting.html">
-<meta name="description" content="Instant exterior house painting quote calculator for Askern DN6 and a 6-mile radius. Measure front, back and side walls to estimate a full exterior house paint.">
+<link rel="canonical" href="https://homerepairs4u.com/fence-gate-painting.html">
+<meta name="description" content="Get an instant quote for metal fence and gate painting in Askern DN6 and nearby areas. Enter your fence and gate sizes in centimetres for a realistic guide price.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
 
@@ -52,7 +52,7 @@ display:block;
 margin-top:12px;
 font-weight:bold;
 }
-input,select{
+input{
 width:100%;
 padding:10px;
 margin-top:5px;
@@ -121,13 +121,6 @@ color:white;
 margin:0 10px;
 text-decoration:none;
 }
-
-.note{
-font-style:italic;
-font-size:0.95em;
-margin-top:5px;
-color:#333;
-}
 </style>
 </head>
 
@@ -144,69 +137,41 @@ color:#333;
 
 <main>
 
-<h1>Exterior House Painting Quote Calculator</h1>
+<h1>Metal Fence & Gate Painting in Askern DN6</h1>
 
-<p>Measure only the walls that will be painted. If a wall does not exist, enter <strong>0</strong>. This calculator provides a realistic guide price for exterior house painting in Askern DN6 and surrounding areas within a 6-mile radius.</p>
+<p>Fresh paint on your metal fence or gate not only improves how your home looks, it also protects the metal from rust, weather damage, and long-term wear. Our professional metal painting service in Askern DN6 gives your fence or gate a clean, smart finish that lasts.</p>
 
-<p><em>In some cases, scaffolding may be required; however, we always aim to avoid it unless absolutely necessary. If you’re unsure, please give us a call.</em></p>
+<p>We work on all types of metal fencing and gates including wrought iron, steel, tubular fencing, security fencing, and decorative railings. Whether it’s a small garden gate or a full boundary fence, we prepare, prime, and paint it properly for a durable result.</p>
 
-<h2>House Height</h2>
-<label for="storeys">Number of storeys</label>
-<select id="storeys">
-<option value="2">1 Storey (2 metres)</option>
-<option value="4">2 Storeys (4 metres)</option>
-<option value="6">3 Storeys (6 metres)</option>
-</select>
+<p>This page includes a simple calculator to give you an instant guide price. It’s designed to be easy to use and realistic, so you know roughly what to expect before calling us.</p>
 
-<h2>Wall Measurements (metres)</h2>
-<label for="front">Front of house</label>
-<input type="number" id="front" min="0" step="0.1">
+<h2>How Our Fence & Gate Painting Works</h2>
 
-<label for="back">Back of house</label>
-<input type="number" id="back" min="0" step="0.1">
+<p>Every job starts with proper preparation. We remove loose paint, rust, and dirt, then treat the metal before applying high-quality metal paint designed to resist rust and fading.</p>
 
-<label for="side1">Side wall 1</label>
-<input type="number" id="side1" min="0" step="0.1">
+<p>Good preparation is the key to a long-lasting finish. Rushing this stage is why many paint jobs fail early – we don’t cut corners.</p>
 
-<label for="side2">Side wall 2</label>
-<input type="number" id="side2" min="0" step="0.1">
+<h2>Fence & Gate Painting Quote Calculator</h2>
 
-<h2>Surface Type</h2>
-<label for="surface">Select surface type</label>
-<select id="surface">
-<option value="1.0">Smooth render or masonry</option>
-<option value="1.15">Porous render (+15%)</option>
-<option value="1.30">Pebble dash (+30%)</option>
-<option value="1.45">Stone (+45%)</option>
-</select>
+<p>Use the calculator below to get a guide price for painting your metal fence and/or gate in Askern and nearby areas within 6 miles.</p>
 
-<h2>Do I Need Fungicide Treatment?</h2>
-<label for="needFungicide">Choose option</label>
-<select id="needFungicide" onchange="updateNotes()">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-<p><em>Fungicide helps remove algae and mould and stops it returning. If your walls are clean and dry, it may not be needed.</em></p>
-<p id="fungicideNote" class="note"></p>
+<p>Measure the total length and height of your fence and gate in <strong>centimetres</strong>. If you don’t have a fence or gate, just enter <strong>0</strong>.</p>
 
-<h2>Do I Need Sealing?</h2>
-<label for="needSealing">Choose option</label>
-<select id="needSealing" onchange="updateNotes()">
-<option value="yes">Yes</option>
-<option value="no">No</option>
-</select>
-<p><em>Sealing helps paint stick to porous surfaces. Smooth walls may not need sealing.</em></p>
-<p id="sealingNote" class="note"></p>
+<p><em>This is a guide price. Very rusty metal, awkward access, or special finishes may slightly affect the final quote.</em></p>
 
-<h2>Doors & Windows (Deductions)</h2>
-<label for="windows">Number of windows (£7 off each)</label>
-<input type="number" id="windows" min="0">
+<h2>Fence Measurements (centimetres)</h2>
+<label for="fenceLength">Fence length (cm)</label>
+<input type="number" id="fenceLength" min="0">
 
-<label for="doors">Number of doors (£10 off each)</label>
-<input type="number" id="doors" min="0">
+<label for="fenceHeight">Fence height (cm)</label>
+<input type="number" id="fenceHeight" min="0">
 
-<label for="patio">Number of patio doors (£20 off each)</label>
-<input type="number" id="patio" min="0">
+<h2>Gate Measurements (centimetres)</h2>
+<label for="gateLength">Gate width (cm)</label>
+<input type="number" id="gateLength" min="0">
+
+<label for="gateHeight">Gate height (cm)</label>
+<input type="number" id="gateHeight" min="0">
 
 <button type="button" onclick="calculate()">Calculate Quote</button>
 
@@ -237,50 +202,28 @@ Enter measurements to calculate your quote.
 </footer>
 
 <script>
-function updateNotes(){
-const fung = document.getElementById('needFungicide').value;
-const seal = document.getElementById('needSealing').value;
-
-document.getElementById('fungicideNote').textContent =
-fung === 'yes' ? 'Adds £2.50 per m².' : 'No extra cost.';
-
-document.getElementById('sealingNote').textContent =
-seal === 'yes' ? 'Adds £3.00 per m².' : 'No extra cost.';
-}
-
 function calculate(){
-const height = parseFloat(document.getElementById('storeys').value);
-const front = parseFloat(document.getElementById('front').value)||0;
-const back = parseFloat(document.getElementById('back').value)||0;
-const side1 = parseFloat(document.getElementById('side1').value)||0;
-const side2 = parseFloat(document.getElementById('side2').value)||0;
+const fenceLength = parseFloat(document.getElementById('fenceLength').value)||0;
+const fenceHeight = parseFloat(document.getElementById('fenceHeight').value)||0;
+const gateLength = parseFloat(document.getElementById('gateLength').value)||0;
+const gateHeight = parseFloat(document.getElementById('gateHeight').value)||0;
 
-const totalWidth = front + back + side1 + side2;
-const area = totalWidth * height;
+// Convert cm to metres
+const fenceArea = (fenceLength/100) * (fenceHeight/100);
+const gateArea = (gateLength/100) * (gateHeight/100);
 
-const surfaceMultiplier = parseFloat(document.getElementById('surface').value);
-const baseRate = 12;
-
-let total = area * baseRate * surfaceMultiplier;
-
-// Paint compulsory
-total += area * 2;
-
-if(document.getElementById('needFungicide').value === 'yes'){ total += area * 2.5; }
-if(document.getElementById('needSealing').value === 'yes'){ total += area * 3; }
-
-total -= (parseInt(document.getElementById('windows').value)||0) * 7;
-total -= (parseInt(document.getElementById('doors').value)||0) * 10;
-total -= (parseInt(document.getElementById('patio').value)||0) * 20;
+const totalArea = fenceArea + gateArea;
+const ratePerSqM = 12;
+let total = totalArea * ratePerSqM;
 
 total = Math.max(total,0);
 
 document.getElementById('result').innerHTML =
-`Estimated Exterior Painting Cost:<br>£${total.toFixed(2)}`;
+`Estimated Fence & Gate Painting Cost:<br>£${total.toFixed(2)}<br>
+<small>Total area: ${totalArea.toFixed(2)} m² at £12 per m²</small>`;
 
 document.getElementById('cta').style.display = 'block';
 }
-updateNotes();
 </script>
 
 </body>
