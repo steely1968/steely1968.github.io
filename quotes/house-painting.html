@@ -259,12 +259,12 @@ const totalWidth = front + back + side1 + side2;
 const area = totalWidth * height;
 
 const surfaceMultiplier = parseFloat(document.getElementById('surface').value);
-const baseRate = 12;
+const baseRate = 8;
 
 let total = area * baseRate * surfaceMultiplier;
 
 // Paint compulsory
-total += area * 2;
+total += area * 5;
 
 if(document.getElementById('needFungicide').value === 'yes'){ total += area * 2.5; }
 if(document.getElementById('needSealing').value === 'yes'){ total += area * 3; }
