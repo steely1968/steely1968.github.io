@@ -6,7 +6,7 @@
 
 <title>Metal Fence & Gate Painting Quote | Askern DN6</title>
 <link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/rail-painting.html">
+<link rel="canonical" href="https://homerepairs.com/rail-painting.html">
 <meta name="description" content="Get an instant quote for metal fence and gate painting in Askern DN6 and nearby areas. Enter your fence and gate sizes in centimetres for a realistic guide price.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
@@ -46,7 +46,7 @@ font-family:Arial,sans-serif;
 line-height:1.6;
 color:#000;
 }
-h1,h2{color:#000;}
+h1,h2,h3{color:#000;}
 label{
 display:block;
 margin-top:12px;
@@ -180,11 +180,9 @@ Enter measurements to calculate your quote.
 </div>
 
 <div id="cta" class="cta" style="display:none;">
+<h3>Your Estimated Price</h3>
 <p>If this sounds like a realistic price for you, give us a ring!</p>
 <a href="tel:07735873694">📞 Call Now: 07735 873694</a>
-
-<p style="margin-top:15px;">Write your price down and explore our standard colour range:</p>
-<a href="https://homerepairs4u.com/quotes/colour-range.html">Visit Colour Range</a>
 </div>
 
 </main>
@@ -213,14 +211,14 @@ const fenceArea = (fenceLength/100) * (fenceHeight/100);
 const gateArea = (gateLength/100) * (gateHeight/100);
 
 const totalArea = fenceArea + gateArea;
-const ratePerSqM = 12;
+const ratePerSqM = 24;
 let total = totalArea * ratePerSqM;
 
 total = Math.max(total,0);
 
 document.getElementById('result').innerHTML =
 `Estimated Fence & Gate Painting Cost:<br>£${total.toFixed(2)}<br>
-<small>Total area: ${totalArea.toFixed(2)} m² at £12 per m²</small>`;
+<small>Total area: ${totalArea.toFixed(2)} m² at £24 per m²</small>`;
 
 document.getElementById('cta').style.display = 'block';
 }
