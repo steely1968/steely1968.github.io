@@ -153,13 +153,13 @@ const fenceArea = fenceLength * fenceHeight;
 const gateArea = gateLength * gateHeight;
 const totalArea = (fenceArea + gateArea) * bothSides;
 
-const rate = 24;
+const rate = 9;
 let total = totalArea * rate;
 total = Math.max(total,0);
 
 document.getElementById('result').innerHTML =
 `Estimated Wood Fence & Gate Cost:<br>£${total.toFixed(2)}<br>
-<small>${totalArea.toFixed(2)} m² at £24 per m²</small>`;
+<small>${totalArea.toFixed(2)} m² Paint or stain not included in price</small>`;
 
 document.getElementById('cta').style.display = 'block';
 }
