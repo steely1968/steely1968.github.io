@@ -31,6 +31,7 @@ button:hover{background:#fff;color:#000;}
 .footer-services a{color:white;margin:0 10px;text-decoration:none;}
 </style>
 
+<!-- Local Business Schema -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
@@ -42,6 +43,39 @@ button:hover{background:#fff;color:#000;}
 "address":{"@type":"PostalAddress","addressLocality":"Askern","postalCode":"DN6","addressCountry":"GB"}
 }
 </script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{"@type":"Question","name":"Is painting or staining better for wood?","acceptedAnswer":{"@type":"Answer","text":"Paint gives a solid colour and strong protection. Stain soaks into the wood and shows the grain. Both protect the timber when applied properly."}},
+{"@type":"Question","name":"How long does fence paint or stain last?","acceptedAnswer":{"@type":"Answer","text":"Most finishes last several years depending on weather exposure and preparation. Proper cleaning and drying makes a big difference."}},
+{"@type":"Question","name":"Do you clean fences before painting or staining?","acceptedAnswer":{"@type":"Answer","text":"Yes. Dirt, algae, and loose coatings are removed first so the new finish sticks properly."}},
+{"@type":"Question","name":"Is the calculator price final?","acceptedAnswer":{"@type":"Answer","text":"The calculator gives a realistic guide price. Very rough wood, heavy old coatings, or awkward access may slightly change the final quote."}},
+{"@type":"Question","name":"How far will you travel?","acceptedAnswer":{"@type":"Answer","text":"We mainly work within around six miles of Askern DN6. If you are just outside this area, it’s still worth calling to check."}},
+{"@type":"Question","name":"Do you offer free quotes?","acceptedAnswer":{"@type":"Answer","text":"Yes. All quotes are free and come with no obligation."}}
+]
+}
+</script>
+
+<!-- Service Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"Service",
+"name":"Wood Fence and Gate Painting or Staining",
+"description":"Professional painting or staining of wooden fences and gates in and around Askern DN6.",
+"provider":{
+"@type":"LocalBusiness",
+"name":"Home Repairs 4U",
+"telephone":"07735873694"
+},
+"areaServed":"Within approximately 6 miles of Askern DN6"
+}
+</script>
+
 </head>
 
 <body>
@@ -66,66 +100,59 @@ button:hover{background:#fff;color:#000;}
 <p>This page includes a simple calculator to give you an instant guide price. It’s designed to be easy to use and realistic, so you know roughly what to expect before calling us.</p>
 
 <h2>Our Service Area</h2>
-<p>We are based in Askern DN6 and provide wood fence and gate painting or staining across the surrounding area within roughly six miles. This includes residential streets, villages, farms, and rural properties in every direction from Askern. If you are near Askern and can reach us within a short drive, we can usually cover your job.</p>
+<p>We are based in Askern DN6 and provide wood fence and gate painting or staining across the surrounding area within roughly six miles. This includes residential streets, villages, farms, and rural properties in every direction from Askern.</p>
 
 <h2>How Our Wood Fence & Gate Painting or Staining Works</h2>
 <p>Every job starts with preparation. We clean the wood, remove loose paint or stain, and allow it to dry properly before applying new coatings.</p>
-<p>Good preparation is the key to a long-lasting finish. Skipping this step is why many fence paint and stain jobs fail early – we make sure it’s done right.</p>
+<p>Good preparation is the key to a long-lasting finish.</p>
 
 <h2>Wood Fence & Gate Quote Calculator</h2>
-<p>Use the calculator below to get a guide price for painting or staining your wooden fence and/or gate in Askern and within roughly six miles of the area.</p>
-<p>Measure the total length and height of your fence and gate in <strong>metres</strong>. If you don’t have a fence or gate, just enter <strong>0</strong>.</p>
-<p><em>This is a guide price. Very rough timber, heavy old coatings, or difficult access may slightly affect the final quote.</em></p>
+<p>Measure fence and gate in <strong>metres</strong>. Enter 0 if not needed.</p>
 
-<h2>Fence Measurements (metres)</h2>
-<label for="fenceLength">Fence length (m)</label>
-<input type="number" id="fenceLength" min="0" step="0.1">
-<label for="fenceHeight">Fence height (m)</label>
-<input type="number" id="fenceHeight" min="0" step="0.1">
+<label>Fence length (m)</label>
+<input id="fenceLength" type="number" step="0.1">
+<label>Fence height (m)</label>
+<input id="fenceHeight" type="number" step="0.1">
 
-<h2>Gate Measurements (metres)</h2>
-<label for="gateLength">Gate width (m)</label>
-<input type="number" id="gateLength" min="0" step="0.1">
-<label for="gateHeight">Gate height (m)</label>
-<input type="number" id="gateHeight" min="0" step="0.1">
+<label>Gate width (m)</label>
+<input id="gateLength" type="number" step="0.1">
+<label>Gate height (m)</label>
+<input id="gateHeight" type="number" step="0.1">
 
-<h2>Painting Both Sides?</h2>
-<label for="bothSides">Will the fence be painted or stained on both sides?</label>
+<label>Paint both sides?</label>
 <select id="bothSides">
-<option value="1">No – one side only</option>
-<option value="2">Yes – both sides</option>
+<option value="1">One side</option>
+<option value="2">Both sides</option>
 </select>
-<p><em>Painting both sides roughly doubles the amount of work and materials.</em></p>
 
-<button type="button" onclick="calculate()">Calculate Quote</button>
+<button onclick="calculate()">Calculate Quote</button>
 
-<div class="result" id="result">Enter measurements to calculate your quote.</div>
+<div id="result" class="result">Enter measurements to calculate your quote.</div>
 
 <div id="cta" class="cta" style="display:none;">
 <h3>Your Estimated Price</h3>
-<p>If this sounds like a realistic price for you, give us a ring!</p>
+<p>If this sounds realistic, give us a ring!</p>
 <a href="tel:07735873694">📞 Call Now: 07735 873694</a>
 </div>
 
 <h2>Frequently Asked Questions</h2>
-
 <h3>Is painting or staining better for wood?</h3>
-<p>Paint gives a solid colour and strong protection. Stain soaks into the wood and shows the grain. Both protect the timber when applied properly.</p>
+<p>Paint gives a solid colour and strong protection. Stain soaks into the wood and shows the grain.</p>
 
 <h3>How long does fence paint or stain last?</h3>
-<p>Most finishes last several years depending on weather exposure and preparation. Proper cleaning and drying makes a big difference.</p>
+<p>Most finishes last several years depending on weather and preparation.</p>
 
-<h3>Do you clean fences before painting or staining?</h3>
-<p>Yes. Dirt, algae, and loose coatings are removed first so the new finish sticks properly.</p>
+<h3>Do you clean fences first?</h3>
+<p>Yes. Dirt, algae and loose coatings are removed.</p>
 
-<h3>Is the calculator price final?</h3>
-<p>The calculator gives a realistic guide price. Very rough wood, heavy old coatings, or awkward access may slightly change the final quote.</p>
+<h3>Is the calculator final?</h3>
+<p>It’s a guide price. Some jobs may vary.</p>
 
-<h3>How far will you travel?</h3>
-<p>We mainly work within around six miles of Askern DN6. If you are just outside this area, it’s still worth calling to check.</p>
+<h3>How far do you travel?</h3>
+<p>About six miles around Askern DN6.</p>
 
 <h3>Do you offer free quotes?</h3>
-<p>Yes. All quotes are free and come with no obligation.</p>
+<p>Yes, always free.</p>
 
 </main>
 
@@ -143,25 +170,15 @@ button:hover{background:#fff;color:#000;}
 
 <script>
 function calculate(){
-const fenceLength = parseFloat(document.getElementById('fenceLength').value)||0;
-const fenceHeight = parseFloat(document.getElementById('fenceHeight').value)||0;
-const gateLength = parseFloat(document.getElementById('gateLength').value)||0;
-const gateHeight = parseFloat(document.getElementById('gateHeight').value)||0;
-const bothSides = parseFloat(document.getElementById('bothSides').value)||1;
-
-const fenceArea = fenceLength * fenceHeight;
-const gateArea = gateLength * gateHeight;
-const totalArea = (fenceArea + gateArea) * bothSides;
-
-const rate = 9;
-let total = totalArea * rate;
-total = Math.max(total,0);
-
-document.getElementById('result').innerHTML =
-`Estimated Wood Fence & Gate Cost:<br>£${total.toFixed(2)}<br>
-<small>${totalArea.toFixed(2)} m² Paint or stain not included in price</small>`;
-
-document.getElementById('cta').style.display = 'block';
+const fl = parseFloat(fenceLength.value)||0;
+const fh = parseFloat(fenceHeight.value)||0;
+const gl = parseFloat(gateLength.value)||0;
+const gh = parseFloat(gateHeight.value)||0;
+const sides = parseFloat(bothSides.value)||1;
+const area = (fl*fh + gl*gh) * sides;
+const total = area * 24;
+result.innerHTML = "Estimated cost: £" + total.toFixed(2);
+cta.style.display="block";
 }
 </script>
 
