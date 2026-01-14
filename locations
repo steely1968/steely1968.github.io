@@ -1,1 +1,360 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
+<title>Locations Covered by Home Repairs 4U | Askern DN6 and Surrounding Areas</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="canonical" href="https://homerepairs4u.com/locations.html">
+<meta name="description" content="Home Repairs 4U provides professional painting, decorating, fence and gate painting or staining, and home repair services across DN1 to DN6 postcode areas, including all surrounding villages within roughly six miles of Askern DN6. Free no-obligation quotes.">
+
+<link rel="preload" as="image" href="/images/logo.webp" />
+
+<style>
+/* HEADER */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #000;
+}
+.logo{max-height:90px;width:auto;}
+.call-btn{
+display:inline-block;
+margin-top:18px;
+padding:14px 28px;
+background:#000;
+color:#fff;
+font-size:19px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+border:2px solid #000;
+}
+.call-btn:hover{
+background:#fff;
+color:#000;
+}
+
+/* MAIN */
+main{
+max-width:950px;
+margin:40px auto;
+padding:0 15px;
+font-family:Arial,sans-serif;
+line-height:1.6;
+color:#000;
+}
+h1,h2,h3{color:#000;}
+ul{margin:10px 0 20px 20px;}
+p{margin:10px 0;}
+a{color:#000;text-decoration:underline;}
+
+/* FAQ Accordion */
+.faq-item{
+border-bottom:1px solid #ddd;
+margin-bottom:10px;
+}
+.faq-question{
+cursor:pointer;
+padding:12px;
+background:#f0f0f0;
+border-radius:4px;
+font-weight:bold;
+}
+.faq-answer{
+padding:12px;
+display:none;
+background:#fafafa;
+border-radius:4px;
+margin-top:5px;
+}
+.faq-question:hover{
+background:#e0e0e0;
+}
+
+/* MAP */
+.map-container{
+width:100%;
+height:400px;
+margin-bottom:40px;
+border:2px solid #000;
+border-radius:6px;
+}
+
+/* Free Quote Callout */
+.quote-callout{
+border:2px solid #000;
+padding:12px 15px;
+border-radius:6px;
+background:#f9f9f9;
+font-weight:bold;
+margin:20px 0;
+text-align:center;
+}
+
+/* FOOTER */
+.site-footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+font-size:14px;
+}
+.footer-services{
+background:black;
+padding:20px;
+margin-top:15px;
+}
+.footer-services a{
+color:white;
+margin:0 10px;
+text-decoration:none;
+}
+
+/* Highlighted Services Boxes */
+.service-box{
+border:2px solid #000;
+padding:15px;
+border-radius:6px;
+margin-bottom:15px;
+background:#f9f9f9;
+font-weight:bold;
+}
+</style>
+
+<!-- LocalBusiness Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":"Home Repairs 4U",
+"telephone":"07735873694",
+"description":"Home Repairs 4U provides professional painting, decorating, fence and gate painting or staining, and home repair services across DN1 to DN6 postcode areas, including all surrounding villages within roughly six miles of Askern DN6.",
+"address":{
+"@type": "PostalAddress",
+"streetAddress": "35 Airstone Road",
+"addressLocality": "Askern",
+"addressRegion": "South Yorkshire",
+"postalCode": "DN6 0QA",
+"addressCountry": "GB"
+},
+"areaServed":[
+"Askern", "Blyth", "Skellow", "Womersley", "Harlington", "Hickleton",
+"Thorpe Hesley", "Brodsworth", "Barnby Dun", "Balby", "Bentley", "Conisbrough",
+"Edlington", "Finningley", "Mexborough", "Rossington", "New Rossington",
+"Woodlands", "Sprotbrough", "Warmsworth", "Carcroft", "Old Edlington",
+"And all surrounding villages within roughly six miles of Askern DN6"
+]
+}
+</script>
+
+<!-- GeoCoordinates Schema -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "Place",
+"name": "Home Repairs 4U",
+"geo": {
+"@type": "GeoCoordinates",
+"latitude": 53.6020,
+"longitude": -1.0390
+},
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "35 Airstone Road",
+"addressLocality": "Askern",
+"addressRegion": "South Yorkshire",
+"postalCode": "DN6 0QA",
+"addressCountry": "GB"
+}
+}
+</script>
+
+<!-- Service Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"Service",
+"name":"Painting, Decorating & Home Repairs",
+"description":"Home Repairs 4U offers professional exterior and interior painting, fence and gate painting or staining, garden maintenance, and general home repair services across DN1-DN6 and surrounding villages.",
+"provider":{
+"@type":"LocalBusiness",
+"name":"Home Repairs 4U",
+"telephone":"07735873694"
+},
+"areaServed":"Within approximately 6 miles of Askern DN6"
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We provide services across DN1 to DN6 postcode areas and all surrounding villages within approximately six miles of Askern DN6. Call 07735 873694 to check your address."}},
+{"@type":"Question","name":"Do you offer free quotes?","acceptedAnswer":{"@type":"Answer","text":"Yes. All quotes are free and come with no obligation. Schedule your visit today!"}},
+{"@type":"Question","name":"What services do you provide?","acceptedAnswer":{"@type":"Answer","text":"We offer exterior and interior painting, decorating, fence and gate painting or staining, garden maintenance, and general home repairs. Check our House Painting Calculator for instant quotes."}},
+{"@type":"Question","name":"Can you paint fences and gates both sides?","acceptedAnswer":{"@type":"Answer","text":"Yes. We can paint or stain both sides for a professional finish and long-lasting protection."}},
+{"@type":"Question","name":"How long will the work take?","acceptedAnswer":{"@type":"Answer","text":"Duration depends on property size and work type across DN1–DN6 and nearby villages. We provide an estimated timeframe during your free quote visit."}},
+{"@type":"Question","name":"Do you provide advice on paint types and finishes?","acceptedAnswer":{"@type":"Answer","text":"Yes, we provide professional advice on paint types, finishes, and materials suitable for your property and fence or gate. Call 07735 873694 for a consultation."}}
+]
+}
+</script>
+
+</head>
+
+<body>
+
+<header>
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
+<div style="margin-top:10px;">
+<a href="https://steely1968.github.io/" style="font-size:20px;color:#000;text-decoration:none;font-weight:600;">Home</a>
+</div>
+<br>
+<a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
+</header>
+
+<main>
+
+<h1>Locations Covered by Home Repairs 4U</h1>
+
+<p>Home Repairs 4U provides professional painting, decorating, fence and gate painting or staining, and home repair services across Askern DN6 and the wider DN postcode area, covering DN1 to DN6 and all surrounding villages within roughly six miles. We deliver reliable, high-quality services for residential properties, gardens, fences, gates, and exterior painting or staining.</p>
+
+<p>Our team visits your property to provide a free, no-obligation quote, offering expert advice on materials, finishes, and colour options to protect and enhance your home. 📞 <a href="tel:07735873694" title="Call Home Repairs 4U now">Call now</a> to schedule your visit.</p>
+
+<div class="quote-callout">
+📞 Call 07735 873694 today for a free no-obligation quote within six miles of Askern DN6!
+</div>
+
+<h2>Postcode Areas We Cover</h2>
+<ul>
+<li><a id="dn1"></a>DN1 – Doncaster town centre, Bentley, Balby, Hyde Park</li>
+<li><a id="dn2"></a>DN2 – Sprotbrough, Warmsworth, Intake, Hexthorpe</li>
+<li><a id="dn3"></a>DN3 – Rossington, Bessacarr, Wheatley, Edenthorpe</li>
+<li><a id="dn4"></a>DN4 – Finningley, New Edlington, Old Edlington, Woodlands</li>
+<li><a id="dn5"></a>DN5 – Askern, Womersley, Blyth, Skellow</li>
+<li><a id="dn6"></a>DN6 – Harlington, Hickleton, Owston, Thorpe Hesley, Brodsworth, Tickhill, Barnby Dun</li>
+</ul>
+
+<h2>Villages and Surrounding Areas</h2>
+<ul>
+<li>Adwick</li>
+<li>Balby</li>
+<li>Blyth</li>
+<li>Bramwith</li>
+<li>Brodsworth</li>
+<li>Conisbrough</li>
+<li>Edlington</li>
+<li>Finningley</li>
+<li>Hickleton</li>
+<li>Harlington</li>
+<li>Mexborough</li>
+<li>Owston</li>
+<li>Skellow</li>
+<li>Thorpe Hesley</li>
+<li>Womersley</li>
+<li>Woodlands</li>
+<li>Tickhill</li>
+<li>Barnby Dun</li>
+<li>Sprotbrough</li>
+<li>Warmsworth</li>
+<li>Carcroft</li>
+<li>New Rossington</li>
+<li>Balby Bridge</li>
+<li>Finningley Bridge</li>
+<li>And all other nearby villages and settlements within roughly six miles of Askern DN6</li>
+</ul>
+
+<h2>Highlighted Services</h2>
+<div class="service-box">✔ Fence & Gate Painting/Staining — durable finish for all wood surfaces</div>
+<div class="service-box">✔ Exterior House Painting — professional, weatherproof finishes</div>
+<div class="service-box">✔ Garden Maintenance — tidy, functional, and visually appealing outdoor spaces</div>
+<div class="service-box">✔ General Home Repairs — from small fixes to full exterior improvements</div>
+
+<h2>Our Coverage Map</h2>
+<p>Here’s a map showing the areas we cover within approximately six miles of Askern DN6, including all villages and settlements across DN1–DN6:</p>
+<div class="map-container">
+<!-- Paste your live Google My Maps embed code here -->
+<iframe
+src="YOUR-GOOGLE-MY-MAPS-EMBED-URL"
+width="100%" height="100%" style="border:0;"
+allowfullscreen=""
+loading="lazy">
+</iframe>
+</div>
+
+<h2>Why Choose Home Repairs 4U?</h2>
+<ul>
+<li>Exterior and interior painting</li>
+<li>Fence and gate painting or staining</li>
+<li>Garden maintenance</li>
+<li>General home repairs and decorating</li>
+<li>Advice on colour, materials, and protection</li>
+<li>Quick, reliable, friendly service within six miles of Askern</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<div class="faq-item">
+<div class="faq-question">Which areas do you cover?</div>
+<div class="faq-answer">We provide services across DN1 to DN6 postcode areas and all surrounding villages within approximately six miles of Askern DN6. 📞 <a href="tel:07735873694" title="Call Home Repairs 4U now">Call 07735 873694</a> to check your address.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">Do you offer free quotes?</div>
+<div class="faq-answer">Yes. All quotes are free and come with no obligation. Schedule your visit today! 📞 <a href="tel:07735873694" title="Call Home Repairs 4U now">Call now</a></div>
+</div>
+<div class="faq-item">
+<div class="faq-question">What services do you provide?</div>
+<div class="faq-answer">We offer exterior and interior painting, decorating, fence and gate painting or staining, garden maintenance, and general home repairs. Check our <a href="https://homerepairs4u.com/quotes/house-painting.html" title="Instant house painting quote">House Painting Calculator</a> for instant quotes.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">Can you paint fences and gates both sides?</div>
+<div class="faq-answer">Yes. We can paint or stain both sides for a professional finish and long-lasting protection.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">How long will the work take?</div>
+<div class="faq-answer">Duration depends on property size and work type across DN1–DN6 and nearby villages. We provide an estimated timeframe during your free quote visit.</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">Do you provide advice on paint types and finishes?</div>
+<div class="faq-answer">Yes, we provide professional advice on paint types, finishes, and materials suitable for your property and fence or gate. Call 07735 873694 for a consultation.</div>
+</div>
+
+<!-- Related Instant Quotes Section -->
+<section style="text-align:center; margin:40px 0;">
+<h2>You may also be interested in some of our other instant quotes for exterior painting</h2>
+<div style="margin-top:15px;">
+<a href="https://homerepairs4u.com/quotes/house-painting.html" class="call-btn" style="margin-right:10px;" title="Get an instant external house painting quote">External House Painting</a>
+<a href="https://homerepairs4u.com/quotes/rail-painting.html" class="call-btn" title="Get an instant metal rail and gate painting quote">Metal Rail & Gate Painting</a>
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+© Home Repairs 4U | 35 Airstone Road, Askern, Doncaster, South Yorkshire, DN6 0QA | Call 07735 873694
+<div class="footer-services">
+<p style="color: white;">Our Services:</p>
+<a href="/services/Exterior-decorating.html">Exterior Decorating</a>
+<a href="/services/garden.html">Garden</a>
+<a href="/services/guttering.html">Guttering</a>
+<a href="/services/Pressure-washing.html">Pressure Washing</a>
+<a href="/services/upvc-restoration.html">uPVC Restoration</a>
+</div>
+</footer>
+
+<script>
+const faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(item=>{
+item.addEventListener('click',()=>{
+const answer = item.nextElementSibling;
+answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+});
+});
+</script>
+
+</body>
+</html>
