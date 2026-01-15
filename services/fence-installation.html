@@ -4,18 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-<title>Fence Installation in Askern DN6 | Home Repairs 4U</title>
+<title>Fence Installation in Askern DN6 | Featheredge Fencing | Home Repairs 4U</title>
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/services/fence-installation.html">
-<meta name="description" content="Professional fence installation in Askern DN6 and surrounding areas. We specialise in featheredge fencing with concrete posts and gravel boards. Call 07735 873694.">
-
-<link rel="preload" as="image" href="/images/logo.webp" />
+<meta name="description" content="Professional fence installation in Askern DN6 and within 6 miles. Featheredge fencing with concrete posts and gravel boards. Calculate materials and labour for your fence. Call 07735 873694.">
 
 <style>
 body{
 margin:0;
 padding:0;
-font-family:Arial, sans-serif;
+font-family:Arial,sans-serif;
 background:#f9f9f9;
 color:#222;
 line-height:1.65;
@@ -60,16 +58,37 @@ border-radius:6px;
 border:2px solid #000;
 }
 .service-btn:hover{ background:#333; }
-footer{
+
+/* Calculator Styles */
+#calculator button{
 background:#000;
 color:#fff;
-text-align:center;
-padding:25px 15px;
-margin-top:40px;
-font-size:14px;
+border:2px solid #000;
+padding:12px 24px;
+font-size:18px;
+border-radius:6px;
+cursor:pointer;
 }
-
-/* Lightbox */
+#calculator button:hover{ background:#333; }
+.result{
+margin-top:20px;
+padding:20px;
+background:#f4f4f4;
+border-radius:6px;
+font-size:16px;
+border:2px solid #ccc;
+}
+.result .line{
+margin-bottom:8px;
+}
+.result .total{
+font-size:20px;
+font-weight:bold;
+margin-top:15px;
+color:#000;
+border-top:2px solid #000;
+padding-top:10px;
+}
 .lightbox {
 display: none;
 position: fixed;
@@ -94,11 +113,10 @@ box-shadow: 0 0 20px #000;
 
 <body>
 
-<!-- HEADER (UNCHANGED) -->
 <header>
-<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
-<div style="text-align:center; margin-top:10px;">
-<a href="/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200">
+<div style="margin-top:10px;">
+<a href="/" style="font-size:20px;color:#000;text-decoration:none;font-weight:600;">Home</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
@@ -109,61 +127,62 @@ box-shadow: 0 0 20px #000;
 <h1>Fence Installation in Askern DN6</h1>
 
 <p>
-Home Repairs 4U provides professional fence installation in Askern DN6 and surrounding areas. We install strong, long-lasting fencing designed to give privacy, security, and a clean finish to your garden or property boundary.
+Home Repairs 4U provides professional fence installation in Askern DN6 and all areas within approximately six miles. We specialise in strong, long-lasting fencing built to handle British weather and everyday use.
 </p>
 
 <p>
-Our most popular and reliable fencing system is <strong>featheredge fencing with concrete posts and gravel boards</strong>. This type of fencing is ideal for British weather and offers excellent durability compared to lightweight panel systems.
+Our main fencing system is <strong>featheredge fencing with concrete posts and concrete gravel boards</strong>. This is one of the strongest and most reliable fencing methods available for domestic and small commercial properties.
 </p>
 
-<h2>Our Main Fencing System</h2>
+<h2>Typical Fence We Install</h2>
 
-<p>
-The typical type of fence we install is:
-</p>
+<p>The standard fencing system we install includes:</p>
 
 <ul>
-<li>Featheredge boards for strength and privacy</li>
+<li>Featheredge timber boards, overlapped for strength and privacy</li>
 <li>Concrete posts for maximum stability</li>
-<li>Concrete gravel boards to protect timber from rot</li>
+<li>Concrete gravel boards to prevent timber rot</li>
 </ul>
 
 <p>
-This system is built on site, not slotted in like cheap panels. Each featheredge board overlaps the next, creating a solid fence that can handle wind, rain, and long-term use.
+This system is built on site, board by board. Unlike cheap slotted panels, featheredge fencing is solid, adjustable to uneven ground, and far more durable.
 </p>
+
+<h2>Fence Installation Calculator</h2>
+
+<p>Use this calculator to work out the materials and labour required for your fence installation.</p>
+
+<div id="calculator">
+<label>Total fence length (metres)</label>
+<input type="number" id="length" min="0" step="0.1">
+
+<label>Select fence panel height</label>
+<select id="height">
+<option value="0.9" data-price="30">0.9m – £30 per panel</option>
+<option value="1.2" data-price="35">1.2m – £35 per panel</option>
+<option value="1.5" data-price="40">1.5m – £40 per panel</option>
+<option value="1.8" data-price="45">1.8m – £45 per panel</option>
+</select>
+
+<button onclick="calculate()">Calculate Materials</button>
+
+<div id="result" class="result">
+Enter your fence length and height to calculate panels, posts, gravel boards, post mix, and labour.
+</div>
+</div>
 
 <h2>Why Choose Featheredge Fencing?</h2>
 
 <p>
-Featheredge fencing is one of the strongest and most professional-looking fencing options available. Because it is built board by board, it can be adjusted to uneven ground, slopes, and awkward boundaries.
+Featheredge fencing offers excellent privacy and strength. Each board overlaps the next, creating a strong barrier that stands up well to wind, rain, and time.
 </p>
 
 <p>
-Concrete posts and gravel boards stop timber from sitting directly on soil, which greatly reduces rot and extends the life of your fence.
-</p>
-
-<h2>Fence Installation Process</h2>
-
-<p>
-Every fence installation follows a proper process:
-</p>
-
-<ul>
-<li>Old fencing removed and disposed of</li>
-<li>Post holes dug to correct depth</li>
-<li>Concrete posts set and levelled</li>
-<li>Concrete gravel boards installed</li>
-<li>Featheredge boards fixed securely</li>
-<li>Final checks for strength and alignment</li>
-</ul>
-
-<p>
-We take pride in straight lines, solid fixing, and a neat finish.
+Concrete posts and gravel boards keep timber off the ground, which dramatically reduces rot and extends the life of your fence.
 </p>
 
 <h2>Fence Installation Example</h2>
 
-<!-- Fence Image Kept -->
 <a href="#fence-lightbox">
 <img src="/images/fence-before-after.webp"
 alt="Fence installation before and after example"
@@ -180,24 +199,31 @@ loading="lazy">
 <h2>Repair or Replace?</h2>
 
 <p>
-If your fence is leaning, broken, or rotten at the base, it is often better to replace it fully using concrete posts and gravel boards. This prevents the same problems coming back in a few years.
+If your fence is leaning, broken, or rotten at the base, replacement with concrete posts and gravel boards is usually the best long-term option.
 </p>
 
 <p>
-We also offer fence repairs where possible, but we will always give honest advice on whether repair or replacement is best value long-term.
+We also offer repairs where possible, but we will always give honest advice on whether repairing or replacing gives better value.
 </p>
 
-<h2>Areas We Cover</h2>
+<h2>Fence Installation Within 6 Miles of Askern</h2>
 
 <p>
-We install fencing across Askern DN6 and surrounding areas. If you are local, just call and we’ll confirm availability and arrange a visit.
+We focus our work within approximately six miles of Askern DN6. This allows us to provide fast response times, local knowledge, and reliable aftercare.
+</p>
+
+<p>
+By working locally around Askern, we understand ground conditions, wind exposure, and boundary layouts common in this area. This is why we mainly recommend featheredge fencing with concrete posts and gravel boards for long-term strength.
+</p>
+
+<p>
+If your property is within around six miles of Askern DN6, Home Repairs 4U can provide professional fence installation with strong materials and a clean, tidy finish.
 </p>
 
 <a href="tel:07735873694" class="service-btn">Call for Fence Installation</a>
 
 </main>
 
-<!-- FOOTER (UNCHANGED) -->
 <footer>
 <p>📞 Call 07735 873694</p>
 <div>
@@ -209,9 +235,45 @@ We install fencing across Askern DN6 and surrounding areas. If you are local, ju
 <br><br>
 <a href="https://www.facebook.com/people/Handyman-services/61584395621256/" target="_blank" rel="noopener" style="color:#fff; text-decoration:underline;">Facebook</a>
 <br><br>
-© Home Repairs 4U | Service Areas, Doncaster
+© Home Repairs 4U | Askern DN6
 </div>
 </footer>
+
+<script>
+function calculate(){
+const length = parseFloat(document.getElementById("length").value)||0;
+const heightSelect = document.getElementById("height");
+const panelHeight = heightSelect.value;
+const panelPrice = parseFloat(heightSelect.options[heightSelect.selectedIndex].dataset.price);
+
+const panelWidth = 1.8;
+const panels = Math.ceil(length / panelWidth);
+const posts = panels + 1;
+const postPrice = 13;
+const gravelBoards = panels;
+const gravelPrice = 15;
+const postMixBags = posts * 2;
+const postMixPrice = 5;
+const labourPerPost = 70;
+
+const panelTotal = panels * panelPrice;
+const postTotal = posts * postPrice;
+const gravelTotal = gravelBoards * gravelPrice;
+const postMixTotal = postMixBags * postMixPrice;
+const labourTotal = posts * labourPerPost;
+
+const grandTotal = panelTotal + postTotal + gravelTotal + postMixTotal + labourTotal;
+
+document.getElementById("result").innerHTML = `
+<div class="line"><strong>Fence panels:</strong> ${panels} panels at ${panelHeight}m high (£${panelPrice} each) = £${panelTotal}</div>
+<div class="line"><strong>Concrete posts:</strong> ${posts} posts (£13 each) = £${postTotal}</div>
+<div class="line"><strong>Gravel boards:</strong> ${gravelBoards} boards (£15 each) = £${gravelTotal}</div>
+<div class="line"><strong>Post mix:</strong> ${postMixBags} bags (£5 each) = £${postMixTotal}</div>
+<div class="line"><strong>Labour:</strong> ${posts} posts × £70 = £${labourTotal}</div>
+<div class="total">Estimated Total: £${grandTotal}</div>
+`;
+}
+</script>
 
 </body>
 </html>
