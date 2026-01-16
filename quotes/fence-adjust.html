@@ -8,6 +8,8 @@
 <link rel="canonical" href="https://homerepairs4u.com/quotes/fence-adjust.html">
 <meta name="description" content="Get a fully customisable fence installation quote online for Askern DN6 and a six mile radius. Adjust for gates, ground type, bespoke panel heights, hedges, trees, and more. Instant materials, labour, and total cost calculation.">
 
+<link rel="preload" as="image" href="/images/logo.webp" />
+
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#f9f9f9;color:#222;}
 main{max-width:900px;margin:auto;background:#fff;padding:20px;}
@@ -18,30 +20,19 @@ button{background:#000;color:#fff;padding:14px;border:none;font-size:16px;margin
 button:hover{background:#333;}
 .result-box{background:#f0f0f0;padding:15px;margin-top:20px;border-radius:6px;}
 .hidden{display:none;}
-
-/* HEADER FIXED CENTER */
-header {
-text-align: center;
-padding: 25px 10px;
-background: #fff;
-border-bottom: 4px solid #000;
+.call-btn{
+display:inline-block;
+margin-top:18px;
+padding:14px 28px;
+background:#000;
+color:#fff;
+font-size:19px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+border:2px solid #000;
 }
-header .logo {
-max-height: 90px;
-width: 600px;
-display: block;
-margin: 0 auto;
-}
-header .call-btn {
-display: inline-block;
-margin: 15px auto 0 auto;
-}
-header div a {
-display: inline-block;
-margin-top: 10px;
-}
-
-/* FOOTER */
+.call-btn:hover{background:#333;}
 .site-footer{
 background:#000;
 color:#fff;
@@ -60,15 +51,83 @@ margin-top:15px;
 color:white;
 margin:0 10px;
 }
+.logo{max-height:90px;width:auto;}
 </style>
+
+<!-- ================= SCHEMA ================= -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":"Home Repairs 4U",
+"image":"https://homerepairs4u.com/images/logo.webp",
+"url":"https://homerepairs4u.com/",
+"telephone":"+447735873694",
+"address":{
+"@type":"PostalAddress",
+"streetAddress":"35 Airstone Road",
+"addressLocality":"Askern",
+"postalCode":"DN6 0QA",
+"addressRegion":"South Yorkshire",
+"addressCountry":"GB"
+},
+"description":"Professional fence installation and home services in Askern DN6 and surrounding areas. Fully insured work with expert team.",
+"areaServed":{
+"@type":"GeoCircle",
+"geoMidpoint":{"@type":"GeoCoordinates","latitude":53.616,"longitude":-1.152},
+"geoRadius":16093
+},
+"openingHoursSpecification":[
+{
+"@type":"OpeningHoursSpecification",
+"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+"opens":"07:00",
+"closes":"20:00"
+}
+],
+"makesOffer":[
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}}
+]
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{
+"@type":"Question",
+"name":"Which areas do you cover?",
+"acceptedAnswer":{"@type":"Answer","text":"We provide fence installation services across Askern DN6 and a six mile radius including surrounding villages."}
+},
+{
+"@type":"Question",
+"name":"Are your services insured?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes, all our fence installation services are fully insured to ensure safety and peace of mind."}
+},
+{
+"@type":"Question",
+"name":"Can I book multiple services at the same time?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes, we can schedule multiple services together for convenience and efficiency."}
+},
+{
+"@type":"Question",
+"name":"Do you offer free consultations?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."}
+}
+]
+}
+</script>
+
 </head>
 <body>
 
-<!-- HEADER (UNCHANGED LOGO, PHONE, HOME CENTRED) -->
+<!-- HEADER (UNCHANGED) -->
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
-<div style="margin-top:10px;">
-<a href="https://steely1968.github.io/" style="font-size:20px;color:#000;text-decoration:none;font-weight:600;">Home</a>
+<div style="text-align:center; margin-top:10px;">
+<a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
@@ -99,9 +158,7 @@ margin:0 10px;
 <div id="gateSection" class="hidden">
 <label>How Many Gates?</label>
 <input type="number" id="gateCount">
-
 <div id="gateInputs"></div>
-
 <label>Are Gates Part Of Fence?</label>
 <select id="gatePart">
 <option value="yes">Yes</option>
@@ -269,14 +326,14 @@ let height=+heightInput.value||0;
 let total=0;
 let panels=Math.ceil(length/1.8);
 
-if(gravel.value=="yes") height-=0.3;
-total+=panels*40;
+if(gravel.value=="yes") height+=0.3;
+total+=panels*40; // basic panel price
 
 let posts=panels+1;
-total+=posts*13;
-total+=posts*2*5;
-total+=panels*15;
-total+=posts*70;
+total+=posts*13; // posts
+total+=posts*2*5; // post mix
+total+=posts*70; // labour
+if(gravel.value=="yes") total+=panels*15; // gravel boards
 
 if(concrete.value=="yes") total+=+concretePanels.value*12;
 if(roots.value=="yes") total+=+rootPanels.value*3;
