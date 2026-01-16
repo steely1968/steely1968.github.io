@@ -3,62 +3,27 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Advanced Fence Installation Quote | Askern DN6 - Home Repairs 4U</title>
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/quotes/fence-adjust.html">
-<meta name="description" content="Get a fully customisable fence installation quote online for Askern DN6 and a six mile radius. Adjust for gates, ground type, bespoke panel heights, hedges, trees, and more. Instant materials, labour, and total cost calculation.">
+<title>Advanced Fence Installation Quote | Askern DN6</title>
+<meta name="description" content="Advanced fence installation quote for Askern DN6 and six mile radius. Bespoke height fencing, gravel boards, gates, ground conditions, hedges and trees included.">
 
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#f9f9f9;color:#222;}
 main{max-width:900px;margin:auto;background:#fff;padding:20px;}
-h1,h2{color:#111;}
 label{display:block;margin-top:12px;font-weight:bold;}
 input,select{width:100%;padding:8px;margin-top:4px;}
-button{background:#000;color:#fff;padding:14px;border:none;font-size:16px;margin-top:15px;cursor:pointer;width:100%;}
+button{background:#000;color:#fff;padding:14px;border:none;font-size:16px;margin-top:15px;width:100%;cursor:pointer;}
 button:hover{background:#333;}
-.result-box{background:#f0f0f0;padding:15px;margin-top:20px;border-radius:6px;}
+.box{background:#f0f0f0;padding:15px;margin-top:20px;border-radius:6px;}
 .hidden{display:none;}
-.call-btn{
-display:inline-block;
-margin-top:18px;
-padding:14px 28px;
-background:#000;
-color:#fff;
-font-size:19px;
-text-decoration:none;
-font-weight:bold;
-border-radius:6px;
-border:2px solid #000;
-}
-.call-btn:hover{background:#333;}
-.site-footer{
-background:#000;
-color:#fff;
-text-align:center;
-padding:25px 15px;
-margin-top:40px;
-font-size:14px;
-}
-.footer-services{
-background:black;
-padding:20px;
-text-align:center;
-margin-top:15px;
-}
-.footer-services a{
-color:white;
-margin:0 10px;
-}
-.logo{max-height:90px;width:auto;}
 </style>
 </head>
 <body>
 
-<!-- HEADER (UNCHANGED) -->
+<!-- ORIGINAL HEADER -->
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<div style="margin-top:10px;">
+<a href="https://steely1968.github.io/" style="font-size:20px;color:#000;text-decoration:none;font-weight:600;">Home</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
@@ -68,13 +33,28 @@ margin:0 10px;
 
 <h1>Advanced Fence Installation Quote</h1>
 
+<p>
+This advanced fencing calculator is for customers who need more than a basic straight fence.
+It allows you to build a bespoke fence using your own height, layout and access requirements.
+You can add gravel boards, gates, mixed ground conditions, hedges and trees.
+</p>
+
+<p>
+We install featheredge fencing using concrete posts and gravel boards across Askern
+and all areas within a six mile radius.
+This calculator gives you a working estimate before booking.
+Final prices are always confirmed before work begins.
+</p>
+
+<h2>Fence Details</h2>
+
 <label>Total Fence Length (metres)</label>
-<input type="number" id="lengthInput">
+<input type="number" id="fenceLength">
 
 <label>Total Fence Height (metres)</label>
-<input type="number" id="heightInput">
+<input type="number" id="fenceHeight">
 
-<label>Include Gravel Boards?</label>
+<label>Include Gravel Boards (30cm high)?</label>
 <select id="gravel">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
@@ -86,37 +66,37 @@ margin:0 10px;
 <option value="yes">Yes</option>
 </select>
 
-<div id="gateSection" class="hidden">
+<div id="gateBox" class="hidden">
 <label>How Many Gates?</label>
 <input type="number" id="gateCount">
 
 <div id="gateInputs"></div>
 
-<label>Are Gates Part Of Fence?</label>
+<label>Are Gates Part Of Fence Line?</label>
 <select id="gatePart">
 <option value="yes">Yes</option>
-<option value="no">No (Standalone)</option>
+<option value="no">No – Standalone Entrance</option>
 </select>
 </div>
 
-<label>Any Fence Over Concrete?</label>
+<label>Is Any Fence Over Concrete?</label>
 <select id="concrete">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
-<div id="concreteSection" class="hidden">
+<div id="concreteBox" class="hidden">
 <label>How Many Panels On Concrete?</label>
 <input type="number" id="concretePanels">
 </div>
 
-<label>Any Heavy Rooted Ground?</label>
+<label>Is Any Ground Heavy Rooted?</label>
 <select id="roots">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
-<div id="rootsSection" class="hidden">
+<div id="rootsBox" class="hidden">
 <label>How Many Panels Heavy Rooted?</label>
 <input type="number" id="rootPanels">
 </div>
@@ -127,8 +107,8 @@ margin:0 10px;
 <option value="yes">Yes</option>
 </select>
 
-<div id="hedgeSection" class="hidden">
-<label>How Many Metres?</label>
+<div id="hedgeBox" class="hidden">
+<label>Total Hedge Length (metres)</label>
 <input type="number" id="hedgeMetres">
 </div>
 
@@ -138,92 +118,36 @@ margin:0 10px;
 <option value="yes">Yes</option>
 </select>
 
-<div id="treeSection" class="hidden">
+<div id="treeBox" class="hidden">
 <label>Tree Height (metres)</label>
 <input type="number" id="treeHeight">
 </div>
 
-<button onclick="calculate()">Calculate Quote</button>
+<button onclick="calculate()">Calculate Advanced Quote</button>
 
-<div id="result" class="result-box hidden"></div>
-
-<hr>
-
-<h2>Featheredge Fence Installation in Askern</h2>
-<p>
-We specialise in installing strong, long-lasting featheredge fencing using concrete posts and concrete gravel boards.
-This system is designed to withstand high winds, wet ground, and heavy use while keeping your garden private and secure.
-Every fence is built to your required height and layout rather than forcing you into standard sizes.
-</p>
-
-<p>
-Our fencing service covers Askern and all areas within a six mile radius.
-We regularly work on residential gardens, new builds, rental properties, and commercial boundaries.
-All installations are carried out with proper ground preparation, accurate levels, and secure fixings.
-</p>
-
-<h2>What This Calculator Includes</h2>
-<p>
-This calculator gives you an instant estimated price based on your fence length, bespoke height, posts, panels, gravel boards,
-ground conditions, hedges, trees and gates. It calculates materials and labour so you can understand what goes into your price
-before booking.
-</p>
-
-<p>
-If your fence runs over mixed ground such as soil and concrete, you can enter how many panels sit on each surface.
-Concrete ground requires extra work and is priced accordingly.
-Heavy rooted ground also requires more labour and is included in the calculation.
-</p>
-
-<h2>Gates, Access and Custom Layouts</h2>
-<p>
-You can add as many gates as you need. Gates can be single or double, built as part of the fence line or as a standalone
-garden entrance. If a gate is part of the fence, the calculator automatically deducts the fence materials and labour that
-are replaced by the gate.
-</p>
-
-<p>
-Gate prices are calculated by width in metres, allowing you to design your access exactly how you want it rather than
-being forced into standard sizes.
-</p>
-
-<h2>Hedges, Trees and Site Clearance</h2>
-<p>
-If hedges need removing to install your fence, you can add the total length in metres and this will be priced automatically.
-</p>
-
-<p>
-If trees are present, you can enter their height. Trees under 3 metres are priced directly in the calculator.
-Trees over 3 metres require specialist equipment and will be quoted as a separate tree felling service.
-</p>
+<div id="result" class="box hidden"></div>
 
 <h2>Why Choose Featheredge Fencing</h2>
 <p>
-Featheredge fencing is one of the strongest and most flexible fencing systems available.
-It allows for sloping ground, uneven levels and custom heights while remaining secure and long-lasting.
-Combined with concrete posts and gravel boards, it offers excellent resistance to rot, moisture and storm damage.
+Featheredge fencing is one of the strongest fencing systems available.
+It allows for sloping ground, uneven levels and bespoke heights.
+Combined with concrete posts and gravel boards, it resists rot, moisture and storm damage.
 </p>
 
 <p>
-This type of fencing is ideal for gardens, driveways, side boundaries, commercial yards and rural properties.
-It can be painted or stained to match your property and easily repaired if individual boards are ever damaged.
+It is ideal for gardens, driveways, side boundaries and commercial yards.
+It can be painted or stained and easily repaired if individual boards are damaged.
 </p>
 
-<h2>Serving Askern and Surrounding Areas</h2>
+<h2>Serving Askern And Surrounding Areas</h2>
 <p>
-We provide fence installation across Askern and all areas within a six mile radius.
-This includes surrounding villages, housing estates, rural properties and new developments.
-Our local knowledge allows us to price fairly, arrive quickly, and complete work efficiently.
-</p>
-
-<p>
-If you are unsure about any option in the calculator, you can still submit your estimate and we will confirm
-everything with you before work begins.
+We install fencing across Askern and all areas within a six mile radius.
+This includes surrounding villages, estates, rural properties and new developments.
 </p>
 
 </main>
 
-<!-- FOOTER (UNCHANGED) -->
+<!-- ORIGINAL FOOTER -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 <div class="footer-services">
@@ -237,56 +161,65 @@ everything with you before work begins.
 </footer>
 
 <script>
-function toggle(id,show){document.getElementById(id).classList.toggle("hidden",!show);}
+function show(id,on){document.getElementById(id).classList.toggle("hidden",!on);}
+gates.onchange=e=>show("gateBox",e.target.value=="yes");
+concrete.onchange=e=>show("concreteBox",e.target.value=="yes");
+roots.onchange=e=>show("rootsBox",e.target.value=="yes");
+hedges.onchange=e=>show("hedgeBox",e.target.value=="yes");
+trees.onchange=e=>show("treeBox",e.target.value=="yes");
 
-document.getElementById("gates").onchange=e=>toggle("gateSection",e.target.value=="yes");
-document.getElementById("concrete").onchange=e=>toggle("concreteSection",e.target.value=="yes");
-document.getElementById("roots").onchange=e=>toggle("rootsSection",e.target.value=="yes");
-document.getElementById("hedges").onchange=e=>toggle("hedgeSection",e.target.value=="yes");
-document.getElementById("trees").onchange=e=>toggle("treeSection",e.target.value=="yes");
-
-document.getElementById("gateCount").oninput=function(){
+gateCount.oninput=function(){
 let n=this.value, box=document.getElementById("gateInputs");
 box.innerHTML="";
 for(let i=1;i<=n;i++){
-box.innerHTML+=`<label>Gate ${i} Width (m)</label><input type="number" id="gw${i}">
-<label>Gate ${i} Height (m)</label><input type="number" id="gh${i}">`;
+box.innerHTML+=`
+<label>Gate ${i} Width (m)</label><input type="number" id="gw${i}">
+<label>Gate ${i} Height (m)</label><input type="number" id="gh${i}">
+`;
 }
 }
 
 function calculate(){
-let length=+lengthInput.value||0;
-let height=+heightInput.value||0;
+let length=+fenceLength.value||0;
+let height=+fenceHeight.value||0;
+let gateTotalWidth=0;
 let total=0;
-let panels=Math.ceil(length/1.8);
+
+if(gates.value=="yes"){
+let c=+gateCount.value||0;
+for(let i=1;i<=c;i++){
+let w=+document.getElementById("gw"+i).value||0;
+gateTotalWidth+=w;
+total+=w*150;
+}
+if(gatePart.value=="yes") length-=gateTotalWidth;
+}
 
 if(gravel.value=="yes") height-=0.3;
-total+=panels*40;
+
+let panels=Math.ceil(length/1.8);
+let panelPrice=40;
+if(height<=0.9) panelPrice=30;
+else if(height<=1.2) panelPrice=35;
+else if(height<=1.5) panelPrice=40;
+else panelPrice=45;
+
+total+=panels*panelPrice;
 
 let posts=panels+1;
 total+=posts*13;
 total+=posts*2*5;
-total+=panels*15;
+if(gravel.value=="yes") total+=panels*15;
 total+=posts*70;
 
-if(concrete.value=="yes") total+=+concretePanels.value*12;
-if(roots.value=="yes") total+=+rootPanels.value*3;
-if(hedges.value=="yes") total+=+hedgeMetres.value*50;
+if(concrete.value=="yes") total+=(+concretePanels.value||0)*12;
+if(roots.value=="yes") total+=(+rootPanels.value||0)*3;
+if(hedges.value=="yes") total+=(+hedgeMetres.value||0)*50;
 
 if(trees.value=="yes"){
-let h=+treeHeight.value;
+let h=+treeHeight.value||0;
 if(h<=3) total+=h*100;
-else total+=200;
-}
-
-if(gates.value=="yes"){
-let c=+gateCount.value||0;
-let gtotal=0;
-for(let i=1;i<=c;i++){
-let w=+document.getElementById("gw"+i).value||0;
-gtotal+=w*150;
-}
-total+=gtotal;
+else result.innerHTML="Tree over 3m requires separate tree felling service.";
 }
 
 result.innerHTML="<strong>Estimated Total: £"+total.toFixed(2)+"</strong>";
