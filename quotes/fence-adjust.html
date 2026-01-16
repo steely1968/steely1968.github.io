@@ -11,15 +11,18 @@
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f9f9f9;color:#222;}
-main{max-width:900px;margin:auto;background:#fff;padding:20px;}
-h1,h2{color:#111;}
-label{display:block;margin-top:12px;font-weight:bold;}
-input,select{width:100%;padding:8px;margin-top:4px;}
-button{background:#000;color:#fff;padding:14px;border:none;font-size:16px;margin-top:15px;cursor:pointer;width:100%;}
-button:hover{background:#333;}
-.result-box{background:#f0f0f0;padding:15px;margin-top:20px;border-radius:6px;}
-.hidden{display:none;}
+/* HEADER STYLING EXACTLY AS YOU PASTED */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #27ae60;
+}
+.logo{
+max-height:90px;
+width:auto;
+}
+/* CALL BUTTON */
 .call-btn{
 display:inline-block;
 margin-top:18px;
@@ -32,7 +35,11 @@ font-weight:bold;
 border-radius:6px;
 border:2px solid #000;
 }
-.call-btn:hover{background:#333;}
+.call-btn:hover{
+background:#333;
+color:#fff;
+}
+/* FOOTER */
 .site-footer{
 background:#000;
 color:#fff;
@@ -42,19 +49,31 @@ margin-top:40px;
 font-size:14px;
 }
 .footer-services{
-background:black;
-padding:20px;
-text-align:center;
-margin-top:15px;
+background-color: black;
+padding: 20px;
+text-align: center;
+margin-top: 15px;
 }
 .footer-services a{
-color:white;
-margin:0 10px;
+color: white;
+margin: 0 10px;
 }
-.logo{max-height:90px;width:auto;}
+/* MAIN CONTENT */
+main{
+max-width:900px;
+margin:auto;
+background:#fff;
+padding:20px;
+}
+label{display:block;margin-top:12px;font-weight:bold;}
+input,select{width:100%;padding:8px;margin-top:4px;}
+button{background:#000;color:#fff;padding:14px;border:none;font-size:16px;margin-top:15px;cursor:pointer;width:100%;}
+button:hover{background:#333;}
+.result-box{background:#f0f0f0;padding:15px;margin-top:20px;border-radius:6px;}
+.hidden{display:none;}
 </style>
 
-<!-- ================= SCHEMA ================= -->
+<!-- SCHEMA -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
@@ -123,7 +142,7 @@ margin:0 10px;
 </head>
 <body>
 
-<!-- HEADER (UNCHANGED) -->
+<!-- HEADER EXACTLY AS YOU PASTED -->
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
 <div style="text-align:center; margin-top:10px;">
@@ -133,14 +152,15 @@ margin:0 10px;
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </header>
 
+<!-- MAIN CONTENT -->
 <main>
-
 <h1>Advanced Fence Installation Quote</h1>
 
-<label>Total Fence Length (metres)</label>
+<!-- CALCULATOR -->
+<label>Total Fence Length (m)</label>
 <input type="number" id="lengthInput">
 
-<label>Total Fence Height (metres)</label>
+<label>Total Fence Height (m)</label>
 <input type="number" id="heightInput">
 
 <label>Include Gravel Boards?</label>
@@ -171,7 +191,6 @@ margin:0 10px;
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
-
 <div id="concreteSection" class="hidden">
 <label>How Many Panels On Concrete?</label>
 <input type="number" id="concretePanels">
@@ -182,7 +201,6 @@ margin:0 10px;
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
-
 <div id="rootsSection" class="hidden">
 <label>How Many Panels Heavy Rooted?</label>
 <input type="number" id="rootPanels">
@@ -193,7 +211,6 @@ margin:0 10px;
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
-
 <div id="hedgeSection" class="hidden">
 <label>How Many Metres?</label>
 <input type="number" id="hedgeMetres">
@@ -204,9 +221,8 @@ margin:0 10px;
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
-
 <div id="treeSection" class="hidden">
-<label>Tree Height (metres)</label>
+<label>Tree Height (m)</label>
 <input type="number" id="treeHeight">
 </div>
 
@@ -214,13 +230,14 @@ margin:0 10px;
 
 <div id="result" class="result-box hidden"></div>
 
-<hr>
+<button id="advancedQuote" style="background:#000;color:#fff;margin-top:15px;" onclick="location.href='/quotes/fence-adjust-advanced.html'">Start Advanced Quote</button>
 
+<!-- PARAGRAPHS -->
 <h2>Featheredge Fence Installation in Askern</h2>
 <p>
-We specialise in installing strong, long-lasting featheredge fencing using concrete posts and concrete gravel boards.
-This system is designed to withstand high winds, wet ground, and heavy use while keeping your garden private and secure.
-Every fence is built to your required height and layout rather than forcing you into standard sizes.
+We specialise in installing strong, long-lasting featheredge fencing using concrete posts and gravel boards.
+This system withstands high winds, wet ground, and heavy use while keeping your garden private and secure.
+Every fence is built to your required height and layout.
 </p>
 
 <p>
@@ -236,38 +253,9 @@ ground conditions, hedges, trees and gates. It calculates materials and labour s
 before booking.
 </p>
 
-<p>
-If your fence runs over mixed ground such as soil and concrete, you can enter how many panels sit on each surface.
-Concrete ground requires extra work and is priced accordingly.
-Heavy rooted ground also requires more labour and is included in the calculation.
-</p>
-
-<h2>Gates, Access and Custom Layouts</h2>
-<p>
-You can add as many gates as you need. Gates can be single or double, built as part of the fence line or as a standalone
-garden entrance. If a gate is part of the fence, the calculator automatically deducts the fence materials and labour that
-are replaced by the gate.
-</p>
-
-<p>
-Gate prices are calculated by width in metres, allowing you to design your access exactly how you want it rather than
-being forced into standard sizes.
-</p>
-
-<h2>Hedges, Trees and Site Clearance</h2>
-<p>
-If hedges need removing to install your fence, you can add the total length in metres and this will be priced automatically.
-</p>
-
-<p>
-If trees are present, you can enter their height. Trees under 3 metres are priced directly in the calculator.
-Trees over 3 metres require specialist equipment and will be quoted as a separate tree felling service.
-</p>
-
 <h2>Why Choose Featheredge Fencing</h2>
 <p>
-Featheredge fencing is one of the strongest and most flexible fencing systems available.
-It allows for sloping ground, uneven levels and custom heights while remaining secure and long-lasting.
+Featheredge fencing is strong and flexible, allowing for sloping ground, uneven levels and custom heights while remaining secure and long-lasting.
 Combined with concrete posts and gravel boards, it offers excellent resistance to rot, moisture and storm damage.
 </p>
 
@@ -283,14 +271,9 @@ This includes surrounding villages, housing estates, rural properties and new de
 Our local knowledge allows us to price fairly, arrive quickly, and complete work efficiently.
 </p>
 
-<p>
-If you are unsure about any option in the calculator, you can still submit your estimate and we will confirm
-everything with you before work begins.
-</p>
-
 </main>
 
-<!-- FOOTER (UNCHANGED) -->
+<!-- FOOTER EXACTLY AS YOU PASTED -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 <div class="footer-services">
@@ -304,13 +287,15 @@ everything with you before work begins.
 </footer>
 
 <script>
-function toggle(id,show){document.getElementById(id).classList.toggle("hidden",!show);}
-document.getElementById("gates").onchange=e=>toggle("gateSection",e.target.value=="yes");
-document.getElementById("concrete").onchange=e=>toggle("concreteSection",e.target.value=="yes");
-document.getElementById("roots").onchange=e=>toggle("rootsSection",e.target.value=="yes");
-document.getElementById("hedges").onchange=e=>toggle("hedgeSection",e.target.value=="yes");
-document.getElementById("trees").onchange=e=>toggle("treeSection",e.target.value=="yes");
+// Toggle sections
+function toggle(id, show){document.getElementById(id).classList.toggle("hidden", !show);}
+document.getElementById("gates").onchange=e=>toggle("gateSection", e.target.value=="yes");
+document.getElementById("concrete").onchange=e=>toggle("concreteSection", e.target.value=="yes");
+document.getElementById("roots").onchange=e=>toggle("rootsSection", e.target.value=="yes");
+document.getElementById("hedges").onchange=e=>toggle("hedgeSection", e.target.value=="yes");
+document.getElementById("trees").onchange=e=>toggle("treeSection", e.target.value=="yes");
 
+// Generate gate inputs
 document.getElementById("gateCount").oninput=function(){
 let n=this.value, box=document.getElementById("gateInputs");
 box.innerHTML="";
@@ -320,25 +305,26 @@ box.innerHTML+=`<label>Gate ${i} Width (m)</label><input type="number" id="gw${i
 }
 }
 
+// Calculator function
 function calculate(){
 let length=+lengthInput.value||0;
 let height=+heightInput.value||0;
 let total=0;
 let panels=Math.ceil(length/1.8);
 
-if(gravel.value=="yes") height+=0.3;
-total+=panels*40; // basic panel price
+let panelPricePerUnit=40; // base price (adjust later based on height if needed)
+if(gravel.value=="yes"){height+=0.3;}
+total+=panels*panelPricePerUnit;
 
 let posts=panels+1;
-total+=posts*13; // posts
+total+=posts*13; // post cost
 total+=posts*2*5; // post mix
+total+=panels*15; // gravel boards
 total+=posts*70; // labour
-if(gravel.value=="yes") total+=panels*15; // gravel boards
 
 if(concrete.value=="yes") total+=+concretePanels.value*12;
 if(roots.value=="yes") total+=+rootPanels.value*3;
 if(hedges.value=="yes") total+=+hedgeMetres.value*50;
-
 if(trees.value=="yes"){
 let h=+treeHeight.value;
 if(h<=3) total+=h*100;
@@ -347,12 +333,10 @@ else total+=200;
 
 if(gates.value=="yes"){
 let c=+gateCount.value||0;
-let gtotal=0;
 for(let i=1;i<=c;i++){
 let w=+document.getElementById("gw"+i).value||0;
-gtotal+=w*150;
+total+=w*150;
 }
-total+=gtotal;
 }
 
 result.innerHTML="<strong>Estimated Total: £"+total.toFixed(2)+"</strong>";
