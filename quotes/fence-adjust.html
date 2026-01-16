@@ -9,7 +9,6 @@
 <meta name="description" content="Get a fully customisable fence installation quote online for Askern DN6 and a six mile radius. Adjust for gates, ground type, bespoke panel heights, hedges, trees, and more. Instant materials, labour, and total cost calculation.">
 
 <link rel="preload" as="image" href="/images/logo.webp" />
-
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#f9f9f9;color:#222;}
 main{max-width:900px;margin:auto;background:#fff;padding:20px;}
@@ -33,6 +32,7 @@ border-radius:6px;
 border:2px solid #000;
 }
 .call-btn:hover{background:#333;}
+.logo{max-height:90px;width:auto;}
 .site-footer{
 background:#000;
 color:#fff;
@@ -51,56 +51,7 @@ margin-top:15px;
 color:white;
 margin:0 10px;
 }
-.logo{max-height:90px;width:auto;}
 </style>
-
-<!-- Business & FAQ Schema -->
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"LocalBusiness",
-"name":"Home Repairs 4U",
-"image":"https://homerepairs4u.com/images/logo.webp",
-"url":"https://homerepairs4u.com/",
-"telephone":"+447735873694",
-"address":{
-"@type":"PostalAddress",
-"addressLocality":"Askern",
-"postalCode":"DN6",
-"addressRegion":"South Yorkshire",
-"addressCountry":"GB"
-},
-"description":"Professional home services in Askern DN6 including fence installation and repair.",
-"areaServed":{
-"@type":"GeoCircle",
-"geoMidpoint":{"@type":"GeoCoordinates","latitude":53.616,"longitude":-1.152},
-"geoRadius":16093
-},
-"openingHoursSpecification":[{
-"@type":"OpeningHoursSpecification",
-"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-"opens":"07:00",
-"closes":"20:00"
-}],
-"makesOffer":[
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}}
-]
-}
-</script>
-
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
-{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a six mile radius including surrounding villages and estates."}},
-{"@type":"Question","name":"Are your services insured?","acceptedAnswer":{"@type":"Answer","text":"Yes, all our fencing services are fully insured for peace of mind."}},
-{"@type":"Question","name":"Can I book multiple services at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we can schedule multiple services together for convenience and efficiency."}},
-{"@type":"Question","name":"Do you offer free consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."}}
-]
-}
-</script>
-
 </head>
 <body>
 
@@ -119,10 +70,10 @@ margin:0 10px;
 <h1>Advanced Fence Installation Quote</h1>
 
 <label>Total Fence Length (metres)</label>
-<input type="number" id="lengthInput" placeholder="Enter total fence length">
+<input type="number" id="lengthInput">
 
 <label>Total Fence Height (metres)</label>
-<input type="number" id="heightInput" placeholder="Enter fence height">
+<input type="number" id="heightInput">
 
 <label>Include Gravel Boards?</label>
 <select id="gravel">
@@ -139,7 +90,6 @@ margin:0 10px;
 <div id="gateSection" class="hidden">
 <label>How Many Gates?</label>
 <input type="number" id="gateCount">
-
 <div id="gateInputs"></div>
 
 <label>Are Gates Part Of Fence?</label>
@@ -201,7 +151,7 @@ margin:0 10px;
 
 <h2>Featheredge Fence Installation in Askern</h2>
 <p>
-We specialise in installing strong, long-lasting featheredge fencing using concrete posts and concrete gravel boards.
+We specialise in installing strong, long-lasting featheredge fencing using concrete posts and optional gravel boards.
 This system is designed to withstand high winds, wet ground, and heavy use while keeping your garden private and secure.
 Every fence is built to your required height and layout rather than forcing you into standard sizes.
 </p>
@@ -251,7 +201,7 @@ Trees over 3 metres require specialist equipment and will be quoted as a separat
 <p>
 Featheredge fencing is one of the strongest and most flexible fencing systems available.
 It allows for sloping ground, uneven levels and custom heights while remaining secure and long-lasting.
-Combined with concrete posts and gravel boards, it offers excellent resistance to rot, moisture and storm damage.
+Combined with concrete posts and optional gravel boards, it offers excellent resistance to rot, moisture and storm damage.
 </p>
 
 <p>
@@ -270,6 +220,53 @@ Our local knowledge allows us to price fairly, arrive quickly, and complete work
 If you are unsure about any option in the calculator, you can still submit your estimate and we will confirm
 everything with you before work begins.
 </p>
+
+<!-- Schema & FAQ -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"LocalBusiness",
+"name":"Home Repairs 4U",
+"image":"https://homerepairs4u.com/images/logo.webp",
+"url":"https://homerepairs4u.com/",
+"telephone":"+447735873694",
+"address":{
+"@type":"PostalAddress",
+"addressLocality":"Askern",
+"postalCode":"DN6",
+"addressRegion":"South Yorkshire",
+"addressCountry":"GB"
+},
+"description":"Professional home services in Askern DN6 including exterior decorating, fence installation, garden maintenance, gutter replacement, pressure washing, and uPVC restoration.",
+"areaServed":{
+"@type":"GeoCircle",
+"geoMidpoint":{"@type":"GeoCoordinates","latitude":53.616,"longitude":-1.152},
+"geoRadius":16093
+},
+"openingHoursSpecification":[{
+"@type":"OpeningHoursSpecification",
+"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+"opens":"07:00",
+"closes":"20:00"
+}],
+"makesOffer":[
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}}
+]
+}
+</script>
+
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a six-mile radius including surrounding villages."}},
+{"@type":"Question","name":"Are your services insured?","acceptedAnswer":{"@type":"Answer","text":"Yes, all our services are fully insured to ensure peace of mind and reliable workmanship."}},
+{"@type":"Question","name":"Can I book multiple services at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we can schedule multiple services together for convenience and efficiency."}},
+{"@type":"Question","name":"Do you offer free consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."}}
+]
+}
+</script>
 
 </main>
 
@@ -298,9 +295,9 @@ document.getElementById("gateCount").oninput=function(){
 let n=this.value, box=document.getElementById("gateInputs");
 box.innerHTML="";
 for(let i=1;i<=n;i++){
-box.innerHTML+=`<label>Gate ${i} Width (m)</label><input type="number" id="gw${i}"><label>Gate ${i} Height (m)</label><input type="number" id="gh${i}">`;
+box.innerHTML+=`<label>Gate ${i} Width (m)</label><input type="number" id="gw${i}">
+<label>Gate ${i} Height (m)</label><input type="number" id="gh${i}">`;
 }
-
 }
 
 function calculate(){
@@ -310,31 +307,36 @@ let total=0;
 
 if(length>0 && height>0){
 let panels=Math.ceil(length/1.8);
+let panelPrice=40;
+
+if(gravel.value=="yes" && height>0) height-=0.3;
+
+total+=panels*panelPrice;
+
 let posts=panels>0?panels+1:0;
+total+=posts*13; // posts
+total+=posts*2*5; // post mix
+total+=panels*15; // gravel boards
+total+=posts*70; // labour
 
-let panelPrice=40; // default panel
-total += panels*panelPrice;
-total += posts*13; // posts
-total += posts*2*5; // post mix
-if(document.getElementById("gravel").value=="yes"){ total += panels*15; }
-total += posts*70; // labour
+if(concrete.value=="yes") total+= +concretePanels.value*12;
+if(roots.value=="yes") total+= +rootPanels.value*3;
+if(hedges.value=="yes") total+= +hedgeMetres.value*50;
 
-if(document.getElementById("concrete").value=="yes"){ total += +concretePanels.value*12; }
-if(document.getElementById("roots").value=="yes"){ total += +rootPanels.value*3; }
-if(document.getElementById("hedges").value=="yes"){ total += +hedgeMetres.value*50; }
-
-if(document.getElementById("trees").value=="yes"){
+if(trees.value=="yes"){
 let h=+treeHeight.value;
-if(h<=3){ total += h*100; } else { total += 200; }
+if(h<=3) total+=h*100;
+else total+=200;
 }
 
-if(document.getElementById("gates").value=="yes"){
-let c=+gateCount.value||0, gtotal=0;
+if(gates.value=="yes"){
+let c=+gateCount.value||0;
+let gtotal=0;
 for(let i=1;i<=c;i++){
 let w=+document.getElementById("gw"+i).value||0;
-gtotal += w*150;
+gtotal+=w*150;
 }
-total += gtotal;
+total+=gtotal;
 }
 }
 
