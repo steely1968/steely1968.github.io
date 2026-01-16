@@ -18,19 +18,30 @@ button{background:#000;color:#fff;padding:14px;border:none;font-size:16px;margin
 button:hover{background:#333;}
 .result-box{background:#f0f0f0;padding:15px;margin-top:20px;border-radius:6px;}
 .hidden{display:none;}
-.call-btn{
-display:inline-block;
-margin-top:18px;
-padding:14px 28px;
-background:#000;
-color:#fff;
-font-size:19px;
-text-decoration:none;
-font-weight:bold;
-border-radius:6px;
-border:2px solid #000;
+
+/* HEADER FIXED CENTER */
+header {
+text-align: center;
+padding: 25px 10px;
+background: #fff;
+border-bottom: 4px solid #000;
 }
-.call-btn:hover{background:#333;}
+header .logo {
+max-height: 90px;
+width: 600px;
+display: block;
+margin: 0 auto;
+}
+header .call-btn {
+display: inline-block;
+margin: 15px auto 0 auto;
+}
+header div a {
+display: inline-block;
+margin-top: 10px;
+}
+
+/* FOOTER */
 .site-footer{
 background:#000;
 color:#fff;
@@ -49,16 +60,15 @@ margin-top:15px;
 color:white;
 margin:0 10px;
 }
-.logo{max-height:90px;width:auto;}
 </style>
 </head>
 <body>
 
-<!-- HEADER (UNCHANGED) -->
+<!-- HEADER (UNCHANGED LOGO, PHONE, HOME CENTRED) -->
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<div style="margin-top:10px;">
+<a href="https://steely1968.github.io/" style="font-size:20px;color:#000;text-decoration:none;font-weight:600;">Home</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
@@ -238,7 +248,6 @@ everything with you before work begins.
 
 <script>
 function toggle(id,show){document.getElementById(id).classList.toggle("hidden",!show);}
-
 document.getElementById("gates").onchange=e=>toggle("gateSection",e.target.value=="yes");
 document.getElementById("concrete").onchange=e=>toggle("concreteSection",e.target.value=="yes");
 document.getElementById("roots").onchange=e=>toggle("rootsSection",e.target.value=="yes");
