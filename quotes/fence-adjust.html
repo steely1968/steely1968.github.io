@@ -2,11 +2,12 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Fence Installation | Home Repairs 4U – Askern DN6</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fence Installation Quote Calculator | Askern DN6 – Home Repairs 4U</title>
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="canonical" href="https://homerepairs4u.com/services/fence-installation.html">
-<meta name="description" content="Professional fence installation in Askern DN6 and a 6-mile radius. Bespoke panel heights, optional gravel boards, gates, posts, labour, ground adjustments, hedge and tree removal. Get an instant quote online.">
+<meta name="description" content="Instant fence installation quote in Askern DN6 and 6-mile radius. Calculate materials, posts, gravel boards, labour, gates, hedges, and trees online. Bespoke heights, concrete adjustments, and advanced quote available.">
+<link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
 /* HEADER */
@@ -31,14 +32,19 @@ border:2px solid #000;
 }
 .call-btn:hover{background:#333;}
 
-/* CALCULATOR */
+/* CALCULATOR ENHANCED */
 .calc-box{
-max-width:900px;
-margin:20px auto;
-padding:20px;
-border:2px solid #000;
-border-radius:6px;
-background:#f9f9f9;
+max-width:950px;
+margin:30px auto;
+padding:25px;
+border:3px solid #000;
+border-radius:8px;
+background:#f4f4f4;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.calc-box h2{
+font-size:1.8em;
+margin-bottom:15px;
 }
 .calc-box label{
 display:block;
@@ -47,7 +53,7 @@ font-weight:bold;
 }
 .calc-box input, .calc-box select{
 width:100%;
-padding:10px;
+padding:12px;
 margin-top:5px;
 margin-bottom:15px;
 font-size:16px;
@@ -55,7 +61,7 @@ border:2px solid #000;
 border-radius:4px;
 }
 .calc-box button{
-padding:14px 30px;
+padding:16px 32px;
 font-size:18px;
 background:#000;
 color:#fff;
@@ -66,7 +72,7 @@ cursor:pointer;
 .calc-box button:hover{background:#333;}
 .result{
 margin-top:20px;
-padding:15px;
+padding:20px;
 background:#eee;
 border-radius:6px;
 font-size:16px;
@@ -74,11 +80,12 @@ font-size:16px;
 .next-btn{
 display:inline-block;
 margin-top:15px;
-padding:12px 24px;
+padding:14px 28px;
 background:#000;
 color:#fff;
 border-radius:6px;
 text-decoration:none;
+font-weight:bold;
 }
 .next-btn:hover{background:#333;}
 </style>
@@ -86,7 +93,7 @@ text-decoration:none;
 
 <body>
 
-<!-- HEADER (UNCHANGED) -->
+<!-- HEADER -->
 <header>
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
 <div style="text-align:center; margin-top:10px;">
@@ -97,16 +104,16 @@ text-decoration:none;
 </header>
 
 <main>
-<h1>Fence Installation Services – Askern DN6 & Surrounding Areas</h1>
+<h1>Fence Installation Services – Askern DN6 & 6-mile radius</h1>
 
-<p>We install high-quality timber fences across Askern DN6 and within a 6-mile radius. Our typical fencing includes <strong>featheredge panels with concrete posts and optional gravel boards</strong>. Whether you need a standard garden fence, bespoke height panels, or gates, we provide expert installation for a professional, long-lasting finish.</p>
+<p>We install high-quality timber fences across Askern DN6 and surrounding areas within a 6-mile radius. Our typical fencing includes <strong>featheredge panels with concrete posts and optional gravel boards</strong>. Whether you need bespoke height panels, gates, or standard garden fences, our expert team delivers professional, long-lasting results.</p>
 
 <img src="/images/fence-before-after.webp" alt="Fence installation before and after example" style="width:100%; max-width:900px; display:block; margin:20px auto; border-radius:6px;" loading="lazy">
 
-<!-- ====== FENCE CALCULATOR ====== -->
+<!-- CALCULATOR -->
 <div class="calc-box">
 <h2>Instant Fence Installation Quote</h2>
-<p>Calculate your materials, labour, gates, and total cost. Adjust for bespoke height, gravel boards, ground conditions, hedges, trees, and gates.</p>
+<p>Calculate your materials, labour, gates, hedges, trees, gravel boards, and total cost instantly. Adjust for bespoke height, concrete adjustments, and optional features.</p>
 
 <label>Total fence length (metres)</label>
 <input type="number" id="length" step="0.1" placeholder="Enter total fence length">
@@ -119,6 +126,17 @@ text-decoration:none;
 <option value="no">No</option>
 <option value="yes" selected>Yes</option>
 </select>
+
+<label>Are gates required?</label>
+<select id="gateYesNo">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+<div id="gateDiv" style="display:none; margin-left:20px;">
+<label>Number of gates</label>
+<input type="number" id="gateCount" min="1" step="1" value="1">
+<div id="gateInputs"></div>
+</div>
 
 <label>Is any of the fence on concrete?</label>
 <select id="onConcrete">
@@ -153,21 +171,10 @@ Trees over 3 metres require a separate tree felling service.
 </p>
 </div>
 
-<label>Are gates required?</label>
-<select id="gateYesNo">
-<option value="no">No</option>
-<option value="yes">Yes</option>
-</select>
-<div id="gateDiv" style="display:none; margin-left:20px;">
-<label>Number of gates</label>
-<input type="number" id="gateCount" min="1" step="1" value="1">
-<div id="gateInputs"></div>
-</div>
-
 <button type="button" onclick="calculateFence()">Calculate</button>
 <div class="result" id="result">Enter your details to calculate.</div>
 </div>
-<!-- ====== END FENCE CALCULATOR ====== -->
+<!-- END CALCULATOR -->
 
 <h2>Why Choose Featheredge Fencing?</h2>
 <p>Featheredge panels are strong, attractive, and easy to install. We use concrete posts for stability and optional gravel boards for durability. Our expert team ensures correct alignment, secure posts, and a professional finish every time. Ideal for gardens, property boundaries, and privacy screens.</p>
@@ -177,7 +184,7 @@ Trees over 3 metres require a separate tree felling service.
 
 </main>
 
-<!-- FOOTER (UNCHANGED) -->
+<!-- FOOTER (ORIGINAL) -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 <div class="footer-services">
@@ -191,28 +198,32 @@ Trees over 3 metres require a separate tree felling service.
 </footer>
 
 <script>
-// Show/hide conditional inputs
+// Show/hide inputs
 document.getElementById("onConcrete").addEventListener("change", function(){
-document.getElementById("concretePanelsDiv").style.display = this.value === "yes" ? "block" : "none";
+document.getElementById("concretePanelsDiv").style.display = this.value==="yes"?"block":"none";
 });
 document.getElementById("hedgeYesNo").addEventListener("change", function(){
-document.getElementById("hedgeLengthDiv").style.display = this.value === "yes" ? "block" : "none";
+document.getElementById("hedgeLengthDiv").style.display = this.value==="yes"?"block":"none";
 });
 document.getElementById("treeYesNo").addEventListener("change", function(){
-document.getElementById("treeHeightDiv").style.display = this.value === "yes" ? "block" : "none";
+document.getElementById("treeHeightDiv").style.display = this.value==="yes"?"block":"none";
 });
 document.getElementById("gateYesNo").addEventListener("change", function(){
-document.getElementById("gateDiv").style.display = this.value === "yes" ? "block" : "none";
+document.getElementById("gateDiv").style.display = this.value==="yes"?"block":"none";
 if(this.value==="yes") generateGateInputs();
+});
+document.getElementById("gateCount").addEventListener("input", function(){
+if(document.getElementById("gateYesNo").value==="yes") generateGateInputs();
 });
 
 // Generate inputs for each gate
 function generateGateInputs(){
-const count = parseInt(document.getElementById("gateCount").value)||1;
-const container = document.getElementById("gateInputs");
-container.innerHTML = '';
+const count=parseInt(document.getElementById("gateCount").value)||1;
+const container=document.getElementById("gateInputs");
+container.innerHTML='';
 for(let i=1;i<=count;i++){
-container.innerHTML += `<label>Gate ${i} width (m)</label><input type="number" id="gateWidth${i}" min="0.5" step="0.1">
+container.innerHTML+=`
+<label>Gate ${i} width (m)</label><input type="number" id="gateWidth${i}" min="0.5" step="0.1">
 <label>Gate ${i} height (m)</label><input type="number" id="gateHeight${i}" min="0.5" step="0.1">
 <label>Gate ${i} type</label>
 <select id="gatePart${i}">
@@ -224,17 +235,17 @@ container.innerHTML += `<label>Gate ${i} width (m)</label><input type="number" i
 
 // Calculator logic
 function calculateFence(){
-const length = parseFloat(document.getElementById("length").value)||0;
-const height = parseFloat(document.getElementById("height").value)||1.8;
-const includeGravel = document.getElementById("includeGravel").value==="yes";
-const onConcrete = document.getElementById("onConcrete").value==="yes";
-const concretePanels = parseInt(document.getElementById("concretePanels").value)||0;
-const hedgeLength = document.getElementById("hedgeYesNo").value==="yes" ? parseFloat(document.getElementById("hedgeLength").value)||0 :0;
-const treeHeight = document.getElementById("treeYesNo").value==="yes" ? parseFloat(document.getElementById("treeHeight").value)||0 :0;
+const length=parseFloat(document.getElementById("length").value)||0;
+const height=parseFloat(document.getElementById("height").value)||1.8;
+const includeGravel=document.getElementById("includeGravel").value==="yes";
+const onConcrete=document.getElementById("onConcrete").value==="yes";
+const concretePanels=parseInt(document.getElementById("concretePanels").value)||0;
+const hedgeLength=document.getElementById("hedgeYesNo").value==="yes"?parseFloat(document.getElementById("hedgeLength").value)||0:0;
+const treeHeight=document.getElementById("treeYesNo").value==="yes"?parseFloat(document.getElementById("treeHeight").value)||0:0;
 
-const panelWidth = 1.8;
-let panels = Math.ceil(length/panelWidth);
-let panelPrice = 45;
+const panelWidth=1.8;
+let panels=Math.ceil(length/panelWidth);
+let panelPrice=45;
 if(height<=0.9) panelPrice=30;
 else if(height<=1.2) panelPrice=35;
 else if(height<=1.5) panelPrice=40;
@@ -251,8 +262,8 @@ const postMixTotal=postMixBags*5;
 const labourTotal=posts*70;
 const concreteExtra=onConcrete?concretePanels*12:0;
 const hedgeExtra=hedgeLength*50;
-const treeExtra=treeHeight>0 ? (treeHeight<=3 ? 100*treeHeight :0):0;
-const treeNote=treeHeight>3 ? "<p style='font-style:italic;'>Tree is over 3 metres: separate tree felling service required.</p>": "";
+const treeExtra=treeHeight>0?(treeHeight<=3?100*treeHeight:0):0;
+const treeNote=treeHeight>3?"<p style='font-style:italic;'>Tree is over 3 metres: separate tree felling service required.</p>":"";
 
 // Gates
 let gateTotal=0;
@@ -263,15 +274,14 @@ for(let i=1;i<=gateCount;i++){
 const w=parseFloat(document.getElementById(`gateWidth${i}`).value)||0;
 const h=parseFloat(document.getElementById(`gateHeight${i}`).value)||0;
 const type=document.getElementById(`gatePart${i}`).value;
-const price=w*150; // £150 per metre of width
+const price=w*150; // £150 per metre width
 gateTotal+=price;
 if(type==="fence"){
-// Deduct equivalent panels and posts for part-of-fence gate
 const panelsRemoved=Math.ceil(w/panelWidth);
 fenceDeduction+=panelsRemoved*panelPrice;
-fenceDeduction+= (panelsRemoved+1)*postPrice; // posts
-fenceDeduction+= (panelsRemoved+1)*2*5; // post mix
-if(includeGravel) fenceDeduction+=panelsRemoved*15; // gravel boards
+fenceDeduction+=(panelsRemoved+1)*postPrice;
+fenceDeduction+=(panelsRemoved+1)*2*5;
+if(includeGravel) fenceDeduction+=panelsRemoved*15;
 }
 }
 }
@@ -280,14 +290,14 @@ const grandTotal=panels*panelPrice + postTotal + postMixTotal + gravelTotal + la
 
 document.getElementById("result").innerHTML=`
 <div class="line"><strong>Fence panels:</strong> ${panels} panels at ${height.toFixed(2)}m = £${panels*panelPrice}</div>
-${includeGravel ? `<div class="line"><strong>Gravel boards:</strong> ${gravelBoards} = £${gravelTotal}</div>`: ''}
+${includeGravel?`<div class="line"><strong>Gravel boards:</strong> ${gravelBoards} = £${gravelTotal}</div>`:''}
 <div class="line"><strong>Concrete posts:</strong> ${posts} = £${postTotal}</div>
 <div class="line"><strong>Post mix:</strong> ${postMixBags} bags = £${postMixTotal}</div>
-${onConcrete ? `<div class="line"><strong>Concrete adjustment:</strong> ${concretePanels} panels × £12 = £${concreteExtra}</div>`: ''}
-${hedgeLength>0 ? `<div class="line"><strong>Hedge removal:</strong> ${hedgeLength.toFixed(2)} m × £50 = £${hedgeExtra}</div>`: ''}
-${treeExtra>0 ? `<div class="line"><strong>Tree removal:</strong> ${treeHeight.toFixed(2)} m × £100 = £${treeExtra}</div>` : ''}
+${onConcrete?`<div class="line"><strong>Concrete adjustment:</strong> ${concretePanels} panels × £12 = £${concreteExtra}</div>`:''}
+${hedgeLength>0?`<div class="line"><strong>Hedge removal:</strong> ${hedgeLength.toFixed(2)} m × £50 = £${hedgeExtra}</div>`:''}
+${treeExtra>0?`<div class="line"><strong>Tree removal:</strong> ${treeHeight.toFixed(2)} m × £100 = £${treeExtra}</div>`:''}
 ${treeNote}
-${document.getElementById("gateYesNo").value==="yes" ? `<div class="line"><strong>Gates:</strong> £${gateTotal.toFixed(2)}</div>`: ''}
+${document.getElementById("gateYesNo").value==="yes"?`<div class="line"><strong>Gates:</strong> £${gateTotal.toFixed(2)}</div>`:''}
 <div class="line"><strong>Labour:</strong> £${labourTotal}</div>
 <div class="total"><strong>Estimated Total: £${grandTotal.toFixed(2)}</strong></div>
 <a href="https://homerepairs4u.com/quotes/fence-adjust.html" class="next-btn">Get Advanced Quote</a>
