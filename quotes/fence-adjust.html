@@ -11,15 +11,18 @@
 <link rel="preload" as="image" href="/images/logo.webp" />
 
 <style>
-body{margin:0;font-family:Arial,sans-serif;background:#f9f9f9;color:#222;}
-main{max-width:900px;margin:auto;background:#fff;padding:20px;}
-h1,h2{color:#111;}
-label{display:block;margin-top:12px;font-weight:bold;}
-input,select{width:100%;padding:8px;margin-top:4px;}
-button{background:#000;color:#fff;padding:14px;border:none;font-size:16px;margin-top:15px;cursor:pointer;width:100%;}
-button:hover{background:#333;}
-.result-box{background:#f0f0f0;padding:15px;margin-top:20px;border-radius:6px;}
-.hidden{display:none;}
+/* HEADER STYLING */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #27ae60;
+}
+.logo{
+max-height:90px;
+width:auto;
+}
+/* CALL BUTTON */
 .call-btn{
 display:inline-block;
 margin-top:18px;
@@ -32,7 +35,47 @@ font-weight:bold;
 border-radius:6px;
 border:2px solid #000;
 }
-.call-btn:hover{background:#333;}
+.call-btn:hover{
+background:#333;
+color:#fff;
+}
+/* MAIN */
+main{
+max-width:900px;
+margin:auto;
+background:#fff;
+padding:20px;
+}
+h1,h2{color:#111;}
+label{
+display:block;
+margin-top:12px;
+font-weight:bold;
+}
+input,select{
+width:100%;
+padding:8px;
+margin-top:4px;
+}
+button{
+background:#000;
+color:#fff;
+padding:14px;
+border:none;
+font-size:16px;
+margin-top:15px;
+cursor:pointer;
+width:100%;
+}
+button:hover{background:#333;}
+.result-box{
+background:#f0f0f0;
+padding:15px;
+margin-top:20px;
+border-radius:6px;
+}
+.hidden{display:none;}
+/* FOOTER */
 .site-footer{
 background:#000;
 color:#fff;
@@ -51,17 +94,16 @@ margin-top:15px;
 color:white;
 margin:0 10px;
 }
-.logo{max-height:90px;width:auto;}
 </style>
 
-<!-- LocalBusiness Schema -->
+<!-- Schema -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
 "@type":"LocalBusiness",
 "name":"Home Repairs 4U",
-"image":"https://homerepairs4u.com/images/logo.webp",
 "url":"https://homerepairs4u.com/",
+"image":"https://homerepairs4u.com/images/logo.webp",
 "telephone":"+447735873694",
 "address":{
 "@type":"PostalAddress",
@@ -70,39 +112,25 @@ margin:0 10px;
 "addressRegion":"South Yorkshire",
 "addressCountry":"GB"
 },
-"description":"Professional home services in Askern DN6 including fence installation, exterior decorating, garden maintenance, gutter replacement, pressure washing, and uPVC restoration.",
+"description":"Professional fence installation and home services in Askern DN6 and a six mile radius.",
 "areaServed":{
 "@type":"GeoCircle",
 "geoMidpoint":{"@type":"GeoCoordinates","latitude":53.616,"longitude":-1.152},
 "geoRadius":16093
 },
-"openingHoursSpecification":[{
-"@type":"OpeningHoursSpecification",
-"dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-"opens":"07:00",
-"closes":"20:00"
-}],
-"makesOffer":[
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}},
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"Exterior Decorating"}},
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"Garden Maintenance"}},
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"Gutter Replacement"}},
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"Pressure Washing"}},
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"uPVC Restoration"}}
-]
+"makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}}]
 }
 </script>
 
-<!-- FAQ Schema -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
 "@type":"FAQPage",
 "mainEntity":[
-{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a 6-mile radius including surrounding villages."}},
-{"@type":"Question","name":"Are your services insured?","acceptedAnswer":{"@type":"Answer","text":"Yes, all our services are fully insured to ensure peace of mind and reliable workmanship."}},
-{"@type":"Question","name":"Can I book multiple services at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we can schedule multiple services together for convenience and efficiency."}},
-{"@type":"Question","name":"Do you offer free consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."}}
+{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a six mile radius including surrounding villages."}},
+{"@type":"Question","name":"Are your services insured?","acceptedAnswer":{"@type":"Answer","text":"Yes, all services are fully insured for peace of mind."}},
+{"@type":"Question","name":"Can I book multiple services?","acceptedAnswer":{"@type":"Answer","text":"Yes, multiple services can be booked together."}},
+{"@type":"Question","name":"Do you provide free consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we offer free consultations to assess requirements and provide accurate quotes."}}
 ]
 }
 </script>
@@ -110,93 +138,93 @@ margin:0 10px;
 </head>
 <body>
 
-<!-- HEADER (UNCHANGED) -->
+<!-- HEADER -->
 <header>
+<div style="text-align:center;">
 <img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
-<div style="text-align:center; margin-top:10px;">
+<div style="margin-top:10px;">
 <a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
+</div>
 </header>
 
 <main>
 
 <h1>Advanced Fence Installation Quote</h1>
 
-<label for="lengthInput">Total Fence Length (metres)</label>
-<input type="number" id="lengthInput" name="lengthInput">
+<label>Total Fence Length (metres)</label>
+<input type="number" id="lengthInput">
 
-<label for="heightInput">Total Fence Height (metres)</label>
-<input type="number" id="heightInput" name="heightInput">
+<label>Total Fence Height (metres)</label>
+<input type="number" id="heightInput">
 
-<label for="gravel">Include Gravel Boards?</label>
-<select id="gravel" name="gravel">
+<label>Include Gravel Boards?</label>
+<select id="gravel">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
-<label for="gates">Are Gates Required?</label>
-<select id="gates" name="gates">
+<label>Are Gates Required?</label>
+<select id="gates">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="gateSection" class="hidden">
-<label for="gateCount">How Many Gates?</label>
-<input type="number" id="gateCount" name="gateCount">
-
+<label>How Many Gates?</label>
+<input type="number" id="gateCount">
 <div id="gateInputs"></div>
-
-<label for="gatePart">Are Gates Part Of Fence?</label>
-<select id="gatePart" name="gatePart">
+<label>Are Gates Part Of Fence?</label>
+<select id="gatePart">
 <option value="yes">Yes</option>
 <option value="no">No (Standalone)</option>
 </select>
 </div>
 
-<label for="concrete">Any Fence Over Concrete?</label>
-<select id="concrete" name="concrete">
+<label>Any Fence Over Concrete?</label>
+<select id="concrete">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="concreteSection" class="hidden">
-<label for="concretePanels">How Many Panels On Concrete?</label>
-<input type="number" id="concretePanels" name="concretePanels">
+<label>How Many Panels On Concrete?</label>
+<input type="number" id="concretePanels">
 </div>
 
-<label for="roots">Any Heavy Rooted Ground?</label>
-<select id="roots" name="roots">
+<label>Any Heavy Rooted Ground?</label>
+<select id="roots">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="rootsSection" class="hidden">
-<label for="rootPanels">How Many Panels Heavy Rooted?</label>
-<input type="number" id="rootPanels" name="rootPanels">
+<label>How Many Panels Heavy Rooted?</label>
+<input type="number" id="rootPanels">
 </div>
 
-<label for="hedges">Any Hedges To Remove?</label>
-<select id="hedges" name="hedges">
+<label>Any Hedges To Remove?</label>
+<select id="hedges">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="hedgeSection" class="hidden">
-<label for="hedgeMetres">How Many Metres?</label>
-<input type="number" id="hedgeMetres" name="hedgeMetres">
+<label>How Many Metres?</label>
+<input type="number" id="hedgeMetres">
 </div>
 
-<label for="trees">Any Trees To Remove?</label>
-<select id="trees" name="trees">
+<label>Any Trees To Remove?</label>
+<select id="trees">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="treeSection" class="hidden">
-<label for="treeHeight">Tree Height (metres)</label>
-<input type="number" id="treeHeight" name="treeHeight">
+<label>Tree Height (metres)</label>
+<input type="number" id="treeHeight">
 </div>
 
 <button onclick="calculate()">Calculate Quote</button>
@@ -218,68 +246,24 @@ We regularly work on residential gardens, new builds, rental properties, and com
 All installations are carried out with proper ground preparation, accurate levels, and secure fixings.
 </p>
 
-<h2>What This Calculator Includes</h2>
-<p>
-This calculator gives you an instant estimated price based on your fence length, bespoke height, posts, panels, gravel boards,
-ground conditions, hedges, trees and gates. It calculates materials and labour so you can understand what goes into your price
-before booking.
-</p>
+<h2>FAQ</h2>
+<div>
+<h3>Which areas do you cover?</h3>
+<p>We serve Askern DN6 and a six mile radius including surrounding villages.</p>
 
-<p>
-If your fence runs over mixed ground such as soil and concrete, you can enter how many panels sit on each surface.
-Concrete ground requires extra work and is priced accordingly.
-Heavy rooted ground also requires more labour and is included in the calculation.
-</p>
+<h3>Are your services insured?</h3>
+<p>Yes, all services are fully insured for peace of mind.</p>
 
-<h2>Gates, Access and Custom Layouts</h2>
-<p>
-You can add as many gates as you need. Gates can be single or double, built as part of the fence line or as a standalone
-garden entrance. If a gate is part of the fence, the calculator automatically deducts the fence materials and labour that
-are replaced by the gate.
-</p>
+<h3>Can I book multiple services?</h3>
+<p>Yes, multiple services can be booked together.</p>
 
-<p>
-Gate prices are calculated by width in metres, allowing you to design your access exactly how you want it rather than
-being forced into standard sizes.
-</p>
-
-<h2>Hedges, Trees and Site Clearance</h2>
-<p>
-If hedges need removing to install your fence, you can add the total length in metres and this will be priced automatically.
-</p>
-
-<p>
-If trees are present, you can enter their height. Trees under 3 metres are priced directly in the calculator.
-Trees over 3 metres require specialist equipment and will be quoted as a separate tree felling service.
-</p>
-
-<h2>Why Choose Featheredge Fencing</h2>
-<p>
-Featheredge fencing is one of the strongest and most flexible fencing systems available.
-It allows for sloping ground, uneven levels and custom heights while remaining secure and long-lasting.
-Combined with concrete posts and gravel boards, it offers excellent resistance to rot, moisture and storm damage.
-</p>
-
-<p>
-This type of fencing is ideal for gardens, driveways, side boundaries, commercial yards and rural properties.
-It can be painted or stained to match your property and easily repaired if individual boards are ever damaged.
-</p>
-
-<h2>Serving Askern and Surrounding Areas</h2>
-<p>
-We provide fence installation across Askern and all areas within a six mile radius.
-This includes surrounding villages, housing estates, rural properties and new developments.
-Our local knowledge allows us to price fairly, arrive quickly, and complete work efficiently.
-</p>
-
-<p>
-If you are unsure about any option in the calculator, you can still submit your estimate and we will confirm
-everything with you before work begins.
-</p>
+<h3>Do you provide free consultations?</h3>
+<p>Yes, we offer free consultations to assess requirements and provide accurate quotes.</p>
+</div>
 
 </main>
 
-<!-- FOOTER (UNCHANGED) -->
+<!-- FOOTER -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 <div class="footer-services">
@@ -304,8 +288,8 @@ document.getElementById("gateCount").oninput=function(){
 let n=this.value, box=document.getElementById("gateInputs");
 box.innerHTML="";
 for(let i=1;i<=n;i++){
-box.innerHTML+=`<label for="gw${i}">Gate ${i} Width (m)</label><input type="number" id="gw${i}" name="gw${i}">
-<label for="gh${i}">Gate ${i} Height (m)</label><input type="number" id="gh${i}" name="gh${i}">`;
+box.innerHTML+=`<label>Gate ${i} Width (m)</label><input type="number" id="gw${i}">
+<label>Gate ${i} Height (m)</label><input type="number" id="gh${i}">`;
 }
 }
 
@@ -315,25 +299,38 @@ let height=+heightInput.value||0;
 let total=0;
 let panels=Math.ceil(length/1.8);
 
-if(gravel.value=="yes") height+=0.3; // include gravel boards height
+// Adjust for gravel boards
+if(gravel.value=="yes") height+=0.3;
+
+// Panels price
 total+=panels*40;
 
+// Posts
 let posts=panels+1;
 total+=posts*13;
-total+=posts*2*5;
-total+=panels*15;
-total+=posts*70;
+total+=posts*2*5; // post mix
+total+=posts*70; // labour
 
+// Gravel boards
+if(gravel.value=="yes") total+=panels*15;
+
+// Concrete panels
 if(concrete.value=="yes") total+=+concretePanels.value*12;
+
+// Heavy roots
 if(roots.value=="yes") total+=+rootPanels.value*3;
+
+// Hedges
 if(hedges.value=="yes") total+=+hedgeMetres.value*50;
 
+// Trees
 if(trees.value=="yes"){
 let h=+treeHeight.value;
 if(h<=3) total+=h*100;
 else total+=200;
 }
 
+// Gates
 if(gates.value=="yes"){
 let c=+gateCount.value||0;
 let gtotal=0;
