@@ -8,8 +8,6 @@
 <link rel="canonical" href="https://homerepairs4u.com/quotes/fence-adjust.html">
 <meta name="description" content="Get a fully customisable fence installation quote online for Askern DN6 and a six mile radius. Adjust for gates, ground type, bespoke panel heights, hedges, trees, and more. Instant materials, labour, and total cost calculation.">
 
-<link rel="preload" as="image" href="/images/logo.webp" />
-
 <style>
 body{margin:0;font-family:Arial,sans-serif;background:#f9f9f9;color:#222;}
 main{max-width:900px;margin:auto;background:#fff;padding:20px;}
@@ -54,7 +52,7 @@ margin:0 10px;
 .logo{max-height:90px;width:auto;}
 </style>
 
-<!-- LocalBusiness Schema -->
+<!-- Schema -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
@@ -70,7 +68,7 @@ margin:0 10px;
 "addressRegion":"South Yorkshire",
 "addressCountry":"GB"
 },
-"description":"Professional home services in Askern DN6 including fence installation, exterior decorating, garden maintenance, gutter replacement, pressure washing, and uPVC restoration.",
+"description":"Professional home services in Askern DN6 including exterior decorating, fence installation, garden maintenance, gutter replacement, pressure washing, and uPVC restoration.",
 "areaServed":{
 "@type":"GeoCircle",
 "geoMidpoint":{"@type":"GeoCoordinates","latitude":53.616,"longitude":-1.152},
@@ -83,8 +81,8 @@ margin:0 10px;
 "closes":"20:00"
 }],
 "makesOffer":[
-{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}},
 {"@type":"Offer","itemOffered":{"@type":"Service","name":"Exterior Decorating"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"Fence Installation"}},
 {"@type":"Offer","itemOffered":{"@type":"Service","name":"Garden Maintenance"}},
 {"@type":"Offer","itemOffered":{"@type":"Service","name":"Gutter Replacement"}},
 {"@type":"Offer","itemOffered":{"@type":"Service","name":"Pressure Washing"}},
@@ -93,13 +91,12 @@ margin:0 10px;
 }
 </script>
 
-<!-- FAQ Schema -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
 "@type":"FAQPage",
 "mainEntity":[
-{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a 6-mile radius including surrounding villages."}},
+{"@type":"Question","name":"Which areas do you cover?","acceptedAnswer":{"@type":"Answer","text":"We serve Askern DN6 and a six mile radius including surrounding villages."}},
 {"@type":"Question","name":"Are your services insured?","acceptedAnswer":{"@type":"Answer","text":"Yes, all our services are fully insured to ensure peace of mind and reliable workmanship."}},
 {"@type":"Question","name":"Can I book multiple services at the same time?","acceptedAnswer":{"@type":"Answer","text":"Yes, we can schedule multiple services together for convenience and efficiency."}},
 {"@type":"Question","name":"Do you offer free consultations?","acceptedAnswer":{"@type":"Answer","text":"Yes, we provide free consultations to assess your requirements and give accurate quotes."}}
@@ -110,14 +107,23 @@ margin:0 10px;
 </head>
 <body>
 
-<!-- HEADER (UNCHANGED) -->
+<!-- HEADER CENTRALISED -->
 <header>
-<img src="/images/logo.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:25px 10px; background:#fff; border-bottom:4px solid #000;">
+<img src="/images/logo.webp"
+alt="Home Repairs 4U logo"
+class="logo"
+width="600" height="200"
+loading="eager">
+<div style="margin-top:10px;">
+<a href="https://steely1968.github.io/"
+style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">
+Home
+</a>
 </div>
 <br>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
+</div>
 </header>
 
 <main>
@@ -125,83 +131,83 @@ margin:0 10px;
 <h1>Advanced Fence Installation Quote</h1>
 
 <label for="lengthInput">Total Fence Length (metres)</label>
-<input type="number" id="lengthInput" name="lengthInput">
+<input type="number" id="lengthInput" aria-label="Total Fence Length">
 
 <label for="heightInput">Total Fence Height (metres)</label>
-<input type="number" id="heightInput" name="heightInput">
+<input type="number" id="heightInput" aria-label="Total Fence Height">
 
 <label for="gravel">Include Gravel Boards?</label>
-<select id="gravel" name="gravel">
+<select id="gravel" aria-label="Include Gravel Boards">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <label for="gates">Are Gates Required?</label>
-<select id="gates" name="gates">
+<select id="gates" aria-label="Are Gates Required">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="gateSection" class="hidden">
 <label for="gateCount">How Many Gates?</label>
-<input type="number" id="gateCount" name="gateCount">
+<input type="number" id="gateCount" aria-label="Number of Gates">
 
 <div id="gateInputs"></div>
 
 <label for="gatePart">Are Gates Part Of Fence?</label>
-<select id="gatePart" name="gatePart">
+<select id="gatePart" aria-label="Gates Part of Fence?">
 <option value="yes">Yes</option>
 <option value="no">No (Standalone)</option>
 </select>
 </div>
 
 <label for="concrete">Any Fence Over Concrete?</label>
-<select id="concrete" name="concrete">
+<select id="concrete" aria-label="Fence Over Concrete">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="concreteSection" class="hidden">
 <label for="concretePanels">How Many Panels On Concrete?</label>
-<input type="number" id="concretePanels" name="concretePanels">
+<input type="number" id="concretePanels" aria-label="Panels On Concrete">
 </div>
 
 <label for="roots">Any Heavy Rooted Ground?</label>
-<select id="roots" name="roots">
+<select id="roots" aria-label="Heavy Rooted Ground">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="rootsSection" class="hidden">
 <label for="rootPanels">How Many Panels Heavy Rooted?</label>
-<input type="number" id="rootPanels" name="rootPanels">
+<input type="number" id="rootPanels" aria-label="Panels Heavy Rooted">
 </div>
 
 <label for="hedges">Any Hedges To Remove?</label>
-<select id="hedges" name="hedges">
+<select id="hedges" aria-label="Hedges To Remove">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="hedgeSection" class="hidden">
 <label for="hedgeMetres">How Many Metres?</label>
-<input type="number" id="hedgeMetres" name="hedgeMetres">
+<input type="number" id="hedgeMetres" aria-label="Metres of Hedges">
 </div>
 
 <label for="trees">Any Trees To Remove?</label>
-<select id="trees" name="trees">
+<select id="trees" aria-label="Trees To Remove">
 <option value="no" selected>No</option>
 <option value="yes">Yes</option>
 </select>
 
 <div id="treeSection" class="hidden">
 <label for="treeHeight">Tree Height (metres)</label>
-<input type="number" id="treeHeight" name="treeHeight">
+<input type="number" id="treeHeight" aria-label="Tree Height">
 </div>
 
-<button onclick="calculate()">Calculate Quote</button>
+<button type="button" onclick="calculate()">Calculate Quote</button>
 
-<div id="result" class="result-box hidden"></div>
+<div id="result" class="result-box hidden" aria-live="polite"></div>
 
 <hr>
 
@@ -294,6 +300,7 @@ everything with you before work begins.
 
 <script>
 function toggle(id,show){document.getElementById(id).classList.toggle("hidden",!show);}
+
 document.getElementById("gates").onchange=e=>toggle("gateSection",e.target.value=="yes");
 document.getElementById("concrete").onchange=e=>toggle("concreteSection",e.target.value=="yes");
 document.getElementById("roots").onchange=e=>toggle("rootsSection",e.target.value=="yes");
@@ -304,8 +311,8 @@ document.getElementById("gateCount").oninput=function(){
 let n=this.value, box=document.getElementById("gateInputs");
 box.innerHTML="";
 for(let i=1;i<=n;i++){
-box.innerHTML+=`<label for="gw${i}">Gate ${i} Width (m)</label><input type="number" id="gw${i}" name="gw${i}">
-<label for="gh${i}">Gate ${i} Height (m)</label><input type="number" id="gh${i}" name="gh${i}">`;
+box.innerHTML+=`<label for="gw${i}">Gate ${i} Width (m)</label><input type="number" id="gw${i}" aria-label="Gate ${i} Width">
+<label for="gh${i}">Gate ${i} Height (m)</label><input type="number" id="gh${i}" aria-label="Gate ${i} Height">`;
 }
 }
 
@@ -315,7 +322,7 @@ let height=+heightInput.value||0;
 let total=0;
 let panels=Math.ceil(length/1.8);
 
-if(gravel.value=="yes") height+=0.3; // include gravel boards height
+if(gravel.value=="yes") height-=0.3;
 total+=panels*40;
 
 let posts=panels+1;
