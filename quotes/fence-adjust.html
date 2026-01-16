@@ -106,7 +106,7 @@ text-decoration:none;
 <!-- ====== FENCE CALCULATOR ====== -->
 <div class="calc-box">
 <h2>Instant Fence Installation Quote</h2>
-<p>Calculate your materials, labour, and total cost. Adjust for bespoke height, gravel boards, gates, ground conditions, hedges, and trees.</p>
+<p>Calculate your materials, labour, gates, and total cost. Adjust for bespoke height, gravel boards, ground conditions, hedges, trees, and gates.</p>
 
 <label>Total fence length (metres)</label>
 <input type="number" id="length" step="0.1" placeholder="Enter total fence length">
@@ -153,8 +153,18 @@ Trees over 3 metres require a separate tree felling service.
 </p>
 </div>
 
-<button type="button" onclick="calculateFence()">Calculate</button>
+<label>Are gates required?</label>
+<select id="gateYesNo">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+<div id="gateDiv" style="display:none; margin-left:20px;">
+<label>Number of gates</label>
+<input type="number" id="gateCount" min="1" step="1" value="1">
+<div id="gateInputs"></div>
+</div>
 
+<button type="button" onclick="calculateFence()">Calculate</button>
 <div class="result" id="result">Enter your details to calculate.</div>
 </div>
 <!-- ====== END FENCE CALCULATOR ====== -->
@@ -191,56 +201,95 @@ document.getElementById("hedgeLengthDiv").style.display = this.value === "yes" ?
 document.getElementById("treeYesNo").addEventListener("change", function(){
 document.getElementById("treeHeightDiv").style.display = this.value === "yes" ? "block" : "none";
 });
+document.getElementById("gateYesNo").addEventListener("change", function(){
+document.getElementById("gateDiv").style.display = this.value === "yes" ? "block" : "none";
+if(this.value==="yes") generateGateInputs();
+});
+
+// Generate inputs for each gate
+function generateGateInputs(){
+const count = parseInt(document.getElementById("gateCount").value)||1;
+const container = document.getElementById("gateInputs");
+container.innerHTML = '';
+for(let i=1;i<=count;i++){
+container.innerHTML += `<label>Gate ${i} width (m)</label><input type="number" id="gateWidth${i}" min="0.5" step="0.1">
+<label>Gate ${i} height (m)</label><input type="number" id="gateHeight${i}" min="0.5" step="0.1">
+<label>Gate ${i} type</label>
+<select id="gatePart${i}">
+<option value="fence">Part of fence</option>
+<option value="standalone">Standalone</option>
+</select>`;
+}
+}
 
 // Calculator logic
 function calculateFence(){
 const length = parseFloat(document.getElementById("length").value)||0;
 const height = parseFloat(document.getElementById("height").value)||1.8;
-const includeGravel = document.getElementById("includeGravel").value === "yes";
-const onConcrete = document.getElementById("onConcrete").value === "yes";
+const includeGravel = document.getElementById("includeGravel").value==="yes";
+const onConcrete = document.getElementById("onConcrete").value==="yes";
 const concretePanels = parseInt(document.getElementById("concretePanels").value)||0;
-const hedgeLength = document.getElementById("hedgeYesNo").value === "yes" ? parseFloat(document.getElementById("hedgeLength").value)||0 : 0;
-const treeHeight = document.getElementById("treeYesNo").value === "yes" ? parseFloat(document.getElementById("treeHeight").value)||0 : 0;
+const hedgeLength = document.getElementById("hedgeYesNo").value==="yes" ? parseFloat(document.getElementById("hedgeLength").value)||0 :0;
+const treeHeight = document.getElementById("treeYesNo").value==="yes" ? parseFloat(document.getElementById("treeHeight").value)||0 :0;
 
 const panelWidth = 1.8;
-let panels = Math.ceil(length / panelWidth);
+let panels = Math.ceil(length/panelWidth);
 let panelPrice = 45;
-if(height <=0.9) panelPrice =30;
-else if(height <=1.2) panelPrice=35;
-else if(height <=1.5) panelPrice=40;
+if(height<=0.9) panelPrice=30;
+else if(height<=1.2) panelPrice=35;
+else if(height<=1.5) panelPrice=40;
 else panelPrice=45;
 
-let gravelBoards = 0;
-let gravelTotal = 0;
-if(includeGravel){
-gravelBoards = panels;
-gravelTotal = gravelBoards * 15;
+let gravelBoards=0, gravelTotal=0;
+if(includeGravel){ gravelBoards=panels; gravelTotal=gravelBoards*15; }
+
+const posts=panels+1;
+const postPrice=13;
+const postTotal=posts*postPrice;
+const postMixBags=posts*2;
+const postMixTotal=postMixBags*5;
+const labourTotal=posts*70;
+const concreteExtra=onConcrete?concretePanels*12:0;
+const hedgeExtra=hedgeLength*50;
+const treeExtra=treeHeight>0 ? (treeHeight<=3 ? 100*treeHeight :0):0;
+const treeNote=treeHeight>3 ? "<p style='font-style:italic;'>Tree is over 3 metres: separate tree felling service required.</p>": "";
+
+// Gates
+let gateTotal=0;
+let fenceDeduction=0;
+if(document.getElementById("gateYesNo").value==="yes"){
+const gateCount=parseInt(document.getElementById("gateCount").value)||0;
+for(let i=1;i<=gateCount;i++){
+const w=parseFloat(document.getElementById(`gateWidth${i}`).value)||0;
+const h=parseFloat(document.getElementById(`gateHeight${i}`).value)||0;
+const type=document.getElementById(`gatePart${i}`).value;
+const price=w*150; // £150 per metre of width
+gateTotal+=price;
+if(type==="fence"){
+// Deduct equivalent panels and posts for part-of-fence gate
+const panelsRemoved=Math.ceil(w/panelWidth);
+fenceDeduction+=panelsRemoved*panelPrice;
+fenceDeduction+= (panelsRemoved+1)*postPrice; // posts
+fenceDeduction+= (panelsRemoved+1)*2*5; // post mix
+if(includeGravel) fenceDeduction+=panelsRemoved*15; // gravel boards
+}
+}
 }
 
-const posts = panels +1;
-const postPrice = 13;
-const postTotal = posts * postPrice;
-const postMixBags = posts * 2;
-const postMixTotal = postMixBags * 5;
-const labourTotal = posts * 70;
-const concreteExtra = onConcrete ? concretePanels * 12 : 0;
-const hedgeExtra = hedgeLength *50;
-const treeExtra = treeHeight>0 ? (treeHeight<=3 ? 100*treeHeight : 0) : 0;
-const treeNote = treeHeight>3 ? "<p style='font-style:italic;'>Tree is over 3 metres: separate tree felling service required.</p>":"";
-
-const grandTotal = panels*panelPrice + postTotal + postMixTotal + gravelTotal + labourTotal + concreteExtra + hedgeExtra + treeExtra;
+const grandTotal=panels*panelPrice + postTotal + postMixTotal + gravelTotal + labourTotal + concreteExtra + hedgeExtra + treeExtra + gateTotal - fenceDeduction;
 
 document.getElementById("result").innerHTML=`
-<div class="line"><strong>Fence panels:</strong> ${panels} panels at ${height.toFixed(2)}m = £${(panels*panelPrice)}</div>
-${includeGravel ? `<div class="line"><strong>Gravel boards:</strong> ${gravelBoards} = £${gravelTotal}</div>` : ''}
+<div class="line"><strong>Fence panels:</strong> ${panels} panels at ${height.toFixed(2)}m = £${panels*panelPrice}</div>
+${includeGravel ? `<div class="line"><strong>Gravel boards:</strong> ${gravelBoards} = £${gravelTotal}</div>`: ''}
 <div class="line"><strong>Concrete posts:</strong> ${posts} = £${postTotal}</div>
 <div class="line"><strong>Post mix:</strong> ${postMixBags} bags = £${postMixTotal}</div>
 ${onConcrete ? `<div class="line"><strong>Concrete adjustment:</strong> ${concretePanels} panels × £12 = £${concreteExtra}</div>`: ''}
 ${hedgeLength>0 ? `<div class="line"><strong>Hedge removal:</strong> ${hedgeLength.toFixed(2)} m × £50 = £${hedgeExtra}</div>`: ''}
 ${treeExtra>0 ? `<div class="line"><strong>Tree removal:</strong> ${treeHeight.toFixed(2)} m × £100 = £${treeExtra}</div>` : ''}
 ${treeNote}
+${document.getElementById("gateYesNo").value==="yes" ? `<div class="line"><strong>Gates:</strong> £${gateTotal.toFixed(2)}</div>`: ''}
 <div class="line"><strong>Labour:</strong> £${labourTotal}</div>
-<div class="total"><strong>Estimated Total: £${grandTotal}</strong></div>
+<div class="total"><strong>Estimated Total: £${grandTotal.toFixed(2)}</strong></div>
 <a href="https://homerepairs4u.com/quotes/fence-adjust.html" class="next-btn">Get Advanced Quote</a>
 `;
 }
