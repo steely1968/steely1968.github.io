@@ -64,6 +64,16 @@ margin-top: 15px;
 color: white;
 margin: 0 10px;
 }
+<!-- ✅ LIGHTBOX SCRIPT -->
+<script>
+function openLightbox(src, alt){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightboxImg").src=src;
+}
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+</script>
 </style>
 
 
@@ -92,57 +102,73 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 1</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder1.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- Section 2 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 2</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder2.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- Section 3 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 3</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder3.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- Section 4 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 4</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder4.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- Section 5 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 5</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder5.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- Section 6 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 6</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder6.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- Section 7 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 7</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder7.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- Section 8 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Title 8</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-<img src="/images/placeholder8.webp" alt="Place your alt text here" style="max-width:100%; height:auto; margin-top:15px;">
-</section>
+<img src="/images/placeholder1.webp"
+alt="Place your alt text here"
+style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
+onclick="openLightbox(this.src, this.alt)">
 
 <!-- ✅ FAQ SECTION -->
 <section style="max-width:900px; margin:40px auto; padding:0 15px;">
@@ -194,6 +220,11 @@ Answer goes here.</p>
 <a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
 </div>
 
+<div class="lightbox" id="lightbox">
+<span onclick="closeLightbox()">×</span>
+<img id="lightboxImg" src="" alt="">
+</div>
+
 
 </main>
 
@@ -203,3 +234,17 @@ Answer goes here.</p>
 
 
 </footer>
+
+ <!-- ✅ LIGHTBOX SCRIPT -->
+<script>
+function openLightbox(src, alt){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightboxImg").src=src;
+}
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+</script>
+
+</body>
+</html>
