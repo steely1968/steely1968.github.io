@@ -64,19 +64,40 @@ margin-top: 15px;
 color: white;
 margin: 0 10px;
 }
-<!-- ✅ LIGHTBOX SCRIPT -->
-<script>
-function openLightbox(src, alt){
-document.getElementById("lightbox").style.display="flex";
-document.getElementById("lightboxImg").src=src;
+ /* LIGHTBOX STYLING */
+.lightbox {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
+justify-content: center; /* Center the image horizontally */
+align-items: center; /* Center the image vertically */
+z-index: 9999; /* On top of everything */
+cursor: pointer; /* Click to close */
+flex-direction: column; /* For image + close button vertically */
 }
-function closeLightbox(){
-document.getElementById("lightbox").style.display="none";
+
+.lightbox img {
+max-width: 90%;
+max-height: 90%;
+box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
-</script>
+
+.lightbox span {
+position: absolute;
+top: 20px;
+right: 30px;
+color: white;
+font-size: 40px;
+font-weight: bold;
+cursor: pointer;
+user-select: none;
+}
 </style>
-
-
+ 
 <!-- ✅ HEADER -->
 <header>
 <img src="/images/home-repairs-4u-doncaster.webp"
@@ -106,6 +127,7 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 alt="Internal minor home repairs in Doncaster, fixing doors, walls, and small household issues professionally"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+</section>
 
 <!-- Section 2 -->
 <section style="margin-bottom:40px; text-align:center;">
@@ -115,6 +137,7 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Guttering services in Doncaster including cleaning, clearing, repairs and full gutter replacement for homes"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+</section>
 
 <!-- Section 3 -->
 <section style="margin-bottom:40px; text-align:center;">
@@ -124,6 +147,7 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Exterior painting in Doncaster including houses, metal garden rails, gates and wooden fencing"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+</section>
 
 <!-- Section 4 -->
 <section style="margin-bottom:40px; text-align:center;">
@@ -133,6 +157,7 @@ onclick="openLightbox(this.src, this.alt)">
 alt="uPVC restoration in Doncaster with detailed cleaning of frames, doors, fascias and guttering"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+</section>
 
 <!-- Section 5 -->
 <section style="margin-bottom:40px; text-align:center;">
@@ -142,6 +167,7 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Full conservatory valet in Doncaster including inside and outside cleaning of glass, frames and roof"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+</section>
 
 <!-- Section 6 -->
 <section style="margin-bottom:40px; text-align:center;">
@@ -151,6 +177,7 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Regular window cleaning in Doncaster for homes and business with clear, streak free results"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+</section>
 
 <!-- Section 7 -->
 <section style="margin-bottom:40px; text-align:center;">
@@ -160,12 +187,14 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Pressure washing in Doncaster for driveways, paths, decking and roofs"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+</section>
 
 <!-- Section 8 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Other Services</h2>
 <p>Other services from Home Repairs 4U cover a wide range of additional outdoor maintenance and repair work, complementing our core offerings. These include minor outdoor repairs, such as fixing gates, fences, sheds, and decking, as well as addressing any wear and tear that can affect the safety and appearance of your property. We also extend our services to cover seasonal and one-off tasks, including external woodwork treatment, roof maintenance, and cleaning of driveways, paths, and patios. Whether it’s repairing a broken fence panel, restoring faded garden structures, or preparing surfaces for painting, these services ensure every part of your property is cared for. By combining our expertise in guttering, exterior decorating, uPVC restoration, conservatory valets, window cleaning, and pressure washing, we provide a complete solution to maintain your home inside and out. Each task is completed with attention to detail and professionalism, keeping your property safe, functional, and visually appealing. With our extended services, you can rely on Home Repairs 4U to handle all the extra jobs that make a real difference to your home’s upkeep and longevity</p>
-
+</section>
+ 
 <!-- ✅ FAQ SECTION -->
 <section style="max-width:900px; margin:40px auto; padding:0 15px;">
 
@@ -173,7 +202,7 @@ onclick="openLightbox(this.src, this.alt)">
 
 <div>
 <p><strong>What types of internal minor home repairs do you handle?</strong><br>
-We handle small repairs inside your home, including fixing doors, replacing broken fittings, repairing walls, and addressing general wear annd tear.</p>
+We handle small repairs inside your home, including fixing doors, replacing broken fittings, repairing walls, and addressing general wear and tear.</p>
 
 <p><strong>Do you offer gutter cleaning and maintenance?</strong><br>
 Yes, we clean, clear, repair, and replace gutters to ensure rainwater flows properly and your home stays protected from water damage.</p>
@@ -197,7 +226,7 @@ Regular cleaning depends on your property, but we recommend monthly or quarterly
 We pressure wash driveways, paths, walls, decking and roofs, removing moss, algae, dirt and grime safely and effectively.</p>
 
 <p><strong>Are your services suitable for all property types?</strong><br>
-Yes, we work on houses, flats, commercial properties, and gardens, tailoring each service to your specific proprty needs.</p>
+Yes, we work on houses, flats, commercial properties, and gardens, tailoring each service to your specific property needs.</p>
 
 <p><strong>Do you offer same-day or urgent repairs?</strong><br>
 We aim to respond quickly and can often schedule repairs urgently to prevent further damage.</p>
@@ -242,28 +271,112 @@ document.getElementById("lightbox").style.display="none";
 }
 </script>
 
- <!-- ✅ FAQ JSON-LD FOR RICH RESULTS -->
+<!-- ✅ FAQ JSON-LD FOR RICH RESULTS -->
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
 "@type": "FAQPage",
 "mainEntity": [
-{ "@type": "Question", "name": "What types of internal minor home repairs do you handle?", "acceptedAnswer": { "@type": "Answer", "text": "We handle small repairs inside your home, including fixing doors, replacing broken fittings, repairing walls, and addressing general wear annd tear." } },
-{ "@type": "Question", "name": "Do you offer gutter cleaning and maintenance?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we clean, clear, repair, and replace gutters to ensure rainwater flows properly and your home stays protected from water damage." } },
-{ "@type": "Question", "name": "Can you repair damaged gutters?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We fix leaks, sagging sections, and any damaged parts to restore your gutters efficiency." } },
-{ "@type": "Question", "name": "What does exterior decorating include?", "acceptedAnswer": { "@type": "Answer", "text": "Exterior decorating covers external house painting, metal garden rails and gate painting, also fence painting to refresh your property's look and protect surfaces." } },
-{ "@type": "Question", "name": "Do you offer uPVC restoration?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we clean and restore uPVC doors, windows, fascias, and guttering to their original condition, improving both appearance and longevity." } },
-{ "@type": "Question", "name": "Can you clean my conservatory?", "acceptedAnswer": { "@type": "Answer", "text": "We provide full conservatory valets, cleaning inside and out, including the roof, frames, and glass, to a high standard." } },
-{ "@type": "Question", "name": "How often should i have my windows cleaned?", "acceptedAnswer": { "@type": "Answer", "text": "Regular cleaning depends on your property, but we recommend monthly or quarterly visits to keep windows clear, bright, and well maintained." } },
-{ "@type": "Question", "name": "What surfaces can you pressure wash?", "acceptedAnswer": { "@type": "Answer", "text": "We pressure wash driveways, paths, walls, decking and roofs, removing moss, algae, dirt and grime safely and effectively." } },
-{ "@type": "Question", "name": "Are your services suitable for all property types?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we work on houses, flats, commercial properties, and gardens, tailoring each service to your specific proprty needs." } },
-{ "@type": "Question", "name": "Do you offer same-day or urgent repairs?", "acceptedAnswer": { "@type": "Answer", "text": "We aim to respond quickly and can often schedule repairs urgently to prevent further damage." } },
-{ "@type": "Question", "name": "Is your work insured?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, Home Repairs 4U is fully insured, giving you peace of mind for all repairs and maintenance work." } },
-{ "@type": "Question", "name": "How do i schedule a service?", "acceptedAnswer": { "@type": "Answer", "text": "Simply call us on 07735 873694 at a time convenient to you." } }
+{
+"@type": "Question",
+"name": "What types of internal minor home repairs do you handle?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "We handle small repairs inside your home, including fixing doors, replacing broken fittings, repairing walls, and addressing general wear and tear."
+}
+},
+{
+"@type": "Question",
+"name": "Do you offer gutter cleaning and maintenance?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, we clean, clear, repair, and replace gutters to ensure rainwater flows properly and your home stays protected from water damage."
+}
+},
+{
+"@type": "Question",
+"name": "Can you repair damaged gutters?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Absolutely. We fix leaks, sagging sections, and any damaged parts to restore your gutters' efficiency."
+}
+},
+{
+"@type": "Question",
+"name": "What does exterior decorating include?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Exterior decorating covers external house painting, metal garden rails and gate painting, and fence painting to refresh your property's look and protect surfaces."
+}
+},
+{
+"@type": "Question",
+"name": "Do you offer uPVC restoration?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, we clean and restore uPVC doors, windows, fascias, and guttering to their original condition, improving both appearance and longevity."
+}
+},
+{
+"@type": "Question",
+"name": "Can you clean my conservatory?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "We provide full conservatory valets, cleaning inside and out, including the roof, frames, and glass, to a high standard."
+}
+},
+{
+"@type": "Question",
+"name": "How often should i have my windows cleaned?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Regular cleaning depends on your property, but we recommend monthly or quarterly visits to keep windows clear, bright, and well maintained."
+}
+},
+{
+"@type": "Question",
+"name": "What surfaces can you pressure wash?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "We pressure wash driveways, paths, walls, decking, and roofs, removing moss, algae, dirt, and grime safely and effectively."
+}
+},
+{
+"@type": "Question",
+"name": "Are your services suitable for all property types?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, we work on houses, flats, commercial properties, and gardens, tailoring each service to your specific property needs."
+}
+},
+{
+"@type": "Question",
+"name": "Do you offer same-day or urgent repairs?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "We aim to respond quickly and can often schedule repairs urgently to prevent further damage."
+}
+},
+{
+"@type": "Question",
+"name": "Is your work insured?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, Home Repairs 4U is fully insured, giving you peace of mind for all repairs and maintenance work."
+}
+},
+{
+"@type": "Question",
+"name": "How do I schedule a service?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Simply call us on 07735 873694 at a time convenient to you."
+}
+}
 ]
 }
 </script>
-
+ 
  <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -421,6 +534,17 @@ document.getElementById("lightbox").style.display="none";
 "cssSelector": "section:nth-of-type(7)"
 }
 ]
+}
+</script>
+
+<!-- ✅ LIGHTBOX SCRIPT -->
+<script>
+function openLightbox(src, alt){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightboxImg").src=src;
+}
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
 }
 </script>
 
