@@ -113,7 +113,7 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 
 <br>
 
-<a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
+<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
 
  <!-- ✅ MAIN CONTENT -->
@@ -127,6 +127,8 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 alt="Internal minor home repairs in Doncaster, fixing doors, walls, and small household issues professionally"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+tabindex="0"
+onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
 <!-- Section 2 -->
@@ -137,6 +139,8 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Guttering services in Doncaster including cleaning, clearing, repairs and full gutter replacement for homes"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+tabindex="0"
+onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
 <!-- Section 3 -->
@@ -147,6 +151,8 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Exterior painting in Doncaster including houses, metal garden rails, gates and wooden fencing"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+tabindex="0"
+onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
 <!-- Section 4 -->
@@ -157,6 +163,8 @@ onclick="openLightbox(this.src, this.alt)">
 alt="uPVC restoration in Doncaster with detailed cleaning of frames, doors, fascias and guttering"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+tabindex="0"
+onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
 <!-- Section 5 -->
@@ -167,6 +175,8 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Full conservatory valet in Doncaster including inside and outside cleaning of glass, frames and roof"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+tabindex="0"
+onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
 <!-- Section 6 -->
@@ -177,6 +187,8 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Regular window cleaning in Doncaster for homes and business with clear, streak free results"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+tabindex="0"
+onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
 <!-- Section 7 -->
@@ -187,6 +199,8 @@ onclick="openLightbox(this.src, this.alt)">
 alt="Pressure washing in Doncaster for driveways, paths, decking and roofs"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)">
+tabindex="0"
+onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
 <!-- Section 8 -->
@@ -242,11 +256,11 @@ Simply call us on 07735 873694 at a time convenient to you.</p>
 
 <!-- ✅ BOTTOM CALL BUTTON -->
 <div style="text-align:center; margin:40px 0;">
-<a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
+<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </div>
 
-<div class="lightbox" id="lightbox">
-<span onclick="closeLightbox()">×</span>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxImg">
+<button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">×</button>
 <img id="lightboxImg" src="" alt="">
 </div>
 
@@ -540,12 +554,25 @@ document.getElementById("lightbox").style.display="none";
 <!-- ✅ LIGHTBOX SCRIPT -->
 <script>
 function openLightbox(src, alt){
-document.getElementById("lightbox").style.display="flex";
-document.getElementById("lightboxImg").src=src;
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+lightbox.style.display = "flex"; // show lightbox
+lightboxImg.src = src; // set the image
+lightboxImg.alt = alt; // ✅ set alt dynamically
 }
+
 function closeLightbox(){
-document.getElementById("lightbox").style.display="none";
+document.getElementById("lightbox").style.display = "none";
 }
+
+// Optional: close lightbox with Esc key
+document.addEventListener('keydown', function(event) {
+const lightbox = document.getElementById('lightbox');
+if (event.key === "Escape" && lightbox.style.display === "flex") {
+lightbox.style.display = "none";
+}
+});
 </script>
 
 </body>
