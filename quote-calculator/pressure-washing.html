@@ -99,7 +99,7 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <h2>Pressure Washing Quote Calculator</h2>
 <p>Add as many or as few surfaces as you like to get an instant quote.</p>
 
-<!-- Centered Calculator Container -->
+<!-- Centered Calculator -->
 <div id="calculator" style="display:inline-block; text-align:left; max-width:600px; width:100%;">
 <div id="surfacesContainer"></div>
 <div style="text-align:center; margin-top:10px;">
@@ -109,7 +109,7 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </div>
 
 <!-- Dates Available -->
-<div id="availableDates" style="margin-top:20px;">
+<div id="availableDates" style="margin-top:20px; text-align:center;">
 <strong>Dates available:</strong>
 <ul style="list-style:none; padding:0; margin-top:10px;">
 <li id="date1"></li>
@@ -120,11 +120,10 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </div>
 </section>
 
-<!-- Calculator Styles -->
 <style>
 .surface-row {
 display: flex;
-flex-wrap: wrap; /* keeps mobile stacking */
+flex-wrap: wrap;
 gap: 10px;
 align-items: center;
 margin-bottom: 10px;
@@ -179,18 +178,36 @@ color: #000;
 #getQuoteBtn:hover {
 background: #eee;
 }
+
+#availableDates ul li {
+font-size: 14px;
+margin: 4px 0;
+}
 </style>
 
-<!-- Calculator Script -->
 <script>
-/* --- BUTTON TEXT FIX --- */
+// Base rates per m²
+const baseRates = {
+driveway: 2,
+patio: 1.8,
+decking: 2.5,
+wall: 3,
+fence: 2.8
+};
+
+// Ground condition multipliers
+const conditionMultiplier = {
+'not-dirty': 1,
+'dirty-growth': 1.5,
+'very-dirty': 2
+};
+
+// Update button text
 function updateActionButtons() {
 const surfaces = document.querySelectorAll('.surface-row');
 const addBtn = document.getElementById('addSurfaceBtn');
 const quoteBtn = document.getElementById('getQuoteBtn');
-
 if (!addBtn || !quoteBtn) return;
-
 if (surfaces.length > 0) {
 addBtn.textContent = 'Add another service';
 quoteBtn.textContent = 'Or get quote';
@@ -205,10 +222,9 @@ updateActionButtons();
 showAvailableDates();
 });
 
-/* --- ADD SURFACE --- */
+// Add surface
 function addSurface() {
 const container = document.getElementById('surfacesContainer');
-
 const newRow = document.createElement('div');
 newRow.classList.add('surface-row');
 
@@ -236,13 +252,13 @@ adjustInputsBySurface(newRow);
 updateActionButtons();
 }
 
-/* --- REMOVE SURFACE --- */
+// Remove surface
 function removeSurface(row) {
 row.remove();
 updateActionButtons();
 }
 
-/* --- SHOW/HIDE HEIGHT BASED ON SURFACE TYPE --- */
+// Show/hide height for walls/fences
 function adjustInputsBySurface(row) {
 const typeSelect = row.querySelector('.surface-type');
 const heightInput = row.querySelector('.height');
@@ -261,7 +277,7 @@ typeSelect.addEventListener('change', toggleHeight);
 toggleHeight();
 }
 
-/* --- GET QUOTE --- */
+// Calculate quote
 function getQuote() {
 const surfaces = document.querySelectorAll('.surface-row');
 if (surfaces.length === 0) {
@@ -269,30 +285,37 @@ alert('Please add at least one surface.');
 return;
 }
 
+let total = 0;
 let message = 'Quote summary:\n\n';
 surfaces.forEach((row, index) => {
 const type = row.querySelector('.surface-type').value;
-const length = row.querySelector('.length').value;
-const width = row.querySelector('.width').value;
-const height = row.querySelector('.height').value;
+const length = parseFloat(row.querySelector('.length').value) || 0;
+const width = parseFloat(row.querySelector('.width').value) || 0;
+const height = parseFloat(row.querySelector('.height').value) || 0;
 const condition = row.querySelector('.ground-condition').value;
 
-message += `${index + 1}. ${type} (${condition}) - `;
-message += (type === 'wall' || type === 'fence')
+let area = (type==='wall'||type==='fence') ? width*height : length*width;
+let price = area * baseRates[type] * conditionMultiplier[condition];
+total += price;
+
+message += `${index+1}. ${type} (${condition}) - `;
+message += (type==='wall'||type==='fence')
 ? `Width: ${width}m, Height: ${height}m`
 : `Length: ${length}m, Width: ${width}m`;
-message += '\n';
+message += ` | £${price.toFixed(2)}\n`;
 });
 
+if (total < 45) total = 45;
+
+message += `\nTotal Quote: £${total.toFixed(2)}`;
 alert(message);
 }
 
-/* --- SHOW AVAILABLE DATES --- */
+// Show dates in dd/Mon/yy
 function showAvailableDates() {
 const dateElems = [document.getElementById('date1'), document.getElementById('date2'), document.getElementById('date3')];
-const offsets = [3, 5, 9]; // days from today
+const offsets = [3, 5, 9];
 const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
 offsets.forEach((days, i) => {
 const d = new Date();
 d.setDate(d.getDate() + days);
