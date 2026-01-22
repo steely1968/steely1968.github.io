@@ -95,119 +95,129 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </header>
 
 <!-- ✅ INSTANT ONLINE QUOTE CALCULATOR -->
-<section id="pressure-quote" style="max-width:800px; margin:40px auto; padding:20px; border:2px solid #000; border-radius:10px; background:#fff; text-align:center;">
-<h1 style="color:#000;">Instant Pressure Washing Quote</h1>
-<p style="color:#000;">Add as many or as few surfaces to be pressure cleaned as you like. Each surface will be quoted individually based on size and pressure level.</p>
+<section id="pressure-calculator" style="max-width:900px; margin:40px auto; padding:15px; border:1px solid #ddd; border-radius:8px; background:#f9f9f9;">
+<h2 style="text-align:center; color:#000; margin-bottom:15px;">Instant Pressure Washing Quote</h2>
+<p style="text-align:center; color:#000; margin-bottom:20px;">
+Add as many or as few surfaces as you like to be pressure cleaned. We'll calculate a clear, honest quote for you instantly.
+</p>
 
-<div id="surfaces-container"></div>
+<div id="surfaces-container">
+<div class="surface-entry" style="margin-bottom:20px; padding:10px; border:1px solid #ccc; border-radius:6px;">
+<h3 style="margin-bottom:10px;">Surface 1</h3>
+<div class="surface-fields" style="display:flex; flex-wrap:wrap; gap:10px;">
+<input type="text" placeholder="Surface Name (e.g., Driveway)" class="surface-name" style="flex:1 1 200px; padding:8px;"/>
+<input type="number" placeholder="Length (m)" class="surface-length" style="flex:1 1 100px; padding:8px;"/>
+<input type="number" placeholder="Width (m)" class="surface-width" style="flex:1 1 100px; padding:8px;"/>
+<select class="surface-pressure" style="flex:1 1 150px; padding:8px;">
+<option value="light">Light Pressure Wash</option>
+<option value="medium">Medium Pressure Wash</option>
+<option value="heavy">Heavy Pressure Wash</option>
+</select>
+</div>
+</div>
+</div>
 
-<button id="add-surface-btn" style="padding:12px 24px; margin:10px; font-size:16px; font-weight:bold; background:#000; color:#fff; border:none; border-radius:6px; cursor:pointer;">
-Add surface
+<div style="text-align:center; margin-bottom:15px;">
+<button id="add-surface" style="background:#000; color:#fff; border:none; padding:12px 20px; margin:5px; border-radius:6px; cursor:pointer;">
+Add Another Surface
 </button>
+</div>
 
-<button id="get-quote-btn" style="padding:12px 24px; margin:10px; font-size:16px; font-weight:bold; background:#fff; color:#000; border:2px solid #000; border-radius:6px; cursor:pointer;">
+<div style="text-align:center;">
+<button id="get-quote" style="background:#fff; color:#000; border:2px solid #000; padding:12px 20px; border-radius:6px; cursor:pointer;">
 Get Quote
 </button>
+</div>
 
-<div id="quote-output" style="margin-top:20px; text-align:left; font-weight:500;"></div>
+<div id="quote-result" style="margin-top:25px; padding:15px; border:1px solid #27ae60; border-radius:6px; background:#e6f7e6; display:none;">
+</div>
 </section>
 
 <script>
-let surfaceCount = 0;
-const minCharge = 45;
-const surfacesContainer = document.getElementById('surfaces-container');
-const addSurfaceBtn = document.getElementById('add-surface-btn');
-const getQuoteBtn = document.getElementById('get-quote-btn');
-const quoteOutput = document.getElementById('quote-output');
+let surfaceCount = 1;
 
-const surfaceTypes = [
-{name:'Driveway'},
-{name:'Patio'},
-{name:'Decking'},
-{name:'Wall'},
-{name:'Fence'}
-];
-
-const pressureLevels = ['Light','Medium','Heavy'];
-
-function addSurface() {
+document.getElementById('add-surface').addEventListener('click', function() {
 surfaceCount++;
-const surfaceDiv = document.createElement('div');
-surfaceDiv.style.borderTop = '1px solid #000';
-surfaceDiv.style.padding = '15px 0';
-surfaceDiv.style.marginTop = '10px';
-
-surfaceDiv.innerHTML = `
-<h3 style="color:#000;">Surface ${surfaceCount}</h3>
-<label style="margin-right:10px;">Type:
-<select name="surface-type" required>
-${surfaceTypes.map(s=>`<option value="${s.name}">${s.name}</option>`).join('')}
+const container = document.getElementById('surfaces-container');
+const div = document.createElement('div');
+div.className = 'surface-entry';
+div.style = "margin-bottom:20px; padding:10px; border:1px solid #ccc; border-radius:6px;";
+div.innerHTML = `
+<h3 style="margin-bottom:10px;">Surface ${surfaceCount}</h3>
+<div class="surface-fields" style="display:flex; flex-wrap:wrap; gap:10px;">
+<input type="text" placeholder="Surface Name (e.g., Driveway)" class="surface-name" style="flex:1 1 200px; padding:8px;"/>
+<input type="number" placeholder="Length (m)" class="surface-length" style="flex:1 1 100px; padding:8px;"/>
+<input type="number" placeholder="Width (m)" class="surface-width" style="flex:1 1 100px; padding:8px;"/>
+<select class="surface-pressure" style="flex:1 1 150px; padding:8px;">
+<option value="light">Light Pressure Wash</option>
+<option value="medium">Medium Pressure Wash</option>
+<option value="heavy">Heavy Pressure Wash</option>
 </select>
-</label>
-<label style="margin-right:10px;">Length (m):
-<input type="number" min="0" step="0.1" name="length" required style="width:70px;">
-</label>
-<label style="margin-right:10px;">Width (m):
-<input type="number" min="0" step="0.1" name="width" required style="width:70px;">
-</label>
-<label style="margin-right:10px;">Pressure:
-<select name="pressure" required>
-${pressureLevels.map(p=>`<option value="${p}">${p}</option>`).join('')}
-</select>
-</label>
+</div>
 `;
-surfacesContainer.appendChild(surfaceDiv);
-
-// Update button text
-if(surfaceCount === 1) addSurfaceBtn.textContent = 'Add a 2nd surface';
-else if(surfaceCount === 2) addSurfaceBtn.textContent = 'Add a 3rd surface';
-else addSurfaceBtn.textContent = `Add a ${surfaceCount+1}th surface`;
-}
-
-function getQuote() {
-const surfaces = surfacesContainer.querySelectorAll('div');
-if(surfaces.length === 0) {
-alert('Please add at least one surface.');
-return;
-}
-
-let total = 0;
-let summary = '<h2>Quote Summary</h2>';
-
-surfaces.forEach((div, index) => {
-const type = div.querySelector('[name="surface-type"]').value;
-const length = parseFloat(div.querySelector('[name="length"]').value);
-const width = parseFloat(div.querySelector('[name="width"]').value);
-const pressure = div.querySelector('[name="pressure"]').value;
-if(isNaN(length) || isNaN(width) || length <= 0 || width <= 0) return;
-
-const area = length*width;
-let rate = 0;
-if(pressure==='Light') rate = 2;
-else if(pressure==='Medium') rate = 3;
-else rate = 4;
-
-let cost = area * rate;
-if(cost < minCharge) cost = minCharge;
-total += cost;
-
-summary += `<p><strong>${type} (${pressure} pressure wash}): £${cost.toFixed(2)}</strong><br>This involves cleaning the ${type.toLowerCase()} surface thoroughly using ${pressure.toLowerCase()} pressure techniques.</p>`;
+container.appendChild(div);
+div.scrollIntoView({behavior:'smooth'});
 });
 
-const today = new Date();
-const date1 = new Date(today.getTime() + 3*24*60*60*1000).toLocaleDateString();
-const date2 = new Date(today.getTime() + 5*24*60*60*1000).toLocaleDateString();
-const date3 = new Date(today.getTime() + 9*24*60*60*1000).toLocaleDateString();
+document.getElementById('get-quote').addEventListener('click', function() {
+const entries = document.querySelectorAll('.surface-entry');
+let total = 0;
+let summary = '';
+const minCharge = 45;
 
-summary += `<p><strong>Total Estimate: £${total.toFixed(2)}</strong></p>`;
-summary += `<p>Available dates within 15 mile radius of Doncaster: ${date1}, ${date2}, ${date3}. Need a different date? Just give us a call!</p>`;
+entries.forEach((entry, idx) => {
+const name = entry.querySelector('.surface-name').value || `Surface ${idx+1}`;
+const length = parseFloat(entry.querySelector('.surface-length').value) || 0;
+const width = parseFloat(entry.querySelector('.surface-width').value) || 0;
+const pressure = entry.querySelector('.surface-pressure').value;
 
-quoteOutput.innerHTML = summary;
+let area = length * width;
+let price = 0;
+
+// Sensible pricing by pressure
+if(area > 0){
+if(pressure==='light') price = area * 2.5;
+else if(pressure==='medium') price = area * 3.5;
+else if(pressure==='heavy') price = area * 5;
+if(price < minCharge) price = minCharge;
 }
 
-addSurfaceBtn.addEventListener('click', addSurface);
-getQuoteBtn.addEventListener('click', getQuote);
+total += price;
+summary += `<p><strong>${name} - ${pressure.charAt(0).toUpperCase() + pressure.slice(1)} Pressure Wash</strong> (Approx. £${price.toFixed(2)})<br>
+This involves cleaning ${area.toFixed(1)} m² using professional equipment safely and effectively.</p>`;
+});
+
+// Available dates
+const today = new Date();
+const formatDate = d => d.toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'});
+const date1 = new Date(today); date1.setDate(date1.getDate()+3);
+const date2 = new Date(today); date2.setDate(date2.getDate()+5);
+const date3 = new Date(today); date3.setDate(date3.getDate()+9);
+
+summary += `<p><strong>Total Estimate: £${total.toFixed(2)}</strong></p>`;
+summary += `<p>Available dates within 15-mile radius of Doncaster:</p>`;
+summary += `<ul><li>${formatDate(date1)}</li><li>${formatDate(date2)}</li><li>${formatDate(date3)}</li></ul>`;
+summary += `<p>Need a different date? Just give us a call.</p>`;
+
+const resultDiv = document.getElementById('quote-result');
+resultDiv.innerHTML = summary;
+resultDiv.style.display = 'block';
+resultDiv.scrollIntoView({behavior:'smooth'});
+});
 </script>
+
+<style>
+/* Responsive stacking for mobile */
+@media(max-width:600px){
+.surface-fields input, .surface-fields select {
+flex: 1 1 100% !important;
+}
+#add-surface, #get-quote {
+width: 100%;
+margin:10px 0;
+}
+}
+</style>
   
 </main>
 
