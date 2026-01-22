@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="index, follow">
+<title>Instant Pressure Washing Quote Calculator</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/instant-quote.html">
+<meta name="description" content="Get an instant online quote for pressure washing driveways, patios, decking, walls, and fences. Add multiple surfaces and see your price immediately.">
+
+<style>
+/* HEADER STYLING */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #27ae60;
+}
+
+.logo{
+max-height:90px;
+width:auto;
+}
+
+/* BUTTON STYLING */
+button {
+padding:12px 24px;
+font-size:16px;
+font-weight:bold;
+border-radius:6px;
+margin:5px;
+cursor:pointer;
+}
+
+#addSurfaceBtn {
+background:#000;
+color:#fff;
+border:none;
+}
+
+#addSurfaceBtn:hover {
+background:#333;
+}
+
+#getQuoteBtn {
+background:#fff;
+color:#000;
+border:2px solid #000;
+}
+
+#getQuoteBtn:hover {
+background:#f0f0f0;
+}
+
+/* FOOTER STYLING */
+.site-footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+font-size:14px;
+}
+
+/* FORM BOXES */
+.surfaceForm {
+border:1px solid #ccc;
+padding:15px;
+margin:10px auto;
+max-width:700px;
+border-radius:8px;
+text-align:left;
+}
+</style>
+</head>
+<body>
+
+<!-- ✅ HEADER -->
+<header>
+<img src="/images/home-repairs-4u-doncaster.webp"
+alt="Home Repairs 4U logo"
+class="logo"
+width="600" height="200"
+loading="eager">
+<br><br>
+<a href="tel:07735873694" style="display:inline-block;padding:14px 28px;background:#000;color:#fff;font-size:19px;text-decoration:none;font-weight:bold;border-radius:6px;border:2px solid #000;">📞 Call Now: 07735 873694</a>
+</header>
+
+<!-- ✅ MAIN CONTENT -->
+<main style="max-width:1200px; margin:30px auto; padding:0 15px;">
+
+<section style="text-align:center; margin-bottom:50px;">
+<h1 style="color:#000;">Instant Pressure Washing Quote Calculator</h1>
+<p style="color:#000; max-width:700px; margin:0 auto 25px;">
+You can add as many or as few surfaces as you like to get a tailored pressure washing quote for your property.
+</p>
+
+<div id="surfacesContainer"></div>
+
+<div style="margin-top:20px;">
+<button id="addSurfaceBtn">Add Surface</button>
+<button id="getQuoteBtn">Get Quote</button>
+</div>
+
+<div id="quoteOutput" style="margin-top:25px; max-width:700px; margin-left:auto; margin-right:auto; text-align:left;"></div>
+</section>
+
+</main>
+
+<!-- ✅ FOOTER -->
+<footer class="site-footer">
+© Home Repairs 4U | Askern DN6 | Call 07735 873694
+</footer>
+
+<!-- ✅ QUOTE CALCULATOR SCRIPT -->
+<script>
+let surfaceCount = 0;
+const surfacePrices = {
+"Driveway": 15,
+"Patio": 12,
+"Decking": 10,
+"Wall": 8,
+"Fence": 8
+};
+
+const surfacesContainer = document.getElementById("surfacesContainer");
+const addSurfaceBtn = document.getElementById("addSurfaceBtn");
+const getQuoteBtn = document.getElementById("getQuoteBtn");
+const quoteOutput = document.getElementById("quoteOutput");
+
+function createSurfaceForm() {
+surfaceCount++;
+const div = document.createElement("div");
+div.className = "surfaceForm";
+div.innerHTML = `
+<h3>Surface ${surfaceCount}</h3>
+<label>Surface Type:
+<select class="surfaceType">
+<option value="Driveway">Driveway</option>
+<option value="Patio">Patio</option>
+<option value="Decking">Decking</option>
+<option value="Wall">Wall</option>
+<option value="Fence">Fence</option>
+</select>
+</label>
+<br><br>
+<label>Length (m):
+<input type="number" class="length" min="0" step="0.1" required>
+</label>
+<br><br>
+<label>Width (m):
+<input type="number" class="width" min="0" step="0.1" required>
+</label>
+<br><br>
+<label>Notes (optional):
+<input type="text" class="notes" placeholder="Any special details">
+</label>
+<br><br>
+<button type="button" class="removeSurfaceBtn" style="background:#fff;color:#000;border:2px solid #000;padding:6px 12px;border-radius:6px;cursor:pointer;">Remove Surface</button>
+`;
+surfacesContainer.appendChild(div);
+
+div.querySelector(".removeSurfaceBtn").addEventListener("click", () => {
+surfacesContainer.removeChild(div);
+surfaceCount--;
+updateAddButton();
+});
+
+updateAddButton();
+}
+
+function updateAddButton() {
+if(surfaceCount === 0) {
+addSurfaceBtn.textContent = "Add Surface";
+} else {
+addSurfaceBtn.textContent = `Add ${ordinal(surfaceCount+1)} Surface`;
+}
+}
+
+function ordinal(n) {
+const s=["th","st","nd","rd"], v=n%100;
+return n + (s[(v-20)%10]||s[v]||s[0]);
+}
+
+addSurfaceBtn.addEventListener("click", createSurfaceForm);
+
+getQuoteBtn.addEventListener("click", () => {
+const forms = document.querySelectorAll(".surfaceForm");
+if(forms.length === 0){
+alert("Please add at least one surface to get a quote.");
+return;
+}
+
+let totalPrice = 0;
+let summary = "<h2 style='text-align:center;'>Your Pressure Washing Quote</h2>";
+
+forms.forEach((form, index) => {
+const type = form.querySelector(".surfaceType").value;
+const length = parseFloat(form.querySelector(".length").value) || 0;
+const width = parseFloat(form.querySelector(".width").value) || 0;
+const notes = form.querySelector(".notes").value;
+
+const area = length * width;
+const price = area * surfacePrices[type];
+totalPrice += price;
+
+summary += `
+<p><strong>Surface ${index+1}:</strong> ${type} - ${length}m × ${width}m = ${area.toFixed(1)}m²<br>
+${notes ? "Notes: " + notes + "<br>" : ""}Estimated Price: £${price.toFixed(2)}</p>
+`;
+});
+
+summary += `<h3>Total Estimated Price: £${totalPrice.toFixed(2)}</h3>`;
+summary += `<p style="font-style:italic;">Thank you! Your quote includes all surfaces you've added. You can adjust measurements or add more surfaces if needed.</p>`;
+
+quoteOutput.innerHTML = summary;
+});
+</script>
+
+</body>
+</html>
 
