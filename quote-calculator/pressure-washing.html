@@ -99,7 +99,7 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <section id="pressure-calculator" style="max-width:800px; margin:40px auto; padding:20px; border:1px solid #ccc; border-radius:10px;">
 <h2 style="text-align:center; color:#000;">Instant Pressure Washing Quote</h2>
 <p style="text-align:center; color:#000;">
-Add as many or as few surfaces as you like for a pressure wash. Each surface can have different sizes and pressure levels.
+Add as many or as few surfaces as you like for a pressure wash. Each surface can have different sizes and ground conditions.
 </p>
 
 <div id="surfaces-container"></div>
@@ -145,19 +145,18 @@ div.innerHTML = `
 <label>Length (m): <input type="number" class="length" min="0" step="0.1" required></label>
 <label style="margin-left:10px;">Width/Height (m): <input type="number" class="width" min="0" step="0.1" required></label>
 <br><br>
-<label>Pressure Level:
-<select class="pressure-level" required>
+<label>Ground Condition:
+<select class="ground-condition" required>
 <option value="">Select...</option>
-<option value="Light">Light</option>
-<option value="Medium">Medium</option>
-<option value="Heavy">Heavy</option>
+<option value="Not too bad">Not too bad</option>
+<option value="Dirty with growth">Dirty with growth</option>
+<option value="Very dirty">Very dirty</option>
 </select>
 </label>
 `;
 
 surfacesContainer.appendChild(div);
 
-// Change button text after first surface
 if(surfaceCount === 1) addSurfaceBtn.textContent = 'Add Another Surface';
 }
 
@@ -177,25 +176,26 @@ surfaceItems.forEach(item => {
 const type = item.querySelector('.surface-type').value;
 const length = parseFloat(item.querySelector('.length').value);
 const width = parseFloat(item.querySelector('.width').value);
-const pressure = item.querySelector('.pressure-level').value;
+const condition = item.querySelector('.ground-condition').value;
 
-if(!type || !length || !width || !pressure) {
+if(!type || !length || !width || !condition) {
 alert('Please fill all fields for every surface.');
 return;
 }
 
+// Pricing per m² based on condition
 let rate = 0;
-if(pressure === 'Light') rate = 5;
-if(pressure === 'Medium') rate = 7;
-if(pressure === 'Heavy') rate = 10;
+if(condition === 'Not too bad') rate = 5;
+if(condition === 'Dirty with growth') rate = 7;
+if(condition === 'Very dirty') rate = 10;
 
 let surfaceTotal = length * width * rate;
 if(surfaceTotal < 45) surfaceTotal = 45; // Minimum charge
 
 total += surfaceTotal;
 
-summary += `<li>${type} (${pressure} pressure wash) - ${length}m x ${width}m: £${surfaceTotal.toFixed(2)}
-<br>This involves ${pressure.toLowerCase()} pressure cleaning of the ${type.toLowerCase()} surface.</li>`;
+summary += `<li>${type} (${condition}) - ${length}m x ${width}m: £${surfaceTotal.toFixed(2)}
+<br>This involves ${condition.toLowerCase()} cleaning of the ${type.toLowerCase()} surface.</li>`;
 });
 
 summary += `</ul><p><strong>Total Quote: £${total.toFixed(2)}</strong></p>`;
