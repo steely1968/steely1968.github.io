@@ -149,8 +149,8 @@ div.innerHTML = `
 <select class="ground-condition" required>
 <option value="">Select...</option>
 <option value="Not too bad">Not too bad</option>
-<option value="Dirty with growth">Dirty with growth</option>
 <option value="Very dirty">Very dirty</option>
+<option value="Very dirty with growth">Very dirty with growth</option>
 </select>
 </label>
 `;
@@ -186,8 +186,8 @@ return;
 // Pricing per m² based on condition
 let rate = 0;
 if(condition === 'Not too bad') rate = 5;
-if(condition === 'Dirty with growth') rate = 7;
-if(condition === 'Very dirty') rate = 10;
+if(condition === 'Very dirty') rate = 7;
+if(condition === 'Very dirty with growth') rate = 10;
 
 let surfaceTotal = length * width * rate;
 if(surfaceTotal < 45) surfaceTotal = 45; // Minimum charge
