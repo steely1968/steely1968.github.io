@@ -94,7 +94,6 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
 
-<!-- ✅ PRESSURE WASHING QUOTE CALCULATOR -->
 <!-- Calculator Section -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Pressure Washing Quote Calculator</h2>
@@ -107,6 +106,68 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </div>
 </section>
 
+<!-- Calculator Styles -->
+<style>
+.surface-row {
+display: flex;
+flex-wrap: wrap; /* your existing mobile stacking stays */
+gap: 10px;
+align-items: center;
+margin-bottom: 10px;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 6px;
+background: #f9f9f9;
+}
+
+.surface-row input,
+.surface-row select {
+padding: 5px 8px;
+font-size: 14px;
+}
+
+.surface-row button.remove-surface {
+background: #e74c3c;
+color: white;
+border: none;
+padding: 6px 12px;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.surface-row button.remove-surface:hover {
+background: #c0392b;
+}
+
+#addSurfaceBtn, #getQuoteBtn {
+padding: 10px 18px;
+font-size: 16px;
+margin-top: 10px;
+border-radius: 6px;
+border: 2px solid #000;
+cursor: pointer;
+}
+
+#addSurfaceBtn {
+background: #000;
+color: #fff;
+}
+
+#addSurfaceBtn:hover {
+background: #333;
+}
+
+#getQuoteBtn {
+background: #fff;
+color: #000;
+}
+
+#getQuoteBtn:hover {
+background: #eee;
+}
+</style>
+
+<!-- Calculator Script -->
 <script>
 /* --- BUTTON TEXT FIX --- */
 function updateActionButtons() {
@@ -127,7 +188,7 @@ quoteBtn.textContent = 'Get quote';
 
 document.addEventListener('DOMContentLoaded', updateActionButtons);
 
-/* --- ADD SURFACE FUNCTION --- */
+/* --- ADD SURFACE --- */
 function addSurface() {
 const container = document.getElementById('surfacesContainer');
 
@@ -158,7 +219,7 @@ adjustInputsBySurface(newRow);
 updateActionButtons();
 }
 
-/* --- REMOVE SURFACE FUNCTION --- */
+/* --- REMOVE SURFACE --- */
 function removeSurface(row) {
 row.remove();
 updateActionButtons();
@@ -183,7 +244,7 @@ typeSelect.addEventListener('change', toggleHeight);
 toggleHeight();
 }
 
-/* --- GET QUOTE FUNCTION --- */
+/* --- GET QUOTE --- */
 function getQuote() {
 const surfaces = document.querySelectorAll('.surface-row');
 if (surfaces.length === 0) {
@@ -199,7 +260,7 @@ const width = row.querySelector('.width').value;
 const height = row.querySelector('.height').value;
 const condition = row.querySelector('.ground-condition').value;
 
-message += `${index+1}. ${type} (${condition}) - `;
+message += `${index + 1}. ${type} (${condition}) - `;
 message += (type === 'wall' || type === 'fence')
 ? `Width: ${width}m, Height: ${height}m`
 : `Length: ${length}m, Width: ${width}m`;
