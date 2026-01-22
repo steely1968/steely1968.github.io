@@ -94,96 +94,108 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
 
-<!-- ✅ INSTANT ONLINE PRESSURE WASHING QUOTE CALCULATOR -->
-<section id="instant-quote-calculator" style="max-width:900px;margin:60px auto;padding:30px;border:2px solid #000;">
+<!-- ✅ INSTANT ONLINE QUOTE CALCULATOR -->
+<section id="quote-calculator" style="max-width:700px;margin:50px auto;text-align:center;border:2px solid #000;padding:25px;">
 
-<h2 style="text-align:center;color:#000;">Instant Online Pressure Washing Quote</h2>
+<h2 style="color:#000;">Instant Online Pressure Washing Quote</h2>
 
-<p style="text-align:center;color:#000;">
-You can add as many or as few surfaces as you like. Combine driveways, patios, walls, decking and more into one simple instant quote.
+<p style="color:#000;">
+Add as many or as few surfaces as you like. You can combine driveways, patios, walls, decking and more to build an instant estimate.
 </p>
 
-<div id="surfaces"></div>
-
-<div style="text-align:center;margin-top:30px;">
-<button id="addSurfaceBtn"
-style="background:#000;color:#fff;border:2px solid #000;padding:14px 28px;font-size:16px;font-weight:600;cursor:pointer;margin-right:10px;">
+<button id="addSurfaceBtn" style="background:#000;color:#fff;padding:12px 20px;border:none;font-size:16px;cursor:pointer;">
 Add surface
 </button>
 
-<button onclick="calculateQuote()"
-style="background:#fff;color:#000;border:2px solid #000;padding:14px 28px;font-size:16px;font-weight:600;cursor:pointer;">
+<form id="quoteForm" style="display:none;margin-top:20px;">
+
+<div id="surfaces"></div>
+
+<button type="submit" style="margin-top:20px;background:#fff;color:#000;border:2px solid #000;padding:12px 20px;font-size:16px;cursor:pointer;">
 Get my quote
 </button>
-</div>
 
-<div id="quoteResult" style="margin-top:40px;display:none;border-top:2px solid #000;padding-top:30px;"></div>
+</form>
+
+<div id="quoteResult" style="margin-top:30px;"></div>
 
 </section>
 
 <script>
 let surfaceCount = 0;
 
+const pricing = {
+driveway: { light: 2, medium: 3, heavy: 4 },
+patio: { light: 2, medium: 3, heavy: 4 },
+decking: { light: 3, medium: 4, heavy: 5 },
+wall: { light: 2.5, medium: 3.5, heavy: 4.5 },
+fence: { light: 2, medium: 3, heavy: 4 }
+};
+
 function addSurface() {
 surfaceCount++;
-if (surfaceCount > 1) {
-document.getElementById('addSurfaceBtn').textContent = 'Add another surface';
-}
+document.getElementById('quoteForm').style.display = 'block';
 
-const surface = document.createElement('div');
-surface.style.border = '1px solid #ccc';
-surface.style.padding = '20px';
-surface.style.marginTop = '20px';
+const div = document.createElement('div');
+div.style.borderTop = "1px solid #ccc";
+div.style.marginTop = "20px";
+div.style.paddingTop = "20px";
 
-surface.innerHTML = `
+div.innerHTML = `
 <h3>Surface ${surfaceCount}</h3>
 
-<label>Surface type</label>
-<select class="stype" style="width:100%;padding:8px;margin-bottom:15px;">
-<option>Driveway</option>
-<option>Patio</option>
-<option>Decking</option>
-<option>Wall</option>
-<option>Fence</option>
-</select>
+<label>Surface type</label><br>
+<select required class="surfaceType">
+<option value="driveway">Driveway</option>
+<option value="patio">Patio</option>
+<option value="decking">Decking</option>
+<option value="wall">Wall</option>
+<option value="fence">Fence</option>
+</select><br><br>
 
-<label>Length (feet)</label>
-<input type="number" class="length" style="width:100%;padding:8px;margin-bottom:15px;">
+<label>Length (metres)</label><br>
+<input type="number" min="1" required class="length"><br><br>
 
-<label>Width / Height (feet)</label>
-<input type="number" class="width" style="width:100%;padding:8px;margin-bottom:15px;">
+<label>Width / Height (metres)</label><br>
+<input type="number" min="1" required class="width"><br><br>
 
-<label>Pressure level</label>
-<select class="pressure" style="width:100%;padding:8px;">
-<option value="1">Light – general dirt & algae</option>
-<option value="1.5">Medium – heavy build-up</option>
-<option value="2">Heavy – deep staining</option>
+<label>Cleaning level</label><br>
+<select required class="level">
+<option value="light">Light pressure wash</option>
+<option value="medium">Medium pressure wash</option>
+<option value="heavy">Heavy pressure wash</option>
 </select>
 `;
 
-document.getElementById('surfaces').appendChild(surface);
+document.getElementById('surfaces').appendChild(div);
+
+document.getElementById('addSurfaceBtn').innerText = "Add another surface";
 }
 
+document.addEventListener('DOMContentLoaded', function () {
 document.getElementById('addSurfaceBtn').addEventListener('click', addSurface);
+});
 
-function calculateQuote() {
+document.getElementById('quoteForm').addEventListener('submit', function(e){
+e.preventDefault();
+
 let total = 0;
-let explanation = '';
+let breakdown = "";
 
-document.querySelectorAll('#surfaces > div').forEach((surface, index) => {
-const type = surface.querySelector('.stype').value;
+document.querySelectorAll('#surfaces > div').forEach((surface, i) => {
+const type = surface.querySelector('.surfaceType').value;
 const length = surface.querySelector('.length').value;
 const width = surface.querySelector('.width').value;
-const pressure = surface.querySelector('.pressure').value;
-
-if (!length || !width) return;
+const level = surface.querySelector('.level').value;
 
 const area = length * width;
-const price = area * 0.6 * pressure;
-total += price;
+const cost = area * pricing[type][level];
+total += cost;
 
-explanation += `<p><strong>${type} – ${pressure == 1 ? 'Light' : pressure == 1.5 ? 'Medium' : 'Heavy'} pressure wash</strong><br>
-This involves a professional clean of approximately ${area} square feet using the correct pressure and techniques for this surface.</p>`;
+breakdown += `
+<p><strong>${type.charAt(0).toUpperCase() + type.slice(1)} – ${level} pressure wash</strong><br>
+This involves a full professional clean using the correct pressure level to safely remove dirt, algae and staining from ${area}m².</p>
+`;
 });
 
 if (total < 45) total = 45;
@@ -193,22 +205,21 @@ const d1 = new Date(today); d1.setDate(today.getDate() + 3);
 const d2 = new Date(today); d2.setDate(today.getDate() + 5);
 const d3 = new Date(today); d3.setDate(today.getDate() + 9);
 
-document.getElementById('quoteResult').style.display = 'block';
 document.getElementById('quoteResult').innerHTML = `
-<h3>Your instant estimate: £${total.toFixed(2)}</h3>
+<h3>Your instant estimate</h3>
+${breakdown}
+<p><strong>Estimated total: £${total.toFixed(2)}</strong> (minimum charge £45)</p>
 
-${explanation}
+<h4>Available dates</h4>
+<ul>
+<li>${d1.toDateString()}</li>
+<li>${d2.toDateString()}</li>
+<li>${d3.toDateString()}</li>
+</ul>
 
-<p><strong>Availability:</strong><br>
-${d1.toDateString()}<br>
-${d2.toDateString()}<br>
-${d3.toDateString()}<br><br>
-Need a different date? Just give us a call.
-</p>
-
-<p><strong>Service area:</strong> We cover a 15 mile radius of Doncaster.</p>
+<p>Need a different date or outside our 15 mile Doncaster service area? Just give us a call.</p>
 `;
-}
+});
 </script>
   
 </main>
