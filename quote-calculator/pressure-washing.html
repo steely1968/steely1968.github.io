@@ -95,154 +95,118 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </header>
 
 <!-- ✅ PRESSURE WASHING QUOTE CALCULATOR -->
-<section class="calculator" style="max-width:800px; margin:40px auto; padding:20px; border:2px solid #000; border-radius:8px; background:#fff;">
-<h1 style="text-align:center; color:#000;">Instant Pressure Washing Quote</h1>
-<p style="text-align:center; color:#000;">Add as many or as few surfaces as you need. Each surface can be customised with the correct measurements and ground condition.</p>
+<!-- Calculator Section -->
+<section style="margin-bottom:40px; text-align:center;">
+<h2>Pressure Washing Quote Calculator</h2>
+<p>Add as many or as few surfaces as you like to get an instant quote.</p>
 
-<div id="surfaces-container"></div>
-
-<div style="text-align:center; margin-top:20px;">
-<button type="button" class="calc-button" onclick="addSurface()" style="padding:10px 20px; margin-right:10px; background:#000; color:#fff; border:none; border-radius:4px; cursor:pointer;">Add Surface</button>
-<button type="button" class="calc-button" onclick="getQuote()" style="padding:10px 20px; background:#fff; color:#000; border:2px solid #000; border-radius:4px; cursor:pointer;">Get Quote</button>
+<div id="calculator">
+<div id="surfacesContainer"></div>
+<button id="addSurfaceBtn" onclick="addSurface()">Add surface</button>
+<button id="getQuoteBtn" onclick="getQuote()">Get quote</button>
 </div>
-
-<div id="quote-result" style="margin-top:20px; font-size:16px;"></div>
-<div id="available-dates" style="margin-top:20px; font-weight:bold; font-size:16px;"></div>
 </section>
 
 <script>
-let surfaceCount = 0;
-const surfacesContainer = document.getElementById('surfaces-container');
+/* --- BUTTON TEXT FIX --- */
+function updateActionButtons() {
+const surfaces = document.querySelectorAll('.surface-row');
+const addBtn = document.getElementById('addSurfaceBtn');
+const quoteBtn = document.getElementById('getQuoteBtn');
 
+if (!addBtn || !quoteBtn) return;
+
+if (surfaces.length > 0) {
+addBtn.textContent = 'Add another service';
+quoteBtn.textContent = 'Or get quote';
+} else {
+addBtn.textContent = 'Add surface';
+quoteBtn.textContent = 'Get quote';
+}
+}
+
+document.addEventListener('DOMContentLoaded', updateActionButtons);
+
+/* --- ADD SURFACE FUNCTION --- */
 function addSurface() {
-surfaceCount++;
-const div = document.createElement('div');
-div.className = 'surface-entry';
-div.id = 'surface-' + surfaceCount;
-div.style.border = '1px solid #ccc';
-div.style.padding = '15px';
-div.style.marginTop = '15px';
-div.style.borderRadius = '6px';
-div.style.background = '#f9f9f9';
+const container = document.getElementById('surfacesContainer');
 
-div.innerHTML = `
-<label>Surface Type:
-<select name="surfaceType" onchange="updateFields(${surfaceCount}, this.value)">
+const newRow = document.createElement('div');
+newRow.classList.add('surface-row');
+
+newRow.innerHTML = `
+<select class="surface-type">
 <option value="driveway">Driveway</option>
 <option value="patio">Patio</option>
 <option value="decking">Decking</option>
 <option value="wall">Wall</option>
 <option value="fence">Fence</option>
 </select>
-</label>
-<div id="fields-${surfaceCount}" style="margin-top:10px;">
-Length (m): <input type="number" min="0" step="0.1" name="length">
-Width (m): <input type="number" min="0" step="0.1" name="width">
-</div>
-<label style="display:block; margin-top:10px;">Ground Condition:
-<select name="groundCondition">
-<option value="not_too_bad">Not too bad</option>
-<option value="very_dirty">Very dirty</option>
-<option value="dirty_with_growth">Dirty with growth</option>
+<input type="number" placeholder="Length (m)" class="length">
+<input type="number" placeholder="Width (m)" class="width">
+<input type="number" placeholder="Height (m)" class="height">
+<select class="ground-condition">
+<option value="not-dirty">Not too bad</option>
+<option value="dirty-growth">Dirty with growth</option>
+<option value="very-dirty">Very dirty</option>
 </select>
-</label>
-<button type="button" class="calc-button" onclick="removeSurface(${surfaceCount})" style="margin-top:10px; padding:6px 12px; background:#ff0000; color:#fff; border:none; border-radius:4px; cursor:pointer;">Remove Surface</button>
+<button class="remove-surface" onclick="removeSurface(this.parentElement)">Remove</button>
 `;
 
-surfacesContainer.appendChild(div);
+container.appendChild(newRow);
+adjustInputsBySurface(newRow);
+updateActionButtons();
 }
 
-function updateFields(id, type) {
-const fields = document.getElementById('fields-' + id);
+/* --- REMOVE SURFACE FUNCTION --- */
+function removeSurface(row) {
+row.remove();
+updateActionButtons();
+}
+
+/* --- SHOW/HIDE HEIGHT BASED ON SURFACE TYPE --- */
+function adjustInputsBySurface(row) {
+const typeSelect = row.querySelector('.surface-type');
+const heightInput = row.querySelector('.height');
+
+function toggleHeight() {
+const type = typeSelect.value;
 if (type === 'wall' || type === 'fence') {
-fields.innerHTML = `
-Width (m): <input type="number" min="0" step="0.1" name="width">
-Height (m): <input type="number" min="0" step="0.1" name="height">
-`;
+heightInput.style.display = 'inline-block';
 } else {
-fields.innerHTML = `
-Length (m): <input type="number" min="0" step="0.1" name="length">
-Width (m): <input type="number" min="0" step="0.1" name="width">
-`;
+heightInput.style.display = 'none';
+heightInput.value = '';
 }
 }
 
-function removeSurface(id) {
-const div = document.getElementById('surface-' + id);
-if (div) div.remove();
-getQuote(); // ALWAYS recalc
+typeSelect.addEventListener('change', toggleHeight);
+toggleHeight();
 }
 
-// If a quote is already showing, update it
-if (document.getElementById('quote-result').innerHTML.trim() !== '') {
-getQuote();
-}
-
+/* --- GET QUOTE FUNCTION --- */
 function getQuote() {
-const entries = document.querySelectorAll('.surface-entry');
-if(entries.length === 0){
-document.getElementById('quote-result').innerHTML =
-'<p><strong>No surfaces selected.</strong> Add a surface to get an instant quote.</p>';
-document.getElementById('available-dates').innerHTML = '';
+const surfaces = document.querySelectorAll('.surface-row');
+if (surfaces.length === 0) {
+alert('Please add at least one surface.');
 return;
 }
 
-let quoteText = '';
-let total = 0;
+let message = 'Quote summary:\n\n';
+surfaces.forEach((row, index) => {
+const type = row.querySelector('.surface-type').value;
+const length = row.querySelector('.length').value;
+const width = row.querySelector('.width').value;
+const height = row.querySelector('.height').value;
+const condition = row.querySelector('.ground-condition').value;
 
-entries.forEach(entry => {
-const type = entry.querySelector('select[name="surfaceType"]').value;
-const ground = entry.querySelector('select[name="groundCondition"]').value;
-let length = parseFloat(entry.querySelector('input[name="length"]')?.value) || 0;
-let width = parseFloat(entry.querySelector('input[name="width"]')?.value) || 0;
-let height = parseFloat(entry.querySelector('input[name="height"]')?.value) || 0;
-
-let area = 0;
-if(type === 'wall' || type === 'fence'){
-area = width * height;
-} else {
-area = length * width;
-}
-
-let multiplier = 1;
-if(ground === 'not_too_bad') multiplier = 1;
-if(ground === 'very_dirty') multiplier = 1.3;
-if(ground === 'dirty_with_growth') multiplier = 1.6;
-
-let pricePerM2 = 3; // base
-let price = area * pricePerM2 * multiplier;
-
-if(price < 45) price = 45; // minimum charge
-
-total += price;
-
-quoteText += `<p><strong>${type.charAt(0).toUpperCase()+type.slice(1)} (${ground.replace(/_/g,' ')}): £${price.toFixed(2)}</strong></p>`;
-quoteText += `<p>This involves cleaning approximately ${area.toFixed(1)} m² of ${type}.</p>`;
+message += `${index+1}. ${type} (${condition}) - `;
+message += (type === 'wall' || type === 'fence')
+? `Width: ${width}m, Height: ${height}m`
+: `Length: ${length}m, Width: ${width}m`;
+message += '\n';
 });
 
-quoteText += `<h3>Total Quote: £${total.toFixed(2)}</h3>`;
-
-document.getElementById('quote-result').innerHTML = quoteText;
-
-// Available dates
-const today = new Date();
-const offsets = [3,5,9];
-const dateContainer = document.getElementById('available-dates');
-
-const formatDate = d => {
-const day = ("0"+d.getDate()).slice(-2);
-const month = d.toLocaleString('en-GB',{month:'short'});
-const year = d.getFullYear().toString().slice(-2);
-return `${day}/${month}/${year}`;
-}
-
-const dateStrings = offsets.map(offset => {
-const d = new Date(today);
-d.setDate(today.getDate()+offset);
-return formatDate(d);
-});
-
-dateContainer.innerHTML = `Available dates: ${dateStrings.join(', ')}<br>For a different date, just give us a call.`;
+alert(message);
 }
 </script>
   
