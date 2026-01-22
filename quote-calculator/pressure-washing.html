@@ -126,7 +126,7 @@ wall: { light: 2.5, medium: 3.5, heavy: 4.5 },
 fence: { light: 2, medium: 3, heavy: 4 }
 };
 
-document.getElementById('addSurfaceBtn').addEventListener('click', function () {
+function addSurface() {
 surfaceCount++;
 document.getElementById('quoteForm').style.display = 'block';
 
@@ -164,11 +164,9 @@ div.innerHTML = `
 `;
 
 container.appendChild(div);
-
-if (surfaceCount === 1) {
-this.textContent = 'Add another surface';
 }
-});
+
+document.getElementById('addSurfaceBtn').addEventListener('click', addSurface);
 
 document.getElementById('quoteForm').addEventListener('submit', function (e) {
 e.preventDefault();
@@ -194,7 +192,6 @@ This involves a full clean using the correct pressure to safely remove dirt, alg
 
 if (total < 45) total = 45;
 
-// Available dates
 const today = new Date();
 function formatDate(d){ return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
 const date1 = new Date(today); date1.setDate(today.getDate()+3);
