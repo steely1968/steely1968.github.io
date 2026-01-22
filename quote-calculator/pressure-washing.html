@@ -169,8 +169,8 @@ Width (m): <input type="number" min="0" step="0.1" name="width">
 
 function removeSurface(id) {
 const div = document.getElementById('surface-' + id);
-if (div) {
-div.remove();
+if (div) div.remove();
+getQuote(); // ALWAYS recalc
 }
 
 // If a quote is already showing, update it
@@ -181,7 +181,9 @@ getQuote();
 function getQuote() {
 const entries = document.querySelectorAll('.surface-entry');
 if(entries.length === 0){
-alert('Please add at least one surface.');
+document.getElementById('quote-result').innerHTML =
+'<p><strong>No surfaces selected.</strong> Add a surface to get an instant quote.</p>';
+document.getElementById('available-dates').innerHTML = '';
 return;
 }
 
