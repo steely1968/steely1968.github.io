@@ -169,7 +169,13 @@ Width (m): <input type="number" min="0" step="0.1" name="width">
 
 function removeSurface(id) {
 const div = document.getElementById('surface-' + id);
+if (div) {
 div.remove();
+}
+
+// If a quote is already showing, update it
+if (document.getElementById('quote-result').innerHTML.trim() !== '') {
+getQuote();
 }
 
 function getQuote() {
