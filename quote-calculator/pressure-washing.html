@@ -99,10 +99,24 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <h2>Pressure Washing Quote Calculator</h2>
 <p>Add as many or as few surfaces as you like to get an instant quote.</p>
 
-<div id="calculator">
+<!-- Centered Calculator Container -->
+<div id="calculator" style="display:inline-block; text-align:left; max-width:600px; width:100%;">
 <div id="surfacesContainer"></div>
+<div style="text-align:center; margin-top:10px;">
 <button id="addSurfaceBtn" onclick="addSurface()">Add surface</button>
 <button id="getQuoteBtn" onclick="getQuote()">Get quote</button>
+</div>
+</div>
+
+<!-- Dates Available -->
+<div id="availableDates" style="margin-top:20px;">
+<strong>Dates available:</strong>
+<ul style="list-style:none; padding:0; margin-top:10px;">
+<li id="date1"></li>
+<li id="date2"></li>
+<li id="date3"></li>
+<li>Other date? Just give us a call.</li>
+</ul>
 </div>
 </section>
 
@@ -110,7 +124,7 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <style>
 .surface-row {
 display: flex;
-flex-wrap: wrap; /* your existing mobile stacking stays */
+flex-wrap: wrap; /* keeps mobile stacking */
 gap: 10px;
 align-items: center;
 margin-bottom: 10px;
@@ -142,7 +156,7 @@ background: #c0392b;
 #addSurfaceBtn, #getQuoteBtn {
 padding: 10px 18px;
 font-size: 16px;
-margin-top: 10px;
+margin: 5px;
 border-radius: 6px;
 border: 2px solid #000;
 cursor: pointer;
@@ -186,7 +200,10 @@ quoteBtn.textContent = 'Get quote';
 }
 }
 
-document.addEventListener('DOMContentLoaded', updateActionButtons);
+document.addEventListener('DOMContentLoaded', () => {
+updateActionButtons();
+showAvailableDates();
+});
 
 /* --- ADD SURFACE --- */
 function addSurface() {
@@ -268,6 +285,22 @@ message += '\n';
 });
 
 alert(message);
+}
+
+/* --- SHOW AVAILABLE DATES --- */
+function showAvailableDates() {
+const dateElems = [document.getElementById('date1'), document.getElementById('date2'), document.getElementById('date3')];
+const offsets = [3, 5, 9]; // days from today
+const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+offsets.forEach((days, i) => {
+const d = new Date();
+d.setDate(d.getDate() + days);
+const dd = d.getDate();
+const mm = months[d.getMonth()];
+const yy = d.getFullYear().toString().slice(-2);
+dateElems[i].textContent = `${dd}/${mm}/${yy}`;
+});
 }
 </script>
   
