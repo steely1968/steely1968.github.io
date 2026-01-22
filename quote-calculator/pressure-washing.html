@@ -95,30 +95,24 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </header>
 
 <!-- ✅ INSTANT ONLINE QUOTE CALCULATOR -->
-<section id="quote-calculator" style="max-width:700px;margin:50px auto;text-align:center;border:2px solid #000;padding:25px;">
+<section style="max-width:800px; margin:40px auto; text-align:center;">
+<h2 style="color:#000;">Instant Pressure Washing Quote</h2>
+<p style="color:#000;">Add as many or as few surfaces to be pressure cleaned as you like. Each surface can be a different type, size, and pressure level.</p>
 
-<h2 style="color:#000;">Instant Online Pressure Washing Quote</h2>
-
-<p style="color:#000;">
-Add as many or as few surfaces as you like. You can combine driveways, patios, walls, decking and more to build an instant estimate.
-</p>
-
-<button id="addSurfaceBtn" style="background:#000;color:#fff;padding:12px 20px;border:none;font-size:16px;cursor:pointer;">
+<button type="button" id="addSurfaceBtn"
+style="background:#000;color:#fff;padding:12px 20px;border:none;font-size:16px;cursor:pointer;margin-bottom:20px;">
 Add surface
 </button>
 
-<form id="quoteForm" style="display:none;margin-top:20px;">
-
+<form id="quoteForm" style="display:none;text-align:left;">
 <div id="surfaces"></div>
-
-<button type="submit" style="margin-top:20px;background:#fff;color:#000;border:2px solid #000;padding:12px 20px;font-size:16px;cursor:pointer;">
-Get my quote
+<button type="submit"
+style="background:#fff;color:#000;padding:12px 20px;border:2px solid #000;font-size:16px;cursor:pointer;margin-top:20px;">
+Get Quote
 </button>
-
 </form>
 
 <div id="quoteResult" style="margin-top:30px;"></div>
-
 </section>
 
 <script>
@@ -132,20 +126,22 @@ wall: { light: 2.5, medium: 3.5, heavy: 4.5 },
 fence: { light: 2, medium: 3, heavy: 4 }
 };
 
-function addSurface() {
+document.getElementById('addSurfaceBtn').addEventListener('click', function () {
 surfaceCount++;
 document.getElementById('quoteForm').style.display = 'block';
 
+const container = document.getElementById('surfaces');
+
 const div = document.createElement('div');
+div.className = "surface-block";
 div.style.borderTop = "1px solid #ccc";
 div.style.marginTop = "20px";
 div.style.paddingTop = "20px";
 
 div.innerHTML = `
 <h3>Surface ${surfaceCount}</h3>
-
 <label>Surface type</label><br>
-<select required class="surfaceType">
+<select class="surfaceType" required>
 <option value="driveway">Driveway</option>
 <option value="patio">Patio</option>
 <option value="decking">Decking</option>
@@ -153,72 +149,62 @@ div.innerHTML = `
 <option value="fence">Fence</option>
 </select><br><br>
 
-<label>Length (metres)</label><br>
-<input type="number" min="1" required class="length"><br><br>
+<label>Length (m)</label><br>
+<input type="number" class="length" min="1" required><br><br>
 
-<label>Width / Height (metres)</label><br>
-<input type="number" min="1" required class="width"><br><br>
+<label>Width / Height (m)</label><br>
+<input type="number" class="width" min="1" required><br><br>
 
 <label>Cleaning level</label><br>
-<select required class="level">
+<select class="level" required>
 <option value="light">Light pressure wash</option>
 <option value="medium">Medium pressure wash</option>
 <option value="heavy">Heavy pressure wash</option>
 </select>
 `;
 
-document.getElementById('surfaces').appendChild(div);
+container.appendChild(div);
 
-document.getElementById('addSurfaceBtn').innerText = "Add another surface";
+if (surfaceCount === 1) {
+this.textContent = 'Add another surface';
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-document.getElementById('addSurfaceBtn').addEventListener('click', addSurface);
 });
 
-document.getElementById('quoteForm').addEventListener('submit', function(e){
+document.getElementById('quoteForm').addEventListener('submit', function (e) {
 e.preventDefault();
 
 let total = 0;
 let breakdown = "";
 
-document.querySelectorAll('#surfaces > div').forEach((surface, i) => {
-const type = surface.querySelector('.surfaceType').value;
-const length = surface.querySelector('.length').value;
-const width = surface.querySelector('.width').value;
-const level = surface.querySelector('.level').value;
+document.querySelectorAll('.surface-block').forEach((block) => {
+const type = block.querySelector('.surfaceType').value;
+const length = parseFloat(block.querySelector('.length').value);
+const width = parseFloat(block.querySelector('.width').value);
+const level = block.querySelector('.level').value;
 
 const area = length * width;
 const cost = area * pricing[type][level];
 total += cost;
 
 breakdown += `
-<p><strong>${type.charAt(0).toUpperCase() + type.slice(1)} – ${level} pressure wash</strong><br>
-This involves a full professional clean using the correct pressure level to safely remove dirt, algae and staining from ${area}m².</p>
+<p><strong>${type} – ${level} pressure wash</strong><br>
+This involves a full clean using the correct pressure to safely remove dirt, algae, and staining.</p>
 `;
 });
 
 if (total < 45) total = 45;
 
+// Available dates
 const today = new Date();
-const d1 = new Date(today); d1.setDate(today.getDate() + 3);
-const d2 = new Date(today); d2.setDate(today.getDate() + 5);
-const d3 = new Date(today); d3.setDate(today.getDate() + 9);
+function formatDate(d){ return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+const date1 = new Date(today); date1.setDate(today.getDate()+3);
+const date2 = new Date(today); date2.setDate(today.getDate()+5);
+const date3 = new Date(today); date3.setDate(today.getDate()+9);
 
-document.getElementById('quoteResult').innerHTML = `
-<h3>Your instant estimate</h3>
-${breakdown}
-<p><strong>Estimated total: £${total.toFixed(2)}</strong> (minimum charge £45)</p>
+breakdown += `<p><strong>Total Price: £${total.toFixed(2)}</strong></p>`;
+breakdown += `<p>Available dates within 15 mile radius of Doncaster: ${formatDate(date1)}, ${formatDate(date2)}, ${formatDate(date3)} or call us for a different date.</p>`;
 
-<h4>Available dates</h4>
-<ul>
-<li>${d1.toDateString()}</li>
-<li>${d2.toDateString()}</li>
-<li>${d3.toDateString()}</li>
-</ul>
-
-<p>Need a different date or outside our 15 mile Doncaster service area? Just give us a call.</p>
-`;
+document.getElementById('quoteResult').innerHTML = breakdown;
 });
 </script>
   
