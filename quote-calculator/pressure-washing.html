@@ -99,8 +99,114 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 
 <!-- PRESSURE WASHING CONTENT SECTIONS GO HERE (EXACTLY AS IN YOUR ORIGINAL PAGE) -->
 
-<!-- Calculator Section remains unchanged -->
-<!-- Your existing calculator code goes here exactly as before -->
+<!-- ✅ PRESSURE WASH QUOTE CALCULATOR -->
+<section id="pressure-calculator" style="max-width:800px;margin:40px auto;padding:20px;border:2px solid #000;text-align:center;">
+<h2 style="color:#000;">Instant Pressure Washing Quote</h2>
+<p style="color:#000;">Add as many or as few surfaces as you like for cleaning. Choose the type, size, and pressure level for each area to get your personalised quote.</p>
+
+<div id="surfaces-container"></div>
+
+<button id="add-surface-btn" style="padding:10px 20px;margin:10px;background:#000;color:#fff;border:none;border-radius:5px;cursor:pointer;">Add Surface</button>
+<button id="get-quote-btn" style="padding:10px 20px;margin:10px;background:#fff;color:#000;border:2px solid #000;border-radius:5px;cursor:pointer;">Get Quote</button>
+
+<div id="quote-result" style="margin-top:20px;text-align:left;"></div>
+</section>
+
+<script>
+const surfacesContainer = document.getElementById('surfaces-container');
+const addSurfaceBtn = document.getElementById('add-surface-btn');
+const getQuoteBtn = document.getElementById('get-quote-btn');
+const quoteResult = document.getElementById('quote-result');
+
+let surfaceCount = 0;
+
+function addSurface() {
+surfaceCount++;
+const surfaceDiv = document.createElement('div');
+surfaceDiv.className = 'surface';
+surfaceDiv.style.border = '1px solid #ccc';
+surfaceDiv.style.padding = '10px';
+surfaceDiv.style.margin = '10px 0';
+
+surfaceDiv.innerHTML = `
+<h3 style="margin-bottom:10px;">Surface ${surfaceCount}</h3>
+<label>Type:
+<select name="type">
+<option value="Driveway">Driveway</option>
+<option value="Patio">Patio</option>
+<option value="Decking">Decking</option>
+<option value="Wall">Wall</option>
+<option value="Fence">Fence</option>
+</select>
+</label>
+<br><br>
+<label>Dimensions (ft):</label><br>
+Length: <input type="number" min="1" name="length" style="width:60px;">
+Width / Height: <input type="number" min="1" name="width" style="width:60px;">
+<br><br>
+<label>Pressure:
+<select name="pressure">
+<option value="Light">Light</option>
+<option value="Medium">Medium</option>
+<option value="Heavy">Heavy</option>
+</select>
+</label>
+`;
+surfacesContainer.appendChild(surfaceDiv);
+}
+
+addSurfaceBtn.addEventListener('click', addSurface);
+
+// Auto add first surface
+addSurface();
+
+getQuoteBtn.addEventListener('click', () => {
+const surfaces = document.querySelectorAll('.surface');
+if (surfaces.length === 0) return alert('Please add at least one surface.');
+
+let totalPrice = 0;
+let summary = '';
+const today = new Date();
+
+surfaces.forEach((surface, i) => {
+const type = surface.querySelector('select[name="type"]').value;
+const length = parseFloat(surface.querySelector('input[name="length"]').value) || 0;
+const width = parseFloat(surface.querySelector('input[name="width"]').value) || 0;
+const pressure = surface.querySelector('select[name="pressure"]').value;
+
+const area = length * width;
+let rate = 0;
+
+// Simple pricing logic per sq ft
+if (pressure === 'Light') rate = 0.75;
+else if (pressure === 'Medium') rate = 1;
+else if (pressure === 'Heavy') rate = 1.5;
+
+let price = area * rate;
+if (price < 45) price = 45; // Minimum charge
+totalPrice += price;
+
+summary += `<strong>${type} - ${pressure} pressure wash:</strong> This involves cleaning ${area} sq ft of surface.<br>`;
+});
+
+const date1 = new Date(today.getTime() + 3*24*60*60*1000);
+const date2 = new Date(today.getTime() + 5*24*60*60*1000);
+const date3 = new Date(today.getTime() + 9*24*60*60*1000);
+
+quoteResult.innerHTML = `
+<h3>Summary of Your Quote</h3>
+${summary}
+<p><strong>Total Estimated Price:</strong> £${totalPrice.toFixed(2)}</p>
+<p>Available dates within 15-mile radius of Doncaster:</p>
+<ul>
+<li>${date1.toDateString()}</li>
+<li>${date2.toDateString()}</li>
+<li>${date3.toDateString()}</li>
+</ul>
+<p>Need a different date? Just give us a call!</p>
+`;
+});
+</script>
 
 </main>
 
