@@ -1,1 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pressure Washing Quote Calculator</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background: #f7f7f7; }
+.calculator { max-width: 600px; margin: auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1);}
+h1 { text-align:center; margin-bottom: 20px; color: #27ae60; }
+label { display:block; margin-top: 15px; font-weight: bold; }
+select, input[type="number"], input[type="text"] { width: 100%; padding: 8px; margin-top:5px; border-radius: 4px; border:1px solid #ccc; }
+.checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top:5px;}
+.checkbox-group label { font-weight: normal; }
+button { margin-top: 20px; padding: 12px 20px; background:#27ae60; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:16px; }
+button:hover { background:#219150; }
+#quoteResult { margin-top:25px; padding:15px; background:#eafaf1; border-left:5px solid #27ae60; border-radius:4px; display:none; }
+</style>
+</head>
+<body>
 
+<div class="calculator">
+<h1>Pressure Washing Quote Calculator</h1>
+
+<label for="customerName">Your Name (optional)</label>
+<input type="text" id="customerName" placeholder="E.g., Jamie">
+
+<label for="propertyType">Property Type</label>
+<select id="propertyType">
+<option value="Residential">Residential</option>
+<option value="Commercial">Commercial</option>
+</select>
+
+<label>Services Needed</label>
+<div class="checkbox-group">
+<label><input type="checkbox" value="Driveway" class="service"> Driveway</label>
+<label><input type="checkbox" value="Patio" class="service"> Patio</label>
+<label><input type="checkbox" value="Decking" class="service"> Decking</label>
+<label><input type="checkbox" value="Walls" class="service"> Walls</label>
+<label><input type="checkbox" value="Fence/Gate" class="service"> Fence/Gate</label>
+<label><input type="checkbox" value="Roof/Gutter" class="service"> Roof/Gutter</label>
+<label><input type="checkbox" value="Full Exterior" class="service"> Full Exterior</label>
+</div>
+
+<label for="areaSize">Approximate Area (m²)</label>
+<input type="number" id="areaSize" min="1" placeholder="E.g., 50">
+
+<label for="condition">Surface Condition</label>
+<select id="condition">
+<option value="Light">Light dirt/algae</option>
+<option value="Moderate">Moderate staining/moss</option>
+<option value="Heavy">Heavy stains/oil/rust</option>
+</select>
+
+<label for="access">Accessibility</label>
+<select id="access">
+<option value="Easy">Easy access</option>
+<option value="Limited">Limited/tight access</option>
+</select>
+
+<label>Optional Extras</label>
+<div class="checkbox-group">
+<label><input type="checkbox" value="Sealant" id="sealant"> Protective Sealant</label>
+<label><input type="checkbox" value="StainTreatment" id="stainTreatment"> Stain Treatment</label>
+</div>
+
+<button onclick="calculateQuote()">Get Quote</button>
+
+<div id="quoteResult"></div>
+</div>
+
+<script>
+function calculateQuote() {
+const name = document.getElementById('customerName').value.trim();
+const propertyType = document.getElementById('propertyType').value;
+const area = parseFloat(document.getElementById('areaSize').value);
+const condition = document.getElementById('condition').value;
+const access = document.getElementById('access').value;
+const sealant = document.getElementById('sealant').checked;
+const stainTreatment = document.getElementById('stainTreatment').checked;
+
+// Collect selected services
+const services = Array.from(document.querySelectorAll('.service:checked')).map(s => s.value);
+if(services.length === 0 || isNaN(area) || area <= 0){
+alert("Please select at least one service and enter a valid area.");
+return;
+}
+
+// Base pricing per service (per m² or per item)
+const baseRates = {
+"Driveway": 3,
+"Patio": 2.5,
+"Decking": 4,
+"Walls": 2.5,
+"Fence/Gate": 20, // per panel, we can multiply by area for simplicity
+"Roof/Gutter": 7,
+"Full Exterior": 5
+};
+
+let total = 0;
+
+services.forEach(service => {
+let rate = baseRates[service];
+// Treat Fence/Gate per "panel" as area multiplier
+let serviceArea = (service === "Fence/Gate") ? Math.ceil(area / 5) : area;
+total += rate * serviceArea;
+});
+
+// Condition multiplier
+const conditionMultiplier = { "Light": 1, "Moderate": 1.25, "Heavy": 1.5 };
+total *= conditionMultiplier[condition];
+
+// Accessibility surcharge
+if(access === "Limited") total += 30;
+
+// Optional extras
+if(sealant) total += area * 1.5;
+if(stainTreatment) total += area * 2;
+
+// Commercial markup
+if(propertyType === "Commercial") total *= 1.25;
+
+total = Math.round(total);
+
+// Build friendly response
+let friendlyName = name ? name : "there";
+let servicesList = services.join(" and ");
+let extras = [];
+if(sealant) extras.push("protective sealant");
+if(stainTreatment) extras.push("stain treatment");
+let extrasText = extras.length ? ` including ${extras.join(" and ")}` : "";
+
+const message = `Thanks, ${friendlyName}! Based on your selections for your ${propertyType.toLowerCase()} property in Skellow, we recommend a professional pressure wash of your ${servicesList}${extrasText}, covering approximately ${area}m² of surface that is ${condition.toLowerCase()}. Accounting for accessibility and surface condition, your estimated cost is around £${total}. This service will leave your outdoor areas cleaner, safer, and looking like new!`;
+
+const resultDiv = document.getElementById('quoteResult');
+resultDiv.style.display = 'block';
+resultDiv.innerHTML = message;
+}
+</script>
+
+</body>
+</html>
