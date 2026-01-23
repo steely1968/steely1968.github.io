@@ -1,1 +1,83 @@
+<div class="calculator">
+<h2>Pressure Washing Calculator</h2>
 
+<div class="service">
+<label>Driveway (£3 / m²)</label>
+<input type="number" id="driveway" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Roof (£5 / m²)</label>
+<input type="number" id="roof" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Patio (£3.50 / m²)</label>
+<input type="number" id="patio" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Walls (£4 / m²)</label>
+<input type="number" id="walls" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Conservatory Roof (£6 / m²)</label>
+<input type="number" id="conservatory" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Fence (£2.50 / m²)</label>
+<input type="number" id="fence" placeholder="m²">
+</div>
+
+<button onclick="calculateTotal()">Calculate Price</button>
+
+<div class="total" id="total">Total: £0.00</div>
+<div class="note">£45 minimum call-out fee applies</div>
+</div>
+
+<script>
+function calculateTotal() {
+const prices = {
+driveway: 3,
+roof: 5,
+patio: 3.5,
+walls: 4,
+conservatory: 6,
+fence: 2.5
+};
+
+const minimumFee = 45;
+let total = 0;
+
+for (let service in prices) {
+const value = document.getElementById(service).value;
+if (value) {
+total += value * prices[service];
+}
+}
+
+if (total > 0 && total < minimumFee) {
+document.getElementById("total").innerText =
+"Total: £" + minimumFee.toFixed(2) + " (minimum charge)";
+} else {
+document.getElementById("total").innerText =
+"Total: £" + total.toFixed(2);
+}
+}
+</script>
+  
+<style>
+/* Responsive stacking for mobile */
+@media(max-width:768px){
+.surface-item label {
+display:block;
+margin-bottom:5px;
+}
+.surface-item input {
+width:100%;
+margin-top:3px;
+}
+}
+</style>
