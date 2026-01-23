@@ -1,69 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pressure Washing Calculator</title>
+
+<style>
+.calculator {
+max-width: 420px;
+margin: 20px auto;
+padding: 25px;
+background: #fff;
+border: 2px solid #000;
+border-radius: 10px;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.calculator h2 {
+text-align: center;
+margin-bottom: 20px;
+font-size: 22px;
+}
+
+.service {
+margin-bottom: 16px;
+}
+
+.service label {
+display: block;
+font-size: 14px;
+margin-bottom: 6px;
+}
+
+.service label span {
+font-size: 12px;
+opacity: 0.6;
+}
+
+.service input {
+width: 100%;
+padding: 8px;
+border: 2px solid #000;
+border-radius: 6px;
+text-align: right;
+}
+
+.service input:focus {
+outline: none;
+background: #000;
+color: #fff;
+}
+
+.pair {
+display: flex;
+gap: 8px;
+}
+
+.pair input {
+flex: 1;
+}
+
+.total {
+margin-top: 20px;
+padding: 14px;
+border: 2px solid #000;
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+.pair {
+flex-direction: column;
+}
+}
+</style>
+</head>
+
+<body>
+
 <div class="calculator">
 <h2>Pressure Washing Calculator</h2>
 
 <div class="service">
 <label>Driveway <span>£3 / m²</span></label>
-<input type="number" id="driveway" min="0" placeholder="m²" oninput="calculateTotal()">
+<div class="pair">
+<input type="number" id="drivewayLength" placeholder="Length (m)" oninput="calculateTotal()">
+<input type="number" id="drivewayWidth" placeholder="Width (m)" oninput="calculateTotal()">
+</div>
 </div>
 
 <div class="service">
 <label>Roof <span>£5 / m²</span></label>
-<input type="number" id="roof" min="0" placeholder="m²" oninput="calculateTotal()">
+<input type="number" id="roof" placeholder="Total m²" oninput="calculateTotal()">
 </div>
 
 <div class="service">
 <label>Patio <span>£3.50 / m²</span></label>
-<input type="number" id="patio" min="0" placeholder="m²" oninput="calculateTotal()">
+<div class="pair">
+<input type="number" id="patioLength" placeholder="Length (m)" oninput="calculateTotal()">
+<input type="number" id="patioWidth" placeholder="Width (m)" oninput="calculateTotal()">
+</div>
 </div>
 
 <div class="service">
 <label>Walls <span>£4 / m²</span></label>
-<input type="number" id="walls" min="0" placeholder="m²" oninput="calculateTotal()">
+<div class="pair">
+<input type="number" id="wallsLength" placeholder="Length (m)" oninput="calculateTotal()">
+<input type="number" id="wallsHeight" placeholder="Height (m)" oninput="calculateTotal()">
+</div>
 </div>
 
 <div class="service">
 <label>Conservatory Roof <span>£6 / m²</span></label>
-<input type="number" id="conservatory" min="0" placeholder="m²" oninput="calculateTotal()">
+<input type="number" id="conservatory" placeholder="Total m²" oninput="calculateTotal()">
 </div>
 
 <div class="service">
 <label>Fence <span>£2.50 / m²</span></label>
-<input type="number" id="fence" min="0" placeholder="m²" oninput="calculateTotal()">
+<div class="pair">
+<input type="number" id="fenceLength" placeholder="Length (m)" oninput="calculateTotal()">
+<input type="number" id="fenceHeight" placeholder="Height (m)" oninput="calculateTotal()">
+</div>
 </div>
 
-<div class="total" id="total">Total: £0.00</div>
-
-<a href="tel:07735873694" class="call-button">📞 Call Now</a>
-
-<div class="note">£45 minimum call-out fee applies</div>
+<div class="total" id="total">Enter measurements to see price</div>
 </div>
 
 <script>
 function calculateTotal() {
-const prices = {
-driveway: 3,
-roof: 5,
-patio: 3.5,
-walls: 4,
-conservatory: 6,
-fence: 2.5
-};
-
 const minimumFee = 45;
 let total = 0;
 
-for (let service in prices) {
-const value = Number(document.getElementById(service).value) || 0;
-total += value * prices[service];
+total += (Number(drivewayLength.value) || 0) *
+(Number(drivewayWidth.value) || 0) * 3;
+
+total += (Number(roof.value) || 0) * 5;
+
+total += (Number(patioLength.value) || 0) *
+(Number(patioWidth.value) || 0) * 3.5;
+
+total += (Number(wallsLength.value) || 0) *
+(Number(wallsHeight.value) || 0) * 4;
+
+total += (Number(conservatory.value) || 0) * 6;
+
+total += (Number(fenceLength.value) || 0) *
+(Number(fenceHeight.value) || 0) * 2.5;
+
+const totalEl = document.getElementById("total");
+
+if (total === 0) {
+totalEl.innerText = "Enter measurements to see price";
+return;
 }
 
-document.getElementById("total").innerText =
-total > 0 && total < minimumFee
-? `Total: £${minimumFee.toFixed(2)} (minimum charge)`
-: `Total: £${total.toFixed(2)}`;
+const finalTotal = total < minimumFee ? minimumFee : total;
+
+totalEl.innerText =
+total < minimumFee
+? `Total: £${finalTotal.toFixed(2)} (minimum charge)`
+: `Total: £${finalTotal.toFixed(2)}`;
 }
 </script>
 
+  
 <style>
 .calculator {
 max-width: 420px;
