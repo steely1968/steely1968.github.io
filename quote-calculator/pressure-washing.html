@@ -47,12 +47,14 @@ padding: 8px;
 border: 2px solid #000;
 border-radius: 6px;
 text-align: right;
+color: #000; /* Ensure text stays black */
+background: #fff; /* Ensure background stays white */
 }
 
 .service input:focus {
-outline: none;
-background: #000;
-color: #fff;
+outline: 2px solid #000; /* Highlight border on focus */
+background: #fff;
+color: #000;
 }
 
 .pair {
@@ -81,6 +83,28 @@ font-weight: bold;
 background: #fafafa;
 }
 
+.total.minimum {
+color: red;
+}
+
+/* Clear button */
+.clear-btn {
+margin-top: 15px;
+padding: 10px 20px;
+font-size: 16px;
+border: 2px solid #000;
+border-radius: 6px;
+background: #fff; /* keep background white */
+color: #000; /* text black */
+cursor: pointer;
+transition: border-color 0.2s, color 0.2s;
+}
+
+.clear-btn:hover {
+border-color: #555; /* slightly darker border on hover */
+color: #222; /* slightly darker text */
+}
+
 /* Mobile */
 @media (max-width: 480px) {
 .pair {
@@ -103,23 +127,23 @@ background: #ffe6e6;
 <div class="service">
 <label>Driveway <span>£3 / m²</span></label>
 <div class="pair">
-<input type="number" id="drivewayLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
-<input type="number" id="drivewayWidth" placeholder="Width (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="drivewayLength" placeholder="Length (m)" min="0" step="0.01" oninput="calculateTotal()">
+<input type="number" id="drivewayWidth" placeholder="Width (m)" min="0" step="0.01" oninput="calculateTotal()">
 </div>
 <div class="subtotal" id="drivewaySubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Roof <span>£5 / m²</span></label>
-<input type="number" id="roof" placeholder="Total m²" min="0" oninput="calculateTotal()">
+<input type="number" id="roof" placeholder="Total m²" min="0" step="0.01" oninput="calculateTotal()">
 <div class="subtotal" id="roofSubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Patio <span>£3.50 / m²</span></label>
 <div class="pair">
-<input type="number" id="patioLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
-<input type="number" id="patioWidth" placeholder="Width (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="patioLength" placeholder="Length (m)" min="0" step="0.01" oninput="calculateTotal()">
+<input type="number" id="patioWidth" placeholder="Width (m)" min="0" step="0.01" oninput="calculateTotal()">
 </div>
 <div class="subtotal" id="patioSubtotal">Subtotal: £0.00</div>
 </div>
@@ -127,83 +151,80 @@ background: #ffe6e6;
 <div class="service">
 <label>Walls <span>£4 / m²</span></label>
 <div class="pair">
-<input type="number" id="wallsLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
-<input type="number" id="wallsHeight" placeholder="Height (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="wallsLength" placeholder="Length (m)" min="0" step="0.01" oninput="calculateTotal()">
+<input type="number" id="wallsHeight" placeholder="Height (m)" min="0" step="0.01" oninput="calculateTotal()">
 </div>
 <div class="subtotal" id="wallsSubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Conservatory Roof <span>£6 / m²</span></label>
-<input type="number" id="conservatory" placeholder="Total m²" min="0" oninput="calculateTotal()">
+<input type="number" id="conservatory" placeholder="Total m²" min="0" step="0.01" oninput="calculateTotal()">
 <div class="subtotal" id="conservatorySubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Fence <span>£2.50 / m²</span></label>
 <div class="pair">
-<input type="number" id="fenceLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
-<input type="number" id="fenceHeight" placeholder="Height (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="fenceLength" placeholder="Length (m)" min="0" step="0.01" oninput="calculateTotal()">
+<input type="number" id="fenceHeight" placeholder="Height (m)" min="0" step="0.01" oninput="calculateTotal()">
 </div>
 <div class="subtotal" id="fenceSubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="total" id="total">Enter measurements to see price</div>
+
+<!-- Clear All Button -->
+<button class="clear-btn" onclick="resetCalculator()">Clear All</button>
 </div>
 
 <script>
 function calculateTotal() {
 const minimumFee = 45;
+
+const services = [
+{id: "driveway", rate: 3, inputs: ["drivewayLength", "drivewayWidth"]},
+{id: "roof", rate: 5, inputs: ["roof"]},
+{id: "patio", rate: 3.5, inputs: ["patioLength", "patioWidth"]},
+{id: "walls", rate: 4, inputs: ["wallsLength", "wallsHeight"]},
+{id: "conservatory", rate: 6, inputs: ["conservatory"]},
+{id: "fence", rate: 2.5, inputs: ["fenceLength", "fenceHeight"]},
+];
+
 let total = 0;
 
-// Get all inputs
-const inputs = {
-drivewayLength: document.getElementById("drivewayLength"),
-drivewayWidth: document.getElementById("drivewayWidth"),
-roof: document.getElementById("roof"),
-patioLength: document.getElementById("patioLength"),
-patioWidth: document.getElementById("patioWidth"),
-wallsLength: document.getElementById("wallsLength"),
-wallsHeight: document.getElementById("wallsHeight"),
-conservatory: document.getElementById("conservatory"),
-fenceLength: document.getElementById("fenceLength"),
-fenceHeight: document.getElementById("fenceHeight"),
-};
-
-// Helper to safely get a positive number
-const val = (el) => Math.max(0, Number(el.value) || 0);
-
-// Per-service calculations
-const drivewayTotal = val(inputs.drivewayLength) * val(inputs.drivewayWidth) * 3;
-const roofTotal = val(inputs.roof) * 5;
-const patioTotal = val(inputs.patioLength) * val(inputs.patioWidth) * 3.5;
-const wallsTotal = val(inputs.wallsLength) * val(inputs.wallsHeight) * 4;
-const conservatoryTotal = val(inputs.conservatory) * 6;
-const fenceTotal = val(inputs.fenceLength) * val(inputs.fenceHeight) * 2.5;
-
-// Update subtotals
-document.getElementById("drivewaySubtotal").innerText = `Subtotal: £${drivewayTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
-document.getElementById("roofSubtotal").innerText = `Subtotal: £${roofTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
-document.getElementById("patioSubtotal").innerText = `Subtotal: £${patioTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
-document.getElementById("wallsSubtotal").innerText = `Subtotal: £${wallsTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
-document.getElementById("conservatorySubtotal").innerText = `Subtotal: £${conservatoryTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
-document.getElementById("fenceSubtotal").innerText = `Subtotal: £${fenceTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
-
-// Total
-total = drivewayTotal + roofTotal + patioTotal + wallsTotal + conservatoryTotal + fenceTotal;
+services.forEach(service => {
+const values = service.inputs.map(id => Math.max(0, parseFloat(document.getElementById(id).value) || 0));
+const subtotal = values.reduce((a, b) => a * b, 1) * service.rate;
+document.getElementById(service.id + "Subtotal").innerText = `Subtotal: £${subtotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+total += subtotal;
+});
 
 const totalEl = document.getElementById("total");
 
 if (total === 0) {
+totalEl.classList.remove('minimum');
 totalEl.innerText = "Enter measurements to see price";
 return;
 }
 
 const finalTotal = total < minimumFee ? minimumFee : total;
 
-totalEl.innerText = total < minimumFee
-? `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})} (minimum charge)`
-: `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+if (total < minimumFee) {
+totalEl.classList.add('minimum');
+totalEl.innerText = `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})} (minimum charge)`;
+} else {
+totalEl.classList.remove('minimum');
+totalEl.innerText = `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+}
+}
+
+function resetCalculator() {
+document.querySelectorAll('.calculator input').forEach(input => input.value = '');
+document.querySelectorAll('.subtotal').forEach(sub => sub.innerText = 'Subtotal: £0.00');
+const totalEl = document.getElementById("total");
+totalEl.classList.remove('minimum');
+totalEl.innerText = "Enter measurements to see price";
 }
 </script>
 
