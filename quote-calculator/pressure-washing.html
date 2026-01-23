@@ -95,56 +95,6 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </header>
 
 <!-- Calculator Section -->
-
-  
-<style>
-/* Responsive stacking for mobile */
-@media(max-width:768px){
-.surface-item label {
-display:block;
-margin-bottom:5px;
-}
-.surface-item input {
-width:100%;
-margin-top:3px;
-}
-}
-</style>
-  
-</main>
-
-<!-- ✅ FOOTER -->
-<footer class="site-footer">
-© Home Repairs 4U | Askern DN6 | Call 07735 873694
-</footer>
-
-<!-- ✅ LIGHTBOX SCRIPT -->
-<script>
-function openLightbox(src, alt){
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-lightbox.style.display = "flex";
-lightboxImg.src = src;
-lightboxImg.alt = alt;
-}
-function closeLightbox(){
-document.getElementById("lightbox").style.display = "none";
-}
-document.addEventListener('keydown', function(event) {
-const lightbox = document.getElementById('lightbox');
-if (event.key === "Escape" && lightbox.style.display === "flex") {
-lightbox.style.display = "none";
-}
-});
-</script>
-
-</body>
-</html>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -304,6 +254,50 @@ document.getElementById("total").innerText =
 "Total: £" + total.toFixed(2);
 }
 }
+</script>
+
+</body>
+</html>
+  
+<style>
+/* Responsive stacking for mobile */
+@media(max-width:768px){
+.surface-item label {
+display:block;
+margin-bottom:5px;
+}
+.surface-item input {
+width:100%;
+margin-top:3px;
+}
+}
+</style>
+  
+</main>
+
+<!-- ✅ FOOTER -->
+<footer class="site-footer">
+© Home Repairs 4U | Askern DN6 | Call 07735 873694
+</footer>
+
+<!-- ✅ LIGHTBOX SCRIPT -->
+<script>
+function openLightbox(src, alt){
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+lightbox.style.display = "flex";
+lightboxImg.src = src;
+lightboxImg.alt = alt;
+}
+function closeLightbox(){
+document.getElementById("lightbox").style.display = "none";
+}
+document.addEventListener('keydown', function(event) {
+const lightbox = document.getElementById('lightbox');
+if (event.key === "Escape" && lightbox.style.display === "flex") {
+lightbox.style.display = "none";
+}
+});
 </script>
 
 </body>
