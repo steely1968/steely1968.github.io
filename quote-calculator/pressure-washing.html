@@ -140,3 +140,171 @@ lightbox.style.display = "none";
 
 </body>
 </html>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pressure Washing Price Calculator</title>
+
+<style>
+body {
+font-family: Arial, sans-serif;
+background: #000;
+color: #fff;
+display: flex;
+justify-content: center;
+padding: 20px;
+}
+
+.calculator {
+width: 100%;
+max-width: 450px;
+background: #111;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 0 20px rgba(255,255,255,0.05);
+}
+
+h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+.service {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 12px;
+}
+
+.service label {
+flex: 1;
+font-size: 14px;
+}
+
+.service input {
+width: 90px;
+padding: 6px;
+border-radius: 5px;
+border: none;
+text-align: center;
+}
+
+button {
+width: 100%;
+padding: 12px;
+background: #fff;
+color: #000;
+border: none;
+border-radius: 6px;
+font-size: 16px;
+cursor: pointer;
+margin-top: 15px;
+}
+
+button:hover {
+background: #e6e6e6;
+}
+
+.total {
+text-align: center;
+font-size: 20px;
+margin-top: 15px;
+font-weight: bold;
+}
+
+.note {
+text-align: center;
+font-size: 12px;
+color: #aaa;
+margin-top: 8px;
+}
+
+@media (max-width: 480px) {
+.service label {
+font-size: 13px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+<h2>Pressure Washing Calculator</h2>
+
+<div class="service">
+<label>Driveway (£3 / m²)</label>
+<input type="number" id="driveway" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Roof (£5 / m²)</label>
+<input type="number" id="roof" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Patio (£3.50 / m²)</label>
+<input type="number" id="patio" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Walls (£4 / m²)</label>
+<input type="number" id="walls" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Conservatory Roof (£6 / m²)</label>
+<input type="number" id="conservatory" placeholder="m²">
+</div>
+
+<div class="service">
+<label>Fence (£2.50 / m²)</label>
+<input type="number" id="fence" placeholder="m²">
+</div>
+
+<button onclick="calculateTotal()">Calculate Price</button>
+
+<div class="total" id="total">Total: £0.00</div>
+<div class="note">£45 minimum call-out fee applies</div>
+</div>
+
+<script>
+function calculateTotal() {
+const prices = {
+driveway: 3,
+roof: 5,
+patio: 3.5,
+walls: 4,
+conservatory: 6,
+fence: 2.5
+};
+
+const minimumFee = 45;
+let total = 0;
+
+for (let service in prices) {
+const value = document.getElementById(service).value;
+if (value) {
+total += value * prices[service];
+}
+}
+
+if (total > 0 && total < minimumFee) {
+document.getElementById("total").innerText =
+"Total: £" + minimumFee.toFixed(2) + " (minimum charge)";
+} else {
+document.getElementById("total").innerText =
+"Total: £" + total.toFixed(2);
+}
+}
+</script>
+
+</body>
+</html>
