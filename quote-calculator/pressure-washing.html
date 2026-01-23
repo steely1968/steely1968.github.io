@@ -1,101 +1,4 @@
 <!DOCTYPE html>
-<html lang="en-GB">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="robots" content="index, follow">
-<title>Pressure Washing Skellow - Driveway, Patio & Exterior Cleaning Services</title>
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/local/pressure-washing-skellow.html">
-<meta name="description" content="Local pressure washing services in Skellow. Driveways, patios, decking, walls and exterior cleaning carried out safely with professional results.">
-<link rel="preload" as="image" href="/images/home-repairs-4u-doncaster.webp" />
-<style>
-h1 { font-size: 2em; text-align: center; margin-bottom: 20px; }
-
-/* HEADER STYLING */
-header{
-text-align:center;
-padding:25px 10px;
-background:#fff;
-border-bottom:4px solid #27ae60;
-}
-.logo{ max-height:90px; width:auto; }
-
-/* CALL BUTTON */
-.call-btn{
-display:inline-block;
-margin-top:18px;
-padding:14px 28px;
-background:#000;
-color:#fff;
-font-size:19px;
-text-decoration:none;
-font-weight:bold;
-border-radius:6px;
-border:2px solid #000;
-}
-.call-btn:hover{
-background:#333;
-color:#fff;
-}
-
-/* FOOTER */
-.site-footer{
-background:#000;
-color:#fff;
-text-align:center;
-padding:25px 15px;
-margin-top:40px;
-font-size:14px;
-}
-
-/* LIGHTBOX STYLING */
-.lightbox {
-display: none;
-position: fixed;
-top: 0; left: 0;
-width: 100%; height: 100%;
-background: rgba(0, 0, 0, 0.8);
-justify-content: center;
-align-items: center;
-z-index: 9999;
-cursor: pointer;
-flex-direction: column;
-}
-.lightbox img {
-max-width: 90%; max-height: 90%;
-box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-.lightbox span {
-position: absolute;
-top: 20px; right: 30px;
-color: white; font-size: 40px;
-font-weight: bold; cursor: pointer;
-user-select: none;
-}
-</style>
-</head>
-<body>
-
-<!-- ✅ HEADER -->
-<header>
-<img src="/images/home-repairs-4u-doncaster.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
-
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
-</div>
-
-<br>
-<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
-</header>
-
-<!-- Calculator Section -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -103,14 +6,18 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <title>Pressure Washing Calculator</title>
 
 <style>
+body {
+background: #f5f5f5;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 .calculator {
 max-width: 420px;
-margin: 20px auto;
+margin: 30px auto;
 padding: 25px;
 background: #fff;
 border: 2px solid #000;
 border-radius: 10px;
-font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .calculator h2 {
@@ -120,7 +27,7 @@ font-size: 22px;
 }
 
 .service {
-margin-bottom: 16px;
+margin-bottom: 18px;
 }
 
 .service label {
@@ -157,6 +64,13 @@ gap: 8px;
 flex: 1;
 }
 
+.subtotal {
+margin-top: 4px;
+font-size: 13px;
+opacity: 0.7;
+text-align: right;
+}
+
 .total {
 margin-top: 20px;
 padding: 14px;
@@ -164,6 +78,7 @@ border: 2px solid #000;
 text-align: center;
 font-size: 18px;
 font-weight: bold;
+background: #fafafa;
 }
 
 /* Mobile */
@@ -171,6 +86,11 @@ font-weight: bold;
 .pair {
 flex-direction: column;
 }
+}
+
+input:invalid {
+border-color: red;
+background: #ffe6e6;
 }
 </style>
 </head>
@@ -183,43 +103,49 @@ flex-direction: column;
 <div class="service">
 <label>Driveway <span>£3 / m²</span></label>
 <div class="pair">
-<input type="number" id="drivewayLength" placeholder="Length (m)" oninput="calculateTotal()">
-<input type="number" id="drivewayWidth" placeholder="Width (m)" oninput="calculateTotal()">
+<input type="number" id="drivewayLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="drivewayWidth" placeholder="Width (m)" min="0" oninput="calculateTotal()">
 </div>
+<div class="subtotal" id="drivewaySubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Roof <span>£5 / m²</span></label>
-<input type="number" id="roof" placeholder="Total m²" oninput="calculateTotal()">
+<input type="number" id="roof" placeholder="Total m²" min="0" oninput="calculateTotal()">
+<div class="subtotal" id="roofSubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Patio <span>£3.50 / m²</span></label>
 <div class="pair">
-<input type="number" id="patioLength" placeholder="Length (m)" oninput="calculateTotal()">
-<input type="number" id="patioWidth" placeholder="Width (m)" oninput="calculateTotal()">
+<input type="number" id="patioLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="patioWidth" placeholder="Width (m)" min="0" oninput="calculateTotal()">
 </div>
+<div class="subtotal" id="patioSubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Walls <span>£4 / m²</span></label>
 <div class="pair">
-<input type="number" id="wallsLength" placeholder="Length (m)" oninput="calculateTotal()">
-<input type="number" id="wallsHeight" placeholder="Height (m)" oninput="calculateTotal()">
+<input type="number" id="wallsLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="wallsHeight" placeholder="Height (m)" min="0" oninput="calculateTotal()">
 </div>
+<div class="subtotal" id="wallsSubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Conservatory Roof <span>£6 / m²</span></label>
-<input type="number" id="conservatory" placeholder="Total m²" oninput="calculateTotal()">
+<input type="number" id="conservatory" placeholder="Total m²" min="0" oninput="calculateTotal()">
+<div class="subtotal" id="conservatorySubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="service">
 <label>Fence <span>£2.50 / m²</span></label>
 <div class="pair">
-<input type="number" id="fenceLength" placeholder="Length (m)" oninput="calculateTotal()">
-<input type="number" id="fenceHeight" placeholder="Height (m)" oninput="calculateTotal()">
+<input type="number" id="fenceLength" placeholder="Length (m)" min="0" oninput="calculateTotal()">
+<input type="number" id="fenceHeight" placeholder="Height (m)" min="0" oninput="calculateTotal()">
 </div>
+<div class="subtotal" id="fenceSubtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="total" id="total">Enter measurements to see price</div>
@@ -230,21 +156,41 @@ function calculateTotal() {
 const minimumFee = 45;
 let total = 0;
 
-total += (Number(drivewayLength.value) || 0) *
-(Number(drivewayWidth.value) || 0) * 3;
+// Get all inputs
+const inputs = {
+drivewayLength: document.getElementById("drivewayLength"),
+drivewayWidth: document.getElementById("drivewayWidth"),
+roof: document.getElementById("roof"),
+patioLength: document.getElementById("patioLength"),
+patioWidth: document.getElementById("patioWidth"),
+wallsLength: document.getElementById("wallsLength"),
+wallsHeight: document.getElementById("wallsHeight"),
+conservatory: document.getElementById("conservatory"),
+fenceLength: document.getElementById("fenceLength"),
+fenceHeight: document.getElementById("fenceHeight"),
+};
 
-total += (Number(roof.value) || 0) * 5;
+// Helper to safely get a positive number
+const val = (el) => Math.max(0, Number(el.value) || 0);
 
-total += (Number(patioLength.value) || 0) *
-(Number(patioWidth.value) || 0) * 3.5;
+// Per-service calculations
+const drivewayTotal = val(inputs.drivewayLength) * val(inputs.drivewayWidth) * 3;
+const roofTotal = val(inputs.roof) * 5;
+const patioTotal = val(inputs.patioLength) * val(inputs.patioWidth) * 3.5;
+const wallsTotal = val(inputs.wallsLength) * val(inputs.wallsHeight) * 4;
+const conservatoryTotal = val(inputs.conservatory) * 6;
+const fenceTotal = val(inputs.fenceLength) * val(inputs.fenceHeight) * 2.5;
 
-total += (Number(wallsLength.value) || 0) *
-(Number(wallsHeight.value) || 0) * 4;
+// Update subtotals
+document.getElementById("drivewaySubtotal").innerText = `Subtotal: £${drivewayTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+document.getElementById("roofSubtotal").innerText = `Subtotal: £${roofTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+document.getElementById("patioSubtotal").innerText = `Subtotal: £${patioTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+document.getElementById("wallsSubtotal").innerText = `Subtotal: £${wallsTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+document.getElementById("conservatorySubtotal").innerText = `Subtotal: £${conservatoryTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+document.getElementById("fenceSubtotal").innerText = `Subtotal: £${fenceTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
 
-total += (Number(conservatory.value) || 0) * 6;
-
-total += (Number(fenceLength.value) || 0) *
-(Number(fenceHeight.value) || 0) * 2.5;
+// Total
+total = drivewayTotal + roofTotal + patioTotal + wallsTotal + conservatoryTotal + fenceTotal;
 
 const totalEl = document.getElementById("total");
 
@@ -255,139 +201,10 @@ return;
 
 const finalTotal = total < minimumFee ? minimumFee : total;
 
-totalEl.innerText =
-total < minimumFee
-? `Total: £${finalTotal.toFixed(2)} (minimum charge)`
-: `Total: £${finalTotal.toFixed(2)}`;
+totalEl.innerText = total < minimumFee
+? `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})} (minimum charge)`
+: `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
 }
-</script>
-
-  
-<style>
-.calculator {
-max-width: 420px;
-margin: 40px auto;
-padding: 25px;
-background: #fff;
-border: 2px solid #000;
-border-radius: 10px;
-font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-.calculator h2 {
-text-align: center;
-margin-bottom: 20px;
-font-size: 22px;
-letter-spacing: 0.5px;
-}
-
-.service {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin-bottom: 14px;
-gap: 10px;
-}
-
-.service label {
-font-size: 14px;
-}
-
-.service label span {
-display: block;
-font-size: 12px;
-opacity: 0.6;
-}
-
-.service input {
-width: 90px;
-padding: 8px;
-border: 2px solid #000;
-border-radius: 6px;
-background: #fff;
-text-align: right;
-}
-
-.service input:focus {
-outline: none;
-background: #000;
-color: #fff;
-}
-
-.total {
-margin-top: 20px;
-padding: 14px;
-border: 2px solid #000;
-text-align: center;
-font-size: 18px;
-font-weight: bold;
-}
-
-.call-button {
-display: block;
-margin-top: 15px;
-padding: 14px;
-text-align: center;
-text-decoration: none;
-color: #fff;
-background: #000;
-font-weight: bold;
-border-radius: 6px;
-transition: 0.2s ease;
-}
-
-.call-button:hover {
-background: #fff;
-color: #000;
-border: 2px solid #000;
-}
-
-.note {
-margin-top: 10px;
-text-align: center;
-font-size: 12px;
-opacity: 0.6;
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-.service {
-flex-direction: column;
-align-items: stretch;
-}
-
-.service input {
-width: 100%;
-}
-}
-</style>
-
-  
-</main>
-
-<!-- ✅ FOOTER -->
-<footer class="site-footer">
-© Home Repairs 4U | Askern DN6 | Call 07735 873694
-</footer>
-
-<!-- ✅ LIGHTBOX SCRIPT -->
-<script>
-function openLightbox(src, alt){
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-lightbox.style.display = "flex";
-lightboxImg.src = src;
-lightboxImg.alt = alt;
-}
-function closeLightbox(){
-document.getElementById("lightbox").style.display = "none";
-}
-document.addEventListener('keydown', function(event) {
-const lightbox = document.getElementById('lightbox');
-if (event.key === "Escape" && lightbox.style.display === "flex") {
-lightbox.style.display = "none";
-}
-});
 </script>
 
 </body>
