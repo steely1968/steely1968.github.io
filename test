@@ -2,38 +2,39 @@
 <h2>Pressure Washing Calculator</h2>
 
 <div class="service">
-<label>Driveway (£3 / m²)</label>
-<input type="number" id="driveway" placeholder="m²">
+<label>Driveway <span>£3 / m²</span></label>
+<input type="number" id="driveway" min="0" placeholder="m²" oninput="calculateTotal()">
 </div>
 
 <div class="service">
-<label>Roof (£5 / m²)</label>
-<input type="number" id="roof" placeholder="m²">
+<label>Roof <span>£5 / m²</span></label>
+<input type="number" id="roof" min="0" placeholder="m²" oninput="calculateTotal()">
 </div>
 
 <div class="service">
-<label>Patio (£3.50 / m²)</label>
-<input type="number" id="patio" placeholder="m²">
+<label>Patio <span>£3.50 / m²</span></label>
+<input type="number" id="patio" min="0" placeholder="m²" oninput="calculateTotal()">
 </div>
 
 <div class="service">
-<label>Walls (£4 / m²)</label>
-<input type="number" id="walls" placeholder="m²">
+<label>Walls <span>£4 / m²</span></label>
+<input type="number" id="walls" min="0" placeholder="m²" oninput="calculateTotal()">
 </div>
 
 <div class="service">
-<label>Conservatory Roof (£6 / m²)</label>
-<input type="number" id="conservatory" placeholder="m²">
+<label>Conservatory Roof <span>£6 / m²</span></label>
+<input type="number" id="conservatory" min="0" placeholder="m²" oninput="calculateTotal()">
 </div>
 
 <div class="service">
-<label>Fence (£2.50 / m²)</label>
-<input type="number" id="fence" placeholder="m²">
+<label>Fence <span>£2.50 / m²</span></label>
+<input type="number" id="fence" min="0" placeholder="m²" oninput="calculateTotal()">
 </div>
-
-<button onclick="calculateTotal()">Calculate Price</button>
 
 <div class="total" id="total">Total: £0.00</div>
+
+<a href="tel:07735873694" class="call-button">📞 Call Now</a>
+
 <div class="note">£45 minimum call-out fee applies</div>
 </div>
 
@@ -52,32 +53,112 @@ const minimumFee = 45;
 let total = 0;
 
 for (let service in prices) {
-const value = document.getElementById(service).value;
-if (value) {
+const value = Number(document.getElementById(service).value) || 0;
 total += value * prices[service];
 }
-}
 
-if (total > 0 && total < minimumFee) {
 document.getElementById("total").innerText =
-"Total: £" + minimumFee.toFixed(2) + " (minimum charge)";
-} else {
-document.getElementById("total").innerText =
-"Total: £" + total.toFixed(2);
-}
+total > 0 && total < minimumFee
+? `Total: £${minimumFee.toFixed(2)} (minimum charge)`
+: `Total: £${total.toFixed(2)}`;
 }
 </script>
-  
+
 <style>
-/* Responsive stacking for mobile */
-@media(max-width:768px){
-.surface-item label {
-display:block;
-margin-bottom:5px;
+.calculator {
+max-width: 420px;
+margin: 40px auto;
+padding: 25px;
+background: #fff;
+border: 2px solid #000;
+border-radius: 10px;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
-.surface-item input {
-width:100%;
-margin-top:3px;
+
+.calculator h2 {
+text-align: center;
+margin-bottom: 20px;
+font-size: 22px;
+letter-spacing: 0.5px;
+}
+
+.service {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 14px;
+gap: 10px;
+}
+
+.service label {
+font-size: 14px;
+}
+
+.service label span {
+display: block;
+font-size: 12px;
+opacity: 0.6;
+}
+
+.service input {
+width: 90px;
+padding: 8px;
+border: 2px solid #000;
+border-radius: 6px;
+background: #fff;
+text-align: right;
+}
+
+.service input:focus {
+outline: none;
+background: #000;
+color: #fff;
+}
+
+.total {
+margin-top: 20px;
+padding: 14px;
+border: 2px solid #000;
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+}
+
+.call-button {
+display: block;
+margin-top: 15px;
+padding: 14px;
+text-align: center;
+text-decoration: none;
+color: #fff;
+background: #000;
+font-weight: bold;
+border-radius: 6px;
+transition: 0.2s ease;
+}
+
+.call-button:hover {
+background: #fff;
+color: #000;
+border: 2px solid #000;
+}
+
+.note {
+margin-top: 10px;
+text-align: center;
+font-size: 12px;
+opacity: 0.6;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+.service {
+flex-direction: column;
+align-items: stretch;
+}
+
+.service input {
+width: 100%;
 }
 }
 </style>
