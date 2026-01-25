@@ -1,3 +1,501 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="index, follow">
+<title>Pressure Washing Carcroft - Instant Online Quote Calculator</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/pressure-washing.html">
+<meta name="description" content="Professional pressure washing in Carcroft for driveways, patios, roofs and exteriors. Reliable local service delivering powerful cleaning and long-lasting results.">
+
+<style>
+/* GLOBAL BOX-SIZING */
+*, *::before, *::after {
+box-sizing: border-box;
+}
+
+/* HEADER STYLING */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #27ae60;
+}
+
+.logo{
+max-height:90px;
+width:auto;
+}
+
+/* CALL BUTTON */
+.call-btn{
+display:inline-block;
+margin-top:18px;
+padding:14px 28px;
+background:#000;
+color:#fff;
+font-size:19px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+border:2px solid #000;
+}
+.call-btn:hover{
+background:#333;
+color:#fff;
+}
+
+/* FOOTER */
+.site-footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+font-size:14px;
+}
+
+/* DATES GRID */
+.dates-grid-container {
+max-width:420px;
+width:95%;
+margin:20px auto;
+padding:15px;
+border:2px solid #000;
+border-radius:10px;
+background:#f5f5f5;
+}
+
+.dates-grid-container h3 {
+text-align:center;
+margin-bottom:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+.dates-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+gap:10px;
+text-align:center;
+display:none; /* hidden by default */
+}
+
+.date-item {
+padding:10px;
+border-radius:6px;
+font-weight:600;
+cursor: default; /* read-only */
+}
+
+.date-available {
+background-color:#27ae60;
+color:#fff;
+}
+
+.date-booked {
+background-color:#e74c3c;
+color:#fff;
+opacity:0.7;
+}
+
+/* CALCULATOR STYLES */
+.calculator {
+max-width: 420px;
+width: 95%;
+margin: 10px auto 30px;
+padding: 20px;
+background: #fff;
+border: 2px solid #000;
+border-radius: 10px;
+color: #000;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.calculator h2 {
+text-align: center;
+margin-bottom: 20px;
+font-size: 22px;
+}
+
+.service {
+margin-bottom: 18px;
+}
+
+.service label {
+display: block;
+font-size: 14px;
+margin-bottom: 6px;
+}
+
+.service label span {
+font-size: 12px;
+opacity: 0.6;
+}
+
+.service input, .service select {
+width: 100%;
+padding: 8px;
+border: 2px solid #000;
+border-radius: 6px;
+text-align: right;
+background: #fff;
+font-size: 17px;
+}
+
+.service input:focus, .service select:focus {
+outline: 2px solid #000;
+background: #fff;
+}
+
+.pair {
+display: flex;
+gap: 8px;
+}
+
+.pair input {
+flex: 1 1 auto;
+}
+
+.subtotal {
+margin-top: 4px;
+font-size: 13px;
+opacity: 0.7;
+text-align: right;
+}
+
+.total {
+margin-top: 20px;
+padding: 14px;
+border: 2px solid #000;
+text-align: center;
+font-size: 18px;
+font-weight: bold;
+background: #fafafa;
+color: #000 !important;
+}
+
+.clear-btn {
+margin-top: 15px;
+padding: 10px 20px;
+font-size: 16px;
+border: 2px solid #000;
+border-radius: 6px;
+background: #fff;
+cursor: pointer;
+transition: border-color 0.2s, color 0.2s;
+}
+
+.clear-btn:hover {
+border-color: #555;
+color: #222;
+}
+
+@media (max-width: 480px) {
+.pair {
+flex-direction: column;
+gap: 6px;
+}
+.pair input, .calculator input, .calculator select {
+font-size: 16px;
+padding: 6px;
+}
+
+input:invalid {
+border-color: red;
+background: #ffe6e6;
+}
+}
+
+/* CLICKED DATE HIGHLIGHT */
+.date-available.selected {
+border: 2px solid #000;
+background-color: #2ecc71;
+box-shadow: 0 0 5px #000;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ✅ HEADER -->
+<header>
+<img src="/images/home-repairs-4u-doncaster.webp"
+alt="Home Repairs 4U logo"
+class="logo"
+width="600" height="200"
+loading="eager">
+
+<div style="text-align:center; margin-top:10px;">
+<a href="https://steely1968.github.io/"
+style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+</div>
+
+<br>
+
+<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
+</header>
+
+<!-- ✅ MAIN CONTENT -->
+<main style="max-width:1200px; margin:0 auto; padding:0 15px;">
+
+<!-- PRESSURE WASHING CALCULATOR -->
+<div class="calculator">
+<h2>Pressure Washing Calculator</h2>
+
+<!-- DRIVEWAY -->
+<div class="service">
+<label>Driveway <span>£3.50 / m²</span></label>
+<div class="pair">
+<input type="number" id="drivewayLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="drivewayWidth" placeholder="Width (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<label>Condition of Surface</label>
+<select id="drivewayCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+<option value="1.5">Oil / Paint / Grease (+£1.5 per m²)</option>
+</select>
+<div class="subtotal" id="drivewaySubtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- ROOF -->
+<div class="service">
+<label>Roof <span>£8 / m²</span></label>
+<input type="number" id="roof" placeholder="Total m²" min="0" step="0.5" oninput="calculateTotal()">
+<label>Condition of Surface</label>
+<select id="roofCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+</select>
+<div class="subtotal" id="roofSubtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- PATIO -->
+<div class="service">
+<label>Patio <span>£3.50 / m²</span></label>
+<div class="pair">
+<input type="number" id="patioLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="patioWidth" placeholder="Width (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<label>Condition of Surface</label>
+<select id="patioCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+<option value="1.5">Oil / Paint / Grease (+£1.5 per m²)</option>
+</select>
+<div class="subtotal" id="patioSubtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- WALLS -->
+<div class="service">
+<label>Walls <span>£4 / m²</span></label>
+<div class="pair">
+<input type="number" id="wallsLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="wallsHeight" placeholder="Height (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<label>Condition of Surface</label>
+<select id="wallsCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+<option value="1.5">Oil / Paint / Grease (+£1.5 per m²)</option>
+</select>
+<div class="subtotal" id="wallsSubtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- CONSERVATORY ROOF -->
+<div class="service">
+<label>Conservatory Roof <span>£5 / m²</span></label>
+<input type="number" id="conservatory" placeholder="Total m²" min="0" step="0.5" oninput="calculateTotal()">
+<label>Condition of Surface</label>
+<select id="conservatoryCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+</select>
+<div class="subtotal" id="conservatorySubtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- FENCE -->
+<div class="service">
+<label>Fence <span>£2.50 / m²</span></label>
+<div class="pair">
+<input type="number" id="fenceLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="fenceHeight" placeholder="Height (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<div class="subtotal" id="fenceSubtotal">Subtotal: £0.00</div>
+</div>
+
+<div class="total" id="total">Enter measurements to see price</div>
+
+<button class="clear-btn" onclick="resetCalculator()">Clear All</button>
+</div>
+<!-- END CALCULATOR -->
+
+<!-- ✅ COLLAPSIBLE DATE GRID UNDER CALCULATOR -->
+<div class="dates-grid-container">
+<h3 id="toggleDates">Select a Date ▼</h3>
+<div class="dates-grid" id="datesGrid">
+<!-- Dates populated by JS -->
+</div>
+</div>
+
+<!-- ✅ NEW: SUMMARY + FORM -->
+<div class="calculator-summary" style="max-width:420px; width:95%; margin:20px auto; padding:20px; background:#f5f5f5; border:2px solid #000; border-radius:10px;">
+<h2>Booking Summary</h2>
+<div id="summaryDetails" style="margin-bottom:15px;">Complete the calculator and select a date to see summary.</div>
+
+<form id="bookingForm">
+<label>Name</label>
+<input type="text" id="customerName" placeholder="Your Name" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+
+<label>Email</label>
+<input type="email" id="customerEmail" placeholder="Your Email" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+
+<label>Phone</label>
+<input type="tel" id="customerPhone" placeholder="Your Phone" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+
+<input type="hidden" id="selectedDate" name="selectedDate">
+<button type="submit" style="width:100%; padding:12px; font-size:16px; border:2px solid #000; border-radius:6px; background:#27ae60; color:#fff; font-weight:bold; cursor:pointer;">Submit Booking</button>
+</form>
+</div>
+
+</main>
+
+<!-- ✅ FOOTER -->
+<footer class="site-footer">
+© Home Repairs 4U | Askern DN6 | Call 07735 873694
+</footer>
+
+<script>
+// DATE GRID ARRAY
+const dates = [
+{ date: "Monday 27th Jan", status: "available" },
+{ date: "Wednesday 29th Jan", status: "booked" },
+{ date: "Friday 31st Jan", status: "available" },
+{ date: "Monday 3rd Feb", status: "available" }
+];
+
+const datesGridEl = document.getElementById("datesGrid");
+datesGridEl.innerHTML = "";
+
+// POPULATE DATES & MAKE CLICKABLE
+let chosenDate = null;
+
+dates.forEach((item, index) => {
+const div = document.createElement("div");
+div.classList.add("date-item");
+div.classList.add(item.status === "available" ? "date-available" : "date-booked");
+div.innerText = item.date;
+datesGridEl.appendChild(div);
+
+if(item.status === "available"){
+div.style.cursor = "pointer";
+div.addEventListener("click", () => {
+document.querySelectorAll(".date-available.selected").forEach(d => d.classList.remove("selected"));
+div.classList.add("selected");
+chosenDate = item.date;
+document.getElementById("selectedDate").value = chosenDate;
+updateSummary();
+});
+}
+});
+
+// COLLAPSIBLE TOGGLE
+document.getElementById("toggleDates").addEventListener("click", () => {
+const grid = document.getElementById("datesGrid");
+const heading = document.getElementById("toggleDates");
+if(grid.style.display === "none"){
+grid.style.display = "grid";
+heading.innerText = "Select a Date ▲";
+} else {
+grid.style.display = "none";
+heading.innerText = "Select a Date ▼";
+}
+});
+
+// CALCULATOR
+function calculateTotal() {
+const minimumFee = 45;
+
+const services = [
+{id: "driveway", rate: 3.5, inputs: ["drivewayLength", "drivewayWidth"], hasCondition:true},
+{id: "roof", rate: 8, inputs: ["roof"], hasCondition:true},
+{id: "patio", rate: 3.5, inputs: ["patioLength", "patioWidth"], hasCondition:true},
+{id: "walls", rate: 4, inputs: ["wallsLength", "wallsHeight"], hasCondition:true},
+{id: "conservatory", rate: 5, inputs: ["conservatory"], hasCondition:true},
+{id: "fence", rate: 2.5, inputs: ["fenceLength", "fenceHeight"], hasCondition:false},
+];
+
+let total = 0;
+
+services.forEach(service => {
+const values = service.inputs.map(id => Math.max(0, parseFloat(document.getElementById(id).value) || 0));
+const area = values.length === 1 ? values[0] : values[0] * values[1];
+
+let extra = 0;
+if(service.hasCondition){
+const conditionEl = document.getElementById(service.id + "Condition");
+if(conditionEl){
+extra = parseFloat(conditionEl.value) || 0;
+}
+}
+
+const subtotal = area * (service.rate + extra);
+document.getElementById(service.id + "Subtotal").innerText =
+`Subtotal: £${subtotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+total += subtotal;
+});
+
+const totalEl = document.getElementById("total");
+
+if (total === 0) {
+totalEl.innerText = "Enter measurements to see price";
+updateSummary();
+return;
+}
+
+const finalTotal = total < minimumFee ? minimumFee : total;
+
+totalEl.innerText = total < minimumFee
+? `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})} (Minimum charge applied)`
+: `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+
+// Update summary after calculation
+updateSummary();
+}
+
+function resetCalculator() {
+document.querySelectorAll('.calculator input').forEach(input => input.value = '');
+document.querySelectorAll('.calculator select').forEach(select => select.selectedIndex = 0);
+document.querySelectorAll('.subtotal').forEach(sub => sub.innerText = 'Subtotal: £0.00');
+const totalEl = document.getElementById("total");
+totalEl.innerText = "Enter measurements to see price";
+chosenDate = null;
+document.querySelectorAll(".date-available.selected").forEach(d => d.classList.remove("selected"));
+updateSummary();
+}
+
+// UPDATE SUMMARY FUNCTION
+function updateSummary(){
+const summaryEl = document.getElementById("summaryDetails");
+const totalEl = document.getElementById("total").innerText;
+const selectedDateText = chosenDate ? `<strong>Date:</strong> ${chosenDate}<br>` : "";
+
+const servicesSummary = [
+{id: "driveway", name:"Driveway", inputs:["drivewayLength","drivewayWidth"], condition:true},
+{id: "roof", name:"Roof", inputs:["roof"], condition:true},
+{id: "patio", name:"Patio", inputs:["patioLength","patioWidth"], condition:true},
+{id: "walls", name:"Walls", inputs:["wallsLength","wallsHeight"], condition:true},
+{id: "conservatory", name:"Conservatory Roof", inputs:["conservatory"], condition:true},
+{id: "fence", name:"Fence", inputs:["fenceLength","fenceHeight"], condition:false},
+];
+
+let summaryText = "";
+servicesSummary.forEach(s => {
+const values = s.inputs.map(id => parseFloat(document.getElementById(id).value) || 0);
+const area = values.length === 1 ? values[0] : values[0]*values[1];
+if(area > 0){
 let cond = "";
 if(s.condition){
 const condVal = document.getElementById(s.id + "Condition");
