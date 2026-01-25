@@ -316,7 +316,8 @@ extra = parseFloat(conditionEl.value) || 0;
 }
 
 const subtotal = area * (service.rate + extra);
-document.getElementById(service.id + "Subtotal").innerText = `Subtotal: £${subtotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+document.getElementById(service.id + "Subtotal").innerText =
+`Subtotal: £${subtotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
 total += subtotal;
 });
 
@@ -330,8 +331,8 @@ return;
 const finalTotal = total < minimumFee ? minimumFee : total;
 
 totalEl.innerText = total < minimumFee
-? `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})} (Minimum charge applied)`
-: `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+? `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})} (Minimum charge applied)`
+: `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
 }
 
 function resetCalculator() {
