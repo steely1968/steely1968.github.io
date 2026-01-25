@@ -517,17 +517,11 @@ summaryEl.innerHTML = summaryText
 : "Complete the calculator and select a date to see summary.";
 }
 
-// OPTIONAL: Handle form submission (prevent actual page reload)
-document.getElementById("bookingForm").addEventListener("submit", function(e){
-e.preventDefault();
-alert("Thank you! Your booking request has been submitted.\n\n" +
-"Name: " + document.getElementById("customerName").value + "\n" +
-"Email: " + document.getElementById("customerEmail").value + "\n" +
-"Phone: " + document.getElementById("customerPhone").value + "\n" +
-"Selected Date: " + (chosenDate || "None") + "\n" +
-"Total: " + document.getElementById("total").innerText);
-this.reset();
-resetCalculator();
+// Copy summary to hidden field before submitting
+document.getElementById("bookingForm").addEventListener("submit", function(){
+document.getElementById("bookingSummary").value = document.getElementById("summaryDetails").innerText;
+// Form now submits normally to Formspree
+});
 });
 </script>
 
