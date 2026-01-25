@@ -10,6 +10,11 @@
 <meta name="description" content="Professional pressure washing in Carcroft for driveways, patios, roofs and exteriors. Reliable local service delivering powerful cleaning and long-lasting results.">
 
 <style>
+/* GLOBAL BOX-SIZING */
+*, *::before, *::after {
+box-sizing: border-box;
+}
+
 /* HEADER STYLING */
 header{
 text-align:center;
@@ -54,8 +59,9 @@ font-size:14px;
 /* CALCULATOR STYLES */
 .calculator {
 max-width: 420px;
+width: 95%;
 margin: 30px auto;
-padding: 25px;
+padding: 20px;
 background: #fff;
 border: 2px solid #000;
 border-radius: 10px;
@@ -91,6 +97,7 @@ border: 2px solid #000;
 border-radius: 6px;
 text-align: right;
 background: #fff;
+font-size: 17px;
 }
 
 .service input:focus, .service select:focus {
@@ -104,7 +111,7 @@ gap: 8px;
 }
 
 .pair input {
-flex: 1;
+flex: 1 1 auto;
 }
 
 .subtotal {
@@ -144,6 +151,11 @@ color: #222;
 @media (max-width: 480px) {
 .pair {
 flex-direction: column;
+gap: 6px;
+}
+.pair input, .calculator input, .calculator select {
+font-size: 16px;
+padding: 6px;
 }
 }
 
@@ -333,5 +345,3 @@ totalEl.innerText = "Enter measurements to see price";
 
 </body>
 </html>
-
-
