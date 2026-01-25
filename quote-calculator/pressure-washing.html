@@ -10,6 +10,11 @@
 <meta name="description" content="Professional pressure washing in Carcroft for driveways, patios, roofs and exteriors. Reliable local service delivering powerful cleaning and long-lasting results.">
 
 <style>
+/* GLOBAL BOX-SIZING */
+*, *::before, *::after {
+box-sizing: border-box;
+}
+
 /* HEADER STYLING */
 header{
 text-align:center;
@@ -54,8 +59,9 @@ font-size:14px;
 /* CALCULATOR STYLES */
 .calculator {
 max-width: 420px;
+width: 95%;
 margin: 30px auto;
-padding: 25px;
+padding: 20px;
 background: #fff;
 border: 2px solid #000;
 border-radius: 10px;
@@ -84,16 +90,17 @@ font-size: 12px;
 opacity: 0.6;
 }
 
-.service input {
+.service input, .service select {
 width: 100%;
 padding: 8px;
 border: 2px solid #000;
 border-radius: 6px;
 text-align: right;
 background: #fff;
+font-size: 17px;
 }
 
-.service input:focus {
+.service input:focus, .service select:focus {
 outline: 2px solid #000;
 background: #fff;
 }
@@ -104,7 +111,7 @@ gap: 8px;
 }
 
 .pair input {
-flex: 1;
+flex: 1 1 auto;
 }
 
 .subtotal {
@@ -144,6 +151,11 @@ color: #222;
 @media (max-width: 480px) {
 .pair {
 flex-direction: column;
+gap: 6px;
+}
+.pair input, .calculator input, .calculator select {
+font-size: 16px;
+padding: 6px;
 }
 }
 
@@ -181,45 +193,79 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <div class="calculator">
 <h2>Pressure Washing Calculator</h2>
 
+<!-- DRIVEWAY -->
 <div class="service">
 <label>Driveway <span>£3.50 / m²</span></label>
 <div class="pair">
 <input type="number" id="drivewayLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="drivewayWidth" placeholder="Width (m)" min="0" step="0.5" oninput="calculateTotal()">
 </div>
+<label>Condition of Surface</label>
+<select id="drivewayCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+<option value="1.5">Oil / Paint / Grease (+£1.5 per m²)</option>
+</select>
 <div class="subtotal" id="drivewaySubtotal">Subtotal: £0.00</div>
 </div>
 
+<!-- ROOF -->
 <div class="service">
 <label>Roof <span>£8 / m²</span></label>
 <input type="number" id="roof" placeholder="Total m²" min="0" step="0.5" oninput="calculateTotal()">
+<label>Condition of Surface</label>
+<select id="roofCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+</select>
 <div class="subtotal" id="roofSubtotal">Subtotal: £0.00</div>
 </div>
 
+<!-- PATIO -->
 <div class="service">
 <label>Patio <span>£3.50 / m²</span></label>
 <div class="pair">
 <input type="number" id="patioLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="patioWidth" placeholder="Width (m)" min="0" step="0.5" oninput="calculateTotal()">
 </div>
+<label>Condition of Surface</label>
+<select id="patioCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+<option value="1.5">Oil / Paint / Grease (+£1.5 per m²)</option>
+</select>
 <div class="subtotal" id="patioSubtotal">Subtotal: £0.00</div>
 </div>
 
+<!-- WALLS -->
 <div class="service">
 <label>Walls <span>£4 / m²</span></label>
 <div class="pair">
 <input type="number" id="wallsLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="wallsHeight" placeholder="Height (m)" min="0" step="0.5" oninput="calculateTotal()">
 </div>
+<label>Condition of Surface</label>
+<select id="wallsCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+<option value="1.5">Oil / Paint / Grease (+£1.5 per m²)</option>
+</select>
 <div class="subtotal" id="wallsSubtotal">Subtotal: £0.00</div>
 </div>
 
+<!-- CONSERVATORY ROOF -->
 <div class="service">
 <label>Conservatory Roof <span>£5 / m²</span></label>
 <input type="number" id="conservatory" placeholder="Total m²" min="0" step="0.5" oninput="calculateTotal()">
+<label>Condition of Surface</label>
+<select id="conservatoryCondition" onchange="calculateTotal()">
+<option value="0">Dirty / Dusty</option>
+<option value="1">Moss / Algae (+£1 per m²)</option>
+</select>
 <div class="subtotal" id="conservatorySubtotal">Subtotal: £0.00</div>
 </div>
 
+<!-- FENCE -->
 <div class="service">
 <label>Fence <span>£2.50 / m²</span></label>
 <div class="pair">
@@ -247,12 +293,12 @@ function calculateTotal() {
 const minimumFee = 45;
 
 const services = [
-{id: "driveway", rate: 3.5, inputs: ["drivewayLength", "drivewayWidth"]},
-{id: "roof", rate: 8, inputs: ["roof"]},
-{id: "patio", rate: 3.5, inputs: ["patioLength", "patioWidth"]},
-{id: "walls", rate: 4, inputs: ["wallsLength", "wallsHeight"]},
-{id: "conservatory", rate: 5, inputs: ["conservatory"]},
-{id: "fence", rate: 2.5, inputs: ["fenceLength", "fenceHeight"]},
+{id: "driveway", rate: 3.5, inputs: ["drivewayLength", "drivewayWidth"], hasCondition:true},
+{id: "roof", rate: 8, inputs: ["roof"], hasCondition:true},
+{id: "patio", rate: 3.5, inputs: ["patioLength", "patioWidth"], hasCondition:true},
+{id: "walls", rate: 4, inputs: ["wallsLength", "wallsHeight"], hasCondition:true},
+{id: "conservatory", rate: 5, inputs: ["conservatory"], hasCondition:true},
+{id: "fence", rate: 2.5, inputs: ["fenceLength", "fenceHeight"], hasCondition:false},
 ];
 
 let total = 0;
@@ -260,8 +306,18 @@ let total = 0;
 services.forEach(service => {
 const values = service.inputs.map(id => Math.max(0, parseFloat(document.getElementById(id).value) || 0));
 const area = values.length === 1 ? values[0] : values[0] * values[1];
-const subtotal = area * service.rate;
-document.getElementById(service.id + "Subtotal").innerText = `Subtotal: £${subtotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+
+let extra = 0;
+if(service.hasCondition){
+const conditionEl = document.getElementById(service.id + "Condition");
+if(conditionEl){
+extra = parseFloat(conditionEl.value) || 0;
+}
+}
+
+const subtotal = area * (service.rate + extra);
+document.getElementById(service.id + "Subtotal").innerText =
+`Subtotal: £${subtotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
 total += subtotal;
 });
 
@@ -275,12 +331,13 @@ return;
 const finalTotal = total < minimumFee ? minimumFee : total;
 
 totalEl.innerText = total < minimumFee
-? `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})} (Minimum charge applied)`
-: `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2})}`;
+? `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})} (Minimum charge applied)`
+: `Total: £${finalTotal.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
 }
 
 function resetCalculator() {
 document.querySelectorAll('.calculator input').forEach(input => input.value = '');
+document.querySelectorAll('.calculator select').forEach(select => select.selectedIndex = 0);
 document.querySelectorAll('.subtotal').forEach(sub => sub.innerText = 'Subtotal: £0.00');
 const totalEl = document.getElementById("total");
 totalEl.innerText = "Enter measurements to see price";
