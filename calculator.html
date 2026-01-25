@@ -345,17 +345,24 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <h2>Booking Summary</h2>
 <div id="summaryDetails" style="margin-bottom:15px;">Complete the calculator and select a date to see summary.</div>
 
-<form id="bookingForm">
+<!-- Formspree Booking Form -->
+<form id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
 <label>Name</label>
-<input type="text" id="customerName" placeholder="Your Name" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+<input type="text" name="name" id="customerName" placeholder="Your Name" required
+style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
 
 <label>Email</label>
-<input type="email" id="customerEmail" placeholder="Your Email" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+<input type="email" name="email" id="customerEmail" placeholder="Your Email" required
+style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
 
 <label>Phone</label>
-<input type="tel" id="customerPhone" placeholder="Your Phone" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+<input type="tel" name="phone" id="customerPhone" placeholder="Your Phone" required
+style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
 
-<input type="hidden" id="selectedDate" name="selectedDate">
+<!-- Hidden fields for date & summary -->
+<input type="hidden" name="selectedDate" id="selectedDate">
+<input type="hidden" name="bookingSummary" id="bookingSummary">
+
 <button type="submit" style="width:100%; padding:12px; font-size:16px; border:2px solid #000; border-radius:6px; background:#27ae60; color:#fff; font-weight:bold; cursor:pointer;">Submit Booking</button>
 </form>
 </div>
