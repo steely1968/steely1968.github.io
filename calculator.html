@@ -230,14 +230,6 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
 
-<!-- ✅ COLLAPSIBLE DATE GRID -->
-<div class="dates-grid-container">
-<h3 id="toggleDates">Available Dates For Pressure Washing ▼</h3>
-<div class="dates-grid" id="datesGrid">
-<!-- Dates populated via JS -->
-</div>
-</div>
-
 <!-- ✅ MAIN CONTENT -->
 <main style="max-width:1200px; margin:0 auto; padding:0 15px;">
 
@@ -333,6 +325,14 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 </div>
 <!-- END CALCULATOR -->
 
+<!-- ✅ COLLAPSIBLE DATE GRID UNDER CALCULATOR -->
+<div class="dates-grid-container">
+<h3 id="toggleDates">Select a Date ▼</h3>
+<div class="dates-grid" id="datesGrid">
+<!-- Dates populated by JS -->
+</div>
+</div>
+
 </main>
 
 <!-- ✅ FOOTER -->
@@ -343,26 +343,10 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 <script>
 // DATE GRID ARRAY
 const dates = [
-{ date: "Monday 26th Jan", status: "available" },
-{ date: "Tuesday 27th Jan", status: "booked" },
-{ date: "Wednesday 28th Jan", status: "available" },
-{ date: "Thursday 29th Feb", status: "available" },
-{ date: "Friday 30th Feb", status: "available" },
-{ date: "Saturday 31st Feb", status: "booked" },
-{ date: "Sunday 1st Feb", status: "available" },
-{ date: "Monday 2nd Feb", status: "available" },
-{ date: "Tuesday 3rd Feb", status: "available" },
-{ date: "Wednesday 4th Feb", status: "booked" },
-{ date: "Thursday 5th Feb", status: "available" },
-{ date: "Friday 6th Feb", status: "available" },
-{ date: "Saturday 7th Feb", status: "available" },
-{ date: "Sunday 8th Feb", status: "booked" },
-{ date: "Monday 9th Feb", status: "available" },
-{ date: "Tuesday 10th Feb", status: "available" },
-{ date: "Wednesday 11th Feb", status: "available" },
-{ date: "Friday 12th Feb", status: "booked" },
-{ date: "Saturday 13th Feb", status: "available" },
-{ date: "Sunday 14th Feb", status: "available" }
+{ date: "Monday 27th Jan", status: "available" },
+{ date: "Wednesday 29th Jan", status: "booked" },
+{ date: "Friday 31st Jan", status: "available" },
+{ date: "Monday 3rd Feb", status: "available" }
 ];
 
 const datesGridEl = document.getElementById("datesGrid");
@@ -385,7 +369,7 @@ grid.style.display = "grid";
 heading.innerText = "Select a Date ▲";
 } else {
 grid.style.display = "none";
-heading.innerText = "Available Dates For Pressure Washing ▼";
+heading.innerText = "Select a Date ▼";
 }
 });
 
