@@ -64,7 +64,7 @@
 <header>
     <img src="/images/home-repairs-4u-doncaster.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
     <div style="margin-top:10px;">
-        <a href="https://homerepairs4u.com" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+        <a href="https://homerepairs4u.com/test" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
     </div>
     <div class="header-buttons">
         <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U">📞 Call Now: 07735 873694</a>
@@ -209,7 +209,7 @@
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   "name": "Home Repairs 4U",
-  "image": "https://homerepairs4u.comimages/home-repairs-4u-doncaster.webp",
+  "image": "https://homerepairs4u.com/images/home-repairs-4u-doncaster.webp",
   "url": "https://homerepairs4u.com",
   "telephone": "+44-7735-873694",
   "priceRange": "££",
