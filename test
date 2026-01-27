@@ -212,7 +212,7 @@ onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 <!-- ✅ FAQ SECTION -->
 <section style="max-width:900px; margin:40px auto; padding:0 15px;">
 
-<h2 style="text-align:center; margin-bottom:30px;">Frequently Asked Questions About Pressure Washing in Skellow</h2>
+<h2 style="text-align:center; margin-bottom:30px;">Frequently Asked Questions About Pressure Washing in Arksey</h2>
 
 <div>
 <p><strong></strong><br>
@@ -221,13 +221,13 @@ onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 <p><strong></strong><br>
 </p>
 
-<p><strong>Do I need to be at home during the cleaning?</strong><br>
+<p><strong></strong><br>
 </p>
 
-<p><strong>How often should exterior surfaces be cleaned?</strong><br>
+<p><strong></strong><br>
 </p>
 
-<p><strong>Can you deal with oil stains and heavy discolouration?</strong><br>
+<p><strong></strong><br>
 </p>
 
 </section>
@@ -235,7 +235,7 @@ onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 <!-- Close -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2></h2>
-<p>.</p>
+<p></p>
 </section>
 
 <!-- ✅ BOTTOM CALL BUTTON -->
@@ -260,92 +260,108 @@ onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 
 </script>
 
-<!-- ✅ FAQ JSON-LD FOR RICH RESULTS -->
+<!-- ✅ FULL CORRECTED FAQ JSON-LD FOR 2026 -->
 <script type="application/ld+json">
 {
-@context: "https://schema.org",
-@type: "FAQPage",
-mainEntity: [
-{
-@type: "Question",
-name: "",
-acceptedAnswer: {
-@type: "",
-text: ""
-}
-},
-{
-@type: "Question",
-name: "",
-acceptedAnswer: {
-@type: "Answer",
-text: ""
-}
-},
-{
-@type: "Question",
-name: "",
-acceptedAnswer: {
-@type: "Answer",
-text: ""
-}
-},
-{
-@type: "Question",
-name: "",
-acceptedAnswer: {
-@type: "Answer",
-text: ""
-}
-},
-{
-@type: "Question",
-name: "",
-acceptedAnswer: {
-@type: "Answer",
-text: ""
-}
-}
-]
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Insert Your First Question Here",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Insert your first answer here. Ensure this text is also visible to users on the webpage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Insert Your Second Question Here",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Insert your second answer here. All keys and values must remain inside double quotation marks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Insert Your Third Question Here",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Insert your third answer here. Do not put a comma after the final closing bracket of the last entity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Insert Your Fourth Question Here",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Insert your fourth answer here. This structure helps AI search engines index your content accurately in 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Insert Your Fifth Question Here",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Insert your fifth answer here. Validate this code at the [Google Rich Results Test](https://search.google.com)."
+      }
+    }
+  ]
 }
 </script>
 
 <script type="application/ld+json">
 {
-@context: "https://schema.org",
-@type: "LocalBusiness",
-name: "Home Repairs 4U",
-image: "https://homerepairs4u.com/images/home-repairs-4u-doncaster.webp",
-url: "https://homerepairs4u.com/local/pressure-washing-skellow.html",
-telephone: "+44-07735-873694",
-priceRange: "££",
-address: {
-@type: "PostalAddress",
-streetAddress: "35 Airstone Road",
-addressLocality: "Askern",
-addressRegion: "Doncaster",
-postalCode: "DN6 0QA",
-addressCountry: "GB"
-},
-geo: {
-@type: "GeoCoordinates",
-latitude: 53.58741,
-longitude: -1.20558
-},
-areaServed: "Skellow",
-openingHoursSpecification: [
-{
-@type: "OpeningHoursSpecification",
-dayOfWeek: [
-Monday,"Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"
-],
-opens: "00:00",
-closes: "23:59"
-}
-],
-sameAs: [
-https://www.facebook.com/profile.php?id=61584395621256
-]
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "name": "Home Repairs 4U",
+  "image": "https://homerepairs4u.com/images/home-repairs-4u-doncaster.webp",
+  "url": "https://homerepairs4u.com/local/pressure-washing-arksey.html",
+  "telephone": "+44-07735-873694",
+  "priceRange": "££",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "35 Airstone Road",
+    "addressLocality": "Askern",
+    "addressRegion": "Doncaster",
+    "postalCode": "DN6 0QA",
+    "addressCountry": "GB"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 53.58741,
+    "longitude": -1.20558
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Arksey"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=61584395621256"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Cleaning Services",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Pressure Washing in Arksey"
+        }
+      }
+    ]
+  }
 }
 </script>
 
