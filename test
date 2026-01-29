@@ -147,7 +147,7 @@ onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 
 <!-- Section 2 -->
 <section style="margin-bottom:40px; text-align:center;">
-<h2>/h2>
+<h2></h2>
 <p></p>
 <p></p>
 <p></p>
