@@ -196,9 +196,16 @@ onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 <!-- Section 5 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Book Your Pressure Washing Service in Bentley, Doncaster Today</h2>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxImg">
+<button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">×</button>
+<img id="lightboxImg" src="" alt="">
+</div>
+
+
 <p>If your driveway, patio, walls, decking, or fencing are looking tired and weather-stained, our professional pressure washing service in Bentley, Doncaster is here to help. We deliver reliable, high-quality exterior cleaning with visible results after just one visit. Using professional equipment and surface-safe techniques, we restore your outdoor areas while protecting your property. Whether you need a one-off clean or regular maintenance, you can count on a friendly local service you can trust. Contact us today for a free, no-obligation quote and let us transform your exterior spaces with expert pressure washing in Bentley, Doncaster.</p>
 <img src="/images/pressure-washing-algae.webp"
-alt=""
+alt="If your driveway, patio, walls, decking, or fencing are looking tired and weather-stained,"
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
 onclick="openLightbox(this.src, this.alt)"
 tabindex="0"
