@@ -188,6 +188,11 @@ tabindex="0"
 onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
 
+<!-- ✅ BOTTOM CALL BUTTON -->
+<div style="text-align:center; margin:40px 0;">
+<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
+</div>
+
 <!-- Section 5 -->
 <section style="margin-bottom:40px; text-align:center;">
 <h2>Book Your Pressure Washing Service in Bentley, Doncaster Today</h2>
@@ -199,11 +204,6 @@ onclick="openLightbox(this.src, this.alt)"
 tabindex="0"
 onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
-
-<!-- ✅ BOTTOM CALL BUTTON -->
-<div style="text-align:center; margin:40px 0;">
-<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
-</div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxImg">
 <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">×</button>
