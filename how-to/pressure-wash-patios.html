@@ -442,3 +442,30 @@ lightbox.style.display = "none";
 }
 });
 </script>
+
+<!-- ✅ LIGHTBOX SCRIPT -->
+<script>
+function openLightbox(src, alt){
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+
+lightbox.style.display = "flex"; // show lightbox
+lightboxImg.src = src; // set the image
+lightboxImg.alt = alt; // ✅ set alt dynamically
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").style.display = "none";
+}
+
+// Optional: close lightbox with Esc key
+document.addEventListener('keydown', function(event) {
+const lightbox = document.getElementById('lightbox');
+if (event.key === "Escape" && lightbox.style.display === "flex") {
+lightbox.style.display = "none";
+}
+});
+</script>
+
+</body>
+</html>
