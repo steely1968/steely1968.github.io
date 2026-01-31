@@ -206,7 +206,6 @@ onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">×</button>
 <img id="lightboxImg" src="" alt="">
 </div>
-<p></p>
 <img src="/images/pressure-washing-algae.webp"
 alt=""
 style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
