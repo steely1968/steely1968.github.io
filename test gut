@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="index, follow">
+<title>Gutter Services Doncaster - Instant Online Quote Calculator</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/gutter-services.html">
+<meta name="description" content="Professional gutter services - Instant Online Quote, Cleaning, Clearing, Repairs, Replacement. Reliable local service delivering quality results.">
 
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+header{ text-align:center; padding:25px 10px; background:#fff; border-bottom:4px solid #27ae60; }
+.logo{ max-height:90px; width:auto; }
+
+.call-btn{ display:inline-block; margin-top:18px; padding:14px 28px; background:#000; color:#fff; font-size:19px; text-decoration:none; font-weight:bold; border-radius:6px; border:2px solid #000; }
+.call-btn:hover{ background:#333; color:#fff; }
+
+.site-footer{ background:#000; color:#fff; text-align:center; padding:25px 15px; margin-top:40px; font-size:14px; }
+
+.calculator { max-width: 420px; width:95%; margin: 10px auto 30px; padding: 20px; background:#fff; border:2px solid #000; border-radius:10px; color:#000; font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
+.calculator h2 { text-align:center; margin-bottom:20px; font-size:22px; }
+.service { margin-bottom:18px; }
+.service label { display:block; font-size:14px; margin-bottom:6px; }
+.service label span { font-size:12px; opacity:0.6; }
+.service input, .service select { width:100%; padding:8px; border:2px solid #000; border-radius:6px; text-align:right; background:#fff; font-size:17px; }
+.service input:focus, .service select:focus { outline:2px solid #000; background:#fff; }
+.pair { display:flex; gap:8px; }
+.pair input { flex:1 1 auto; }
+.subtotal { margin-top:4px; font-size:13px; opacity:0.7; text-align:right; }
+.total { margin-top:20px; padding:14px; border:2px solid #000; text-align:center; font-size:18px; font-weight:bold; background:#fafafa; color:#000 !important; }
+.clear-btn { margin-top:15px; padding:10px 20px; font-size:16px; border:2px solid #000; border-radius:6px; background:#fff; cursor:pointer; transition:border-color 0.2s, color 0.2s; }
+.clear-btn:hover { border-color:#555; color:#222; }
+
+.dates-grid-container { max-width:420px; width:95%; margin:20px auto; padding:15px; border:2px solid #000; border-radius:10px; background:#f5f5f5; }
+.dates-grid-container h3 { text-align:center; margin-bottom:10px; font-size:18px; cursor:pointer; }
+.dates-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap:10px; text-align:center; display:none; }
+.date-item { padding:10px; border-radius:6px; font-weight:600; cursor: default; }
+.date-available { background-color:#27ae60; color:#fff; cursor:pointer; }
+.date-booked { background-color:#e74c3c; color:#fff; opacity:0.7; cursor:not-allowed; }
+.date-available.selected { border: 2px solid #000; background-color: #2ecc71; box-shadow: 0 0 5px #000; }
+
+@media (max-width:480px) {
+.pair { flex-direction: column; gap:6px; }
+.pair input, .calculator input, .calculator select { font-size:16px; padding:6px; }
+input:invalid { border-color:red; background:#ffe6e6; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<img src="/images/home-repairs-4u-doncaster.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
+<div style="text-align:center; margin-top:10px;">
+<a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+</div>
+<br>
+<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
+</header>
+
+<main style="max-width:1200px; margin:0 auto; padding:0 15px;">
+
+<div class="calculator">
+<h2>Gutter Services Calculator</h2>
+
+<!-- House 1 -->
+<div class="service">
+<label>House 1 <span>£4.5 / metre (Clearing)</span></label>
+<div class="pair">
+<input type="number" id="house1Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house1Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<div class="pair">
+<input type="number" id="house1Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house1Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<label>Service</label>
+<select id="house1Service" onchange="calculateTotal()">
+<option value="4.5">Gutter Clearing (£4.5/m)</option>
+<option value="4">Gutter Cleaning (£4/m)</option>
+<option value="30">Gutter Replacement (£30/m)</option>
+</select>
+<div class="subtotal" id="house1Subtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- House 2 -->
+<div class="service">
+<label>House 2 <span>£4.5 / metre (Clearing)</span></label>
+<div class="pair">
+<input type="number" id="house2Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house2Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<div class="pair">
+<input type="number" id="house2Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house2Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<label>Service</label>
+<select id="house2Service" onchange="calculateTotal()">
+<option value="4.5">Gutter Clearing (£4.5/m)</option>
+<option value="4">Gutter Cleaning (£4/m)</option>
+<option value="30">Gutter Replacement (£30/m)</option>
+</select>
+<div class="subtotal" id="house2Subtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- House 3 -->
+<div class="service">
+<label>House 3 <span>£4.5 / metre (Clearing)</span></label>
+<div class="pair">
+<input type="number" id="house3Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house3Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<div class="pair">
+<input type="number" id="house3Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house3Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<label>Service</label>
+<select id="house3Service" onchange="calculateTotal()">
+<option value="4.5">Gutter Clearing (£4.5/m)</option>
+<option value="4">Gutter Cleaning (£4/m)</option>
+<option value="30">Gutter Replacement (£30/m)</option>
+</select>
+<div class="subtotal" id="house3Subtotal">Subtotal: £0.00</div>
+</div>
+
+<!-- House 4 -->
+<div class="service">
+<label>House 4 <span>£4.5 / metre (Clearing) +3rd storey £2/m</span></label>
+<div class="pair">
+<input type="number" id="house4Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house4Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<div class="pair">
+<input type="number" id="house4Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
+<input type="number" id="house4Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<label>Service</label>
+<select id="house4Service" onchange="calculateTotal()">
+<option value="4.5">Gutter Clearing (£4.5/m)</option>
+<option value="4">Gutter Cleaning (£4/m)</option>
+<option value="30">Gutter Replacement (£30/m)</option>
+</select>
+<div class="subtotal" id="house4Subtotal">Subtotal: £0.00</div>
+</div>
+
+<div class="total" id="total">Enter measurements to see price</div>
+<button class="clear-btn" onclick="resetCalculator()">Clear All</button>
+</div>
+
+<!-- DATES -->
+<div class="dates-grid-container">
+<h3 id="toggleDates">Select a Date ▼</h3>
+<div class="dates-grid" id="datesGrid"></div>
+</div>
+
+<!-- SUMMARY & FORM -->
+<div class="calculator-summary" style="max-width:420px; width:95%; margin:20px auto; padding:20px; background:#f5f5f5; border:2px solid #000; border-radius:10px;">
+<h2>Booking Summary</h2>
+<div id="summaryDetails" style="margin-bottom:15px;">Complete the calculator and select a date to see summary.</div>
+
+<form id="bookingForm" action="https://formspree.io/f/xrepnkqq" method="POST">
+<label>Name</label>
+<input type="text" name="name" id="customerName" placeholder="Your Name" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+<label>Email</label>
+<input type="email" name="email" id="customerEmail" placeholder="Your Email" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+<label>Phone</label>
+<input type="tel" name="phone" id="customerPhone" placeholder="Your Phone" required style="width:100%; padding:8px; margin-bottom:10px; border:2px solid #000; border-radius:6px;">
+
+<input type="hidden" name="selectedDate" id="selectedDate">
+<input type="hidden" name="bookingSummary" id="bookingSummary">
+
+<button type="submit" style="width:100%; padding:12px; font-size:16px; border:2px solid #000; border-radius:6px; background:#27ae60; color:#fff; font-weight:bold; cursor:pointer;">Request Call Back</button>
+</form>
+
+<div style="text-align:center; margin:20px 0;">
+<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">
+📞 Call Now: 07735 873694
+</a>
+</div>
+
+</main>
+
+<footer class="site-footer">
+© Home Repairs 4U | Askern DN6 | Call 07735 873694
+</footer>
+
+<script>
+// DATES
+const dates = [
+{ date: "Thursday 29th Jan", status: "booked" },
+{ date: "Friday 30th Jan", status: "booked" },
+{ date: "Saturday 31st Jan", status: "booked" },
+{ date: "Sunday 1st Feb", status: "booked" },
+{ date: "Monday 2nd Feb", status: "booked" },
+{ date: "Tuesday 3rd Feb", status: "booked" },
+{ date: "Wednesday 4th Feb", status: "booked" },
+{ date: "Thursday 5th Feb", status: "available" },
+{ date: "Friday 5th Feb", status: "available" },
+{ date: "Saturday 7th Feb", status: "booked" },
+{ date: "Sunday 8th Feb", status: "booked" },
+{ date: "Monday 9th Feb", status: "available" },
+{ date: "Tuesday 10th Feb", status: "available" },
+{ date: "Wednesday 11th Feb", status: "booked" },
+{ date: "Thursday 12th Feb", status: "available" },
+{ date: "Friday 13th Feb", status: "booked" },
+{ date: "Saturday 14th Feb", status: "available" },
+{ date: "Sunday 15th Feb", status: "booked" },
+{ date: "Monday 16th Feb", status: "available" },
+{ date: "Tuesday 17th Feb", status: "available" }
+];
+
+const datesGridEl = document.getElementById("datesGrid");
+let chosenDate = null;
+
+dates.forEach(item => {
+const div = document.createElement("div");
+div.classList.add("date-item");
+div.classList.add(item.status === "available" ? "date-available" : "date-booked");
+div.innerText = item.date;
+datesGridEl.appendChild(div);
+
+if(item.status === "available"){
+div.addEventListener("click", () => {
+document.querySelectorAll(".date-available.selected").forEach(d => d.classList.remove("selected"));
+div.classList.add("selected");
+chosenDate = item.date;
+document.getElementById("selectedDate").value = chosenDate;
+updateSummary();
+});
+}
+});
+
+document.getElementById("toggleDates").addEventListener("click", () => {
+const grid = document.getElementById("datesGrid");
+const heading = document.getElementById("toggleDates");
+if(grid.style.display === "none"){ grid.style.display = "grid"; heading.innerText = "Select a Date ▲"; }
+else { grid.style.display = "none"; heading.innerText = "Select a Date ▼"; }
+});
+
+// CALCULATOR
+const houses = [
+{id:"house1", storeys:1},
+{id:"house2", storeys:2},
+{id:"house3", storeys:2},
+{id:"house4", storeys:3, extraPerM:2}
+];
+
+function calculateTotal(){
+let total = 0;
+houses.forEach(h => {
+const sideLengths = [1,2,3,4].map(n => parseFloat(document.getElementById(`${h.id}Side${n}`).value)||0);
+const serviceRate = parseFloat(document.getElementById(`${h.id}Service`).value)||0;
+const lengthTotal = sideLengths.reduce((a,b)=>a+b,0);
+const extra = h.extraPerM ? h.extraPerM : 0;
+const subtotal = lengthTotal * (serviceRate + extra);
+document.getElementById(`${h.id}Subtotal`).innerText=`Subtotal: £${subtotal.toFixed(2)}`;
+total += subtotal;
+});
+
+const minimumFee = 45;
+const totalEl = document.getElementById("total");
+const finalTotal = total < minimumFee ? minimumFee : total;
+totalEl.innerText = total < minimumFee ? `Total: £${finalTotal.toFixed(2)} (Minimum charge applied)` : `Total: £${finalTotal.toFixed(2)}`;
+updateSummary();
+}
+
+function resetCalculator(){
+document.querySelectorAll('.calculator input').forEach(i=>i.value='');
+document.querySelectorAll('.calculator select').forEach(s=>s.selectedIndex=0);
+document.querySelectorAll('.subtotal').forEach(s=>s.innerText='Subtotal: £0.00');
+document.getElementById("total").innerText="Enter measurements to see price";
+chosenDate=null;
+document.querySelectorAll(".date-available.selected").forEach(d=>d.classList.remove("selected"));
+updateSummary();
+}
+
+function updateSummary(){
+const summaryEl=document.getElementById("summaryDetails");
+const totalEl=document.getElementById("total").innerText;
+const selectedDateText=chosenDate?`<strong>Date:</strong> ${chosenDate}<br>`:'';
+let summaryText='';
+houses.forEach(h=>{
+const values=[1,2,3,4].map(n=>parseFloat(document.getElementById(`${h.id}Side${n}`).value)||0);
+const totalLength=values.reduce((a
