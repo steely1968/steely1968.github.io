@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="robots" content="index, follow">
-<title>Gutter Services Doncaster - Instant Online Quote Calculator</title>
+<title>Gutter Clearing Service - Instant Online Quote</title>
 <link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/test-gut.html">
-<meta name="description" content="Professional gutter services - Instant Online Quote, Cleaning, Clearing, Repairs, Replacement. Reliable local service delivering quality results.">
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/gutter-services.html">
+<meta name="description" content="Professional gutter services - Instant Online Quote, Clearing, Cleaning, Replacement. Reliable local service delivering quality results.">
 
 <style>
 *, *::before, *::after { box-sizing: border-box; }
@@ -64,31 +64,10 @@ input:invalid { border-color:red; background:#ffe6e6; }
 <main style="max-width:1200px; margin:0 auto; padding:0 15px;">
 
 <div class="calculator">
-<h2>Gutter Services Calculator</h2>
+<h2>Gutter Clearing Service Calculator</h2>
 
-<!-- House 1 -->
 <div class="service">
-<label>House 1 <span>£4.5 / metre (Clearing)</span></label>
-<div class="pair">
-<input type="number" id="house1Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
-<input type="number" id="house1Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
-</div>
-<div class="pair">
-<input type="number" id="house1Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
-<input type="number" id="house1Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
-</div>
-<label>Service</label>
-<select id="house1Service" onchange="calculateTotal()">
-<option value="4.5">Gutter Clearing (£4.5/m)</option>
-<option value="4">Gutter Cleaning (£4/m)</option>
-<option value="30">Gutter Replacement (£30/m)</option>
-</select>
-<div class="subtotal" id="house1Subtotal">Subtotal: £0.00</div>
-</div>
-
-<!-- House 2 -->
-<div class="service">
-<label>House 2 <span>£4.5 / metre (Clearing)</span></label>
+<label>Gutter Clearing Service <span>£4.5 / metre (Clearing)</span></label>
 <div class="pair">
 <input type="number" id="house2Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="house2Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
@@ -103,47 +82,10 @@ input:invalid { border-color:red; background:#ffe6e6; }
 <option value="4">Gutter Cleaning (£4/m)</option>
 <option value="30">Gutter Replacement (£30/m)</option>
 </select>
+<label>
+<input type="checkbox" id="thirdStorey" onchange="calculateTotal()"> Add 3rd storey (+£2/m)
+</label>
 <div class="subtotal" id="house2Subtotal">Subtotal: £0.00</div>
-</div>
-
-<!-- House 3 -->
-<div class="service">
-<label>House 3 <span>£4.5 / metre (Clearing)</span></label>
-<div class="pair">
-<input type="number" id="house3Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
-<input type="number" id="house3Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
-</div>
-<div class="pair">
-<input type="number" id="house3Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
-<input type="number" id="house3Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
-</div>
-<label>Service</label>
-<select id="house3Service" onchange="calculateTotal()">
-<option value="4.5">Gutter Clearing (£4.5/m)</option>
-<option value="4">Gutter Cleaning (£4/m)</option>
-<option value="30">Gutter Replacement (£30/m)</option>
-</select>
-<div class="subtotal" id="house3Subtotal">Subtotal: £0.00</div>
-</div>
-
-<!-- House 4 -->
-<div class="service">
-<label>House 4 <span>£4.5 / metre (Clearing) +3rd storey £2/m</span></label>
-<div class="pair">
-<input type="number" id="house4Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
-<input type="number" id="house4Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
-</div>
-<div class="pair">
-<input type="number" id="house4Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
-<input type="number" id="house4Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
-</div>
-<label>Service</label>
-<select id="house4Service" onchange="calculateTotal()">
-<option value="4.5">Gutter Clearing (£4.5/m)</option>
-<option value="4">Gutter Cleaning (£4/m)</option>
-<option value="30">Gutter Replacement (£30/m)</option>
-</select>
-<div class="subtotal" id="house4Subtotal">Subtotal: £0.00</div>
 </div>
 
 <div class="total" id="total">Enter measurements to see price</div>
@@ -241,36 +183,28 @@ else { grid.style.display = "none"; heading.innerText = "Select a Date ▼"; }
 });
 
 // CALCULATOR
-const houses = [
-{id:"house1", storeys:1},
-{id:"house2", storeys:2},
-{id:"house3", storeys:2},
-{id:"house4", storeys:3, extraPerM:2}
-];
-
 function calculateTotal(){
-let total = 0;
-houses.forEach(h => {
-const sideLengths = [1,2,3,4].map(n => parseFloat(document.getElementById(`${h.id}Side${n}`).value)||0);
-const serviceRate = parseFloat(document.getElementById(`${h.id}Service`).value)||0;
-const lengthTotal = sideLengths.reduce((a,b)=>a+b,0);
-const extra = h.extraPerM ? h.extraPerM : 0;
-const subtotal = lengthTotal * (serviceRate + extra);
-document.getElementById(`${h.id}Subtotal`).innerText=`Subtotal: £${subtotal.toFixed(2)}`;
-total += subtotal;
-});
+const sideLengths = [1,2,3,4].map(n => parseFloat(document.getElementById(`house2Side${n}`).value)||0);
+const serviceRate = parseFloat(document.getElementById("house2Service").value)||0;
+const totalLength = sideLengths.reduce((a,b)=>a+b,0);
+const extra = document.getElementById("thirdStorey").checked ? 2 : 0;
+const subtotal = totalLength * (serviceRate + extra);
+
+document.getElementById("house2Subtotal").innerText=`Subtotal: £${subtotal.toFixed(2)}`;
 
 const minimumFee = 45;
 const totalEl = document.getElementById("total");
-const finalTotal = total < minimumFee ? minimumFee : total;
-totalEl.innerText = total < minimumFee ? `Total: £${finalTotal.toFixed(2)} (Minimum charge applied)` : `Total: £${finalTotal.toFixed(2)}`;
+const finalTotal = subtotal < minimumFee ? minimumFee : subtotal;
+totalEl.innerText = subtotal < minimumFee ? `Total: £${finalTotal.toFixed(2)} (Minimum charge applied)` : `Total: £${finalTotal.toFixed(2)}`;
+
 updateSummary();
 }
 
 function resetCalculator(){
 document.querySelectorAll('.calculator input').forEach(i=>i.value='');
 document.querySelectorAll('.calculator select').forEach(s=>s.selectedIndex=0);
-document.querySelectorAll('.subtotal').forEach(s=>s.innerText='Subtotal: £0.00');
+document.getElementById("thirdStorey").checked = false;
+document.getElementById("house2Subtotal").innerText='Subtotal: £0.00';
 document.getElementById("total").innerText="Enter measurements to see price";
 chosenDate=null;
 document.querySelectorAll(".date-available.selected").forEach(d=>d.classList.remove("selected"));
@@ -280,24 +214,23 @@ updateSummary();
 function updateSummary(){
 const summaryEl=document.getElementById("summaryDetails");
 const totalEl=document.getElementById("total").innerText;
-const selectedDateText=chosenDate?`<strong>Date:</strong> ${chosenDate}<br>`:'';
-let summaryText='';
-houses.forEach(h=>{
-const values=[1,2,3,4].map(n=>parseFloat(document.getElementById(`${h.id}Side${n}`).value)||0);
-const totalLength=values.reduce((a, b) => a + b, 0);
-if(totalLength > 0){
-const serviceEl = document.getElementById(`${h.id}Service`);
+const selectedDateText = chosenDate ? `<strong>Date:</strong> ${chosenDate}<br>` : '';
+const sideLengths = [1,2,3,4].map(n=>parseFloat(document.getElementById(`house2Side${n}`).value)||0);
+const totalLength = sideLengths.reduce((a,b)=>a+b,0);
+
+if(totalLength>0){
+const serviceEl=document.getElementById("house2Service");
 const serviceText = serviceEl.options[serviceEl.selectedIndex].text;
-const extra = h.extraPerM ? ` (+£${h.extraPerM}/m for extra storey)` : '';
-summaryText += `<strong>${h.id.replace('house','House ')}:</strong> ${totalLength} m${extra} - ${serviceText}<br>`;
+const extra = document.getElementById("thirdStorey").checked ? " (+£2/m for 3rd storey)" : "";
+summaryEl.innerHTML=`<strong>Gutter Clearing Service:</strong> ${totalLength} m${extra} - ${serviceText}<br><br><strong>${totalEl}</strong><br>${selectedDateText}`;
+} else {
+summaryEl.innerText="Complete the calculator and select a date to see summary.";
 }
-});
-summaryEl.innerHTML = summaryText ? summaryText + "<br><strong>" + totalEl + "</strong>" : "Complete the calculator and select a date to see summary.";
 }
 
 // FORM SUBMISSION TO FORMSPREE
 document.getElementById("bookingForm").addEventListener("submit", function(){
-document.getElementById("bookingSummary").value = document.getElementById("summaryDetails").innerText;
+document.getElementById("bookingSummary").value=document.getElementById("summaryDetails").innerText;
 });
 </script>
 
