@@ -66,8 +66,9 @@ input:invalid { border-color:red; background:#ffe6e6; }
 <!-- HOW IT WORKS - plain, centralised text -->
 <div style="text-align:center; margin:20px 0;">
 <p><strong>How the Gutter Calculator Works</strong></p>
-<p>1. Measure your gutters: Enter the length of guttering on each side of your property (in metres).</p>
-<p>2. Total gutter length: The calculator adds all measurements to give a total.</p>
+<p>1. Measure your each side of your house outside across the house walls: Enter the length of each side of your property (in metres).</p>
+<p>2. If you have extra lengths of guttering to be serviced such has canopies, outer buildings etc add the metres to plus sides</p>
+<p>2. If you have extra lengths of guttering to be serviced such has canopies outer buil</p>
 <p>3. Choose your service: Select the service needed and the price updates instantly.</p>
 <p>4. Different levels? If you have guttering on a porch, extension, or garage, just add the total length here.</p>
 <p>Not sure on measurements? Request a call back or call us directly and we’ll be happy to help.</p>
@@ -87,6 +88,9 @@ input:invalid { border-color:red; background:#ffe6e6; }
 <div class="pair">
 <input type="number" id="house2Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="house2Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
+</div>
+<div class="pair">
+<input type="number" id="house2PlusSides" placeholder="Plus Sides (m)" min="0" step="0.5" oninput="calculateTotal()">
 </div>
 <label>Choose Your Service</label>
 <select id="house2Service" onchange="calculateTotal()">
@@ -194,8 +198,9 @@ else { grid.style.display = "none"; heading.innerText = "Select a Date ▼"; }
 // CALCULATOR
 function calculateTotal(){
 const sideLengths = [1,2,3,4].map(n => parseFloat(document.getElementById(`house2Side${n}`).value)||0);
+const plusSides = parseFloat(document.getElementById("house2PlusSides").value) || 0;
+const totalLength = sideLengths.reduce((a,b)=>a+b,0) + plusSides;
 const serviceRate = parseFloat(document.getElementById("house2Service").value)||0;
-const totalLength = sideLengths.reduce((a,b)=>a+b,0);
 const subtotal = totalLength * serviceRate;
 
 document.getElementById("house2Subtotal").innerText=`Subtotal: £${subtotal.toFixed(2)}`;
@@ -211,7 +216,6 @@ updateSummary();
 function resetCalculator(){
 document.querySelectorAll('.calculator input').forEach(i=>i.value='');
 document.querySelectorAll('.calculator select').forEach(s=>s.selectedIndex=0);
-document.getElementById("thirdStorey").checked = false;
 document.getElementById("house2Subtotal").innerText='Subtotal: £0.00';
 document.getElementById("total").innerText="Enter measurements to see price";
 chosenDate=null;
@@ -224,7 +228,8 @@ const summaryEl=document.getElementById("summaryDetails");
 const totalEl=document.getElementById("total").innerText;
 const selectedDateText = chosenDate ? `<strong>Date:</strong> ${chosenDate}<br>` : '';
 const sideLengths = [1,2,3,4].map(n=>parseFloat(document.getElementById(`house2Side${n}`).value)||0);
-const totalLength = sideLengths.reduce((a,b)=>a+b,0);
+const plusSides = parseFloat(document.getElementById("house2PlusSides").value) || 0;
+const totalLength = sideLengths.reduce((a,b)=>a+b,0) + plusSides;
 
 if(totalLength>0){
 const serviceEl=document.getElementById("house2Service");
