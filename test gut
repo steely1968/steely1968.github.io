@@ -284,4 +284,22 @@ const selectedDateText=chosenDate?`<strong>Date:</strong> ${chosenDate}<br>`:'';
 let summaryText='';
 houses.forEach(h=>{
 const values=[1,2,3,4].map(n=>parseFloat(document.getElementById(`${h.id}Side${n}`).value)||0);
-const totalLength=values.reduce((a
+const totalLength=values.reduce((a, b) => a + b, 0);
+if(totalLength > 0){
+const serviceEl = document.getElementById(`${h.id}Service`);
+const serviceText = serviceEl.options[serviceEl.selectedIndex].text;
+const extra = h.extraPerM ? ` (+£${h.extraPerM}/m for extra storey)` : '';
+summaryText += `<strong>${h.id.replace('house','House ')}:</strong> ${totalLength} m${extra} - ${serviceText}<br>`;
+}
+});
+summaryEl.innerHTML = summaryText ? summaryText + "<br><strong>" + totalEl + "</strong>" : "Complete the calculator and select a date to see summary.";
+}
+
+// FORM SUBMISSION TO FORMSPREE
+document.getElementById("bookingForm").addEventListener("submit", function(){
+document.getElementById("bookingSummary").value = document.getElementById("summaryDetails").innerText;
+});
+</script>
+
+</body>
+</html>
