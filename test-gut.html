@@ -76,15 +76,12 @@ input:invalid { border-color:red; background:#ffe6e6; }
 <input type="number" id="house2Side3" placeholder="Side 3 (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="house2Side4" placeholder="Side 4 (m)" min="0" step="0.5" oninput="calculateTotal()">
 </div>
-<label>Service</label>
+<label>Choose Your Service</label>
 <select id="house2Service" onchange="calculateTotal()">
 <option value="4.5">Gutter Clearing (£4.5/m)</option>
 <option value="4">Gutter Cleaning (£4/m)</option>
 <option value="30">Gutter Replacement (£30/m)</option>
 </select>
-<label>
-<input type="checkbox" id="thirdStorey" onchange="calculateTotal()"> Add 3rd storey (+£2/m)
-</label>
 <div class="subtotal" id="house2Subtotal">Subtotal: £0.00</div>
 </div>
 
