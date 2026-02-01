@@ -22,11 +22,11 @@ header{ text-align:center; padding:25px 10px; background:#fff; border-bottom:4px
 
 .calculator { max-width: 420px; width:95%; margin: 10px auto 30px; padding: 20px; background:#fff; border:2px solid #000; border-radius:10px; color:#000; font-family:system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
 .calculator h2 { text-align:center; margin-bottom:20px; font-size:22px; }
-.service { margin-bottom:18px; }
-.service label { display:block; font-size:14px; margin-bottom:6px; }
-.service label span { font-size:12px; opacity:0.6; }
-.service input, .service select { width:100%; padding:8px; border:2px solid #000; border-radius:6px; text-align:right; background:#fff; font-size:17px; }
-.service input:focus, .service select:focus { outline:2px solid #000; background:#fff; }
+.Choose-Service { margin-bottom:18px; }
+.Choose-Service label { display:block; font-size:14px; margin-bottom:6px; }
+.Choose-Service label span { font-size:12px; opacity:0.6; }
+.Choose-Service input, .service select { width:100%; padding:8px; border:2px solid #000; border-radius:6px; text-align:right; background:#fff; font-size:17px; }
+.Choose-Service input:focus, .service select:focus { outline:2px solid #000; background:#fff; }
 .pair { display:flex; gap:8px; }
 .pair input { flex:1 1 auto; }
 .subtotal { margin-top:4px; font-size:13px; opacity:0.7; text-align:right; }
@@ -67,7 +67,7 @@ input:invalid { border-color:red; background:#ffe6e6; }
 <h2>Gutter Clearing Services Instant Quote</h2>
 <p>Simply enter in metres the width of each side of your home</p>
 <p>If your home has more than 4 sides or guttering on different levels simply add all widths into 1 input box.</p>
-<div class="Service Choose-Service">
+<div class="Choose Service">
 <div class="pair">
 <input type="number" id="house2Side1" placeholder="Side 1 (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="house2Side2" placeholder="Side 2 (m)" min="0" step="0.5" oninput="calculateTotal()">
