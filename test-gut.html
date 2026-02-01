@@ -184,8 +184,7 @@ function calculateTotal(){
 const sideLengths = [1,2,3,4].map(n => parseFloat(document.getElementById(`house2Side${n}`).value)||0);
 const serviceRate = parseFloat(document.getElementById("house2Service").value)||0;
 const totalLength = sideLengths.reduce((a,b)=>a+b,0);
-const extra = document.getElementById("thirdStorey").checked ? 2 : 0;
-const subtotal = totalLength * (serviceRate + extra);
+const subtotal = totalLength * serviceRate;
 
 document.getElementById("house2Subtotal").innerText=`Subtotal: £${subtotal.toFixed(2)}`;
 
@@ -218,8 +217,7 @@ const totalLength = sideLengths.reduce((a,b)=>a+b,0);
 if(totalLength>0){
 const serviceEl=document.getElementById("house2Service");
 const serviceText = serviceEl.options[serviceEl.selectedIndex].text;
-const extra = document.getElementById("thirdStorey").checked ? " (+£2/m for 3rd storey)" : "";
-summaryEl.innerHTML=`<strong>Gutter Clearing Service:</strong> ${totalLength} m${extra} - ${serviceText}<br><br><strong>${totalEl}</strong><br>${selectedDateText}`;
+summaryEl.innerHTML=`<strong>Gutter Clearing Service:</strong> ${totalLength} m - ${serviceText}<br><br><strong>${totalEl}</strong><br>${selectedDateText}`;
 } else {
 summaryEl.innerText="Complete the calculator and select a date to see summary.";
 }
