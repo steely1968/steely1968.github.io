@@ -100,10 +100,11 @@ user-select: none;
 <nav class="main-nav" aria-label="Main navigation">
 <ul class="menu">
 <li class="has-submenu">
-<a href="#">Services</a>
+<a href="#" class="submenu-toggle">Services ▼</a>
 <ul class="submenu">
-<li><a href="/pressure-washing-doncaster.html">Pressure Washing</a></li>
-<li><a href="/guttering-services/doncaster.html">Guttering Services</a></li>
+<li><a href="/pressure-washing.html">Pressure Washing</a></li>
+<li><a href="/guttering-services.html">Guttering Services</a></li>
+<li><a href="/contact.html">Contact</a></li>
 </ul>
 </li>
 </ul>
@@ -127,18 +128,81 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 
 <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
-<nav class="main-nav" aria-label="Main navigation">
-<ul class="menu">
-<li class="has-submenu">
-<a href="#">Services</a>
-<ul class="submenu">
-<li><a href="/pressure-washing.html">Pressure Washing</a></li>
-<li><a href="/guttering-services.html">Guttering Services</a></li>
-<li><a href="/contact.html">Contact</a></li>
-</ul>
-</li>
-</ul>
-</nav>
+.main-nav {
+background: #000;
+border-bottom: 3px solid #27ae60;
+font-family: sans-serif;
+}
+
+.main-nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.menu {
+display: flex;
+justify-content: center;
+}
+
+.menu > li {
+position: relative;
+}
+
+.menu a {
+display: block;
+padding: 14px 22px;
+color: #fff;
+text-decoration: none;
+font-weight: 600;
+}
+
+.menu a:hover {
+background: #333;
+}
+
+/* DROPDOWN */
+.submenu {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background: #000;
+min-width: 200px;
+z-index: 1000;
+}
+
+.has-submenu:hover .submenu {
+display: block;
+}
+
+.submenu a {
+padding: 12px 18px;
+color: #fff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+.menu {
+flex-direction: column;
+}
+
+.submenu {
+position: static;
+display: none; /* hidden by default */
+}
+
+.submenu-toggle::after {
+content: " ▼";
+}
+}
+
+/* MOBILE CLICK TOGGLE */
+@media (max-width: 768px) {
+.submenu-toggle {
+cursor: pointer;
+}
+}
 
  <!-- ✅ MAIN CONTENT -->
 <main style="max-width:1200px; margin:30px auto; padding:0 15px;">
@@ -531,6 +595,21 @@ lightbox.style.display = "none";
 }
 });
 </script>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const toggles = document.querySelectorAll('.submenu-toggle');
+toggles.forEach(function(toggle) {
+toggle.addEventListener('click', function(e) {
+e.preventDefault();
+const submenu = this.nextElementSibling;
+if(submenu.style.display === 'block') {
+submenu.style.display = 'none';
+} else {
+submenu.style.display = 'block';
+}
+});
+});
+});
+</script>
 </body>
 </html>
