@@ -8,7 +8,7 @@
 <meta name="robots" content="index, follow">
 <title>Home Repairs Doncaster - Guttering, Painting, uPVC & Pressure Washing - Home Repairs 4U</title>
 <link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/">
+<link rel="canonical" href="https://homerepairs4u.com/test-gut.html">
 <meta name="description" content="Home Repairs 4U provides internal home repairs, gutter cleaning and repairs, exterior painting, uPVC Restoration, window cleaning, and pressure washing across Doncaster, Askern, Bentley, Campsall, Adwick-Le-Street and surrounding areas. Call today for reliable local service.">
 
 <link rel="preload" as="image" href="/images/home-repairs-4u-doncaster.webp" />
@@ -97,6 +97,81 @@ font-weight: bold;
 cursor: pointer;
 user-select: none;
 }
+  .main-nav {
+background: #000;
+border-bottom: 3px solid #27ae60;
+font-family: sans-serif;
+}
+
+.main-nav ul {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.menu {
+display: flex;
+justify-content: center;
+}
+
+.menu > li {
+position: relative;
+}
+
+.menu a {
+display: block;
+padding: 14px 22px;
+color: #fff;
+text-decoration: none;
+font-weight: 600;
+}
+
+.menu a:hover {
+background: #333;
+}
+
+/* DROPDOWN */
+.submenu {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background: #000;
+min-width: 200px;
+z-index: 1000;
+}
+
+.has-submenu:hover .submenu {
+display: block;
+}
+
+.submenu a {
+padding: 12px 18px;
+color: #fff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+.menu {
+flex-direction: column;
+}
+
+.submenu {
+position: static;
+display: none; /* hidden by default */
+}
+
+.submenu-toggle::after {
+content: " ▼";
+}
+}
+
+/* MOBILE CLICK TOGGLE */
+@media (max-width: 768px) {
+.submenu-toggle {
+cursor: pointer;
+}
+}
 </style>
  
 <!-- ✅ HEADER -->
@@ -116,6 +191,18 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 
 <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
+<nav class="main-nav" aria-label="Main navigation">
+<ul class="menu">
+<li class="has-submenu">
+<a href="#" class="submenu-toggle">Services ▼</a>
+<ul class="submenu">
+<li><a href="/local/pressure-washing-doncaster.html">Pressure Washing</a></li>
+<li><a href="/guttering-services/doncaster.html">Guttering Services</a></li>
+<li><a href="/contact.html">Contact</a></li>
+</ul>
+</li>
+</ul>
+</nav>
 
  <!-- ✅ MAIN CONTENT -->
 <main style="max-width:1200px; margin:30px auto; padding:0 15px;">
@@ -508,6 +595,21 @@ lightbox.style.display = "none";
 }
 });
 </script>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const toggles = document.querySelectorAll('.submenu-toggle');
+toggles.forEach(function(toggle) {
+toggle.addEventListener('click', function(e) {
+e.preventDefault();
+const submenu = this.nextElementSibling;
+if(submenu.style.display === 'block') {
+submenu.style.display = 'none';
+} else {
+submenu.style.display = 'block';
+}
+});
+});
+});
+</script>
 </body>
 </html>
