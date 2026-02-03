@@ -383,6 +383,21 @@ lightbox.style.display = "none";
 }
 });
 </script>
-
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const toggles = document.querySelectorAll('.submenu-toggle');
+toggles.forEach(function(toggle) {
+toggle.addEventListener('click', function(e) {
+e.preventDefault();
+const submenu = this.nextElementSibling;
+if(submenu.style.display === 'block') {
+submenu.style.display = 'none';
+} else {
+submenu.style.display = 'block';
+}
+});
+});
+});
+</script>
 </body>
 </html>
