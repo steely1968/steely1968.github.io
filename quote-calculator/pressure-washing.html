@@ -75,7 +75,7 @@ input:invalid { border-color:red; background:#ffe6e6; }
 
 <!-- DRIVEWAY -->
 <div class="service">
-<label>Driveway <span>£3.50 / m²</span></label>
+<label>Driveway <span>£3.00 / m²</span></label>
 <div class="pair">
 <input type="number" id="drivewayLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="drivewayWidth" placeholder="Width (m)" min="0" step="0.5" oninput="calculateTotal()">
@@ -103,7 +103,7 @@ input:invalid { border-color:red; background:#ffe6e6; }
 
 <!-- PATIO -->
 <div class="service">
-<label>Patio <span>£3.50 / m²</span></label>
+<label>Patio <span>£3.00 / m²</span></label>
 <div class="pair">
 <input type="number" id="patioLength" placeholder="Length (m)" min="0" step="0.5" oninput="calculateTotal()">
 <input type="number" id="patioWidth" placeholder="Width (m)" min="0" step="0.5" oninput="calculateTotal()">
@@ -261,9 +261,9 @@ else { grid.style.display = "none"; heading.innerText = "Select a Date ▼"; }
 function calculateTotal(){
 const minimumFee = 45;
 const services = [
-{id:"driveway", rate:3.5, inputs:["drivewayLength","drivewayWidth"], hasCondition:true},
+{id:"driveway", rate:3, inputs:["drivewayLength","drivewayWidth"], hasCondition:true},
 {id:"roof", rate:8, inputs:["roof"], hasCondition:true},
-{id:"patio", rate:3.5, inputs:["patioLength","patioWidth"], hasCondition:true},
+{id:"patio", rate:3, inputs:["patioLength","patioWidth"], hasCondition:true},
 {id:"walls", rate:4, inputs:["wallsLength","wallsHeight"], hasCondition:true},
 {id:"conservatory", rate:5, inputs:["conservatory"], hasCondition:true},
 {id:"fence", rate:2.5, inputs:["fenceLength","fenceHeight"], hasCondition:false},
