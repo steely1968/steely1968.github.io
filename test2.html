@@ -182,6 +182,38 @@ content: " ▼";
 cursor: pointer;
 }
 }
+ /* Ticker container */
+.ticker {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100%;
+background: #000;
+color: #fff;
+overflow: hidden;
+white-space: nowrap;
+z-index: 9999;
+font-size: 14px;
+line-height: 40px;
+}
+
+/* Scrolling text */
+.ticker__content {
+display: inline-block;
+padding-left: 100%;
+animation: ticker-scroll 30s linear infinite; /* readable speed */
+}
+
+/* Animation */
+@keyframes ticker-scroll {
+from { transform: translateX(0); }
+to { transform: translateX(-100%); }
+}
+
+/* Prevent covering page content */
+body {
+padding-bottom: 40px;
+}
 </style>
  
 <!-- ✅ HEADER -->
@@ -307,6 +339,14 @@ onclick="openLightbox(this.src, this.alt)"
 tabindex="0"
 onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
 </section>
+
+<!-- Section 6 -->
+<div class="ticker">
+<div class="ticker__content">
+Breaking News • Local pressure washing now available in Doncaster • Instant online quotes available •
+</div>
+</div>
+ 
 
 <!-- ✅ BOTTOM CALL BUTTON -->
 <div style="text-align:center; margin:40px 0;">
