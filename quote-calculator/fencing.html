@@ -3,72 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fence Type Selector</title>
-  <link rel="canonical" href="https://homerepairs4u.com/quote-calculator/fencing.html">
+<title>Fence Quote Calculator</title>
 <style>
 body {
 font-family: Arial, sans-serif;
-padding: 20px;
-background: #f4f4f4;
-text-align: center;
+margin: 20px;
+max-width: 600px;
 }
-
-h2 {
-margin-bottom: 20px;
-}
-
-.options {
-display: flex;
-flex-direction: column;
-gap: 10px;
-max-width: 300px;
-margin: 0 auto;
-}
-
-.option-btn {
-padding: 15px;
-background: #007bff;
-color: white;
-border: none;
-cursor: pointer;
+input[type="number"] {
+width: 100%;
+padding: 8px;
 font-size: 16px;
-border-radius: 5px;
-transition: background 0.3s;
+margin: 5px 0 15px 0;
+box-sizing: border-box;
 }
-
-.option-btn:hover {
-background: #0056b3;
+label {
+font-weight: bold;
 }
-
-.placeholder {
+button {
+padding: 10px 20px;
+font-size: 16px;
+}
+.result {
 margin-top: 20px;
-font-style: italic;
-color: #555;
+padding: 15px;
+border: 1px solid #ccc;
+background: #f9f9f9;
 }
 </style>
 </head>
 <body>
 
-<h2>What type of fence are you looking for?</h2>
+<h2>Fence Quote Calculator</h2>
 
-<div class="options">
-<button class="option-btn" data-type="Wood">Wood Fence</button>
-<button class="option-btn" data-type="Chainlink">Chainlink Fence</button>
-<button class="option-btn" data-type="Vinyl">Vinyl Fence</button>
-<button class="option-btn" data-type="Metal">Metal Fence</button>
+<label for="length">Fence Length (m):</label>
+<input type="number" id="length" step="0.01" min="0" inputmode="decimal">
+
+<label for="width">Fence Width (m):</label>
+<input type="number" id="width" step="0.01" min="0" inputmode="decimal">
+
+<label for="height">Fence Height (m, up to 1.8):</label>
+<input type="number" id="height" step="0.01" min="0" max="1.8" inputmode="decimal">
+
+<label>Gate required?</label><br>
+<select id="gateRequired">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
+
+<div id="gateInputs" style="display:none;">
+<label for="gateWidth">Gate Width (m):</label>
+<input type="number" id="gateWidth" step="0.01" min="0" inputmode="decimal">
+
+<label for="gateHeight">Gate Height (m):</label>
+<input type="number" id="gateHeight" step="0.01" min="0" inputmode="decimal">
+
+<label>Gate attached to fence?</label><br>
+<select id="gateAttached">
+<option value="no">No</option>
+<option value="yes">Yes</option>
+</select>
 </div>
 
-<p class="placeholder">Clicking a button will eventually open the quote calculator.</p>
+<button onclick="calculateQuote()">Calculate Quote</button>
+
+<div class="result" id="result"></div>
 
 <script>
-const optionButtons = document.querySelectorAll(".option-btn");
+document.getElementById('gateRequired').addEventListener('change', function() {
+document.getElementById('gateInputs').style.display = this.value === 'yes' ? 'block' : 'none';
+});
 
-optionButtons.forEach(btn => {
-btn.addEventListener("click", () => {
-const type = btn.dataset.type;
-alert(`You selected: ${type}. Calculator will be here later.`);
-});
-});
+function calculateQuote() {
+// Inputs
+let length = parseFloat(document.getElementById('length').value) || 0;
+let width = parseFloat(document.getElementById('width').value) || 0;
+let height = parseFloat(document.getElementById('height').value) || 1.8;
+let totalFenceLength = length + width;
+
+let gateRequired = document.getElementById('gateRequired').value;
+let gateWidth = gateRequired === 'yes' ? parseFloat(document.getElementById('gateWidth').value) || 0 : 0;
+let gateAttached = gateRequired === 'yes' ? document.getElementById('gateAttached').value : 'no';
+
+// Adjust fence length if gate attached
+if (gateRequired === 'yes' && gateAttached === 'yes') {
+totalFenceLength -= gateWidth;
+}
+
+// Fence pail calculation
+let pailWidth = 0.1; // 100mm = 0.1m
+let gap = 0.01; // 10mm = 0.01m
+let pailPlusGap = pailWidth + gap;
+let numPails = Math.ceil(totalFenceLength / pailPlusGap);
+
+// Pail cost based on height
+let pailCost = 1;
+if (height <= 0.9) pailCost = 1;
+else if (height <= 1.5) pailCost = 1.20;
+else if (height <= 1.8) pailCost = 1.40;
+
+let totalPailCost = numPails * pailCost;
+
+// Post calculation
+let postSpacing = 1.8; // 1 post per 1.8m
+let numPosts = Math.ceil(totalFenceLength / postSpacing) + 1;
+let postCost = 17 * (height / 1.8); // adjusts price for height
+let totalPostCost = numPosts * postCost;
+
+// Postcrete
+let postcreteBags = numPosts * 2;
+let totalPostcreteCost = postcreteBags * 6;
+
+// Gate cost
+let totalGateCost = gateRequired === 'yes' ? 170 : 0;
+
+// Total cost
+let totalCost = totalPailCost + totalPostCost + totalPostcreteCost + totalGateCost;
+
+// Display
+document.getElementById('result').innerHTML = `
+<strong>Fence Quote:</strong><br>
+Number of pails: ${numPails}<br>
+Pail cost: £${totalPailCost.toFixed(2)}<br>
+Number of posts: ${numPosts}<br>
+Post cost: £${totalPostCost.toFixed(2)}<br>
+Postcrete cost: £${totalPostcreteCost.toFixed(2)}<br>
+Gate cost: £${totalGateCost.toFixed(2)}<br>
+<strong>Total Cost: £${totalCost.toFixed(2)}</strong>
+`;
+}
 </script>
 
 </body>
