@@ -9,22 +9,39 @@
 body {
 font-family: 'Montserrat', sans-serif;
 background: #f4f7f8;
-display: flex;
-justify-content: center;
 padding: 50px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+h1 {
+color: #2a2f45;
+margin-bottom: 30px;
+}
+.calc-button {
+background: #ff6b6b;
+color: #fff;
+font-weight: 600;
+padding: 12px 20px;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+font-size: 16px;
+margin-bottom: 20px;
+transition: 0.3s;
+}
+.calc-button:hover {
+background: #ff4757;
 }
 .calculator {
+display: none; /* start closed */
 background: #fff;
 padding: 30px;
 border-radius: 15px;
 box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 max-width: 500px;
 width: 100%;
-}
-h2 {
-color: #2a2f45;
-text-align: center;
-margin-bottom: 20px;
+margin-bottom: 30px;
 }
 label {
 display: block;
@@ -42,7 +59,7 @@ font-size: 16px;
 .quote-button {
 margin-top: 25px;
 width: 100%;
-background: #ff6b6b;
+background: #1e90ff;
 color: #fff;
 font-weight: 600;
 padding: 12px;
@@ -53,7 +70,7 @@ font-size: 16px;
 transition: 0.3s;
 }
 .quote-button:hover {
-background: #ff4757;
+background: #0077cc;
 }
 .result {
 margin-top: 25px;
@@ -70,36 +87,52 @@ color: #2a2f45;
 </head>
 <body>
 
-<div class="calculator">
-<h2>Fence Quote Calculator</h2>
+<h1>Get Your Fence Quote</h1>
 
+<!-- Button to open Fence 1 calculator -->
+<button class="calc-button" onclick="toggleCalculator('fence1Calc')">Get a Quote for Closeboard Featheredge Fence</button>
+
+<!-- Fence 1 calculator -->
+<div class="calculator" id="fence1Calc">
 <label>Fence Length (m):</label>
-<input type="number" id="length" value="10" min="1">
+<input type="number" id="length1" value="10" min="1">
 
 <label>Height:</label>
-<select id="height">
+<select id="height1">
 <option value="4">4ft</option>
 <option value="5">5ft</option>
 <option value="6">6ft</option>
 </select>
 
 <label>Gate:</label>
-<select id="gate">
+<select id="gate1">
 <option value="0">No</option>
 <option value="1">Yes</option>
 </select>
 
-<button class="quote-button" onclick="calculateQuote()">Get Quote</button>
+<button class="quote-button" onclick="calculateQuote1()">Get Quote</button>
 
-<div class="result" id="quoteResult">Your detailed quote will appear here.</div>
+<div class="result" id="quoteResult1">Your detailed quote will appear here.</div>
 </div>
 
 <script>
-function calculateQuote() {
-let originalLength = parseFloat(document.getElementById('length').value);
+// Function to toggle calculator visibility
+function toggleCalculator(calcId) {
+const calc = document.getElementById(calcId);
+if(calc.style.display === "none" || calc.style.display === "") {
+calc.style.display = "block";
+calc.scrollIntoView({ behavior: "smooth" });
+} else {
+calc.style.display = "none";
+}
+}
+
+// Fence 1 quote calculation
+function calculateQuote1() {
+let originalLength = parseFloat(document.getElementById('length1').value);
 let length = originalLength;
-const height = document.getElementById('height').value;
-const gate = parseInt(document.getElementById('gate').value);
+const height = document.getElementById('height1').value;
+const gate = parseInt(document.getElementById('gate1').value);
 
 // Constants
 const panelWidth = 1.8;
@@ -113,16 +146,14 @@ const gatePrice = 170; // Gate fixed price
 const gateLengthDeduction = 1.2; // Deduct 1.2m if gate included
 
 // Adjust length if gate included
-let gateMessage = '';
 if (gate) {
 length = length - gateLengthDeduction;
 if (length < 0) length = 0;
-gateMessage = 'Gate included';
 }
 
 // Calculate quantities
 const panels = Math.ceil(length / panelWidth);
-const posts = panels + 1 + gate; // Add 1 extra post if gate installed
+const posts = panels + 1 + gate; // extra post for gate
 const gravelBoards = panels;
 const postMixBags = posts * postMixBagsPerPost;
 
@@ -148,7 +179,7 @@ message += `</ul>`;
 message += `Our very competitive labour costs would be approximately <span class="highlight">£${labourCost.toFixed(2)}</span>.<br>`;
 message += `The total estimated project cost would be <span class="highlight">£${totalCost.toFixed(2)}</span>.`;
 
-document.getElementById('quoteResult').innerHTML = message;
+document.getElementById('quoteResult1').innerHTML = message;
 }
 </script>
 
