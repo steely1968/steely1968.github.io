@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fence Type Selector</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+padding: 20px;
+background: #f4f4f4;
+text-align: center;
+}
 
+h2 {
+margin-bottom: 20px;
+}
+
+.options {
+display: flex;
+flex-direction: column;
+gap: 10px;
+max-width: 300px;
+margin: 0 auto;
+}
+
+.option-btn {
+padding: 15px;
+background: #007bff;
+color: white;
+border: none;
+cursor: pointer;
+font-size: 16px;
+border-radius: 5px;
+transition: background 0.3s;
+}
+
+.option-btn:hover {
+background: #0056b3;
+}
+
+.placeholder {
+margin-top: 20px;
+font-style: italic;
+color: #555;
+}
+</style>
+</head>
+<body>
+
+<h2>What type of fence are you looking for?</h2>
+
+<div class="options">
+<button class="option-btn" data-type="Wood">Wood Fence</button>
+<button class="option-btn" data-type="Chainlink">Chainlink Fence</button>
+<button class="option-btn" data-type="Vinyl">Vinyl Fence</button>
+<button class="option-btn" data-type="Metal">Metal Fence</button>
+</div>
+
+<p class="placeholder">Clicking a button will eventually open the quote calculator.</p>
+
+<script>
+const optionButtons = document.querySelectorAll(".option-btn");
+
+optionButtons.forEach(btn => {
+btn.addEventListener("click", () => {
+const type = btn.dataset.type;
+alert(`You selected: ${type}. Calculator will be here later.`);
+});
+});
+</script>
+
+</body>
+</html>
