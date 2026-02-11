@@ -96,7 +96,8 @@ color: #2a2f45;
 
 <script>
 function calculateQuote() {
-const length = parseFloat(document.getElementById('length').value);
+let originalLength = parseFloat(document.getElementById('length').value);
+let length = originalLength;
 const height = document.getElementById('height').value;
 const gate = parseInt(document.getElementById('gate').value);
 
@@ -108,11 +109,20 @@ const postPrice = 17;
 const postMixBagPrice = 6;
 const postMixBagsPerPost = 2;
 const labourCostPerMeter = 50;
-const gatePrice = 0; // included
+const gatePrice = 170; // Gate fixed price
+const gateLengthDeduction = 1.2; // Deduct 1.2m if gate included
+
+// Adjust length if gate included
+let gateMessage = '';
+if (gate) {
+length = length - gateLengthDeduction;
+if (length < 0) length = 0;
+gateMessage = 'Gate included';
+}
 
 // Calculate quantities
 const panels = Math.ceil(length / panelWidth);
-const posts = panels + 1;
+const posts = panels + 1 + gate; // Add 1 extra post if gate installed
 const gravelBoards = panels;
 const postMixBags = posts * postMixBagsPerPost;
 
@@ -121,21 +131,19 @@ const panelCost = panels * panelPrices[height];
 const gravelCost = gravelBoards * gravelBoardPrice;
 const postsCost = posts * postPrice;
 const postMixCost = postMixBags * postMixBagPrice;
-const gateCost = gate * gatePrice;
-
-const materialCost = panelCost + gravelCost + postsCost + postMixCost + gateCost;
+const totalMaterialCost = panelCost + gravelCost + postsCost + postMixCost + (gate ? gatePrice : 0);
 const labourCost = length * labourCostPerMeter;
-const totalCost = materialCost + labourCost;
+const totalCost = totalMaterialCost + labourCost;
 
 // Build customer-friendly quote message
 let message = `Thank you for your enquiry for your fencing needs!<br><br>`;
-message += `For a <span class="highlight">${length}m</span> fence at a height of <span class="highlight">${height}ft</span>, we will require:<br>`;
+message += `For a fence of <span class="highlight">${originalLength}m</span> at a height of <span class="highlight">${height}ft</span>, we will require:<br>`;
 message += `<ul>`;
 message += `<li><span class="highlight">${panels}</span> fence panels</li>`;
 message += `<li><span class="highlight">${posts}</span> concrete posts</li>`;
 message += `<li><span class="highlight">${gravelBoards}</span> gravel boards</li>`;
 message += `<li><span class="highlight">${postMixBags}</span> bags of post mix</li>`;
-if(gate) message += `<li>Gate included</li>`;
+if (gate) message += `<li>Gate included (£${gatePrice})</li>`;
 message += `</ul>`;
 message += `Our very competitive labour costs would be approximately <span class="highlight">£${labourCost.toFixed(2)}</span>.<br>`;
 message += `The total estimated project cost would be <span class="highlight">£${totalCost.toFixed(2)}</span>.`;
