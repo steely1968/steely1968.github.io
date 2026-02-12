@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fence Quote Hub</title>
-<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/guttering.html">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <style>
 body {
 font-family: 'Montserrat', sans-serif;
@@ -21,9 +21,22 @@ margin-bottom: 30px;
 font-size: 16px;
 color: #555;
 }
+
+/* Grid container for calculators */
+.calculators-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+gap: 30px;
+}
+
 .calc-container {
 margin-bottom: 40px;
+background:#fff;
+padding:15px;
+border-radius:12px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
+
 .calc-title {
 font-size: 18px;
 font-weight: 600;
@@ -32,6 +45,7 @@ justify-content: space-between;
 align-items: center;
 margin-bottom: 10px;
 }
+
 .view-image-button, .calc-button, .quote-button, .close-button {
 cursor: pointer;
 border: none;
@@ -41,6 +55,7 @@ font-weight: 600;
 margin-top: 5px;
 transition: 0.3s;
 }
+
 .view-image-button { background:#1e90ff; color:#fff; }
 .view-image-button:hover { background:#0077cc; }
 .calc-button { background:#ff6b6b; color:#fff; }
@@ -49,16 +64,18 @@ transition: 0.3s;
 .quote-button:hover { background:#0077cc; }
 .close-button { background:#888; color:#fff; width:100%; font-weight:600; }
 .close-button:hover { background:#555; }
+
 .calculator {
 display: none;
 background:#fff;
 padding:20px;
 border-radius:12px;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
 margin-top:10px;
 }
+
 label { display:block; margin-top:15px; font-weight:600; }
 input, select { width:100%; padding:8px; margin-top:5px; border-radius:6px; border:1px solid #ccc; }
+
 .result {
 margin-top:20px;
 background:#eef6ff;
@@ -67,6 +84,7 @@ border-radius:10px;
 line-height:1.5;
 }
 .highlight { font-weight:bold; color:#ff4757; }
+
 .image-modal {
 display:none;
 position:fixed;
@@ -89,6 +107,8 @@ color:white;
 font-size:35px;
 cursor:pointer;
 }
+
+/* Mobile adjustments */
 @media (max-width:768px) {
 body { padding:10px; }
 h1 { font-size:24px; }
@@ -105,6 +125,8 @@ input, select { font-size:16px; }
 
 <h1>Get Your Fence Quote</h1>
 <p class="intro">Select your fence type, view the style, and get an instant quote.</p>
+
+<div class="calculators-grid">
 
 <!-- ================= FENCE 1 ================= -->
 <div class="calc-container">
@@ -292,17 +314,12 @@ Lapped & Feathered Fence
 </div>
 </div>
 
+</div> <!-- end calculators-grid -->
+
 <script>
-function toggleCalculator(id){
-const el = document.getElementById(id);
-el.style.display = (el.style.display === "block") ? "none" : "block";
-}
-function openImage(id){
-document.getElementById(id).style.display = "block";
-}
-function closeImage(el){
-el.style.display = "none";
-}
+function toggleCalculator(id){ const el=document.getElementById(id); el.style.display=(el.style.display==="block")?"none":"block"; }
+function openImage(id){ document.getElementById(id).style.display="block"; }
+function closeImage(el){ el.style.display="none"; }
 function calculateQuote(id){
 let originalLength=parseFloat(document.getElementById("length"+id).value);
 let height=document.getElementById("height"+id).value;
@@ -316,7 +333,7 @@ const postMixPrice=6;
 const labourPerM=50;
 const gatePrice=170;
 const gateDeduct=1.2;
-if(gate===1){length-=gateDeduct;if(length<0)length=0;}
+if(gate===1){ length-=gateDeduct; if(length<0) length=0; }
 const panels=Math.ceil(length/panelWidth);
 const posts=panels+1+gate;
 const gravelBoards=panels;
