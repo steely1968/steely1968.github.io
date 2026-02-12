@@ -178,96 +178,13 @@ max-width: 95%;
 
 <script>
 
-// Fence titles
-const fenceNames = [
-"Closeboard Featheredge Fence",
-"Palisade Fence",
-"Hit & Miss Fence",
-"Post & Rail Fence",
-"Tongue & Groove Fence",
-"Lapped Panel Fence"
-];
-
-// Fence images
-const fenceImages = [
-"images/closeboard.jpg",
-"images/palisade.jpg",
-"images/hitandmiss.jpg",
-"images/postandrail.jpg",
-"images/tonguegroove.jpg",
-"images/lappedpanel.jpg"
-];
-
-const container = document.getElementById("calculators");
-
-// Build calculators dynamically
-fenceNames.forEach((name, index) => {
-
-const id = index + 1;
-
-container.innerHTML += `
-<div class="calc-container">
-
-<div class="calc-title">
-${name}
-<button class="view-image-button" onclick="openImage('img${id}')">View Image</button>
-</div>
-
-<div id="img${id}" class="image-modal" onclick="closeImage(this)">
-<img src="${fenceImages[index]}"
-style="display:block;margin:5% auto;max-width:90%;border-radius:10px;">
-</div>
-
-<button class="calc-button" onclick="toggleCalculator('calc${id}')">
-Get a Quote
-</button>
-
-<div class="calculator" id="calc${id}">
-`;
-});
-
-<label>Fence Length (m)</label>
-<input type="number" id="length${id}" min="1" value="10">
-
-<label>Height</label>
-<select id="height${id}">
-<option value="4">4ft</option>
-<option value="5">5ft</option>
-<option value="6">6ft</option>
-</select>
-
-<label>Gate Required?</label>
-<select id="gate${id}">
-<option value="0">No</option>
-<option value="1">Yes</option>
-</select>
-
-<button class="quote-button" onclick="calculateQuote(${id})">
-Generate Quote
-</button>
-
-<button class="close-button" onclick="toggleCalculator('calc${id}')">
-Close
-</button>
-
-<div class="result" id="result${id}">
-Your quote will appear here.
-</div>
-
-</div>
-
-</div>
-`;
-
-});
-
-// Toggle calculator visibility
+// Toggle calculator
 function toggleCalculator(id) {
 const el = document.getElementById(id);
 el.style.display = (el.style.display === "block") ? "none" : "block";
 }
 
-// Image modal controls
+// Image modal
 function openImage(id) {
 document.getElementById(id).style.display = "block";
 }
@@ -276,7 +193,7 @@ function closeImage(el) {
 el.style.display = "none";
 }
 
-// Quote calculator logic
+// Quote logic
 function calculateQuote(id) {
 
 let originalLength = parseFloat(document.getElementById("length" + id).value);
@@ -315,7 +232,7 @@ const labourCost = length * labourPerM;
 const total = materialCost + labourCost;
 
 let message = `
-Thank you for your enquiry for your fencing needs.<br><br>
+Thank you for your enquiry.<br><br>
 
 For a <span class="highlight">${originalLength}m</span> fence at
 <span class="highlight">${height}ft</span> high we would require:<br><br>
@@ -327,7 +244,7 @@ For a <span class="highlight">${originalLength}m</span> fence at
 ${gate === 1 ? "• 1 gate included<br>" : ""}
 
 <br>
-Our competitive labour cost would be approximately
+Labour cost approximately
 <span class="highlight">£${labourCost.toFixed(2)}</span>.<br><br>
 
 <strong>Total estimated project cost:</strong><br>
