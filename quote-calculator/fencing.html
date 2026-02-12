@@ -187,20 +187,31 @@ const fenceNames = [
 "Tongue & Groove Fence",
 "Lapped Panel Fence"
 ];
+
+// Fence images
 const fenceImages = [
 "images/closeboard.jpg",
-"images/double-hit-miss.webp",
+"images/palisade.jpg",
 "images/hitandmiss.jpg",
 "images/postandrail.jpg",
 "images/tonguegroove.jpg",
 "images/lappedpanel.jpg"
 ];
+
 const container = document.getElementById("calculators");
 
 // Build calculators dynamically
 fenceNames.forEach((name, index) => {
 
 const id = index + 1;
+
+container.innerHTML += `
+<div class="calc-container">
+
+<div class="calc-title">
+${name}
+<button class="view-image-button" onclick="openImage('img${id}')">View Image</button>
+</div>
 
 <div id="img${id}" class="image-modal" onclick="closeImage(this)">
 <img src="${fenceImages[index]}"
@@ -212,6 +223,8 @@ Get a Quote
 </button>
 
 <div class="calculator" id="calc${id}">
+`;
+});
 
 <label>Fence Length (m)</label>
 <input type="number" id="length${id}" min="1" value="10">
