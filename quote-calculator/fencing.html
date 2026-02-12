@@ -202,16 +202,9 @@ fenceNames.forEach((name, index) => {
 
 const id = index + 1;
 
-container.innerHTML += `
-<div class="calc-container">
-
-<div class="calc-title">
-${name}
-<button class="view-image-button" onclick="openImage('img${id}')">View Image</button>
-</div>
-
 <div id="img${id}" class="image-modal" onclick="closeImage(this)">
-<img src="https://picsum.photos/900/500?random=${id}">
+<img src="${fenceImages[index]}"
+style="display:block;margin:5% auto;max-width:90%;border-radius:10px;">
 </div>
 
 <button class="calc-button" onclick="toggleCalculator('calc${id}')">
