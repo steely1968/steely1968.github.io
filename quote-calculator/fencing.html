@@ -3,257 +3,339 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Closeboard Featheredge Fence Calculator</title>
-  <link rel="canonical" href="https://homerepairs4u.com/quote-calculator/fencing.html">
+<title>Fence Quote Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 <style>
 body {
 font-family: 'Montserrat', sans-serif;
 background: #f4f7f8;
-padding: 30px;
+padding: 20px;
 }
-
 h1 {
 text-align: center;
+margin-bottom: 10px;
 }
-
 .intro {
 text-align: center;
+margin-bottom: 30px;
+font-size: 16px;
+color: #555;
+}
+.calc-container {
 margin-bottom: 40px;
 }
-
-.calc-container {
-margin-bottom: 50px;
-}
-
 .calc-title {
+font-size: 18px;
+font-weight: 600;
 display: flex;
 justify-content: space-between;
 align-items: center;
-font-weight: 600;
-font-size: 18px;
 margin-bottom: 10px;
 }
-
-.view-image-button {
-background: #1e90ff;
-color: white;
-border: none;
-padding: 6px 12px;
-border-radius: 6px;
+.view-image-button, .calc-button, .quote-button, .close-button {
 cursor: pointer;
-}
-
-.calc-button {
-background: #ff6b6b;
-color: white;
 border: none;
-padding: 10px 20px;
 border-radius: 8px;
-cursor: pointer;
-margin-top: 10px;
+padding: 10px 20px;
+font-weight: 600;
+margin-top: 5px;
+transition: 0.3s;
 }
-
+.view-image-button { background:#1e90ff; color:#fff; }
+.view-image-button:hover { background:#0077cc; }
+.calc-button { background:#ff6b6b; color:#fff; }
+.calc-button:hover { background:#ff4757; }
+.quote-button { background:#1e90ff; color:#fff; width:100%; }
+.quote-button:hover { background:#0077cc; }
+.close-button { background:#888; color:#fff; width:100%; font-weight:600; }
+.close-button:hover { background:#555; }
 .calculator {
 display: none;
-background: white;
-padding: 20px;
-border-radius: 10px;
-margin-top: 15px;
-box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+margin-top:10px;
 }
-
-label {
-display: block;
-margin-top: 15px;
-}
-
-input, select {
-width: 100%;
-padding: 8px;
-margin-top: 5px;
-}
-
-.quote-button {
-margin-top: 20px;
-width: 100%;
-background: #1e90ff;
-color: white;
-padding: 10px;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-}
-
-.close-button {
-margin-top: 10px;
-width: 100%;
-background: #888;
-color: white;
-padding: 8px;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-}
-
+label { display:block; margin-top:15px; font-weight:600; }
+input, select { width:100%; padding:8px; margin-top:5px; border-radius:6px; border:1px solid #ccc; }
 .result {
-margin-top: 20px;
-background: #eef6ff;
-padding: 15px;
-border-radius: 8px;
+margin-top:20px;
+background:#eef6ff;
+padding:15px;
+border-radius:10px;
+line-height:1.5;
 }
-
-.highlight {
-font-weight: bold;
-color: #ff4757;
-}
-
+.highlight { font-weight:bold; color:#ff4757; }
 .image-modal {
-display: none;
-position: fixed;
-z-index: 999;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.8);
+display:none;
+position:fixed;
+z-index:999;
+left:0; top:0;
+width:100%; height:100%;
+background:rgba(0,0,0,0.8);
 }
-
 .image-modal img {
-display: block;
-margin: 5% auto;
-max-width: 80%;
-border-radius: 10px;
+display:block;
+margin:5% auto;
+max-width:90%;
+border-radius:10px;
 }
-  @media (max-width: 768px) {
-
-body {
-padding: 15px;
-}
-
-h1 {
-font-size: 24px;
-}
-
-.calc-title {
-flex-direction: column;
-align-items: flex-start;
-gap: 8px;
-}
-
-.calc-button,
-.quote-button,
-.close-button,
-.view-image-button {
-width: 100%;
-}
-
-input, select {
-font-size: 16px;
-}
-
-.result {
-font-size: 15px;
-}
-
 .close-modal {
-top: 15px;
-right: 20px;
-font-size: 32px;
+position:absolute;
+top:20px;
+right:30px;
+color:white;
+font-size:35px;
+cursor:pointer;
 }
-
-.image-modal .modal-content {
-max-width: 95%;
-}
-
+@media (max-width:768px) {
+body { padding:10px; }
+h1 { font-size:24px; }
+.calc-title { flex-direction:column; align-items:flex-start; gap:8px; }
+.view-image-button, .calc-button, .quote-button, .close-button { width:100%; }
+input, select { font-size:16px; }
+.result { font-size:15px; }
+.close-modal { top:15px; right:20px; font-size:32px; }
+.image-modal img { max-width:95%; }
 }
 </style>
 </head>
-
 <body>
 
 <h1>Get Your Fence Quote</h1>
-<p class="intro">Select your fence type below, view the style, and generate your instant quote.</p>
+<p class="intro">Select your fence type, view the style, and get an instant quote.</p>
 
-<div id="calculators"></div>
+<!-- ================= FENCE 1 ================= -->
+<div class="calc-container">
+<div class="calc-title">
+Closeboard Featheredge Fence
+<button class="view-image-button" onclick="openImage('img1')">View Image</button>
+</div>
+<div id="img1" class="image-modal">
+<span class="close-modal" onclick="closeImage(this.parentElement)">&times;</span>
+<img src="images/closeboard.jpg">
+</div>
+<button class="calc-button" onclick="toggleCalculator('calc1')">Get a Quote</button>
+<div class="calculator" id="calc1">
+<label>Fence Length (m)</label>
+<input type="number" id="length1" value="10" min="1">
+<label>Height</label>
+<select id="height1">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+<label>Gate Required?</label>
+<select id="gate1">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+<button class="quote-button" onclick="calculateQuote(1)">Generate Quote</button>
+<button class="close-button" onclick="toggleCalculator('calc1')">Close</button>
+<div class="result" id="result1">Your quote will appear here.</div>
+</div>
+</div>
+
+<!-- ================= FENCE 2 ================= -->
+<div class="calc-container">
+<div class="calc-title">
+Palisade Fence
+<button class="view-image-button" onclick="openImage('img2')">View Image</button>
+</div>
+<div id="img2" class="image-modal">
+<span class="close-modal" onclick="closeImage(this.parentElement)">&times;</span>
+<img src="images/palisade.jpg">
+</div>
+<button class="calc-button" onclick="toggleCalculator('calc2')">Get a Quote</button>
+<div class="calculator" id="calc2">
+<label>Fence Length (m)</label>
+<input type="number" id="length2" value="10" min="1">
+<label>Height</label>
+<select id="height2">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+<label>Gate Required?</label>
+<select id="gate2">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+<button class="quote-button" onclick="calculateQuote(2)">Generate Quote</button>
+<button class="close-button" onclick="toggleCalculator('calc2')">Close</button>
+<div class="result" id="result2">Your quote will appear here.</div>
+</div>
+</div>
+
+<!-- ================= FENCE 3 ================= -->
+<div class="calc-container">
+<div class="calc-title">
+Hit & Miss Fence
+<button class="view-image-button" onclick="openImage('img3')">View Image</button>
+</div>
+<div id="img3" class="image-modal">
+<span class="close-modal" onclick="closeImage(this.parentElement)">&times;</span>
+<img src="images/hitandmiss.jpg">
+</div>
+<button class="calc-button" onclick="toggleCalculator('calc3')">Get a Quote</button>
+<div class="calculator" id="calc3">
+<label>Fence Length (m)</label>
+<input type="number" id="length3" value="10" min="1">
+<label>Height</label>
+<select id="height3">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+<label>Gate Required?</label>
+<select id="gate3">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+<button class="quote-button" onclick="calculateQuote(3)">Generate Quote</button>
+<button class="close-button" onclick="toggleCalculator('calc3')">Close</button>
+<div class="result" id="result3">Your quote will appear here.</div>
+</div>
+</div>
+
+<!-- ================= FENCE 4 ================= -->
+<div class="calc-container">
+<div class="calc-title">
+Post & Rail Fence
+<button class="view-image-button" onclick="openImage('img4')">View Image</button>
+</div>
+<div id="img4" class="image-modal">
+<span class="close-modal" onclick="closeImage(this.parentElement)">&times;</span>
+<img src="images/postrail.jpg">
+</div>
+<button class="calc-button" onclick="toggleCalculator('calc4')">Get a Quote</button>
+<div class="calculator" id="calc4">
+<label>Fence Length (m)</label>
+<input type="number" id="length4" value="10" min="1">
+<label>Height</label>
+<select id="height4">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+<label>Gate Required?</label>
+<select id="gate4">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+<button class="quote-button" onclick="calculateQuote(4)">Generate Quote</button>
+<button class="close-button" onclick="toggleCalculator('calc4')">Close</button>
+<div class="result" id="result4">Your quote will appear here.</div>
+</div>
+</div>
+
+<!-- ================= FENCE 5 ================= -->
+<div class="calc-container">
+<div class="calc-title">
+Tongue & Groove Fence
+<button class="view-image-button" onclick="openImage('img5')">View Image</button>
+</div>
+<div id="img5" class="image-modal">
+<span class="close-modal" onclick="closeImage(this.parentElement)">&times;</span>
+<img src="images/tonguegroove.jpg">
+</div>
+<button class="calc-button" onclick="toggleCalculator('calc5')">Get a Quote</button>
+<div class="calculator" id="calc5">
+<label>Fence Length (m)</label>
+<input type="number" id="length5" value="10" min="1">
+<label>Height</label>
+<select id="height5">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+<label>Gate Required?</label>
+<select id="gate5">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+<button class="quote-button" onclick="calculateQuote(5)">Generate Quote</button>
+<button class="close-button" onclick="toggleCalculator('calc5')">Close</button>
+<div class="result" id="result5">Your quote will appear here.</div>
+</div>
+</div>
+
+<!-- ================= FENCE 6 ================= -->
+<div class="calc-container">
+<div class="calc-title">
+Lapped & Feathered Fence
+<button class="view-image-button" onclick="openImage('img6')">View Image</button>
+</div>
+<div id="img6" class="image-modal">
+<span class="close-modal" onclick="closeImage(this.parentElement)">&times;</span>
+<img src="images/lappedfeather.jpg">
+</div>
+<button class="calc-button" onclick="toggleCalculator('calc6')">Get a Quote</button>
+<div class="calculator" id="calc6">
+<label>Fence Length (m)</label>
+<input type="number" id="length6" value="10" min="1">
+<label>Height</label>
+<select id="height6">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+<label>Gate Required?</label>
+<select id="gate6">
+<option value="0">No</option>
+<option value="1">Yes</option>
+</select>
+<button class="quote-button" onclick="calculateQuote(6)">Generate Quote</button>
+<button class="close-button" onclick="toggleCalculator('calc6')">Close</button>
+<div class="result" id="result6">Your quote will appear here.</div>
+</div>
+</div>
 
 <script>
-
-// Toggle calculator
-function toggleCalculator(id) {
+function toggleCalculator(id){
 const el = document.getElementById(id);
 el.style.display = (el.style.display === "block") ? "none" : "block";
 }
-
-// Image modal
-function openImage(id) {
+function openImage(id){
 document.getElementById(id).style.display = "block";
 }
-
-function closeImage(el) {
+function closeImage(el){
 el.style.display = "none";
 }
-
-// Quote logic
-function calculateQuote(id) {
-
-let originalLength = parseFloat(document.getElementById("length" + id).value);
-let height = document.getElementById("height" + id).value;
-let gate = parseInt(document.getElementById("gate" + id).value);
-
-let length = originalLength;
-
-const panelWidth = 1.8;
-const panelPrices = {4:22, 5:27, 6:32};
-const gravelPrice = 17;
-const postPrice = 17;
-const postMixPrice = 6;
-const labourPerM = 50;
-const gatePrice = 170;
-const gateDeduct = 1.2;
-
-if (gate === 1) {
-length -= gateDeduct;
-if (length < 0) length = 0;
-}
-
-const panels = Math.ceil(length / panelWidth);
-const posts = panels + 1 + gate;
-const gravelBoards = panels;
-const postMixBags = posts * 2;
-
-const materialCost =
-(panels * panelPrices[height]) +
-(gravelBoards * gravelPrice) +
-(posts * postPrice) +
-(postMixBags * postMixPrice) +
-(gate === 1 ? gatePrice : 0);
-
-const labourCost = length * labourPerM;
-const total = materialCost + labourCost;
-
-let message = `
-Thank you for your enquiry.<br><br>
-
-For a <span class="highlight">${originalLength}m</span> fence at
-<span class="highlight">${height}ft</span> high we would require:<br><br>
-
+function calculateQuote(id){
+let originalLength=parseFloat(document.getElementById("length"+id).value);
+let height=document.getElementById("height"+id).value;
+let gate=parseInt(document.getElementById("gate"+id).value);
+let length=originalLength;
+const panelWidth=1.8;
+const panelPrices={4:22,5:27,6:32};
+const gravelPrice=17;
+const postPrice=17;
+const postMixPrice=6;
+const labourPerM=50;
+const gatePrice=170;
+const gateDeduct=1.2;
+if(gate===1){length-=gateDeduct;if(length<0)length=0;}
+const panels=Math.ceil(length/panelWidth);
+const posts=panels+1+gate;
+const gravelBoards=panels;
+const postMixBags=posts*2;
+const materialCost=(panels*panelPrices[height])+(gravelBoards*gravelPrice)+(posts*postPrice)+(postMixBags*postMixPrice)+(gate===1?gatePrice:0);
+const labourCost=length*labourPerM;
+const total=materialCost+labourCost;
+let message=`Thank you for your enquiry.<br><br>
+For a <span class="highlight">${originalLength}m</span> fence at <span class="highlight">${height}ft</span> high we would require:<br><br>
 • <span class="highlight">${panels}</span> fence panels<br>
 • <span class="highlight">${posts}</span> concrete posts<br>
 • <span class="highlight">${gravelBoards}</span> gravel boards<br>
 • <span class="highlight">${postMixBags}</span> bags of concrete<br>
-${gate === 1 ? "• 1 gate included<br>" : ""}
-
-<br>
-Labour cost approximately
-<span class="highlight">£${labourCost.toFixed(2)}</span>.<br><br>
-
+${gate===1?"• 1 gate included<br>":""}<br>
+Labour cost approximately <span class="highlight">£${labourCost.toFixed(2)}</span>.<br><br>
 <strong>Total estimated project cost:</strong><br>
-<h2>£${total.toFixed(2)}</h2>
-`;
-
-document.getElementById("result" + id).innerHTML = message;
+<h2>£${total.toFixed(2)}</h2>`;
+document.getElementById("result"+id).innerHTML=message;
 }
-
 </script>
 
 </body>
