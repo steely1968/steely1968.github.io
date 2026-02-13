@@ -214,15 +214,15 @@ ${fence.name}
 <button class="calc-button" onclick="toggleCalculator('calc${id}')">Get a Quote</button>
 <div class="calculator" id="calc${id}">
 <label>Fence Length (m)</label>
-<input type="number" id="length${id}" min="1" value="10">
+<input type="number" id="length${id}" min="1" value="10" oninput="calculateQUOTE(${ID})">
 <label>Height</label>
-<select id="height${id}">
+<select id="height${id}" onchange="calculateQUOTE(${ID})">
 <option value="4">4ft</option>
 <option value="5">5ft</option>
 <option value="6">6ft</option>
 </select>
 <label>Gate Required?</label>
-<select id="gate${id}">
+<select id="gate${id}" onchange="calculateQUOTE(${ID})">
 <option value="0">No</option>
 <option value="1">Yes</option>
 </select>
@@ -245,6 +245,10 @@ function closeImage(el) { el.style.display = "none"; }
 function calculateQuote(id) {
 
 let lengthInput = parseFloat(document.getElementById("length"+id).value);
+if (isNaN(lengthInput) || lengthInput <= 0) {
+document.getElementById("result"+id).innerHTML = "Enter a valid fence length.";
+return;
+}
 let height = document.getElementById("height"+id).value;
 let gate = parseInt(document.getElementById("gate"+id).value);
 let length = lengthInput;
