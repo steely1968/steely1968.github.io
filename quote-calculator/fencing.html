@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fence Quote Calculators</title>
 <link rel="canonical" href="https://homerepairs4u.com/quote-calculator/fencing.html">
+
 <style>
 body {
 font-family: 'Montserrat', sans-serif;
@@ -13,10 +14,7 @@ padding: 30px;
 margin: 0;
 }
 
-h1 {
-text-align: center;
-margin-bottom: 10px;
-}
+h1 { text-align: center; margin-bottom: 10px; }
 
 .intro {
 text-align: center;
@@ -104,10 +102,7 @@ box-sizing: border-box;
 color: #2a2f45;
 }
 
-label {
-display: block;
-margin-top: 15px;
-}
+label { display: block; margin-top: 15px; }
 
 input, select {
 width: 100%;
@@ -188,7 +183,6 @@ input, select { font-size: 16px; }
 
 <script>
 
-// Fence types with individual pricing
 const fences = [
 { name: "Closeboard Featheredge Fence", img: "/images/closeboard.webp", prices:{4:22,5:27,6:32} },
 { name: "Double Side Hit Miss", img: "/images/double-hit-miss.webp", prices:{4:35,5:40,6:45} },
@@ -202,32 +196,40 @@ const container = document.getElementById("calculators");
 
 fences.forEach((fence, i) => {
 const id = i + 1;
+
 container.innerHTML += `
 <div class="calc-container" style="background-image: url('${fence.img}')">
 <div class="calc-title">
 ${fence.name}
 <button class="view-image-button" onclick="openImage('img${id}')">View Image</button>
 </div>
+
 <div id="img${id}" class="image-modal" onclick="closeImage(this)">
 <img src="${fence.img}">
 </div>
+
 <button class="calc-button" onclick="toggleCalculator('calc${id}')">Get a Quote</button>
+
 <div class="calculator" id="calc${id}">
 <label>Fence Length (m)</label>
-<input type="number" id="length${id}" min="1" value="10" oninput="calculateQUOTE(${ID})">
+<input type="number" id="length${id}" min="1" value="10" oninput="calculateQuote(${id})">
+
 <label>Height</label>
-<select id="height${id}" onchange="calculateQUOTE(${ID})">
+<select id="height${id}" onchange="calculateQuote(${id})">
 <option value="4">4ft</option>
 <option value="5">5ft</option>
 <option value="6">6ft</option>
 </select>
+
 <label>Gate Required?</label>
-<select id="gate${id}" onchange="calculateQUOTE(${ID})">
+<select id="gate${id}" onchange="calculateQuote(${id})">
 <option value="0">No</option>
 <option value="1">Yes</option>
 </select>
+
 <button class="quote-button" onclick="calculateQuote(${id})">Generate Quote</button>
 <button class="close-button" onclick="toggleCalculator('calc${id}')">Close</button>
+
 <div class="result" id="result${id}">Your quote will appear here.</div>
 </div>
 </div>
@@ -245,16 +247,18 @@ function closeImage(el) { el.style.display = "none"; }
 function calculateQuote(id) {
 
 let lengthInput = parseFloat(document.getElementById("length"+id).value);
+
 if (isNaN(lengthInput) || lengthInput <= 0) {
 document.getElementById("result"+id).innerHTML = "Enter a valid fence length.";
 return;
 }
+
 let height = document.getElementById("height"+id).value;
-let gate = parseInt(document.getElementById("gate"+id).value);
+let gate = Number(document.getElementById("gate"+id).value);
 let length = lengthInput;
 
 const panelWidth = 1.8;
-const panelPrices = fences[id-1].prices; // ✅ FIXED
+const panelPrices = fences[id-1].prices;
 const gravelPrice = 17;
 const postPrice = 17;
 const postMixPrice = 6;
@@ -262,7 +266,10 @@ const labourPerM = 50;
 const gatePrice = 170;
 const gateDeduct = 1.2;
 
-if(gate === 1){ length -= gateDeduct; if(length<0) length=0; }
+if(gate === 1){
+length -= gateDeduct;
+if(length < 0) length = 0;
+}
 
 const panels = Math.ceil(length/panelWidth);
 const posts = panels + 1 + gate;
@@ -279,7 +286,7 @@ const materialCost =
 const labourCost = length * labourPerM;
 const total = materialCost + labourCost;
 
-let message = `
+document.getElementById("result"+id).innerHTML = `
 Thank you for your enquiry.<br><br>
 For a <span class="highlight">${lengthInput}m</span> fence at
 <span class="highlight">${height}ft</span> high we would require:<br><br>
@@ -294,7 +301,6 @@ Labour cost approximately <span class="highlight">£${labourCost.toFixed(2)}</sp
 <h2>£${total.toFixed(2)}</h2>
 `;
 
-document.getElementById("result"+id).innerHTML = message;
 }
 
 </script>
