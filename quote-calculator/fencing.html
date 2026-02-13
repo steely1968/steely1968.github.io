@@ -31,7 +31,6 @@ grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 gap: 30px;
 }
 
-/* Card styling with background image */
 .calc-container {
 position: relative;
 border-radius: 12px;
@@ -47,7 +46,6 @@ background-position: center;
 overflow: hidden;
 }
 
-/* Overlay for readability */
 .calc-container::before {
 content: '';
 position: absolute;
@@ -171,7 +169,6 @@ max-height: 300px;
 border-radius: 10px;
 }
 
-/* MOBILE FIXES */
 @media (max-width: 768px) {
 body { padding: 10px; }
 h1 { font-size: 24px; }
@@ -190,14 +187,15 @@ input, select { font-size: 16px; }
 <div class="calculators-grid" id="calculators"></div>
 
 <script>
-// Fence types and images
+
+// Fence types with individual pricing
 const fences = [
-{ name: "Closeboard Featheredge Fence", img: "/images/closeboard.webp" },
-{ name: "Double Side Hit Miss", img: "/images/double-hit-miss.webp" },
-{ name: "Double Side Concave", img: "/images/concave.webp" },
-{ name: "Venetian", img: "/images/venetian.webp" },
-{ name: "Urban Hedge", img: "/images/urban-hedge.webp" },
-{ name: "Single Hit Miss", img: "/images/hit-miss.webp" }
+{ name: "Closeboard Featheredge Fence", img: "/images/closeboard.webp", prices:{4:22,5:27,6:32} },
+{ name: "Double Side Hit Miss", img: "/images/double-hit-miss.webp", prices:{4:35,5:40,6:45} },
+{ name: "Double Side Concave", img: "/images/concave.webp", prices:{4:38,5:43,6:48} },
+{ name: "Venetian", img: "/images/venetian.webp", prices:{4:45,5:50,6:55} },
+{ name: "Urban Hedge", img: "/images/urban-hedge.webp", prices:{4:50,5:55,6:60} },
+{ name: "Single Hit Miss", img: "/images/hit-miss.webp", prices:{4:30,5:35,6:40} }
 ];
 
 const container = document.getElementById("calculators");
@@ -236,25 +234,23 @@ ${fence.name}
 `;
 });
 
-// Toggle calculator
 function toggleCalculator(id) {
 const el = document.getElementById(id);
 el.style.display = (el.style.display === "block") ? "none" : "block";
 }
 
-// Image modal
 function openImage(id) { document.getElementById(id).style.display = "block"; }
 function closeImage(el) { el.style.display = "none"; }
 
-// Quote logic
 function calculateQuote(id) {
+
 let lengthInput = parseFloat(document.getElementById("length"+id).value);
 let height = document.getElementById("height"+id).value;
 let gate = parseInt(document.getElementById("gate"+id).value);
 let length = lengthInput;
 
 const panelWidth = 1.8;
-const panelPrices = {4:22,5:27,6:32};
+const panelPrices = fences[id-1].prices; // ✅ FIXED
 const gravelPrice = 17;
 const postPrice = 17;
 const postMixPrice = 6;
@@ -293,8 +289,10 @@ Labour cost approximately <span class="highlight">£${labourCost.toFixed(2)}</sp
 <strong>Total estimated project cost:</strong><br>
 <h2>£${total.toFixed(2)}</h2>
 `;
+
 document.getElementById("result"+id).innerHTML = message;
 }
+
 </script>
 
 </body>
