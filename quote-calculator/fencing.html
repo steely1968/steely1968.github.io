@@ -1,64 +1,23 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="robots" content="index, follow">
-
-<title>Fence Installation & Repair in Ackworth Doncaster | Instant Quote</title>
-
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/fencing.html">
-
-<meta name="description" content="Looking for trusted fencing services in Ackworth Doncaster? Get an instant online fence quote including labour and materials. Fast, reliable installation from Home Repairs 4U.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quote Calculators</title>
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/">
 
 <style>
-
-/* ================= HEADER ================= */
-header{
-text-align:center;
-padding:25px 10px;
-background:#fff;
-border-bottom:4px solid #27ae60;
-}
-
-.logo{
-max-height:90px;
-width:auto;
-}
-
-.call-btn{
-display:inline-block;
-margin-top:18px;
-padding:14px 28px;
-background:#000;
-color:#fff;
-font-size:19px;
-text-decoration:none;
-font-weight:bold;
-border-radius:6px;
-border:2px solid #000;
-}
-.call-btn:hover{
-background:#333;
-color:#fff;
-}
-
-/* ================= PAGE BODY ================= */
 body {
 font-family: 'Montserrat', sans-serif;
 background: #f4f7f8;
+padding: 30px;
 margin: 0;
-}
-
-main{
-padding:30px;
 }
 
 h1 { text-align: center; margin-bottom: 10px; }
 .intro { text-align: center; margin-bottom: 20px; font-size: 16px; color: #555; }
 
-.calc-button, .view-image-button, .quote-button, .close-button {
+.calc-button, .quote-button, .close-button {
 cursor: pointer;
 border: none;
 border-radius: 8px;
@@ -68,16 +27,17 @@ transition: 0.3s;
 .calc-button { background: #ff6b6b; color: white; padding: 10px 20px; margin-bottom: 20px; }
 .calc-button:hover { background: #ff4757; }
 
-.view-image-button { background: #1e90ff; color: white; padding: 6px 12px; }
-.view-image-button:hover { background: #0077cc; }
-
 .quote-button { margin-top: 20px; width: 100%; background: #1e90ff; color: white; padding: 10px; }
 .quote-button:hover { background: #0077cc; }
 
 .close-button { margin-top: 10px; width: 100%; background: #888; color: white; padding: 8px; }
 .close-button:hover { background: #555; }
 
-.calculators-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }
+.calculators-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 30px;
+}
 
 .calc-container {
 position: relative;
@@ -88,32 +48,21 @@ flex-direction: column;
 justify-content: flex-end;
 color: #fff;
 padding: 20px;
-box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 background-size: cover;
 background-position: center;
 overflow: hidden;
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 .calc-container::before {
 content: '';
 position: absolute;
-top: 0; left: 0;
-width: 100%; height: 100%;
+inset: 0;
 background: rgba(0,0,0,0.4);
-border-radius: 12px;
 z-index: 0;
 }
 
 .calc-container > * { position: relative; z-index: 1; }
-
-.calc-title {
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-weight: 600;
-font-size: 18px;
-flex-wrap: wrap;
-}
 
 .calculator {
 display: none;
@@ -121,184 +70,158 @@ margin-top: 15px;
 padding: 20px;
 border-radius: 12px;
 background: #fff;
-box-sizing: border-box;
 color: #2a2f45;
 }
 
-label { display: block; margin-top: 15px; }
-input, select { width: 100%; padding: 8px; margin-top: 5px; font-size: 16px; }
+label { display:block; margin-top:15px; }
+input, select { width:100%; padding:8px; margin-top:5px; }
 
-.result { margin-top: 20px; background: #eef6ff; padding: 15px; border-radius: 8px; font-size: 16px; line-height: 1.5; }
-.highlight { font-weight: bold; color: #ff4757; }
-
-.image-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-.image-modal img { display: block; margin: 5% auto; max-width: 80%; max-height: 300px; border-radius: 10px; }
-
-/* ================= FOOTER ================= */
-.site-footer{
-background:#000;
-color:#fff;
-text-align:center;
-padding:25px 15px;
-margin-top:40px;
-font-size:14px;
+.result {
+margin-top:20px;
+background:#eef6ff;
+padding:15px;
+border-radius:8px;
 }
 
-@media (max-width: 768px) {
-main { padding:15px; }
-.calculators-grid { gap: 20px; }
-}
+.highlight { font-weight:bold; color:#ff4757; }
 
+hr { margin:60px 0; }
 </style>
 </head>
-
 <body>
 
-<header>
-<img src="/images/home-repairs-4u-doncaster.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
+<!-- ================= FENCING ================= -->
 
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+<h1>Fencing Quote Calculator</h1>
+<p class="intro">Click below to view fencing options.</p>
+<button class="calc-button" onclick="toggleSection('fencingSection')">View Options</button>
+
+<div id="fencingSection" style="display:none;">
+<div class="calculators-grid" id="fenceContainer"></div>
 </div>
 
-<br>
+<hr>
 
-<a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
-</header>
+<!-- ================= GUTTERS ================= -->
 
-<main>
+<h1>Gutter Services Quote</h1>
+<p class="intro">Click below to view gutter service options.</p>
+<button class="calc-button" onclick="toggleSection('gutterSection')">View Options</button>
 
-<h1>Get Your Fence Quote</h1>
-<p class="intro">Click below to view fencing options and generate your instant quote.</p>
+<div id="gutterSection" style="display:none;">
+<div class="calculators-grid">
 
-<button class="calc-button" onclick="showAllCards()">View Options</button>
-
-<div id="allCards" style="display:none;">
-<div class="calculators-grid" id="calculators"></div>
+<div class="calc-container" style="background-image:url('/gutter-clearing.webp')">
+<h3>Gutter Clearing (£4.50/m)</h3>
+<button class="calc-button" onclick="toggleCalculator('g1')">Get Quote</button>
+<div class="calculator" id="g1">
+<label>Length (m)</label>
+<input type="number" id="gLen1" value="10">
+<button class="quote-button" onclick="calcGutter(1,4.5)">Generate</button>
+<div class="result" id="gRes1"></div>
+</div>
 </div>
 
-</main>
+<div class="calc-container" style="background-image:url('/Cleaned-gutters-before-after.webp')">
+<h3>Gutter & Fascia Cleaning (£4/m)</h3>
+<button class="calc-button" onclick="toggleCalculator('g2')">Get Quote</button>
+<div class="calculator" id="g2">
+<label>Length (m)</label>
+<input type="number" id="gLen2" value="10">
+<button class="quote-button" onclick="calcGutter(2,4)">Generate</button>
+<div class="result" id="gRes2"></div>
+</div>
+</div>
 
-<footer class="site-footer">
-© Home Repairs 4U | Askern DN6 | Call 07735 873694
-</footer>
+<div class="calc-container" style="background-image:url('/Gutter-alignment.webp')">
+<h3>Gutter Replacement (£30/m)</h3>
+<button class="calc-button" onclick="toggleCalculator('g3')">Get Quote</button>
+<div class="calculator" id="g3">
+<label>Length (m)</label>
+<input type="number" id="gLen3" value="10">
+<button class="quote-button" onclick="calcGutter(3,30)">Generate</button>
+<div class="result" id="gRes3"></div>
+</div>
+</div>
+
+</div>
+</div>
 
 <script>
 
-/* ===== Fence Types ===== */
+// TOGGLE SECTION
+function toggleSection(id){
+const el = document.getElementById(id);
+el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+// TOGGLE CALCULATOR
+function toggleCalculator(id){
+const el = document.getElementById(id);
+el.style.display = el.style.display === "block" ? "none" : "block";
+}
+
+// ================= FENCING =================
+
 const fences = [
-{ name: "Closeboard Featheredge Fence", img: "/images/closeboard.webp", prices:{4:22,5:27,6:32} },
-{ name: "Double Side Hit Miss", img: "/images/double-hit-miss.webp", prices:{4:24,5:29,6:34} },
-{ name: "Double Side Concave", img: "/images/concave.webp", prices:{4:25,5:30,6:36} },
-{ name: "Venetian", img: "/images/venetian.webp", prices:{4:23,5:28,6:33} },
-{ name: "Urban Hedge", img: "/images/urban-hedge.webp", prices:{4:21,5:26,6:31} },
-{ name: "Single Hit Miss", img: "/images/hit-miss.webp", prices:{4:22,5:27,6:32} }
+{ name:"Closeboard Featheredge", img:"/images/closeboard.webp", prices:{4:22,5:27,6:32} },
+{ name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp", prices:{4:24,5:29,6:34} }
 ];
 
-const container = document.getElementById("calculators");
+const fenceContainer = document.getElementById("fenceContainer");
 
-fences.forEach((fence,i)=>{
-const id = i+1;
-container.innerHTML += `
-<div class="calc-container" style="background-image:url('${fence.img}')">
-<div class="calc-title">
-${fence.name}
-<button class="view-image-button" onclick="openImage('img${id}')">View Image</button>
-</div>
-<div id="img${id}" class="image-modal" onclick="closeImage(this)">
-<img src="${fence.img}">
-</div>
-<button class="calc-button" onclick="toggleCalculator('calc${id}')">Get a Quote</button>
-<div class="calculator" id="calc${id}">
-<label>Fence Length (m)</label>
-<input type="number" id="length${id}" min="1" value="10">
+fences.forEach((f,i)=>{
+let id = i+1;
+fenceContainer.innerHTML += `
+<div class="calc-container" style="background-image:url('${f.img}')">
+<h3>${f.name}</h3>
+<button class="calc-button" onclick="toggleCalculator('f${id}')">Get Quote</button>
+<div class="calculator" id="f${id}">
+<label>Length (m)</label>
+<input type="number" id="fLen${id}" value="10">
 <label>Height</label>
-<select id="height${id}">
+<select id="fHeight${id}">
 <option value="4">4ft</option>
 <option value="5">5ft</option>
 <option value="6">6ft</option>
 </select>
-<label>Gate Required?</label>
-<select id="gate${id}">
-<option value="0">No</option>
-<option value="1">Yes</option>
-</select>
-<button class="quote-button" onclick="calculateQuote(${id})">Generate Quote</button>
-<button class="close-button" onclick="toggleCalculator('calc${id}')">Close</button>
-<div class="result" id="result${id}">Your quote will appear here.</div>
+<button class="quote-button" onclick="calcFence(${id})">Generate</button>
+<div class="result" id="fRes${id}"></div>
 </div>
 </div>
 `;
 });
 
-function showAllCards(){
-document.getElementById("allCards").style.display = "block";
-document.getElementById("allCards").scrollIntoView({behavior:"smooth"});
+function calcFence(id){
+let len = parseFloat(document.getElementById("fLen"+id).value);
+let height = document.getElementById("fHeight"+id).value;
+let price = fences[id-1].prices[height];
+let total = len * price;
+
+document.getElementById("fRes"+id).innerHTML =
+`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<a href="tel:07735873694">Call Now</a>`;
+
+localStorage.setItem("FencingQuote", JSON.stringify({
+service:"Fencing",
+total: total.toFixed(2)
+}));
 }
 
-function toggleCalculator(id){
-const el = document.getElementById(id);
-el.style.display = (el.style.display==="block") ? "none" : "block";
-}
+// ================= GUTTERS =================
 
-function openImage(id){ document.getElementById(id).style.display="block"; }
-function closeImage(el){ el.style.display="none"; }
+function calcGutter(id, rate){
+let len = parseFloat(document.getElementById("gLen"+id).value);
+let total = len * rate;
 
-function calculateQuote(id){
-let lengthInput = parseFloat(document.getElementById("length"+id).value);
-if(isNaN(lengthInput)||lengthInput<=0){
-document.getElementById("result"+id).innerHTML="Enter a valid fence length.";
-return;
-}
+document.getElementById("gRes"+id).innerHTML =
+`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<a href="tel:07735873694">Call Now</a>`;
 
-let height = document.getElementById("height"+id).value;
-let gate = parseInt(document.getElementById("gate"+id).value);
-let length = lengthInput;
-
-const panelWidth=1.8;
-const panelPrices = fences[id-1].prices;
-const gravelPrice=17;
-const postPrice=17;
-const postMixPrice=6;
-const labourPerM=50;
-const gatePrice=170;
-const gateDeduct=1.2;
-
-if(gate===1){ length-=gateDeduct; if(length<0) length=0; }
-
-const panels=Math.ceil(length/panelWidth);
-const posts=panels+1+gate;
-const gravelBoards=panels;
-const postMixBags=posts*2;
-
-const materialCost=(panels*panelPrices[height])+(gravelBoards*gravelPrice)+(posts*postPrice)+(postMixBags*postMixPrice)+(gate===1?gatePrice:0);
-const labourCost=length*labourPerM;
-const total=materialCost+labourCost;
-
-let message=`
-Thank you for your enquiry.<br><br>
-For a <span class="highlight">${lengthInput}m</span> fence at
-<span class="highlight">${height}ft</span> high we would require:<br><br>
-• <span class="highlight">${panels}</span> fence panels<br>
-• <span class="highlight">${posts}</span> concrete posts<br>
-• <span class="highlight">${gravelBoards}</span> gravel boards<br>
-• <span class="highlight">${postMixBags}</span> bags of concrete<br>
-${gate===1?"• 1 gate included<br>":""}
-<br>
-Labour cost approximately <span class="highlight">£${labourCost.toFixed(2)}</span>.<br><br>
-<strong>Total estimated project cost:</strong><br>
-<h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#1e90ff;color:white;border-radius:8px;text-decoration:none;font-weight:600;">
-Call Now
-</a>
-`;
-
-document.getElementById("result"+id).innerHTML=message;
+localStorage.setItem("GutterQuote", JSON.stringify({
+service:"Gutter Service",
+total: total.toFixed(2)
+}));
 }
 
 </script>
