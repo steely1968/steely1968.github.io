@@ -90,140 +90,140 @@ hr { margin:60px 0; }
 </head>
 <body>
 
-<!-- ================= FENCING ================= -->
+<!-- ================= FENCING SECTIONS ================= -->
 
-<h1>Fencing Quote Calculator</h1>
-<p class="intro">Click below to view fencing options.</p>
-<button class="calc-button" onclick="toggleSection('fencingSection')">View Options</button>
+<h1>Fencing Quote Calculators</h1>
 
-<div id="fencingSection" style="display:none;">
-<div class="calculators-grid" id="fenceContainer"></div>
-</div>
+<!-- Loop for 6 fencing sections -->
+<button class="calc-button" onclick="toggleSection('fenceSection1')">View Fencing Section 1</button>
+<div id="fenceSection1" style="display:none;"><div class="calculators-grid" id="fenceContainer1"></div></div>
+
+<button class="calc-button" onclick="toggleSection('fenceSection2')">View Fencing Section 2</button>
+<div id="fenceSection2" style="display:none;"><div class="calculators-grid" id="fenceContainer2"></div></div>
+
+<button class="calc-button" onclick="toggleSection('fenceSection3')">View Fencing Section 3</button>
+<div id="fenceSection3" style="display:none;"><div class="calculators-grid" id="fenceContainer3"></div></div>
+
+<button class="calc-button" onclick="toggleSection('fenceSection4')">View Fencing Section 4</button>
+<div id="fenceSection4" style="display:none;"><div class="calculators-grid" id="fenceContainer4"></div></div>
+
+<button class="calc-button" onclick="toggleSection('fenceSection5')">View Fencing Section 5</button>
+<div id="fenceSection5" style="display:none;"><div class="calculators-grid" id="fenceContainer5"></div></div>
+
+<button class="calc-button" onclick="toggleSection('fenceSection6')">View Fencing Section 6</button>
+<div id="fenceSection6" style="display:none;"><div class="calculators-grid" id="fenceContainer6"></div></div>
 
 <hr>
 
-<!-- ================= GUTTERS ================= -->
+<!-- ================= GUTTER SECTIONS ================= -->
 
 <h1>Gutter Services Quote</h1>
-<p class="intro">Click below to view gutter service options.</p>
-<button class="calc-button" onclick="toggleSection('gutterSection')">View Options</button>
 
-<div id="gutterSection" style="display:none;">
-<div class="calculators-grid">
-
-<div class="calc-container" style="background-image:url('/gutter-clearing.webp')">
-<h3>Gutter Clearing (£4.50/m)</h3>
-<button class="calc-button" onclick="toggleCalculator('g1')">Get Quote</button>
-<div class="calculator" id="g1">
-<label>Length (m)</label>
-<input type="number" id="gLen1" value="10">
-<button class="quote-button" onclick="calcGutter(1,4.5)">Generate</button>
-<div class="result" id="gRes1"></div>
-</div>
+<button class="calc-button" onclick="toggleSection('gutterSection1')">View Gutter Clearing</button>
+<div id="gutterSection1" style="display:none;">
+<div class="calculators-grid" id="gutterContainer1"></div>
 </div>
 
-<div class="calc-container" style="background-image:url('/Cleaned-gutters-before-after.webp')">
-<h3>Gutter & Fascia Cleaning (£4/m)</h3>
-<button class="calc-button" onclick="toggleCalculator('g2')">Get Quote</button>
-<div class="calculator" id="g2">
-<label>Length (m)</label>
-<input type="number" id="gLen2" value="10">
-<button class="quote-button" onclick="calcGutter(2,4)">Generate</button>
-<div class="result" id="gRes2"></div>
-</div>
+<button class="calc-button" onclick="toggleSection('gutterSection2')">View Gutter & Fascia Cleaning</button>
+<div id="gutterSection2" style="display:none;">
+<div class="calculators-grid" id="gutterContainer2"></div>
 </div>
 
-<div class="calc-container" style="background-image:url('/Gutter-alignment.webp')">
-<h3>Gutter Replacement (£30/m)</h3>
-<button class="calc-button" onclick="toggleCalculator('g3')">Get Quote</button>
-<div class="calculator" id="g3">
-<label>Length (m)</label>
-<input type="number" id="gLen3" value="10">
-<button class="quote-button" onclick="calcGutter(3,30)">Generate</button>
-<div class="result" id="gRes3"></div>
-</div>
-</div>
-
-</div>
+<button class="calc-button" onclick="toggleSection('gutterSection3')">View Gutter Replacement</button>
+<div id="gutterSection3" style="display:none;">
+<div class="calculators-grid" id="gutterContainer3"></div>
 </div>
 
 <script>
-
-// TOGGLE SECTION
+// ================= TOGGLE FUNCTIONS =================
 function toggleSection(id){
 const el = document.getElementById(id);
 el.style.display = el.style.display === "block" ? "none" : "block";
 }
-
-// TOGGLE CALCULATOR
 function toggleCalculator(id){
 const el = document.getElementById(id);
 el.style.display = el.style.display === "block" ? "none" : "block";
 }
 
-// ================= FENCING =================
-
-const fences = [
-{ name:"Closeboard Featheredge", img:"/images/closeboard.webp", prices:{4:22,5:27,6:32} },
-{ name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp", prices:{4:24,5:29,6:34} }
+// ================= FENCING DATA =================
+const fencingData = [
+{name:"Closeboard Featheredge", img:"/images/closeboard.webp", prices:{4:22,5:27,6:32}},
+{name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp", prices:{4:24,5:29,6:34}},
+{name:"Double Side Concave", img:"/images/concave.webp", prices:{4:25,5:30,6:36}},
+{name:"Venetian", img:"/images/venetian.webp", prices:{4:23,5:28,6:33}},
+{name:"Urban Hedge", img:"/images/urban-hedge.webp", prices:{4:21,5:26,6:31}},
+{name:"Single Hit Miss", img:"/images/hit-miss.webp", prices:{4:22,5:27,6:32}}
 ];
 
-const fenceContainer = document.getElementById("fenceContainer");
-
-fences.forEach((f,i)=>{
-let id = i+1;
-fenceContainer.innerHTML += `
+// Create fencing calculators dynamically
+for(let i=1;i<=6;i++){
+const container = document.getElementById("fenceContainer"+i);
+const f = fencingData[i-1];
+container.innerHTML = `
 <div class="calc-container" style="background-image:url('${f.img}')">
 <h3>${f.name}</h3>
-<button class="calc-button" onclick="toggleCalculator('f${id}')">Get Quote</button>
-<div class="calculator" id="f${id}">
+<button class="calc-button" onclick="toggleCalculator('f${i}')">Get Quote</button>
+<div class="calculator" id="f${i}">
 <label>Length (m)</label>
-<input type="number" id="fLen${id}" value="10">
+<input type="number" id="fLen${i}" value="10">
 <label>Height</label>
-<select id="fHeight${id}">
+<select id="fHeight${i}">
 <option value="4">4ft</option>
 <option value="5">5ft</option>
 <option value="6">6ft</option>
 </select>
-<button class="quote-button" onclick="calcFence(${id})">Generate</button>
-<div class="result" id="fRes${id}"></div>
+<button class="quote-button" onclick="calcFence(${i})">Generate Quote</button>
+<div class="result" id="fRes${i}"></div>
 </div>
-</div>
-`;
-});
+</div>`;
+}
 
+// Fencing calculation
 function calcFence(id){
 let len = parseFloat(document.getElementById("fLen"+id).value);
+if(isNaN(len) || len<=0){document.getElementById("fRes"+id).innerHTML="Enter a valid length."; return;}
 let height = document.getElementById("fHeight"+id).value;
-let price = fences[id-1].prices[height];
-let total = len * price;
-
-document.getElementById("fRes"+id).innerHTML =
-`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-
-localStorage.setItem("FencingQuote", JSON.stringify({
-service:"Fencing",
-total: total.toFixed(2)
-}));
+let price = fencingData[id-1].prices[height];
+let total = len*price;
+document.getElementById("fRes"+id).innerHTML = `
+<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<a href="tel:07735873694" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#1e90ff;color:white;border-radius:8px;text-decoration:none;font-weight:600;">Call Now</a>
+`;
 }
 
-// ================= GUTTERS =================
+// ================= GUTTER DATA =================
+const gutterData = [
+{name:"Gutter Clearing", img:"/gutter-clearing.webp", rate:4.5},
+{name:"Gutter & Fascia Cleaning", img:"/Cleaned-gutters-before-after.webp", rate:4},
+{name:"Gutter Replacement", img:"/Gutter-alignment.webp", rate:30}
+];
 
+for(let i=1;i<=3;i++){
+const container = document.getElementById("gutterContainer"+i);
+const g = gutterData[i-1];
+container.innerHTML = `
+<div class="calc-container" style="background-image:url('${g.img}')">
+<h3>${g.name} (£${g.rate}/m)</h3>
+<button class="calc-button" onclick="toggleCalculator('g${i}')">Get Quote</button>
+<div class="calculator" id="g${i}">
+<label>Length (m)</label>
+<input type="number" id="gLen${i}" value="10">
+<button class="quote-button" onclick="calcGutter(${i},${g.rate})">Generate Quote</button>
+<div class="result" id="gRes${i}"></div>
+</div>
+</div>`;
+}
+
+// Gutter calculation
 function calcGutter(id, rate){
 let len = parseFloat(document.getElementById("gLen"+id).value);
-let total = len * rate;
-
-document.getElementById("gRes"+id).innerHTML =
-`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-
-localStorage.setItem("GutterQuote", JSON.stringify({
-service:"Gutter Service",
-total: total.toFixed(2)
-}));
+if(isNaN(len) || len<=0){document.getElementById("gRes"+id).innerHTML="Enter a valid length."; return;}
+let total = len*rate;
+document.getElementById("gRes"+id).innerHTML = `
+<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<a href="tel:07735873694" style="display:inline-block;margin-top:10px;padding:10px 20px;background:#1e90ff;color:white;border-radius:8px;text-decoration:none;font-weight:600;">Call Now</a>
+`;
 }
-
 </script>
 
 </body>
