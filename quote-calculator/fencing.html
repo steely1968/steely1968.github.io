@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quote Calculators</title>
-<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/">
 
 <style>
 body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
 h1 { text-align: center; margin-bottom: 10px; }
 .intro { text-align: center; margin-bottom: 20px; font-size: 16px; color: #555; }
 
-.calc-button, .view-image-button, .quote-button, .close-button {
+.calc-button, .view-image-button, .quote-button {
 cursor: pointer; border: none; border-radius: 8px; transition: 0.3s;
 }
 
@@ -23,9 +22,6 @@ cursor: pointer; border: none; border-radius: 8px; transition: 0.3s;
 
 .quote-button { margin-top: 20px; width: 100%; background: #1e90ff; color: white; padding: 10px; }
 .quote-button:hover { background: #0077cc; }
-
-.close-button { margin-top: 10px; width: 100%; background: #888; color: white; padding: 8px; }
-.close-button:hover { background: #555; }
 
 .calculators-grid {
 display: grid;
@@ -56,10 +52,7 @@ background: rgba(0,0,0,0.4);
 z-index: 0;
 }
 
-.calc-container > * {
-position: relative;
-z-index: 1;
-}
+.calc-container > * { position: relative; z-index: 1; }
 
 .calculator {
 display: none;
@@ -108,10 +101,7 @@ hr { margin:60px 0; }
 
 @media (max-width: 768px) {
 body { padding: 10px; }
-h1 { font-size: 24px; }
 .calculators-grid { gap: 20px; }
-input, select { font-size: 16px; }
-.result { font-size: 15px; }
 }
 </style>
 </head>
@@ -119,6 +109,7 @@ input, select { font-size: 16px; }
 <body>
 
 <!-- ================= FENCING ================= -->
+
 <h1>Fencing Quote Calculator</h1>
 <p class="intro">Click below to view fencing options.</p>
 <button class="calc-button" onclick="toggleSection('fencingSection')">View Options</button>
@@ -129,6 +120,7 @@ input, select { font-size: 16px; }
 <hr>
 
 <!-- ================= GUTTERS ================= -->
+
 <h1>Gutter Services Quote</h1>
 <p class="intro">Click below to view gutter service options.</p>
 <button class="calc-button" onclick="toggleSection('gutterSection')">View Options</button>
@@ -139,6 +131,7 @@ input, select { font-size: 16px; }
 <hr>
 
 <!-- ================= PRESSURE WASHING ================= -->
+
 <h1>Pressure Washing Quote</h1>
 <p class="intro">Click below to view pressure washing options.</p>
 <button class="calc-button" onclick="toggleSection('pressureSection')">View Options</button>
@@ -158,13 +151,8 @@ const el = document.getElementById(id);
 el.style.display = el.style.display==="block"?"none":"block";
 }
 
-function openImage(id){
-document.getElementById(id).style.display="block";
-}
-
-function closeImage(el){
-el.style.display="none";
-}
+function openImage(id){ document.getElementById(id).style.display="block"; }
+function closeImage(el){ el.style.display="none"; }
 
 /* ================= FENCING ================= */
 
@@ -210,15 +198,11 @@ function calcFence(id){
 let len = parseFloat(document.getElementById("fLen"+id).value);
 let heightFt = parseFloat(document.getElementById("fHeight"+id).value);
 
-// convert feet to metres
-let heightM = heightFt * 0.3048;
-
-// material cost
 let materialRate = fences[id-1].prices[heightFt];
 let materialTotal = len * materialRate;
 
-// labour cost £50 per m²
-let labourTotal = len * heightM * 50;
+// ✅ FIXED LABOUR £50 PER METRE LENGTH
+let labourTotal = len * 50;
 
 let total = materialTotal + labourTotal;
 
@@ -264,52 +248,10 @@ let len = parseFloat(document.getElementById("gLen"+id).value);
 let rate = gutters[id-1].rate;
 let total = len * rate;
 document.getElementById("gRes"+id).innerHTML =
-`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-
-/* ================= PRESSURE WASHING ================= */
-
-const pressure = [
-{name:"Driveways (£3.00/m²)", img:"/mages-my-images/driveways.webp", rate:3},
-{name:"Roof (£8.00/m)", img:"/mages-my-images/roof.webp", rate:8},
-{name:"Patio (£3.00/m²)", img:"/mages-my-images/patio.webp", rate:3},
-{name:"Walls incl. House (£4.00/m²)", img:"/mages-my-images/walls.webp", rate:4},
-{name:"Fence (£2.50/m²)", img:"/mages-my-images/fence.webp", rate:2.5}
-];
-
-const pressureContainer = document.getElementById("pressureContainer");
-
-pressure.forEach((p,i)=>{
-const id = i+1;
-pressureContainer.innerHTML += `
-<div class="calc-container" style="background-image:url('${p.img}')">
-<h3>${p.name}</h3>
-<button class="view-image-button" onclick="openImage('pImg${id}')">View Image</button>
-<div id="pImg${id}" class="image-modal" onclick="closeImage(this)">
-<img src="${p.img}">
-</div>
-<button class="calc-button" onclick="toggleCalculator('p${id}')">Get Quote</button>
-<div class="calculator" id="p${id}">
-<label>Area / Length</label>
-<input type="number" id="pInput${id}" value="10">
-<button class="quote-button" onclick="calcPressure(${id})">Generate</button>
-<div class="result" id="pRes${id}"></div>
-</div>
-</div>
-`;
-});
-
-function calcPressure(id){
-let input = parseFloat(document.getElementById("pInput"+id).value);
-let rate = pressure[id-1].rate;
-let total = input * rate;
-document.getElementById("pRes"+id).innerHTML =
-`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+`<h2>Total: £${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
 }
 
 </script>
-
 </body>
 </html>
