@@ -80,9 +80,8 @@ hr { margin:60px 0; }
 </div>
 
 <script>
-// ================= COMMON TOGGLES =================
+// ================= COMMON FUNCTIONS =================
 function toggleSection(id){ const el=document.getElementById(id); el.style.display=(el.style.display==="block")?"none":"block"; }
-function toggleCalculator(id){ const el=document.getElementById(id); el.style.display=(el.style.display==="block")?"none":"block"; }
 function openImage(id){ document.getElementById(id).style.display="block"; }
 function closeImage(el){ el.style.display="none"; }
 
@@ -103,47 +102,41 @@ fenceContainer.innerHTML+=`
 <h3>${f.name}</h3>
 <button class="view-image-button" onclick="openImage('fImg${id}')">View Image</button>
 <div id="fImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${f.img}"></div>
-<button class="quote-button" onclick="calcFence(${id})">Generate Quote</button>
+<button class="quote-button" onclick="document.getElementById('f${id}').style.display='block'; calcFence(${id});">Generate Quote</button>
 <div class="calculator" id="f${id}">
 <label>Length (m)</label><input type="number" id="fLen${id}" value="10">
 <label>Height (ft)</label><select id="fHeight${id}">
-<option value="4">4ft</option>
-<option value="5">5ft</option>
-<option value="6">6ft</option>
+<option value="4">4ft</option><option value="5">5ft</option><option value="6">6ft</option>
 </select>
 <label>Gate?</label><select id="fGate${id}"><option value="0">No</option><option value="1">Yes</option></select>
 <div class="result" id="fRes${id}"></div>
-<button class="service-info-button" id="fInfo${id}" onclick="alert('Service info: Panels 1.8m each, Posts add 0.06m, Gravel boards 1 per panel, Postcrete 2 bags per post, Gate reduces 1.2m and +£120, Labour £50/m, Materials: Posts £17, Gravel £17, Postcrete £6')">Service Info</button>
+<button class="service-info-button" id="fInfo${id}" onclick="alert('Panels 1.8m each\nPosts add 0.06m\nGate reduces 1.2m length + £120\nGravel boards 1 per panel\nPostcrete 2 bags per post\nLabour £50/m\nMaterials: Posts £17, Gravel £17, Postcrete £6')">Service Info</button>
 </div></div>`;
+
+// Auto-update
+document.getElementById("fLen"+id).addEventListener("input",()=>calcFence(id));
+document.getElementById("fHeight"+id).addEventListener("change",()=>calcFence(id));
+document.getElementById("fGate"+id).addEventListener("change",()=>calcFence(id));
 });
 
-// Auto-update fence quotes
 function calcFence(id){
-const length=parseFloat(document.getElementById("fLen"+id).value);
+const len=parseFloat(document.getElementById("fLen"+id).value);
 const height=document.getElementById("fHeight"+id).value;
 const gate=parseInt(document.getElementById("fGate"+id).value);
 const panelWidth=1.8; const gravelPrice=17; const postPrice=17; const postMixPrice=6; const labourPerM=50; const gatePrice=120; const gateDeduct=1.2;
 
-let adjLength=length-(gate?gateDeduct:0);
+let adjLength=len-(gate?gateDeduct:0);
 let panels=Math.ceil(adjLength/panelWidth);
 let posts=panels+1+(gate?1:0);
 let gravelBoards=panels;
 let postMixBags=posts*2;
 let materialCost=(panels*fences[id-1].prices[height])+(gravelBoards*gravelPrice)+(posts*postPrice)+(postMixBags*postMixPrice)+(gate?gatePrice:0);
-let labourCost=length*labourPerM;
+let labourCost=len*labourPerM;
 let total=materialCost+labourCost;
 
 document.getElementById("fRes"+id).innerHTML=`<strong>Total:</strong> £${total.toFixed(2)}<br><a href="tel:07735873694">Call Now</a>`;
 document.getElementById("fInfo"+id).style.display="block";
 }
-
-// Add input listeners
-fences.forEach((f,i)=>{
-const id=i+1;
-document.getElementById("fLen"+id).addEventListener("input",()=>calcFence(id));
-document.getElementById("fHeight"+id).addEventListener("change",()=>calcFence(id));
-document.getElementById("fGate"+id).addEventListener("change",()=>calcFence(id));
-});
 
 // ================= GUTTERS =================
 const gutters=[
@@ -159,12 +152,13 @@ gutterContainer.innerHTML+=`
 <h3>${g.name}</h3>
 <button class="view-image-button" onclick="openImage('gImg${id}')">View Image</button>
 <div id="gImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${g.img}"></div>
-<button class="quote-button" onclick="calcGutter(${id})">Generate Quote</button>
+<button class="quote-button" onclick="document.getElementById('g${id}').style.display='block'; calcGutter(${id});">Generate Quote</button>
 <div class="calculator" id="g${id}">
 <label>Length (m)</label><input type="number" id="gLen${id}" value="10">
 <div class="result" id="gRes${id}"></div>
-<button class="service-info-button" id="gInfo${id}" onclick="alert('Service info for gutter service')">Service Info</button>
+<button class="service-info-button" id="gInfo${id}" onclick="alert('Service info for gutter')">Service Info</button>
 </div></div>`;
+document.getElementById("gLen"+id).addEventListener("input",()=>calcGutter(id));
 });
 
 function calcGutter(id){
@@ -174,7 +168,6 @@ const total=length*rate;
 document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong> £${total.toFixed(2)}<br><a href="tel:07735873694">Call Now</a>`;
 document.getElementById("gInfo"+id).style.display="block";
 }
-gutters.forEach((g,i)=>{const id=i+1; document.getElementById("gLen"+id).addEventListener("input",()=>calcGutter(id));});
 
 // ================= PRESSURE WASHING =================
 const pressures=[
@@ -192,13 +185,15 @@ pressureContainer.innerHTML+=`
 <h3>${p.name}</h3>
 <button class="view-image-button" onclick="openImage('pImg${id}')">View Image</button>
 <div id="pImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${p.img}"></div>
-<button class="quote-button" onclick="calcPressure(${id})">Generate Quote</button>
+<button class="quote-button" onclick="document.getElementById('p${id}').style.display='block'; calcPressure(${id});">Generate Quote</button>
 <div class="calculator" id="p${id}">
 <label>Area (m²)</label><input type="number" id="pArea${id}" value="10">
 <div class="result" id="pRes${id}"></div>
 <button class="service-info-button" id="pInfo${id}" onclick="alert('Service info for pressure washing')">Service Info</button>
 </div></div>`;
+document.getElementById("pArea"+id).addEventListener("input",()=>calcPressure(id));
 });
+
 function calcPressure(id){
 const area=parseFloat(document.getElementById("pArea"+id).value);
 const rate=pressures[id-1].rate;
@@ -206,12 +201,9 @@ const total=area*rate;
 document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong> £${total.toFixed(2)}<br><a href="tel:07735873694">Call Now</a>`;
 document.getElementById("pInfo"+id).style.display="block";
 }
-pressures.forEach((p,i)=>{const id=i+1; document.getElementById("pArea"+id).addEventListener("input",()=>calcPressure(id));});
 
 // ================= EXTERIOR DECORATING =================
-const decors=[
-{name:"House Sides & Fence", img:"/my-images/decor.webp", rates:{house:12,fence:3.5,steel:7}}
-];
+const decors=[{name:"House Sides & Fence", img:"/my-images/decor.webp", rates:{house:12,fence:3.5,steel:7}}];
 const decorContainer=document.getElementById("decorContainer");
 decors.forEach((d,i)=>{
 const id=i+1;
@@ -220,7 +212,7 @@ decorContainer.innerHTML+=`
 <h3>${d.name}</h3>
 <button class="view-image-button" onclick="openImage('dImg${id}')">View Image</button>
 <div id="dImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${d.img}"></div>
-<button class="quote-button" onclick="calcDecor(${id})">Generate Quote</button>
+<button class="quote-button" onclick="document.getElementById('d${id}').style.display='block'; calcDecor(${id});">Generate Quote</button>
 <div class="calculator" id="d${id}">
 <label>House Side 1 (Length m)</label><input type="number" id="h1Len${id}" value="10"><label>Height m</label><input type="number" id="h1Ht${id}" value="3">
 <label>House Side 2 (Length m)</label><input type="number" id="h2Len${id}" value="10"><label>Height m</label><input type="number" id="h2Ht${id}" value="3">
@@ -231,7 +223,12 @@ decorContainer.innerHTML+=`
 <div class="result" id="dRes${id}"></div>
 <button class="service-info-button" id="dInfo${id}" onclick="alert('Service info for exterior decorating')">Service Info</button>
 </div></div>`;
+
+["h1Len","h1Ht","h2Len","h2Ht","h3Len","h3Ht","h4Len","h4Ht","steel","fenceDecor"].forEach(prefix=>{
+document.getElementById(prefix+id).addEventListener("input",()=>calcDecor(id));
 });
+});
+
 function calcDecor(id){
 const h1=document.getElementById("h1Len"+id).value*document.getElementById("h1Ht"+id).value;
 const h2=document.getElementById("h2Len"+id).value*document.getElementById("h2Ht"+id).value;
@@ -243,13 +240,6 @@ const total=(h1+h2+h3+h4)*decors[id-1].rates.house + steel*decors[id-1].rates.st
 document.getElementById("dRes"+id).innerHTML=`<strong>Total:</strong> £${total.toFixed(2)}<br><a href="tel:07735873694">Call Now</a>`;
 document.getElementById("dInfo"+id).style.display="block";
 }
-// Auto-update decor
-decors.forEach((d,i)=>{
-const id=i+1;
-["h1Len","h1Ht","h2Len","h2Ht","h3Len","h3Ht","h4Len","h4Ht","steel","fenceDecor"].forEach(prefix=>{
-document.getElementById(prefix+id).addEventListener("input",()=>calcDecor(id));
-});
-});
 </script>
 </body>
 </html>
