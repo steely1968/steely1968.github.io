@@ -151,7 +151,7 @@ const panelWidth = 1.8;
 const labourPerM = 50;
 let length = lenInput;
 
-// Adjust length for gate
+// Adjust for gate
 let gateCost = 0;
 if(gate===1){
 length -= 1.2;
@@ -161,6 +161,9 @@ gateCost = 120;
 
 const panels = Math.ceil(length/panelWidth);
 const posts = panels + 1 + gate;
+const gravelBoards = panels; // 1 gravel board per panel
+const postcreteBags = posts*2; // 2 bags per post
+
 const totalMaterial = panels*price + gateCost;
 const labourCost = lenInput*labourPerM;
 const total = totalMaterial + labourCost;
@@ -171,6 +174,8 @@ document.getElementById("fInv"+id).innerHTML = `
 <strong>Materials Inventory:</strong><br>
 • Panels: <span class="highlight">${panels}</span><br>
 • Posts: <span class="highlight">${posts}</span><br>
+• Gravel Boards: <span class="highlight">${gravelBoards}</span><br>
+• Postcrete Bags: <span class="highlight">${postcreteBags}</span><br>
 ${gate===1?'• Gate included: £120<br>':''}
 • Labour: £${labourCost.toFixed(2)}
 `;
