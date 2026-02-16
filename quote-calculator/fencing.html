@@ -51,15 +51,15 @@ input, select { font-size: 16px; }
 <script>
 // ================= TOGGLE & MODAL =================
 function toggleSection(id){
-const el = document.getElementById(id);
-el.style.display = el.style.display==="block"?"none":"block";
+const el=document.getElementById(id);
+el.style.display=el.style.display==="block"?"none":"block";
 }
 function toggleCalculator(id){
-const el = document.getElementById(id);
-el.style.display = el.style.display==="block"?"none":"block";
+const el=document.getElementById(id);
+el.style.display=el.style.display==="block"?"none":"block";
 }
-function openImage(id){ document.getElementById(id).style.display="block"; }
-function closeImage(el){ el.style.display="none"; }
+function openImage(id){document.getElementById(id).style.display="block";}
+function closeImage(el){el.style.display="none";}
 </script>
 
 <!-- ================= FENCING ================= -->
@@ -71,8 +71,7 @@ function closeImage(el){ el.style.display="none"; }
 </div>
 
 <script>
-// FENCE OPTIONS
-const fences = [
+const fences=[
 {name:"Closeboard Featheredge", img:"/images/closeboard.webp"},
 {name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp"},
 {name:"Double Side Concave", img:"/images/concave.webp"},
@@ -81,10 +80,10 @@ const fences = [
 {name:"Single Hit Miss", img:"/images/hit-miss.webp"}
 ];
 
-const fenceContainer = document.getElementById("fenceContainer");
+const fenceContainer=document.getElementById("fenceContainer");
 fences.forEach((f,i)=>{
 const id=i+1;
-fenceContainer.innerHTML += `
+fenceContainer.innerHTML+=`
 <div class="calc-container" style="background-image:url('${f.img}')">
 <h3>${f.name}</h3>
 <button class="view-image-button" onclick="openImage('fImg${id}')">View Image</button>
@@ -104,13 +103,11 @@ fenceContainer.innerHTML += `
 </div>`;
 });
 
-// FENCE CALCULATION LOGIC
 function calcFence(id){
 let len=parseFloat(document.getElementById("fLen"+id).value);
 if(isNaN(len)||len<=0){document.getElementById("fRes"+id).innerHTML="Enter valid length.";return;}
 let gate=document.getElementById("fGate"+id).value==="yes";
 let gateWidth=1.2;
-
 let fenceLength=gate?len-gateWidth:len;
 let panelLength=1.8;
 let panels=Math.ceil(fenceLength/panelLength);
@@ -122,8 +119,6 @@ let costPost=posts*17;
 let costGravel=gravelBoards*17;
 let costPostcrete=postcreteBags*6;
 let total=labour+costPost+costGravel+costPostcrete;
-if(total<350) total=350;
-
 document.getElementById("fRes"+id).innerHTML=`
 <strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <ul>
@@ -147,7 +142,6 @@ document.getElementById("fRes"+id).innerHTML=`
 </div>
 
 <script>
-// GUTTER SERVICES
 const gutters=[
 {name:"Gutter Clearing (£4.5/m)", img:"/images/gutter-clearing.webp", rate:4.5},
 {name:"Gutter & Fascia Cleaning (£4/m)", img:"/images/cleaned-gutters-before-after.webp", rate:4},
@@ -157,7 +151,7 @@ const gutters=[
 const gutterContainer=document.getElementById("gutterContainer");
 gutters.forEach((g,i)=>{
 const id=i+1;
-gutterContainer.innerHTML=`
+gutterContainer.innerHTML+=`
 <div class="calc-container" style="background-image:url('${g.img}')">
 <h3>${g.name}</h3>
 <button class="view-image-button" onclick="openImage('gImg${id}')">View Image</button>
@@ -193,7 +187,6 @@ document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong><h2>£${tot
 </div>
 
 <script>
-// PRESSURE WASHING SERVICES
 const pressures=[
 {name:"Driveways (£3/m²)", img:"/my-images/driveway.webp", rate:3},
 {name:"Roof (£8/m)", img:"/my-images/roof.webp", rate:8},
@@ -205,7 +198,7 @@ const pressures=[
 const pressureContainer=document.getElementById("pressureContainer");
 pressures.forEach((p,i)=>{
 const id=i+1;
-pressureContainer.innerHTML=`
+pressureContainer.innerHTML+=`
 <div class="calc-container" style="background-image:url('${p.img}')">
 <h3>${p.name}</h3>
 <button class="calc-button" onclick="toggleCalculator('p${id}')">Get Quote</button>
@@ -239,7 +232,6 @@ document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong><h2>£${tot
 </div>
 
 <script>
-// DECORATING SERVICES
 const decoratingServices=[
 {name:"Exterior House Paint (£12/m²)", img:"/my-images/house-paint.webp", type:"housePaint"},
 {name:"Steel Gates & Rails (£7/m²)", img:"/my-images/steel-gates.webp", type:"steelGates"},
