@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quote Calculators</title>
-<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/">
 <style>
 body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
 h1 { text-align: center; margin-bottom: 10px; }
@@ -49,17 +48,10 @@ input, select { font-size: 16px; }
 <body>
 
 <script>
-// ================= TOGGLE & MODAL =================
-function toggleSection(id){
-const el=document.getElementById(id);
-el.style.display=el.style.display==="block"?"none":"block";
-}
-function toggleCalculator(id){
-const el=document.getElementById(id);
-el.style.display=el.style.display==="block"?"none":"block";
-}
-function openImage(id){document.getElementById(id).style.display="block";}
-function closeImage(el){el.style.display="none";}
+function toggleSection(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
+function toggleCalculator(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
+function openImage(id){ document.getElementById(id).style.display="block"; }
+function closeImage(el){ el.style.display="none"; }
 </script>
 
 <!-- ================= FENCING ================= -->
@@ -92,6 +84,12 @@ fenceContainer.innerHTML+=`
 <div class="calculator" id="f${id}">
 <label>Length (m)</label>
 <input type="number" id="fLen${id}" value="10" min="1">
+<label>Height</label>
+<select id="fHeight${id}">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
 <label>Gate required?</label>
 <select id="fGate${id}">
 <option value="no">No</option>
@@ -105,27 +103,26 @@ fenceContainer.innerHTML+=`
 
 function calcFence(id){
 let len=parseFloat(document.getElementById("fLen"+id).value);
-if(isNaN(len)||len<=0){document.getElementById("fRes"+id).innerHTML="Enter valid length.";return;}
+let height=parseInt(document.getElementById("fHeight"+id).value);
 let gate=document.getElementById("fGate"+id).value==="yes";
+if(isNaN(len)||len<=0){document.getElementById("fRes"+id).innerHTML="Enter valid length."; return;}
 let gateWidth=1.2;
 let fenceLength=gate?len-gateWidth:len;
-let panelLength=1.8;
-let panels=Math.ceil(fenceLength/panelLength);
+let panels=Math.ceil(fenceLength/1.8);
 let posts=panels+(gate?2:1);
 let gravelBoards=panels;
 let postcreteBags=posts*2;
-let labour=len*50;
-let costPost=posts*17;
-let costGravel=gravelBoards*17;
-let costPostcrete=postcreteBags*6;
-let total=labour+costPost+costGravel+costPostcrete;
+let labour=len*50; // Could scale by height if needed
+let total=labour + posts*17 + gravelBoards*17 + postcreteBags*6;
 document.getElementById("fRes"+id).innerHTML=`
-<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
 <ul>
 <li>Panels: ${panels}</li>
 <li>Posts: ${posts}</li>
 <li>Gravel Boards: ${gravelBoards}</li>
 <li>Postcrete Bags: ${postcreteBags}</li>
+<li>Height: ${height}ft</li>
+<li>Gate: ${gate?"Yes":"No"}</li>
 </ul>
 <a href="tel:07735873694">Call Now</a>`;
 }
@@ -168,9 +165,8 @@ gutterContainer.innerHTML+=`
 
 function calcGutter(id){
 let len=parseFloat(document.getElementById("gLen"+id).value);
-if(isNaN(len)||len<=0){document.getElementById("gRes"+id).innerHTML="Enter valid length.";return;}
-let rate=gutters[id-1].rate;
-let total=len*rate;
+if(isNaN(len)||len<=0){document.getElementById("gRes"+id).innerHTML="Enter valid length."; return;}
+let total=len*gutters[id-1].rate;
 document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
 }
@@ -214,8 +210,7 @@ pressureContainer.innerHTML+=`
 function calcPressure(id){
 let area=parseFloat(document.getElementById("pArea"+id).value);
 if(isNaN(area)||area<=0){document.getElementById("pRes"+id).innerHTML="Enter valid area.";return;}
-let rate=pressures[id-1].rate;
-let total=area*rate;
+let total=area*pressures[id-1].rate;
 document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
 }
@@ -261,7 +256,6 @@ html+=`<label>Length (m)</label><input type="number" id="dLen${id}" value="10">
 
 html+=`<button class="quote-button" onclick="calcDecorating('${s.type}',${id})">Generate</button>
 <div class="result" id="dRes${id}"></div></div></div>`;
-
 decoratingContainer.innerHTML+=html;
 });
 
