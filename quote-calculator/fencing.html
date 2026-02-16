@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quote Calculators</title>
-<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/">
 <style>
 body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
 h1 { text-align: center; margin-bottom: 10px; }
@@ -48,228 +47,127 @@ input, select { font-size: 16px; }
 </head>
 <body>
 
-<!-- ================= FENCING ================= -->
-<h1>Fencing Quote Calculator</h1>
-<p class="intro">Click below to view fencing options.</p>
-<button class="calc-button" onclick="toggleSection('fencingSection')">View Options</button>
-<div id="fencingSection" style="display:none;">
-<div class="calculators-grid" id="fenceContainer"></div>
+<h1>All Quote Calculators</h1>
+
+<div class="calculators-grid">
+
+<!-- ================= FENCING CALCULATOR ================= -->
+<div class="calc-container" style="background-image:url('/images/closeboard.webp')">
+<h3>Fencing Quote Calculator</h3>
+<button class="view-image-button" onclick="document.getElementById('fImg1').style.display='block'">View Image</button>
+<div id="fImg1" class="image-modal" onclick="this.style.display='none'"><img src="/images/closeboard.webp"></div>
+<button class="calc-button" onclick="document.getElementById('f1').style.display=document.getElementById('f1').style.display==='block'?'none':'block'">Get Quote</button>
+<div class="calculator" id="f1">
+<label>Total Fence Length (m)</label>
+<input type="number" id="fLen1" value="10">
+<label><input type="checkbox" id="gateCheck1"> Include 1.2m Gate</label>
+<button class="quote-button" onclick="calcFence1()">Generate</button>
+<div class="result" id="fRes1"></div>
 </div>
-
-<hr>
-
-<!-- ================= GUTTERS ================= -->
-<h1>Gutter Services Quote</h1>
-<p class="intro">Click below to view gutter service options.</p>
-<button class="calc-button" onclick="toggleSection('gutterSection')">View Options</button>
-<div id="gutterSection" style="display:none;">
-<div class="calculators-grid" id="gutterContainer"></div>
-</div>
-
-<hr>
-
-<!-- ================= PRESSURE WASHING ================= -->
-<h1>Pressure Washing</h1>
-<p class="intro">Click below to view pressure washing options.</p>
-<button class="calc-button" onclick="toggleSection('pressureSection')">View Options</button>
-<div id="pressureSection" style="display:none;">
-<div class="calculators-grid" id="pressureContainer"></div>
-</div>
-
-<hr>
-
-<!-- ================= EXTERIOR DECORATING ================= -->
-<h1>Exterior Decorating</h1>
-<p class="intro">Click below to view exterior decorating options.</p>
-<button class="calc-button" onclick="toggleSection('decoratingSection')">View Options</button>
-<div id="decoratingSection" style="display:none;">
-<div class="calculators-grid" id="decoratingContainer"></div>
-</div>
-
 <script>
-// TOGGLE SECTION
-function toggleSection(id){
-const el = document.getElementById(id);
-el.style.display = el.style.display==="block"?"none":"block";
-}
-// TOGGLE CALCULATOR
-function toggleCalculator(id){
-const el = document.getElementById(id);
-el.style.display = el.style.display==="block"?"none":"block";
-}
-// IMAGE MODAL
-function openImage(id){ document.getElementById(id).style.display="block"; }
-function closeImage(el){ el.style.display="none"; }
-
-// ================= FENCING =================
-const fences = [
-{name:"Closeboard Featheredge", img:"/images/closeboard.webp", prices:{4:22,5:27,6:32}},
-{name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp", prices:{4:24,5:29,6:34}},
-{name:"Double Side Concave", img:"/images/concave.webp", prices:{4:25,5:30,6:36}},
-{name:"Venetian", img:"/images/venetian.webp", prices:{4:23,5:28,6:33}},
-{name:"Urban Hedge", img:"/images/urban-hedge.webp", prices:{4:21,5:26,6:31}},
-{name:"Single Hit Miss", img:"/images/hit-miss.webp", prices:{4:22,5:27,6:32}}
-];
-
-const fenceContainer = document.getElementById("fenceContainer");
-fences.forEach((f,i)=>{
-const id = i+1;
-fenceContainer.innerHTML += `
-<div class="calc-container" style="background-image:url('${f.img}')">
-<h3>${f.name}</h3>
-<button class="view-image-button" onclick="openImage('fImg${id}')">View Image</button>
-<div id="fImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${f.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('f${id}')">Get Quote</button>
-<div class="calculator" id="f${id}">
-<label>Length (m)</label>
-<input type="number" id="fLen${id}" value="10">
-<label>Height</label>
-<select id="fHeight${id}">
-<option value="4">4ft</option>
-<option value="5">5ft</option>
-<option value="6">6ft</option>
-</select>
-<button class="quote-button" onclick="calcFence(${id})">Generate</button>
-<div class="result" id="fRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcFence(id){
-let len = parseFloat(document.getElementById("fLen"+id).value);
-let height = document.getElementById("fHeight"+id).value;
-let price = fences[id-1].prices[height];
-let labour = len*50; // £50 per metre length
-let total = len*price + labour;
-document.getElementById("fRes"+id).innerHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-
-// ================= GUTTERS =================
-const gutters = [
-{name:"Gutter Clearing (£4.5/m)", img:"/images/gutter-clearing.webp", rate:4.5},
-{name:"Gutter & Fascia Cleaning (£4/m)", img:"/images/cleaned-gutters-before-after.webp", rate:4},
-{name:"Gutter Replacement (£30/m)", img:"/images/gutter-alignment.webp", rate:30}
-];
-
-const gutterContainer = document.getElementById("gutterContainer");
-gutters.forEach((g,i)=>{
-const id = i+1;
-gutterContainer.innerHTML += `
-<div class="calc-container" style="background-image:url('${g.img}')">
-<h3>${g.name}</h3>
-<button class="view-image-button" onclick="openImage('gImg${id}')">View Image</button>
-<div id="gImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${g.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('g${id}')">Get Quote</button>
-<div class="calculator" id="g${id}">
-<label>Length (m)</label>
-<input type="number" id="gLen${id}" value="10">
-<button class="quote-button" onclick="calcGutter(${id})">Generate</button>
-<div class="result" id="gRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcGutter(id){
-let len = parseFloat(document.getElementById("gLen"+id).value);
-let rate = gutters[id-1].rate;
-let total = len * rate;
-document.getElementById("gRes"+id).innerHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-
-// ================= PRESSURE WASHING =================
-const pressures = [
-{name:"Driveways (£3/m²)", img:"/my-images/driveway.webp", rate:3},
-{name:"Roof (£8/m)", img:"/my-images/roof.webp", rate:8},
-{name:"Patio (£3/m²)", img:"/my-images/patio.webp", rate:3},
-{name:"Walls (£4/m²)", img:"/my-images/walls.webp", rate:4},
-{name:"Fence (£2.5/m²)", img:"/my-images/fence.webp", rate:2.5}
-];
-
-const pressureContainer = document.getElementById("pressureContainer");
-pressures.forEach((p,i)=>{
-const id = i+1;
-pressureContainer.innerHTML += `
-<div class="calc-container" style="background-image:url('${p.img}')">
-<h3>${p.name}</h3>
-<button class="calc-button" onclick="toggleCalculator('p${id}')">Get Quote</button>
-<div class="calculator" id="p${id}">
-<label>Area (m²)</label>
-<input type="number" id="pArea${id}" value="10">
-<button class="quote-button" onclick="calcPressure(${id})">Generate</button>
-<div class="result" id="pRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcPressure(id){
-let area = parseFloat(document.getElementById("pArea"+id).value);
-if(isNaN(area)||area<=0){ document.getElementById("pRes"+id).innerHTML="Enter valid area."; return; }
-let rate = pressures[id-1].rate;
-let total = area * rate;
-document.getElementById("pRes"+id).innerHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-
-// ================= EXTERIOR DECORATING =================
-const decoratingServices = [
-{ name:"Exterior House Paint (£12/m²)", img:"/my-images/house-paint.webp", type:"housePaint" },
-{ name:"Steel Gates & Rails (£7/m²)", img:"/my-images/steel-gates.webp", type:"steelGates" },
-{ name:"Fence Panels & Outer Buildings (£3.5/m²)", img:"/my-images/fence-outer.webp", type:"fenceOuter" }
-];
-
-const decoratingContainer = document.getElementById("decoratingContainer");
-decoratingServices.forEach((s,i)=>{
-const id = i+1;
-let innerHTML = `<div class="calc-container" style="background-image:url('${s.img}')">
-<h3>${s.name}</h3>
-<button class="view-image-button" onclick="openImage('dImg${id}')">View Image</button>
-<div id="dImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${s.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('d${id}')">Get Quote</button>
-<div class="calculator" id="d${id}">`;
-
-if(s.type==="housePaint"){
-for(let side=1; side<=4; side++){
-innerHTML += `<label>House Side ${side} (Length × Height m)</label>
-<input type="number" id="hpLen${side}" placeholder="Length" value="10">
-<input type="number" id="hpHeight${side}" placeholder="Height" value="3">`;
-}
-} else {
-innerHTML += `<label>Length (m)</label><input type="number" id="dLen${id}" value="10">
-<label>Height (m)</label><input type="number" id="dHeight${id}" value="3">`;
-}
-
-innerHTML += `<button class="quote-button" onclick="calcDecorating('${s.type}',${id})">Generate</button>
-<div class="result" id="dRes${id}"></div></div></div>`;
-
-decoratingContainer.innerHTML += innerHTML;
-});
-
-function calcDecorating(type,id){
-let total=0;
-if(type==="housePaint"){
-for(let side=1; side<=4; side++){
-let len = parseFloat(document.getElementById("hpLen"+side).value);
-let h = parseFloat(document.getElementById("hpHeight"+side).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){ document.getElementById("dRes"+id).innerHTML="Enter valid measurements."; return; }
-total += len*h*12;
-}
-} else if(type==="steelGates"){
-let len = parseFloat(document.getElementById("dLen"+id).value);
-let h = parseFloat(document.getElementById("dHeight"+id).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){ document.getElementById("dRes"+id).innerHTML="Enter valid measurements."; return; }
-total = len*h*7;
-} else if(type==="fenceOuter"){
-let len = parseFloat(document.getElementById("dLen"+id).value);
-let h = parseFloat(document.getElementById("dHeight"+id).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){ document.getElementById("dRes"+id).innerHTML="Enter valid measurements."; return; }
-total = len*h*3.5;
-}
-document.getElementById("dRes"+id).innerHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
+function calcFence1(){
+const PANEL_WIDTH=1.8,POST_WIDTH=0.06,SECTION_WIDTH=PANEL_WIDTH+POST_WIDTH,GATE_WIDTH=1.2,POST_COST=17,GRAVEL_COST=17,POSTCRETE_COST=6,POSTCRETE_PER_POST=2,LABOUR_PER_METRE=50,MINIMUM_JOB=350;
+let totalLength=parseFloat(document.getElementById('fLen1').value);
+if(isNaN(totalLength)||totalLength<=0){document.getElementById('fRes1').innerHTML="Enter valid length.";return;}
+let gateRequired=document.getElementById('gateCheck1').checked;
+let adjustedLength=gateRequired?totalLength-GATE_WIDTH:totalLength;
+if(adjustedLength<=0){document.getElementById('fRes1').innerHTML="Length too small after gate deduction.";return;}
+let panels=Math.ceil(adjustedLength/SECTION_WIDTH);
+let posts=gateRequired?panels+2:panels+1;
+let gravelBoards=panels;
+let postcreteBags=posts*POSTCRETE_PER_POST;
+let postsCost=posts*POST_COST,gravelCost=gravelBoards*GRAVEL_COST,postcreteCost=postcreteBags*POSTCRETE_COST,labourCost=totalLength*LABOUR_PER_METRE;
+let total=postsCost+gravelCost+postcreteCost+labourCost;if(total<MINIMUM_JOB)total=MINIMUM_JOB;
+document.getElementById('fRes1').innerHTML=`<strong>Quote Breakdown:</strong><br><br>Panels: <b>${panels}</b><br>Posts: <b>${posts}</b><br>Gravel Boards: <b>${gravelBoards}</b><br>Postcrete Bags: <b>${postcreteBags}</b><br>${gateRequired?"Gate Included: <b>1.2m</b><br>":""}<hr><h2>£${total.toFixed(2)}</h2><a href="tel:07735873694">📞 Call Now</a>`;
 }
 </script>
+</div>
 
+<!-- ================= GUTTERING CALCULATOR ================= -->
+<div class="calc-container" style="background-image:url('/images/gutter-clearing.webp')">
+<h3>Gutter Services Quote</h3>
+<button class="view-image-button" onclick="document.getElementById('gImg1').style.display='block'">View Image</button>
+<div id="gImg1" class="image-modal" onclick="this.style.display='none'"><img src="/images/gutter-clearing.webp"></div>
+<button class="calc-button" onclick="document.getElementById('g1').style.display=document.getElementById('g1').style.display==='block'?'none':'block'">Get Quote</button>
+<div class="calculator" id="g1">
+<label>Length (m)</label>
+<input type="number" id="gLen1" value="10">
+<label>Select Service</label>
+<select id="gType1">
+<option value="clearing">Gutter Clearing (£4.5/m)</option>
+<option value="cleaning">Gutter & Fascia Cleaning (£4/m)</option>
+<option value="replacement">Gutter Replacement (£30/m)</option>
+</select>
+<button class="quote-button" onclick="calcGutter1()">Generate</button>
+<div class="result" id="gRes1"></div>
+</div>
+<script>
+function calcGutter1(){
+const rates={clearing:4.5,cleaning:4,replacement:30};
+let len=parseFloat(document.getElementById('gLen1').value);
+let type=document.getElementById('gType1').value;
+if(isNaN(len)||len<=0){document.getElementById('gRes1').innerHTML="Enter valid length.";return;}
+let total=len*rates[type];
+document.getElementById('gRes1').innerHTML=`<strong>Total:</strong> £${total.toFixed(2)}<br><a href="tel:07735873694">📞 Call Now</a>`;
+}
+</script>
+</div>
+
+<!-- ================= PRESSURE WASHING CALCULATOR ================= -->
+<div class="calc-container" style="background-image:url('/my-images/driveway.webp')">
+<h3>Pressure Washing Quote</h3>
+<button class="calc-button" onclick="document.getElementById('p1').style.display=document.getElementById('p1').style.display==='block'?'none':'block'">Get Quote</button>
+<div class="calculator" id="p1">
+<label>Area (m²)</label>
+<input type="number" id="pArea1" value="10">
+<label>Select Surface</label>
+<select id="pType1">
+<option value="driveway">Driveway (£3/m²)</option>
+<option value="roof">Roof (£8/m²)</option>
+<option value="patio">Patio (£3/m²)</option>
+<option value="walls">Walls (£4/m²)</option>
+<option value="fence">Fence (£2.5/m²)</option>
+</select>
+<button class="quote-button" onclick="calcPressure1()">Generate</button>
+<div class="result" id="pRes1"></div>
+</div>
+<script>
+function calcPressure1(){
+const rates={driveway:3,roof:8,patio:3,walls:4,fence:2.5};
+let area=parseFloat(document.getElementById('pArea1').value);
+let type=document.getElementById('pType1').value;
+if(isNaN(area)||area<=0){document.getElementById('pRes1').innerHTML="Enter valid area.";return;}
+let total=area*rates[type];
+document.getElementById('pRes1').innerHTML=`<strong>Total:</strong> £${total.toFixed(2)}<br><a href="tel:07735873694">📞 Call Now</a>`;
+}
+</script>
+</div>
+
+<!-- ================= EXTERIOR DECORATING CALCULATOR ================= -->
+<div class="calc-container" style="background-image:url('/my-images/house-paint.webp')">
+<h3>Exterior Decorating Quote</h3>
+<button class="view-image-button" onclick="document.getElementById('dImg1').style.display='block'">View Image</button>
+<div id="dImg1" class="image-modal" onclick="this.style.display='none'"><img src="/my-images/house-paint.webp"></div>
+<button class="calc-button" onclick="document.getElementById('d1').style.display=document.getElementById('d1').style.display==='block'?'none':'block'">Get Quote</button>
+<div class="calculator" id="d1">
+<label>Select Service</label>
+<select id="dType1">
+<option value="housePaint">Exterior House Paint (£12/m²)</option>
+<option value="steelGates">Steel Gates & Rails (£7/m²)</option>
+<option value="fenceOuter">Fence Panels & Outer Buildings (£3.5/m²)</option>
+</select>
+<div id="dInputs1" style="margin-top:15px;"></div>
+<button class="quote-button" onclick="calcDecorating1()">Generate</button>
+<div class="result" id="dRes1"></div>
+</div>
+<script>
+function updateDecoratingInputs(){const t=document.getElementById('dType1').value;const c=document.getElementById('dInputs1');c.innerHTML='';if(t==='housePaint'){for(let s=1;s<=4;s++){c.innerHTML+=`<label>House Side ${s} (Length × Height m)</label><input type="number" id="hpLen${s}" placeholder="Length" value="10"><input type="number" id="hpHeight${s}" placeholder="Height" value="3">`}}else{c.innerHTML+=`<label>Length (m)</label><input type="number" id="dLen1" value="10"><label>Height (m)</label><input type="number" id="dHeight1" value="3">`}}
+document.getElementById('dType1').addEventListener('change',updateDecoratingInputs);
+updateDecoratingInputs();
+function calcDecorating1(){let t=document.getElementById('dType1').value,total=0;if(t==='housePaint'){for(let s=1;s<=4;s++){let l=parseFloat(document.getElementById('hpLen'+s).value),h=parseFloat(document.getElementById('hpHeight'+s).value);if(isNaN(l)||isNaN(h)||l<=0||h<=0){document.getElementById('dRes1').innerHTML='Enter valid measurements.';return}total+=l*h*12}}else if(t==='steelGates'){let l=parseFloat(document.getElementById('dLen1').value),h=parseFloat(document.getElementById('dHeight1').value);if(isNaN(l)||isNaN(h)||l<=0||h<=0){document.getElementById('dRes1').innerHTML='Enter valid measurements.';return}total=l*h*7}else if(t==='fenceOuter'){let l=parseFloat(document.getElementById('dLen1').value),h=parseFloat(document.getElementById('dHeight1').value);if(isNaN(l)||isNaN(h)||l<=0||h<=0){document.getElementById('dRes1').innerHTML='Enter valid measurements.';return}total=l*h*3.5}document.getElementById('dRes1').innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2><a href="tel:07735873694">📞 Call Now</a>`}
+</script>
+</div>
+
+</div>
 </body>
 </html>
