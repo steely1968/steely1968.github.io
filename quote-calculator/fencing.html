@@ -24,7 +24,22 @@ cursor: pointer; border: none; border-radius: 8px; transition: 0.3s;
 .close-button:hover { background: #555; }
 
 .calculators-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-.calc-container { position: relative; border-radius: 12px; min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; padding: 20px; background-size: cover; background-position: center; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.calc-container {
+position: relative;
+border-radius: 12px;
+min-height: 350px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: center; /* <-- centers headings and buttons */
+text-align: center; /* <-- ensures text inside is centered */
+color: #fff;
+padding: 20px;
+background-size: cover;
+background-position: center;
+overflow: hidden;
+box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
 .calc-container::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0; }
 .calc-container > * { position: relative; z-index: 1; }
 
