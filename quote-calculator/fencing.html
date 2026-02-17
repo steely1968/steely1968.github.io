@@ -43,9 +43,78 @@ h1 { font-size: 24px; }
 input, select { font-size: 16px; }
 .result { font-size: 15px; }
 }
+  /* HEADER STYLING */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #27ae60;
+}
+
+.logo{
+max-height:90px;
+width:auto;
+}
+
+/* CALL BUTTON */
+.call-btn{
+display:inline-block;
+margin-top:18px;
+padding:14px 28px;
+background:#000;
+color:#fff;
+font-size:19px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+border:2px solid #000;
+}
+.call-btn:hover{
+background:#333;
+color:#fff;
+}
+
+/* FOOTER */
+.site-footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+font-size:14px;
+}
+
+.footer-services{
+background-color: black;
+padding: 20px;
+text-align: center;
+margin-top: 15px;
+}
+
+.footer-services a{
+color: white;
+margin: 0 10px;
+}
 </style>
 </head>
 <body>
+<header>
+<img src="/images/home-repairs-4u-doncaster.webp"
+alt="Home Repairs 4U logo"
+class="logo"
+width="600" height="200"
+loading="eager">
+
+<div style="text-align:center; margin-top:10px;">
+<a href="https://steely1968.github.io/"
+style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+</div>
+
+<br>
+
+<a href="tel:07735873694" class="call-btn">📞 Call Now: 07735 873694</a>
+<a href="https://homerepairs4u.com/quote-calculator/guttering.html" class="call-btn">📝 Get Instant Quote</a>
+</header>
 
 <script>
 function toggleSection(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
