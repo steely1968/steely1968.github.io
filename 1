@@ -3,319 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quote Calculators</title>
+<title>Light Blue Floating Background</title>
+
 <style>
-body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
-h1 { text-align: center; margin-bottom: 10px; }
-.intro { text-align: center; margin-bottom: 20px; font-size: 16px; color: #555; }
-
-.calc-button, .view-image-button, .quote-button, .close-button {
-cursor: pointer; border: none; border-radius: 8px; transition: 0.3s;
+body {
+margin: 0;
+height: 100vh;
+overflow: hidden;
+background: linear-gradient(to bottom, #cfefff, #e6f7ff);
+font-family: Arial, sans-serif;
 }
-.calc-button { background: #ff6b6b; color: white; padding: 10px 20px; margin-bottom: 20px; }
-.calc-button:hover { background: #ff4757; }
-.view-image-button { background: #1e90ff; color: white; padding: 6px 12px; margin-bottom: 5px; }
-.view-image-button:hover { background: #0077cc; }
-.quote-button { margin-top: 20px; width: 100%; background: #1e90ff; color: white; padding: 10px; }
-.quote-button:hover { background: #0077cc; }
-.close-button { margin-top: 10px; width: 100%; background: #888; color: white; padding: 8px; }
-.close-button:hover { background: #555; }
 
-.calculators-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-.calc-container { position: relative; border-radius: 12px; min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; padding: 20px; background-size: cover; background-position: center; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-.calc-container::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0; }
-.calc-container > * { position: relative; z-index: 1; }
+.bubble {
+position: absolute;
+bottom: -150px;
+background: rgba(255, 255, 255, 0.5);
+border-radius: 50%;
+animation: floatUp linear infinite;
+}
 
-.calculator { display: none; margin-top: 15px; padding: 20px; border-radius: 12px; background: #fff; color: #2a2f45; }
-label { display:block; margin-top:15px; }
-input, select { width:100%; padding:8px; margin-top:5px; }
+@keyframes floatUp {
+from {
+transform: translateY(0);
+}
+to {
+transform: translateY(-120vh);
+}
+}
 
-.result { margin-top:20px; background:#eef6ff; padding:15px; border-radius:8px; }
-.highlight { font-weight:bold; color:#ff4757; }
-.image-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-.image-modal img { display: block; margin: 5% auto; max-width: 80%; max-height: 300px; border-radius: 10px; }
-hr { margin:60px 0; }
+/* Different bubble sizes and speeds */
+.bubble:nth-child(1) {
+width: 60px;
+height: 60px;
+left: 10%;
+animation-duration: 18s;
+}
 
-@media (max-width: 768px) {
-body { padding: 10px; }
-h1 { font-size: 24px; }
-.calculators-grid { gap: 20px; }
-input, select { font-size: 16px; }
-.result { font-size: 15px; }
+.bubble:nth-child(2) {
+width: 100px;
+height: 100px;
+left: 30%;
+animation-duration: 25s;
+}
+
+.bubble:nth-child(3) {
+width: 40px;
+height: 40px;
+left: 50%;
+animation-duration: 15s;
+}
+
+.bubble:nth-child(4) {
+width: 80px;
+height: 80px;
+left: 70%;
+animation-duration: 22s;
+}
+
+.bubble:nth-child(5) {
+width: 50px;
+height: 50px;
+left: 85%;
+animation-duration: 20s;
+}
+
+.content {
+position: relative;
+z-index: 10;
+text-align: center;
+padding-top: 40vh;
+font-size: 2em;
+color: #004466;
 }
 </style>
 </head>
+
 <body>
 
-<script>
-function toggleSection(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
-function toggleCalculator(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
-function openImage(id){ document.getElementById(id).style.display="block"; }
-function closeImage(el){ el.style.display="none"; }
-</script>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
 
-<!-- ================= FENCING ================= -->
-<h1>Fencing Quote Calculator</h1>
-<p class="intro">Click below to view fencing options.</p>
-<p class="intro">
-Use this calculator to get an instant fencing estimate. Enter your total fence length,
-select your required height (4ft, 5ft, or 6ft), and choose whether a gate is needed.
-The calculator automatically works out the cost of materials, panels, posts, gravel boards,
-postcrete bags, labour, and adds allows for a gate if required.
-All materials and labour are included in the final total.
-</p>  
-<button class="calc-button" onclick="toggleSection('fencingSection')">View Options</button>
-<div id="fencingSection" style="display:none;">
-<div class="calculators-grid" id="fenceContainer"></div>
+<div class="content">
+Light Blue Floating Background
 </div>
-
-<!-- ================= FENCING Change ================= -->
-<script>
-const fences=[
-{name:"Closeboard Featheredge", img:"/images/closeboard.webp", prices:{4:22,5:27,6:32}},
-{name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp", prices:{4:24,5:29,6:34}},
-{name:"Double Side Concave", img:"/images/concave.webp", prices:{4:25,5:30,6:36}},
-{name:"Venetian", img:"/images/venetian.webp", prices:{4:23,5:28,6:33}},
-{name:"Urban Hedge", img:"/images/urban-hedge.webp", prices:{4:21,5:26,6:31}},
-{name:"Single Hit Miss", img:"/images/hit-miss.webp", prices:{4:22,5:27,6:32}}
-];
-
-const fenceContainer=document.getElementById("fenceContainer");
-fences.forEach((f,i)=>{
-const id=i+1;
-fenceContainer.innerHTML+=`
-<div class="calc-container" style="background-image:url('${f.img}')">
-<h3>${f.name}</h3>
-<button class="view-image-button" onclick="openImage('fImg${id}')">View Image</button>
-<div id="fImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${f.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('f${id}')">Get Quote</button>
-<div class="calculator" id="f${id}">
-<label>Length (m)</label>
-<input type="number" id="fLen${id}" value="10" min="1">
-<label>Height</label>
-<select id="fHeight${id}">
-<option value="4">4ft</option>
-<option value="5">5ft</option>
-<option value="6">6ft</option>
-</select>
-<label>Gate required?</label>
-<select id="fGate${id}">
-<option value="no">No</option>
-<option value="yes">Yes (1.2m)</option>
-</select>
-<button class="quote-button" onclick="calcFence(${id})">Generate</button>
-<div class="result" id="fRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcFence(id){
-let len=parseFloat(document.getElementById("fLen"+id).value);
-let height=parseInt(document.getElementById("fHeight"+id).value);
-let gate=document.getElementById("fGate"+id).value==="yes";
-if(isNaN(len)||len<=0){document.getElementById("fRes"+id).innerHTML="Enter valid length."; return;}
-
-let gateWidth=1.2;
-let fenceLength=gate?len-gateWidth:len;
-
-let panels=Math.ceil(fenceLength/1.8);
-let posts=panels + (gate?2:1);
-let gravelBoards=panels;
-let postcreteBags=posts*2;
-
-let panelPrice=fences[id-1].prices[height];
-let totalPanelsCost=panels*panelPrice;
-let labour=len*50;
-let gateCost=gate?160:0;
-
-let total=totalPanelsCost + labour + posts*17 + gravelBoards*17 + postcreteBags*6 + gateCost;
-
-document.getElementById("fRes"+id).innerHTML=`
-<strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
-<ul>
-<li>Panels: ${panels} × £${panelPrice} (${totalPanelsCost.toFixed(2)})</li>
-<li>Posts: ${posts} × £17</li>
-<li>Gravel Boards: ${gravelBoards} × £17</li>
-<li>Postcrete Bags: ${postcreteBags} × £6</li>
-<li>Height: ${height}ft</li>
-<li>Gate: ${gate?"Yes (+£160)":"No"}</li>
-</ul>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
-
-<hr>
-
-<!-- ================= GUTTERING ================= -->
-<h1>Gutter Services Quote</h1>
-<p class="intro">Click below to view gutter service options.</p>
-<p class="intro">
-Use this calculator to get an instant gutter service estimate. Select the service type,
-enter the total length in metres, and the system will automatically calculate the cost
-based on our fixed per-metre rate. All pricing shown is transparent and includes labour.
-</p>
-<button class="calc-button" onclick="toggleSection('gutterSection')">View Options</button>
-<div id="gutterSection" style="display:none;">
-<div class="calculators-grid" id="gutterContainer"></div>
-</div>
-
-<script>
-const gutters=[
-{name:"Gutter Clearing (£4.5/m)", img:"/images/gutter-clearing.webp", rate:4.5},
-{name:"Gutter & Fascia Cleaning (£4/m)", img:"/images/cleaned-gutters-before-after.webp", rate:4},
-{name:"Gutter Replacement (£30/m)", img:"/images/gutter-alignment.webp", rate:30}
-];
-
-const gutterContainer=document.getElementById("gutterContainer");
-gutters.forEach((g,i)=>{
-const id=i+1;
-gutterContainer.innerHTML+=`
-<div class="calc-container" style="background-image:url('${g.img}')">
-<h3>${g.name}</h3>
-<button class="view-image-button" onclick="openImage('gImg${id}')">View Image</button>
-<div id="gImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${g.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('g${id}')">Get Quote</button>
-<div class="calculator" id="g${id}">
-<label>Length (m)</label>
-<input type="number" id="gLen${id}" value="10" min="1">
-<button class="quote-button" onclick="calcGutter(${id})">Generate</button>
-<div class="result" id="gRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcGutter(id){
-let len=parseFloat(document.getElementById("gLen"+id).value);
-if(isNaN(len)||len<=0){document.getElementById("gRes"+id).innerHTML="Enter valid length."; return;}
-let total=len*gutters[id-1].rate;
-document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
-
-<hr>
-
-<!-- ================= PRESSURE WASHING ================= -->
-<h1>Pressure Washing</h1>
-<p class="intro">Click below to view pressure washing options.</p>
-<p class="intro">
-Use this calculator to get an instant pressure washing estimate. Select the surface type
-and enter the total area in square metres. The system will automatically calculate the
-price based on our fixed rate per m² or metre, depending on the service selected.
-All pricing includes professional cleaning and labour.
-</p>
-<button class="calc-button" onclick="toggleSection('pressureSection')">View Options</button>
-<div id="pressureSection" style="display:none;">
-<div class="calculators-grid" id="pressureContainer"></div>
-</div>
-
-<script>
-const pressures=[
-{name:"Driveways (£3/m²)", img:"/my-images/driveway.webp", rate:3},
-{name:"Roof (£8/m)", img:"/my-images/roof.webp", rate:8},
-{name:"Patio (£3/m²)", img:"/my-images/patio.webp", rate:3},
-{name:"Walls (£4/m²)", img:"/my-images/walls.webp", rate:4},
-{name:"Fence (£2.5/m²)", img:"/my-images/fence.webp", rate:2.5}
-];
-
-const pressureContainer=document.getElementById("pressureContainer");
-pressures.forEach((p,i)=>{
-const id=i+1;
-pressureContainer.innerHTML+=`
-<div class="calc-container" style="background-image:url('${p.img}')">
-<h3>${p.name}</h3>
-<button class="calc-button" onclick="toggleCalculator('p${id}')">Get Quote</button>
-<div class="calculator" id="p${id}">
-<label>Area (m²)</label>
-<input type="number" id="pArea${id}" value="10" min="1">
-<button class="quote-button" onclick="calcPressure(${id})">Generate</button>
-<div class="result" id="pRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcPressure(id){
-let area=parseFloat(document.getElementById("pArea"+id).value);
-if(isNaN(area)||area<=0){document.getElementById("pRes"+id).innerHTML="Enter valid area.";return;}
-let total=area*pressures[id-1].rate;
-document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
-
-<hr>
-
-<!-- ================= EXTERIOR DECORATING ================= -->
-<h1>Exterior Decorating</h1>
-<p class="intro">Click below to view exterior decorating options.</p>
-<p class="intro">
-Use this calculator to get an instant exterior decorating estimate. Select the service type
-and enter the required measurements in metres. For house painting, enter the length and height
-of each side of the property. The calculator will automatically work out the total area and
-apply the correct rate per m². All pricing includes materials and labour.
-</p>
-<button class="calc-button" onclick="toggleSection('decoratingSection')">View Options</button>
-<div id="decoratingSection" style="display:none;">
-<div class="calculators-grid" id="decoratingContainer"></div>
-</div>
-
-<script>
-const decoratingServices=[
-{name:"Exterior House Paint (£12/m²)", img:"/my-images/house-paint.webp", type:"housePaint"},
-{name:"Steel Gates & Rails (£7/m²)", img:"/my-images/steel-gates.webp", type:"steelGates"},
-{name:"Fence Panels & Outer Buildings (£3.5/m²)", img:"/my-images/fence-outer.webp", type:"fenceOuter"}
-];
-
-const decoratingContainer=document.getElementById("decoratingContainer");
-decoratingServices.forEach((s,i)=>{
-const id=i+1;
-let html=`<div class="calc-container" style="background-image:url('${s.img}')">
-<h3>${s.name}</h3>
-<button class="view-image-button" onclick="openImage('dImg${id}')">View Image</button>
-<div id="dImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${s.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('d${id}')">Get Quote</button>
-<div class="calculator" id="d${id}">`;
-
-if(s.type==="housePaint"){
-for(let side=1; side<=4; side++){
-html+=`<label>House Side ${side} (Length × Height m)</label>
-<input type="number" id="hpLen${side}" value="10" placeholder="Length">
-<input type="number" id="hpHeight${side}" value="3" placeholder="Height">`;
-}
-}else{
-html+=`<label>Length (m)</label><input type="number" id="dLen${id}" value="10">
-<label>Height (m)</label><input type="number" id="dHeight${id}" value="3">`;
-}
-
-html+=`<button class="quote-button" onclick="calcDecorating('${s.type}',${id})">Generate</button>
-<div class="result" id="dRes${id}"></div></div></div>`;
-decoratingContainer.innerHTML+=html;
-});
-
-function calcDecorating(type,id){
-let total=0;
-if(type==="housePaint"){
-for(let side=1;side<=4;side++){
-let len=parseFloat(document.getElementById("hpLen"+side).value);
-let h=parseFloat(document.getElementById("hpHeight"+side).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
-total+=len*h*12;
-}
-}else if(type==="steelGates"){
-let len=parseFloat(document.getElementById("dLen"+id).value);
-let h=parseFloat(document.getElementById("dHeight"+id).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
-total=len*h*7;
-}else if(type==="fenceOuter"){
-let len=parseFloat(document.getElementById("dLen"+id).value);
-let h=parseFloat(document.getElementById("dHeight"+id).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
-total=len*h*3.5;
-}
-document.getElementById("dRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
 
 </body>
 </html>
