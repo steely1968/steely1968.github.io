@@ -45,6 +45,24 @@ input, select { font-size: 16px; }
 }
 h1, h2, h3, h4, h5, h6, p {
 text-align: center;
+}
+ .accordion {
+width: 80%;
+margin: 0 auto;
+}
+
+.accordion button {
+width: 100%;
+padding: 15px;
+font-size: 18px;
+border: none;
+cursor: pointer;
+background-color: #f2f2f2;
+}
+
+.panel {
+display: none;
+padding: 15px;
 } 
 </style>
 </head>
@@ -59,35 +77,39 @@ function closeImage(el){ el.style.display="none"; }
   
 <h1>Popular Fence Types Available</h1>
 <p>Our most popular garden fences comes with concrete posts and rock face gravels boards</p>
-<details>
-<summary>Closeboard Featheredge</summary>
+<div class="accordion">
+
+<button>Closeboard Featheredge</button>
+<div class="panel">
 <h2>Closeboard Featheredge</h2>
-<p>Your description text goes here.</p>
-</details>
+<p>Your description goes here.</p>
+</div>
 
-<details>
-<summary>Double Side Hit and Miss</summary>
+<button>Double Side Hit and Miss</button>
+<div class="panel">
 <h2>Double Side Hit and Miss</h2>
-<p>Your description text goes here.</p>
-</details>
+<p>Your description goes here.</p>
+</div>
 
-<details>
-<summary>Double Side Concave</summary>
+<button>Double Side Concave</button>
+<div class="panel">
 <h2>Double Side Concave</h2>
-<p>Your description text goes here.</p>
-</details>
+<p>Your description goes here.</p>
+</div>
 
-<details>
-<summary>Venetian Lays Single Side</summary>
+<button>Venetian Lays Single Side</button>
+<div class="panel">
 <h2>Venetian Lays Single Side</h2>
-<p>Your description text goes here.</p>
-</details>
+<p>Your description goes here.</p>
+</div>
 
-<details>
-<summary>Single Side Hit and Miss</summary>
+<button>Single Side Hit and Miss</button>
+<div class="panel">
 <h2>Single Side Hit and Miss</h2>
-<p>Your description text goes here.</p>
-</details>
+<p>Your description goes here.</p>
+</div>
+
+</div>
 
 <!-- ================= FENCING ================= -->
 <h2>Fencing Quote Calculator</h2>
@@ -350,6 +372,19 @@ document.getElementById("dRes"+id).innerHTML=`<strong>Total:</strong><h2>£${tot
 <a href="tel:07735873694">Call Now</a>`;
 }
 </script>
+<script>
+var buttons = document.querySelectorAll(".accordion button");
 
+buttons.forEach(function(button) {
+button.addEventListener("click", function() {
+
+document.querySelectorAll(".panel").forEach(function(panel) {
+panel.style.display = "none";
+});
+
+this.nextElementSibling.style.display = "block";
+});
+});
+</script>
 </body>
 </html>
