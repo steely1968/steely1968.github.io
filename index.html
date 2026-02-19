@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-
-
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="robots" content="index, follow">
-<title>Home Repairs Doncaster - Guttering, Painting, uPVC & Pressure Washing - Home Repairs 4U</title>
+<title>Instant Quote Calculators for Fencing, Guttering and More | Home Repairs 4U</title>
 <link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/test-gut.html">
-<meta name="description" content="Home Repairs 4U provides internal home repairs, gutter cleaning and repairs, exterior painting, uPVC Restoration, window cleaning, and pressure washing across Doncaster, Askern, Bentley, Campsall, Adwick-Le-Street and surrounding areas. Call today for reliable local service.">
-
-<link rel="preload" as="image" href="/images/home-repairs-4u-doncaster.webp" />
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/fencing.html">
+<meta name="description" content="Use our easy online calculators to get instant quotes for fencing, guttering, pressure washing, and exterior decorating services in Doncaster. Fast, transparent pricing.">
 <style>
 /* HEADER STYLING */
 header{
@@ -65,116 +61,69 @@ margin-top: 15px;
 color: white;
 margin: 0 10px;
 }
- /* LIGHTBOX STYLING */
-.lightbox {
-display: none; /* Hidden by default */
-position: fixed; /* Stay in place */
-top: 0;
-left: 0;
+body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
+h1 { text-align: center; margin-bottom: 10px; }
+.intro
+  { text-align: center; margin-bottom: 20px; font-size: 16px; color: #555; }
+.calc-button, .view-image-button, .quote-button, .close-button {
+cursor: pointer; border: none; border-radius: 8px; transition: 0.3s;
+}
+.calc-button { background: #ff6b6b; color: white; padding: 10px 20px; margin-bottom: 20px; }
+.calc-button:hover { background: #ff4757; }
+.view-image-button { background: #1e90ff; color: white; padding: 6px 12px; margin-bottom: 5px; }
+.view-image-button:hover { background: #0077cc; }
+.quote-button { margin-top: 20px; width: 100%; background: #1e90ff; color: white; padding: 10px; }
+.quote-button:hover { background: #0077cc; }
+.close-button { margin-top: 10px; width: 100%; background: #888; color: white; padding: 8px; }
+.close-button:hover { background: #555; }
+
+.calculators-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+.calc-container { position: relative; border-radius: 12px; min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; padding: 20px; background-size: cover; background-position: center; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.calc-container::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0; }
+.calc-container > * { position: relative; z-index: 1; }
+
+.calculator { display: none; margin-top: 15px; padding: 20px; border-radius: 12px; background: #fff; color: #2a2f45; }
+label { display:block; margin-top:15px; }
+input, select { width:100%; padding:8px; margin-top:5px; }
+
+.result { margin-top:20px; background:#eef6ff; padding:15px; border-radius:8px; }
+.highlight { font-weight:bold; color:#ff4757; }
+.image-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+.image-modal img { display: block; margin: 5% auto; max-width: 80%; max-height: 300px; border-radius: 10px; }
+hr { margin:60px 0; }
+
+@media (max-width: 768px) {
+body { padding: 10px; }
+h1 { font-size: 24px; }
+.calculators-grid { gap: 20px; }
+input, select { font-size: 16px; }
+.result { font-size: 15px; }
+}
+h1, h2, h3, h4, h5, h6, p {
+text-align: center;
+}
+ .accordion {
+width: 80%;
+margin: 0 auto;
+}
+
+.accordion button {
 width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.8); /* Semi-transparent black overlay */
-justify-content: center; /* Center the image horizontally */
-align-items: center; /* Center the image vertically */
-z-index: 9999; /* On top of everything */
-cursor: pointer; /* Click to close */
-flex-direction: column; /* For image + close button vertically */
-}
-
-.lightbox img {
-max-width: 90%;
-max-height: 90%;
-box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-.lightbox span {
-position: absolute;
-top: 20px;
-right: 30px;
+padding: 15px;
+font-size: 18px;
+border: none;
+cursor: pointer;
+background-color: black;
 color: white;
-font-size: 40px;
-font-weight: bold;
-cursor: pointer;
-user-select: none;
-}
-  .main-nav {
-background: #000;
-border-bottom: 3px solid #27ae60;
-font-family: sans-serif;
 }
 
-.main-nav ul {
-list-style: none;
-margin: 0;
-padding: 0;
-}
-
-.menu {
-display: flex;
-justify-content: center;
-}
-
-.menu > li {
-position: relative;
-}
-
-.menu a {
-display: block;
-padding: 14px 22px;
-color: #fff;
-text-decoration: none;
-font-weight: 600;
-}
-
-.menu a:hover {
-background: #333;
-}
-
-/* DROPDOWN */
-.submenu {
+.panel {
 display: none;
-position: absolute;
-top: 100%;
-left: 0;
-background: #000;
-min-width: 200px;
-z-index: 1000;
-}
-
-.has-submenu:hover .submenu {
-display: block;
-}
-
-.submenu a {
-padding: 12px 18px;
-color: #fff;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-.menu {
-flex-direction: column;
-}
-
-.submenu {
-position: static;
-display: none; /* hidden by default */
-}
-
-.submenu-toggle::after {
-content: " ▼";
-}
-}
-
-/* MOBILE CLICK TOGGLE */
-@media (max-width: 768px) {
-.submenu-toggle {
-cursor: pointer;
-}
+padding: 15px;
 }
 </style>
- 
-<!-- ✅ HEADER -->
+</head>
+<body>
 <header>
 <img src="/images/home-repairs-4u-doncaster.webp"
 alt="Home Repairs 4U logo"
@@ -191,425 +140,342 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 
 <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
-<nav class="main-nav" aria-label="Main navigation">
-<ul class="menu">
-<li class="has-submenu">
-<a href="#" class="submenu-toggle">Services</a>
-<ul class="submenu">
-<li><a href="/local/pressure-washing-doncaster.html">Pressure Washing</a></li>
-<li><a href="/guttering-services/doncaster.html">Guttering Services</a></li>
-<li><a href="/contact.html">Contact</a></li>
-</ul>
-</li>
-</ul>
-</nav>
 
- <!-- ✅ MAIN CONTENT -->
-<main style="max-width:1200px; margin:30px auto; padding:0 15px;">
-
-<!-- Section 1 -->
-<section style="margin-bottom:40px; text-align:center;">
-<h2>Pressure Washing Doncaster</h2>
-<p>Pressure washing is a fast and effective way to clean outdoor surfaces and restore their original look. Over time, driveways, paths, walls, decking and roofs can become dirty, slippery and stained with moss, algae and grime. Professional pressure washing removes this build-up safely, improving both appearance and safety. Clean surfaces not only look better but also last longer when kept free from damaging dirt and growth. Pressure washing is ideal for freshening up your property, preparing surfaces for painting or simply making everything look clean, tidy and well cared for.</p>
-<a href="https://homerepairs4u.com/quote-calculator/pressure-washing.html" class="call-btn" aria-label="Get a Quote for Pressure Washing">📝 Get Instant Quote</a>
-<p>Looking to restore your driveway, patio, or outdoor surfaces? Our
-<a href="https://homerepairs4u.com/how-to/pressure-wash-driveways.html"
-title="Driveway pressure washing in Doncaster">
-professional pressure washing services
-</a> are fast, eco-friendly, and highly effective.</p>
-<img src="/images/pressure-wash.webp"
-alt="Pressure washing in Doncaster for driveways, paths, decking and roofs"
-style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
-onclick="openLightbox(this.src, this.alt)"
-tabindex="0"
-onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
-</section> 
-
-<!-- Section 2 -->
-<section style="margin-bottom:40px; text-align:center;">
-<h2>Guttering Services Doncaster</h2>
-<p>Guttering services are essential for protecting your home from water damage. Over time, gutters can fill with leaves, moss and debris, stopping rainwater from flowing away properly. Cleaning and clearing your gutters helps prevent blockages, leaks and overflowing that can damage walls, roofs and foundations. If your gutters are leaking, sagging or broken, repairs can restore them before bigger problems develop. In cases where gutters are badly damaged or outdated, full replacement gives your home a fresh, reliable system that works efficiently. Regular gutter maintenance keeps rainwater under control, protects your property, and saves money by avoiding costly structural repairs later on.</p>
-<a href="https://homerepairs4u.com/quote-calculator/guttering.html" class="call-btn" aria-label="Grab an instant quote for our guttering services">📝 Instant Guttering Quotes</a>
-<p>Need guttering cleared, washed, repaired or replaced? Our
-<a href="https://homerepairs4u.com/guttering-services/doncaster.html"
-title="Gutters cleared, cleaned, repaired, and replaced in Doncaster">
-professional full guttering services,
-</a> covering Doncaster and surrounding areas.</p>
-<img src="/images/cleaned-gutters-before-after.webp"
-alt="Guttering services in Doncaster including cleaning, clearing, repairs and full gutter replacement for homes"
-style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
-onclick="openLightbox(this.src, this.alt)"
-tabindex="0"
-onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
-</section>
-
-<!-- Section 3 -->
-<section style="margin-bottom:40px; text-align:center;">
-<h2>Exterior Decorating Doncaster</h2>
-<p>External decorating improves both the look and protection of your property. External house painting refreshes tired walls, boosts kerb appeal and adds a protective layer against weather damage. Painting garden rails and gates not only makes them look smarter but also helps prevent rust and wear. Fence painting keeps timber strong, protected from rot, and looking clean and well cared for. Regular exterior decorating helps your property stay attractive, increases its lifespan, and reduces the need for costly repairs caused by weather, damp and general wear and tear..</p>
-<img src="/images/house-before-after.webp"
-alt="Exterior painting in Doncaster including houses, metal garden rails, gates and wooden fencing"
-style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
-onclick="openLightbox(this.src, this.alt)"
-tabindex="0"
-onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
-</section>
-
-<!-- Section 4 -->
-<section style="margin-bottom:40px; text-align:center;">
-<h2>uPVC Restoration Doncaster</h2>
-<p>uPVC restoration is all about bringing tired, dirty frames and doors back to life. Over time, uPVC can become stained, dull and discoloured from weather, pollution and everyday wear. Professional cleaning restores the original look, making windows and doors bright, fresh and well cared for. This also includes cleaning fascias and guttering to the highest possible standard, improving the overall appearance of your home. Regular uPVC restoration not only makes your property look better but also helps extend the life of your fittings by keeping them clean, protected and properly maintained.</p>
-<img src="/images/upvc-restoration.webp"
-alt="uPVC restoration in Doncaster with detailed cleaning of frames, doors, fascias and guttering"
-style="max-width:100%; height:auto; margin-top:15px; cursor:pointer;"
-onclick="openLightbox(this.src, this.alt)"
-tabindex="0"
-onkeypress="if(event.key==='Enter'){openLightbox(this.src,this.alt)}">
-</section>
-
-<!-- Section 8 -->
-<section style="margin-bottom:40px; text-align:center;">
-<h2>Other Services</h2>
-<p>Other services from Home Repairs 4U cover a wide range of additional outdoor maintenance and repair work, complementing our core offerings. These include minor outdoor repairs, such as fixing gates, fences, sheds, and decking, as well as addressing any wear and tear that can affect the safety and appearance of your property. We also extend our services to cover seasonal and one-off tasks, including external woodwork treatment, roof maintenance, and cleaning of driveways, paths, and patios. Whether it’s repairing a broken fence panel, restoring faded garden structures, or preparing surfaces for painting, these services ensure every part of your property is cared for. By combining our expertise in guttering, exterior decorating, uPVC restoration, conservatory valets, window cleaning, and pressure washing, we provide a complete solution to maintain your home inside and out. Each task is completed with attention to detail and professionalism, keeping your property safe, functional, and visually appealing. With our extended services, you can rely on Home Repairs 4U to handle all the extra jobs that make a real difference to your home’s upkeep and longevity</p>
-</section>
+<script>
+function toggleSection(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
+function toggleCalculator(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
+function openImage(id){ document.getElementById(id).style.display="block"; }
+function closeImage(el){ el.style.display="none"; }
+</script>
  
-<!-- ✅ FAQ SECTION -->
-<section style="max-width:900px; margin:40px auto; padding:0 15px;">
+<h1>Popular Fence Types Available</h1>
+<p>Our most popular garden fences comes with concrete posts and rock face gravels boards</p>
+<div class="accordion">
 
-<h2 style="text-align:center; margin-bottom:30px;">Frequently Asked Questions</h2>
-
-<div>
-<p><strong>What types of internal minor home repairs do you handle?</strong><br>
-We handle small repairs inside your home, including fixing doors, replacing broken fittings, repairing walls, and addressing general wear and tear.</p>
-
-<p><strong>Do you offer gutter cleaning and maintenance?</strong><br>
-Yes, we clean, clear, repair, and replace gutters to ensure rainwater flows properly and your home stays protected from water damage.</p>
-
-<p><strong>Can you repair damaged gutters?</strong><br>
-Absolutely. We fix leaks, sagging sections, and any damaged parts to restore your gutters efficiency.</p>
-
-<p><strong>What does exterior decorating include?</strong><br>
-Exterior decorating covers external house painting, metal garden rails and gate painting, also fence painting to refresh your property's look and protect surfaces.</p>
-
-<p><strong>Do you offer uPVC restoration?</strong><br>
-Yes, we clean and restore uPVC doors, windows, fascias, and guttering to their original condition, improving both appearance and longevity. </p>
-
-<p><strong>Can you clean my conservatory?</strong><br>
-We provide full conservatory valets, cleaning inside and out, including the roof, frames, and glass, to a high standard.</p>
-
-<p><strong>How often should I have my windows cleaned?</strong><br>
-Regular cleaning depends on your property, but we recommend monthly or quarterly visits to keep windows clear, bright, and well maintained.</p>
-
-<p><strong>What surfaces can you pressure wash?</strong><br>
-We pressure wash driveways, paths, walls, decking and roofs, removing moss, algae, dirt and grime safely and effectively.</p>
-
-<p><strong>Are your services suitable for all property types?</strong><br>
-Yes, we work on houses, flats, commercial properties, and gardens, tailoring each service to your specific property needs.</p>
-
-<p><strong>Do you offer same-day or urgent repairs?</strong><br>
-We aim to respond quickly and can often schedule repairs urgently to prevent further damage.</p>
-
-<p><strong>Is your work insured?</strong><br>
-Yes, Home Repairs 4U is fully insured, giving you peace of mind for all repairs and maintenance work.</p>
-
-<p><strong>How do i schedule a service?</strong><br>
-Simply call us on 07735 873694 at a time convenient to you.</p>
+<button>Closeboard Featheredge</button>
+<div class="panel">
+<h2>Closeboard Featheredge</h2>
+<h3>Closeboard Featheredge Wood Fence Panels with Concrete Posts and Gravel Boards </h3>
+<p>Durable and stylish, these closeboard featheredge panels offer complete privacy and a clean, solid finish. The timber boards are tightly fitted to shed water efficiently, while robust concrete posts provide long-lasting stability. Sitting on textured rock face concrete gravel boards, the panels are protected from ground moisture and rot, making this fence a low-maintenance, long-lasting solution for any garden or boundary.</p>
+<a href="https://homerepairs4u.com/quote-calculator/closeboard-featheredge.html" class="call-btn" aria-label="Get a Quote for closeboard featheredge fencing">View Fence Type</a>
 </div>
 
-</section>
-
-<!-- ✅ BOTTOM CALL BUTTON -->
-<div style="text-align:center; margin:40px 0;">
-<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
+<button>Double Side Hit and Miss</button>
+<div class="panel">
+<h2>Double Side Hit and Miss</h2>
+<p>Your description goes here.</p>
+<a href="https://homerepairs4u.com/quote-calculator/double-side-hit-miss-fence-panels.html" class="call-btn" aria-label="Get a Quote for double sided hit and miss fence panels.">View Fence Type</a>
 </div>
 
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxImg">
-<button class="lightbox-close" onclick="closeLightbox()" aria-label="Close lightbox">×</button>
-<img id="lightboxImg" src="" alt="">
+<button>Double Side Concave</button>
+<div class="panel">
+<h2>Double Side Concave</h2>
+<p>Your description goes here.</p>
+<a href="https://homerepairs4u.com/quote-calculator/concave-fence-panels.html" class="call-btn" aria-label="Get a Quote for double sided concave fence panels.">View Fence Type</a>
 </div>
-<a href="https://homerepairs4u.com/quote-calculator/fencing.html" class="call-btn" aria-label="Get a Quote for Pressure Washing">📝 Get Instant Quote</a>
 
-</main>
+<button>Venetian Lats Single Side</button>
+<div class="panel">
+<h2>Venetian Lats Single Side</h2>
+<p>Your description goes here.</p>
+<a href="https://homerepairs4u.com/quote-calculator/venetian-lat-fence-panels.html" class="call-btn" aria-label="Get a Quote for venetian lat fence panels.">View Fence Type</a>
+</div>
 
+<button>Urban Hedge</button>
+<div class="panel">
+<h2>Urban Hedge</h2>
+<p>Your description goes here.</p>
+<a href="https://homerepairs4u.com/quote-calculator/urban-hedge-fence-panels.html" class="call-btn" aria-label="Get a Quote for Urban Hedge fence panels.">View Fence Type</a>
+</div>
+
+<button>Single Side Hit and Miss</button>
+<div class="panel">
+<h2>Single Side Hit and Miss</h2>
+<p>Your description goes here.</p>
+<a href="https://homerepairs4u.com/quote-calculator/hit-miss-fence-panels.html" class="call-btn" aria-label="Get a Quote for hit and miss fence panels.">View Fence Type</a>
+</div>
+
+</div>
+
+<!-- ================= FENCING ================= -->
+<h2>Fencing Quote Calculator</h2>
+<p class="intro">Click below to view fencing options.</p>
+<p class="intro">
+Use this calculator to get an instant fencing estimate. Enter your total fence length,
+select your required height (4ft, 5ft, or 6ft), and choose whether a gate is needed.
+The calculator automatically works out the cost of materials, panels, posts, gravel boards,
+postcrete bags, labour, and adds allows for a gate if required.
+All materials and labour are included in the final total.
+</p>  
+<button class="calc-button" onclick="toggleSection('fencingSection')">View Options</button>
+<div id="fencingSection" style="display:none;">
+<div class="calculators-grid" id="fenceContainer"></div>
+</div>
+
+<!-- ================= FENCING Change ================= -->
+<script>
+const fences=[
+{name:"Closeboard Featheredge", img:"/images/closeboard.webp", prices:{4:22,5:27,6:32}},
+{name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp", prices:{4:24,5:29,6:34}},
+{name:"Double Side Concave", img:"/images/concave.webp", prices:{4:25,5:30,6:36}},
+{name:"Venetian", img:"/images/venetian.webp", prices:{4:23,5:28,6:33}},
+{name:"Urban Hedge", img:"/images/urban-hedge.webp", prices:{4:21,5:26,6:31}},
+{name:"Single Hit Miss", img:"/images/hit-miss.webp", prices:{4:22,5:27,6:32}}
+];
+
+const fenceContainer=document.getElementById("fenceContainer");
+fences.forEach((f,i)=>{
+const id=i+1;
+fenceContainer.innerHTML+=`
+<div class="calc-container" style="background-image:url('${f.img}')">
+<h3>${f.name}</h3>
+<button class="view-image-button" onclick="openImage('fImg${id}')">View Image</button>
+<div id="fImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${f.img}"></div>
+<button class="calc-button" onclick="toggleCalculator('f${id}')">Get Quote</button>
+<div class="calculator" id="f${id}">
+<label>Length (m)</label>
+<input type="number" id="fLen${id}" value="10" min="1">
+<label>Height</label>
+<select id="fHeight${id}">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+<label>Gate required?</label>
+<select id="fGate${id}">
+<option value="no">No</option>
+<option value="yes">Yes (1.2m)</option>
+</select>
+<button class="quote-button" onclick="calcFence(${id})">Generate</button>
+<div class="result" id="fRes${id}"></div>
+</div>
+</div>`;
+});
+
+function calcFence(id){
+let len=parseFloat(document.getElementById("fLen"+id).value);
+let height=parseInt(document.getElementById("fHeight"+id).value);
+let gate=document.getElementById("fGate"+id).value==="yes";
+if(isNaN(len)||len<=0){document.getElementById("fRes"+id).innerHTML="Enter valid length."; return;}
+
+let gateWidth=1.2;
+let fenceLength=gate?len-gateWidth:len;
+
+let panels=Math.ceil(fenceLength/1.8);
+let posts=panels + (gate?2:1);
+let gravelBoards=panels;
+let postcreteBags=posts*2;
+
+let panelPrice=fences[id-1].prices[height];
+let totalPanelsCost=panels*panelPrice;
+let labour=len*50;
+let gateCost=gate?160:0;
+
+let total=totalPanelsCost + labour + posts*17 + gravelBoards*17 + postcreteBags*6 + gateCost;
+
+document.getElementById("fRes"+id).innerHTML=`
+<strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
+<ul>
+<li>Panels: ${panels} × £${panelPrice} (${totalPanelsCost.toFixed(2)})</li>
+<li>Posts: ${posts} × £17</li>
+<li>Gravel Boards: ${gravelBoards} × £17</li>
+<li>Postcrete Bags: ${postcreteBags} × £6</li>
+<li>Height: ${height}ft</li>
+<li>Gate: ${gate?"Yes (+£160)":"No"}</li>
+</ul>
+<a href="tel:07735873694">Call Now</a>`;
+}
+</script>
+<hr>
+
+<!-- ================= GUTTERING ================= -->
+<h2>Gutter Services Quote</h2>
+<p class="intro">Click below to view gutter service options.</p>
+<p class="intro">
+Use this calculator to get an instant gutter service estimate. Select the service type,
+enter the total length in metres, and the system will automatically calculate the cost
+based on our fixed per-metre rate. All pricing shown is transparent and includes labour.
+</p>
+<button class="calc-button" onclick="toggleSection('gutterSection')">View Options</button>
+<div id="gutterSection" style="display:none;">
+<div class="calculators-grid" id="gutterContainer"></div>
+</div>
+
+<script>
+const gutters=[
+{name:"Gutter Clearing (£4.5/m)", img:"/images/gutter-clearing.webp", rate:4.5},
+{name:"Gutter & Fascia Cleaning (£4/m)", img:"/images/cleaned-gutters-before-after.webp", rate:4},
+{name:"Gutter Replacement (£30/m)", img:"/images/gutter-alignment.webp", rate:30}
+];
+
+const gutterContainer=document.getElementById("gutterContainer");
+gutters.forEach((g,i)=>{
+const id=i+1;
+gutterContainer.innerHTML+=`
+<div class="calc-container" style="background-image:url('${g.img}')">
+<h3>${g.name}</h3>
+<button class="view-image-button" onclick="openImage('gImg${id}')">View Image</button>
+<div id="gImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${g.img}"></div>
+<button class="calc-button" onclick="toggleCalculator('g${id}')">Get Quote</button>
+<div class="calculator" id="g${id}">
+<label>Length (m)</label>
+<input type="number" id="gLen${id}" value="10" min="1">
+<button class="quote-button" onclick="calcGutter(${id})">Generate</button>
+<div class="result" id="gRes${id}"></div>
+</div>
+</div>`;
+});
+
+function calcGutter(id){
+let len=parseFloat(document.getElementById("gLen"+id).value);
+if(isNaN(len)||len<=0){document.getElementById("gRes"+id).innerHTML="Enter valid length."; return;}
+let total=len*gutters[id-1].rate;
+document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<a href="tel:07735873694">Call Now</a>`;
+}
+</script>
+
+<hr>
+
+<!-- ================= PRESSURE WASHING ================= -->
+<h2>Pressure Washing</h2>
+<p class="intro">Click below to view pressure washing options.</p>
+<p class="intro">
+Use this calculator to get an instant pressure washing estimate. Select the surface type
+and enter the total area in square metres. The system will automatically calculate the
+price based on our fixed rate per m² or metre, depending on the service selected.
+All pricing includes professional cleaning and labour.
+</p>
+<button class="calc-button" onclick="toggleSection('pressureSection')">View Options</button>
+<div id="pressureSection" style="display:none;">
+<div class="calculators-grid" id="pressureContainer"></div>
+</div>
+
+<script>
+const pressures=[
+{name:"Driveways (£3/m²)", img:"/my-images/driveway.webp", rate:3},
+{name:"Roof (£8/m)", img:"/my-images/roof.webp", rate:8},
+{name:"Patio (£3/m²)", img:"/my-images/patio.webp", rate:3},
+{name:"Walls (£4/m²)", img:"/my-images/walls.webp", rate:4},
+{name:"Fence (£2.5/m²)", img:"/my-images/fence.webp", rate:2.5}
+];
+
+const pressureContainer=document.getElementById("pressureContainer");
+pressures.forEach((p,i)=>{
+const id=i+1;
+pressureContainer.innerHTML+=`
+<div class="calc-container" style="background-image:url('${p.img}')">
+<h3>${p.name}</h3>
+<button class="calc-button" onclick="toggleCalculator('p${id}')">Get Quote</button>
+<div class="calculator" id="p${id}">
+<label>Area (m²)</label>
+<input type="number" id="pArea${id}" value="10" min="1">
+<button class="quote-button" onclick="calcPressure(${id})">Generate</button>
+<div class="result" id="pRes${id}"></div>
+</div>
+</div>`;
+});
+
+function calcPressure(id){
+let area=parseFloat(document.getElementById("pArea"+id).value);
+if(isNaN(area)||area<=0){document.getElementById("pRes"+id).innerHTML="Enter valid area.";return;}
+let total=area*pressures[id-1].rate;
+document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<a href="tel:07735873694">Call Now</a>`;
+}
+</script>
+
+<hr>
+
+<!-- ================= EXTERIOR DECORATING ================= -->
+<h2>Exterior Decorating</h2>
+<p class="intro">Click below to view exterior decorating options.</p>
+<p class="intro">
+Use this calculator to get an instant exterior decorating estimate. Select the service type
+and enter the required measurements in metres. For house painting, enter the length and height
+of each side of the property. The calculator will automatically work out the total area and
+apply the correct rate per m². All pricing includes materials and labour.
+</p>
+<button class="calc-button" onclick="toggleSection('decoratingSection')">View Options</button>
+<div id="decoratingSection" style="display:none;">
+<div class="calculators-grid" id="decoratingContainer"></div>
+</div>
+
+<script>
+const decoratingServices=[
+{name:"Exterior House Paint (£12/m²)", img:"/my-images/house-paint.webp", type:"housePaint"},
+{name:"Steel Gates & Rails (£7/m²)", img:"/my-images/steel-gates.webp", type:"steelGates"},
+{name:"Fence Panels & Outer Buildings (£3.5/m²)", img:"/my-images/fence-outer.webp", type:"fenceOuter"}
+];
+
+const decoratingContainer=document.getElementById("decoratingContainer");
+decoratingServices.forEach((s,i)=>{
+const id=i+1;
+let html=`<div class="calc-container" style="background-image:url('${s.img}')">
+<h3>${s.name}</h3>
+<button class="view-image-button" onclick="openImage('dImg${id}')">View Image</button>
+<div id="dImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${s.img}"></div>
+<button class="calc-button" onclick="toggleCalculator('d${id}')">Get Quote</button>
+<div class="calculator" id="d${id}">`;
+
+if(s.type==="housePaint"){
+for(let side=1; side<=4; side++){
+html+=`<label>House Side ${side} (Length × Height m)</label>
+<input type="number" id="hpLen${side}" value="10" placeholder="Length">
+<input type="number" id="hpHeight${side}" value="3" placeholder="Height">`;
+}
+}else{
+html+=`<label>Length (m)</label><input type="number" id="dLen${id}" value="10">
+<label>Height (m)</label><input type="number" id="dHeight${id}" value="3">`;
+}
+
+html+=`<button class="quote-button" onclick="calcDecorating('${s.type}',${id})">Generate</button>
+<div class="result" id="dRes${id}"></div></div></div>`;
+decoratingContainer.innerHTML+=html;
+});
+
+function calcDecorating(type,id){
+let total=0;
+if(type==="housePaint"){
+for(let side=1;side<=4;side++){
+let len=parseFloat(document.getElementById("hpLen"+side).value);
+let h=parseFloat(document.getElementById("hpHeight"+side).value);
+if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
+total+=len*h*12;
+}
+}else if(type==="steelGates"){
+let len=parseFloat(document.getElementById("dLen"+id).value);
+let h=parseFloat(document.getElementById("dHeight"+id).value);
+if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
+total=len*h*7;
+}else if(type==="fenceOuter"){
+let len=parseFloat(document.getElementById("dLen"+id).value);
+let h=parseFloat(document.getElementById("dHeight"+id).value);
+if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
+total=len*h*3.5;
+}
+document.getElementById("dRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+<a href="tel:07735873694">Call Now</a>`;
+}
+</script>
+<script>
+var buttons = document.querySelectorAll(".accordion button");
+
+buttons.forEach(function(button) {
+button.addEventListener("click", function() {
+
+document.querySelectorAll(".panel").forEach(function(panel) {
+panel.style.display = "none";
+});
+
+this.nextElementSibling.style.display = "block";
+});
+});
+</script>
 <!-- ✅ FOOTER -->
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
-
-
 </footer>
 
- <!-- ✅ LIGHTBOX SCRIPT -->
-<script>
-function openLightbox(src, alt){
-document.getElementById("lightbox").style.display="flex";
-document.getElementById("lightboxImg").src=src;
-}
-function closeLightbox(){
-document.getElementById("lightbox").style.display="none";
-}
-</script>
-
-<!-- ✅ FAQ JSON-LD FOR RICH RESULTS -->
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "FAQPage",
-"mainEntity": [
-{
-"@type": "Question",
-"name": "What types of internal minor home repairs do you handle?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "We handle small repairs inside your home, including fixing doors, replacing broken fittings, repairing walls, and addressing general wear and tear."
-}
-},
-{
-"@type": "Question",
-"name": "Do you offer gutter cleaning and maintenance?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Yes, we clean, clear, repair, and replace gutters to ensure rainwater flows properly and your home stays protected from water damage."
-}
-},
-{
-"@type": "Question",
-"name": "Can you repair damaged gutters?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Absolutely. We fix leaks, sagging sections, and any damaged parts to restore your gutters efficiency."
-}
-},
-{
-"@type": "Question",
-"name": "What does exterior decorating include?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Exterior decorating covers external house painting, metal garden rails and gate painting, and fence painting to refresh your property's look and protect surfaces."
-}
-},
-{
-"@type": "Question",
-"name": "Do you offer uPVC restoration?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Yes, we clean and restore uPVC doors, windows, fascias, and guttering to their original condition, improving both appearance and longevity."
-}
-},
-{
-"@type": "Question",
-"name": "Can you clean my conservatory?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "We provide full conservatory valets, cleaning inside and out, including the roof, frames, and glass, to a high standard."
-}
-},
-{
-"@type": "Question",
-"name": "How often should I have my windows cleaned?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Regular cleaning depends on your property, but we recommend monthly or quarterly visits to keep windows clear, bright, and well maintained."
-}
-},
-{
-"@type": "Question",
-"name": "What surfaces can you pressure wash?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "We pressure wash driveways, paths, walls, decking, and roofs, removing moss, algae, dirt, and grime safely and effectively."
-}
-},
-{
-"@type": "Question",
-"name": "Are your services suitable for all property types?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Yes, we work on houses, flats, commercial properties, and gardens, tailoring each service to your specific property needs."
-}
-},
-{
-"@type": "Question",
-"name": "Do you offer same-day or urgent repairs?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "We aim to respond quickly and can often schedule repairs urgently to prevent further damage."
-}
-},
-{
-"@type": "Question",
-"name": "Is your work insured?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Yes, Home Repairs 4U is fully insured, giving you peace of mind for all repairs and maintenance work."
-}
-},
-{
-"@type": "Question",
-"name": "How do I schedule a service?",
-"acceptedAnswer": {
-"@type": "Answer",
-"text": "Simply call us on 07735 873694 at a time convenient to you."
-}
-}
-]
-}
-</script>
- 
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "HomeAndConstructionBusiness",
-"name": "Home Repairs 4U",
-"url": "https://homerepairs4u.com/",
-"image": "https://homerepairs4u.com/images/logo.webp",
-"telephone": "07735873694",
-"priceRange": "£",
-"openingHours": "Mo-Fr 08:00-18:00",
-"address": {
-"@type": "PostalAddress",
-"addressLocality": "Doncaster",
-"postalCode": "DN6",
-"addressCountry": "GB"
-},
-"sameAs": [
-"https://www.facebook.com/profile.php?id=61584395621256"
-],
-"areaServed": [
-{ "@type": "Place", "name": "Doncaster" },
-{ "@type": "Place", "name": "Bentley" },
-{ "@type": "Place", "name": "Campsall" },
-{ "@type": "Place", "name": "Askern" },
-{ "@type": "Place", "name": "Adwick-le-Street" }
-],
-"makesOffer": [
-{
-"@type": "Service",
-"name": "Internal Minor Home Repairs"
-},
-{
-"@type": "Service",
-"name": "Guttering Service"
-},
-{
-"@type": "Service",
-"name": "Exterior Decorating"
-},
-{
-"@type": "Service",
-"name": "uPVC Restoration"
-},
-{
-"@type": "Service",
-"name": "Conservatory Valets"
-},
-{
-"@type": "Service",
-"name": "Regular Window Cleaning"
-},
-{
-"@type": "Service",
-"name": "Pressure Washing"
-}
-]
-}
-</script>
-
- <script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "WebPage",
-"name": "Home Repairs 4U - Doncaster",
-"url": "https://homerepairs4u.com/",
-"description": "Home Repairs 4U provides internal minor home repairs, guttering, exterior decorating, uPVC restoration, conservatory valets, window cleaning, and pressure washing services across Doncaster and surrounding areas.",
-"breadcrumb": {
-"@type": "BreadcrumbList",
-"itemListElement": [
-{
-"@type": "ListItem",
-"position": 1,
-"name": "Home",
-"item": "https://homerepairs4u.com/"
-}
-]
-},
-"mainEntity": [
-{
-"@type": "WebPageElement",
-"name": "Internal Minor Home Repairs",
-"cssSelector": "section:nth-of-type(1)"
-},
-{
-"@type": "WebPageElement",
-"name": "Guttering Service",
-"cssSelector": "section:nth-of-type(2)"
-},
-{
-"@type": "WebPageElement",
-"name": "Exterior Decorating",
-"cssSelector": "section:nth-of-type(3)"
-},
-{
-"@type": "WebPageElement",
-"name": "uPVC Restoration",
-"cssSelector": "section:nth-of-type(4)"
-},
-{
-"@type": "WebPageElement",
-"name": "Conservatory Valets",
-"cssSelector": "section:nth-of-type(5)"
-},
-{
-"@type": "WebPageElement",
-"name": "Regular Window Cleaning",
-"cssSelector": "section:nth-of-type(6)"
-},
-{
-"@type": "WebPageElement",
-"name": "Pressure Washing",
-"cssSelector": "section:nth-of-type(7)"
-}
-]
-}
-</script>
-
-<!-- ✅ LIGHTBOX SCRIPT -->
-<script>
-function openLightbox(src, alt){
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.getElementById("lightboxImg");
-
-lightbox.style.display = "flex"; // show lightbox
-lightboxImg.src = src; // set the image
-lightboxImg.alt = alt; // ✅ set alt dynamically
-}
-
-function closeLightbox(){
-document.getElementById("lightbox").style.display = "none";
-}
-
-// Optional: close lightbox with Esc key
-document.addEventListener('keydown', function(event) {
-const lightbox = document.getElementById('lightbox');
-if (event.key === "Escape" && lightbox.style.display === "flex") {
-lightbox.style.display = "none";
-}
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-const toggles = document.querySelectorAll('.submenu-toggle');
-toggles.forEach(function(toggle) {
-toggle.addEventListener('click', function(e) {
-e.preventDefault();
-const submenu = this.nextElementSibling;
-if(submenu.style.display === 'block') {
-submenu.style.display = 'none';
-} else {
-submenu.style.display = 'block';
-}
-});
-});
-});
-</script>
 </body>
 </html>
