@@ -83,8 +83,39 @@ function closeImage(el){ el.style.display="none"; }
 <button>Closeboard Featheredge</button>
 <div class="panel">
 <h2>Closeboard Featheredge</h2>
-<h3>Closeboard Featheredge Wood Fence Panels with Concrete Posts and Gravel Boards </h3>
-<p>Durable and stylish, these closeboard featheredge panels offer complete privacy and a clean, solid finish. The timber boards are tightly fitted to shed water efficiently, while robust concrete posts provide long-lasting stability. Sitting on textured rock face concrete gravel boards, the panels are protected from ground moisture and rot, making this fence a low-maintenance, long-lasting solution for any garden or boundary.</p>
+
+<!-- Image -->
+<img src="/images/closeboard.webp" alt="Closeboard Featheredge Fence" class="accordion-image">
+
+<!-- Description -->
+<p>
+Durable and stylish, these Closeboard Featheredge panels offer complete privacy and a clean, solid finish.
+The timber boards are tightly fitted to shed water efficiently, while robust concrete posts provide long-lasting stability.
+Sitting on textured rock face concrete gravel boards, the panels are protected from ground moisture and rot,
+making this fence a low-maintenance, long-lasting solution for any garden or boundary.
+</p>
+
+<!-- Calculator -->
+<div class="calculator" id="f1">
+<label>Length (m)</label>
+<input type="number" id="fLen1" value="10" min="1">
+
+<label>Height</label>
+<select id="fHeight1">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+
+<label>Gate required?</label>
+<select id="fGate1">
+<option value="no">No</option>
+<option value="yes">Yes (1.2m)</option>
+</select>
+
+<button class="quote-button" onclick="calcFence(1)">Generate Quote</button>
+<div class="result" id="fRes1"></div>
+</div>
 </div>
 
 <button>Double Side Hit and Miss</button>
@@ -384,6 +415,15 @@ document.querySelectorAll(".panel").forEach(function(panel) {
 panel.style.display = "none";
 });
 
+this.nextElementSibling.style.display = "block";
+});
+});
+  // Accordion toggle
+document.querySelectorAll(".accordion button").forEach(button => {
+button.addEventListener("click", function() {
+// Close all panels
+document.querySelectorAll(".panel").forEach(p => p.style.display = "none");
+// Open the one you clicked
 this.nextElementSibling.style.display = "block";
 });
 });
