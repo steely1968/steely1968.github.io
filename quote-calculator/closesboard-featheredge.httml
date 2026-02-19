@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="index, follow">
+<title>Closeboard Featheredge Fence Quote | Home Repairs 4U</title>
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/closeboard-featheredge.html">
+<meta name="description" content="Get an instant quote for Closeboard Featheredge fencing. Enter your length, height, and gate requirement for a detailed cost including materials and labour.">
+
+<style>
+/* HEADER STYLING */
+header{
+text-align:center;
+padding:25px 10px;
+background:#fff;
+border-bottom:4px solid #27ae60;
+}
+
+.logo{
+max-height:90px;
+width:auto;
+}
+
+/* CALL BUTTON */
+.call-btn{
+display:inline-block;
+margin-top:18px;
+padding:14px 28px;
+background:#000;
+color:#fff;
+font-size:19px;
+text-decoration:none;
+font-weight:bold;
+border-radius:6px;
+border:2px solid #000;
+}
+.call-btn:hover{
+background:#333;
+color:#fff;
+}
+
+/* FOOTER */
+.site-footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:25px 15px;
+margin-top:40px;
+font-size:14px;
+}
+
+/* CALCULATOR STYLING */
+body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
+h1, h2, h3 { text-align: center; }
+.intro { text-align: center; margin-bottom: 20px; font-size: 16px; color: #555; }
+.calc-button, .view-image-button, .quote-button, .close-button { cursor: pointer; border: none; border-radius: 8px; transition: 0.3s; }
+.calc-button { background: #ff6b6b; color: white; padding: 10px 20px; margin-bottom: 20px; }
+.calc-button:hover { background: #ff4757; }
+.view-image-button { background: #1e90ff; color: white; padding: 6px 12px; margin-bottom: 5px; }
+.view-image-button:hover { background: #0077cc; }
+.quote-button { margin-top: 20px; width: 100%; background: #1e90ff; color: white; padding: 10px; }
+.quote-button:hover { background: #0077cc; }
+.close-button { margin-top: 10px; width: 100%; background: #888; color: white; padding: 8px; }
+.close-button:hover { background: #555; }
+
+.calc-container { position: relative; border-radius: 12px; min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; padding: 20px; background-size: cover; background-position: center; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); margin: 0 auto; max-width: 500px; }
+.calc-container::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0; }
+.calc-container > * { position: relative; z-index: 1; }
+
+.calculator { display: none; margin-top: 15px; padding: 20px; border-radius: 12px; background: #fff; color: #2a2f45; }
+label { display:block; margin-top:15px; }
+input, select { width:100%; padding:8px; margin-top:5px; }
+
+.result { margin-top:20px; background:#eef6ff; padding:15px; border-radius:8px; }
+.image-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+.image-modal img { display: block; margin: 5% auto; max-width: 80%; max-height: 300px; border-radius: 10px; }
+
+@media (max-width: 768px) {
+body { padding: 10px; }
+h1 { font-size: 24px; }
+input, select { font-size: 16px; }
+.result { font-size: 15px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+<img src="/images/home-repairs-4u-doncaster.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200" loading="eager">
+<div style="text-align:center; margin-top:10px;">
+<a href="https://steely1968.github.io/" style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
+</div>
+<br>
+<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
+<a href="https://homerepairs4u.com/quote-calculator/guttering.html" class="call-btn" aria-label="Get a Quote for Guttering Services">📝 Get Instant Quote</a>
+</header>
+
+<!-- CLOSEBOARD FEATHEREDGE CALCULATOR -->
+<h1>Closeboard Featheredge Fence Quote</h1>
+<p class="intro">Enter your fence details below to get an instant quote.</p>
+
+<div class="calc-container" style="background-image:url('/images/closeboard.webp')">
+<h3>Closeboard Featheredge</h3>
+<button class="view-image-button" onclick="openImage('fImg1')">View Image</button>
+<div id="fImg1" class="image-modal" onclick="closeImage(this)">
+<img src="/images/closeboard.webp">
+</div>
+
+<button class="calc-button" onclick="toggleCalculator('f1')">Get Quote</button>
+
+<div class="calculator" id="f1">
+<label>Length (m)</label>
+<input type="number" id="fLen1" value="10" min="1">
+
+<label>Height</label>
+<select id="fHeight1">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+
+<label>Gate required?</label>
+<select id="fGate1">
+<option value="no">No</option>
+<option value="yes">Yes (1.2m)</option>
+</select>
+
+<button class="quote-button" onclick="calcFence(1)">Generate</button>
+<div class="result" id="fRes1"></div>
+</div>
+</div>
+
+<script>
+function toggleCalculator(id){
+const el=document.getElementById(id);
+el.style.display = el.style.display==="block"?"none":"block";
+}
+function openImage(id){
+document.getElementById(id).style.display="block";
+}
+function closeImage(el){
+el.style.display="none";
+}
+
+// Fence calculator
+const fences = [{ name: "Closeboard Featheredge", img: "/images/closeboard.webp", prices: { 4:22, 5:27, 6:32 } }];
+
+function calcFence(id) {
+let len = parseFloat(document.getElementById("fLen"+id).value);
+let height = parseInt(document.getElementById("fHeight"+id).value);
+let gate = document.getElementById("fGate"+id).value === "yes";
+
+if (isNaN(len)||len<=0){document.getElementById("fRes"+id).innerHTML="Enter valid length.";return;}
+
+let gateWidth = 1.2;
+let fenceLength = gate ? len - gateWidth : len;
+
+let panels = Math.ceil(fenceLength/1.8);
+let posts = panels + (gate ? 2 : 1);
+let gravelBoards = panels;
+let postcreteBags = posts*2;
+
+let panelPrice = fences[id-1].prices[height];
+let totalPanelsCost = panels * panelPrice;
+let labour = len * 50;
+let gateCost = gate ? 160 : 0;
+
+let total = totalPanelsCost + labour + posts*17 + gravelBoards*17 + postcreteBags*6 + gateCost;
+
+document.getElementById("fRes"+id).innerHTML=`
+<strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
+<ul>
+<li>Panels: ${panels} × £${panelPrice} (£${totalPanelsCost.toFixed(2)})</li>
+<li>Posts: ${posts} × £17</li>
+<li>Gravel Boards: ${gravelBoards} × £17</li>
+<li>Postcrete Bags: ${postcreteBags} × £6</li>
+<li>Height: ${height}ft</li>
+<li>Gate: ${gate ? "Yes (+£160)" : "No"}</li>
+</ul>
+<a href="tel:07735873694">Call Now</a>`;
+}
+</script>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+© Home Repairs 4U | Askern DN6 | Call 07735 873694
+</footer>
+
+</body>
+</html>
+
+
