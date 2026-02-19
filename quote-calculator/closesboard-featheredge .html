@@ -1,1 +1,79 @@
+<!-- ================= CLOSEBOARD FEATHEREDGE ================= -->
+<h2>Closeboard Featheredge Fence Quote</h2>
+<p class="intro">Enter your fence details below to get an instant quote for Closeboard Featheredge panels.</p>
 
+<div class="calc-container" style="background-image:url('/images/closeboard.webp')">
+<h3>Closeboard Featheredge</h3>
+<button class="view-image-button" onclick="openImage('fImg1')">View Image</button>
+<div id="fImg1" class="image-modal" onclick="closeImage(this)">
+<img src="/images/closeboard.webp">
+</div>
+
+<button class="calc-button" onclick="toggleCalculator('f1')">Get Quote</button>
+
+<div class="calculator" id="f1">
+<label>Length (m)</label>
+<input type="number" id="fLen1" value="10" min="1">
+
+<label>Height</label>
+<select id="fHeight1">
+<option value="4">4ft</option>
+<option value="5">5ft</option>
+<option value="6">6ft</option>
+</select>
+
+<label>Gate required?</label>
+<select id="fGate1">
+<option value="no">No</option>
+<option value="yes">Yes (1.2m)</option>
+</select>
+
+<button class="quote-button" onclick="calcFence(1)">Generate</button>
+<div class="result" id="fRes1"></div>
+</div>
+</div>
+
+<script>
+// Only this one fence
+const fences = [
+{ name: "Closeboard Featheredge", img: "/images/closeboard.webp", prices: { 4: 22, 5: 27, 6: 32 } }
+];
+
+function calcFence(id) {
+let len = parseFloat(document.getElementById("fLen" + id).value);
+let height = parseInt(document.getElementById("fHeight" + id).value);
+let gate = document.getElementById("fGate" + id).value === "yes";
+
+if (isNaN(len) || len <= 0) {
+document.getElementById("fRes" + id).innerHTML = "Enter valid length.";
+return;
+}
+
+let gateWidth = 1.2;
+let fenceLength = gate ? len - gateWidth : len;
+
+let panels = Math.ceil(fenceLength / 1.8);
+let posts = panels + (gate ? 2 : 1);
+let gravelBoards = panels;
+let postcreteBags = posts * 2;
+
+let panelPrice = fences[id - 1].prices[height];
+let totalPanelsCost = panels * panelPrice;
+let labour = len * 50;
+let gateCost = gate ? 160 : 0;
+
+let total = totalPanelsCost + labour + posts * 17 + gravelBoards * 17 + postcreteBags * 6 + gateCost;
+
+document.getElementById("fRes" + id).innerHTML = `
+<strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
+<ul>
+<li>Panels: ${panels} × £${panelPrice} (£${totalPanelsCost.toFixed(2)})</li>
+<li>Posts: ${posts} × £17</li>
+<li>Gravel Boards: ${gravelBoards} × £17</li>
+<li>Postcrete Bags: ${postcreteBags} × £6</li>
+<li>Height: ${height}ft</li>
+<li>Gate: ${gate ? "Yes (+£160)" : "No"}</li>
+</ul>
+<a href="tel:07735873694">Call Now</a>`;
+}
+</script>
