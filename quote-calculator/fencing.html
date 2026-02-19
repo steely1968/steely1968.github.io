@@ -1,89 +1,73 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="robots" content="index, follow">
-<title>Professional Guttering Services in Ackworth Doncaster | Instant Online Quote</title>
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/head.html">
-<meta name="description" content="Looking for trusted guttering services in Ackworth Doncaster? From gutter clearing to repairs and replacement, get fast, reliable results. Request your instant online quote today.">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quote Calculators</title>
 <style>
-/* HEADER STYLING */
-header{
-text-align:center;
-padding:25px 10px;
-background:#fff;
-border-bottom:4px solid #27ae60;
+body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
+h1 { text-align: center; margin-bottom: 10px; }
+.intro
+  { text-align: center; margin-bottom: 20px; font-size: 16px; color: #555; }
+.calc-button, .view-image-button, .quote-button, .close-button {
+cursor: pointer; border: none; border-radius: 8px; transition: 0.3s;
 }
+.calc-button { background: #ff6b6b; color: white; padding: 10px 20px; margin-bottom: 20px; }
+.calc-button:hover { background: #ff4757; }
+.view-image-button { background: #1e90ff; color: white; padding: 6px 12px; margin-bottom: 5px; }
+.view-image-button:hover { background: #0077cc; }
+.quote-button { margin-top: 20px; width: 100%; background: #1e90ff; color: white; padding: 10px; }
+.quote-button:hover { background: #0077cc; }
+.close-button { margin-top: 10px; width: 100%; background: #888; color: white; padding: 8px; }
+.close-button:hover { background: #555; }
 
-.logo{
-max-height:90px;
-width:auto;
-}
+.calculators-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+.calc-container { position: relative; border-radius: 12px; min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; padding: 20px; background-size: cover; background-position: center; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+.calc-container::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0; }
+.calc-container > * { position: relative; z-index: 1; }
 
-/* CALL BUTTON */
-.call-btn{
-display:inline-block;
-margin-top:18px;
-padding:14px 28px;
-background:#000;
-color:#fff;
-font-size:19px;
-text-decoration:none;
-font-weight:bold;
-border-radius:6px;
-border:2px solid #000;
-}
-.call-btn:hover{
-background:#333;
-color:#fff;
-}
+.calculator { display: none; margin-top: 15px; padding: 20px; border-radius: 12px; background: #fff; color: #2a2f45; }
+label { display:block; margin-top:15px; }
+input, select { width:100%; padding:8px; margin-top:5px; }
 
-/* FOOTER */
-.site-footer{
-background:#000;
-color:#fff;
-text-align:center;
-padding:25px 15px;
-margin-top:40px;
-font-size:14px;
-}
+.result { margin-top:20px; background:#eef6ff; padding:15px; border-radius:8px; }
+.highlight { font-weight:bold; color:#ff4757; }
+.image-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
+.image-modal img { display: block; margin: 5% auto; max-width: 80%; max-height: 300px; border-radius: 10px; }
+hr { margin:60px 0; }
 
-.footer-services{
-background-color: black;
-padding: 20px;
+@media (max-width: 768px) {
+body { padding: 10px; }
+h1 { font-size: 24px; }
+.calculators-grid { gap: 20px; }
+input, select { font-size: 16px; }
+.result { font-size: 15px; }
+}
+h1, h2, h3, h4, h5, h6, p {
 text-align: center;
-margin-top: 15px;
+}
+ .accordion {
+width: 80%;
+margin: 0 auto;
 }
 
-.footer-services a{
+.accordion button {
+width: 100%;
+padding: 15px;
+font-size: 18px;
+border: none;
+cursor: pointer;
+background-color: black;
 color: white;
-margin: 0 10px;
+}
+
+.panel {
+display: none;
+padding: 15px;
 }
 </style>
 </head>
 <body>
-
-<!-- ✅ HEADER -->
-<header>
-<img src="/images/home-repairs-4u-doncaster.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
-
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
-</div>
-
-<br>
-
-<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
-<a href="https://homerepairs4u.com/quote-calculator/guttering.html" class="call-btn" aria-label="Get a Quote for Guttering Services">📝 Get Instant Quote</a>
-</header>
 
 <script>
 function toggleSection(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
@@ -404,9 +388,5 @@ this.nextElementSibling.style.display = "block";
 });
 });
 </script>
-<!-- ✅ FOOTER -->
-<footer class="site-footer">
-© Home Repairs 4U | Askern DN6 | Call 07735 873694
-</footer>
 </body>
 </html>
