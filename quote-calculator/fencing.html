@@ -90,8 +90,7 @@ The timber boards are tightly fitted to shed water efficiently, while robust con
 Sitting on textured rock face concrete gravel boards, the panels are protected from ground moisture and rot,
 making this fence a low-maintenance, long-lasting solution for any garden or boundary.
 </p>
-
-<button class="calc-button" onclick="toggleSection('fencingSection')">
+<button class="calc-button" onclick="openCloseboardCalculator()">
 View Options
 </button>
 </div>
@@ -209,6 +208,25 @@ document.getElementById("fRes"+id).innerHTML=`
 <li>Gate: ${gate?"Yes (+£160)":"No"}</li>
 </ul>
 <a href="tel:07735873694">Call Now</a>`;
+}
+  function openCloseboardCalculator() {
+
+// Open fencing section if closed
+const fencingSection = document.getElementById("fencingSection");
+if (fencingSection.style.display !== "block") {
+fencingSection.style.display = "block";
+}
+
+// Close all fencing calculators first
+document.querySelectorAll("#fenceContainer .calculator").forEach(function(calc){
+calc.style.display = "none";
+});
+
+// Open Closeboard calculator (f1)
+document.getElementById("f1").style.display = "block";
+
+// Optional: scroll to it smoothly
+document.getElementById("f1").scrollIntoView({ behavior: "smooth" });
 }
 </script>
 <hr>
