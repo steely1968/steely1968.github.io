@@ -210,24 +210,31 @@ document.getElementById("fRes"+id).innerHTML=`
 <a href="tel:07735873694">Call Now</a>`;
 }
   function openCloseboardCalculator() {
+function openFenceCalculator(id) {
+
+const fencingSection = document.getElementById("fencingSection");
 
 // Open fencing section if closed
-const fencingSection = document.getElementById("fencingSection");
 if (fencingSection.style.display !== "block") {
 fencingSection.style.display = "block";
 }
 
-// Close all fencing calculators first
+// Close all fence calculators
 document.querySelectorAll("#fenceContainer .calculator").forEach(function(calc){
 calc.style.display = "none";
 });
 
-// Open Closeboard calculator (f1)
-document.getElementById("f1").style.display = "block";
+// Open selected calculator
+const selected = document.getElementById("f" + id);
+selected.style.display = "block";
 
-// Optional: scroll to it smoothly
-document.getElementById("f1").scrollIntoView({ behavior: "smooth" });
+// Smooth scroll with offset
+const yOffset = -120;
+const y = selected.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+window.scrollTo({ top: y, behavior: "smooth" });
 }
+
 </script>
 <hr>
 
