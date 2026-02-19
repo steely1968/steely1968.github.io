@@ -90,9 +90,6 @@ The timber boards are tightly fitted to shed water efficiently, while robust con
 Sitting on textured rock face concrete gravel boards, the panels are protected from ground moisture and rot,
 making this fence a low-maintenance, long-lasting solution for any garden or boundary.
 </p>
-<button class="calc-button" onclick="openCloseboardCalculator()">
-View Options
-</button>
 </div>
 
 <button>Double Side Hit and Miss</button>
@@ -213,27 +210,6 @@ document.getElementById("fRes"+id).innerHTML=`
 function openFenceCalculator(id) {
 
 const fencingSection = document.getElementById("fencingSection");
-
-// Open fencing section if closed
-if (fencingSection.style.display !== "block") {
-fencingSection.style.display = "block";
-}
-
-// Close all fence calculators
-document.querySelectorAll("#fenceContainer .calculator").forEach(function(calc){
-calc.style.display = "none";
-});
-
-// Open selected calculator
-const selected = document.getElementById("f" + id);
-selected.style.display = "block";
-
-// Smooth scroll with offset
-const yOffset = -120;
-const y = selected.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-window.scrollTo({ top: y, behavior: "smooth" });
-}
 
 </script>
 <hr>
