@@ -144,6 +144,16 @@ localStorage.setItem(key, html);
 window.location.href = "/quote-calculator/response.html";
 }
 </script>
+<script>
+function saveQuote(type, html) {
+// Get existing quotes from localStorage, or start empty
+let quotes = JSON.parse(localStorage.getItem(type)) || [];
+// Add the new quote
+quotes.push(html);
+// Save back to localStorage
+localStorage.setItem(type, JSON.stringify(quotes));
+}
+</script>
 
 <!-- ================= FENCING ================= -->
 <h2>Fence Build Quotes</h2>
@@ -238,7 +248,7 @@ let resultHTML = `
 
 document.getElementById("fRes"+id).innerHTML = resultHTML;
 
-saveQuote("fenceResults", resultHTML);
+saveQuote("quotes", resultHTML);
 }
 </script>
 <hr>
@@ -290,7 +300,7 @@ let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 
 document.getElementById("gRes"+id).innerHTML = resultHTML;
 
-saveQuote("gutterResults", resultHTML);
+saveQuote("quotes", resultHTML);
 }
 </script>
 
@@ -344,7 +354,7 @@ let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 
 document.getElementById("pRes"+id).innerHTML = resultHTML;
 
-saveQuote("pressureResults", resultHTML);
+saveQuote("quotes", resultHTML);
 }
 </script>
 
@@ -422,7 +432,7 @@ let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 
 document.getElementById("dRes"+id).innerHTML = resultHTML;
 
-saveQuote("decoratingResults", resultHTML);
+saveQuote("quotes", resultHTML);
 }
 </script>
 <script>
