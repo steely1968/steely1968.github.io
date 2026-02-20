@@ -6,7 +6,7 @@
 <meta name="robots" content="index, follow">
 <title>Instant Quote Calculators for Fencing, Guttering and More | Home Repairs 4U</title>
 <link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/">
+<link rel="canonical" href="https://homerepairs4u.com/quote-calculator/fencing.html">
 <meta name="description" content="Use our easy online calculators to get instant quotes for fencing, guttering, pressure washing, and exterior decorating services in Doncaster. Fast, transparent pricing.">
 <style>
 /* HEADER STYLING */
@@ -102,6 +102,10 @@ input, select { font-size: 16px; }
 h1, h2, h3, h4, h5, h6, p {
 text-align: center;
 }
+ .accordion {
+width: 80%;
+margin: 0 auto;
+}
 
 .panel {
 display: none;
@@ -126,33 +130,16 @@ style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home<
 
 <a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
 </header>
-<h1>External Maintenance Services</h1>
+<h1>External Maintenance Experts</h1>
 <h2>Fencing, Guttering, Pressure Washing & External-Decorating</h2>
 <h3>Protecting and Enhancing Your Property with Ease</h3>
-<p>At Home Repairs 4U, we specialise in comprehensive external maintenance services for homes and properties. We install durable fencing, clear and repairs gutters, provide professional pressure washing for driveways, roofs, patios, and walls, and deliver high-quality exterior decorating. With our user-friendly online calculators, you can quickly get transparent quotes for any service, helping you plan your projects efficiently and with confidence.</p>
+<p>At Home Repairs 4U, we specialise in comprehensive external maintenance services for homes and properties. Our team installs durable fencing, clears and repairs gutters, provides professional pressure washing for driveways, roofs, patios, and walls, and delivers high-quality exterior decorating. With our user-friendly online calculators, you can quickly get transparent quotes for any service, helping you plan your projects efficiently and with confidence.</p>
 
 <script>
 function toggleSection(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
 function toggleCalculator(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
 function openImage(id){ document.getElementById(id).style.display="block"; }
 function closeImage(el){ el.style.display="none"; }
-</script>
-<script>
-function saveQuote(key, html){
-localStorage.setItem(key, html);
-// Redirect to the results page
-window.location.href = "/quote-calculator/response.html";
-}
-</script>
-<script>
-function saveQuote(type, html) {
-// Get existing quotes from localStorage, or start empty
-let quotes = JSON.parse(localStorage.getItem(type)) || [];
-// Add the new quote
-quotes.push(html);
-// Save back to localStorage
-localStorage.setItem(type, JSON.stringify(quotes));
-}
 </script>
 
 <!-- ================= FENCING ================= -->
@@ -169,10 +156,7 @@ All materials and labour are included in the final total.
 <div id="fencingSection" style="display:none;">
 <div class="calculators-grid" id="fenceContainer"></div>
 </div>
-<a href="https://homerepairs4u.com/quote-calculator/response.html"
-class="quote-button">
-View Your Quote
-</a>
+
 <!-- ================= FENCING Change ================= -->
 <script>
 const fences=[
@@ -234,7 +218,7 @@ let gateCost=gate?160:0;
 
 let total=totalPanelsCost + labour + posts*17 + gravelBoards*17 + postcreteBags*6 + gateCost;
 
-let resultHTML = `
+document.getElementById("fRes"+id).innerHTML=`
 <strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
 <ul>
 <li>Panels: ${panels} × £${panelPrice} (${totalPanelsCost.toFixed(2)})</li>
@@ -245,10 +229,6 @@ let resultHTML = `
 <li>Gate: ${gate?"Yes (+£160)":"No"}</li>
 </ul>
 <a href="tel:07735873694">Call Now</a>`;
-
-document.getElementById("fRes"+id).innerHTML = resultHTML;
-
-saveQuote("quotes", resultHTML);
 }
 </script>
 <hr>
@@ -295,12 +275,8 @@ function calcGutter(id){
 let len=parseFloat(document.getElementById("gLen"+id).value);
 if(isNaN(len)||len<=0){document.getElementById("gRes"+id).innerHTML="Enter valid length."; return;}
 let total=len*gutters[id-1].rate;
-let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
-
-document.getElementById("gRes"+id).innerHTML = resultHTML;
-
-saveQuote("quotes", resultHTML);
 }
 </script>
 
@@ -349,12 +325,8 @@ function calcPressure(id){
 let area=parseFloat(document.getElementById("pArea"+id).value);
 if(isNaN(area)||area<=0){document.getElementById("pRes"+id).innerHTML="Enter valid area.";return;}
 let total=area*pressures[id-1].rate;
-let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
-
-document.getElementById("pRes"+id).innerHTML = resultHTML;
-
-saveQuote("quotes", resultHTML);
 }
 </script>
 
@@ -427,15 +399,12 @@ let h=parseFloat(document.getElementById("dHeight"+id).value);
 if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
 total=len*h*3.5;
 }
-let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+document.getElementById("dRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
-
-document.getElementById("dRes"+id).innerHTML = resultHTML;
-
-saveQuote("quotes", resultHTML);
 }
 </script>
 <script>
+var buttons = document.querySelectorAll(".accordion button");
 
 buttons.forEach(function(button) {
 button.addEventListener("click", function() {
