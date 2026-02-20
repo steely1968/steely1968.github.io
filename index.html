@@ -137,6 +137,13 @@ function toggleCalculator(id){ const el=document.getElementById(id); el.style.di
 function openImage(id){ document.getElementById(id).style.display="block"; }
 function closeImage(el){ el.style.display="none"; }
 </script>
+<script>
+function saveQuote(key, html){
+let stored = JSON.parse(localStorage.getItem(key) || "[]");
+stored.push(html);
+localStorage.setItem(key, JSON.stringify(stored));
+}
+</script>
 
 <!-- ================= FENCING ================= -->
 <h2>Fence Build Quotes</h2>
@@ -214,7 +221,7 @@ let gateCost=gate?160:0;
 
 let total=totalPanelsCost + labour + posts*17 + gravelBoards*17 + postcreteBags*6 + gateCost;
 
-document.getElementById("fRes"+id).innerHTML=`
+let resultHTML = `
 <strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
 <ul>
 <li>Panels: ${panels} × £${panelPrice} (${totalPanelsCost.toFixed(2)})</li>
@@ -225,6 +232,10 @@ document.getElementById("fRes"+id).innerHTML=`
 <li>Gate: ${gate?"Yes (+£160)":"No"}</li>
 </ul>
 <a href="tel:07735873694">Call Now</a>`;
+
+document.getElementById("fRes"+id).innerHTML = resultHTML;
+
+saveQuote("fenceResults", resultHTML);
 }
 </script>
 <hr>
@@ -271,8 +282,12 @@ function calcGutter(id){
 let len=parseFloat(document.getElementById("gLen"+id).value);
 if(isNaN(len)||len<=0){document.getElementById("gRes"+id).innerHTML="Enter valid length."; return;}
 let total=len*gutters[id-1].rate;
-document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
+
+document.getElementById("gRes"+id).innerHTML = resultHTML;
+
+saveQuote("gutterResults", resultHTML);
 }
 </script>
 
@@ -321,8 +336,12 @@ function calcPressure(id){
 let area=parseFloat(document.getElementById("pArea"+id).value);
 if(isNaN(area)||area<=0){document.getElementById("pRes"+id).innerHTML="Enter valid area.";return;}
 let total=area*pressures[id-1].rate;
-document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
+
+document.getElementById("pRes"+id).innerHTML = resultHTML;
+
+saveQuote("pressureResults", resultHTML);
 }
 </script>
 
@@ -395,12 +414,15 @@ let h=parseFloat(document.getElementById("dHeight"+id).value);
 if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
 total=len*h*3.5;
 }
-document.getElementById("dRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
+let resultHTML = `<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
 <a href="tel:07735873694">Call Now</a>`;
+
+document.getElementById("dRes"+id).innerHTML = resultHTML;
+
+saveQuote("decoratingResults", resultHTML);
 }
 </script>
 <script>
-var buttons = document.querySelectorAll(".accordion button");
 
 buttons.forEach(function(button) {
 button.addEventListener("click", function() {
