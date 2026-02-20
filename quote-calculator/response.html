@@ -61,6 +61,13 @@ border-radius:8px;
 text-align:left;
 max-width:700px;
 }
+
+.quote-box h2 {
+margin-top:0;
+margin-bottom:10px;
+color:#ff4757;
+font-size:18px;
+}
 </style>
 </head>
 <body>
@@ -80,7 +87,7 @@ loading="eager">
 <div id="quotesContainer"></div>
 
 <script>
-// Display saved quotes
+// Display saved quotes with title
 function displayQuotes(){
 const container = document.getElementById("quotesContainer");
 container.innerHTML = '';
@@ -94,7 +101,8 @@ return;
 quotes.forEach((q, i) => {
 const div = document.createElement("div");
 div.className = "quote-box";
-div.innerHTML = `<strong>Quote ${i+1}</strong><br>${q}`;
+// q.title should be saved along with the HTML in your saveQuote() call
+div.innerHTML = `<h2>${q.title || 'Quote '+(i+1)}</h2>${q.html}`;
 container.appendChild(div);
 });
 }
