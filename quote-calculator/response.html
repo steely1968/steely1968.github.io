@@ -1,106 +1,55 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="robots" content="index, follow">
-<title>Your Saved Quotes | Home Repairs 4U</title>
-<link rel="icon" href="/favicon.png" type="image/png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Quote Results | Home Repairs 4U</title>
 <link rel="canonical" href="https://homerepairs4u.com/quote-calculator/response.html">
-<meta name="description" content="View all your saved instant quotes for fencing, guttering, and pressure washing services from Home Repairs 4U.">
 <style>
-/* HEADER STYLING */
-header{
-text-align:center;
-padding:25px 10px;
-background:#fff;
-border-bottom:4px solid #27ae60;
-}
-.logo{
-max-height:90px;
-width:auto;
-}
-/* FOOTER */
-.site-footer{
-background:#000;
-color:#fff;
-text-align:center;
-padding:25px 15px;
-margin-top:40px;
-font-size:14px;
-}
-body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
-h1, h2, h3, h4, h5, h6, p { text-align:center; }
-.result { margin: 20px auto; background:#eef6ff; padding:15px; border-radius:8px; max-width:600px; }
-.clear-btn { display:block; margin:10px auto; padding:10px 20px; background:#ff4757; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:bold; }
-.clear-btn:hover { background:#ff6b6b; }
+body { font-family:'Montserrat', sans-serif; background:#f4f7f8; padding:30px; margin:0; text-align:center;}
+h1 { text-align:center; }
+.quote-button { cursor:pointer; border:none; border-radius:8px; background:#1e90ff; color:white; padding:10px 20px; margin:10px; display:inline-block; }
+.quote-button:hover { background:#0077cc; }
+.result { background:#eef6ff; padding:15px; border-radius:8px; margin-bottom:20px; }
+.logo { max-height:90px; width:auto; }
+.site-footer{background:#000;color:#fff;text-align:center;padding:25px 15px;margin-top:40px;font-size:14px;}
 </style>
 </head>
 <body>
+
 <header>
-<img src="/images/home-repairs-4u-doncaster.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
-</div>
-<br>
-<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
+<img src="/images/home-repairs-4u-doncaster.webp" alt="Home Repairs 4U logo" class="logo" width="600" height="200">
 </header>
 
-<h1>Your Saved Quotes</h1>
+<h1>Your Instant Quotes</h1>
 
-<button class="clear-btn" onclick="clearAllQuotes()">Clear All Quotes</button>
+<div id="fenceQuote" class="result"></div>
+<div id="gutterQuote" class="result"></div>
+<div id="pressureQuote" class="result"></div>
+<div id="decoratingQuote" class="result"></div>
 
-<h2>Fence Quotes</h2>
-<div id="fenceQuotes">
-<p>No quotes yet.</p>
-</div>
-
-<h2>Gutter Quotes</h2>
-<div id="gutterQuotes">
-<p>No quotes yet.</p>
-</div>
-
-<h2>Pressure Washing Quotes</h2>
-<div id="pressureQuotes">
-<p>No quotes yet.</p>
-</div>
-
-<script>
-// Display quotes from localStorage
-function displayQuotes(key, containerId){
-let container = document.getElementById(containerId);
-let quotes = JSON.parse(localStorage.getItem(key)) || [];
-if(quotes.length === 0){
-container.innerHTML = "<p>No quotes yet.</p>";
-} else {
-container.innerHTML = quotes.map(q => `<div class="result">${q}</div>`).join('');
-}
-}
-
-// Clear all quotes
-function clearAllQuotes(){
-localStorage.removeItem("fenceResults");
-localStorage.removeItem("gutterResults");
-localStorage.removeItem("pressureResults");
-displayQuotes("fenceResults", "fenceQuotes");
-displayQuotes("gutterResults", "gutterQuotes");
-displayQuotes("pressureResults", "pressureQuotes");
-}
-
-// Load all quotes on page load
-displayQuotes("fenceResults", "fenceQuotes");
-displayQuotes("gutterResults", "gutterQuotes");
-displayQuotes("pressureResults", "pressureQuotes");
-</script>
+<button class="quote-button" onclick="clearQuotes()">Clear All Quotes</button>
 
 <footer class="site-footer">
 © Home Repairs 4U | Askern DN6 | Call 07735 873694
 </footer>
+
+<script>
+// Only read saved quotes
+document.getElementById("fenceQuote").innerHTML = localStorage.getItem("fenceResults") || "No fencing quote yet.";
+document.getElementById("gutterQuote").innerHTML = localStorage.getItem("gutterResults") || "No gutter quote yet.";
+document.getElementById("pressureQuote").innerHTML = localStorage.getItem("pressureResults") || "No pressure washing quote yet.";
+document.getElementById("decoratingQuote").innerHTML = localStorage.getItem("decoratingResults") || "No decorating quote yet.";
+
+// Clear saved quotes
+function clearQuotes() {
+localStorage.removeItem("fenceResults");
+localStorage.removeItem("gutterResults");
+localStorage.removeItem("pressureResults");
+localStorage.removeItem("decoratingResults");
+location.reload();
+}
+</script>
+
 </body>
 </html>
-
