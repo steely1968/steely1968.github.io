@@ -139,9 +139,9 @@ function closeImage(el){ el.style.display="none"; }
 </script>
 <script>
 function saveQuote(key, html){
-let stored = JSON.parse(localStorage.getItem(key) || "[]");
-stored.push(html);
-localStorage.setItem(key, JSON.stringify(stored));
+localStorage.setItem(key, html);
+// Redirect to the results page
+window.location.href = "/quote-calculator/response.html";
 }
 </script>
 
