@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>HomeRepairs4U | Built Properly. Priced Fairly. Done Right.</title>
 <meta name="description" content="Professional fencing, roofing and property repairs. Built properly. Priced fairly. Done right. Get your free quote today.">
 <link rel="canonical" href="https://homerepairs4u.com/">
@@ -21,21 +20,34 @@
 body { font-family: 'Segoe UI', sans-serif; background: var(--light); color:#222; line-height:1.6; overflow-x:hidden; }
 #progressBar { position:fixed; top:0; left:0; height:4px; background:var(--accent); width:0%; z-index:2000; }
 .container { width:90%; max-width:var(--max-width); margin:auto; }
+
+/* HEADER */
 header { position:sticky; top:0; background:rgba(15,32,39,0.95); backdrop-filter:blur(10px); z-index:1000; }
 nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
 nav ul { display:flex; list-style:none; gap:30px; }
 nav a { color:white; text-decoration:none; font-weight:500; transition:0.3s; }
 nav a:hover { color:var(--accent); }
+
+/* HERO */
 .hero {
 height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; color:white;
 background: linear-gradient(-45deg, #1f3c88, #0f2027, #203a43, #2c5364);
 background-size:400% 400%; animation:gradientMove 12s ease infinite; position:relative; overflow:hidden;
 }
 @keyframes gradientMove { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
-.hero h1 { font-size:3.5rem; font-weight:800; }
-.hero p { font-size:1.3rem; margin:25px 0 35px; }
-.typing { display:inline-block; border-right:2px solid white; padding-right:5px; animation:blink 0.8s step-end infinite; }
-@keyframes blink { 0%,50%,100%{border-color:white;} 25%,75%{border-color:transparent;} }
+
+.hero h1 { font-size:3.5rem; font-weight:800; margin-bottom:20px; }
+.hero p { font-size:1.3rem; margin-bottom:35px; }
+
+/* Fade-in elements */
+.hero-title, .hero-subtitle, .hero-cta {
+opacity:0;
+transform: translateY(20px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.hero-title.show, .hero-subtitle.show, .hero-cta.show { opacity:1; transform:translateY(0); }
+
+/* Floating image bubbles */
 .bubble {
 position:absolute; border-radius:50%; overflow:hidden; width:120px; height:120px; opacity:0.85;
 box-shadow:0 10px 20px rgba(0,0,0,0.15); animation:float 8s ease-in-out infinite;
@@ -46,9 +58,13 @@ box-shadow:0 10px 20px rgba(0,0,0,0.15); animation:float 8s ease-in-out infinite
 .bubble:nth-child(3){ animation-delay:4s; }
 .bubble:nth-child(4){ animation-delay:6s; }
 @keyframes float { 0% { transform:translateY(0) translateX(0) rotate(0deg);} 25% { transform:translateY(-15px) translateX(5px) rotate(5deg);} 50% { transform:translateY(0) translateX(0) rotate(0deg);} 75% { transform:translateY(15px) translateX(-5px) rotate(-5deg);} 100% { transform:translateY(0) translateX(0) rotate(0deg);} }
+
+/* BUTTON */
 .btn { background:linear-gradient(45deg,#ffb703,#ff9800); padding:15px 45px; border-radius:50px; font-weight:bold; text-decoration:none; color:black; display:inline-block; transition:0.3s; }
 .btn:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.3); animation:btnPulse 1.5s infinite; }
 @keyframes btnPulse { 0%{ transform:translateY(-5px) scale(1);} 50%{ transform:translateY(-5px) scale(1.05);} 100%{ transform:translateY(-5px) scale(1);} }
+
+/* SECTIONS */
 .section { padding:100px 0; }
 .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:35px; margin-top:60px; }
 .card { background:rgba(255,255,255,0.6); backdrop-filter:blur(15px); padding:25px; border-radius:20px; transition:0.4s; box-shadow:0 20px 40px rgba(0,0,0,0.08);}
@@ -60,10 +76,13 @@ box-shadow:0 10px 20px rgba(0,0,0,0.15); animation:float 8s ease-in-out infinite
 .fade { opacity:0; transform:translateY(40px); transition:0.8s ease; }
 .fade.show { opacity:1; transform:translateY(0); }
 footer { background:var(--dark); color:white; text-align:center; padding:40px 0; }
-@media(max-width:768px){ .hero h1 { font-size:2.5rem;} .counter-container { flex-direction:column; gap:20px;} }
+
+@media(max-width:768px){
+.hero h1 { font-size:2.5rem;}
+.counter-container { flex-direction:column; gap:20px;}
+}
 </style>
 </head>
-
 <body>
 
 <div id="progressBar"></div>
@@ -84,10 +103,10 @@ footer { background:var(--dark); color:white; text-align:center; padding:40px 0;
 
 <!-- HERO -->
 <section class="hero">
-<div class="container fade">
-<h1><span class="typing" id="typingHeadline"></span></h1>
-<p>No shortcuts. No inflated quotes. Just solid work.</p>
-<a href="/quote-calculator/fencing.html" class="btn">Get Your Free Quote</a>
+<div class="container">
+<h1 class="hero-title" id="mainTitle"></h1>
+<p class="hero-subtitle" id="subtitle">No shortcuts. No inflated quotes. Just solid work.</p>
+<a href="/quote-calculator/fencing.html" class="btn hero-cta" id="heroBtn">Get Your Free Quote</a>
 </div>
 
 <!-- Floating image bubbles -->
@@ -145,28 +164,58 @@ footer { background:var(--dark); color:white; text-align:center; padding:40px 0;
 </footer>
 
 <script>
-/* Scroll progress */
-window.onscroll = function(){let winScroll = document.body.scrollTop || document.documentElement.scrollTop; let height = document.documentElement.scrollHeight - document.documentElement.clientHeight; let scrolled = (winScroll / height) * 100; document.getElementById("progressBar").style.width = scrolled + "%";};
+// Scroll progress
+window.onscroll = function(){
+let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+let scrolled = (winScroll / height) * 100;
+document.getElementById("progressBar").style.width = scrolled + "%";
+};
 
-/* Fade-in on scroll */
+// Fade-in on scroll
 const faders = document.querySelectorAll('.fade');
 const appear = new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');}});},{threshold:0.2});
 faders.forEach(fader=>appear.observe(fader));
 
-/* Counter animation */
+// Counter animation
 const counters = document.querySelectorAll('.counter');
-counters.forEach(counter=>{const update=()=>{const target=+counter.getAttribute('data-target'); const count=+counter.innerText; const inc=target/200; if(count<target){counter.innerText=Math.ceil(count+inc); setTimeout(update,10);}else{counter.innerText=target;}}; update();});
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.getAttribute('data-target');
+const count=+counter.innerText;
+const inc=target/200;
+if(count<target){ counter.innerText=Math.ceil(count+inc); setTimeout(update,10);} else {counter.innerText=target;}
+};
+update();
+});
 
-/* Testimonial slider */
-const testimonials=["Fantastic service. Turned up on time and did a brilliant job.","Fair pricing and great workmanship. Highly recommended.","Quick quote and professional finish. Will use again."];
-let i=0; setInterval(()=>{i=(i+1)%testimonials.length; document.getElementById("testimonial").innerText=testimonials[i];},4000);
+// Testimonial slider
+const testimonials=[
+"Fantastic service. Turned up on time and did a brilliant job.",
+"Fair pricing and great workmanship. Highly recommended.",
+"Quick quote and professional finish. Will use again."
+];
+let i=0;
+setInterval(()=>{ i=(i+1)%testimonials.length; document.getElementById("testimonial").innerText=testimonials[i]; },4000);
 
-/* Typing headline once */
-const typingEl=document.getElementById("typingHeadline");
-const phrase="Built Properly. Priced Fairly. Done Right.";
-let idx=0;
-function typeOnce(){ if(idx<phrase.length){ typingEl.textContent+=phrase[idx]; idx++; setTimeout(typeOnce,100); } }
-typeOnce();
+// Hero sequential typing + fade-in
+const mainTitle = document.getElementById("mainTitle");
+const subtitle = document.getElementById("subtitle");
+const heroBtn = document.getElementById("heroBtn");
+
+const titleText = "Welcome to HomeRepairs4U";
+let idx = 0;
+function typeTitle() {
+if (idx < titleText.length) {
+mainTitle.textContent += titleText[idx];
+idx++;
+setTimeout(typeTitle, 100);
+} else {
+subtitle.classList.add("show");
+setTimeout(()=>heroBtn.classList.add("show"), 800);
+}
+}
+window.addEventListener("DOMContentLoaded", ()=>{ mainTitle.classList.add("show"); typeTitle(); });
 </script>
 
 </body>
