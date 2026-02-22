@@ -1,1 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>HomeRepairs4U | Built Properly. Priced Fairly. Done Right.</title>
+<meta name="description" content="Professional fencing, roofing and property repairs. Built properly. Priced fairly. Done right. Get your free quote today.">
+<link rel="canonical" href="https://homerepairs4u.com/local/test2.html">
+
+<style>
+/* ========= ROOT ========= */
+:root {
+--primary: #1f3c88;
+--dark: #0f2027;
+--accent: #ffb703;
+--light: #f5f7fa;
+--white: #ffffff;
+--max-width: 1200px;
+}
+
+/* ========= RESET ========= */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: 'Segoe UI', sans-serif; background: var(--light); color:#222; line-height:1.6; overflow-x:hidden; }
+
+/* Scroll Progress Bar */
+#progressBar { position:fixed; top:0; left:0; height:4px; background:var(--accent); width:0%; z-index:2000; }
+
+/* Container */
+.container { width:90%; max-width:var(--max-width); margin:auto; }
+
+/* ========= HEADER ========= */
+header {
+position:sticky;
+top:0;
+background:rgba(15,32,39,0.95);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+nav { display:flex; justify-content:space-between; align-items:center; padding:20px 0; }
+nav ul { display:flex; list-style:none; gap:30px; }
+nav a { color:white; text-decoration:none; font-weight:500; transition:0.3s; }
+nav a:hover { color:var(--accent); }
+
+/* ========= HERO ========= */
+.hero {
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+background: linear-gradient(-45deg, #1f3c88, #0f2027, #203a43, #2c5364);
+background-size:400% 400%;
+animation:gradientMove 12s ease infinite;
+position:relative;
+overflow:hidden;
+}
+@keyframes gradientMove { 0%{background-position:0% 50%;} 50%{background-position:100% 50%;} 100%{background-position:0% 50%;} }
+
+.hero h1 { font-size:3.5rem; font-weight:800; }
+.hero p { font-size:1.3rem; margin:25px 0 35px; }
+
+/* Typing headline */
+.typing { display:inline-block; border-right:2px solid white; padding-right:5px; animation:blink 0.8s step-end infinite; }
+@keyframes blink { 0%,50%,100%{border-color:white;} 25%,75%{border-color:transparent;} }
+
+/* Floating bubbles with images */
+.bubble {
+position:absolute;
+border-radius:50%;
+overflow:hidden;
+width:120px;
+height:120px;
+opacity:0.85;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+animation:float 8s ease-in-out infinite;
+}
+.bubble img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.bubble:nth-child(1){ animation-delay:0s; }
+.bubble:nth-child(2){ animation-delay:2s; }
+.bubble:nth-child(3){ animation-delay:4s; }
+.bubble:nth-child(4){ animation-delay:6s; }
+
+@keyframes float {
+0% { transform: translateY(0px) translateX(0px) rotate(0deg);}
+25% { transform: translateY(-15px) translateX(5px) rotate(5deg);}
+50% { transform: translateY(0px) translateX(0px) rotate(0deg);}
+75% { transform: translateY(15px) translateX(-5px) rotate(-5deg);}
+100% { transform: translateY(0px) translateX(0px) rotate(0deg);}
+}
+
+/* Buttons */
+.btn { background:linear-gradient(45deg,#ffb703,#ff9800); padding:15px 45px; border-radius:50px; font-weight:bold; text-decoration:none; color:black; display:inline-block; transition:0.3s; }
+.btn:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.3); animation:btnPulse 1.5s infinite; }
+@keyframes btnPulse { 0%{ transform:translateY(-5px) scale(1); } 50%{ transform:translateY(-5px) scale(1.05);} 100%{ transform:translateY(-5px) scale(1); } }
+
+/* ========= SECTIONS ========= */
+.section { padding:100px 0; }
+
+/* Glass cards */
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:35px; margin-top:60px; }
+.card { background:rgba(255,255,255,0.6); backdrop-filter:blur(15px); padding:25px; border-radius:20px; transition:0.4s; box-shadow:0 20px 40px rgba(0,0,0,0.08);}
+.card:hover { transform:translateY(-10px); box-shadow:0 30px 60px rgba(0,0,0,0.15); }
+.card img { width:100%; border-radius:15px; margin-bottom:15px; }
+
+/* Counters */
+.counter { font-size:3rem; font-weight:800; color:var(--primary); text-align:center; }
+.counter-container { display:flex; justify-content:space-around; align-items:center; margin-top:40px; }
+
+/* Testimonials */
+.testimonial { text-align:center; max-width:700px; margin:auto; font-style:italic; position:relative; }
+
+/* Fade Animation */
+.fade { opacity:0; transform:translateY(40px); transition:0.8s ease; }
+.fade.show { opacity:1; transform:translateY(0); }
+
+/* Footer */
+footer { background:var(--dark); color:white; text-align:center; padding:40px 0; }
+
+/* Responsive */
+@media(max-width:768px){
+.hero h1 { font-size:2.5rem; }
+.counter-container { flex-direction:column; gap:20px;}
+}
+</style>
+</head>
+
+<body>
+
+<div id="progressBar"></div>
+
+<header>
+<div class="container">
+<nav>
+<div style="color:white;font-weight:800;font-size:1.5rem;">HomeRepairs4U</div>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/quote-calculator/fencing.html">Fencing</a></li>
+<li><a href="#">Roofing</a></li>
+<li><a href="#">Repairs</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+<div class="container fade">
+<h1><span class="typing" id="typingHeadline"></span></h1>
+<p>No shortcuts. No inflated quotes. Just solid work.</p>
+<a href="/quote-calculator/fencing.html" class="btn">Get Your Free Quote</a>
+</div>
+
+<!-- Floating image bubbles -->
+<div class="bubble" style="top:10%; left:5%;"><img src="images/project1.jpg" alt="Project 1"></div>
+<div class="bubble" style="top:20%; right:10%;"><img src="images/project2.jpg" alt="Project 2"></div>
+<div class="bubble" style="bottom:15%; left:15%;"><img src="images/project3.jpg" alt="Project 3"></div>
+<div class="bubble" style="bottom:20%; right:20%;"><img src="images/project4.jpg" alt="Project 4"></div>
+</section>
+
+<!-- SERVICES -->
+<section class="section">
+<div class="container fade">
+<h2 style="text-align:center;font-size:2.5rem;">Our Services</h2>
+<div class="grid">
+<div class="card">
+<img src="images/fence_in_progress.jpg" alt="Fence in progress">
+<h3>Fencing Installation</h3>
+<p>Strong, secure fencing built to last. See our ongoing projects inside each bubble!</p>
+</div>
+<div class="card">
+<img src="images/roof_in_progress.jpg" alt="Roof in progress">
+<h3>Roof Repairs</h3>
+<p>Fast response and durable roofing solutions. We show our work as it happens.</p>
+</div>
+<div class="card">
+<img src="images/property_in_progress.jpg" alt="Property improvement in progress">
+<h3>Property Improvements</h3>
+<p>Upgrades that increase value and protection. Authentic projects, no stock photos.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- COUNTERS -->
+<section class="section" style="background:#f5f7fa;">
+<div class="container fade">
+<h2 style="text-align:center;">Our Results</h2>
+<div class="counter-container">
+<div><div class="counter" data-target="500">0</div><p>Projects Completed</p></div>
+<div><div class="counter" data-target="15">0</div><p>Years Experience</p></div>
+<div><div class="counter" data-target="100">0</div><p>% Satisfaction</p></div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:#fff;">
+<div class="container fade">
+<h2 style="text-align:center;">What Customers Say</h2>
+<div class="testimonial" id="testimonial">"Fantastic service. Turned up on time and did a brilliant job."</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background:var(--primary);color:white;text-align:center;">
+<div class="container fade">
+<h2>Ready To Start?</h2>
+<br>
+<a href="/quote-calculator/fencing.html" class="btn">Start Your Quote</a>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>&copy; 2026 HomeRepairs4U</p>
+</div>
+</footer>
+
+<script>
+/* Scroll progress */
+window.onscroll = function(){
+let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+let scrolled = (winScroll / height) * 100;
+document.getElementById("progressBar").style.width = scrolled + "%";
+};
+
+/* Fade-in on scroll */
+const faders = document.querySelectorAll('.fade');
+const appear = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){ entry.target.classList.add('show'); }
+});
+},{threshold:0.2});
+faders.forEach(fader=>appear.observe(fader));
+
+/* Counter animation */
+const counters = document.querySelectorAll('.counter');
+counters.forEach(counter=>{
+const update=()=>{
+const target=+counter.getAttribute('data-target');
+const count=+counter.innerText;
+const inc=target/200;
+if(count<target){ counter.innerText=Math.ceil(count+inc); setTimeout(update,10);}
+else{counter.innerText=target;}
+}; update();
+});
+
+/* Testimonial slider */
+const testimonials=[
+"Fantastic service. Turned up on time and did a brilliant job.",
+"Fair pricing and great workmanship. Highly recommended.",
+"Quick quote and professional finish. Will use again."
+];
+let i=0;
+setInterval(()=>{ i=(i+1)%testimonials.length; document.getElementById("testimonial").innerText=testimonials[i]; },4000);
+
+/* Typing headline animation */
+const phrases=["Built Properly.","Priced Fairly.","Done Right."];
+let j=0, k=0, typingSpeed=100, eraseSpeed=50;
+const typingEl=document.getElementById("typingHeadline");
+
+function type(){
+if(k<phrases[j].length){ typingEl.textContent+=phrases[j][k]; k++; setTimeout(type,typingSpeed);}
+else{ setTimeout(erase,1500);}
+}
+function erase(){
+if(k>0){ typingEl.textContent=phrases[j].substring(0,k-1); k--; setTimeout(erase,eraseSpeed);}
+else{ j=(j+1)%phrases.length; setTimeout(type,500);}
+}
+type();
+</script>
+
+</body>
+</html>
