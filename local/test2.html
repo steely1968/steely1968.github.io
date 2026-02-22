@@ -47,18 +47,6 @@ transition: opacity 0.8s ease, transform 0.8s ease;
 }
 .hero-title.show, .hero-subtitle.show, .hero-cta.show { opacity:1; transform:translateY(0); }
 
-/* Floating image bubbles */
-.bubble {
-position:absolute; border-radius:50%; overflow:hidden; width:120px; height:120px; opacity:0.85;
-box-shadow:0 10px 20px rgba(0,0,0,0.15); animation:float 8s ease-in-out infinite;
-}
-.bubble img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
-.bubble:nth-child(1){ animation-delay:0s; }
-.bubble:nth-child(2){ animation-delay:2s; }
-.bubble:nth-child(3){ animation-delay:4s; }
-.bubble:nth-child(4){ animation-delay:6s; }
-@keyframes float { 0% { transform:translateY(0) translateX(0) rotate(0deg);} 25% { transform:translateY(-15px) translateX(5px) rotate(5deg);} 50% { transform:translateY(0) translateX(0) rotate(0deg);} 75% { transform:translateY(15px) translateX(-5px) rotate(-5deg);} 100% { transform:translateY(0) translateX(0) rotate(0deg);} }
-
 /* BUTTON */
 .btn { background:linear-gradient(45deg,#ffb703,#ff9800); padding:15px 45px; border-radius:50px; font-weight:bold; text-decoration:none; color:black; display:inline-block; transition:0.3s; }
 .btn:hover { transform:translateY(-5px); box-shadow:0 15px 30px rgba(0,0,0,0.3); animation:btnPulse 1.5s infinite; }
@@ -93,7 +81,7 @@ footer { background:var(--dark); color:white; text-align:center; padding:40px 0;
 <div style="color:white;font-weight:800;font-size:1.5rem;">HomeRepairs4U</div>
 <ul>
 <li><a href="/">Home</a></li>
-<li><a href="/quote-calculator/fencing.html">Fencing</a></li>
+<li><a href="https://homerepairs4u.com/local/test2.html">Fencing</a></li>
 <li><a href="#">Roofing</a></li>
 <li><a href="#">Repairs</a></li>
 </ul>
@@ -106,14 +94,8 @@ footer { background:var(--dark); color:white; text-align:center; padding:40px 0;
 <div class="container">
 <h1 class="hero-title" id="mainTitle"></h1>
 <p class="hero-subtitle" id="subtitle">No shortcuts. No inflated quotes. Just solid work.</p>
-<a href="/quote-calculator/fencing.html" class="btn hero-cta" id="heroBtn">Get Your Free Quote</a>
+<a href="https://homerepairs4u.com/local/test2.html" class="btn hero-cta" id="heroBtn">Get Your Free Quote</a>
 </div>
-
-<!-- Floating image bubbles -->
-<div class="bubble" style="top:10%; left:5%;"><img src="/images/concave.webp" alt="Fencing"></div>
-<div class="bubble" style="top:20%; right:10%;"><img src="/images/gutter-clearing.webp" alt="Gutter Services"></div>
-<div class="bubble" style="bottom:15%; left:15%;"><img src="images/project3.jpg" alt="Project 3"></div>
-<div class="bubble" style="bottom:20%; right:20%;"><img src="images/project4.jpg" alt="Project 4"></div>
 </section>
 
 <!-- SERVICES -->
@@ -121,7 +103,7 @@ footer { background:var(--dark); color:white; text-align:center; padding:40px 0;
 <div class="container fade">
 <h2 style="text-align:center;font-size:2.5rem;">Our Services</h2>
 <div class="grid">
-<div class="card"><img src="images/fence_in_progress.jpg" alt="Fence in progress"><h3>Fencing Installation</h3><p>Strong, secure fencing built to last. See our ongoing projects inside each bubble!</p></div>
+<div class="card"><img src="images/fence_in_progress.jpg" alt="Fence in progress"><h3>Fencing Installation</h3><p>Strong, secure fencing built to last. See our ongoing projects!</p></div>
 <div class="card"><img src="images/roof_in_progress.jpg" alt="Roof in progress"><h3>Roof Repairs</h3><p>Fast response and durable roofing solutions. We show our work as it happens.</p></div>
 <div class="card"><img src="images/property_in_progress.jpg" alt="Property improvement in progress"><h3>Property Improvements</h3><p>Upgrades that increase value and protection. Authentic projects, no stock photos.</p></div>
 </div>
@@ -153,7 +135,7 @@ footer { background:var(--dark); color:white; text-align:center; padding:40px 0;
 <div class="container fade">
 <h2>Ready To Start?</h2>
 <br>
-<a href="/quote-calculator/fencing.html" class="btn">Start Your Quote</a>
+<a href="https://homerepairs4u.com/local/test2.html" class="btn">Start Your Quote</a>
 </div>
 </section>
 
