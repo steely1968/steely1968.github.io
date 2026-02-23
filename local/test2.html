@@ -18,8 +18,8 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
 font-family:'Segoe UI',sans-serif;
-background:#000; /* changed to black */
-color:#fff; /* ensure text is readable */
+background:var(--light);
+color:#222;
 line-height:1.6;
 overflow-x:hidden;
 }
@@ -131,7 +131,7 @@ transform:translateY(0);
 
 /* STATS */
 .stats{
-background:#111; /* dark for contrast */
+background:white;
 padding:60px 0;
 box-shadow:0 10px 40px rgba(0,0,0,0.05);
 }
@@ -143,7 +143,7 @@ text-align:center;
 }
 .stats h3{
 font-size:2.5rem;
-color:#fff;
+color:var(--dark);
 }
 .stats p{font-weight:600;}
 
@@ -156,7 +156,7 @@ gap:35px;
 margin-top:60px;
 }
 .card{
-background:#111; /* dark card */
+background:white;
 padding:25px;
 border-radius:20px;
 transition:0.4s;
@@ -172,6 +172,48 @@ border-radius:15px;
 margin-bottom:15px;
 }
 
+/* Card button */
+.card-btn{
+display:inline-block;
+margin-top:15px;
+padding:12px 35px;
+background:linear-gradient(45deg,#ffb703,#ff9800);
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+color:black;
+transition:0.3s;
+}
+.card-btn:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* Read more collapsible */
+.read-more{
+margin-top:10px;
+}
+.read-more-btn{
+background:none;
+border:none;
+color:var(--accent);
+font-weight:bold;
+cursor:pointer;
+padding:5px 0;
+}
+.read-more-content{
+max-height:0;
+overflow:hidden;
+transition:max-height 0.4s ease;
+}
+.read-more-content p{
+margin-top:5px;
+font-size:0.95rem;
+}
+.read-more.show .read-more-content{
+max-height:200px;
+}
+
 /* FOOTER */
 footer{
 background:var(--dark);
@@ -184,7 +226,7 @@ padding:40px 0;
 @media(max-width:768px){
 .hero{
 min-height:auto;
-padding-top:180px; /* pushed hero title higher */
+padding-top:160px; /* raised for mobile hero */
 }
 .hero h1{font-size:2.4rem;}
 .hero p{font-size:1.1rem;}
@@ -243,23 +285,131 @@ Get Your Free Quote
 
 <div class="grid">
 
-<div class="card fade"><img src="images/fence.jpg"><h3>Fencing Installation</h3><p>Strong, secure fencing installed properly and built to last.</p></div>
+<!-- Container 1 -->
+<div class="card fade">
+<img src="images/fence.jpg" alt="Fencing work in progress">
+<h3>Fencing Installation</h3>
+<p>Strong, secure fencing installed properly and built to last.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>We specialize in fencing using high-quality materials to ensure durability and security. Our team handles installations, repairs, and custom designs for any property type.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/roof.jpg"><h3>Roof Repairs</h3><p>Reliable roofing solutions with durable materials and no shortcuts.</p></div>
+<!-- Container 2 -->
+<div class="card fade">
+<img src="images/roof.jpg" alt="Roof repair work">
+<h3>Roof Repairs</h3>
+<p>Reliable roofing solutions with durable materials and no shortcuts.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>Our roofing experts repair leaks, replace shingles, and maintain your roof with precision and safety in mind.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/property.jpg"><h3>Property Improvements</h3><p>Professional upgrades that increase safety and property value.</p></div>
+<!-- Container 3 -->
+<div class="card fade">
+<img src="images/property.jpg" alt="Property improvements">
+<h3>Property Improvements</h3>
+<p>Professional upgrades that increase safety and property value.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>We handle small to large upgrades, from painting and carpentry to full property renovations.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/repairs.jpg"><h3>General Repairs</h3><p>Quality repair work completed efficiently and professionally.</p></div>
+<!-- Container 4 -->
+<div class="card fade">
+<img src="images/repairs.jpg" alt="General repairs">
+<h3>General Repairs</h3>
+<p>Quality repair work completed efficiently and professionally.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>We cover all general repairs including plumbing, electrical fixes, and maintenance solutions.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/gates.jpg"><h3>Gate Installation</h3><p>Secure, durable gates installed with precision and attention to detail.</p></div>
+<!-- Container 5 -->
+<div class="card fade">
+<img src="images/gates.jpg" alt="Gate installation in progress">
+<h3>Gate Installation</h3>
+<p>Secure, durable gates installed with precision and attention to detail.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>Custom gates, automated or manual, designed for security and aesthetic appeal.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/flat-roof.jpg"><h3>Flat Roof Repairs</h3><p>Long-lasting flat roof solutions using quality materials.</p></div>
+<!-- Container 6 -->
+<div class="card fade">
+<img src="images/flat-roof.jpg" alt="Flat roof repair work">
+<h3>Flat Roof Repairs</h3>
+<p>Long-lasting flat roof solutions using quality materials.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>We specialize in flat roof maintenance, leak prevention, and durable resurfacing solutions.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/shed.jpg"><h3>Shed & Outbuildings</h3><p>Custom-built sheds and structures designed to last.</p></div>
+<!-- Container 7 -->
+<div class="card fade">
+<img src="images/shed.jpg" alt="Shed construction in progress">
+<h3>Shed & Outbuildings</h3>
+<p>Custom-built sheds and structures designed to last.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>From garden sheds to storage units, we provide strong, weatherproof constructions for your property.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/decking.jpg"><h3>Decking & Timber Work</h3><p>Professional timber installations finished to a high standard.</p></div>
+<!-- Container 8 -->
+<div class="card fade">
+<img src="images/decking.jpg" alt="Decking installation work">
+<h3>Decking & Timber Work</h3>
+<p>Professional timber installations finished to a high standard.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>Decking, pergolas, and timber structures installed with quality craftsmanship and long-lasting finishes.</p>
+</div>
+</div>
+</div>
 
-<div class="card fade"><img src="images/emergency.jpg"><h3>Emergency Repairs</h3><p>Fast response repairs when you need reliable help quickly.</p></div>
+<!-- Container 9 -->
+<div class="card fade">
+<img src="images/emergency.jpg" alt="Emergency repair work">
+<h3>Emergency Repairs</h3>
+<p>Fast response repairs when you need reliable help quickly.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
+<div class="read-more">
+<button class="read-more-btn">Read More ▼</button>
+<div class="read-more-content">
+<p>Our emergency repair team responds quickly to urgent property issues to prevent further damage.</p>
+</div>
+</div>
+</div>
 
 </div>
 </div>
@@ -273,6 +423,7 @@ Get Your Free Quote
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
+// Fade on scroll
 const faders=document.querySelectorAll(".fade");
 const observer=new IntersectionObserver(function(entries,observer){
 entries.forEach(entry=>{
@@ -282,6 +433,16 @@ observer.unobserve(entry.target);
 });
 },{threshold:0.2});
 faders.forEach(el=>observer.observe(el));
+
+// Read more toggle
+const readMoreBtns = document.querySelectorAll(".read-more-btn");
+readMoreBtns.forEach(btn => {
+btn.addEventListener("click", () => {
+const parent = btn.parentElement;
+parent.classList.toggle("show");
+btn.textContent = parent.classList.contains("show") ? "Read Less ▲" : "Read More ▼";
+});
+});
 });
 </script>
 
