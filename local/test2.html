@@ -8,31 +8,31 @@
 <link rel="canonical" href="https://homerepairs4u.com/">
 
 <style>
-:root{
+:root {
 --accent:#ffb703;
 --dark:#0f2027;
 --light:#f5f7fa;
 --max:1200px;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
+* {margin:0;padding:0;box-sizing:border-box;}
+body {
 font-family:'Segoe UI',sans-serif;
 background:var(--light);
 color:#222;
 line-height:1.6;
 overflow-x:hidden;
 }
-.container{width:90%;max-width:var(--max);margin:auto;}
+.container {width:90%;max-width:var(--max);margin:auto;}
 
 /* HEADER */
-header{
+header {
 position:sticky;
 top:0;
 background:rgba(15,32,39,0.95);
 backdrop-filter:blur(10px);
 z-index:1000;
 }
-nav{
+nav {
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -40,26 +40,26 @@ padding:20px 0;
 position:relative;
 flex-wrap:wrap;
 }
-nav .logo{
+nav .logo {
 color:white;
 font-weight:800;
 font-size:1.6rem;
 }
-nav ul.menu{
+nav ul.menu {
 display:flex;
 gap:20px;
 list-style:none;
 flex-wrap:wrap;
 }
-nav ul.menu li a{
+nav ul.menu li a {
 color:white;
 text-decoration:none;
 font-weight:600;
 padding:8px 12px;
 transition:0.3s;
 }
-nav ul.menu li a:hover{color:var(--accent);}
-.menu-toggle{
+nav ul.menu li a:hover {color:var(--accent);}
+.menu-toggle {
 display:none;
 font-size:1.8rem;
 color:white;
@@ -67,7 +67,7 @@ cursor:pointer;
 }
 
 /* HERO */
-.hero{
+.hero {
 position:relative;
 min-height:100vh;
 display:flex;
@@ -78,30 +78,30 @@ color:white;
 background:url('images/work-in-progress.jpg') center/cover no-repeat;
 overflow:hidden;
 }
-.hero-overlay{
+.hero-overlay {
 position:absolute;
 inset:0;
 background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8));
 z-index:1;
 }
-.hero-content{
+.hero-content {
 position:relative;
 z-index:2;
 padding:140px 0 160px 0;
 }
-.hero h1{
+.hero h1 {
 font-size:4rem;
 font-weight:900;
 letter-spacing:-1px;
 text-transform:uppercase;
 margin-bottom:20px;
 }
-.hero p{
+.hero p {
 font-size:1.4rem;
 margin-bottom:40px;
 opacity:0.95;
 }
-.btn{
+.btn {
 background:linear-gradient(45deg,#ffb703,#ff9800);
 padding:18px 55px;
 border-radius:50px;
@@ -111,11 +111,11 @@ color:black;
 display:inline-block;
 transition:0.3s;
 }
-.btn:hover{
+.btn:hover {
 transform:translateY(-6px);
 box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
-.trust-row{
+.trust-row {
 display:flex;
 flex-wrap:wrap;
 gap:20px;
@@ -123,7 +123,7 @@ justify-content:center;
 margin-top:40px;
 font-weight:600;
 }
-.trust-row span{
+.trust-row span {
 background:rgba(255,255,255,0.1);
 padding:10px 18px;
 border-radius:30px;
@@ -131,164 +131,52 @@ backdrop-filter:blur(6px);
 }
 
 /* FADE */
-.fade{
+.fade {
 opacity:0;
 transform:translateY(40px);
 transition:all 0.9s ease;
 }
-.fade.show{
+.fade.show {
 opacity:1;
 transform:translateY(0);
 }
 
 /* STATS */
-.stats{
+.stats {
 background:white;
 padding:60px 0;
 box-shadow:0 10px 40px rgba(0,0,0,0.05);
 }
-.stats-grid{
+.stats-grid {
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:40px;
 text-align:center;
 }
-.stats h3{
+.stats h3 {
 font-size:2.5rem;
 color:var(--dark);
 }
-.stats p{font-weight:600;}
+.stats p {font-weight:600;}
 
-/* SERVICES */
-.section{padding:100px 0;}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:35px;
-margin-top:60px;
-}
-.card{
-background:white;
-padding:25px;
-border-radius:20px;
-transition:0.4s;
-box-shadow:0 20px 40px rgba(0,0,0,0.08);
-}
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 30px 60px rgba(0,0,0,0.15);
-}
-.card img{
-width:100%;
-border-radius:15px;
-margin-bottom:15px;
-transition:0.4s ease;
-}
-.card-btn{
-display:inline-block;
-margin-top:15px;
-padding:12px 35px;
-background:linear-gradient(45deg,#ffb703,#ff9800);
-border-radius:50px;
-font-weight:bold;
-text-decoration:none;
-color:black;
-transition:0.3s;
-}
-.card-btn:hover{
-transform:translateY(-4px);
-box-shadow:0 15px 30px rgba(0,0,0,0.3);
-}
-.read-more{
-margin-top:10px;
-}
-.read-more-btn{
-background:none;
-border:none;
-color:var(--accent);
-font-weight:bold;
-cursor:pointer;
-padding:5px 0;
-}
-.read-more-content{
-max-height:0;
-overflow:hidden;
-transition:max-height 0.4s ease;
-}
-.read-more-content p{
-margin-top:5px;
-font-size:0.95rem;
-}
-.read-more.show .read-more-content{
-max-height:200px;
-}
-
-/* Stagger fade for each card */
-.grid .card:nth-child(1){transition-delay:0.1s;}
-.grid .card:nth-child(2){transition-delay:0.2s;}
-.grid .card:nth-child(3){transition-delay:0.3s;}
-.grid .card:nth-child(4){transition-delay:0.4s;}
-.grid .card:nth-child(5){transition-delay:0.5s;}
-.grid .card:nth-child(6){transition-delay:0.6s;}
-.grid .card:nth-child(7){transition-delay:0.7s;}
-.grid .card:nth-child(8){transition-delay:0.8s;}
-.grid .card:nth-child(9){transition-delay:0.9s;}
-
-/* Fade children inside card sequentially */
-.card .fade-child{
-opacity:0;
-transform:translateY(20px);
-transition:all 0.5s ease;
-}
-.card.show .fade-child:nth-child(1){transition-delay:0.1s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(2){transition-delay:0.2s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(3){transition-delay:0.3s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(4){transition-delay:0.4s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(5){transition-delay:0.5s;opacity:1;transform:translateY(0);}
-
-/* FOOTER */
-footer{
-background:var(--dark);
-color:white;
-text-align:center;
-padding:40px 0;
-}
-
+/* MOBILE FIXES */
 @media(max-width:768px){
-.hero{
-min-height:100vh; /* keep full height */
-padding-top:20px; /* much higher - title near top */
-padding-bottom:40px;
-display:flex;
-flex-direction:column;
-justify-content:flex-start; /* push title to top */
-align-items:center;
-text-align:center;
+.hero {
+min-height:auto;
+padding-top:80px;
+padding-bottom:80px;
 }
-.hero h1{
+.hero h1 {
 font-size:2.8rem;
 line-height:1.2;
-margin-top:20px; /* optional extra spacing from very top */
+margin-bottom:15px;
 }
-.hero p{
+.hero p {
 font-size:1.2rem;
 margin-bottom:30px;
 }
-}
-
-/* Cards spacing */
-.grid{
-gap:20px;
-}
-.card{
-padding:20px;
-}
-
-/* Hamburger menu */
-.menu-toggle{
-display:block;
-}
-nav ul.menu{
+.menu-toggle {display:block;}
+nav ul.menu {
 flex-direction:column;
 display:none;
 background:rgba(15,32,39,0.95);
@@ -300,12 +188,8 @@ padding:10px 0;
 border-radius:0 0 10px 10px;
 gap:10px;
 }
-nav ul.menu.show{
-display:flex;
-}
-nav ul.menu li{
-text-align:center;
-}
+nav ul.menu.show {display:flex;}
+nav ul.menu li{text-align:center;}
 }
 </style>
 </head>
@@ -355,12 +239,33 @@ text-align:center;
 </div>
 </section>
 
+<script>
+// Fade in on scroll
+document.addEventListener("DOMContentLoaded", function() {
+const faders = document.querySelectorAll(".fade");
+const observer = new IntersectionObserver(function(entries, observer) {
+entries.forEach(entry => {
+if(!entry.isIntersecting) return;
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
+});
+}, {threshold:0.2});
+faders.forEach(el => observer.observe(el));
+
+// Hamburger toggle
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('nav ul.menu');
+toggle.addEventListener('click', () => {
+menu.classList.toggle('show');
+});
+});
+</script>
+
 <section class="section">
 <div class="container">
 <h2 class="fade" style="text-align:center;font-size:2.5rem;">Our Services</h2>
 <div class="grid">
 
-<!-- 9 Service Cards -->
 <!-- Card 1 -->
 <div class="card fade">
 <img class="fade-child" src="images/fence.jpg" alt="Fencing work">
@@ -491,26 +396,9 @@ text-align:center;
 </div>
 </section>
 
-<footer class="fade">
-<div class="container">
-<p>&copy; 2026 HomeRepairs4U. All rights reserved.</p>
-</div>
-</footer>
-
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-// Fade in
-const faders=document.querySelectorAll(".fade");
-const observer=new IntersectionObserver(function(entries,observer){
-entries.forEach(entry=>{
-if(!entry.isIntersecting) return;
-entry.target.classList.add("show");
-observer.unobserve(entry.target);
-});
-},{threshold:0.2});
-faders.forEach(el=>observer.observe(el));
-
-// Read more toggle
+// Read more toggle for all cards
+document.addEventListener("DOMContentLoaded", function() {
 const readMoreBtns = document.querySelectorAll(".read-more-btn");
 readMoreBtns.forEach(btn => {
 btn.addEventListener("click", () => {
@@ -519,6 +407,27 @@ parent.classList.toggle("show");
 btn.textContent = parent.classList.contains("show") ? "Read Less ▲" : "Read More ▼";
 });
 });
+});
+</script>
+
+<footer class="fade">
+<div class="container">
+<p>&copy; 2026 HomeRepairs4U. All rights reserved.</p>
+</div>
+</footer>
+
+<script>
+// Fade-in on scroll for cards, hero, stats, footer
+document.addEventListener("DOMContentLoaded", function() {
+const faders = document.querySelectorAll(".fade");
+const observer = new IntersectionObserver(function(entries, observer) {
+entries.forEach(entry => {
+if(!entry.isIntersecting) return;
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
+});
+}, {threshold:0.2});
+faders.forEach(el => observer.observe(el));
 
 // Hamburger toggle
 const toggle = document.querySelector('.menu-toggle');
@@ -526,7 +435,18 @@ const menu = document.querySelector('nav ul.menu');
 toggle.addEventListener('click', () => {
 menu.classList.toggle('show');
 });
+
+// Read more toggle for all cards
+const readMoreBtns = document.querySelectorAll(".read-more-btn");
+readMoreBtns.forEach(btn => {
+btn.addEventListener("click", () => {
+const parent = btn.parentElement;
+parent.classList.toggle("show");
+btn.textContent = parent.classList.contains("show") ? "Read Less ▲" : "Read More ▼";
+});
+});
 });
 </script>
+
 </body>
 </html>
