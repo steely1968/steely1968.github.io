@@ -254,21 +254,26 @@ text-align:center;
 padding:40px 0;
 }
 
-/* MOBILE FIXES */
 @media(max-width:768px){
 .hero{
-min-height:auto;
-padding-top:60px; /* raised title higher on mobile */
-padding-bottom:60px;
+min-height:100vh; /* keep full height */
+padding-top:20px; /* much higher - title near top */
+padding-bottom:40px;
+display:flex;
+flex-direction:column;
+justify-content:flex-start; /* push title to top */
+align-items:center;
+text-align:center;
 }
 .hero h1{
 font-size:2.8rem;
 line-height:1.2;
-margin-bottom:15px;
+margin-top:20px; /* optional extra spacing from very top */
 }
 .hero p{
 font-size:1.2rem;
 margin-bottom:30px;
+}
 }
 
 /* Cards spacing */
