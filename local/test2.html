@@ -14,7 +14,6 @@
 --light:#f5f7fa;
 --max:1200px;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
 font-family:'Segoe UI',sans-serif;
@@ -42,7 +41,7 @@ flex-wrap:wrap;
 }
 nav ul{
 display:flex;
-gap:30px;
+gap:20px;
 list-style:none;
 flex-wrap:wrap;
 }
@@ -170,9 +169,8 @@ box-shadow:0 30px 60px rgba(0,0,0,0.15);
 width:100%;
 border-radius:15px;
 margin-bottom:15px;
+transition:0.4s ease;
 }
-
-/* Card button */
 .card-btn{
 display:inline-block;
 margin-top:15px;
@@ -188,8 +186,6 @@ transition:0.3s;
 transform:translateY(-4px);
 box-shadow:0 15px 30px rgba(0,0,0,0.3);
 }
-
-/* Read more collapsible */
 .read-more{
 margin-top:10px;
 }
@@ -214,6 +210,29 @@ font-size:0.95rem;
 max-height:200px;
 }
 
+/* Stagger fade for each card */
+.grid .card:nth-child(1){transition-delay:0.1s;}
+.grid .card:nth-child(2){transition-delay:0.2s;}
+.grid .card:nth-child(3){transition-delay:0.3s;}
+.grid .card:nth-child(4){transition-delay:0.4s;}
+.grid .card:nth-child(5){transition-delay:0.5s;}
+.grid .card:nth-child(6){transition-delay:0.6s;}
+.grid .card:nth-child(7){transition-delay:0.7s;}
+.grid .card:nth-child(8){transition-delay:0.8s;}
+.grid .card:nth-child(9){transition-delay:0.9s;}
+
+/* Fade children inside card sequentially */
+.card .fade-child{
+opacity:0;
+transform:translateY(20px);
+transition:all 0.5s ease;
+}
+.card.show .fade-child:nth-child(1){transition-delay:0.1s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(2){transition-delay:0.2s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(3){transition-delay:0.3s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(4){transition-delay:0.4s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(5){transition-delay:0.5s;opacity:1;transform:translateY(0);}
+
 /* FOOTER */
 footer{
 background:var(--dark);
@@ -226,10 +245,11 @@ padding:40px 0;
 @media(max-width:768px){
 .hero{
 min-height:auto;
-padding-top:160px; /* raised for mobile hero */
+padding-top:160px;
 }
 .hero h1{font-size:2.4rem;}
 .hero p{font-size:1.1rem;}
+nav ul{gap:10px;}
 }
 </style>
 </head>
@@ -240,10 +260,15 @@ padding-top:160px; /* raised for mobile hero */
 <nav>
 <div style="color:white;font-weight:800;font-size:1.6rem;">HomeRepairs4U</div>
 <ul>
-<li><a href="/">Home</a></li>
-<li><a href="https://homerepairs4u.com/local/test2.html">Fencing</a></li>
-<li><a href="#">Roofing</a></li>
-<li><a href="#">Repairs</a></li>
+<li><a href="#service1">Fencing</a></li>
+<li><a href="#service2">Roof Repairs</a></li>
+<li><a href="#service3">Property Improvements</a></li>
+<li><a href="#service4">General Repairs</a></li>
+<li><a href="#service5">Gate Installation</a></li>
+<li><a href="#service6">Flat Roof Repairs</a></li>
+<li><a href="#service7">Sheds & Outbuildings</a></li>
+<li><a href="#service8">Decking & Timber</a></li>
+<li><a href="#service9">Emergency Repairs</a></li>
 </ul>
 </nav>
 </div>
@@ -252,21 +277,15 @@ padding-top:160px; /* raised for mobile hero */
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="container hero-content">
-
 <h1 class="fade">Built Properly. Priced Fairly. Done Right.</h1>
 <p class="fade">Trusted local specialists in fencing, roofing & property repairs.</p>
-
-<a href="https://homerepairs4u.com/local/test2.html" class="btn fade">
-Get Your Free Quote
-</a>
-
+<a href="https://homerepairs4u.com/local/test2.html" class="btn fade">Get Your Free Quote</a>
 <div class="trust-row fade">
 <span>✔ Fully Insured</span>
 <span>✔ Free Written Quotes</span>
 <span>✔ 10+ Years Experience</span>
 <span>✔ Local & Reliable</span>
 </div>
-
 </div>
 </section>
 
@@ -282,16 +301,16 @@ Get Your Free Quote
 <section class="section">
 <div class="container">
 <h2 class="fade" style="text-align:center;font-size:2.5rem;">Our Services</h2>
-
 <div class="grid">
 
+<!-- Containers 1-9 -->
 <!-- Container 1 -->
-<div class="card fade">
-<img src="images/fence.jpg" alt="Fencing work in progress">
-<h3>Fencing Installation</h3>
-<p>Strong, secure fencing installed properly and built to last.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service1" class="card fade">
+<img class="fade-child" src="images/fence.jpg" alt="Fencing work in progress">
+<h3 class="fade-child">Fencing Installation</h3>
+<p class="fade-child">Strong, secure fencing installed properly and built to last.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>We specialize in fencing using high-quality materials to ensure durability and security. Our team handles installations, repairs, and custom designs for any property type.</p>
@@ -300,12 +319,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 2 -->
-<div class="card fade">
-<img src="images/roof.jpg" alt="Roof repair work">
-<h3>Roof Repairs</h3>
-<p>Reliable roofing solutions with durable materials and no shortcuts.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service2" class="card fade">
+<img class="fade-child" src="images/roof.jpg" alt="Roof repair work">
+<h3 class="fade-child">Roof Repairs</h3>
+<p class="fade-child">Reliable roofing solutions with durable materials and no shortcuts.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>Our roofing experts repair leaks, replace shingles, and maintain your roof with precision and safety in mind.</p>
@@ -314,12 +333,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 3 -->
-<div class="card fade">
-<img src="images/property.jpg" alt="Property improvements">
-<h3>Property Improvements</h3>
-<p>Professional upgrades that increase safety and property value.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service3" class="card fade">
+<img class="fade-child" src="images/property.jpg" alt="Property improvements">
+<h3 class="fade-child">Property Improvements</h3>
+<p class="fade-child">Professional upgrades that increase safety and property value.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>We handle small to large upgrades, from painting and carpentry to full property renovations.</p>
@@ -328,12 +347,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 4 -->
-<div class="card fade">
-<img src="images/repairs.jpg" alt="General repairs">
-<h3>General Repairs</h3>
-<p>Quality repair work completed efficiently and professionally.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service4" class="card fade">
+<img class="fade-child" src="images/repairs.jpg" alt="General repairs">
+<h3 class="fade-child">General Repairs</h3>
+<p class="fade-child">Quality repair work completed efficiently and professionally.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>We cover all general repairs including plumbing, electrical fixes, and maintenance solutions.</p>
@@ -342,12 +361,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 5 -->
-<div class="card fade">
-<img src="images/gates.jpg" alt="Gate installation in progress">
-<h3>Gate Installation</h3>
-<p>Secure, durable gates installed with precision and attention to detail.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service5" class="card fade">
+<img class="fade-child" src="images/gates.jpg" alt="Gate installation in progress">
+<h3 class="fade-child">Gate Installation</h3>
+<p class="fade-child">Secure, durable gates installed with precision and attention to detail.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>Custom gates, automated or manual, designed for security and aesthetic appeal.</p>
@@ -356,12 +375,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 6 -->
-<div class="card fade">
-<img src="images/flat-roof.jpg" alt="Flat roof repair work">
-<h3>Flat Roof Repairs</h3>
-<p>Long-lasting flat roof solutions using quality materials.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service6" class="card fade">
+<img class="fade-child" src="images/flat-roof.jpg" alt="Flat roof repair work">
+<h3 class="fade-child">Flat Roof Repairs</h3>
+<p class="fade-child">Long-lasting flat roof solutions using quality materials.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>We specialize in flat roof maintenance, leak prevention, and durable resurfacing solutions.</p>
@@ -370,12 +389,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 7 -->
-<div class="card fade">
-<img src="images/shed.jpg" alt="Shed construction in progress">
-<h3>Shed & Outbuildings</h3>
-<p>Custom-built sheds and structures designed to last.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service7" class="card fade">
+<img class="fade-child" src="images/shed.jpg" alt="Shed construction in progress">
+<h3 class="fade-child">Shed & Outbuildings</h3>
+<p class="fade-child">Custom-built sheds and structures designed to last.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>From garden sheds to storage units, we provide strong, weatherproof constructions for your property.</p>
@@ -384,12 +403,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 8 -->
-<div class="card fade">
-<img src="images/decking.jpg" alt="Decking installation work">
-<h3>Decking & Timber Work</h3>
-<p>Professional timber installations finished to a high standard.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service8" class="card fade">
+<img class="fade-child" src="images/decking.jpg" alt="Decking installation work">
+<h3 class="fade-child">Decking & Timber Work</h3>
+<p class="fade-child">Professional timber installations finished to a high standard.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>Decking, pergolas, and timber structures installed with quality craftsmanship and long-lasting finishes.</p>
@@ -398,12 +417,12 @@ Get Your Free Quote
 </div>
 
 <!-- Container 9 -->
-<div class="card fade">
-<img src="images/emergency.jpg" alt="Emergency repair work">
-<h3>Emergency Repairs</h3>
-<p>Fast response repairs when you need reliable help quickly.</p>
-<a href="https://homerepairs4u.com/local/test2.html" class="card-btn">Get Quote</a>
-<div class="read-more">
+<div id="service9" class="card fade">
+<img class="fade-child" src="images/emergency.jpg" alt="Emergency repair work">
+<h3 class="fade-child">Emergency Repairs</h3>
+<p class="fade-child">Fast response repairs when you need reliable help quickly.</p>
+<a href="https://homerepairs4u.com/local/test2.html" class="card-btn fade-child">Get Quote</a>
+<div class="read-more fade-child">
 <button class="read-more-btn">Read More ▼</button>
 <div class="read-more-content">
 <p>Our emergency repair team responds quickly to urgent property issues to prevent further damage.</p>
@@ -423,7 +442,7 @@ Get Your Free Quote
 
 <script>
 document.addEventListener("DOMContentLoaded", function(){
-// Fade on scroll
+// Fade on scroll for cards and children
 const faders=document.querySelectorAll(".fade");
 const observer=new IntersectionObserver(function(entries,observer){
 entries.forEach(entry=>{
