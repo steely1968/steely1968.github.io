@@ -121,15 +121,15 @@ backdrop-filter:blur(6px);
 /* FADE */
 .fade{
 opacity:0;
-transform:translateY(20px);
-transition:all 0.8s ease;
+transform:translateY(40px);
+transition:all 0.9s ease;
 }
 .fade.show{
 opacity:1;
 transform:translateY(0);
 }
 
-/* STATS STRIP */
+/* STATS */
 .stats{
 background:white;
 padding:60px 0;
@@ -211,21 +211,14 @@ padding-top:120px;
 <div class="hero-overlay"></div>
 <div class="container hero-content">
 
-<h1 class="fade" id="heroTitle">
-Built Properly. Priced Fairly. Done Right.
-</h1>
+<h1 class="fade">Built Properly. Priced Fairly. Done Right.</h1>
+<p class="fade">Trusted local specialists in fencing, roofing & property repairs.</p>
 
-<p class="fade" id="heroSubtitle">
-Trusted local specialists in fencing, roofing & property repairs.
-</p>
-
-<a href="https://homerepairs4u.com/local/test2.html"
-class="btn fade"
-id="heroBtn">
+<a href="https://homerepairs4u.com/local/test2.html" class="btn fade">
 Get Your Free Quote
 </a>
 
-<div class="trust-row fade" id="heroTrust">
+<div class="trust-row fade">
 <span>✔ Fully Insured</span>
 <span>✔ Free Written Quotes</span>
 <span>✔ 10+ Years Experience</span>
@@ -235,78 +228,60 @@ Get Your Free Quote
 </div>
 </section>
 
-<section class="stats">
+<section class="stats fade">
 <div class="container stats-grid">
-<div>
-<h3>300+</h3>
-<p>Projects Completed</p>
-</div>
-<div>
-<h3>10+</h3>
-<p>Years Experience</p>
-</div>
-<div>
-<h3>100%</h3>
-<p>Free Written Quotes</p>
-</div>
-<div>
-<h3>5★</h3>
-<p>Rated Local Service</p>
-</div>
+<div><h3>300+</h3><p>Projects Completed</p></div>
+<div><h3>10+</h3><p>Years Experience</p></div>
+<div><h3>100%</h3><p>Free Written Quotes</p></div>
+<div><h3>5★</h3><p>Rated Local Service</p></div>
 </div>
 </section>
 
 <section class="section">
 <div class="container">
-<h2 style="text-align:center;font-size:2.5rem;">Our Services</h2>
+<h2 class="fade" style="text-align:center;font-size:2.5rem;">Our Services</h2>
 
 <div class="grid">
 
-<div class="card">
-<img src="images/fence.jpg" alt="Fencing work in progress">
-<h3>Fencing Installation</h3>
-<p>Strong, secure fencing installed properly and built to last.</p>
-</div>
+<div class="card fade"><img src="images/fence.jpg"><h3>Fencing Installation</h3><p>Strong, secure fencing installed properly and built to last.</p></div>
 
-<div class="card">
-<img src="images/roof.jpg" alt="Roof repair work">
-<h3>Roof Repairs</h3>
-<p>Reliable roofing solutions with durable materials and no shortcuts.</p>
-</div>
+<div class="card fade"><img src="images/roof.jpg"><h3>Roof Repairs</h3><p>Reliable roofing solutions with durable materials and no shortcuts.</p></div>
 
-<div class="card">
-<img src="images/property.jpg" alt="Property improvements">
-<h3>Property Improvements</h3>
-<p>Professional upgrades that increase safety and property value.</p>
-</div>
+<div class="card fade"><img src="images/property.jpg"><h3>Property Improvements</h3><p>Professional upgrades that increase safety and property value.</p></div>
 
-<div class="card">
-<img src="images/repairs.jpg" alt="General repairs">
-<h3>General Repairs</h3>
-<p>Quality repair work completed efficiently and professionally.</p>
-</div>
+<div class="card fade"><img src="images/repairs.jpg"><h3>General Repairs</h3><p>Quality repair work completed efficiently and professionally.</p></div>
+
+<div class="card fade"><img src="images/gates.jpg"><h3>Gate Installation</h3><p>Secure, durable gates installed with precision and attention to detail.</p></div>
+
+<div class="card fade"><img src="images/flat-roof.jpg"><h3>Flat Roof Repairs</h3><p>Long-lasting flat roof solutions using quality materials.</p></div>
+
+<div class="card fade"><img src="images/shed.jpg"><h3>Shed & Outbuildings</h3><p>Custom-built sheds and structures designed to last.</p></div>
+
+<div class="card fade"><img src="images/decking.jpg"><h3>Decking & Timber Work</h3><p>Professional timber installations finished to a high standard.</p></div>
+
+<div class="card fade"><img src="images/emergency.jpg"><h3>Emergency Repairs</h3><p>Fast response repairs when you need reliable help quickly.</p></div>
 
 </div>
 </div>
 </section>
 
-<footer>
+<footer class="fade">
 <div class="container">
 <p>&copy; 2026 HomeRepairs4U. All rights reserved.</p>
 </div>
 </footer>
 
 <script>
-window.addEventListener("DOMContentLoaded", function(){
-const title=document.getElementById("heroTitle");
-const subtitle=document.getElementById("heroSubtitle");
-const btn=document.getElementById("heroBtn");
-const trust=document.getElementById("heroTrust");
-
-setTimeout(()=>{title.classList.add("show");},300);
-setTimeout(()=>{subtitle.classList.add("show");},800);
-setTimeout(()=>{btn.classList.add("show");},1300);
-setTimeout(()=>{trust.classList.add("show");},1800);
+document.addEventListener("DOMContentLoaded", function(){
+const faders=document.querySelectorAll(".fade");
+const observer=new IntersectionObserver(function(entries,observer){
+entries.forEach(entry=>{
+if(!entry.isIntersecting) return;
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
+});
+},{threshold:0.2});
+faders.forEach(el=>observer.observe(el));
 });
 </script>
 
