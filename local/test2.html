@@ -283,6 +283,23 @@ display:flex;
 nav ul.menu li{
 text-align:center;
 }
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 40px;
+text-align: center;
+}
+
+.stats-grid .stat-number,
+.stats-grid .stat-label,
+.stats h2 {
+font-size: 2.5rem; /* all text same size as "Our Achievements" */
+font-weight: 700;
+color: var(--dark);
+margin: 0;
+}
+.stats h2 {
+margin-bottom: 30px; /* spacing below heading */
 }
 </style>
 </head>
@@ -325,27 +342,29 @@ text-align:center;
 
 <section class="stats fade">
 <div class="container">
-<h2 class="fade">Our Achievements</h2> <!-- new h2 for the stats section -->
+<h2 class="fade" style="text-align:center;">Our Achievements</h2> <!-- centered h2 -->
+
 <div class="stats-grid">
 <div>
 <p class="stat-number">300+</p>
-<h3>Projects Completed</h3>
+<p class="stat-label">Projects Completed</p>
 </div>
 <div>
 <p class="stat-number">10+</p>
-<h3>Years Experience</h3>
+<p class="stat-label">Years Experience</p>
 </div>
 <div>
 <p class="stat-number">100%</p>
-<h3>Free Written Quotes</h3>
+<p class="stat-label">Free Written Quotes</p>
 </div>
 <div>
 <p class="stat-number">5★</p>
-<h3>Rated Local Service</h3>
+<p class="stat-label">Rated Local Service</p>
 </div>
 </div>
 </div>
 </section>
+
 <section class="section">
 <div class="container">
 <h2 class="fade" style="text-align:center;font-size:2.5rem;">Our Services</h2>
