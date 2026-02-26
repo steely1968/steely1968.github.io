@@ -318,6 +318,38 @@ opacity: 1;
 #action-word.fade-out {
 opacity: 0;
 }
+  /* Moving Banner Styles */
+.moving-banner {
+background: var(--dark);
+color: white;
+overflow: hidden;
+white-space: nowrap;
+padding: 15px 0;
+font-weight: 600;
+}
+
+.moving-banner .banner-track {
+display: inline-block;
+padding-left: 100%;
+animation: scroll-left 20s linear infinite;
+}
+
+.moving-banner span {
+display: inline-block;
+margin: 0 40px;
+}
+
+@keyframes scroll-left {
+0% { transform: translateX(0); }
+100% { transform: translateX(-100%); }
+}
+
+/* Optional: slower scroll on mobile */
+@media(max-width:768px){
+.moving-banner .banner-track {
+animation-duration: 30s;
+}
+}
 </style>
 </head>
 <body>
@@ -359,7 +391,16 @@ opacity: 0;
 </div>
 </div>
 </section>
-
+<!-- Moving Banner -->
+<section class="moving-banner">
+<div class="banner-track">
+<span>✔ Fully Insured</span>
+<span>✔ Free Written Quotes</span>
+<span>✔ 29+ Years Experience</span>
+<span>✔ Local & Reliable</span>
+<span>✔ Fencing, Roofing, Guttering & More!</span>
+</div>
+</section>
 <section class="stats fade">
 <div class="container">
 <h2 class="fade" style="text-align:center;">Our Achievements</h2> <!-- centered h2 -->
