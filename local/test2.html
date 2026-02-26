@@ -301,6 +301,14 @@ margin: 0;
 .stats h2 {
 margin-bottom: 30px; /* spacing below heading */
 }
+  #action-word {
+display: inline-block;
+transition: opacity 0.5s ease-in-out;
+opacity: 1;
+}
+#action-word.fade-out {
+opacity: 0;
+}
 </style>
 </head>
 <body>
@@ -329,13 +337,15 @@ margin-bottom: 30px; /* spacing below heading */
 <section class="hero">
 <div class="hero-overlay"></div>
 <div class="container hero-content">
-<h1 class="fade">Maintained Properly. Priced Fairly. Done Right.</h1>
+<h1 class="fade hero-title">
+<span id="action-word">Built</span> Properly. Priced Fairly. Done Right.
+</h1>
 <p class="fade">Trusted local specialists in fencing, roofing & property repairs.</p>
 <a href="tel:07735873694" class="btn fade">Call Now</a>
 <div class="trust-row fade">
 <span>✔ Fully Insured</span>
 <span>✔ Free Written Quotes</span>
-<span>✔ 29+ Years Experience</span>
+<span>✔ 10+ Years Experience</span>
 <span>✔ Local & Reliable</span>
 </div>
 </div>
@@ -584,6 +594,27 @@ menu.classList.toggle('show');
 ]
 }
 }
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+const words = ["Built","Maintained","Cleaned","Removed","Cleared","Painted","Secured"];
+let index = 0;
+const actionWord = document.getElementById("action-word");
+
+setInterval(() => {
+// Fade out
+actionWord.classList.add("fade-out");
+
+setTimeout(() => {
+// Change word
+index = (index + 1) % words.length;
+actionWord.textContent = words[index];
+
+// Fade in
+actionWord.classList.remove("fade-out");
+}, 500); // must match CSS transition duration
+}, 3000); // change word every 3 seconds
+});
 </script>
 </body>
 </html>
