@@ -331,12 +331,12 @@ font-weight: 600;
 .moving-banner .banner-track {
 display: inline-block;
 padding-left: 100%;
-/* animation removed here; will be added via JS */
+animation: scroll-left 70s linear infinite;
 }
 
 .moving-banner span {
 display: inline-block;
-margin-right: 80px; /* spacing between text */
+margin: 0 40px;
 }
 
 @keyframes scroll-left {
@@ -344,10 +344,10 @@ margin-right: 80px; /* spacing between text */
 100% { transform: translateX(-100%); }
 }
 
-/* Optional slower on mobile */
+/* Optional: slower scroll on mobile */
 @media(max-width:768px){
 .moving-banner .banner-track {
-padding-left: 100%;
+animation-duration: 70s;
 }
 }
 </style>
@@ -379,7 +379,7 @@ padding-left: 100%;
 <div class="hero-overlay"></div>
 <div class="container hero-content">
 <h1 class="fade hero-title">
-<span id="action-word">Built</span> Properly Doncaster.</h1>
+<span id="action-word">Built</span> Properly.</h1>
 <p class="fade">Trusted local specialists in fencing, roofing & property repairs.</p>
 <p class="fade"><strong></strong>Priced Fairly, Done Right.</strong></p>
 <a href="tel:07735873694" class="btn fade">Call Now</a>
@@ -424,14 +424,15 @@ padding-left: 100%;
 <section class="moving-banner">
 <div class="banner-track">
 <span>
-Latest news from HomeRepairs4U: As well as our usual services, we now offer complete exterior home makeovers!
-Clean and protect your roof with professional treatment & recoating.
-Restore your uPVC windows & doors to look like new.
-Keep gutters flowing with clearing, cleaning & repairs.
-Give your conservatory a sparkling roof clean.
-Refresh fences, steel gates & rails with stain and paint.
-Revive patios and driveways with pressure washing.
-Create beautiful decking, gravel areas & landscaping — all done by one trusted team.
+Latest news from HomeRepairs4U: As well as our usual services, we now offer complete exterior home makeovers!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Clean and protect your roof with professional treatment & recoating.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Restore your uPVC windows & doors to look like new.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Keep gutters flowing with clearing, cleaning & repairs.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Give your conservatory a sparkling roof clean.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Refresh fences, steel gates & rails with stain and paint.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Revive patios and driveways with pressure washing.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Create beautiful decking, gravel areas & landscaping — all done by one trusted team.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Call Martin and see the difference!
 </span>
 </div>
 </section>
@@ -524,7 +525,7 @@ Create beautiful decking, gravel areas & landscaping — all done by one trusted
 </div>
 </div>
 </section>
-  
+ 
 <footer class="fade">
 <div class="container">
 <p>&copy; 2026 HomeRepairs4U. All rights reserved.</p>
@@ -560,21 +561,7 @@ const menu = document.querySelector('nav ul.menu');
 toggle.addEventListener('click', () => {
 menu.classList.toggle('show');
 });
-document.addEventListener("DOMContentLoaded", function() {
-const banner = document.querySelector(".moving-banner .banner-track");
-
-const observer = new IntersectionObserver((entries, observer) => {
-entries.forEach(entry => {
-if(entry.isIntersecting) {
-// Add scroll animation when banner comes into view
-banner.style.animation = "scroll-left 35s linear infinite"; // adjust speed here
-observer.unobserve(entry.target); // only trigger once
-}
 });
-}, { threshold: 0.1 }); // trigger when 10% visible
-
-observer.observe(banner);
-}
 </script>
 <script type="application/ld+json">
 {
