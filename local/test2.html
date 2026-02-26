@@ -247,11 +247,23 @@ font-size:2.8rem;
 line-height:1.2;
 margin-top:20px; /* optional extra spacing from very top */
 }
+.hero-subtitle {
+font-size: 2rem; /* bigger than before, smaller than H1 */
+text-align: center;
+margin-top: 20px;
+font-weight: 700; /* slightly bolder */
+color: white;
+opacity: 0;
+transition: opacity 0.9s ease;
+}
+.hero-subtitle.show {
+opacity: 1;
+}
 .hero p{
 font-size:1.2rem;
 margin-bottom:30px;
 }
-}
+
 
 /* Cards spacing */
 .grid{
