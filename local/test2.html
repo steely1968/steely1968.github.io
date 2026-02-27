@@ -242,12 +242,22 @@ justify-content:flex-start; /* push title to top */
 align-items:center;
 text-align:center;
 }
+
 .hero h1{
 font-size:2.4rem;
 line-height:1.15;
 margin-top:20px; /* optional extra spacing from very top */
 max-width: 95%;
 }
+
+.hero-location{
+display:block;
+font-size:1.6rem;
+margin-top:10px;
+font-weight:600;
+opacity:0.9;
+}
+
 .hero-subtitle {
 font-size: 2rem; /* bigger than before, smaller than H1 */
 text-align: center;
@@ -257,6 +267,7 @@ color: white;
 opacity: 0;
 transition: opacity 0.9s ease;
 }
+
 .hero p{
 font-size:1.2rem;
 margin-bottom:30px;
@@ -380,7 +391,8 @@ animation-duration: 70s;
 <div class="hero-overlay"></div>
 <div class="container hero-content">
 <h1 class="fade hero-title">
-<span id="action-word">Built</span> Properly – Local Property Repairs in Doncaster</h1>
+<span id="action-word">Built</span>
+<span class="hero-location">Properly – Local Property Repairs in Doncaster</span></h1>
 <p class="fade">Trusted local specialists in fencing, roofing & property repairs.</p>
 <p class="fade"><strong>Priced Fairly, Done Right.</strong></p>
 <a href="tel:07735873694" class="btn fade">Call Now – Free Quote</a>
