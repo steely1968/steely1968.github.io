@@ -331,7 +331,7 @@ font-weight: 600;
 .moving-banner .banner-track {
 display: inline-block;
 padding-left: 100%;
-animation: scroll-left 70s linear infinite;
+animation: none; /* stop by default */
 }
 
 .moving-banner span {
@@ -681,6 +681,32 @@ actionWord.textContent = words[index];
 actionWord.classList.remove("fade-out");
 }, 500); // must match CSS transition duration
 }, 3000); // change word every 3 seconds
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const banner = document.querySelector(".moving-banner");
+const track = document.querySelector(".moving-banner .banner-track");
+
+if (!banner || !track) return;
+
+const observer = new IntersectionObserver(
+(entries, obs) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+// Restart animation from the beginning
+track.style.animation = "none";
+track.offsetHeight; // force reflow
+track.style.animation = "scroll-left 70s linear infinite";
+
+obs.unobserve(banner); // run once only
+}
+});
+},
+{ threshold: 0.2 }
+);
+
+observer.observe(banner);
 });
 </script>
 </body>
