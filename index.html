@@ -1,427 +1,748 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<title>Instant Quote Calculators for Fencing, Guttering and More | Home Repairs 4U</title>
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="canonical" href="https://homerepairs4u.com/">
-<meta name="description" content="Use our easy online calculators to get instant quotes for fencing, guttering, pressure washing, and exterior decorating services in Doncaster. Fast, transparent pricing.">
+<title>HomeRepairs4U | Built Properly. Priced Fairly. Done Right.</title>
+<meta name="description" content="Trusted local specialists in fencing, roofing & property repairs. Fully insured. Free written quotes. Built properly and priced fairly.">
+<link rel="canonical" href="https://homerepairs4u.com/local/test2.html">
+
 <style>
-/* HEADER STYLING */
+:root{
+--accent:#ffb703;
+--dark:#0f2027;
+--light:#f5f7fa;
+--max:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:'Segoe UI',sans-serif;
+background:var(--light);
+color:#222;
+line-height:1.6;
+overflow-x:hidden;
+}
+.container{width:90%;max-width:var(--max);margin:auto;}
+
+/* HEADER */
 header{
-text-align:center;
-padding:25px 10px;
-background:#fff;
-border-bottom:4px solid #27ae60;
+position:sticky;
+top:0;
+background:rgba(15,32,39,0.95);
+backdrop-filter:blur(10px);
+z-index:1000;
 }
-
-.logo{
-max-height:90px;
-width:auto;
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+position:relative;
+flex-wrap:wrap;
 }
-
-/* CALL BUTTON */
-.call-btn{
-display:inline-block;
-margin-top:18px;
-padding:14px 28px;
-background:#000;
-color:#fff;
-font-size:19px;
+nav .logo{
+color:white;
+font-weight:800;
+font-size:1.6rem;
+}
+nav ul.menu{
+display:flex;
+gap:20px;
+list-style:none;
+flex-wrap:wrap;
+}
+nav ul.menu li a{
+color:white;
 text-decoration:none;
+font-weight:600;
+padding:8px 12px;
+transition:0.3s;
+}
+nav ul.menu li a:hover{color:var(--accent);}
+.menu-toggle{
+display:none;
+font-size:1.8rem;
+color:white;
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+position:relative;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+background: var(--dark);
+overflow:hidden;
+}
+.hero-overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8));
+z-index:1;
+}
+.hero-content{
+position:relative;
+z-index:2;
+padding:140px 0 160px 0;
+}
+.hero h1{
+font-size:4rem;
+font-weight:900;
+letter-spacing:-1px;
+text-transform:uppercase;
+margin-bottom:20px;
+}
+.hero p{
+font-size:1.4rem;
+margin-bottom:40px;
+opacity:0.95;
+}
+.btn{
+background:linear-gradient(45deg,#ffb703,#ff9800);
+padding:18px 55px;
+border-radius:50px;
 font-weight:bold;
-border-radius:6px;
-border:2px solid #000;
+text-decoration:none;
+color:black;
+display:inline-block;
+transition:0.3s;
 }
-.call-btn:hover{
-background:#333;
-color:#fff;
+.btn:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
+.trust-row{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+margin-top:40px;
+font-weight:600;
+}
+.trust-row span{
+background:rgba(255,255,255,0.1);
+padding:10px 18px;
+border-radius:30px;
+backdrop-filter:blur(6px);
+}
+
+/* FADE */
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.9s ease;
+}
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* STATS */
+.stats{
+background:white;
+padding:60px 0;
+box-shadow:0 10px 40px rgba(0,0,0,0.05);
+}
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:40px;
+text-align:center;
+}
+.stats h3{
+font-size:2.5rem;
+color:var(--dark);
+}
+.stats p{font-weight:600;}
+
+/* SERVICES */
+.section{padding:100px 0;}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:35px;
+margin-top:60px;
+}
+.card{
+background:white;
+padding:25px;
+border-radius:20px;
+transition:0.4s;
+box-shadow:0 20px 40px rgba(0,0,0,0.08);
+}
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 30px 60px rgba(0,0,0,0.15);
+}
+.card img{
+width:100%;
+border-radius:15px;
+margin-bottom:15px;
+transition:0.4s ease;
+}
+.card-btn{
+display:inline-block;
+margin-top:15px;
+padding:12px 35px;
+background:linear-gradient(45deg,#ffb703,#ff9800);
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+color:black;
+transition:0.3s;
+}
+.card-btn:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* Stagger fade for each card */
+.grid .card:nth-child(1){transition-delay:0.05s;}
+.grid .card:nth-child(2){transition-delay:0.10s;}
+.grid .card:nth-child(3){transition-delay:0.15s;}
+.grid .card:nth-child(4){transition-delay:0.20s;}
+.grid .card:nth-child(5){transition-delay:0.25s;}
+.grid .card:nth-child(6){transition-delay:0.30s;}
+.grid .card:nth-child(7){transition-delay:0.35s;}
+.grid .card:nth-child(8){transition-delay:0.40s;}
+.grid .card:nth-child(9){transition-delay:0.45s;}
+
+/* Fade children inside card sequentially */
+.card .fade-child{
+opacity:0;
+transform:translateY(20px);
+transition:all 0.3s ease;
+}
+.card.show .fade-child:nth-child(1){transition-delay:0.1s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(2){transition-delay:0.2s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(3){transition-delay:0.3s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(4){transition-delay:0.4s;opacity:1;transform:translateY(0);}
+.card.show .fade-child:nth-child(5){transition-delay:0.5s;opacity:1;transform:translateY(0);}
 
 /* FOOTER */
-.site-footer{
-background:#000;
-color:#fff;
+footer{
+background:var(--dark);
+color:white;
 text-align:center;
-padding:25px 15px;
-margin-top:40px;
-font-size:14px;
+padding:40px 0;
 }
 
-.footer-services{
-background-color: black;
-padding: 20px;
+@media(max-width:768px){
+.hero{
+min-height:100vh; /* keep full height */
+padding-top:20px; /* much higher - title near top */
+padding-bottom:40px;
+display:flex;
+flex-direction:column;
+justify-content:flex-start; /* push title to top */
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:2.4rem;
+line-height:1.15;
+margin-top:20px; /* optional extra spacing from very top */
+max-width: 95%;
+}
+
+.hero-location{
+display:block;
+font-size:1.6rem;
+margin-top:10px;
+font-weight:600;
+opacity:0.9;
+}
+
+.hero-subtitle {
+font-size: 2rem; /* bigger than before, smaller than H1 */
 text-align: center;
-margin-top: 15px;
-}
-
-.footer-services a{
+margin-top: 20px;
+font-weight: 700; /* slightly bolder */
 color: white;
-margin: 0 10px;
+opacity: 0;
+transition: opacity 0.9s ease;
 }
-body { font-family: 'Montserrat', sans-serif; background: #f4f7f8; padding: 30px; margin: 0; }
-h1 { text-align: center; margin-bottom: 10px; }
-.intro
-  { text-align: center; margin-bottom: 20px; font-size: 16px; color: #555; }
-.calc-button, .view-image-button, .quote-button, .close-button {
-cursor: pointer; border: none; border-radius: 8px; transition: 0.3s;
+
+.hero p{
+font-size:1.2rem;
+margin-bottom:30px;
 }
-.calc-button { background: #ff6b6b; color: white; padding: 10px 20px; margin-bottom: 20px; }
-.calc-button:hover { background: #ff4757; }
-.view-image-button { background: #1e90ff; color: white; padding: 6px 12px; margin-bottom: 5px; }
-.view-image-button:hover { background: #0077cc; }
-.quote-button { margin-top: 20px; width: 100%; background: #1e90ff; color: white; padding: 10px; }
-.quote-button:hover { background: #0077cc; }
-.close-button { margin-top: 10px; width: 100%; background: #888; color: white; padding: 8px; }
-.close-button:hover { background: #555; }
-
-.calculators-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-.calc-container { position: relative; border-radius: 12px; min-height: 350px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; padding: 20px; background-size: cover; background-position: center; overflow: hidden; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-.calc-container::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 0; }
-.calc-container > * { position: relative; z-index: 1; }
-
-.calculator { display: none; margin-top: 15px; padding: 20px; border-radius: 12px; background: #fff; color: #2a2f45; }
-label { display:block; margin-top:15px; }
-input, select { width:100%; padding:8px; margin-top:5px; }
-
-.result { margin-top:20px; background:#eef6ff; padding:15px; border-radius:8px; }
-.highlight { font-weight:bold; color:#ff4757; }
-.image-modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); }
-.image-modal img { display: block; margin: 5% auto; max-width: 80%; max-height: 300px; border-radius: 10px; }
-hr { margin:60px 0; }
-
-@media (max-width: 768px) {
-body { padding: 10px; }
-h1 { font-size: 24px; }
-.calculators-grid { gap: 20px; }
-input, select { font-size: 16px; }
-.result { font-size: 15px; }
 }
-h1, h2, h3, h4, h5, h6, p {
+
+/* Cards spacing */
+.grid{
+gap:20px;
+}
+.card{
+padding:20px;
+}
+
+/* Hamburger menu */
+.menu-toggle{
+display:block;
+}
+nav ul.menu{
+flex-direction:column;
+display:none;
+background:rgba(15,32,39,0.95);
+width:100%;
+position:absolute;
+top:70px;
+left:0;
+padding:10px 0;
+border-radius:0 0 10px 10px;
+gap:10px;
+}
+nav ul.menu.show{
+display:flex;
+}
+nav ul.menu li{
+text-align:center;
+}
+.stats-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 40px;
 text-align: center;
 }
- .accordion {
-width: 80%;
-margin: 0 auto;
+
+.stats-grid .stat-number,
+.stats-grid .stat-label,
+.stats h2 {
+font-size: 1.8rem; /* all text same size as "Our Achievements" */
+font-weight: 700;
+color: var(--dark);
+margin: 0;
+}
+.stats h2 {
+margin-bottom: 30px; /* spacing below heading */
+}
+  #action-word {
+display: inline-block;
+transition: opacity 0.5s ease-in-out;
+opacity: 1;
+}
+#action-word.fade-out {
+opacity: 0;
+}
+/* Moving Banner Styles */
+.moving-banner {
+background: var(--dark);
+color: white;
+overflow: hidden;
+white-space: nowrap;
+padding: 15px 0;
+font-weight: 600;
 }
 
-.panel {
-display: none;
-padding: 15px;
+.moving-banner .banner-track {
+display: inline-block;
+padding-left: 100%;
+animation: none; /* stop by default */
+}
+
+.moving-banner span {
+display: inline-block;
+margin: 0 40px;
+}
+
+@keyframes scroll-left {
+0% { transform: translateX(0); }
+100% { transform: translateX(-100%); }
+}
+
+/* Optional: slower scroll on mobile */
+@media(max-width:768px){
+.moving-banner .banner-track {
+animation-duration: 70s;
+}
+}
+.hero h1 {
+font-size: 4rem; /* desktop size */
+line-height: 1.2;
+margin-top: 0;
+max-width: 100%;
+text-align: center;
+}
+
+.hero-location {
+display: block;
+font-size: 2rem; /* slightly smaller than main word */
+margin-top: 10px;
+font-weight: 600;
+opacity: 0.9;
+text-align: center;
 }
 </style>
 </head>
 <body>
+
 <header>
-<img src="/images/home-repairs-4u-doncaster.webp"
-alt="Home Repairs 4U logo"
-class="logo"
-width="600" height="200"
-loading="eager">
-
-<div style="text-align:center; margin-top:10px;">
-<a href="https://steely1968.github.io/"
-style="font-size:20px; color:#000; text-decoration:none; font-weight:600;">Home</a>
-</div>
-
-<br>
-
-<a href="tel:07735873694" class="call-btn" aria-label="Call Home Repairs 4U on 07735 873694">📞 Call Now: 07735 873694</a>
-</header>
-<h1>External Maintenance Experts</h1>
-<h2>Fencing, Guttering, Pressure Washing & External-Decorating</h2>
-<h3>Protecting and Enhancing Your Property with Ease</h3>
-<p>At Home Repairs 4U, we specialise in comprehensive external maintenance services for homes and properties. Our team installs durable fencing, clears and repairs gutters, provides professional pressure washing for driveways, roofs, patios, and walls, and delivers high-quality exterior decorating. With our user-friendly online calculators, you can quickly get transparent quotes for any service, helping you plan your projects efficiently and with confidence.</p>
-
-<script>
-function toggleSection(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
-function toggleCalculator(id){ const el=document.getElementById(id); el.style.display=el.style.display==="block"?"none":"block"; }
-function openImage(id){ document.getElementById(id).style.display="block"; }
-function closeImage(el){ el.style.display="none"; }
-</script>
-
-<!-- ================= FENCING ================= -->
-<h2>Fence Build Quotes</h2>
-<p class="intro">Click below to view fencing options.</p>
-<p class="intro">
-Use this calculator to get an instant fencing estimate. Enter your total fence length,
-select your required height (4ft, 5ft, or 6ft), and choose whether a gate is needed.
-The calculator automatically works out the cost of materials, panels, posts, gravel boards,
-postcrete bags, labour, and adds allows for a gate if required.
-All materials and labour are included in the final total.
-</p>  
-<button class="calc-button" onclick="toggleSection('fencingSection')">View Options</button>
-<div id="fencingSection" style="display:none;">
-<div class="calculators-grid" id="fenceContainer"></div>
-</div>
-
-<!-- ================= FENCING Change ================= -->
-<script>
-const fences=[
-{name:"Closeboard Featheredge", img:"/images/closeboard.webp", prices:{4:22,5:27,6:32}},
-{name:"Double Side Hit Miss", img:"/images/double-hit-miss.webp", prices:{4:24,5:29,6:34}},
-{name:"Double Side Concave", img:"/images/concave.webp", prices:{4:25,5:30,6:36}},
-{name:"Venetian", img:"/images/venetian.webp", prices:{4:23,5:28,6:33}},
-{name:"Urban Hedge", img:"/images/urban-hedge.webp", prices:{4:21,5:26,6:31}},
-{name:"Single Hit Miss", img:"/images/hit-miss.webp", prices:{4:22,5:27,6:32}}
-];
-
-const fenceContainer=document.getElementById("fenceContainer");
-fences.forEach((f,i)=>{
-const id=i+1;
-fenceContainer.innerHTML+=`
-<div class="calc-container" style="background-image:url('${f.img}')">
-<h3>${f.name}</h3>
-<button class="view-image-button" onclick="openImage('fImg${id}')">View Image</button>
-<div id="fImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${f.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('f${id}')">Get Quote</button>
-<div class="calculator" id="f${id}">
-<label>Length (m)</label>
-<input type="number" id="fLen${id}" value="10" min="1">
-<label>Height</label>
-<select id="fHeight${id}">
-<option value="4">4ft</option>
-<option value="5">5ft</option>
-<option value="6">6ft</option>
-</select>
-<label>Gate required?</label>
-<select id="fGate${id}">
-<option value="no">No</option>
-<option value="yes">Yes (1.2m)</option>
-</select>
-<button class="quote-button" onclick="calcFence(${id})">Generate</button>
-<div class="result" id="fRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcFence(id){
-let len=parseFloat(document.getElementById("fLen"+id).value);
-let height=parseInt(document.getElementById("fHeight"+id).value);
-let gate=document.getElementById("fGate"+id).value==="yes";
-if(isNaN(len)||len<=0){document.getElementById("fRes"+id).innerHTML="Enter valid length."; return;}
-
-let gateWidth=1.2;
-let fenceLength=gate?len-gateWidth:len;
-
-let panels=Math.ceil(fenceLength/1.8);
-let posts=panels + (gate?2:1);
-let gravelBoards=panels;
-let postcreteBags=posts*2;
-
-let panelPrice=fences[id-1].prices[height];
-let totalPanelsCost=panels*panelPrice;
-let labour=len*50;
-let gateCost=gate?160:0;
-
-let total=totalPanelsCost + labour + posts*17 + gravelBoards*17 + postcreteBags*6 + gateCost;
-
-document.getElementById("fRes"+id).innerHTML=`
-<strong>Total:</strong> <h2>£${total.toFixed(2)}</h2>
-<ul>
-<li>Panels: ${panels} × £${panelPrice} (${totalPanelsCost.toFixed(2)})</li>
-<li>Posts: ${posts} × £17</li>
-<li>Gravel Boards: ${gravelBoards} × £17</li>
-<li>Postcrete Bags: ${postcreteBags} × £6</li>
-<li>Height: ${height}ft</li>
-<li>Gate: ${gate?"Yes (+£160)":"No"}</li>
+<div class="container">
+<nav>
+<div class="logo">HomeRepairs4U</div>
+<div class="menu-toggle">☰</div>
+<ul class="menu">
+<li><a href="https://homerepairs4u.com/">Home</a></li>
+<li><a href="https://homerepairs4u.com/local/fencing.html">Fencing</a></li>
+<li><a href="https://homerepairs4u.com/local/roof-cleaning.html">Roof Cleaning</a></li>
+<li><a href="https://homerepairs4u.com/local/exterior-painting.html">Exterior-Painting</a></li>
+<li><a href="https://homerepairs4u.com/local/ivy-control.html">Ivy-Control</a></li>
+<li><a href="https://homerepairs4u.com/local/gutter-services.html">Gutter Services</a></li>
+<li><a href="https://homerepairs4u.com/local/pressure-washing.html">Pressure Washing</a></li>
+<li><a href="https://homerepairs4u.com/local/emergency-window-boarding.html">Window Boarding</a></li>
+<li><a href="https://homerepairs4u.com/local/decking-installed.html">Decking Installed</a></li>
+<li><a href="https://homerepairs4u.com/contact.html">Contact</a></li>
 </ul>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
-<hr>
+</nav>
+</div>
+</header>
 
-<!-- ================= GUTTERING ================= -->
-<h2>Gutter Services Quote</h2>
-<p class="intro">Click below to view gutter service options.</p>
-<p class="intro">
-Use this calculator to get an instant gutter service estimate. Select the service type,
-enter the total length in metres, and the system will automatically calculate the cost
-based on our fixed per-metre rate. All pricing shown is transparent and includes labour.
+<section class="hero">
+<div class="hero-overlay"></div>
+<div class="container hero-content">
+<h1 class="fade hero-title">
+<span id="action-word">Built</span>
+<span class="hero-location">Properly – Local Property Repairs in Doncaster</span></h1>
+<p class="fade">Trusted local specialists in fencing, roofing & property repairs.</p>
+<p class="fade"><strong>Priced Fairly, Done Right.</strong></p>
+<a href="tel:07735873694" class="btn fade">Call Now – Free Quote</a>
+<div class="trust-row fade">
+<span>✔ Fully Insured</span>
+<span>✔ Free Written Quotes</span>
+<span>✔ 29+ Years Experience</span>
+<span>✔ Local & Reliable</span>
+<p style="display:none;">Local fencing, roof cleaning, gutter services and exterior property repairs in Doncaster and surrounding areas.</p>
+</div>
+</div>
+</section>
+
+<section class="stats fade">
+<div class="container">
+<h2 class="fade" style="text-align:center;">Our Achievements</h2> <!-- centered h2 -->
+
+<div class="stats-grid">
+<div>
+<p class="stat-number">3400+</p>
+<p class="stat-label">Projects Completed</p>
+</div>
+<div>
+<p class="stat-number">29+</p>
+<p class="stat-label">Years Experience</p>
+</div>
+<div>
+<p class="stat-number">100%</p>
+<p class="stat-label">Free Quotes</p>
+</div>
+<div>
+<p class="stat-number">5★</p>
+<p class="stat-label">Local Service</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+<h2 class="fade" style="text-align:center;font-size:2.5rem;">Our Services</h2>
+<!-- Moving Banner -->
+<section class="moving-banner">
+<div class="banner-track">
+<span>
+Latest news from HomeRepairs4U: As well as our usual services, we now offer complete exterior home makeovers!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Clean and protect your roof with professional treatment & recoating.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Restore your uPVC windows & doors to look like new.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Keep gutters flowing with clearing, cleaning & repairs.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Repaint the exterior of your house.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Give your conservatory a sparkling roof clean.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Refresh fences, steel gates & rails with stain and paint.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Revive patios and driveways with pressure washing.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Create beautiful decking, gravel areas & landscaping — all done by one trusted team.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Call Martin and see the difference!
+</span>
+</div>
+</section>
+<div style="text-align:center; margin-top:20px;">
+<a href="tel:07735873694" class="btn">Call Martin</a>
+</div>
+<div class="grid">
+
+<!-- 9 Service Cards -->
+<!-- Card 1 -->
+<div class="card fade">
+<img class="fade-child" src="/images/fence-panels.webp" alt="Strong structured fencing work that lasts, Doncaster">
+<h3 class="fade-child">Strong Straight Fencing Built to Last!</h3>
+<p class="fade-child">Solid, level fencing installed properly from the ground up. No rushed jobs, no weak posts - just strong, secure boundaries that last!</p>
+<p class="fade-child">View our fencing service page</p>  
+<a href="https://homerepairs4u.com/local/fencing.html" class="card-btn fade-child">Fencing Services</a>
+</div>
+
+<!-- Card 2 -->
+<div class="card fade">
+<img class="fade-child" src="/images/roof-clean.webp" alt="Roof Cleaning without damaging your tiles, no pressure wash, Doncaster">
+<h3 class="fade-child">Roof Cleaning Done Properly</h3>
+<p class="fade-child">We remove moss, lichen, and dirt the right way - first scraping away build-up, then applying a safe chemical treatment to protect from regrowth without destroying your roof tiles!</p>
+<p class="fade-child">View our roof cleaning page.</p>
+  <a href="https://homerepairs4u.com/local/roof-cleaning.html" class="card-btn fade-child">Roof Cleaning</a>
+</div>
+
+<!-- Card 3 -->
+<div class="card fade">
+<img class="fade-child" src="/images/house-paint.webp" alt="Property Improvements Exterior house painted before after, Doncaster">
+<h3 class="fade-child">Transform Your Homes Exterior</h3>
+<p class="fade-child">We prep, prime, and paint your homes exterior with attention to detail. Every surface protected, every line clean - a finish that looks great and lasts for years!</p>
+<p class="fade-child">View our exterior painting page.</p>
+<a href="https://homerepairs4u.com/local/exterior-painting.html" class="card-btn fade-child">Exterior Painting</a>
+</div>
+
+<!-- Card 4 -->
+<div class="card fade">
+<img class="fade-child" src="/images/ivy-removal.webp" alt="Ivy completely removed from your property, Doncaster">
+<h3 class="fade-child">Ivy Removed Safely and Permanently</h3>
+<p class="fade-child">Overgrown ivy can damage brickwork, gutters, and roofing if left unchecked. We remove ivy carefully and thoroughly, preventing further damage while keeping your property clean and protected. No tearing, no mess — just ivy removed the right way.</p>
+<p class="fade-child">View our ivy control page.</p>
+<a href="https://homerepairs4u.com/local/ivy-removal.html" class="card-btn fade-child">Ivy Removal</a>
+</div>
+
+<!-- Card 5 -->
+<div class="card fade">
+<img class="fade-child" src="/images/gutter-service.webp" alt="Gutter clearing, cleaning, repairs and replacement - Doncaster">
+<h3 class="fade-child">Gutters Cleared, Cleaned, Repaired or Replaced.</h3>
+<p class="fade-child">Blocked or damaged gutters can lead to leaks and damp if left unchecked. We clear, clean, repair, or replace guttering properly, ensuring rainwater flows away from your property as it should. No shortcuts — just reliable guttering done right.</p>
+<p class="fade-child">View our gutter services page.</p>
+<a href="https://homerepairs4u.com/local/gutter-services.html" class="card-btn fade-child">Gutter services</a>
+</div>
+
+<!-- Card 6 -->
+<div class="card fade">
+<img class="fade-child" src="/images/pressure-washing-driveways.webp" alt="Pressure washing driveways, patios, decking, Doncaster">
+<h3 class="fade-child">Pressure Washing Remove Moss and Grime.</h3>
+<p class="fade-child">We professionally clean driveways, patios, and paths to remove dirt, algae, and staining. Using the correct pressure for each surface, we restore a clean, safe finish without causing damage. Proper cleaning, long-lasting results.</p>
+<p class="fade-child">View our pressure washing page.</p>
+<a href="https://homerepairs4u.com/local/pressure-washing.html" class="card-btn fade-child">Pressure Washing</a>
+</div>
+
+<!-- Card 7 -->
+<div class="card fade">
+<img class="fade-child" src="/images/windows-boarded.webp" alt="Windows boarded up emergency service, Doncaster">
+<h3 class="fade-child">Emergency Window Boarding Up.</h3>
+<p class="fade-child">We provide fast, secure window boarding to protect your property after damage or break-ins. Strong materials fitted properly to keep your home or business safe until permanent repairs are carried out.</p>
+<p class="fade-child">View our security window boarding page.</p>
+<a href="https://homerepairs4u.com/local/window-boarding.html" class="card-btn fade-child">Window Boarding</a>
+
+</div>
+
+<!-- Card 8 -->
+<div class="card fade">
+<img class="fade-child" src="/images/decking.webp" alt="Decking & Timber">
+<h3 class="fade-child">Decking Installed and Repaired</h3>
+<p class="fade-child">We install and repair timber decking built to last. From solid foundations to a clean, level finish, every deck is fitted properly for strength, safety, and long-term durability.</p>
+<p class="fade-child">View our decking installation page.</p>
+<a href="https://homerepairs4u.com/local/decking-installation.html" class="card-btn fade-child">Decking Installation</a>
+</div>
+
+<!-- Card 9 -->
+<div class="card fade">
+<h3 class="fade-child">Reliable Property Repairs You Can Trust.</h3>
+<p class="fade-child">From small repairs to urgent issues, we take pride in doing every job properly. Fair pricing, honest advice, and work completed to a high standard — that’s the HomeRepairs4U promise.</p>
+<a href="https://homerepairs4u.com/local/contact.html" class="card-btn fade-child">Contact</a>
+</div>
+
+</div>
+</div>
+</section>
+<p class="fade" style="text-align:center;font-weight:600;">
+Serving Doncaster, Askern, Bentley, Adwick-le-Street, Armthorpe and nearby areas.
 </p>
-<button class="calc-button" onclick="toggleSection('gutterSection')">View Options</button>
-<div id="gutterSection" style="display:none;">
-<div class="calculators-grid" id="gutterContainer"></div>
+<footer class="fade">
+<div class="container">
+<p>&copy; 2026 HomeRepairs4U. All rights reserved.</p>
 </div>
 
-<script>
-const gutters=[
-{name:"Gutter Clearing (£4.5/m)", img:"/images/gutter-clearing.webp", rate:4.5},
-{name:"Gutter & Fascia Cleaning (£4/m)", img:"/images/cleaned-gutters-before-after.webp", rate:4},
-{name:"Gutter Replacement (£30/m)", img:"/images/gutter-alignment.webp", rate:30}
-];
-
-const gutterContainer=document.getElementById("gutterContainer");
-gutters.forEach((g,i)=>{
-const id=i+1;
-gutterContainer.innerHTML+=`
-<div class="calc-container" style="background-image:url('${g.img}')">
-<h3>${g.name}</h3>
-<button class="view-image-button" onclick="openImage('gImg${id}')">View Image</button>
-<div id="gImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${g.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('g${id}')">Get Quote</button>
-<div class="calculator" id="g${id}">
-<label>Length (m)</label>
-<input type="number" id="gLen${id}" value="10" min="1">
-<button class="quote-button" onclick="calcGutter(${id})">Generate</button>
-<div class="result" id="gRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcGutter(id){
-let len=parseFloat(document.getElementById("gLen"+id).value);
-if(isNaN(len)||len<=0){document.getElementById("gRes"+id).innerHTML="Enter valid length."; return;}
-let total=len*gutters[id-1].rate;
-document.getElementById("gRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
-
-<hr>
-
-<!-- ================= PRESSURE WASHING ================= -->
-<h2>Pressure Washing</h2>
-<p class="intro">Click below to view pressure washing options.</p>
-<p class="intro">
-Use this calculator to get an instant pressure washing estimate. Select the surface type
-and enter the total area in square metres. The system will automatically calculate the
-price based on our fixed rate per m² or metre, depending on the service selected.
-All pricing includes professional cleaning and labour.
-</p>
-<button class="calc-button" onclick="toggleSection('pressureSection')">View Options</button>
-<div id="pressureSection" style="display:none;">
-<div class="calculators-grid" id="pressureContainer"></div>
-</div>
-
-<script>
-const pressures=[
-{name:"Driveways (£3/m²)", img:"/my-images/driveway.webp", rate:3},
-{name:"Roof (£8/m)", img:"/my-images/roof.webp", rate:8},
-{name:"Patio (£3/m²)", img:"/my-images/patio.webp", rate:3},
-{name:"Walls (£4/m²)", img:"/my-images/walls.webp", rate:4},
-{name:"Fence (£2.5/m²)", img:"/my-images/fence.webp", rate:2.5}
-];
-
-const pressureContainer=document.getElementById("pressureContainer");
-pressures.forEach((p,i)=>{
-const id=i+1;
-pressureContainer.innerHTML+=`
-<div class="calc-container" style="background-image:url('${p.img}')">
-<h3>${p.name}</h3>
-<button class="calc-button" onclick="toggleCalculator('p${id}')">Get Quote</button>
-<div class="calculator" id="p${id}">
-<label>Area (m²)</label>
-<input type="number" id="pArea${id}" value="10" min="1">
-<button class="quote-button" onclick="calcPressure(${id})">Generate</button>
-<div class="result" id="pRes${id}"></div>
-</div>
-</div>`;
-});
-
-function calcPressure(id){
-let area=parseFloat(document.getElementById("pArea"+id).value);
-if(isNaN(area)||area<=0){document.getElementById("pRes"+id).innerHTML="Enter valid area.";return;}
-let total=area*pressures[id-1].rate;
-document.getElementById("pRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
-
-<hr>
-
-<!-- ================= EXTERIOR DECORATING ================= -->
-<h2>Exterior Decorating</h2>
-<p class="intro">Click below to view exterior decorating options.</p>
-<p class="intro">
-Use this calculator to get an instant exterior decorating estimate. Select the service type
-and enter the required measurements in metres. For house painting, enter the length and height
-of each side of the property. The calculator will automatically work out the total area and
-apply the correct rate per m². All pricing includes materials and labour.
-</p>
-<button class="calc-button" onclick="toggleSection('decoratingSection')">View Options</button>
-<div id="decoratingSection" style="display:none;">
-<div class="calculators-grid" id="decoratingContainer"></div>
-</div>
-
-<script>
-const decoratingServices=[
-{name:"Exterior House Paint (£12/m²)", img:"/my-images/house-paint.webp", type:"housePaint"},
-{name:"Steel Gates & Rails (£7/m²)", img:"/my-images/steel-gates.webp", type:"steelGates"},
-{name:"Fence Panels & Outer Buildings (£3.5/m²)", img:"/my-images/fence-outer.webp", type:"fenceOuter"}
-];
-
-const decoratingContainer=document.getElementById("decoratingContainer");
-decoratingServices.forEach((s,i)=>{
-const id=i+1;
-let html=`<div class="calc-container" style="background-image:url('${s.img}')">
-<h3>${s.name}</h3>
-<button class="view-image-button" onclick="openImage('dImg${id}')">View Image</button>
-<div id="dImg${id}" class="image-modal" onclick="closeImage(this)"><img src="${s.img}"></div>
-<button class="calc-button" onclick="toggleCalculator('d${id}')">Get Quote</button>
-<div class="calculator" id="d${id}">`;
-
-if(s.type==="housePaint"){
-for(let side=1; side<=4; side++){
-html+=`<label>House Side ${side} (Length × Height m)</label>
-<input type="number" id="hpLen${side}" value="10" placeholder="Length">
-<input type="number" id="hpHeight${side}" value="3" placeholder="Height">`;
-}
-}else{
-html+=`<label>Length (m)</label><input type="number" id="dLen${id}" value="10">
-<label>Height (m)</label><input type="number" id="dHeight${id}" value="3">`;
-}
-
-html+=`<button class="quote-button" onclick="calcDecorating('${s.type}',${id})">Generate</button>
-<div class="result" id="dRes${id}"></div></div></div>`;
-decoratingContainer.innerHTML+=html;
-});
-
-function calcDecorating(type,id){
-let total=0;
-if(type==="housePaint"){
-for(let side=1;side<=4;side++){
-let len=parseFloat(document.getElementById("hpLen"+side).value);
-let h=parseFloat(document.getElementById("hpHeight"+side).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
-total+=len*h*12;
-}
-}else if(type==="steelGates"){
-let len=parseFloat(document.getElementById("dLen"+id).value);
-let h=parseFloat(document.getElementById("dHeight"+id).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
-total=len*h*7;
-}else if(type==="fenceOuter"){
-let len=parseFloat(document.getElementById("dLen"+id).value);
-let h=parseFloat(document.getElementById("dHeight"+id).value);
-if(isNaN(len)||isNaN(h)||len<=0||h<=0){document.getElementById("dRes"+id).innerHTML="Enter valid measurements.";return;}
-total=len*h*3.5;
-}
-document.getElementById("dRes"+id).innerHTML=`<strong>Total:</strong><h2>£${total.toFixed(2)}</h2>
-<a href="tel:07735873694">Call Now</a>`;
-}
-</script>
-<script>
-var buttons = document.querySelectorAll(".accordion button");
-
-buttons.forEach(function(button) {
-button.addEventListener("click", function() {
-
-document.querySelectorAll(".panel").forEach(function(panel) {
-panel.style.display = "none";
-});
-
-this.nextElementSibling.style.display = "block";
-});
-});
-</script>
-  <a href="https://homerepairs4u.com/local/test2.html" class="btn hero-cta" id="heroBtn">Get Your Free Quote</a>
-<!-- ✅ FOOTER -->
-<footer class="site-footer">
-© Home Repairs 4U | Askern DN6 | Call 07735 873694
 </footer>
 
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+// Fade in
+const faders=document.querySelectorAll(".fade");
+const observer=new IntersectionObserver(function(entries,observer){
+entries.forEach(entry=>{
+if(!entry.isIntersecting) return;
+entry.target.classList.add("show");
+observer.unobserve(entry.target);
+});
+},{threshold:0.2});
+faders.forEach(el=>observer.observe(el));
+
+// Read more toggle
+const readMoreBtns = document.querySelectorAll(".read-more-btn");
+readMoreBtns.forEach(btn => {
+btn.addEventListener("click", () => {
+const parent = btn.parentElement;
+parent.classList.toggle("show");
+btn.textContent = parent.classList.contains("show") ? "Read Less ▲" : "Read More ▼";
+});
+});
+
+// Hamburger toggle
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('nav ul.menu');
+toggle.addEventListener('click', () => {
+menu.classList.toggle('show');
+});
+});
+</script>
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "LocalBusiness",
+"@id": "https://homerepairs4u.com/#localbusiness",
+"name": "HomeRepairs4U",
+"image": "https://homerepairs4u.com/images/home-repairs-4u-doncaster.webp",
+"url": "https://homerepairs4u.com/",
+"telephone": "+447735873694",
+"priceRange": "££",
+"description": "Trusted local specialists in fencing, roofing, guttering and property repairs in Doncaster and surrounding areas. Built properly, priced fairly, done right.",
+"address": {
+"@type": "PostalAddress",
+"streetAddress": "35 Airstone Road",
+"addressLocality": "Askern",
+"addressRegion": "Doncaster",
+"postalCode": "DN6 0QA",
+"addressCountry": "GB"
+},
+"geo": {
+"@type": "GeoCoordinates",
+"latitude": 53.6170,
+"longitude": -1.1520
+},
+"areaServed": {
+"@type": "AdministrativeArea",
+"name": "Doncaster"
+},
+"openingHoursSpecification": {
+"@type": "OpeningHoursSpecification",
+"dayOfWeek": [
+"Monday",
+"Tuesday",
+"Wednesday",
+"Thursday",
+"Friday",
+"Saturday",
+"Sunday"
+],
+"opens": "00:00",
+"closes": "23:59"
+},
+"hasOfferCatalog": {
+"@type": "OfferCatalog",
+"name": "Property Repair Services",
+"itemListElement": [
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Fencing Installation & Repairs"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Roof Repairs & Roof Cleaning"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Gutter Cleaning, Repairs & Replacement"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Pressure Washing"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Ivy Removal"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Decking & Timber Work"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Emergency Property Repairs"
+}
+}
+]
+}
+}
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+const words = ["Built","Maintained","Cleaned","Removed","Cleared","Painted","Secured"];
+let index = 0;
+const actionWord = document.getElementById("action-word");
+
+setInterval(() => {
+// Fade out
+actionWord.classList.add("fade-out");
+
+setTimeout(() => {
+// Change word
+index = (index + 1) % words.length;
+actionWord.textContent = words[index];
+
+// Fade in
+actionWord.classList.remove("fade-out");
+}, 500); // must match CSS transition duration
+}, 3000); // change word every 3 seconds
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const banner = document.querySelector(".moving-banner");
+const track = document.querySelector(".moving-banner .banner-track");
+
+if (!banner || !track) return;
+
+const observer = new IntersectionObserver(
+(entries, obs) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+// Restart animation from the beginning
+track.style.animation = "none";
+track.offsetHeight; // force reflow
+track.style.animation = "scroll-left 70s linear infinite";
+
+obs.unobserve(banner); // run once only
+}
+});
+},
+{ threshold: 0.2 }
+);
+
+observer.observe(banner);
+});
+</script>
 </body>
 </html>
