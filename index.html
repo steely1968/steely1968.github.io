@@ -379,6 +379,51 @@ font-weight: 600;
 opacity: 0.9;
 text-align: center;
 }
+/* LIGHTBOX */
+.lightbox{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.9);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:5000;
+opacity:0;
+pointer-events:none;
+transition:opacity 0.3s ease;
+}
+
+.lightbox.show{
+opacity:1;
+pointer-events:auto;
+}
+
+.lightbox-img{
+max-width:95%;
+max-height:85%;
+border-radius:12px;
+box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+.lightbox-close{
+position:absolute;
+top:20px;
+right:25px;
+font-size:40px;
+color:white;
+cursor:pointer;
+font-weight:bold;
+line-height:1;
+}
+
+.lightbox-close:hover{
+opacity:0.8;
+}
+
+/* Make service images look tappable */
+.card img{
+cursor: zoom-in;
+}
 </style>
 </head>
 <body>
@@ -744,5 +789,40 @@ obs.unobserve(banner); // run once only
 observer.observe(banner);
 });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.querySelector(".lightbox-img");
+const closeBtn = document.querySelector(".lightbox-close");
+
+document.querySelectorAll(".card img").forEach(img => {
+img.addEventListener("click", () => {
+lightboxImg.src = img.src;
+lightbox.classList.add("show");
+});
+});
+
+closeBtn.addEventListener("click", () => {
+lightbox.classList.remove("show");
+});
+
+lightbox.addEventListener("click", (e) => {
+if (e.target === lightbox) {
+lightbox.classList.remove("show");
+}
+});
+
+document.addEventListener("keydown", (e) => {
+if (e.key === "Escape") {
+lightbox.classList.remove("show");
+}
+});
+});
+</script>
+<!-- Image Lightbox -->
+<div id="lightbox" class="lightbox">
+<span class="lightbox-close">&times;</span>
+<img class="lightbox-img" src="" alt="">
+</div>
 </body>
 </html>
