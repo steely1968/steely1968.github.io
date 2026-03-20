@@ -116,20 +116,6 @@ transition:0.3s;
 transform:translateY(-6px);
 box-shadow:0 20px 40px rgba(0,0,0,0.4);
 }
-.trust-row{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-justify-content:center;
-margin-top:40px;
-font-weight:600;
-}
-.trust-row span{
-background:rgba(255,255,255,0.1);
-padding:10px 18px;
-border-radius:30px;
-backdrop-filter:blur(6px);
-}
 
 /* FADE */
 .fade{
@@ -342,38 +328,6 @@ opacity: 1;
 #action-word.fade-out {
 opacity: 0;
 }
-/* Moving Banner Styles */
-.moving-banner {
-background: var(--dark);
-color: white;
-overflow: hidden;
-white-space: nowrap;
-padding: 15px 0;
-font-weight: 600;
-}
-
-.moving-banner .banner-track {
-display: inline-block;
-padding-left: 100%;
-animation: none; /* stop by default */
-}
-
-.moving-banner span {
-display: inline-block;
-margin: 0 40px;
-}
-
-@keyframes scroll-left {
-0% { transform: translateX(0); }
-100% { transform: translateX(-100%); }
-}
-
-/* Optional: slower scroll on mobile */
-@media(max-width:768px){
-.moving-banner .banner-track {
-animation-duration: 70s;
-}
-}
 .hero h1 {
 font-size: 4rem; /* desktop size */
 line-height: 1.2;
@@ -456,7 +410,7 @@ cursor: zoom-in;
 <div class="hero-overlay"></div>
 <div class="container hero-content">
 <h1 class="fade hero-title">
-<span id="action-word">Local</span>
+<span id="action-word">Your</span>
 <span class="hero-location">Instant Online Fencing Quote</span></h1>
 </div>
 </section>
@@ -466,11 +420,6 @@ cursor: zoom-in;
 <section class="section">
 <div class="container">
 <h2 class="fade" style="text-align:center;font-size:2.5rem;">Our Fencing Services.</h2>
-<!-- Moving Banner -->
-<section class="moving-banner">
-<div class="banner-track">
-<span>
-We provide reliable, high-quality fencing services across Adwick and surrounding areas. Whether you need a new fence, a replacement, or urgent repairs, we have the experience and skills to get the job done right. Our team specialises in featheredge fencing, closeboard panels, timber fence panels, concrete posts, gravel boards, and garden gates, ensuring every fence is strong, secure, and built to last.
 </div>
 </section>
 <div style="text-align:center; margin-top:20px;">
