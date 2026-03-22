@@ -96,7 +96,7 @@ color: white;
 
 <div class="card">
 <label>Fence Length (meters)</label>
-<input type="number" id="length" value="10">
+<input type="number" id="length" value="0">
 
 <label>Fence Height</label>
 <select id="height">
@@ -153,11 +153,11 @@ function calculate() {
 let length = parseFloat(lengthInput.value) || 0;
 let height = parseInt(heightInput.value);
 let gateWidthMM = parseFloat(gateWidthInput.value) || 0;
+let gateCount = parseInt(gateCountInput.value) || 0;
 let gateAttached = gateAttachedInput.value;
 
 let gateWidthM = gateWidthMM / 1000;
 
-// 🔥 NEW LOGIC
 let adjustedLength = length;
 if (gateAttached === "yes") {
 adjustedLength = length - gateWidthM;
@@ -166,12 +166,17 @@ adjustedLength = length - gateWidthM;
 if (adjustedLength < 0) adjustedLength = 0;
 
 let panels = Math.ceil(adjustedLength / 1.8);
-let posts = panels + 1;
+let basePosts = panels + 1;
+
+// 🔥 ADD standalone gate posts
+let extraPosts = (gateAttached === "no") ? gateCount * 2 : 0;
+
+let posts = basePosts + extraPosts;
+
 let mix = posts * 2;
 let gravel = panels;
 
 let panelHeight = height - 1;
-
 let prices = {2:25,3:28,4:32,5:37,6:42};
 let panelPrice = prices[panelHeight] || 0;
 
@@ -185,7 +190,7 @@ let labourCost = adjustedLength * 54;
 
 let total = panelCost + postCost + mixCost + gravelCost + gateCost + labourCost;
 
-// Update UI
+// UI
 panelsEl.innerText = panels;
 postsEl.innerText = posts;
 mixEl.innerText = mix;
@@ -204,14 +209,14 @@ totalEl.innerText = total.toFixed(2);
 function sendWhatsApp() {
 let total = totalEl.innerText;
 let msg = `Fence Quote Total: £${total}`;
-let url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
-window.open(url, '_blank');
+window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 // Elements
 let lengthInput = document.getElementById("length");
 let heightInput = document.getElementById("height");
 let gateWidthInput = document.getElementById("gateWidth");
+let gateCountInput = document.getElementById("gateCount");
 let gateAttachedInput = document.getElementById("gateAttached");
 
 let panelsEl = document.getElementById("panels");
@@ -237,3 +242,4 @@ calculate();
 
 </body>
 </html>
+
