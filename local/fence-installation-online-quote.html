@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>HomeRepairs4U</title>
+<title>HomeRepairs4U - Fencing Quote</title>
 
 <style>
 :root{
@@ -22,6 +22,7 @@ background:var(--light);
 color:#222;
 }
 
+/* Header container */
 .container{
 width:90%;
 max-width:var(--max);
@@ -80,7 +81,6 @@ cursor:pointer;
 /* MOBILE MENU */
 @media(max-width:768px){
 .menu-toggle{display:block;}
-
 nav ul.menu{
 flex-direction:column;
 display:none;
@@ -92,9 +92,7 @@ left:0;
 padding:10px 0;
 gap:10px;
 }
-
 nav ul.menu.show{display:flex;}
-
 nav ul.menu li{text-align:center;}
 }
 
@@ -117,6 +115,9 @@ color:black;
 display:inline-block;
 margin-top:15px;
 }
+
+/* CALCULATOR WRAPPER */
+#calculator-wrapper {margin-top:30px;}
 </style>
 </head>
 
@@ -127,9 +128,7 @@ margin-top:15px;
 <div class="container">
 <nav>
 <div class="logo">HomeRepairs4U</div>
-
 <div class="menu-toggle">☰</div>
-
 <ul class="menu">
 <li><a href="https://homerepairs4u.com/">Home</a></li>
 <li><a href="https://homerepairs4u.com/local/fence-installation-online-quote.html">Instant Quote</a></li>
@@ -138,7 +137,7 @@ margin-top:15px;
 </div>
 </header>
 
-<!-- CALCULATOR (UNCHANGED, JUST WRAPPED) -->
+<!-- CALCULATOR -->
 <div id="calculator-wrapper">
 
 <style>
@@ -154,9 +153,7 @@ margin: auto;
 padding: 15px;
 }
 
-h1 {
-text-align: center;
-}
+h1 {text-align: center;}
 
 .card {
 background: white;
@@ -166,12 +163,7 @@ margin-bottom: 15px;
 box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-label {
-display: block;
-margin-top: 12px;
-font-weight: bold;
-}
-
+label {display: block;margin-top: 12px;font-weight: bold;}
 input, select {
 width: 100%;
 padding: 12px;
@@ -217,10 +209,7 @@ font-size: 16px;
 cursor: pointer;
 }
 
-.whatsapp {
-background: #25D366;
-color: white;
-}
+.whatsapp {background: #25D366;color: white;}
 </style>
 
 <div class="container">
@@ -233,6 +222,7 @@ color: white;
 
 <label>Fence Height</label>
 <select id="height">
+<option value="" selected disabled>Select Fence Height</option>
 <option value="3">3 ft</option>
 <option value="4">4 ft</option>
 <option value="5">5 ft</option>
@@ -257,20 +247,20 @@ color: white;
 
 <div class="card breakdown">
 <strong>Breakdown</strong>
-<div><span>Panels</span><span id="panels"></span></div>
-<div><span>Posts</span><span id="posts"></span></div>
-<div><span>Post Mix Bags</span><span id="mix"></span></div>
-<div><span>Gravel Boards</span><span id="gravel"></span></div>
+<div><span>Panels</span><span id="panels">0</span></div>
+<div><span>Posts</span><span id="posts">0</span></div>
+<div><span>Post Mix Bags</span><span id="mix">0</span></div>
+<div><span>Gravel Boards</span><span id="gravel">0</span></div>
 </div>
 
 <div class="card breakdown">
 <strong>Costs</strong>
-<div><span>Panels</span><span id="panelCost"></span></div>
-<div><span>Posts</span><span id="postCost"></span></div>
-<div><span>Post Mix</span><span id="mixCost"></span></div>
-<div><span>Gravel Boards</span><span id="gravelCost"></span></div>
-<div><span>Gates</span><span id="gateCost"></span></div>
-<div><span>Labour</span><span id="labourCost"></span></div>
+<div><span>Panels</span><span id="panelCost">£0.00</span></div>
+<div><span>Posts</span><span id="postCost">£0.00</span></div>
+<div><span>Post Mix</span><span id="mixCost">£0.00</span></div>
+<div><span>Gravel Boards</span><span id="gravelCost">£0.00</span></div>
+<div><span>Gates</span><span id="gateCost">£0.00</span></div>
+<div><span>Labour</span><span id="labourCost">£0.00</span></div>
 </div>
 
 <button class="whatsapp" onclick="sendWhatsApp()">Send Quote via WhatsApp</button>
@@ -280,7 +270,6 @@ color: white;
 <div class="total-bar">
 Total: £<span id="total">0.00</span>
 </div>
-
 </div>
 
 <!-- FOOTER -->
@@ -298,69 +287,8 @@ const menu = document.querySelector('nav ul.menu');
 toggle.addEventListener('click', () => {
 menu.classList.toggle('show');
 });
-</script>
 
-<script>
-// CALCULATOR (UNCHANGED)
-function calculate() {
-let length = parseFloat(lengthInput.value) || 0;
-let height = parseInt(heightInput.value);
-let gateWidthMM = parseFloat(gateWidthInput.value) || 0;
-let gateCount = parseInt(gateCountInput.value) || 0;
-let gateAttached = gateAttachedInput.value;
-
-let gateWidthM = gateWidthMM / 1000;
-
-let adjustedLength = length;
-if (gateAttached === "yes") {
-adjustedLength = length - gateWidthM;
-}
-
-if (adjustedLength < 0) adjustedLength = 0;
-
-let panels = Math.ceil(adjustedLength / 1.8);
-let basePosts = panels + 1;
-let extraPosts = (gateAttached === "no") ? gateCount * 2 : 0;
-let posts = basePosts + extraPosts;
-
-let mix = posts * 2;
-let gravel = panels;
-
-let panelHeight = height - 1;
-let prices = {2:25,3:28,4:32,5:37,6:42};
-let panelPrice = prices[panelHeight] || 0;
-
-let panelCost = panels * panelPrice;
-let postCost = posts * 20.70;
-let mixCost = mix * 5.50;
-let gravelCost = gravel * 18;
-
-let gateCost = gateWidthMM * 0.15;
-let labourCost = adjustedLength * 54;
-
-let total = panelCost + postCost + mixCost + gravelCost + gateCost + labourCost;
-
-panelsEl.innerText = panels;
-postsEl.innerText = posts;
-mixEl.innerText = mix;
-gravelEl.innerText = gravel;
-
-panelCostEl.innerText = "£" + panelCost.toFixed(2);
-postCostEl.innerText = "£" + postCost.toFixed(2);
-mixCostEl.innerText = "£" + mixCost.toFixed(2);
-gravelCostEl.innerText = "£" + gravelCost.toFixed(2);
-gateCostEl.innerText = "£" + gateCost.toFixed(2);
-labourCostEl.innerText = "£" + labourCost.toFixed(2);
-
-totalEl.innerText = total.toFixed(2);
-}
-
-function sendWhatsApp() {
-let total = totalEl.innerText;
-let msg = `Fence Quote Total: £${total}`;
-window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
+// CALCULATOR
 let lengthInput = document.getElementById("length");
 let heightInput = document.getElementById("height");
 let gateWidthInput = document.getElementById("gateWidth");
@@ -380,6 +308,74 @@ let gateCostEl = document.getElementById("gateCost");
 let labourCostEl = document.getElementById("labourCost");
 
 let totalEl = document.getElementById("total");
+
+function calculate() {
+let length = parseFloat(lengthInput.value) || 0;
+let height = parseInt(heightInput.value);
+
+if (!height) {
+panelsEl.innerText = 0;
+postsEl.innerText = 0;
+mixEl.innerText = 0;
+gravelEl.innerText = 0;
+panelCostEl.innerText = "£0.00";
+postCostEl.innerText = "£0.00";
+mixCostEl.innerText = "£0.00";
+gravelCostEl.innerText = "£0.00";
+gateCostEl.innerText = "£0.00";
+labourCostEl.innerText = "£0.00";
+totalEl.innerText = "0.00";
+return;
+}
+
+let gateWidthMM = parseFloat(gateWidthInput.value) || 0;
+let gateCount = parseInt(gateCountInput.value) || 0;
+let gateAttached = gateAttachedInput.value;
+
+let gateWidthM = gateWidthMM / 1000;
+let adjustedLength = length;
+if (gateAttached === "yes") adjustedLength = length - gateWidthM;
+if (adjustedLength < 0) adjustedLength = 0;
+
+let panels = Math.ceil(adjustedLength / 1.8);
+let basePosts = panels + 1;
+let extraPosts = (gateAttached === "no") ? gateCount * 2 : 0;
+let posts = panels === 0 ? 0 : basePosts + extraPosts;
+
+let mix = posts * 2;
+let gravel = panels;
+
+let panelHeight = height - 1;
+let prices = {2:25,3:28,4:32,5:37,6:42};
+let panelPrice = prices[panelHeight] || 0;
+
+let panelCost = panels * panelPrice;
+let postCost = posts * 20.70;
+let mixCost = mix * 5.50;
+let gravelCost = gravel * 18;
+let gateCost = gateWidthMM * 0.15;
+let labourCost = adjustedLength * 54;
+
+let total = panelCost + postCost + mixCost + gravelCost + gateCost + labourCost;
+
+panelsEl.innerText = panels;
+postsEl.innerText = posts;
+mixEl.innerText = mix;
+gravelEl.innerText = gravel;
+panelCostEl.innerText = "£" + panelCost.toFixed(2);
+postCostEl.innerText = "£" + postCost.toFixed(2);
+mixCostEl.innerText = "£" + mixCost.toFixed(2);
+gravelCostEl.innerText = "£" + gravelCost.toFixed(2);
+gateCostEl.innerText = "£" + gateCost.toFixed(2);
+labourCostEl.innerText = "£" + labourCost.toFixed(2);
+totalEl.innerText = total.toFixed(2);
+}
+
+function sendWhatsApp() {
+let total = totalEl.innerText;
+let msg = `Fence Quote Total: £${total}`;
+window.open(`https://wa.me/447735873694?text=${encodeURIComponent(msg)}`, '_blank');
+}
 
 document.querySelectorAll("input, select").forEach(el => {
 el.addEventListener("input", calculate);
