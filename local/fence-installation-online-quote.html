@@ -3,7 +3,143 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fencing Quote Calculator</title>
+
+<title>HomeRepairs4U</title>
+
+<style>
+:root{
+--accent:#ffb703;
+--dark:#0f2027;
+--light:#f5f7fa;
+--max:1200px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:var(--light);
+color:#222;
+}
+
+.container{
+width:90%;
+max-width:var(--max);
+margin:auto;
+}
+
+/* HEADER */
+header{
+position:sticky;
+top:0;
+background:rgba(15,32,39,0.95);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 0;
+position:relative;
+flex-wrap:wrap;
+}
+
+.logo{
+color:white;
+font-weight:800;
+font-size:1.6rem;
+}
+
+nav ul.menu{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+nav ul.menu li a{
+color:white;
+text-decoration:none;
+font-weight:600;
+padding:8px 12px;
+transition:0.3s;
+}
+
+nav ul.menu li a:hover{
+color:var(--accent);
+}
+
+.menu-toggle{
+display:none;
+font-size:1.8rem;
+color:white;
+cursor:pointer;
+}
+
+/* MOBILE MENU */
+@media(max-width:768px){
+.menu-toggle{display:block;}
+
+nav ul.menu{
+flex-direction:column;
+display:none;
+background:rgba(15,32,39,0.95);
+width:100%;
+position:absolute;
+top:70px;
+left:0;
+padding:10px 0;
+gap:10px;
+}
+
+nav ul.menu.show{display:flex;}
+
+nav ul.menu li{text-align:center;}
+}
+
+/* FOOTER */
+footer{
+background:var(--dark);
+color:white;
+text-align:center;
+padding:40px 0;
+margin-top:50px;
+}
+
+.btn{
+background:linear-gradient(45deg,#ffb703,#ff9800);
+padding:12px 30px;
+border-radius:50px;
+font-weight:bold;
+text-decoration:none;
+color:black;
+display:inline-block;
+margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+<div class="container">
+<nav>
+<div class="logo">HomeRepairs4U</div>
+
+<div class="menu-toggle">☰</div>
+
+<ul class="menu">
+<li><a href="https://homerepairs4u.com/">Home</a></li>
+<li><a href="https://homerepairs4u.com/local/fence-installation-online-quote.html">Instant Quote</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<!-- CALCULATOR (UNCHANGED, JUST WRAPPED) -->
+<div id="calculator-wrapper">
 
 <style>
 body {
@@ -86,9 +222,6 @@ background: #25D366;
 color: white;
 }
 </style>
-</head>
-
-<body>
 
 <div class="container">
 
@@ -148,7 +281,27 @@ color: white;
 Total: £<span id="total">0.00</span>
 </div>
 
+</div>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<p>&copy; 2026 HomeRepairs4U. All rights reserved.</p>
+<a href="tel:07735873694" class="btn">Call Martin</a>
+</div>
+</footer>
+
 <script>
+// MENU
+const toggle = document.querySelector('.menu-toggle');
+const menu = document.querySelector('nav ul.menu');
+toggle.addEventListener('click', () => {
+menu.classList.toggle('show');
+});
+</script>
+
+<script>
+// CALCULATOR (UNCHANGED)
 function calculate() {
 let length = parseFloat(lengthInput.value) || 0;
 let height = parseInt(heightInput.value);
@@ -167,10 +320,7 @@ if (adjustedLength < 0) adjustedLength = 0;
 
 let panels = Math.ceil(adjustedLength / 1.8);
 let basePosts = panels + 1;
-
-// 🔥 ADD standalone gate posts
 let extraPosts = (gateAttached === "no") ? gateCount * 2 : 0;
-
 let posts = basePosts + extraPosts;
 
 let mix = posts * 2;
@@ -190,7 +340,6 @@ let labourCost = adjustedLength * 54;
 
 let total = panelCost + postCost + mixCost + gravelCost + gateCost + labourCost;
 
-// UI
 panelsEl.innerText = panels;
 postsEl.innerText = posts;
 mixEl.innerText = mix;
@@ -212,7 +361,6 @@ let msg = `Fence Quote Total: £${total}`;
 window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// Elements
 let lengthInput = document.getElementById("length");
 let heightInput = document.getElementById("height");
 let gateWidthInput = document.getElementById("gateWidth");
@@ -242,4 +390,3 @@ calculate();
 
 </body>
 </html>
-
