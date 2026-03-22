@@ -114,6 +114,12 @@ color: white;
 
 <label>Total Gate Width (mm)</label>
 <input type="number" id="gateWidth" value="0">
+
+<label>Gate attached to fence?</label>
+<select id="gateAttached">
+<option value="yes">Yes</option>
+<option value="no">No</option>
+</select>
 </div>
 
 <div class="card breakdown">
@@ -147,9 +153,16 @@ function calculate() {
 let length = parseFloat(lengthInput.value) || 0;
 let height = parseInt(heightInput.value);
 let gateWidthMM = parseFloat(gateWidthInput.value) || 0;
+let gateAttached = gateAttachedInput.value;
 
 let gateWidthM = gateWidthMM / 1000;
-let adjustedLength = length - gateWidthM;
+
+// 🔥 NEW LOGIC
+let adjustedLength = length;
+if (gateAttached === "yes") {
+adjustedLength = length - gateWidthM;
+}
+
 if (adjustedLength < 0) adjustedLength = 0;
 
 let panels = Math.ceil(adjustedLength / 1.8);
@@ -167,9 +180,7 @@ let postCost = posts * 20.70;
 let mixCost = mix * 5.50;
 let gravelCost = gravel * 18;
 
-// FIXED gate price
 let gateCost = gateWidthMM * 0.15;
-
 let labourCost = adjustedLength * 54;
 
 let total = panelCost + postCost + mixCost + gravelCost + gateCost + labourCost;
@@ -190,7 +201,6 @@ labourCostEl.innerText = "£" + labourCost.toFixed(2);
 totalEl.innerText = total.toFixed(2);
 }
 
-// WhatsApp
 function sendWhatsApp() {
 let total = totalEl.innerText;
 let msg = `Fence Quote Total: £${total}`;
@@ -202,6 +212,7 @@ window.open(url, '_blank');
 let lengthInput = document.getElementById("length");
 let heightInput = document.getElementById("height");
 let gateWidthInput = document.getElementById("gateWidth");
+let gateAttachedInput = document.getElementById("gateAttached");
 
 let panelsEl = document.getElementById("panels");
 let postsEl = document.getElementById("posts");
