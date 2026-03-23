@@ -333,7 +333,7 @@ let panelCost = panels * panelPrice;
 let postCost = posts * 20.70;
 let mixCost = mix * 5.50;
 let gravelCost = gravel * 18;
-let gateCost = gateWidthMM * 0.15;
+let gateCost = Math.max(gateWidth * 0.15, 200);
 let labourCost = adjustedLength * 54;
 
 let total = panelCost + postCost + mixCost + gravelCost + gateCost + labourCost;
