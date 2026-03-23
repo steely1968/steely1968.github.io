@@ -114,9 +114,29 @@ margin-top:15px;
 }
 
 #calculator-wrapper{margin-top:30px;}
+</style>
+</head>
 
-/* CALCULATOR */
-.calc-container {max-width: 520px;margin: auto;padding: 15px;}
+<body>
+
+<header>
+<div class="container">
+<nav>
+<div class="logo">HomeRepairs4U</div>
+<div class="menu-toggle">☰</div>
+<ul class="menu">
+<li><a href="https://homerepairs4u.com/">Home</a></li>
+<li><a href="https://homerepairs4u.com/local/fence-installation-online-quote.html">Instant Quote</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<div id="calculator-wrapper">
+
+<style>
+body {font-family: Arial, sans-serif;margin: 0;background: #f4f6f8;}
+.container {max-width: 520px;margin: auto;padding: 15px;}
 h1 {text-align: center;}
 
 .card {
@@ -165,32 +185,14 @@ cursor:pointer;
 
 .whatsapp {background:#25D366;color:white;}
 </style>
-</head>
 
-<body>
-
-<header>
 <div class="container">
-<nav>
-<div class="logo">HomeRepairs4U</div>
-<div class="menu-toggle">☰</div>
-<ul class="menu">
-<li><a href="https://homerepairs4u.com/">Home</a></li>
-<li><a href="https://homerepairs4u.com/local/fence-installation-online-quote.html">Instant Quote</a></li>
-</ul>
-</nav>
-</div>
-</header>
-
-<div id="calculator-wrapper">
-
-<div class="calc-container">
 
 <h1>Fencing Quote</h1>
 
 <div class="card">
 <label>Fence Length (meters)</label>
-<input type="number" id="length" placeholder="Enter fence length (meters)">
+<input type="number" id="length" value="0">
 
 <label>Fence Height</label>
 <select id="height">
@@ -205,18 +207,16 @@ cursor:pointer;
 
 <div class="card">
 <label>Number of Gates</label>
-<input type="number" id="gateCount" placeholder="Enter number of gates (if any)">
+<input type="number" id="gateCount" value="0">
 
 <label>Total Gate Width (mm)</label>
-<input type="number" id="gateWidth" placeholder="Enter total gate width (mm)">
+<input type="number" id="gateWidth" value="0">
 
-<div id="gateAttachedWrapper" style="display:none;">
 <label>Gate attached to fence?</label>
 <select id="gateAttached">
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
-</div>
 </div>
 
 <div class="card breakdown">
@@ -268,7 +268,6 @@ let heightInput = document.getElementById("height");
 let gateWidthInput = document.getElementById("gateWidth");
 let gateCountInput = document.getElementById("gateCount");
 let gateAttachedInput = document.getElementById("gateAttached");
-let gateAttachedWrapper = document.getElementById("gateAttachedWrapper");
 
 let panelsEl = document.getElementById("panels");
 let postsEl = document.getElementById("posts");
@@ -283,11 +282,6 @@ let gateCostEl = document.getElementById("gateCost");
 let labourCostEl = document.getElementById("labourCost");
 
 let totalEl = document.getElementById("total");
-
-function toggleGateOptions() {
-let gateCount = parseInt(gateCountInput.value) || 0;
-gateAttachedWrapper.style.display = gateCount > 0 ? "block" : "none";
-}
 
 function calculate() {
 let length = parseFloat(lengthInput.value) || 0;
@@ -333,7 +327,7 @@ let panelCost = panels * panelPrice;
 let postCost = posts * 20.70;
 let mixCost = mix * 5.50;
 let gravelCost = gravel * 18;
-let gateCost = Math.max(gateWidth * 0.15, gateCount * 200);
+let gateCost = gateWidthMM * 0.15;
 let labourCost = adjustedLength * 54;
 
 let total = panelCost + postCost + mixCost + gravelCost + gateCost + labourCost;
@@ -352,6 +346,7 @@ totalEl.innerText = total.toFixed(2);
 }
 
 function sendWhatsApp() {
+
 let length = lengthInput.value || 0;
 let height = heightInput.value ? heightInput.value + " ft" : "Not selected";
 
@@ -395,13 +390,9 @@ window.open(`https://wa.me/447735873694?text=${encodeURIComponent(msg)}`, '_blan
 }
 
 document.querySelectorAll("input, select").forEach(el => {
-el.addEventListener("input", () => {
-calculate();
-toggleGateOptions();
-});
+el.addEventListener("input", calculate);
 });
 
-toggleGateOptions();
 calculate();
 </script>
 
