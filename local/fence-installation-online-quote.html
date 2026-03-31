@@ -114,6 +114,26 @@ margin-top:15px;
 }
 
 #calculator-wrapper{margin-top:30px;}
+
+/* NEW IMAGE STYLE */
+.hero-image {
+width: 100%;
+margin-bottom: 15px;
+}
+
+.hero-image img {
+width: 100%;
+height: auto;
+border-radius: 12px;
+display: block;
+}
+
+@media(min-width:768px){
+.hero-image img {
+max-height: 300px;
+object-fit: cover;
+}
+}
 </style>
 </head>
 
@@ -187,9 +207,12 @@ cursor:pointer;
 </style>
 
 <div class="container">
+
+<!-- ADDED IMAGE HERE -->
 <div class="hero-image">
 <img src="https://homerepairs4u.com/images/before-after-fence.webp" alt="Before and after fence installation">
 </div>
+
 <h1>Fencing Quote</h1>
 
 <div class="card">
@@ -257,7 +280,7 @@ Total: £<span id="total">0.00</span>
 </footer>
 
 <script>
-// MENU
+// (UNCHANGED SCRIPT)
 const toggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('nav ul.menu');
 toggle.addEventListener('click', () => {
@@ -348,7 +371,6 @@ totalEl.innerText = total.toFixed(2);
 }
 
 function sendWhatsApp() {
-
 let length = lengthInput.value || 0;
 let height = heightInput.value ? heightInput.value + " ft" : "Not selected";
 
