@@ -223,10 +223,10 @@ For other types of fencing, please call Martin on <strong>07735 873694</strong>.
 </p>
 <div class="card">
 <label>Fence Length (meters)</label>
-<input type="number" id="length" value="0">
+<input type="number" id="length">
 
 <label>Fence Height</label>
-<select id="height">
+<select id="height" required>
 <option value="" selected disabled>Select Fence Height</option>
 <option value="3">3 ft</option>
 <option value="4">4 ft</option>
@@ -238,13 +238,14 @@ For other types of fencing, please call Martin on <strong>07735 873694</strong>.
 
 <div class="card">
 <label>Number of Gates</label>
-<input type="number" id="gateCount" value="0">
+<input type="number" id="gateCount" min="0">
 
 <label>Total Gate Width (mm)</label>
 <input type="number" id="gateWidth" value="0">
 
 <label>Gate attached to fence?</label>
 <select id="gateAttached">
+<option value="" selected disabled>Select option</option>
 <option value="yes">Yes</option>
 <option value="no">No</option>
 </select>
