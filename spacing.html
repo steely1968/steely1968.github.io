@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Length Calculator</title>
+<style>
+* {
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+
+body {
+margin: 0;
+padding: 20px;
+background: #f4f4f4;
+display: flex;
+justify-content: center;
+}
+
+.calculator {
+width: 100%;
+max-width: 400px;
+background: white;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+label {
+display: block;
+margin-top: 12px;
+margin-bottom: 5px;
+font-weight: bold;
+}
+
+input {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 8px;
+}
+
+button {
+width: 100%;
+margin-top: 20px;
+padding: 14px;
+font-size: 18px;
+border: none;
+border-radius: 8px;
+background: #007bff;
+color: white;
+cursor: pointer;
+}
+
+button:hover {
+background: #0056b3;
+}
+
+.result {
+margin-top: 20px;
+padding: 15px;
+background: #e9f7ef;
+border-radius: 8px;
+text-align: center;
+font-size: 22px;
+font-weight: bold;
+}
+
+.unit {
+font-size: 14px;
+color: #666;
+}
+</style>
+</head>
+<body>
+
+<div class="calculator">
+<h2>Length Calculator</h2>
+
+<label for="length">Length (mm)</label>
+<input type="number" id="length" step="any" placeholder="Enter length">
+
+<label for="width">Width (mm)</label>
+<input type="number" id="width" step="any" placeholder="Enter width">
+
+<label for="quantity">Quantity</label>
+<input type="number" id="quantity" step="1" placeholder="Enter quantity">
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="result" id="result">
+Answer: 0 mm
+</div>
+</div>
+
+<script>
+function calculate() {
+const A = parseFloat(document.getElementById('length').value);
+const B = parseFloat(document.getElementById('width').value);
+const C = parseFloat(document.getElementById('quantity').value);
+
+if (isNaN(A) || isNaN(B) || isNaN(C)) {
+document.getElementById('result').innerHTML = 'Please enter all values';
+return;
+}
+
+if (C === 1) {
+document.getElementById('result').innerHTML =
+'Quantity cannot be 1 (division by zero)';
+return;
+}
+
+const answer = B + ((A - (B * C)) / (C - 1));
+
+document.getElementById('result').innerHTML =
+`Answer: ${answer.toFixed(2)} mm`;
+}
+</script>
+
+</body>
+</html>
