@@ -1,649 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>External Home Repairs | Handyman Services Doncaster | Homerepairs4u</title>
+
+<meta name="description" content="Keep your property looking its best with expert external maintenance in Doncaster. Reliable handyman services for homes and businesses.">
 <meta name="robots" content="index, follow">
-<title>Fencing Services in Doncaster | Domestic & Commercial | HomeRepairs4U</title>
-<meta name="description" content="Reliable fencing services in Doncaster. Strong, level, and secure fences for homes and businesses. Free quotes – call HomeRepairs4U now!">
-<link rel="canonical" href="https://homerepairs4u.com/">
+
+<link rel="canonical" href="https://homerepairs4u.com">
+
+<!-- Preload ONLY LCP image -->
+<link rel="preload" as="image" href="https://pacys.co.uk/images/pacys-van.webp">
+
+<!-- Speed hints -->
+<link rel="preconnect" href="https://homerepairs4u.com">
+
+<!-- Favicon (optional but good practice) -->
+<link rel="icon" href="/favicon.ico">
 
 <style>
-:root{
---accent:#ffb703;
---dark:#0f2027;
---light:#f5f7fa;
---max:1200px;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-font-family:'Segoe UI',sans-serif;
-background:var(--light);
-color:#222;
-line-height:1.6;
-overflow-x:hidden;
-}
-.container{width:90%;max-width:var(--max);margin:auto;}
-
-/* HEADER */
-header{
-position:sticky;
-top:0;
-background:rgba(15,32,39,0.95);
-backdrop-filter:blur(10px);
-z-index:1000;
-}
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 0;
-position:relative;
-flex-wrap:wrap;
-}
-nav .logo{
-color:white;
-font-weight:800;
-font-size:1.6rem;
-}
-nav ul.menu{
-display:flex;
-gap:20px;
-list-style:none;
-flex-wrap:wrap;
-}
-nav ul.menu li a{
-color:white;
-text-decoration:none;
-font-weight:600;
-padding:8px 12px;
-transition:0.3s;
-}
-nav ul.menu li a:hover{color:var(--accent);}
-.menu-toggle{
-display:none;
-font-size:1.8rem;
-color:white;
-cursor:pointer;
-}
-
-/* HERO */
-.hero{
-position:relative;
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-background: var(--dark);
-overflow:hidden;
-}
-.hero-overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8));
-z-index:1;
-}
-.hero-content{
-position:relative;
-z-index:2;
-padding:140px 0 160px 0;
-}
-.hero h1{
-font-size:4rem;
-font-weight:900;
-letter-spacing:-1px;
-text-transform:uppercase;
-margin-bottom:20px;
-}
-.hero p{
-font-size:1.4rem;
-margin-bottom:40px;
-opacity:0.95;
-}
-.btn{
-background:linear-gradient(45deg,#ffb703,#ff9800);
-padding:18px 55px;
-border-radius:50px;
-font-weight:bold;
-text-decoration:none;
-color:black;
-display:inline-block;
-transition:0.3s;
-}
-.btn:hover{
-transform:translateY(-6px);
-box-shadow:0 20px 40px rgba(0,0,0,0.4);
-}
-.trust-row{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-justify-content:center;
-margin-top:40px;
-font-weight:600;
-}
-.trust-row span{
-background:rgba(255,255,255,0.1);
-padding:10px 18px;
-border-radius:30px;
-backdrop-filter:blur(6px);
-}
-
-/* FADE */
-.fade{
-opacity:0;
-transform:translateY(40px);
-transition:all 0.9s ease;
-}
-.fade.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* STATS */
-.stats{
-background:white;
-padding:60px 0;
-box-shadow:0 10px 40px rgba(0,0,0,0.05);
-}
-.stats-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:40px;
-text-align:center;
-}
-.stats h3{
-font-size:2.5rem;
-color:var(--dark);
-}
-.stats p{font-weight:600;}
-
-/* SERVICES */
-.section{padding:100px 0;}
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:35px;
-margin-top:60px;
-}
-.card{
-background:white;
-padding:25px;
-border-radius:20px;
-transition:0.4s;
-box-shadow:0 20px 40px rgba(0,0,0,0.08);
-}
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 30px 60px rgba(0,0,0,0.15);
-}
-.card img{
-width:100%;
-border-radius:15px;
-margin-bottom:15px;
-transition:0.4s ease;
-}
-.card-btn{
-display:inline-block;
-margin-top:15px;
-padding:12px 35px;
-background:linear-gradient(45deg,#ffb703,#ff9800);
-border-radius:50px;
-font-weight:bold;
-text-decoration:none;
-color:black;
-transition:0.3s;
-}
-.card-btn:hover{
-transform:translateY(-4px);
-box-shadow:0 15px 30px rgba(0,0,0,0.3);
-}
-
-/* Stagger fade for each card */
-.grid .card:nth-child(1){transition-delay:0.05s;}
-.grid .card:nth-child(2){transition-delay:0.10s;}
-.grid .card:nth-child(3){transition-delay:0.15s;}
-.grid .card:nth-child(4){transition-delay:0.20s;}
-.grid .card:nth-child(5){transition-delay:0.25s;}
-.grid .card:nth-child(6){transition-delay:0.30s;}
-.grid .card:nth-child(7){transition-delay:0.35s;}
-.grid .card:nth-child(8){transition-delay:0.40s;}
-.grid .card:nth-child(9){transition-delay:0.45s;}
-
-/* Fade children inside card sequentially */
-.card .fade-child{
-opacity:0;
-transform:translateY(20px);
-transition:all 0.3s ease;
-}
-.card.show .fade-child:nth-child(1){transition-delay:0.1s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(2){transition-delay:0.2s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(3){transition-delay:0.3s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(4){transition-delay:0.4s;opacity:1;transform:translateY(0);}
-.card.show .fade-child:nth-child(5){transition-delay:0.5s;opacity:1;transform:translateY(0);}
-
-/* FOOTER */
-footer{
-background:var(--dark);
-color:white;
-text-align:center;
-padding:40px 0;
-}
-
-@media(max-width:768px){
-.hero{
-min-height:100vh; /* keep full height */
-padding-top:20px; /* much higher - title near top */
-padding-bottom:40px;
-display:flex;
-flex-direction:column;
-justify-content:flex-start; /* push title to top */
-align-items:center;
-text-align:center;
-}
-
-.hero h1{
-font-size:2.4rem;
-line-height:1.15;
-margin-top:20px; /* optional extra spacing from very top */
-max-width: 95%;
-}
-
-.hero-location{
-display:block;
-font-size:1.6rem;
-margin-top:10px;
-font-weight:600;
-opacity:0.9;
-}
-#action-word,
-.hero-location{
-display:block;
-width:100%;
-text-align:center;
-}
-#action-word{
-font-size:1.9rem;
-display:block;
-line-height:1.2;
-}
-
-.hero-subtitle {
-font-size: 2rem; /* bigger than before, smaller than H1 */
-text-align: center;
-margin-top: 20px;
-font-weight: 700; /* slightly bolder */
-color: white;
-opacity: 0;
-transition: opacity 0.9s ease;
-}
-
-.hero p{
-font-size:1.2rem;
-margin-bottom:30px;
-}
-}
-
-/* Cards spacing */
-.grid{
-gap:20px;
-}
-.card{
-padding:20px;
-}
-
-/* Hamburger menu */
-.menu-toggle{
-display:block;
-}
-nav ul.menu{
-flex-direction:column;
-display:none;
-background:rgba(15,32,39,0.95);
-width:100%;
-position:absolute;
-top:70px;
-left:0;
-padding:10px 0;
-border-radius:0 0 10px 10px;
-gap:10px;
-}
-nav ul.menu.show{
-display:flex;
-}
-nav ul.menu li{
-text-align:center;
-}
-.stats-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 40px;
-text-align: center;
-}
-
-.stats-grid .stat-number,
-.stats-grid .stat-label,
-.stats h2 {
-font-size: 1.8rem; /* all text same size as "Our Achievements" */
-font-weight: 700;
-color: var(--dark);
+body {
 margin: 0;
-}
-.stats h2 {
-margin-bottom: 30px; /* spacing below heading */
-}
-  #action-word {
-display: inline-block;
-transition: opacity 0.5s ease-in-out;
-opacity: 1;
-}
-#action-word.fade-out {
-opacity: 0;
-}
-/* Moving Banner Styles */
-.moving-banner {
-background: var(--dark);
-color: white;
-overflow: hidden;
-white-space: nowrap;
-padding: 15px 0;
-font-weight: 600;
+font-family: Arial, sans-serif;
+background: #fff;
+color: #000;
 }
 
-.moving-banner .banner-track {
-display: inline-block;
-padding-left: 100%;
-animation: none; /* stop by default */
+/* Keep CSS minimal in head to reduce blocking */
+.menu {
+background: #000;
+color: #fff;
+padding: 0;
+position: sticky;
+top: 0;
+z-index: 1000;
+border-bottom: 1px solid #222;
 }
 
-.moving-banner span {
-display: inline-block;
-margin: 0 40px;
+.menu-container {
+max-width: 1100px;
+margin: auto;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 15px 20px;
 }
 
-@keyframes scroll-left {
-0% { transform: translateX(0); }
-100% { transform: translateX(-100%); }
+.logo {
+font-size: 24px;
+font-weight: bold;
+letter-spacing: 1px;
 }
 
-/* Optional: slower scroll on mobile */
-@media(max-width:768px){
-.moving-banner .banner-track {
-animation-duration: 70s;
-}
-}
-.hero h1 {
-font-size: 4rem; /* desktop size */
-line-height: 1.2;
-margin-top: 0;
-max-width: 100%;
-text-align: center;
+.logo a {
+color: #fff;
+text-decoration: none;
 }
 
-.hero-location {
+.nav-links {
+display: flex;
+align-items: center;
+gap: 20px;
+}
+
+.nav-links a {
+color: #fff;
+text-decoration: none;
+font-size: 15px;
+padding: 8px 0;
+transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+opacity: 0.7;
+}
+
+.hamburger {
+display: none;
+font-size: 30px;
+cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+.hamburger {
 display: block;
-font-size: 2rem; /* slightly smaller than main word */
+}
+
+.nav-links {
+display: none;
+position: absolute;
+top: 70px;
+left: 0;
+width: 100%;
+background: #000;
+flex-direction: column;
+align-items: flex-start;
+padding: 10px 0;
+gap: 0;
+border-top: 1px solid #222;
+}
+
+.nav-links.active {
+display: flex;
+}
+
+.nav-links a {
+width: 100%;
+padding: 15px 20px;
+border-bottom: 1px solid #111;
+font-size: 16px;
+}
+
+} 
+.content {
+max-width: 900px;
+margin: auto;
+padding: 40px 20px;
+}
+
+img {
+width: 100%;
+height: auto;
+display: block;
+border: 1px solid #000;
+cursor: pointer;
+}
+
+.btn {
+display: inline-block;
 margin-top: 10px;
-font-weight: 600;
-opacity: 0.9;
+padding: 10px 15px;
+background: #000;
+color: #fff;
+text-decoration: none;
+border: 1px solid #000;
+}
+
+.btn:hover {
+background: #fff;
+color: #000;
+}
+
+/* Lightbox only if needed here */
+.lightbox {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0,0,0,0.9);
+justify-content: center;
+align-items: center;
+z-index: 1000;
+}
+
+.lightbox img {
+max-width: 90%;
+max-height: 90%;
+border: 2px solid #fff;
+}
+footer {
+background: #000;
+color: #fff;
+padding: 30px 20px;
 text-align: center;
 }
-/* LIGHTBOX */
-.lightbox{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.9);
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:5000;
-opacity:0;
-pointer-events:none;
-transition:opacity 0.3s ease;
+
+footer a {
+color: #fff;
+text-decoration: none;
 }
 
-.lightbox.show{
-opacity:1;
-pointer-events:auto;
-}
-
-.lightbox-img{
-max-width:95%;
-max-height:85%;
-border-radius:12px;
-box-shadow:0 20px 60px rgba(0,0,0,0.6);
-}
-
-.lightbox-close{
-position:absolute;
-top:20px;
-right:25px;
-font-size:40px;
-color:white;
-cursor:pointer;
-font-weight:bold;
-line-height:1;
-}
-
-.lightbox-close:hover{
-opacity:0.8;
-}
-
-/* Make service images look tappable */
-.card img{
-cursor: zoom-in;
+footer a:hover {
+text-decoration: underline;
 }
 </style>
 </head>
+
 <body>
 
-<header>
-<div class="container">
-<nav>
-<div class="logo">HomeRepairs4U</div>
-<div class="menu-toggle">☰</div>
-<ul class="menu">
-<li><a href="https://homerepairs4u.com/">Home</a></li>
-<li><a href="https://homerepairs4u.com/local/fence-installation-online-quote.html">Instant Quote</a></li>
-<li><a href="https://homerepairs4u.com/spacing.html">Spacing calculator</a></li>
+<!-- MENU -->
+<div class="menu">
+
+<div class="menu-container">
+
+<div class="logo">
+<a href="https://pacys.co.uk/">Pacys</a>
+</div>
+
+<div class="hamburger" onclick="toggleMenu()">
+☰
+</div>
+
+<div class="nav-links" id="navLinks">
+<a href="https://pacys.co.uk/">Home</a>
+<a href="https://pacys.co.uk/instant-quote">Instant Quote</a>
+<a href="https://pacys.co.uk/about-us">About Us</a>
+<a href="tel:07368687820">Call Us</a>
+
+</div>
+
+</div>
+</div>
+
+<!-- CONTENT -->
+<main class="content">
+<h1>External Cleaning Doncaster</h1>
+<a class="btn" href="https://pacys.co.uk/instant-quote.html" style="margin-bottom:20px; display:inline-block;">Instant-quote</a>
+<img src="https://pacys.co.uk/images/pacys-van.webp" width="900" height="600" loading="eager" fetchpriority="high" decoding="async" alt="Pacys van new sign writing and ready for work in Doncaster" onclick="openImg(this)">
+<h2>Pacys Pressure Washing</h2>
+<p>Welcome to our family-run external cleaning business based in Doncaster, proudly founded by two brothers, Patrick and Frazer Pacy.</p>
+<p>We’re passionate about helping homes and businesses look their best with reliable, high-quality cleaning services you can trust.</p>
+<p>From driveways and patios to roofs, gutters, and exterior walls, we take pride in every cleaning job we do.<br> 
+Our goal is simple — deliver outstanding results with a friendly, professional approach that leaves every customer happy.</p>
+<p>Whether you need a one-off clean or regular maintenance, Patrick and Frazer are here to help bring your property back to life.</p>
+<img src="https://pacys.co.uk/images/smooth-concrete.webp" loading="lazy" alt="Before and after disabled access being pressure washed in Doncaster." onclick="openImg(this)">
+
+<h2>Driveways Patios & Paths Cleaned With Care</h2>
+<p>We specialise in cleaning driveways, patios, and paths, helping to bring your outdoor spaces back to life.<br>
+Our services use professional equipment and effective cleaning methods to remove dirt, moss, and stains, leaving everything looking fresh and well cared for.</p>
+<p>As a friendly, family-run business in Doncaster, we take pride in providing a reliable service and treating every property as if it were our own.</p>
+<a class="btn" href="https://pacys.co.uk/patio-pressure-washing.html" style="margin-bottom:20px; display:inline-block;">Patio Pressure Washing</a>
+<img src="https://pacys.co.uk/images/before-after2.webp" loading="lazy" alt="Before after, patio beingtreated and pressure cleaned Doncaster" onclick="openImg(this)">
+<h2>Block Paving</h2>
+<p>Discover our professional pressure washing block paving service from start to finish. We remove weeds, dirt, algae and stains using commercial equipment before completing full resanding and optional sealing for long-lasting results.</p>
+<p>Restore the appearance, safety and durability of your driveway or patio with Pacys External Cleaning Services.</p>  
+<a class="btn" href="https://pacys.co.uk/pressure-washing-block-paving.html" style="margin-bottom:20px; display:inline-block;">Block Paving Cleaned</a>
+
+<h2>Soft Washing / Pressure Washing</h2>
+<p>Soft washing and pressure washing are used depending on the surface to achieve the best possible clean.<br>
+Softer methods are ideal for more delicate areas like render and exterior walls, while pressure washing is used for tougher surfaces such as driveways and patios.</p>
+<p>This flexible approach helps lift dirt, stains, and algae effectively, restoring the appearance of your property across Doncaster without unnecessary risk to the surfaces being cleaned.</p>
+<img src="https://pacys.co.uk/images/soft-wash.webp" loading="lazy" alt="Soft wash or pressure wash? Doncaster" onclick="openImg(this)">
+
+<h2>Paths and Pathway Cleaning Doncaster</h2>
+<p>Pathways are often the first thing people notice when they approach a property, and over time they naturally collect dirt, moss, algae, and general build-up from weather and foot traffic.<br>
+Professional pressure washing restores these surfaces back to a clean, safe condition without the need for harsh chemicals or disruptive work.</p>
+<p>Using controlled water pressure, the surface is cleaned evenly to lift grime from deep within the texture of the paving.<br>
+This helps bring back the original colour and appearance while avoiding unnecessary damage that can happen with incorrect equipment or technique.</p>
+<p>Safety is a key part of the process. Slippery surfaces caused by algae or moss can create a real hazard, especially in wet or shaded areas.<br>
+Proper cleaning reduces this risk significantly, making walkways safer for residents, visitors, and customers.</p>
+<p>Care is taken throughout to protect surrounding areas such as lawns, edging, and nearby walls.<br>
+Each surface is assessed before work begins to ensure the correct pressure level is used, keeping the balance between effective cleaning and surface protection.</p>
+<p>The result is a refreshed, more presentable entrance that not only improves the look of the property but also helps maintain the longevity of the paving itself over time.</p>
+<img src="https://pacys.co.uk/images/before-after4.webp" loading="lazy" alt="Before and after pathway being jet washed in Doncaster" onclick="openImg(this)">
+
+  
+<h2>Safe and Effective Gutter Clearing Service</h2>
+<p>We provide a friendly and reliable gutter clearing service to help keep your property protected from blockages and water damage. We carefully remove leaves, moss, and debris to ensure your gutters are flowing properly all year around Doncaster.
+Brothers Patrick and Frazer work closely together to provide a safe, efficient service that helps maintain your home or business and prevents costly problems down the line.</p>
+<img src="https://pacys.co.uk/images/before-after3.webp" loading="lazy" alt="Before and after gutter cleaning Doncaster" onclick="openImg(this)">
+
+
+
+<h2>Pacys External Pressure Washing</h2>
+<p>We Clean</p>
+<ul>
+<li>Driveways and patios</li>
+<li>Decking and garden paths</li>
+<li>Brickwork and exterior walls</li>
+<li>Fencing and gates</li>
+<li>Roofs and gutters</li>
+<li>Concrete and paving slabs</li>
+<li>Commercial forecourts and car parks</li>
+<li>Outdoor furniture and surfaces</li>
 </ul>
-</nav>
-</div>
-</header>
+<p>We serve</p>
+<ul>
+<li>Doncaster</li>
+<li>Sheffield</li>
+<li>Leeds</li>
+<li>Wakefield</li>
+<li>York</li>
+</ul>
+<img src="https://pacys.co.uk/images/our-coverage.webp" loading="lazy" alt="Illustration map showing pacys external pressure washing service area." onclick="openImg(this)">
+<a class="btn" href="tel:07368687820">Call Pacys</a>
 
-<section class="hero">
-<div class="hero-overlay"></div>
-<div class="container hero-content">
-<h1 class="fade hero-title">
-<span id="action-word">Local</span>
-<span class="hero-location">Professional Fencing Near Doncaster</span></h1>
-<p class="fade"><strong>Honest Work, Honest Prices.</strong></p>
-<a href="https://homerepairs4u.com/local/fence-installation-online-quote.html" class="btn fade">Instant Quote</a>
-<div class="trust-row fade">
-<span>✔ Fully Insured</span>
-<span>✔ Free Quotes</span>
-<span>✔ 6+ Years Experience</span>
-<span>✔ Local & Reliable</span>
-</div>
-</div>
-</section>
+</main>
 
-
-
-<section class="section">
-<div class="container">
-<h2 class="fade" style="text-align:center;font-size:2.5rem;">Our Fencing Services.</h2>
-<!-- Moving Banner -->
-<section class="moving-banner">
-<div class="banner-track">
-<span>
-We provide reliable, high-quality fencing services across Doncaster and surrounding areas. Whether you need a new fence, a replacement, or urgent repairs, we have the experience and skills to get the job done right. Our team specialises in featheredge fencing, closeboard panels, timber fence panels, concrete posts, gravel boards, and garden gates, ensuring every fence is strong, secure, and built to last.
-</div>
-</section>
-<div style="text-align:center; margin-top:20px;">
-<a href="tel:07735873694" class="btn">Call Martin</a>
-</div>
-<div class="grid">
-
-<!-- 9 Service Cards -->
-<!-- Card 1 -->
-<div class="card fade">
-<img class="fade-child" src="/images/fence-panels.webp" alt="Featheredge strong structured fencing work that lasts, Doncaster">
-<h3 class="fade-child">Fence Installation</h3>
-<p class="fade-child">Professional fence installation across Doncaster for homes and businesses. Every fence is built strong, level, and designed to last. From start to finish, we ensure a secure, high-quality finish.</p>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeImg()">
+<img id="lightboxImg">
 </div>
 
-
-<!-- Card 2 -->
-<div class="card fade">
-<img class="fade-child" src="/images/before-after-fence.webp" alt="New fence erected in Doncaster. Strong feather edge, concrete posts and gravel boards.">
-<h3 class="fade-child">Fence Repairs</h3>
-<p class="fade-child">Fast and reliable fence repairs for damaged panels, leaning posts, broken gates, and gravel boards. We restore your fencing properly so it remains safe and secure.</p>
-</div>
-
-<!-- Card 3 -->
-<div class="card fade">
-<img class="fade-child" src="/images/featheredge-dropdown.webp" alt="Property Improvements featheredge sloped fence constructed in Carcroft, Doncaster.">
-<h3 class="fade-child">Featheredge Fencing</h3>
-<p class="fade-child">Durable featheredge fencing with concrete posts and gravel boards. Perfect for garden boundaries, providing strength, privacy, and long-lasting performance.</p>
-</div>
-
-<!-- Card 4 -->
-<div class="card fade">
-<img class="fade-child" src="/images/wood-fence.webp" alt="Single sided featheredge long run fence built in Askern, Doncaster">
-<h3 class="fade-child">Fence Panels</h3>
-<p class="fade-child">Supply and installation of high-quality timber fence panels in Doncaster. Available in featheredge, closeboard, latted, and decorative styles for every property.</p>
-</div>
-
-<!-- Card 5 -->
-<div class="card fade">
-<img class="fade-child" src="/images/concrete-posts-and-gravel-boards.webp" alt="Strong Concrete posts gravel boards with featheredge fence panels, Doncaster">
-<h3 class="fade-child">Concrete Posts & Gravel Boards</h3>
-<p class="fade-child">Strong, weather-resistant concrete posts and gravel boards to protect your fence from rot and extend its lifespan. Ideal for new fences and replacements.</p>
-</div>
-
-<!-- Card 6 -->
-<div class="card fade">
-<img class="fade-child" src="/images/bespoke-gate.webp" alt="Made to measure garden fencing and gates, Doncaster">
-<h3 class="fade-child">Garden Gates</h3>
-<p class="fade-child">Simple Made-to-measure timber garden gates installed securely. We install durable gates that are functional, secure, and designed to complement your fencing or wall.</p>
-</div>
-
-<!-- Card 7 -->
-<div class="card fade">
-<img class="fade-child" src="/images/panels.webp" alt="Professional fencing built properly, built to last, Doncaster">
-<h3 class="fade-child">Domestic Fencing</h3>
-<p class="fade-child">Garden and boundary fencing solutions for homeowners. Improve privacy, security, and property appearance with expertly installed fencing tailored to your needs.</p>
-</div>
-
-<!-- Card 8 -->
-<div class="card fade">
-<img class="fade-child" src="/images/palisade-security-fencing.webp" alt="Commercial high security steel galvanised security fencing">
-<h3 class="fade-child">Commercial Fencing</h3>
-<p class="fade-child">Reliable steel security fencing solutions for businesses, rental properties, and commercial land. Built to last and withstand heavy use while maintaining a professional appearance.</p>
-</div>
-
-<!-- Card 9 -->
-<!-- Card 9 -->
-<div class="card fade">
-<h3 class="fade-child">Instant Fence Installation Quote </h3>
-<p class="fade-child">
-Thinking about a new fence? Get a quick no obligation quote in seconds, no need to contact us. See your estimated price instantly and take the first step today.
-</p>
-<hr style="border:0; height:2px; background:#ccc; margin:30px auto; width:80%;">
-<a href="https://homerepairs4u.com/local/fence-installation-online-quote.html" class="btn fade">Instant Quote</a>
-<!-- Internal divider -->
-<hr style="border:0; height:2px; background:#ccc; margin:30px auto; width:80%;">
-<!-- Closing paragraph inside card -->
-<div class="closing-text fade-in">
-<h4>Ready to Get Your Fence Installed or Repaired?</h4>
+<!-- FOOTER -->
+<footer>
+<p>© 2026 Pacys External Cleaning Services</p>
+<p>Professional pressure washing, soft washing, driveway cleaning, patio cleaning and gutter clearing across Doncaster and surrounding areas.</p>
 <p>
-At <strong>HomeRepairs4U</strong>, we deliver professional fencing services in Doncaster and surrounding areas that are built to last.
-From new fence installations to repairs, featheredge fencing, gates, and boundary solutions, every job is done with care, precision, and quality materials.
-With over 6 years of experience, and a 10-year guarantee, you can trust your fencing is in safe hands.
+<a href="https://pacys.co.uk/" style="color:#fff;">Home</a> |
+<a href="tel:07368687820" style="color:#fff;">07368 687820</a>
 </p>
-<!-- Call button -->
-<a href="tel:07735873694" class="card-btn fade-child">Call Martin Now</a>
-</div>
-</div>
-
-</div>
-</div>
-</section>
-
-<p class="fade" style="text-align:center;font-weight:600;">
-Serving Doncaster, Askern, Bentley, Adwick-le-Street, Armthorpe and nearby areas.
-</p>
-<footer class="fade">
-<div class="container">
-<p>&copy; 2026 HomeRepairs4U. All rights reserved.</p>
-</div>
-<div style="text-align:center; margin-top:20px;">
-<a href="tel:07735873694" class="btn">Call Martin</a>
-</div>
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-// Fade in
-const faders=document.querySelectorAll(".fade");
-const observer=new IntersectionObserver(function(entries,observer){
-entries.forEach(entry=>{
-if(!entry.isIntersecting) return;
-entry.target.classList.add("show");
-observer.unobserve(entry.target);
-});
-},{threshold:0.2});
-faders.forEach(el=>observer.observe(el));
+function openImg(img) {
+document.getElementById("lightbox").style.display = "flex";
+document.getElementById("lightboxImg").src = img.src;
+}
 
-// Read more toggle
-const readMoreBtns = document.querySelectorAll(".read-more-btn");
-readMoreBtns.forEach(btn => {
-btn.addEventListener("click", () => {
-const parent = btn.parentElement;
-parent.classList.toggle("show");
-btn.textContent = parent.classList.contains("show") ? "Read Less ▲" : "Read More ▼";
-});
-});
-
-// Hamburger toggle
-const toggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('nav ul.menu');
-toggle.addEventListener('click', () => {
-menu.classList.toggle('show');
-});
-});
+function closeImg() {
+document.getElementById("lightbox").style.display = "none";
+}
 </script>
+
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
-"@type": "LocalBusiness",
-"@id": "https://homerepairs4u.com/#localbusiness",
-"name": "HomeRepairs4U",
-"image": "https://homerepairs4u.com/images/home-repairs-4u-doncaster.webp",
-"url": "https://homerepairs4u.com/",
-"telephone": "+447735873694",
+"@type": "ProfessionalService",
+"@id": "https://pacys.co.uk/#localbusiness",
+"name": "Pacys",
+"image": "https://pacys.co.uk/images/pacy-brothers.webp",
+"url": "https://pacys.co.uk/",
+"telephone": "+447368687820",
 "priceRange": "££",
-"description": "Trusted local specialists in fencing construction repairs and replacement Doncaster",
+"description": "Trusted accredited local exterior cleaning specialists serving Doncaster, Wakefield, Leeds, York and Nottingham.",
+"sameAs": [
+"https://www.facebook.com/thebinbrotherz"
+],
 "address": {
 "@type": "PostalAddress",
-"streetAddress": "35 Airstone Road",
+"streetAddress": "12 Theodore Road",
 "addressLocality": "Askern",
-"addressRegion": "Doncaster",
-"postalCode": "DN6 0QA",
+"addressRegion": "South Yorkshire",
+"postalCode": "DN6 0QG",
 "addressCountry": "GB"
 },
 "geo": {
 "@type": "GeoCoordinates",
-"latitude": 53.6170,
-"longitude": -1.1520
+"latitude": 53.613416,
+"longitude": -1.163034
 },
-"areaServed": {
-"@type": "AdministrativeArea",
+"areaServed": [
+{
+"@type": "City",
 "name": "Doncaster"
 },
+{
+"@type": "City",
+"name": "Wakefield"
+},
+{
+"@type": "City",
+"name": "Leeds"
+},
+{
+"@type": "City",
+"name": "York"
+},
+{
+"@type": "City",
+"name": "Sheffield"
+}
+],
 "openingHoursSpecification": {
 "@type": "OpeningHoursSpecification",
 "dayOfWeek": [
@@ -660,13 +375,41 @@ menu.classList.toggle('show');
 },
 "hasOfferCatalog": {
 "@type": "OfferCatalog",
-"name": "Property Repair Services",
+"name": "Exterior Cleaning Services",
 "itemListElement": [
 {
 "@type": "Offer",
 "itemOffered": {
 "@type": "Service",
-"name": "Fencing Installation & Repairs"
+"name": "Gutter Cleaning"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Pressure Washing"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Roof Cleaning"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Driveway Cleaning"
+}
+},
+{
+"@type": "Offer",
+"itemOffered": {
+"@type": "Service",
+"name": "Patio Cleaning"
 }
 }
 ]
@@ -674,86 +417,9 @@ menu.classList.toggle('show');
 }
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-const words = ["Made Properly","Installed Properly","Set Properly","Levelled Properly","Braced Properly","Aligned Properly","Secured Right"];
-let index = 0;
-const actionWord = document.getElementById("action-word");
-
-setInterval(() => {
-// Fade out
-actionWord.classList.add("fade-out");
-
-setTimeout(() => {
-// Change word
-index = (index + 1) % words.length;
-actionWord.textContent = words[index];
-
-// Fade in
-actionWord.classList.remove("fade-out");
-}, 500); // must match CSS transition duration
-}, 3000); // change word every 3 seconds
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-const banner = document.querySelector(".moving-banner");
-const track = document.querySelector(".moving-banner .banner-track");
-
-if (!banner || !track) return;
-
-const observer = new IntersectionObserver(
-(entries, obs) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-// Restart animation from the beginning
-track.style.animation = "none";
-track.offsetHeight; // force reflow
-track.style.animation = "scroll-left 70s linear infinite";
-
-obs.unobserve(banner); // run once only
+function toggleMenu() {
+document.getElementById("navLinks").classList.toggle("active");
 }
-});
-},
-{ threshold: 0.2 }
-);
-
-observer.observe(banner);
-});
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.querySelector(".lightbox-img");
-const closeBtn = document.querySelector(".lightbox-close");
-
-document.querySelectorAll(".card img").forEach(img => {
-img.addEventListener("click", () => {
-lightboxImg.src = img.src;
-lightbox.classList.add("show");
-});
-});
-
-closeBtn.addEventListener("click", () => {
-lightbox.classList.remove("show");
-});
-
-lightbox.addEventListener("click", (e) => {
-if (e.target === lightbox) {
-lightbox.classList.remove("show");
-}
-});
-
-document.addEventListener("keydown", (e) => {
-if (e.key === "Escape") {
-lightbox.classList.remove("show");
-}
-});
-});
-</script>
-<!-- Image Lightbox -->
-<div id="lightbox" class="lightbox">
-<span class="lightbox-close">&times;</span>
-<img class="lightbox-img" src="" alt="">
-</div>
+</script> 
 </body>
 </html>
