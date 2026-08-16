@@ -3,286 +3,271 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wooden Building Timber Calculator</title>
 <link rel="canonical" href="https://homerepairs4u.com/local/shed-build-calculator.html">
+<title>Tongue & Groove Timber Calculator</title>
+
 <style>
-:root{
---green:#173b2a;
---green2:#28563e;
---light:#f3f5f4;
---border:#d2d8d5;
---text:#17221b;
---muted:#69736d;
---white:#fff;
---warning:#fff5cf;
+* {
+box-sizing: border-box;
 }
 
-*{box-sizing:border-box}
-
-body{
-margin:0;
-background:var(--light);
-color:var(--text);
-font-family:Arial,Helvetica,sans-serif;
+body {
+margin: 0;
+font-family: Arial, sans-serif;
+background: #eef1ee;
+color: #18251d;
 }
 
-.container{
-max-width:1250px;
-margin:auto;
-padding:15px;
+.container {
+max-width: 1100px;
+margin: auto;
+padding: 15px;
 }
 
-.header{
-background:linear-gradient(135deg,var(--green),var(--green2));
-color:white;
-padding:28px;
-border-radius:16px;
-margin-bottom:18px;
+header {
+background: #173f2b;
+color: white;
+padding: 25px;
+border-radius: 15px;
+margin-bottom: 15px;
 }
 
-.header h1{
-margin:0 0 8px;
-font-size:clamp(27px,5vw,42px);
+header h1 {
+margin: 0 0 8px;
+font-size: 34px;
 }
 
-.header p{
-margin:0;
+header p {
+margin: 0;
 }
 
-.card{
-background:white;
-border-radius:14px;
-padding:20px;
-margin-bottom:16px;
-box-shadow:0 2px 10px rgba(0,0,0,.07);
+.card {
+background: white;
+padding: 20px;
+border-radius: 14px;
+margin-bottom: 15px;
+box-shadow: 0 2px 8px rgba(0,0,0,.08);
 }
 
-.card h2{
-margin:0 0 18px;
+h2 {
+margin-top: 0;
 }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
+.grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 15px;
 }
 
-.field label{
-display:block;
-font-size:14px;
-font-weight:bold;
-margin-bottom:6px;
+label {
+display: block;
+font-weight: bold;
+font-size: 14px;
+margin-bottom: 6px;
 }
 
-input,select{
-width:100%;
-padding:12px;
-border:1px solid var(--border);
-border-radius:8px;
-font-size:16px;
-background:#fff;
+input,
+select {
+width: 100%;
+padding: 12px;
+font-size: 16px;
+border: 1px solid #cbd3cd;
+border-radius: 8px;
 }
 
-.help{
-font-size:12px;
-color:var(--muted);
-margin-top:5px;
+button {
+border: 0;
+border-radius: 8px;
+padding: 13px 18px;
+font-size: 16px;
+font-weight: bold;
+cursor: pointer;
 }
 
-.buttons{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
+.calculate {
+background: #173f2b;
+color: white;
 }
 
-button{
-border:0;
-border-radius:8px;
-padding:13px 20px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+.add {
+background: #286447;
+color: white;
 }
 
-.primary{
-background:var(--green);
-color:white;
+.remove {
+background: #f1dada;
+color: #9d2222;
+padding: 8px 12px;
 }
 
-.secondary{
-background:#e7ebe9;
-color:var(--text);
+.buttons {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
 }
 
-.add{
-background:#28563e;
-color:white;
-margin-top:12px;
+.spec {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 10px;
 }
 
-.remove{
-background:#f3dddd;
-color:#8b2222;
-padding:8px 12px;
-font-size:13px;
+.spec div {
+background: #edf4ef;
+padding: 15px;
+border-radius: 9px;
 }
 
-.dynamic{
-border:1px solid #dfe4e1;
-border-radius:10px;
-padding:15px;
-margin-bottom:12px;
-background:#fafbfa;
+.spec strong {
+display: block;
+font-size: 22px;
+margin-top: 5px;
 }
 
-.dynamic-head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:12px;
+.surface {
+border: 1px solid #d6ddd8;
+background: #fafcfa;
+padding: 15px;
+border-radius: 10px;
+margin-bottom: 10px;
 }
 
-.dynamic-head strong{
-font-size:16px;
+.surface-top {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 12px;
 }
 
-.results-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
+.results {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 10px;
 }
 
-.metric{
-background:#edf4ef;
-border-radius:10px;
-padding:15px;
+.result {
+background: #edf4ef;
+padding: 18px;
+border-radius: 10px;
 }
 
-.metric span{
-display:block;
-color:#59655e;
-font-size:13px;
+.result small {
+display: block;
+color: #637068;
 }
 
-.metric strong{
-display:block;
-font-size:23px;
-margin-top:5px;
+.result strong {
+display: block;
+font-size: 26px;
+margin-top: 5px;
 }
 
-.table-wrap{
-width:100%;
-overflow-x:auto;
+.total {
+background: #173f2b;
+color: white;
+padding: 25px;
+border-radius: 14px;
 }
 
-table{
-width:100%;
-min-width:750px;
-border-collapse:collapse;
+.total-row {
+display: flex;
+justify-content: space-between;
+padding: 10px 0;
+border-bottom: 1px solid rgba(255,255,255,.25);
 }
 
-th,td{
-padding:10px;
-border-bottom:1px solid #ddd;
-text-align:left;
+.total-price {
+font-size: 32px;
+font-weight: bold;
+margin-top: 18px;
 }
 
-th{
-background:#edf0ee;
+table {
+width: 100%;
+border-collapse: collapse;
 }
 
-.total{
-font-size:21px;
-font-weight:bold;
-margin-top:15px;
+th,
+td {
+text-align: left;
+padding: 10px;
+border-bottom: 1px solid #ddd;
 }
 
-.summary{
-background:var(--green);
-color:white;
-border-radius:14px;
-padding:22px;
+th {
+background: #e8eee9;
 }
 
-.summary h2{
-margin-top:0;
+.table-wrap {
+overflow-x: auto;
 }
 
-.summary-row{
-display:flex;
-justify-content:space-between;
-padding:10px 0;
-border-bottom:1px solid rgba(255,255,255,.2);
+.note {
+background: #edf5ef;
+border-left: 4px solid #286447;
+padding: 13px;
+margin-top: 15px;
 }
 
-.grand{
-font-size:27px;
-font-weight:bold;
-padding-top:18px;
+@media (max-width: 800px) {
+
+.grid {
+grid-template-columns: repeat(2, 1fr);
 }
 
-.notice{
-background:var(--warning);
-border-left:4px solid #d0a500;
-padding:13px;
-border-radius:5px;
+.results {
+grid-template-columns: repeat(2, 1fr);
 }
 
-.small{
-font-size:12px;
-color:var(--muted);
 }
 
-@media(max-width:850px){
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-.results-grid{
-grid-template-columns:repeat(2,1fr);
-}
+@media (max-width: 550px) {
+
+.container {
+padding: 8px;
 }
 
-@media(max-width:520px){
-.container{
-padding:8px;
+header {
+padding: 20px;
 }
 
-.header,.card,.summary{
-padding:15px;
+header h1 {
+font-size: 27px;
 }
 
-.grid{
-grid-template-columns:1fr;
+.card {
+padding: 15px;
 }
 
-.results-grid{
-grid-template-columns:repeat(2,1fr);
+.grid,
+.spec {
+grid-template-columns: 1fr;
 }
 
-.buttons button{
-width:100%;
+.results {
+grid-template-columns: 1fr 1fr;
 }
 
-.metric strong{
-font-size:19px;
+.buttons button {
+width: 100%;
 }
 }
 
-@media print{
-body{
-background:white;
+@media print {
+
+body {
+background: white;
 }
 
 .input-section,
-.buttons,
-.add,
-.remove{
-display:none!important;
+button {
+display: none !important;
 }
 
-.card,.summary{
-box-shadow:none;
-border:1px solid #ddd;
+.card,
+.total {
+box-shadow: none;
+border: 1px solid #ccc;
 }
 }
 </style>
@@ -292,362 +277,106 @@ border:1px solid #ddd;
 
 <div class="container">
 
-<header class="header">
-<h1>🪵 Wooden Building Timber Calculator</h1>
-<p>
-Complete calculator for sheds, summerhouses, workshops,
-cabins and garden rooms.
-</p>
+<header>
+<h1>Tongue & Groove Calculator</h1>
+<p>4.2m boards • 110mm effective coverage • £5 per board</p>
 </header>
 
 
-<!-- ======================================================
-BUILDING
-====================================================== -->
+<!-- FIXED T&G SPECIFICATION -->
 
-<section class="card input-section">
+<section class="card">
 
-<h2>1. Building specification</h2>
+<h2>Your T&G Timber</h2>
 
-<div class="grid">
+<div class="spec">
 
-<div class="field">
-<label>Building type</label>
-<select id="buildingType">
-<option>Shed</option>
-<option>Summerhouse</option>
-<option>Workshop</option>
-<option>Garden Room</option>
-<option>Cabin</option>
-<option>Custom</option>
-</select>
+<div>
+Board length
+<strong>4.2m</strong>
 </div>
 
-<div class="field">
-<label>Length (m)</label>
-<input id="length" type="number" step="0.01" value="5">
+<div>
+Effective facing
+<strong>110mm</strong>
 </div>
 
-<div class="field">
-<label>Width (m)</label>
-<input id="width" type="number" step="0.01" value="4">
-</div>
-
-<div class="field">
-<label>Wall height (m)</label>
-<input id="height" type="number" step="0.01" value="2.4">
-</div>
-
-<div class="field">
-<label>Roof type</label>
-<select id="roofType">
-<option value="pent">Pent roof</option>
-<option value="flat">Flat roof</option>
-</select>
-</div>
-
-<div class="field">
-<label>Roof rise/fall (m)</label>
-<input id="rise" type="number" step="0.01" value="0.30">
-<div class="help">Difference between high and low sides.</div>
-</div>
-
-<div class="field">
-<label>Front overhang (m)</label>
-<input id="frontOverhang" type="number" step="0.01" value="0.20">
-</div>
-
-<div class="field">
-<label>Rear overhang (m)</label>
-<input id="rearOverhang" type="number" step="0.01" value="0.20">
-</div>
-
-<div class="field">
-<label>Side overhang each side (m)</label>
-<input id="sideOverhang" type="number" step="0.01" value="0.20">
+<div>
+Price
+<strong>£5</strong>
 </div>
 
 </div>
+
+<div class="note">
+Every purchased board is <strong>4.2 metres maximum</strong>.
+The calculator splits longer requirements into 4.2m-or-shorter pieces.
+</div>
+
 </section>
 
 
-<!-- ======================================================
-T&G
-====================================================== -->
+<!-- SURFACES -->
 
 <section class="card input-section">
 
-<h2>2. Tongue & groove</h2>
+<h2>Surfaces to cover</h2>
 
-<div class="grid">
-
-<div class="field">
-<label>Nominal board width (mm)</label>
-<input id="tgWidth" type="number" value="119">
-</div>
-
-<div class="field">
-<label>Effective coverage width (mm)</label>
-<input id="tgCoverage" type="number" value="109">
-<div class="help">
-Actual installed coverage after the tongue enters the groove.
-</div>
-</div>
-
-<div class="field">
-<label>T&G thickness (mm)</label>
-<input id="tgThickness" type="number" value="19">
-</div>
-
-<div class="field">
-<label>Standard board length (m)</label>
-<input id="tgStockLength" type="number" step="0.1" value="4.8">
-</div>
-
-<div class="field">
-<label>Price per T&G board (£)</label>
-<input id="tgPrice" type="number" step="0.01" value="0">
-</div>
-
-<div class="field">
-<label>T&G waste (%)</label>
-<input id="tgWaste" type="number" value="10">
-</div>
-
-</div>
-</section>
-
-
-<!-- ======================================================
-T&G STOCK LENGTHS
-====================================================== -->
-
-<section class="card input-section">
-
-<h2>3. Available T&G stock lengths</h2>
-
-<p class="small">
-Enter the board lengths you can actually buy. The calculator will
-produce an approximate economical stock-length requirement.
+<p>
+Add each wall, floor, roof or other surface you want to cover with T&G.
 </p>
 
-<div id="tgStockList"></div>
+<div id="surfaces"></div>
 
-<button class="add" onclick="addTGStock()">+ Add board length</button>
-
-</section>
-
-
-<!-- ======================================================
-DOORS
-====================================================== -->
-
-<section class="card input-section">
-
-<h2>4. Doors</h2>
-
-<div id="doorsList"></div>
-
-<button class="add" onclick="addDoor()">+ Add door</button>
+<button class="add" onclick="addSurface()">
++ Add Surface
+</button>
 
 </section>
 
 
-<!-- ======================================================
-WINDOWS
-====================================================== -->
+<!-- WASTE -->
 
 <section class="card input-section">
 
-<h2>5. Windows</h2>
-
-<div id="windowsList"></div>
-
-<button class="add" onclick="addWindow()">+ Add window</button>
-
-</section>
-
-
-<!-- ======================================================
-FLOOR
-====================================================== -->
-
-<section class="card input-section">
-
-<h2>6. Floor construction</h2>
+<h2>Waste allowance</h2>
 
 <div class="grid">
 
-<div class="field">
-<label>Joist size</label>
-<select id="floorJoistSize">
-<option>50 × 100 mm</option>
-<option selected>50 × 150 mm</option>
-<option>50 × 175 mm</option>
-<option>50 × 200 mm</option>
-<option>75 × 150 mm</option>
-</select>
-</div>
+<div>
 
-<div class="field">
-<label>Joist spacing (mm)</label>
-<input id="floorSpacing" type="number" value="400">
-</div>
+<label>Waste allowance (%)</label>
 
-<div class="field">
-<label>Bearer spacing (m)</label>
-<input id="bearerSpacing" type="number" step="0.1" value="1.2">
-</div>
+<input
+id="waste"
+type="number"
+value="5"
+min="0"
+step="1">
 
-<div class="field">
-<label>Floor framing waste (%)</label>
-<input id="floorWaste" type="number" value="10">
 </div>
 
 </div>
+
 </section>
 
 
-<!-- ======================================================
-WALL FRAMING
-====================================================== -->
-
-<section class="card input-section">
-
-<h2>7. Wall framing</h2>
-
-<div class="grid">
-
-<div class="field">
-<label>Stud size</label>
-<select id="studSize">
-<option selected>50 × 75 mm</option>
-<option>50 × 100 mm</option>
-<option>50 × 125 mm</option>
-<option>50 × 150 mm</option>
-<option>75 × 100 mm</option>
-</select>
-</div>
-
-<div class="field">
-<label>Stud spacing (mm)</label>
-<input id="studSpacing" type="number" value="400">
-</div>
-
-<div class="field">
-<label>Top/bottom plate layers</label>
-<input id="plateLayers" type="number" value="2">
-</div>
-
-<div class="field">
-<label>Noggin rows</label>
-<input id="nogginRows" type="number" value="1">
-</div>
-
-<div class="field">
-<label>Framing waste (%)</label>
-<input id="wallWaste" type="number" value="10">
-</div>
-
-</div>
-</section>
-
-
-<!-- ======================================================
-ROOF
-====================================================== -->
-
-<section class="card input-section">
-
-<h2>8. Roof framing</h2>
-
-<div class="grid">
-
-<div class="field">
-<label>Rafter size</label>
-<select id="rafterSize">
-<option selected>50 × 100 mm</option>
-<option>50 × 125 mm</option>
-<option>50 × 150 mm</option>
-<option>50 × 175 mm</option>
-<option>50 × 200 mm</option>
-</select>
-</div>
-
-<div class="field">
-<label>Rafter spacing (mm)</label>
-<input id="rafterSpacing" type="number" value="400">
-</div>
-
-<div class="field">
-<label>Roof framing waste (%)</label>
-<input id="roofWaste" type="number" value="10">
-</div>
-
-<div class="field">
-<label>Fascia size</label>
-<select id="fasciaSize">
-<option>25 × 100 mm</option>
-<option selected>25 × 150 mm</option>
-<option>25 × 200 mm</option>
-</select>
-</div>
-
-</div>
-</section>
-
-
-<!-- ======================================================
-GENERAL TIMBER
-====================================================== -->
-
-<section class="card input-section">
-
-<h2>9. General framing timber</h2>
-
-<div class="grid">
-
-<div class="field">
-<label>Standard timber length (m)</label>
-<input id="frameStockLength" type="number" step="0.1" value="4.8">
-</div>
-
-<div class="field">
-<label>Price per framing length (£)</label>
-<input id="framePrice" type="number" step="0.01" value="0">
-</div>
-
-<div class="field">
-<label>Corner post size</label>
-<select id="cornerSize">
-<option>75 × 75 mm</option>
-<option selected>100 × 100 mm</option>
-<option>100 × 150 mm</option>
-</select>
-</div>
-
-</div>
-</section>
-
-
-<!-- ======================================================
-CALCULATE
-====================================================== -->
+<!-- CALCULATE -->
 
 <section class="card input-section">
 
 <div class="buttons">
 
-<button class="primary" onclick="calculate()">
-Calculate complete building
+<button
+class="calculate"
+onclick="calculate()">
+
+CALCULATE T&G
+
 </button>
 
-<button class="secondary" onclick="window.print()">
-Print / Save PDF
-</button>
-
-<button class="secondary" onclick="resetAll()">
-Reset
+<button onclick="window.print()">
+PRINT / SAVE PDF
 </button>
 
 </div>
@@ -655,34 +384,32 @@ Reset
 </section>
 
 
-<!-- ======================================================
-TOP RESULTS
-====================================================== -->
+<!-- RESULTS -->
 
 <section class="card">
 
-<h2>T&G summary</h2>
+<h2>Result</h2>
 
-<div class="results-grid">
+<div class="results">
 
-<div class="metric">
-<span>Walls</span>
-<strong id="wallTG">—</strong>
+<div class="result">
+<small>Coverage required</small>
+<strong id="coverage">0m²</strong>
 </div>
 
-<div class="metric">
-<span>Floor</span>
-<strong id="floorTG">—</strong>
+<div class="result">
+<small>T&G required</small>
+<strong id="required">0m</strong>
 </div>
 
-<div class="metric">
-<span>Roof</span>
-<strong id="roofTG">—</strong>
+<div class="result">
+<small>4.2m boards</small>
+<strong id="boards">0</strong>
 </div>
 
-<div class="metric">
-<span>Doors</span>
-<strong id="doorTG">—</strong>
+<div class="result">
+<small>Cost</small>
+<strong id="cost">£0</strong>
 </div>
 
 </div>
@@ -690,153 +417,64 @@ TOP RESULTS
 </section>
 
 
-<!-- ======================================================
-T&G RESULTS
-====================================================== -->
+<!-- SURFACE BREAKDOWN -->
 
 <section class="card">
 
-<h2>T&G material schedule</h2>
+<h2>Surface breakdown</h2>
 
 <div class="table-wrap">
 
 <table>
 
 <thead>
+
 <tr>
-<th>Component</th>
+<th>Surface</th>
+<th>Size</th>
 <th>Area</th>
-<th>Linear metres</th>
-<th>Waste included</th>
+<th>Effective T&G needed</th>
 <th>Boards</th>
-<th>Cost</th>
 </tr>
+
 </thead>
 
-<tbody id="tgResults"></tbody>
+<tbody id="breakdown"></tbody>
 
 </table>
 
-</div>
-
-<div class="total">
-Total T&G: <span id="tgTotal">—</span> m
-</div>
-
-<div class="total">
-T&G boards: <span id="tgBoards">—</span>
-</div>
-
-<div class="total">
-T&G cost: <span id="tgCost">—</span>
 </div>
 
 </section>
 
 
-<!-- ======================================================
-CUTTING
-====================================================== -->
+<!-- CUTTING PLAN -->
 
 <section class="card">
 
-<h2>T&G stock-length estimate</h2>
+<h2>4.2m Board Cutting Plan</h2>
 
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Stock length</th>
-<th>Boards</th>
-<th>Purchased metres</th>
-<th>Estimated surplus</th>
-<th>Cost</th>
-</tr>
-</thead>
-
-<tbody id="tgCutting"></tbody>
-
-</table>
-
-</div>
-
-<p class="small">
-This is a purchasing estimate. A true cutting optimiser depends on
-the individual lengths of every wall run, floor run, roof run and
-door component.
+<p>
+This shows how the required T&G pieces can be cut from actual
+4.2m boards.
 </p>
 
-</section>
-
-
-<!-- ======================================================
-FRAMING RESULTS
-====================================================== -->
-
-<section class="card">
-
-<h2>Structural timber estimate</h2>
-
 <div class="table-wrap">
 
 <table>
 
 <thead>
+
 <tr>
-<th>Component</th>
-<th>Calculated metres</th>
-<th>Waste included</th>
-<th>Stock lengths</th>
-<th>Cost</th>
+<th>Board</th>
+<th>Pieces cut</th>
+<th>Total used</th>
+<th>Offcut</th>
 </tr>
+
 </thead>
 
-<tbody id="frameResults"></tbody>
-
-</table>
-
-</div>
-
-<div class="total">
-Total framing: <span id="frameTotal">—</span> m
-</div>
-
-<div class="total">
-Framing lengths: <span id="frameBoards">—</span>
-</div>
-
-<div class="total">
-Framing cost: <span id="frameCost">—</span>
-</div>
-
-</section>
-
-
-<!-- ======================================================
-COMPLETE SHOPPING LIST
-====================================================== -->
-
-<section class="card">
-
-<h2>Complete shopping list</h2>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Material</th>
-<th>Size</th>
-<th>Quantity</th>
-<th>Linear metres</th>
-<th>Estimated cost</th>
-</tr>
-</thead>
-
-<tbody id="shoppingList"></tbody>
+<tbody id="cutting"></tbody>
 
 </table>
 
@@ -845,59 +483,39 @@ COMPLETE SHOPPING LIST
 </section>
 
 
-<!-- ======================================================
-GRAND TOTAL
-====================================================== -->
+<!-- TOTAL -->
 
-<section class="summary">
+<section class="total">
 
-<h2>Complete estimate</h2>
+<h2>T&G Purchase</h2>
 
-<div class="summary-row">
-<span>T&G boards</span>
-<strong id="sumTGBoards">—</strong>
+<div class="total-row">
+
+<span>Boards to purchase</span>
+
+<strong id="totalBoards">0</strong>
+
 </div>
 
-<div class="summary-row">
-<span>Framing lengths</span>
-<strong id="sumFrameBoards">—</strong>
+<div class="total-row">
+
+<span>Total timber purchased</span>
+
+<strong id="purchased">0m</strong>
+
 </div>
 
-<div class="summary-row">
-<span>Total timber</span>
-<strong id="sumLength">—</strong>
+<div class="total-row">
+
+<span>Total unused/offcut</span>
+
+<strong id="offcut">0m</strong>
+
 </div>
 
-<div class="summary-row">
-<span>T&G cost</span>
-<strong id="sumTGCost">—</strong>
-</div>
+<div class="total-price">
 
-<div class="summary-row">
-<span>Framing cost</span>
-<strong id="sumFrameCost">—</strong>
-</div>
-
-<div class="grand">
-Estimated timber cost:
-<span id="grandTotal">—</span>
-</div>
-
-</section>
-
-
-<section class="card">
-
-<div class="notice">
-
-<strong>Important:</strong>
-
-This calculator is for estimating quantities and costs.
-It is not a structural design calculator.
-
-Always verify timber sizes, spans, fixings, roof construction,
-floor construction, local requirements and manufacturer's
-instructions before building or ordering materials.
+Total: <span id="totalCost">£0.00</span>
 
 </div>
 
@@ -908,1071 +526,622 @@ instructions before building or ordering materials.
 
 <script>
 
-/* ==========================================================
-HELPERS
-========================================================== */
+/* =========================================
+FIXED T&G SPECIFICATION
+========================================= */
 
-function val(id){
-
-return Math.max(
-0,
-parseFloat(
-document.getElementById(id).value
-) || 0
-);
-
-}
-
-function fmt(n){
-
-return Number(n).toLocaleString(
-"en-GB",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-}
-
-function money(n){
-
-return "£" + fmt(n);
-
-}
+const BOARD_LENGTH = 4.2;
+const EFFECTIVE_WIDTH = 0.110;
+const BOARD_PRICE = 5;
 
 
-/* ==========================================================
-DYNAMIC DOORS
-========================================================== */
+/* =========================================
+SURFACE COUNTER
+========================================= */
 
-let doorCount = 0;
+let surfaceNumber = 0;
 
-function addDoor(
-width=0.9,
-height=2
-){
 
-doorCount++;
+/* =========================================
+ADD SURFACE
+========================================= */
 
-const div =
-document.createElement("div");
+function addSurface() {
 
-div.className="dynamic";
+surfaceNumber++;
 
-div.dataset.id=doorCount;
+const div = document.createElement("div");
 
-div.innerHTML=`
+div.className = "surface";
 
-<div class="dynamic-head">
+div.innerHTML = `
+
+<div class="surface-top">
 
 <strong>
-Door ${doorCount}
+Surface ${surfaceNumber}
 </strong>
 
 <button
 class="remove"
-onclick="this.closest('.dynamic').remove()"
->
+onclick="this.parentElement.parentElement.remove()">
+
 Remove
+
 </button>
 
 </div>
 
 <div class="grid">
 
-<div class="field">
+<div>
 
 <label>
-Width (m)
+Description
 </label>
 
 <input
-class="door-width"
-type="number"
-step="0.01"
-value="${width}"
->
+class="surfaceName"
+type="text"
+value="Wall ${surfaceNumber}">
 
 </div>
 
-<div class="field">
-
-<label>
-Height (m)
-</label>
-
-<input
-class="door-height"
-type="number"
-step="0.01"
-value="${height}"
->
-
-</div>
-
-</div>
-`;
-
-document
-.getElementById("doorsList")
-.appendChild(div);
-
-}
-
-
-/* ==========================================================
-WINDOWS
-========================================================== */
-
-let windowCount=0;
-
-function addWindow(
-width=1.2,
-height=1
-){
-
-windowCount++;
-
-const div =
-document.createElement("div");
-
-div.className="dynamic";
-
-div.innerHTML=`
-
-<div class="dynamic-head">
-
-<strong>
-Window ${windowCount}
-</strong>
-
-<button
-class="remove"
-onclick="this.closest('.dynamic').remove()"
->
-Remove
-</button>
-
-</div>
-
-<div class="grid">
-
-<div class="field">
-
-<label>
-Width (m)
-</label>
-
-<input
-class="window-width"
-type="number"
-step="0.01"
-value="${width}"
->
-
-</div>
-
-<div class="field">
-
-<label>
-Height (m)
-</label>
-
-<input
-class="window-height"
-type="number"
-step="0.01"
-value="${height}"
->
-
-</div>
-
-</div>
-`;
-
-document
-.getElementById("windowsList")
-.appendChild(div);
-
-}
-
-
-/* ==========================================================
-T&G STOCK
-========================================================== */
-
-let stockCount=0;
-
-function addTGStock(length="4.8"){
-
-stockCount++;
-
-const div =
-document.createElement("div");
-
-div.className="dynamic";
-
-div.innerHTML=`
-
-<div class="dynamic-head">
-
-<strong>
-T&G stock length
-</strong>
-
-<button
-class="remove"
-onclick="this.closest('.dynamic').remove()"
->
-Remove
-</button>
-
-</div>
-
-<div class="grid">
-
-<div class="field">
+<div>
 
 <label>
 Length (m)
 </label>
 
 <input
-class="tg-stock"
+class="surfaceLength"
 type="number"
-step="0.1"
-value="${length}"
->
+min="0"
+step="0.01"
+value="5">
+
+</div>
+
+<div>
+
+<label>
+Width / Height (m)
+</label>
+
+<input
+class="surfaceWidth"
+type="number"
+min="0"
+step="0.01"
+value="2.4">
+
+</div>
+
+<div>
+
+<label>
+Quantity
+</label>
+
+<input
+class="surfaceQuantity"
+type="number"
+min="1"
+step="1"
+value="1">
 
 </div>
 
 </div>
+
 `;
 
 document
-.getElementById("tgStockList")
+.getElementById("surfaces")
 .appendChild(div);
-
 }
 
 
-/* ==========================================================
-COMPONENT MATERIAL
-========================================================== */
+/* =========================================
+CREATE PIECES
 
-function material(
-area,
-coverage,
-stockLength,
-waste
-){
+IMPORTANT:
 
-if(
-coverage<=0 ||
-stockLength<=0
-){
+A required run is ALWAYS split into
+pieces no longer than 4.2m.
+========================================= */
 
-return {
-linear:0,
-wasteLinear:0,
-boards:0
+function makePieces(length, quantity, surfaceName) {
+
+const pieces = [];
+
+for (let q = 0; q < quantity; q++) {
+
+let remaining = length;
+
+while (remaining > 0.000001) {
+
+const piece =
+Math.min(
+remaining,
+BOARD_LENGTH
+);
+
+pieces.push({
+name: surfaceName,
+length: piece
+});
+
+remaining -= piece;
+}
+}
+
+return pieces;
+}
+
+
+/* =========================================
+CUTTING OPTIMISATION
+
+Uses actual 4.2m boards.
+
+Longest pieces are placed first and
+existing offcuts are reused.
+========================================= */
+
+function optimiseBoards(pieces) {
+
+pieces.sort(
+(a,b) => b.length - a.length
+);
+
+const boards = [];
+
+pieces.forEach(piece => {
+
+let bestBoard = null;
+let smallestRemaining = Infinity;
+
+boards.forEach(board => {
+
+if (
+board.remaining >=
+piece.length - 0.000001
+) {
+
+if (
+board.remaining <
+smallestRemaining
+) {
+
+bestBoard = board;
+
+smallestRemaining =
+board.remaining;
+}
+}
+
+});
+
+if (!bestBoard) {
+
+bestBoard = {
+
+remaining: BOARD_LENGTH,
+pieces: []
+
 };
 
+boards.push(bestBoard);
 }
 
-const linear =
-area /
-(coverage/1000);
+bestBoard.pieces.push(piece);
 
-const wasteLinear =
-linear *
-(1+waste/100);
+bestBoard.remaining -=
+piece.length;
+
+});
+
+return boards;
+}
+
+
+/* =========================================
+CALCULATE
+========================================= */
+
+function calculate() {
+
+const wastePercent =
+parseFloat(
+document.getElementById(
+"waste"
+).value
+) || 0;
+
+const surfaces =
+document.querySelectorAll(
+".surface"
+);
+
+
+let totalArea = 0;
+
+let allPieces = [];
+
+let breakdown = [];
+
+
+/* ===============================
+CALCULATE EACH SURFACE
+=============================== */
+
+surfaces.forEach(surface => {
+
+const name =
+surface.querySelector(
+".surfaceName"
+).value || "Surface";
+
+const length =
+parseFloat(
+surface.querySelector(
+".surfaceLength"
+).value
+) || 0;
+
+const width =
+parseFloat(
+surface.querySelector(
+".surfaceWidth"
+).value
+) || 0;
+
+const quantity =
+parseInt(
+surface.querySelector(
+".surfaceQuantity"
+).value
+) || 1;
+
+
+const area =
+length *
+width *
+quantity;
+
+
+totalArea += area;
+
+
+/*
+IMPORTANT:
+
+T&G boards have a 110mm effective
+facing.
+
+For each surface we calculate how
+many board courses are required.
+
+Then each course is a real board run
+and is split at 4.2m.
+*/
+
+const courses =
+Math.ceil(
+width /
+EFFECTIVE_WIDTH
+);
+
+
+const pieces =
+makePieces(
+length,
+courses * quantity,
+name
+);
+
+
+allPieces =
+allPieces.concat(
+pieces
+);
+
+
+const metres =
+pieces.reduce(
+(sum,piece)=>
+sum + piece.length,
+0
+);
+
+
+breakdown.push({
+
+name,
+length,
+width,
+quantity,
+area,
+metres
+
+});
+
+});
+
+
+/* ===============================
+WASTE
+=============================== */
+
+/*
+Waste is applied as an additional
+allowance to the required board
+material.
+
+We do NOT create boards longer than
+4.2m.
+*/
 
 const boards =
+optimiseBoards(
+allPieces
+);
+
+
+const minimumBoards =
 Math.ceil(
-wasteLinear /
-stockLength
+boards.length *
+(1 + wastePercent / 100)
 );
 
-return {
-linear,
-wasteLinear,
-boards
-};
+
+/*
+Add spare complete 4.2m boards for
+the waste allowance.
+*/
+
+while (
+boards.length <
+minimumBoards
+) {
+
+boards.push({
+
+remaining: BOARD_LENGTH,
+
+pieces: []
+
+});
 
 }
 
 
-/* ==========================================================
-MAIN CALCULATOR
-========================================================== */
+/* ===============================
+TOTALS
+=============================== */
 
-function calculate(){
+const totalBoards =
+boards.length;
 
-/* BUILDING */
 
-const L=val("length");
-const W=val("width");
-const H=val("height");
+const purchasedMetres =
+totalBoards *
+BOARD_LENGTH;
 
-const rise=val("rise");
 
-const front=val("frontOverhang");
-const rear=val("rearOverhang");
-const side=val("sideOverhang");
-
-
-/* T&G */
-
-const coverage=val("tgCoverage");
-const tgStock=val("tgStockLength");
-const tgWaste=val("tgWaste");
-const tgPrice=val("tgPrice");
-
-
-/* DOORS */
-
-let doorArea=0;
-
-document
-.querySelectorAll(".dynamic")
-.forEach(function(x){
-
-const dw=
-parseFloat(
-x.querySelector(".door-width")?.value
-) || 0;
-
-const dh=
-parseFloat(
-x.querySelector(".door-height")?.value
-) || 0;
-
-if(
-x.querySelector(".door-width")
-){
-
-doorArea +=
-dw*dh;
-
-}
-
-});
-
-
-/* WINDOWS */
-
-let windowArea=0;
-
-document
-.querySelectorAll(".dynamic")
-.forEach(function(x){
-
-const ww=
-parseFloat(
-x.querySelector(".window-width")?.value
-) || 0;
-
-const wh=
-parseFloat(
-x.querySelector(".window-height")?.value
-) || 0;
-
-if(
-x.querySelector(".window-width")
-){
-
-windowArea +=
-ww*wh;
-
-}
-
-});
-
-
-/*
-WALL AREA
-*/
-
-const grossWalls =
-2*L*H +
-2*W*H;
-
-const wallArea =
-Math.max(
-0,
-grossWalls -
-doorArea -
-windowArea
-);
-
-
-/*
-FLOOR
-*/
-
-const floorArea=
-L*W;
-
-
-/*
-ROOF
-*/
-
-const roofLength=
-L+front+rear;
-
-const roofWidth=
-W+2*side;
-
-const slope=
-Math.sqrt(
-roofWidth*roofWidth +
-rise*rise
-);
-
-const roofArea=
-roofLength*slope;
-
-
-/*
-T&G
-*/
-
-const wall=
-material(
-wallArea,
-coverage,
-tgStock,
-tgWaste
-);
-
-const floor=
-material(
-floorArea,
-coverage,
-tgStock,
-tgWaste
-);
-
-const roof=
-material(
-roofArea,
-coverage,
-tgStock,
-tgWaste
-);
-
-const doors=
-material(
-doorArea,
-coverage,
-tgStock,
-tgWaste
-);
-
-
-const components=[
-["Walls",wallArea,wall],
-["Floor",floorArea,floor],
-["Pent roof",roofArea,roof],
-["Doors",doorArea,doors]
-];
-
-
-/*
-T&G TABLE
-*/
-
-let tgHTML="";
-
-components.forEach(function(c){
-
-const cost=
-c[2].boards*
-tgPrice;
-
-tgHTML+=`
-
-<tr>
-
-<td>${c[0]}</td>
-
-<td>${fmt(c[1])} m²</td>
-
-<td>${fmt(c[2].linear)} m</td>
-
-<td>${fmt(c[2].wasteLinear)} m</td>
-
-<td>${c[2].boards}</td>
-
-<td>
-${tgPrice>0?money(cost):"—"}
-</td>
-
-</tr>
-
-`;
-
-});
-
-
-document.getElementById(
-"tgResults"
-).innerHTML=tgHTML;
-
-
-const totalTG=
-components.reduce(
-(s,c)=>
-s+c[2].wasteLinear,
+const requiredMetres =
+allPieces.reduce(
+(sum,piece)=>
+sum + piece.length,
 0
 );
 
-const totalTGBoards=
-components.reduce(
-(s,c)=>
-s+c[2].boards,
-0
-);
 
-const totalTGCost=
-totalTGBoards*tgPrice;
+const unused =
+purchasedMetres -
+requiredMetres;
+
+
+const totalCost =
+totalBoards *
+BOARD_PRICE;
+
+
+/* ===============================
+TOP RESULTS
+=============================== */
+
+document.getElementById(
+"coverage"
+).textContent =
+totalArea.toFixed(2) +
+"m²";
 
 
 document.getElementById(
-"tgTotal"
-).textContent=fmt(totalTG);
-
-document.getElementById(
-"tgBoards"
-).textContent=totalTGBoards;
-
-document.getElementById(
-"tgCost"
-).textContent=
-tgPrice>0
-?money(totalTGCost)
-:"Enter price";
+"required"
+).textContent =
+requiredMetres.toFixed(2) +
+"m";
 
 
 document.getElementById(
-"wallTG"
-).textContent=
-fmt(wall.wasteLinear)+" m";
+"boards"
+).textContent =
+totalBoards;
+
 
 document.getElementById(
-"floorTG"
-).textContent=
-fmt(floor.wasteLinear)+" m";
+"cost"
+).textContent =
+"£" +
+totalCost.toFixed(2);
+
+
+/* ===============================
+BREAKDOWN
+=============================== */
 
 document.getElementById(
-"roofTG"
-).textContent=
-fmt(roof.wasteLinear)+" m";
+"breakdown"
+).innerHTML =
 
-document.getElementById(
-"doorTG"
-).textContent=
-fmt(doors.wasteLinear)+" m";
+breakdown.map(item => {
 
-
-/*
-STOCK LENGTH ESTIMATES
-*/
-
-const stockInputs=
-document.querySelectorAll(
-".tg-stock"
-);
-
-let stockHTML="";
-
-stockInputs.forEach(function(input){
-
-const length=
-parseFloat(input.value)||0;
-
-if(length<=0)return;
-
-const boards=
+const boardsForSurface =
 Math.ceil(
-totalTG/length
+item.metres /
+BOARD_LENGTH
 );
 
-const purchased=
-boards*length;
-
-const surplus=
-Math.max(
-0,
-purchased-totalTG
-);
-
-const cost=
-boards*tgPrice;
-
-stockHTML+=`
+return `
 
 <tr>
 
-<td>${fmt(length)} m</td>
-
-<td>${boards}</td>
-
-<td>${fmt(purchased)} m</td>
-
-<td>${fmt(surplus)} m</td>
+<td>
+${escapeHtml(item.name)}
+</td>
 
 <td>
-${tgPrice>0?money(cost):"—"}
+${item.length.toFixed(2)}m ×
+${item.width.toFixed(2)}m
+</td>
+
+<td>
+${item.area.toFixed(2)}m²
+</td>
+
+<td>
+${item.metres.toFixed(2)}m
+</td>
+
+<td>
+${boardsForSurface}
 </td>
 
 </tr>
 
 `;
 
-});
+}).join("");
 
+
+/* ===============================
+CUTTING PLAN
+=============================== */
 
 document.getElementById(
-"tgCutting"
-).innerHTML=
-stockHTML;
+"cutting"
+).innerHTML =
 
+boards.map(
+(board,index) => {
 
-/* ======================================================
-FRAMING
-====================================================== */
+const piecesText =
+board.pieces.length
 
-const studSpacing=
-val("studSpacing")/1000;
+?
 
-const floorSpacing=
-val("floorSpacing")/1000;
+board.pieces.map(
+piece =>
+`${piece.length.toFixed(2)}m
+(${escapeHtml(piece.name)})`
+).join("<br>")
 
-const bearerSpacing=
-val("bearerSpacing");
+:
 
-const rafterSpacing=
-val("rafterSpacing")/1000;
+"Spare board";
 
+const used =
+BOARD_LENGTH -
+board.remaining;
 
-const floorWaste=
-val("floorWaste")/100;
-
-const wallWaste=
-val("wallWaste")/100;
-
-const roofWaste=
-val("roofWaste")/100;
-
-
-const frameLength=
-val("frameStockLength");
-
-const framePrice=
-val("framePrice");
-
-
-/* FLOOR JOISTS */
-
-const floorJoistCount=
-floorSpacing>0
-?Math.ceil(L/floorSpacing)+1
-:0;
-
-const floorJoists=
-floorJoistCount*W;
-
-
-/* BEARERS */
-
-const bearerCount=
-bearerSpacing>0
-?Math.ceil(L/bearerSpacing)+1
-:0;
-
-const bearers=
-bearerCount*W;
-
-
-/* WALL STUDS */
-
-const frontStuds=
-studSpacing>0
-?Math.ceil(L/studSpacing)+1
-:0;
-
-const sideStuds=
-studSpacing>0
-?Math.ceil(W/studSpacing)+1
-:0;
-
-const wallStuds=
-2*frontStuds*H+
-2*sideStuds*H;
-
-
-/* PLATES */
-
-const plateLayers=
-val("plateLayers");
-
-const perimeter=
-2*L+2*W;
-
-const plates=
-perimeter*
-plateLayers;
-
-
-/* NOGGINS */
-
-const nogginRows=
-val("nogginRows");
-
-const nogginCount=
-(
-2*Math.ceil(L/studSpacing)+
-2*Math.ceil(W/studSpacing)
-)*
-nogginRows;
-
-const averageRun=
-perimeter/4;
-
-const noggins=
-nogginCount*
-averageRun;
-
-
-/* ROOF RAFTERS */
-
-const rafterCount=
-rafterSpacing>0
-?Math.ceil(roofLength/rafterSpacing)+1
-:0;
-
-const rafters=
-rafterCount*slope;
-
-
-/* FASCIA */
-
-const fascia=
-roofLength*2+
-roofWidth*2;
-
-
-/* CORNER POSTS */
-
-const cornerPosts=
-4*H;
-
-
-/* DOOR FRAMES */
-
-let doorFrame=0;
-
-document
-.querySelectorAll(".door-width")
-.forEach(function(input){
-
-const parent=
-input.closest(".dynamic");
-
-const w=
-parseFloat(input.value)||0;
-
-const h=
-parseFloat(
-parent.querySelector(
-".door-height"
-).value
-)||0;
-
-doorFrame +=
-2*h+w;
-
-});
-
-
-const framing=[
-
-["Floor joists",floorJoists,floorWaste],
-
-["Floor bearers",bearers,floorWaste],
-
-["Wall studs",wallStuds,wallWaste],
-
-["Wall plates",plates,wallWaste],
-
-["Wall noggins",noggins,wallWaste],
-
-["Roof rafters",rafters,roofWaste],
-
-["Roof fascia",fascia,roofWaste],
-
-["Corner posts",cornerPosts,wallWaste],
-
-["Door frames",doorFrame,wallWaste]
-
-];
-
-
-let frameHTML="";
-
-let totalFrame=0;
-
-let totalFrameBoards=0;
-
-
-framing.forEach(function(c){
-
-const calculated=c[1];
-
-const wasteRate=c[2];
-
-const withWaste=
-calculated*
-(1+wasteRate);
-
-const boards=
-frameLength>0
-?Math.ceil(
-withWaste/
-frameLength
-)
-:0;
-
-const cost=
-boards*
-framePrice;
-
-
-totalFrame+=
-withWaste;
-
-totalFrameBoards+=
-boards;
-
-
-frameHTML+=`
+return `
 
 <tr>
 
-<td>${c[0]}</td>
-
-<td>${fmt(calculated)} m</td>
-
-<td>${fmt(withWaste)} m</td>
-
-<td>${boards}</td>
+<td>
+${index + 1}
+</td>
 
 <td>
-${framePrice>0?money(cost):"—"}
+${piecesText}
+</td>
+
+<td>
+${used.toFixed(2)}m
+</td>
+
+<td>
+${board.remaining.toFixed(2)}m
 </td>
 
 </tr>
 
 `;
-
-});
-
-
-document.getElementById(
-"frameResults"
-).innerHTML=
-frameHTML;
-
-
-const frameCost=
-totalFrameBoards*
-framePrice;
-
-
-document.getElementById(
-"frameTotal"
-).textContent=
-fmt(totalFrame);
-
-document.getElementById(
-"frameBoards"
-).textContent=
-totalFrameBoards;
-
-document.getElementById(
-"frameCost"
-).textContent=
-framePrice>0
-?money(frameCost)
-:"Enter price";
-
-
-/* ======================================================
-SHOPPING LIST
-====================================================== */
-
-let shopping="";
-
-
-shopping+=`
-
-<tr>
-
-<td>Tongue & groove</td>
-
-<td>
-${val("tgThickness")} ×
-${val("tgWidth")} mm
-</td>
-
-<td>${totalTGBoards}</td>
-
-<td>${fmt(totalTG)} m</td>
-
-<td>
-${tgPrice>0?money(totalTGCost):"—"}
-</td>
-
-</tr>
-
-`;
-
-
-framing.forEach(function(c){
-
-const boards=
-frameLength>0
-?Math.ceil(
-c[1]*(1+c[2])/
-frameLength
-)
-:0;
-
-const cost=
-boards*
-framePrice;
-
-
-shopping+=`
-
-<tr>
-
-<td>${c[0]}</td>
-
-<td>Framing timber</td>
-
-<td>${boards}</td>
-
-<td>
-${fmt(c[1]*(1+c[2]))} m
-</td>
-
-<td>
-${framePrice>0?money(cost):"—"}
-</td>
-
-</tr>
-
-`;
-
-});
-
-
-document.getElementById(
-"shoppingList"
-).innerHTML=
-shopping;
-
-
-/* ======================================================
-SUMMARY
-====================================================== */
-
-document.getElementById(
-"sumTGBoards"
-).textContent=
-totalTGBoards;
-
-document.getElementById(
-"sumFrameBoards"
-).textContent=
-totalFrameBoards;
-
-document.getElementById(
-"sumLength"
-).textContent=
-fmt(totalTG+totalFrame)+" m";
-
-document.getElementById(
-"sumTGCost"
-).textContent=
-tgPrice>0
-?money(totalTGCost)
-:"Enter price";
-
-document.getElementById(
-"sumFrameCost"
-).textContent=
-framePrice>0
-?money(frameCost)
-:"Enter price";
-
-
-if(
-tgPrice>0 &&
-framePrice>0
-){
-
-document.getElementById(
-"grandTotal"
-).textContent=
-money(
-totalTGCost+
-frameCost
-);
-
-}else{
-
-document.getElementById(
-"grandTotal"
-).textContent=
-"Enter timber prices";
 
 }
+).join("");
+
+
+/* ===============================
+FINAL PURCHASE
+=============================== */
+
+document.getElementById(
+"totalBoards"
+).textContent =
+totalBoards;
+
+
+document.getElementById(
+"purchased"
+).textContent =
+purchasedMetres.toFixed(2) +
+"m";
+
+
+document.getElementById(
+"offcut"
+).textContent =
+unused.toFixed(2) +
+"m";
+
+
+document.getElementById(
+"totalCost"
+).textContent =
+"£" +
+totalCost.toFixed(2);
 
 }
 
 
-/* ==========================================================
-RESET
-========================================================== */
+/* =========================================
+HTML SAFETY
+========================================= */
 
-function resetAll(){
+function escapeHtml(text) {
 
-location.reload();
+return text
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
 
-/* ==========================================================
-INITIAL DEFAULTS
-========================================================== */
+/* =========================================
+START WITH ONE SURFACE
+========================================= */
 
-addTGStock("2.4");
-addTGStock("3.0");
-addTGStock("3.6");
-addTGStock("4.2");
-addTGStock("4.8");
-
-addDoor();
-
-calculate();
+addSurface();
 
 </script>
 
 </body>
 </html>
+
