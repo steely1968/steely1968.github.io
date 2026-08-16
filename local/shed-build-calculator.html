@@ -1,0 +1,2403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Complete Wooden Building Timber Calculator</title>
+
+<style>
+*{box-sizing:border-box}
+
+:root{
+--green:#17412d;
+--green2:#286345;
+--pale:#edf5ef;
+--bg:#f2f4f3;
+--text:#17221b;
+--muted:#68736c;
+--border:#d3d9d5;
+--red:#9d3030;
+--amber:#fff4c9;
+--blue:#eaf2fb;
+}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+line-height:1.4;
+}
+
+.container{
+max-width:1300px;
+margin:auto;
+padding:14px;
+}
+
+header{
+background:linear-gradient(135deg,var(--green),var(--green2));
+color:#fff;
+border-radius:17px;
+padding:28px;
+margin-bottom:16px;
+}
+
+header h1{
+margin:0 0 8px;
+font-size:clamp(27px,5vw,44px);
+}
+
+header p{margin:0}
+
+.card{
+background:#fff;
+border-radius:14px;
+padding:20px;
+margin-bottom:16px;
+box-shadow:0 2px 9px rgba(0,0,0,.06);
+}
+
+h2{
+margin:0 0 18px;
+}
+
+h3{
+margin-top:24px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
+}
+
+.field label{
+display:block;
+font-size:13px;
+font-weight:bold;
+margin-bottom:5px;
+}
+
+input,select,textarea{
+width:100%;
+padding:11px;
+border:1px solid var(--border);
+border-radius:8px;
+background:#fff;
+font-size:16px;
+}
+
+textarea{
+min-height:90px;
+resize:vertical;
+}
+
+.help,.small{
+color:var(--muted);
+font-size:12px;
+margin-top:4px;
+}
+
+.buttons{
+display:flex;
+flex-wrap:wrap;
+gap:9px;
+}
+
+button{
+border:0;
+border-radius:8px;
+padding:12px 17px;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+}
+
+.primary{
+background:var(--green);
+color:white;
+}
+
+.secondary{
+background:#e5eae7;
+color:var(--text);
+}
+
+.add{
+background:var(--green2);
+color:#fff;
+margin-top:10px;
+}
+
+.remove{
+background:#f5dddd;
+color:var(--red);
+padding:8px 11px;
+font-size:12px;
+}
+
+.dynamic{
+background:#fafcfb;
+border:1px solid var(--border);
+border-radius:10px;
+padding:14px;
+margin-bottom:11px;
+}
+
+.dynamic-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:12px;
+}
+
+.table-wrap{
+overflow-x:auto;
+width:100%;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:800px;
+}
+
+th,td{
+padding:9px 10px;
+border-bottom:1px solid #ddd;
+text-align:left;
+vertical-align:top;
+}
+
+th{
+background:#eaf0ec;
+}
+
+.metric-grid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+}
+
+.metric{
+background:var(--pale);
+border-radius:10px;
+padding:14px;
+}
+
+.metric span{
+display:block;
+font-size:12px;
+color:var(--muted);
+}
+
+.metric strong{
+display:block;
+font-size:22px;
+margin-top:4px;
+}
+
+.summary{
+background:var(--green);
+color:#fff;
+border-radius:14px;
+padding:22px;
+}
+
+.summary-row{
+display:flex;
+justify-content:space-between;
+gap:20px;
+padding:10px 0;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.grand{
+font-size:27px;
+font-weight:bold;
+margin-top:17px;
+}
+
+.notice{
+background:var(--amber);
+border-left:4px solid #c69d00;
+padding:13px;
+border-radius:5px;
+}
+
+.blue{
+background:var(--blue);
+border-left:4px solid #4675a7;
+padding:13px;
+border-radius:5px;
+}
+
+.good{
+color:#21683c;
+font-weight:bold;
+}
+
+.bad{
+color:#9d3030;
+font-weight:bold;
+}
+
+.hidden{display:none}
+
+@media(max-width:950px){
+.grid{grid-template-columns:repeat(2,1fr)}
+.metric-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:600px){
+.container{padding:8px}
+header,.card,.summary{padding:15px}
+.grid{grid-template-columns:1fr}
+.metric-grid{grid-template-columns:repeat(2,1fr)}
+.buttons button{width:100%}
+.metric strong{font-size:18px}
+}
+
+@media print{
+body{background:white}
+.input-only,.buttons,.add,.remove{display:none!important}
+.card,.summary{
+box-shadow:none;
+border:1px solid #ddd;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1>🪵 Complete Wooden Building Timber Calculator</h1>
+<p>
+Sheds • Summerhouses • Workshops • Garden Rooms • Cabins • Custom Buildings
+</p>
+</header>
+
+
+<!-- PROJECT -->
+<section class="card input-only">
+
+<h2>Project details</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Customer</label>
+<input id="customer" placeholder="Customer name">
+</div>
+
+<div class="field">
+<label>Project / quote number</label>
+<input id="quoteNo" placeholder="Quote number">
+</div>
+
+<div class="field">
+<label>Date</label>
+<input id="quoteDate" type="date">
+</div>
+
+<div class="field">
+<label>Building type</label>
+<select id="buildingType">
+<option>Shed</option>
+<option selected>Summerhouse</option>
+<option>Workshop</option>
+<option>Garden Room</option>
+<option>Cabin</option>
+<option>Custom</option>
+</select>
+</div>
+
+<div class="field">
+<label>Building length (m)</label>
+<input id="length" type="number" step=".01" value="5">
+</div>
+
+<div class="field">
+<label>Building width (m)</label>
+<input id="width" type="number" step=".01" value="4">
+</div>
+
+<div class="field">
+<label>Wall height (m)</label>
+<input id="height" type="number" step=".01" value="2.4">
+</div>
+
+<div class="field">
+<label>Roof type</label>
+<select id="roofType">
+<option value="pent" selected>Pent roof</option>
+<option value="flat">Flat roof</option>
+</select>
+</div>
+
+<div class="field">
+<label>Roof rise/fall (m)</label>
+<input id="roofRise" type="number" step=".01" value=".3">
+</div>
+
+<div class="field">
+<label>Front overhang (m)</label>
+<input id="frontOH" type="number" step=".01" value=".2">
+</div>
+
+<div class="field">
+<label>Rear overhang (m)</label>
+<input id="rearOH" type="number" step=".01" value=".2">
+</div>
+
+<div class="field">
+<label>Side overhang each side (m)</label>
+<input id="sideOH" type="number" step=".01" value=".2">
+</div>
+
+</div>
+</section>
+
+
+<!-- T&G -->
+<section class="card input-only">
+
+<h2>Tongue & Groove specification</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Nominal width (mm)</label>
+<input id="tgNominal" type="number" value="119">
+</div>
+
+<div class="field">
+<label>Effective coverage (mm)</label>
+<input id="tgCoverage" type="number" value="109">
+</div>
+
+<div class="field">
+<label>Thickness (mm)</label>
+<input id="tgThickness" type="number" value="19">
+</div>
+
+<div class="field">
+<label>Default stock length (m)</label>
+<input id="tgDefaultStock" type="number" step=".1" value="4.8">
+</div>
+
+<div class="field">
+<label>Price per board (£)</label>
+<input id="tgPrice" type="number" step=".01" value="0">
+</div>
+
+<div class="field">
+<label>General T&G waste (%)</label>
+<input id="tgWaste" type="number" value="8">
+</div>
+
+</div>
+
+<h3>Available T&G stock lengths</h3>
+
+<div id="stockLengths"></div>
+
+<button class="add" onclick="addStock()">+ Add stock length</button>
+
+</section>
+
+
+<!-- WALL ORIENTATION -->
+<section class="card input-only">
+
+<h2>Individual T&G installation</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Front wall direction</label>
+<select id="frontDir">
+<option value="vertical">Vertical</option>
+<option value="horizontal" selected>Horizontal</option>
+</select>
+</div>
+
+<div class="field">
+<label>Rear wall direction</label>
+<select id="rearDir">
+<option value="vertical">Vertical</option>
+<option value="horizontal" selected>Horizontal</option>
+</select>
+</div>
+
+<div class="field">
+<label>Left wall direction</label>
+<select id="leftDir">
+<option value="vertical">Vertical</option>
+<option value="horizontal" selected>Horizontal</option>
+</select>
+</div>
+
+<div class="field">
+<label>Right wall direction</label>
+<select id="rightDir">
+<option value="vertical">Vertical</option>
+<option value="horizontal" selected>Horizontal</option>
+</select>
+</div>
+
+<div class="field">
+<label>Floor board direction</label>
+<select id="floorDir">
+<option value="length" selected>Along building length</option>
+<option value="width">Across building width</option>
+</select>
+</div>
+
+<div class="field">
+<label>Roof board direction</label>
+<select id="roofDir">
+<option value="slope" selected>Across roof slope</option>
+<option value="length">Along building length</option>
+</select>
+</div>
+
+</div>
+
+<div class="blue">
+The calculator uses the selected direction to calculate the
+number of individual board runs. Openings are deducted from
+the wall faces before the runs are estimated.
+</div>
+
+</section>
+
+
+<!-- DOORS -->
+<section class="card input-only">
+
+<h2>Doors</h2>
+
+<div id="doors"></div>
+
+<button class="add" onclick="addDoor()">+ Add door</button>
+
+</section>
+
+
+<!-- WINDOWS -->
+<section class="card input-only">
+
+<h2>Windows</h2>
+
+<div id="windows"></div>
+
+<button class="add" onclick="addWindow()">+ Add window</button>
+
+</section>
+
+
+<!-- FLOOR -->
+<section class="card input-only">
+
+<h2>Floor framing</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Joist size</label>
+<select id="joistSize">
+<option>50 × 100 mm</option>
+<option selected>50 × 150 mm</option>
+<option>50 × 175 mm</option>
+<option>50 × 200 mm</option>
+<option>75 × 150 mm</option>
+</select>
+</div>
+
+<div class="field">
+<label>Joist spacing (mm)</label>
+<input id="joistSpacing" type="number" value="400">
+</div>
+
+<div class="field">
+<label>Bearer spacing (m)</label>
+<input id="bearerSpacing" type="number" step=".1" value="1.2">
+</div>
+
+<div class="field">
+<label>Floor framing waste (%)</label>
+<input id="floorFrameWaste" type="number" value="10">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WALL FRAME -->
+<section class="card input-only">
+
+<h2>Wall framing</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Stud size</label>
+<select id="studSize">
+<option selected>50 × 75 mm</option>
+<option>50 × 100 mm</option>
+<option>50 × 125 mm</option>
+<option>50 × 150 mm</option>
+<option>75 × 100 mm</option>
+</select>
+</div>
+
+<div class="field">
+<label>Stud spacing (mm)</label>
+<input id="studSpacing" type="number" value="400">
+</div>
+
+<div class="field">
+<label>Top/bottom plate layers</label>
+<input id="plateLayers" type="number" value="2">
+</div>
+
+<div class="field">
+<label>Noggin rows</label>
+<input id="nogginRows" type="number" value="1">
+</div>
+
+<div class="field">
+<label>Wall framing waste (%)</label>
+<input id="wallFrameWaste" type="number" value="10">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ROOF FRAME -->
+<section class="card input-only">
+
+<h2>Roof framing</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Rafter size</label>
+<select id="rafterSize">
+<option selected>50 × 100 mm</option>
+<option>50 × 125 mm</option>
+<option>50 × 150 mm</option>
+<option>50 × 175 mm</option>
+<option>50 × 200 mm</option>
+</select>
+</div>
+
+<div class="field">
+<label>Rafter spacing (mm)</label>
+<input id="rafterSpacing" type="number" value="400">
+</div>
+
+<div class="field">
+<label>Roof framing waste (%)</label>
+<input id="roofFrameWaste" type="number" value="10">
+</div>
+
+<div class="field">
+<label>Fascia size</label>
+<select id="fasciaSize">
+<option>25 × 100 mm</option>
+<option selected>25 × 150 mm</option>
+<option>25 × 200 mm</option>
+</select>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FRAME STOCK -->
+<section class="card input-only">
+
+<h2>Structural timber stock and pricing</h2>
+
+<div class="grid">
+
+<div class="field">
+<label>Standard framing length (m)</label>
+<input id="frameStock" type="number" step=".1" value="4.8">
+</div>
+
+<div class="field">
+<label>Price per framing length (£)</label>
+<input id="framePrice" type="number" step=".01" value="0">
+</div>
+
+<div class="field">
+<label>Corner post size</label>
+<select id="cornerSize">
+<option>75 × 75 mm</option>
+<option selected>100 × 100 mm</option>
+<option>100 × 150 mm</option>
+</select>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BUTTONS -->
+<section class="card input-only">
+
+<div class="buttons">
+
+<button class="primary" onclick="calculate()">
+Calculate
+</button>
+
+<button class="secondary" onclick="saveProject()">
+Save Project
+</button>
+
+<button class="secondary" onclick="loadProject()">
+Load Project
+</button>
+
+<button class="secondary" onclick="window.print()">
+Print / Save PDF
+</button>
+
+<button class="secondary" onclick="resetProject()">
+Reset
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SUMMARY METRICS -->
+<section class="card">
+
+<h2>Overview</h2>
+
+<div class="metric-grid">
+
+<div class="metric">
+<span>Wall T&G</span>
+<strong id="mWalls">—</strong>
+</div>
+
+<div class="metric">
+<span>Floor T&G</span>
+<strong id="mFloor">—</strong>
+</div>
+
+<div class="metric">
+<span>Roof T&G</span>
+<strong id="mRoof">—</strong>
+</div>
+
+<div class="metric">
+<span>Door T&G</span>
+<strong id="mDoors">—</strong>
+</div>
+
+<div class="metric">
+<span>Total T&G</span>
+<strong id="mTotal">—</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- WALL RUNS -->
+<section class="card">
+
+<h2>Individual T&G board runs</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Component</th>
+<th>Direction</th>
+<th>Runs</th>
+<th>Run length</th>
+<th>Coverage</th>
+<th>Linear metres</th>
+<th>Waste</th>
+</tr>
+</thead>
+
+<tbody id="runs"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- CUTTING OPTIMISER -->
+<section class="card">
+
+<h2>T&G cutting / purchasing estimate</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Stock length</th>
+<th>Quantity</th>
+<th>Purchased metres</th>
+<th>Required metres</th>
+<th>Surplus</th>
+<th>Estimated cost</th>
+</tr>
+</thead>
+
+<tbody id="cuts"></tbody>
+
+</table>
+
+</div>
+
+<div class="notice">
+<strong>Cutting optimiser:</strong>
+The calculator uses a best-fit style packing method. It attempts
+to reuse available offcuts before opening another stock board.
+Actual site cutting may differ because grain direction, damaged
+boards, knots and minimum usable offcut sizes can affect the result.
+</div>
+
+</section>
+
+
+<!-- OFFCUTS -->
+<section class="card">
+
+<h2>Estimated offcuts</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Stock length</th>
+<th>Boards used</th>
+<th>Estimated reusable offcut</th>
+<th>Total offcut</th>
+</tr>
+</thead>
+
+<tbody id="offcuts"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- FRAMING -->
+<section class="card">
+
+<h2>Structural timber schedule</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Component</th>
+<th>Timber size</th>
+<th>Calculated</th>
+<th>Waste included</th>
+<th>Stock lengths</th>
+<th>Cost</th>
+</tr>
+</thead>
+
+<tbody id="framing"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- SHOPPING -->
+<section class="card">
+
+<h2>Complete shopping list</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th>Material</th>
+<th>Specification</th>
+<th>Quantity</th>
+<th>Length</th>
+<th>Cost</th>
+</tr>
+</thead>
+
+<tbody id="shopping"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- SUMMARY -->
+<section class="summary">
+
+<h2>Complete estimate</h2>
+
+<div class="summary-row">
+<span>Customer</span>
+<strong id="sCustomer">—</strong>
+</div>
+
+<div class="summary-row">
+<span>Building</span>
+<strong id="sBuilding">—</strong>
+</div>
+
+<div class="summary-row">
+<span>T&G boards</span>
+<strong id="sTGBoards">—</strong>
+</div>
+
+<div class="summary-row">
+<span>Structural timber lengths</span>
+<strong id="sFrameBoards">—</strong>
+</div>
+
+<div class="summary-row">
+<span>Total T&G length</span>
+<strong id="sTGLength">—</strong>
+</div>
+
+<div class="summary-row">
+<span>Total structural timber</span>
+<strong id="sFrameLength">—</strong>
+</div>
+
+<div class="summary-row">
+<span>T&G cost</span>
+<strong id="sTGCost">—</strong>
+</div>
+
+<div class="summary-row">
+<span>Structural timber cost</span>
+<strong id="sFrameCost">—</strong>
+</div>
+
+<div class="grand">
+Estimated timber total:
+<span id="sTotal">—</span>
+</div>
+
+</section>
+
+
+<section class="card">
+
+<div class="notice">
+
+<strong>Important:</strong>
+This is an estimating tool and not a structural-engineering
+calculator. Timber sizes, spans, roof loads, floor loads,
+foundations, fixings, bracing and building regulations must be
+checked for the actual building.
+
+</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* ==========================================================
+GLOBALS
+========================================================== */
+
+let doorID=0;
+let windowID=0;
+let stockID=0;
+
+
+/* ==========================================================
+HELPERS
+========================================================== */
+
+function v(id){
+return Math.max(
+0,
+parseFloat(document.getElementById(id).value)||0
+);
+}
+
+function money(n){
+return "£"+Number(n).toLocaleString(
+"en-GB",
+{minimumFractionDigits:2,maximumFractionDigits:2}
+);
+}
+
+function num(n){
+return Number(n).toLocaleString(
+"en-GB",
+{minimumFractionDigits:2,maximumFractionDigits:2}
+);
+}
+
+function today(){
+const d=new Date();
+return d.toISOString().slice(0,10);
+}
+
+
+/* ==========================================================
+ADD DOOR
+========================================================== */
+
+function addDoor(w=.9,h=2){
+
+doorID++;
+
+const d=document.createElement("div");
+
+d.className="dynamic";
+
+d.innerHTML=`
+
+<div class="dynamic-head">
+
+<strong>Door ${doorID}</strong>
+
+<button class="remove"
+onclick="this.closest('.dynamic').remove()">
+Remove
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="field">
+<label>Width (m)</label>
+<input class="doorW" type="number"
+step=".01" value="${w}">
+</div>
+
+<div class="field">
+<label>Height (m)</label>
+<input class="doorH" type="number"
+step=".01" value="${h}">
+</div>
+
+<div class="field">
+<label>T&G direction</label>
+<select class="doorDir">
+<option value="vertical" selected>Vertical</option>
+<option value="horizontal">Horizontal</option>
+</select>
+</div>
+
+</div>
+`;
+
+document.getElementById("doors").appendChild(d);
+}
+
+
+/* ==========================================================
+ADD WINDOW
+========================================================== */
+
+function addWindow(w=1.2,h=1){
+
+windowID++;
+
+const d=document.createElement("div");
+
+d.className="dynamic";
+
+d.innerHTML=`
+
+<div class="dynamic-head">
+
+<strong>Window ${windowID}</strong>
+
+<button class="remove"
+onclick="this.closest('.dynamic').remove()">
+Remove
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="field">
+<label>Width (m)</label>
+<input class="windowW" type="number"
+step=".01" value="${w}">
+</div>
+
+<div class="field">
+<label>Height (m)</label>
+<input class="windowH" type="number"
+step=".01" value="${h}">
+</div>
+
+</div>
+`;
+
+document.getElementById("windows").appendChild(d);
+}
+
+
+/* ==========================================================
+ADD STOCK
+========================================================== */
+
+function addStock(length=4.8){
+
+stockID++;
+
+const d=document.createElement("div");
+
+d.className="dynamic";
+
+d.innerHTML=`
+
+<div class="dynamic-head">
+
+<strong>T&G stock length</strong>
+
+<button class="remove"
+onclick="this.closest('.dynamic').remove()">
+Remove
+</button>
+
+</div>
+
+<div class="grid">
+
+<div class="field">
+<label>Stock length (m)</label>
+<input class="stockL"
+type="number"
+step=".1"
+value="${length}">
+</div>
+
+</div>
+`;
+
+document
+.getElementById("stockLengths")
+.appendChild(d);
+}
+
+
+/* ==========================================================
+BUILD RUNS
+========================================================== */
+
+function makeRuns(
+component,
+direction,
+length,
+width,
+height,
+openings=0
+){
+
+let runs=[];
+let count=0;
+let runLength=0;
+
+if(direction==="horizontal"){
+
+count=Math.ceil(
+height/(v("tgCoverage")/1000)
+);
+
+runLength=length;
+
+}else{
+
+count=Math.ceil(
+length/(v("tgCoverage")/1000)
+);
+
+runLength=height;
+
+}
+
+/*
+Opening deduction is distributed across the
+affected runs as an estimating method.
+*/
+
+const gross=count*runLength;
+
+const adjusted=Math.max(
+0,
+gross-openings
+);
+
+const ratio=
+gross>0
+?adjusted/gross
+:0;
+
+const adjustedRun=
+runLength*ratio;
+
+for(let i=0;i<count;i++){
+
+runs.push({
+component,
+direction,
+length:adjustedRun
+});
+
+}
+
+return runs;
+}
+
+
+/* ==========================================================
+PACK CUTS
+========================================================== */
+
+function packCuts(runs,stockLengths){
+
+/*
+Best-fit decreasing.
+Each required run is sorted longest first.
+Existing offcuts are reused first.
+*/
+
+let pieces=[];
+
+runs.forEach(r=>{
+if(r.length>0){
+pieces.push(r.length);
+}
+});
+
+pieces.sort((a,b)=>b-a);
+
+let boards=[];
+
+/*
+Start with largest stock first.
+*/
+
+stockLengths=
+[...stockLengths]
+.filter(x=>x>0)
+.sort((a,b)=>b-a);
+
+if(!stockLengths.length){
+stockLengths=[v("tgDefaultStock")];
+}
+
+pieces.forEach(piece=>{
+
+let placed=false;
+
+/*
+Try existing board offcuts.
+*/
+
+for(let board of boards){
+
+if(board.remaining+0.00001>=piece){
+
+board.cuts.push(piece);
+board.remaining-=piece;
+placed=true;
+break;
+
+}
+
+}
+
+if(placed)return;
+
+
+/*
+Open the smallest stock board that can
+accommodate the piece.
+*/
+
+let stock=
+stockLengths
+.filter(x=>x>=piece)
+.sort((a,b)=>a-b)[0];
+
+/*
+If none can accommodate it, use largest
+stock and flag it as oversize.
+*/
+
+if(!stock){
+stock=stockLengths[0];
+}
+
+boards.push({
+stock,
+remaining:stock-piece,
+cuts:[piece]
+});
+
+});
+
+return boards;
+}
+
+
+/* ==========================================================
+MAIN CALCULATOR
+========================================================== */
+
+function calculate(){
+
+const L=v("length");
+const W=v("width");
+const H=v("height");
+
+const rise=v("roofRise");
+
+const frontOH=v("frontOH");
+const rearOH=v("rearOH");
+const sideOH=v("sideOH");
+
+const coverage=v("tgCoverage");
+const tgWaste=v("tgWaste")/100;
+
+const tgPrice=v("tgPrice");
+
+const roofLength=
+L+frontOH+rearOH;
+
+const roofWidth=
+W+2*sideOH;
+
+const roofSlope=
+Math.sqrt(
+roofWidth*roofWidth+
+rise*rise
+);
+
+const roofArea=
+roofLength*roofSlope;
+
+const floorArea=L*W;
+
+
+/* =========================================
+OPENINGS
+========================================= */
+
+let doorArea=0;
+
+const doors=
+[...document.querySelectorAll("#doors .dynamic")];
+
+doors.forEach(d=>{
+
+const w=
+parseFloat(d.querySelector(".doorW").value)||0;
+
+const h=
+parseFloat(d.querySelector(".doorH").value)||0;
+
+doorArea+=w*h;
+
+});
+
+
+let windowArea=0;
+
+const windows=
+[...document.querySelectorAll("#windows .dynamic")];
+
+windows.forEach(d=>{
+
+const w=
+parseFloat(d.querySelector(".windowW").value)||0;
+
+const h=
+parseFloat(d.querySelector(".windowH").value)||0;
+
+windowArea+=w*h;
+
+});
+
+
+/* =========================================
+WALL AREAS
+========================================= */
+
+const frontArea=
+Math.max(0,L*H);
+
+const rearArea=
+Math.max(0,L*H);
+
+const leftArea=
+Math.max(0,W*H);
+
+const rightArea=
+Math.max(0,W*H);
+
+const totalGrossWalls=
+frontArea+
+rearArea+
+leftArea+
+rightArea;
+
+const totalOpeningArea=
+doorArea+
+windowArea;
+
+const netWallArea=
+Math.max(
+0,
+totalGrossWalls-totalOpeningArea
+);
+
+
+/* =========================================
+T&G RUNS
+========================================= */
+
+let runs=[];
+
+const frontOpen=
+(doorArea+windowArea)/
+4;
+
+runs.push(
+...makeRuns(
+"Front wall",
+document.getElementById("frontDir").value,
+L,W,H,frontOpen
+)
+);
+
+runs.push(
+...makeRuns(
+"Rear wall",
+document.getElementById("rearDir").value,
+L,W,H,0
+)
+);
+
+runs.push(
+...makeRuns(
+"Left wall",
+document.getElementById("leftDir").value,
+W,L,H,0
+)
+);
+
+runs.push(
+...makeRuns(
+"Right wall",
+document.getElementById("rightDir").value,
+W,L,H,0
+)
+);
+
+
+/* FLOOR RUNS */
+
+let floorRuns=0;
+let floorRunLength=0;
+
+if(
+document.getElementById("floorDir").value
+==="length"
+){
+
+floorRuns=
+Math.ceil(
+W/(coverage/1000)
+);
+
+floorRunLength=L;
+
+}else{
+
+floorRuns=
+Math.ceil(
+L/(coverage/1000)
+);
+
+floorRunLength=W;
+
+}
+
+for(
+let i=0;
+i<floorRuns;
+i++
+){
+
+runs.push({
+component:"Floor",
+direction:document.getElementById("floorDir").value,
+length:floorRunLength
+});
+
+}
+
+
+/* ROOF RUNS */
+
+let roofRuns=0;
+let roofRunLength=0;
+
+if(
+document.getElementById("roofDir").value
+==="slope"
+){
+
+roofRuns=
+Math.ceil(
+roofLength/(coverage/1000)
+);
+
+roofRunLength=roofSlope;
+
+}else{
+
+roofRuns=
+Math.ceil(
+roofSlope/(coverage/1000)
+);
+
+roofRunLength=roofLength;
+
+}
+
+for(
+let i=0;
+i<roofRuns;
+i++
+){
+
+runs.push({
+component:"Pent roof",
+direction:document.getElementById("roofDir").value,
+length:roofRunLength
+});
+
+}
+
+
+/* DOOR T&G */
+
+doors.forEach((d,index)=>{
+
+const w=
+parseFloat(d.querySelector(".doorW").value)||0;
+
+const h=
+parseFloat(d.querySelector(".doorH").value)||0;
+
+const dir=
+d.querySelector(".doorDir").value;
+
+let count;
+let len;
+
+if(dir==="vertical"){
+
+count=Math.ceil(w/(coverage/1000));
+len=h;
+
+}else{
+
+count=Math.ceil(h/(coverage/1000));
+len=w;
+
+}
+
+for(let i=0;i<count;i++){
+
+runs.push({
+component:"Door "+(index+1),
+direction:dir,
+length:len
+});
+
+}
+
+});
+
+
+/* =========================================
+RUN TABLE
+========================================= */
+
+let runHTML="";
+
+let wallLinear=0;
+let floorLinear=0;
+let roofLinear=0;
+let doorLinear=0;
+
+runs.forEach(r=>{
+
+const lm=r.length;
+
+if(r.component.includes("wall")){
+wallLinear+=lm;
+}else if(r.component==="Floor"){
+floorLinear+=lm;
+}else if(r.component==="Pent roof"){
+roofLinear+=lm;
+}else{
+doorLinear+=lm;
+}
+
+runHTML+=`
+
+<tr>
+
+<td>${r.component}</td>
+
+<td>${r.direction}</td>
+
+<td>1</td>
+
+<td>${num(r.length)} m</td>
+
+<td>${num(coverage)} mm</td>
+
+<td>${num(lm)} m</td>
+
+<td>${num(lm*tgWaste)} m</td>
+
+</tr>
+
+`;
+
+});
+
+
+document.getElementById("runs").innerHTML=
+runHTML;
+
+
+/* =========================================
+CUTTING
+========================================= */
+
+const stockLengths=
+[...document.querySelectorAll(".stockL")]
+.map(x=>parseFloat(x.value)||0)
+.filter(x=>x>0);
+
+const boards=
+packCuts(runs,stockLengths);
+
+
+/*
+Because waste is applied to the total
+requirement, calculate an additional
+allowance here.
+*/
+
+const requiredWithWaste=
+runs.reduce(
+(s,r)=>s+r.length,
+0
+)*(1+tgWaste);
+
+
+/*
+If actual packing is below the waste
+requirement, add boards.
+*/
+
+let actualBoards=[...boards];
+
+let purchased=
+actualBoards.reduce(
+(s,b)=>s+b.stock,
+0
+);
+
+while(
+purchased<requiredWithWaste &&
+stockLengths.length
+){
+
+const smallest=
+[...stockLengths]
+.sort((a,b)=>a-b)[0];
+
+actualBoards.push({
+stock:smallest,
+remaining:smallest,
+cuts:[]
+});
+
+purchased+=smallest;
+
+}
+
+
+/* CUT SUMMARY */
+
+const cutGroups={};
+
+actualBoards.forEach(b=>{
+
+const key=b.stock;
+
+if(!cutGroups[key]){
+cutGroups[key]={
+boards:0,
+purchased:0,
+cuts:0
+};
+}
+
+cutGroups[key].boards++;
+cutGroups[key].purchased+=b.stock;
+
+cutGroups[key].cuts+=
+b.cuts.reduce(
+(s,x)=>s+x,
+0
+);
+
+});
+
+
+let cutHTML="";
+let offHTML="";
+
+Object.keys(cutGroups)
+.sort((a,b)=>b-a)
+.forEach(key=>{
+
+const g=cutGroups[key];
+
+const surplus=
+g.purchased-
+g.cuts;
+
+const cost=
+g.boards*tgPrice;
+
+cutHTML+=`
+
+<tr>
+
+<td>${num(key)} m</td>
+
+<td>${g.boards}</td>
+
+<td>${num(g.purchased)} m</td>
+
+<td>${num(g.cuts)} m</td>
+
+<td>${num(surplus)} m</td>
+
+<td>${tgPrice>0?money(cost):"—"}</td>
+
+</tr>
+
+`;
+
+offHTML+=`
+
+<tr>
+
+<td>${num(key)} m</td>
+
+<td>${g.boards}</td>
+
+<td>${num(Math.max(0,surplus/g.boards))} m</td>
+
+<td>${num(Math.max(0,surplus))} m</td>
+
+</tr>
+
+`;
+
+});
+
+
+document.getElementById("cuts").innerHTML=
+cutHTML;
+
+document.getElementById("offcuts").innerHTML=
+offHTML;
+
+
+const tgBoards=actualBoards.length;
+
+const purchasedTG=
+actualBoards.reduce(
+(s,b)=>s+b.stock,
+0
+);
+
+const tgCost=
+tgBoards*tgPrice;
+
+
+/* =========================================
+FRAMING
+========================================= */
+
+const joistSpacing=
+v("joistSpacing")/1000;
+
+const studSpacing=
+v("studSpacing")/1000;
+
+const bearerSpacing=
+v("bearerSpacing");
+
+const rafterSpacing=
+v("rafterSpacing")/1000;
+
+
+const floorWaste=
+v("floorFrameWaste")/100;
+
+const wallWaste=
+v("wallFrameWaste")/100;
+
+const roofWaste=
+v("roofFrameWaste")/100;
+
+
+const frameStock=
+v("frameStock");
+
+const framePrice=
+v("framePrice");
+
+
+/* FLOOR JOISTS */
+
+const joistCount=
+joistSpacing>0
+?Math.ceil(W/joistSpacing)+1
+:0;
+
+const joists=
+joistCount*L;
+
+
+/* BEARERS */
+
+const bearerCount=
+bearerSpacing>0
+?Math.ceil(L/bearerSpacing)+1
+:0;
+
+const bearers=
+bearerCount*W;
+
+
+/* STUDS */
+
+const frontStuds=
+studSpacing>0
+?Math.ceil(L/studSpacing)+1
+:0;
+
+const sideStuds=
+studSpacing>0
+?Math.ceil(W/studSpacing)+1
+:0;
+
+const studs=
+2*frontStuds*H+
+2*sideStuds*H;
+
+
+/* PLATES */
+
+const perimeter=
+2*L+2*W;
+
+const plates=
+perimeter*v("plateLayers");
+
+
+/* NOGGINS */
+
+const nogginRows=
+v("nogginRows");
+
+const nogginPieces=
+(
+2*Math.ceil(L/studSpacing)+
+2*Math.ceil(W/studSpacing)
+)*nogginRows;
+
+const noggins=
+nogginPieces*
+(
+perimeter/4
+);
+
+
+/* RAFTERS */
+
+const rafterCount=
+rafterSpacing>0
+?Math.ceil(roofLength/rafterSpacing)+1
+:0;
+
+const rafters=
+rafterCount*roofSlope;
+
+
+/* FASCIA */
+
+const fascia=
+2*roofLength+
+2*roofWidth;
+
+
+/* CORNER POSTS */
+
+const corners=4*H;
+
+
+/* DOOR FRAMES */
+
+let doorFrames=0;
+
+doors.forEach(d=>{
+
+const w=
+parseFloat(d.querySelector(".doorW").value)||0;
+
+const h=
+parseFloat(d.querySelector(".doorH").value)||0;
+
+doorFrames+=
+2*h+w;
+
+});
+
+
+const framing=[
+
+[
+"Floor joists",
+document.getElementById("joistSize").value,
+joists,
+floorWaste
+],
+
+[
+"Floor bearers",
+document.getElementById("joistSize").value,
+bearers,
+floorWaste
+],
+
+[
+"Wall studs",
+document.getElementById("studSize").value,
+studs,
+wallWaste
+],
+
+[
+"Wall plates",
+document.getElementById("studSize").value,
+plates,
+wallWaste
+],
+
+[
+"Wall noggins",
+document.getElementById("studSize").value,
+noggins,
+wallWaste
+],
+
+[
+"Roof rafters",
+document.getElementById("rafterSize").value,
+rafters,
+roofWaste
+],
+
+[
+"Roof fascia",
+document.getElementById("fasciaSize").value,
+fascia,
+roofWaste
+],
+
+[
+"Corner posts",
+document.getElementById("cornerSize").value,
+corners,
+wallWaste
+],
+
+[
+"Door framing",
+document.getElementById("studSize").value,
+doorFrames,
+wallWaste
+]
+
+];
+
+
+let frameHTML="";
+let frameTotal=0;
+let frameBoards=0;
+
+framing.forEach(f=>{
+
+const calculated=f[2];
+
+const withWaste=
+calculated*(1+f[3]);
+
+const boards=
+frameStock>0
+?Math.ceil(withWaste/frameStock)
+:0;
+
+const cost=
+boards*framePrice;
+
+frameTotal+=withWaste;
+frameBoards+=boards;
+
+frameHTML+=`
+
+<tr>
+
+<td>${f[0]}</td>
+
+<td>${f[1]}</td>
+
+<td>${num(calculated)} m</td>
+
+<td>${num(withWaste)} m</td>
+
+<td>${boards}</td>
+
+<td>${framePrice>0?money(cost):"—"}</td>
+
+</tr>
+
+`;
+
+});
+
+
+document.getElementById("framing").innerHTML=
+frameHTML;
+
+
+const frameCost=
+frameBoards*framePrice;
+
+
+/* =========================================
+SHOPPING LIST
+========================================= */
+
+let shopping="";
+
+/*
+T&G groups
+*/
+
+Object.keys(cutGroups)
+.sort((a,b)=>b-a)
+.forEach(key=>{
+
+const g=cutGroups[key];
+
+shopping+=`
+
+<tr>
+
+<td>Tongue & groove</td>
+
+<td>
+${v("tgThickness")} ×
+${v("tgNominal")} mm
+</td>
+
+<td>${g.boards}</td>
+
+<td>${num(key)} m</td>
+
+<td>
+${tgPrice>0?money(g.boards*tgPrice):"—"}
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+/*
+Framing
+*/
+
+framing.forEach(f=>{
+
+const qty=
+frameStock>0
+?Math.ceil(
+f[2]*(1+f[3])/
+frameStock
+)
+:0;
+
+shopping+=`
+
+<tr>
+<td>${f[0]}</td>
+
+<td>${f[1]}</td>
+
+<td>${qty}</td>
+
+<td>${num(frameStock)} m</td>
+
+<td>
+${framePrice>0?money(qty*framePrice):"—"}
+</td>
+
+</tr>
+
+`;
+
+});
+
+
+document.getElementById("shopping").innerHTML=
+shopping;
+
+
+/* =========================================
+METRICS
+========================================= */
+
+document.getElementById("mWalls").textContent=
+num(wallLinear*(1+tgWaste))+" m";
+
+document.getElementById("mFloor").textContent=
+num(floorLinear*(1+tgWaste))+" m";
+
+document.getElementById("mRoof").textContent=
+num(roofLinear*(1+tgWaste))+" m";
+
+document.getElementById("mDoors").textContent=
+num(doorLinear*(1+tgWaste))+" m";
+
+document.getElementById("mTotal").textContent=
+num(
+(wallLinear+
+floorLinear+
+roofLinear+
+doorLinear)*
+(1+tgWaste)
+)+" m";
+
+
+/* =========================================
+SUMMARY
+========================================= */
+
+document.getElementById("sCustomer").textContent=
+document.getElementById("customer").value ||
+"—";
+
+document.getElementById("sBuilding").textContent=
+document.getElementById("buildingType").value+
+" "+L+"m × "+W+"m";
+
+document.getElementById("sTGBoards").textContent=
+tgBoards;
+
+document.getElementById("sFrameBoards").textContent=
+frameBoards;
+
+document.getElementById("sTGLength").textContent=
+num(purchasedTG)+" m";
+
+document.getElementById("sFrameLength").textContent=
+num(frameTotal)+" m";
+
+document.getElementById("sTGCost").textContent=
+tgPrice>0
+?money(tgCost)
+:"Enter price";
+
+document.getElementById("sFrameCost").textContent=
+framePrice>0
+?money(frameCost)
+:"Enter price";
+
+document.getElementById("sTotal").textContent=
+tgPrice>0&&framePrice>0
+?money(tgCost+frameCost)
+:"Enter timber prices";
+
+}
+
+
+/* ==========================================================
+SAVE PROJECT
+========================================================== */
+
+function saveProject(){
+
+const data={
+fields:{},
+doors:[],
+windows:[],
+stocks:[]
+};
+
+document
+.querySelectorAll("input,select,textarea")
+.forEach(el=>{
+
+if(el.id){
+data.fields[el.id]=el.value;
+}
+
+});
+
+
+document
+.querySelectorAll("#doors .dynamic")
+.forEach(d=>{
+
+data.doors.push({
+
+w:d.querySelector(".doorW").value,
+h:d.querySelector(".doorH").value,
+dir:d.querySelector(".doorDir").value
+
+});
+
+});
+
+
+document
+.querySelectorAll("#windows .dynamic")
+.forEach(d=>{
+
+data.windows.push({
+
+w:d.querySelector(".windowW").value,
+h:d.querySelector(".windowH").value
+
+});
+
+});
+
+
+document
+.querySelectorAll(".stockL")
+.forEach(s=>{
+data.stocks.push(s.value);
+});
+
+
+localStorage.setItem(
+"completeTimberProject",
+JSON.stringify(data)
+);
+
+alert("Project saved on this device.");
+
+}
+
+
+/* ==========================================================
+LOAD PROJECT
+========================================================== */
+
+function loadProject(){
+
+const raw=
+localStorage.getItem(
+"completeTimberProject"
+);
+
+if(!raw){
+
+alert("No saved project found.");
+
+return;
+
+}
+
+const data=
+JSON.parse(raw);
+
+
+Object.keys(data.fields)
+.forEach(id=>{
+
+const el=
+document.getElementById(id);
+
+if(el){
+el.value=data.fields[id];
+}
+
+});
+
+
+document.getElementById("doors").innerHTML="";
+document.getElementById("windows").innerHTML="";
+document.getElementById("stockLengths").innerHTML="";
+
+
+doorID=0;
+windowID=0;
+stockID=0;
+
+
+data.doors.forEach(d=>{
+
+addDoor(
+parseFloat(d.w),
+parseFloat(d.h)
+);
+
+const last=
+document.querySelector(
+"#doors .dynamic:last-child"
+);
+
+last.querySelector(".doorDir").value=
+d.dir;
+
+});
+
+
+data.windows.forEach(d=>{
+
+addWindow(
+parseFloat(d.w),
+parseFloat(d.h)
+);
+
+});
+
+
+data.stocks.forEach(s=>{
+addStock(parseFloat(s));
+});
+
+
+calculate();
+
+alert("Project loaded.");
+
+}
+
+
+/* ==========================================================
+RESET
+========================================================== */
+
+function resetProject(){
+
+if(
+confirm(
+"Reset the entire calculator?"
+)
+){
+
+localStorage.removeItem(
+"completeTimberProject"
+);
+
+location.reload();
+
+}
+
+}
+
+
+/* ==========================================================
+INITIAL DATA
+========================================================== */
+
+document.getElementById(
+"quoteDate"
+).value=today();
+
+
+addStock(2.4);
+addStock(3.0);
+addStock(3.6);
+addStock(4.2);
+addStock(4.8);
+
+addDoor();
+
+calculate();
+
+</script>
+
+</body>
+</html>
