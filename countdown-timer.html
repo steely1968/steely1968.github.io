@@ -15,102 +15,196 @@
 <meta name="description" content="Countdown timer converts days to hours and seconds with percentage of time passed">
 <meta name="robots" content="index, follow">
 
-<link rel="canonical" href="https://homerepairs4u.com/countdown-timer.html">
-
 <style>
+
+* {
+
+    box-sizing: border-box;
+
+}
+
 body {
+
     margin: 0;
+
     padding: 20px;
+
+    min-height: 100vh;
+
     background: #111;
-    color: white;
+
+    color: #fff;
+
     font-family: Arial, sans-serif;
-    text-align: center;
+
 }
 
 .container {
-    max-width: 800px;
-    margin: 50px auto;
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 40px auto;
+
+    text-align: center;
+
 }
 
 h1 {
-    font-size: 40px;
+
+    font-size: 48px;
+
+    margin-bottom: 30px;
+
+}
+
+.controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
 }
 
 input {
-    width: 150px;
-    padding: 12px;
+
+    width: 200px;
+
+    padding: 14px;
+
     font-size: 20px;
+
     text-align: center;
+
+    border: none;
+
+    border-radius: 6px;
+
 }
 
 button {
-    padding: 12px 20px;
-    margin: 5px;
-    font-size: 18px;
+
+    padding: 14px 25px;
+
+    font-size: 20px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    color: white;
+
     cursor: pointer;
+
 }
 
-#start {
-    background: green;
-    color: white;
-    border: 0;
+.start {
+
+    background: #16803c;
+
 }
 
-#reset {
-    background: red;
-    color: white;
-    border: 0;
+.reset {
+
+    background: #c62828;
+
 }
 
-#timer {
-    margin-top: 40px;
+.timer {
+
+    margin-top: 50px;
+
     font-size: 70px;
+
     font-weight: bold;
+
+    word-wrap: break-word;
+
 }
 
-#percent {
-    margin-top: 20px;
-    font-size: 30px;
+.percentage {
+
+    margin-top: 25px;
+
+    font-size: 32px;
+
 }
 
-.bar {
+.progress-container {
+
     width: 100%;
-    height: 30px;
-    background: #444;
+
+    height: 35px;
+
     margin-top: 30px;
+
+    background: #444;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
 }
 
-#progress {
+.progress {
+
     width: 0%;
+
     height: 100%;
-    background: limegreen;
+
+    background: #32cd32;
+
 }
 
-#status {
+.status {
+
     margin-top: 20px;
-    color: #aaa;
+
+    font-size: 18px;
+
+    color: #bbb;
+
 }
 
 @media (max-width: 600px) {
 
     h1 {
-        font-size: 30px;
+
+        font-size: 36px;
+
     }
 
-    #timer {
-        font-size: 40px;
+    .timer {
+
+        font-size: 42px;
+
     }
 
-    #percent {
+    .percentage {
+
         font-size: 24px;
+
     }
 
     input,
+
     button {
-        width: 90%;
-        margin: 5px auto;
+
+        width: 100%;
+
+        max-width: 300px;
+
     }
+
 }
+
 </style>
 
 </head>
@@ -119,290 +213,440 @@ button {
 
 <div class="container">
 
-<h1>Countdown Timer</h1>
+    <h1>Countdown Timer</h1>
 
-<input
-    id="days"
-    type="number"
-    min="0.001"
-    step="0.001"
-    placeholder="Days"
->
+    <div class="controls">
 
-<br>
+        <input
 
-<button id="start">
-    START
-</button>
+            id="days"
 
-<button id="reset">
-    RESET
-</button>
+            type="number"
 
-<div id="timer">
-    0h 00m 00.00s
+            min="0.001"
+
+            step="0.001"
+
+            placeholder="Enter days"
+
+        >
+
+        <button class="start" onclick="startTimer()">
+
+            START
+
+        </button>
+
+        <button class="reset" onclick="resetTimer()">
+
+            RESET
+
+        </button>
+
+    </div>
+
+    <div class="timer" id="timer">
+
+        0h 00m 00.00s
+
+    </div>
+
+    <div class="percentage" id="percentage">
+
+        0.0000% passed
+
+    </div>
+
+    <div class="progress-container">
+
+        <div class="progress" id="progress"></div>
+
+    </div>
+
+    <div class="status" id="status">
+
+        Enter the number of days and press START
+
+    </div>
+
 </div>
-
-<div id="percent">
-    0.0000% passed
-</div>
-
-<div class="bar">
-    <div id="progress"></div>
-</div>
-
-<div id="status">
-    Enter days and press START
-</div>
-
-</div>
-
 
 <script>
 
-var timer = null;
+var timerInterval = null;
 
+var storageKey = "countdown_timer_data";
 
-/* START BUTTON */
+function startTimer() {
 
-document.getElementById("start").onclick = function() {
+    var days = Number(
 
-    var days =
-        parseFloat(
-            document.getElementById("days").value
-        );
+        document.getElementById("days").value
+
+    );
 
     if (!days || days <= 0) {
 
-        alert("Enter the number of days first.");
+        alert("Please enter the number of days.");
 
         return;
-    }
 
+    }
 
     var duration =
+
         days *
+
         24 *
+
         60 *
+
         60 *
+
         1000;
 
+    var startTime = Date.now();
 
-    var data = {
+    var endTime =
 
-        start: Date.now(),
+        startTime + duration;
 
-        end:
-            Date.now() +
-            duration,
+    var timerData = {
+
+        start: startTime,
+
+        end: endTime,
 
         duration: duration
+
     };
 
-
     localStorage.setItem(
-        "countdownTimer",
-        JSON.stringify(data)
+
+        storageKey,
+
+        JSON.stringify(timerData)
+
     );
 
+    if (timerInterval !== null) {
 
-    update();
-};
+        clearInterval(timerInterval);
 
-
-/* UPDATE TIMER */
-
-function update() {
-
-    var saved =
-        localStorage.getItem(
-            "countdownTimer"
-        );
-
-
-    if (!saved) {
-        return;
     }
 
+    timerInterval =
 
-    var data =
-        JSON.parse(saved);
+        setInterval(
 
+            updateTimer,
+
+            50
+
+        );
+
+    updateTimer();
+
+}
+
+function updateTimer() {
+
+    var saved =
+
+        localStorage.getItem(
+
+            storageKey
+
+        );
+
+    if (!saved) {
+
+        return;
+
+    }
+
+    var data;
+
+    try {
+
+        data = JSON.parse(saved);
+
+    } catch (error) {
+
+        return;
+
+    }
 
     var now =
+
         Date.now();
 
-
     var remaining =
-        data.end - now;
 
+        data.end - now;
 
     if (remaining <= 0) {
 
-        remaining = 0;
-
         document.getElementById("timer")
+
             .innerHTML =
+
             "0h 00m 00.00s";
 
-        document.getElementById("percent")
+        document.getElementById("percentage")
+
             .innerHTML =
+
             "100.0000% passed";
 
         document.getElementById("progress")
+
             .style.width =
+
             "100%";
 
         document.getElementById("status")
+
             .innerHTML =
+
             "COUNTDOWN FINISHED";
 
+        if (timerInterval !== null) {
+
+            clearInterval(timerInterval);
+
+            timerInterval = null;
+
+        }
+
         return;
+
     }
 
-
-    /* TIME */
-
     var totalSeconds =
+
         remaining / 1000;
 
-
     var hours =
-        Math.floor(
-            totalSeconds / 3600
-        );
 
+        Math.floor(
+
+            totalSeconds / 3600
+
+        );
 
     var minutes =
-        Math.floor(
-            (totalSeconds % 3600) / 60
-        );
 
+        Math.floor(
+
+            (totalSeconds % 3600) / 60
+
+        );
 
     var seconds =
+
         Math.floor(
+
             totalSeconds % 60
+
         );
 
-
     /*
-       1/20 second = 0.05 seconds
+
+       1/20th of a second = 0.05 seconds
+
     */
 
     var twentieth =
+
         Math.floor(
+
             (remaining % 1000) / 50
+
         );
 
+    var hundredths =
 
-    var fraction =
-        String(
-            twentieth * 5
-        ).padStart(2, "0");
+        twentieth * 5;
 
+    var minuteText =
+
+        minutes < 10
+
+        ? "0" + minutes
+
+        : minutes;
+
+    var secondText =
+
+        seconds < 10
+
+        ? "0" + seconds
+
+        : seconds;
+
+    var fractionText =
+
+        hundredths < 10
+
+        ? "0" + hundredths
+
+        : hundredths;
 
     document.getElementById("timer")
+
         .innerHTML =
 
         hours +
+
         "h " +
 
-        String(minutes)
-            .padStart(2, "0") +
+        minuteText +
 
         "m " +
 
-        String(seconds)
-            .padStart(2, "0") +
+        secondText +
 
         "." +
 
-        fraction +
+        fractionText +
 
         "s";
 
+    /*
 
-    /* PERCENTAGE */
+       Calculate percentage passed
+
+    */
 
     var elapsed =
+
         data.duration - remaining;
 
+    var percentage =
 
-    var percent =
-        (
-            elapsed /
-            data.duration
-        ) * 100;
+        (elapsed / data.duration) * 100;
 
+    if (percentage < 0) {
 
-    document.getElementById("percent")
+        percentage = 0;
+
+    }
+
+    if (percentage > 100) {
+
+        percentage = 100;
+
+    }
+
+    document.getElementById("percentage")
+
         .innerHTML =
 
-        percent.toFixed(4) +
+        percentage.toFixed(4) +
+
         "% passed";
 
-
-    /* PROGRESS BAR */
-
     document.getElementById("progress")
-        .style.width =
-        percent + "%";
 
+        .style.width =
+
+        percentage + "%";
 
     document.getElementById("status")
+
         .innerHTML =
+
         "COUNTDOWN RUNNING";
+
 }
 
-
-/* RESET BUTTON */
-
-document.getElementById("reset").onclick = function() {
+function resetTimer() {
 
     localStorage.removeItem(
-        "countdownTimer"
+
+        storageKey
+
     );
 
+    if (timerInterval !== null) {
+
+        clearInterval(timerInterval);
+
+        timerInterval = null;
+
+    }
+
+    document.getElementById("days")
+
+        .value = "";
 
     document.getElementById("timer")
+
         .innerHTML =
+
         "0h 00m 00.00s";
 
+    document.getElementById("percentage")
 
-    document.getElementById("percent")
         .innerHTML =
+
         "0.0000% passed";
 
-
     document.getElementById("progress")
+
         .style.width =
+
         "0%";
 
-
     document.getElementById("status")
+
         .innerHTML =
-        "Enter days and press START";
+
+        "Enter the number of days and press START";
+
+}
+
+/*
+
+   Restore the countdown automatically
+
+   when the page is opened again.
+
+*/
+
+window.onload = function() {
+
+    var saved =
+
+        localStorage.getItem(
+
+            storageKey
+
+        );
+
+    if (saved) {
+
+        timerInterval =
+
+            setInterval(
+
+                updateTimer,
+
+                50
+
+            );
+
+        updateTimer();
+
+    }
+
 };
-
-
-/*
-   Update every 50 milliseconds.
-   50ms = 1/20th second.
-*/
-
-setInterval(
-    update,
-    50
-);
-
-
-/*
-   Restore timer when page opens.
-*/
-
-update();
 
 </script>
 
 </body>
+
 </html>
+
+
