@@ -17,962 +17,566 @@
 
 <link rel="canonical" href="https://homerepairs4u.com/countdown-timer.html">
 
-    <style>
-        /* ==============================
-           BASIC PAGE
-        ============================== */
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            min-height: 100%;
-        }
-
-        body {
-            min-height: 100vh;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            padding: 20px;
-
-            background: #111111;
-            color: #ffffff;
-
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
-        }
-
-
-        /* ==============================
-           MAIN CONTAINER
-        ============================== */
-
-        .timer-container {
-            width: 100%;
-            max-width: 800px;
-
-            text-align: center;
-        }
-
-
-        /* ==============================
-           TITLE
-        ============================== */
-
-        h1 {
-            margin: 0 0 35px 0;
-
-            font-size:
-                clamp(30px, 6vw, 55px);
-
-            font-weight: 700;
-        }
-
-
-        /* ==============================
-           INPUT AREA
-        ============================== */
-
-        .setup {
-            display: flex;
-
-            justify-content: center;
-            align-items: center;
-
-            gap: 10px;
-
-            flex-wrap: wrap;
-
-            margin-bottom: 35px;
-        }
-
-
-        .days-input {
-            width: 180px;
-
-            padding: 14px;
-
-            font-size: 20px;
-
-            text-align: center;
-
-            border: none;
-
-            border-radius: 8px;
-
-            outline: none;
-        }
-
-
-        .days-input:focus {
-            outline: 3px solid #555555;
-        }
-
-
-        /* ==============================
-           BUTTONS
-        ============================== */
-
-        button {
-            padding: 14px 24px;
-
-            font-size: 18px;
-
-            font-weight: 600;
-
-            border: none;
-
-            border-radius: 8px;
-
-            cursor: pointer;
-
-            transition:
-                opacity 0.2s,
-                transform 0.1s;
-        }
-
-
-        button:hover {
-            opacity: 0.85;
-        }
-
-
-        button:active {
-            transform: scale(0.97);
-        }
-
-
-        .start-button {
-            background: #28a745;
-
-            color: #ffffff;
-        }
-
-
-        .reset-button {
-            background: #dc3545;
-
-            color: #ffffff;
-        }
-
-
-        /* ==============================
-           COUNTDOWN CLOCK
-        ============================== */
-
-        .clock {
-            width: 100%;
-
-            margin: 20px 0;
-
-            font-size:
-                clamp(38px, 10vw, 90px);
-
-            font-weight: 700;
-
-            line-height: 1.15;
-
-            letter-spacing: 1px;
-
-            font-variant-numeric:
-                tabular-nums;
-
-            white-space: nowrap;
-        }
-
-
-        /* ==============================
-           PERCENTAGE
-        ============================== */
-
-        .percentage {
-            margin-top: 25px;
-
-            font-size:
-                clamp(24px, 5vw, 38px);
-
-            font-weight: 600;
-        }
-
-
-        /* ==============================
-           PROGRESS BAR
-        ============================== */
-
-        .progress-container {
-            width: 100%;
-
-            height: 28px;
-
-            margin-top: 25px;
-
-            background: #333333;
-
-            border-radius: 20px;
-
-            overflow: hidden;
-        }
-
-
-        .progress-bar {
-            width: 0%;
-
-            height: 100%;
-
-            background: #28a745;
-
-            border-radius: 20px;
-
-            transition:
-                width 0.05s linear;
-        }
-
-
-        /* ==============================
-           STATUS
-        ============================== */
-
-        .status {
-            margin-top: 18px;
-
-            font-size: 16px;
-
-            color: #aaaaaa;
-        }
-
-
-        /* ==============================
-           MOBILE
-        ============================== */
-
-        @media (max-width: 600px) {
-
-            body {
-                padding: 15px;
-            }
-
-            h1 {
-                margin-bottom: 25px;
-            }
-
-            .setup {
-                flex-direction: column;
-
-                width: 100%;
-            }
-
-            .days-input {
-                width: 100%;
-
-                max-width: 300px;
-            }
-
-            button {
-                width: 100%;
-
-                max-width: 300px;
-            }
-
-            .clock {
-                font-size:
-                    clamp(32px, 10vw, 60px);
-
-                white-space: normal;
-
-                word-break: keep-all;
-            }
-
-            .progress-container {
-                height: 22px;
-            }
-        }
-    </style>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(30px, 6vw, 55px);
+    margin: 0 0 30px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+input {
+    width: 180px;
+    padding: 14px;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+}
+
+button {
+    padding: 14px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.start {
+    background: #28a745;
+    color: white;
+}
+
+.reset {
+    background: #dc3545;
+    color: white;
+}
+
+.clock {
+    font-size: clamp(38px, 10vw, 90px);
+    font-weight: bold;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.percentage {
+    margin-top: 25px;
+    font-size: clamp(24px, 5vw, 38px);
+    font-weight: bold;
+}
+
+.progress {
+    width: 100%;
+    height: 28px;
+    margin-top: 25px;
+    background: #333;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 0%;
+    background: #28a745;
+}
+
+.status {
+    margin-top: 15px;
+    color: #aaa;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+
+    .controls {
+        flex-direction: column;
+    }
+
+    input,
+    button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .clock {
+        font-size: clamp(30px, 9vw, 60px);
+        white-space: normal;
+    }
+}
+</style>
 </head>
-
 
 <body>
 
-    <main class="timer-container">
+<div class="container">
 
-        <h1>Countdown Timer</h1>
+    <h1>Countdown Timer</h1>
 
+    <div class="controls">
 
-        <!-- ==========================
-             DAYS INPUT
-        =========================== -->
+        <input
+            id="days"
+            type="number"
+            min="0.001"
+            step="0.001"
+            placeholder="Enter days"
+        >
 
-        <div class="setup">
+        <button
+            class="start"
+            onclick="startTimer()">
+            Start
+        </button>
 
-            <input
-                type="number"
-                id="daysInput"
-                class="days-input"
-                min="0.001"
-                step="0.001"
-                placeholder="Enter days"
-                aria-label="Number of days"
-            >
+        <button
+            class="reset"
+            onclick="resetTimer()">
+            Reset
+        </button>
 
-            <button
-                type="button"
-                class="start-button"
-                onclick="startTimer()">
-                Start
-            </button>
+    </div>
 
-            <button
-                type="button"
-                class="reset-button"
-                onclick="resetTimer()">
-                Reset
-            </button>
+    <div
+        id="clock"
+        class="clock">
+        0h 00m 00.00s
+    </div>
 
-        </div>
+    <div
+        id="percentage"
+        class="percentage">
+        0.00% passed
+    </div>
 
-
-        <!-- ==========================
-             COUNTDOWN
-        =========================== -->
-
+    <div class="progress">
         <div
-            id="clock"
-            class="clock"
-            aria-live="polite">
-            0h 00m 00.00s
+            id="progressBar"
+            class="progress-bar">
         </div>
+    </div>
 
+    <div
+        id="status"
+        class="status">
+        Enter days and press Start
+    </div>
 
-        <!-- ==========================
-             PERCENTAGE
-        =========================== -->
+</div>
 
-        <div
-            id="percentage"
-            class="percentage">
-            0.00% passed
-        </div>
 
+<script>
 
-        <!-- ==========================
-             PROGRESS BAR
-        =========================== -->
+/* ==========================================
+   TIMER STORAGE
+========================================== */
 
-        <div
-            class="progress-container"
-            role="progressbar"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="0">
+const STORAGE_KEY = "myCountdownTimer";
 
-            <div
-                id="progressBar"
-                class="progress-bar">
-            </div>
+let interval = null;
 
-        </div>
 
+/* ==========================================
+   START TIMER
+========================================== */
 
-        <!-- ==========================
-             STATUS
-        =========================== -->
+function startTimer() {
 
-        <div
-            id="status"
-            class="status">
-            Enter the number of days and press Start
-        </div>
+    const days =
+        parseFloat(
+            document.getElementById("days").value
+        );
 
-    </main>
+    if (!days || days <= 0) {
 
+        alert("Please enter the number of days.");
 
-    <script>
+        return;
+    }
 
-        /* =========================================
-           STORAGE KEY
 
-           The timer is saved in the browser.
+    /* Convert days into milliseconds */
 
-           This allows it to continue correctly
-           even when the page is closed or offline.
-        ========================================= */
+    const duration =
+        days *
+        24 *
+        60 *
+        60 *
+        1000;
 
-        const STORAGE_KEY =
-            "offlineCountdownTimer";
 
+    const startTime =
+        Date.now();
 
-        /* =========================================
-           TIMER INTERVAL
-        ========================================= */
 
-        let timerInterval = null;
+    const endTime =
+        startTime + duration;
 
 
-        /* =========================================
-           START TIMER
-        ========================================= */
+    const timer = {
 
-        function startTimer() {
+        start: startTime,
 
-            const input =
-                document.getElementById("daysInput");
+        end: endTime,
 
-            const days =
-                parseFloat(input.value);
+        duration: duration
 
+    };
 
-            /* Check input */
 
-            if (
-                isNaN(days) ||
-                days <= 0
-            ) {
+    /* Save timer to this browser */
 
-                alert(
-                    "Please enter a number of days."
-                );
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(timer)
+    );
 
-                input.focus();
 
-                return;
-            }
+    runTimer();
+}
 
 
-            /* Convert days to milliseconds */
+/* ==========================================
+   RUN TIMER
+========================================== */
 
-            const duration =
-                days *
-                24 *
-                60 *
-                60 *
-                1000;
+function runTimer() {
 
+    if (interval !== null) {
 
-            /* Current time */
+        clearInterval(interval);
+    }
 
-            const startTime =
-                Date.now();
 
+    updateTimer();
 
-            /* Calculate finish time */
 
-            const endTime =
-                startTime +
-                duration;
+    /*
+       50 milliseconds =
+       1/20th of a second
+    */
 
+    interval =
+        setInterval(
+            updateTimer,
+            50
+        );
+}
 
-            /* Save timer */
 
-            const timerData = {
+/* ==========================================
+   UPDATE TIMER
+========================================== */
 
-                startTime:
-                    startTime,
+function updateTimer() {
 
-                endTime:
-                    endTime,
-
-                duration:
-                    duration
-            };
-
-
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(timerData)
-            );
-
-
-            /* Start updating */
-
-            startUpdating();
-
-            updateTimer();
-        }
-
-
-        /* =========================================
-           START UPDATING
-        ========================================= */
-
-        function startUpdating() {
-
-            /* Prevent multiple intervals */
-
-            if (timerInterval !== null) {
-
-                clearInterval(
-                    timerInterval
-                );
-            }
-
-
-            /*
-                50 milliseconds =
-                1/20th of a second
-            */
-
-            timerInterval =
-                setInterval(
-                    updateTimer,
-                    50
-                );
-        }
-
-
-        /* =========================================
-           UPDATE TIMER
-        ========================================= */
-
-        function updateTimer() {
-
-            const saved =
-                localStorage.getItem(
-                    STORAGE_KEY
-                );
-
-
-            /* No timer */
-
-            if (!saved) {
-
-                return;
-            }
-
-
-            let timer;
-
-
-            try {
-
-                timer =
-                    JSON.parse(saved);
-
-            } catch (error) {
-
-                console.error(
-                    "Unable to read timer.",
-                    error
-                );
-
-                return;
-            }
-
-
-            /* Current time */
-
-            const now =
-                Date.now();
-
-
-            /*
-                Calculate remaining time
-                from the actual end timestamp.
-
-                This is what allows the timer
-                to work correctly after being
-                offline or after closing the page.
-            */
-
-            let remaining =
-                timer.endTime -
-                now;
-
-
-            /* =====================================
-               TIMER FINISHED
-            ===================================== */
-
-            if (remaining <= 0) {
-
-                remaining = 0;
-
-
-                document.getElementById(
-                    "clock"
-                ).textContent =
-                    "0h 00m 00.00s";
-
-
-                document.getElementById(
-                    "percentage"
-                ).textContent =
-                    "100.00% passed";
-
-
-                document.getElementById(
-                    "progressBar"
-                ).style.width =
-                    "100%";
-
-
-                document
-                    .querySelector(
-                        ".progress-container"
-                    )
-                    .setAttribute(
-                        "aria-valuenow",
-                        "100"
-                    );
-
-
-                document.getElementById(
-                    "status"
-                ).textContent =
-                    "Countdown finished";
-
-
-                stopUpdating();
-
-
-                return;
-            }
-
-
-            /* =====================================
-               ELAPSED TIME
-            ===================================== */
-
-            const elapsed =
-                timer.duration -
-                remaining;
-
-
-            /* =====================================
-               PERCENTAGE PASSED
-            ===================================== */
-
-            let percentage =
-                (
-                    elapsed /
-                    timer.duration
-                ) * 100;
-
-
-            /*
-                Keep percentage between
-                0 and 100.
-            */
-
-            percentage =
-                Math.max(
-                    0,
-                    Math.min(
-                        100,
-                        percentage
-                    )
-                );
-
-
-            /* =====================================
-               CONVERT REMAINING TIME
-            ===================================== */
-
-            const totalSeconds =
-                remaining / 1000;
-
-
-            const hours =
-                Math.floor(
-                    totalSeconds / 3600
-                );
-
-
-            const minutes =
-                Math.floor(
-                    (
-                        totalSeconds % 3600
-                    ) / 60
-                );
-
-
-            const seconds =
-                Math.floor(
-                    totalSeconds % 60
-                );
-
-
-            /*
-                Calculate 1/20 second.
-
-                Each increment is 50ms.
-            */
-
-            const twentieths =
-                Math.floor(
-                    (
-                        remaining % 1000
-                    ) / 50
-                );
-
-
-            /*
-                Convert to two decimal
-                places.
-
-                Examples:
-
-                .00
-                .05
-                .10
-                .15
-                .20
-                etc.
-            */
-
-            const hundredths =
-                String(
-                    twentieths * 5
-                ).padStart(
-                    2,
-                    "0"
-                );
-
-
-            /* =====================================
-               DISPLAY CLOCK
-            ===================================== */
-
-            const clockText =
-                hours +
-                "h " +
-
-                String(minutes)
-                    .padStart(2, "0") +
-
-                "m " +
-
-                String(seconds)
-                    .padStart(2, "0") +
-
-                "." +
-
-                hundredths +
-
-                "s";
-
-
-            document.getElementById(
-                "clock"
-            ).textContent =
-                clockText;
-
-
-            /* =====================================
-               DISPLAY PERCENTAGE
-            ===================================== */
-
-            document.getElementById(
-                "percentage"
-            ).textContent =
-                percentage.toFixed(2) +
-                "% passed";
-
-
-            /* =====================================
-               UPDATE PROGRESS BAR
-            ===================================== */
-
-            document.getElementById(
-                "progressBar"
-            ).style.width =
-                percentage + "%";
-
-
-            /* Accessibility value */
-
-            document
-                .querySelector(
-                    ".progress-container"
-                )
-                .setAttribute(
-                    "aria-valuenow",
-                    percentage.toFixed(2)
-                );
-
-
-            /* =====================================
-               STATUS
-            ===================================== */
-
-            document.getElementById(
-                "status"
-            ).textContent =
-                "Countdown running";
-        }
-
-
-        /* =========================================
-           STOP TIMER
-        ========================================= */
-
-        function stopUpdating() {
-
-            if (timerInterval !== null) {
-
-                clearInterval(
-                    timerInterval
-                );
-
-                timerInterval = null;
-            }
-        }
-
-
-        /* =========================================
-           RESET TIMER
-        ========================================= */
-
-        function resetTimer() {
-
-            /*
-                Stop the live updates.
-            */
-
-            stopUpdating();
-
-
-            /*
-                Delete the saved timer.
-            */
-
-            localStorage.removeItem(
-                STORAGE_KEY
-            );
-
-
-            /*
-                Reset display.
-            */
-
-            document.getElementById(
-                "clock"
-            ).textContent =
-                "0h 00m 00.00s";
-
-
-            document.getElementById(
-                "percentage"
-            ).textContent =
-                "0.00% passed";
-
-
-            document.getElementById(
-                "progressBar"
-            ).style.width =
-                "0%";
-
-
-            document
-                .querySelector(
-                    ".progress-container"
-                )
-                .setAttribute(
-                    "aria-valuenow",
-                    "0"
-                );
-
-
-            document.getElementById(
-                "status"
-            ).textContent =
-                "Timer reset";
-
-
-            /*
-                Clear input.
-            */
-
-            document.getElementById(
-                "daysInput"
-            ).value = "";
-        }
-
-
-        /* =========================================
-           LOAD EXISTING TIMER
-        ========================================= */
-
-        function loadTimer() {
-
-            const saved =
-                localStorage.getItem(
-                    STORAGE_KEY
-                );
-
-
-            /*
-                If a timer exists,
-                immediately restore it.
-            */
-
-            if (saved) {
-
-                updateTimer();
-
-                startUpdating();
-
-            } else {
-
-                /*
-                    No saved timer.
-                    Make sure display is clean.
-                */
-
-                document.getElementById(
-                    "clock"
-                ).textContent =
-                    "0h 00m 00.00s";
-
-            }
-        }
-
-
-        /* =========================================
-           PAGE LOAD
-        ========================================= */
-
-        window.addEventListener(
-            "load",
-            function () {
-
-                loadTimer();
-
-            }
+    const saved =
+        localStorage.getItem(
+            STORAGE_KEY
         );
 
 
-        /* =========================================
-           ENTER KEY
+    if (!saved) {
 
-           Pressing Enter in the days box
-           starts the timer.
-        ========================================= */
+        return;
+    }
 
-        document
-            .getElementById("daysInput")
-            .addEventListener(
-                "keydown",
-                function (event) {
 
-                    if (
-                        event.key === "Enter"
-                    ) {
+    const timer =
+        JSON.parse(saved);
 
-                        startTimer();
-                    }
-                }
-            );
 
-    </script>
+    const now =
+        Date.now();
+
+
+    let remaining =
+        timer.end - now;
+
+
+    /* ======================================
+       TIMER FINISHED
+    ====================================== */
+
+    if (remaining <= 0) {
+
+        remaining = 0;
+
+
+        document.getElementById(
+            "clock"
+        ).textContent =
+            "0h 00m 00.00s";
+
+
+        document.getElementById(
+            "percentage"
+        ).textContent =
+            "100.00% passed";
+
+
+        document.getElementById(
+            "progressBar"
+        ).style.width =
+            "100%";
+
+
+        document.getElementById(
+            "status"
+        ).textContent =
+            "Countdown finished";
+
+
+        clearInterval(interval);
+
+        interval = null;
+
+        return;
+    }
+
+
+    /* ======================================
+       CALCULATE PERCENTAGE
+    ====================================== */
+
+    const elapsed =
+        timer.duration - remaining;
+
+
+    let percentage =
+        (
+            elapsed /
+            timer.duration
+        ) * 100;
+
+
+    percentage =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                percentage
+            )
+        );
+
+
+    /* ======================================
+       CALCULATE HOURS
+    ====================================== */
+
+    const totalSeconds =
+        remaining / 1000;
+
+
+    const hours =
+        Math.floor(
+            totalSeconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                totalSeconds % 3600
+            ) / 60
+        );
+
+
+    const seconds =
+        Math.floor(
+            totalSeconds % 60
+        );
+
+
+    /* ======================================
+       CALCULATE 1/20 SECOND
+    ====================================== */
+
+    const fraction =
+        Math.floor(
+            (
+                remaining % 1000
+            ) / 50
+        );
+
+
+    const fractionText =
+        String(
+            fraction * 5
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    /* ======================================
+       DISPLAY COUNTDOWN
+    ====================================== */
+
+    document.getElementById(
+        "clock"
+    ).textContent =
+
+        hours +
+        "h " +
+
+        String(minutes)
+            .padStart(2, "0") +
+
+        "m " +
+
+        String(seconds)
+            .padStart(2, "0") +
+
+        "." +
+
+        fractionText +
+
+        "s";
+
+
+    /* ======================================
+       DISPLAY PERCENTAGE
+    ====================================== */
+
+    document.getElementById(
+        "percentage"
+    ).textContent =
+
+        percentage.toFixed(4) +
+        "% passed";
+
+
+    /* ======================================
+       PROGRESS BAR
+    ====================================== */
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percentage + "%";
+
+
+    /* ======================================
+       STATUS
+    ====================================== */
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        "Countdown running";
+}
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+function resetTimer() {
+
+    if (interval !== null) {
+
+        clearInterval(interval);
+
+        interval = null;
+    }
+
+
+    localStorage.removeItem(
+        STORAGE_KEY
+    );
+
+
+    document.getElementById(
+        "clock"
+    ).textContent =
+        "0h 00m 00.00s";
+
+
+    document.getElementById(
+        "percentage"
+    ).textContent =
+        "0.0000% passed";
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        "0%";
+
+
+    document.getElementById(
+        "status"
+    ).textContent =
+        "Timer reset";
+
+
+    document.getElementById(
+        "days"
+    ).value = "";
+}
+
+
+/* ==========================================
+   RESTORE TIMER WHEN PAGE OPENS
+========================================== */
+
+function loadTimer() {
+
+    const saved =
+        localStorage.getItem(
+            STORAGE_KEY
+        );
+
+
+    if (saved) {
+
+        runTimer();
+
+    }
+}
+
+
+/* ==========================================
+   PAGE LOADED
+========================================== */
+
+window.addEventListener(
+    "load",
+    loadTimer
+);
+
+</script>
 
 </body>
-</html>
+</html>    
