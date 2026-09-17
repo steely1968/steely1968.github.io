@@ -1,3 +1,5 @@
+
+<link rel="canonical" href="https://homerepairs4u.com/beep-test-timer.html">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <meta name="theme-color" content="#080c18">
+
 <link rel="canonical" href="https://homerepairs4u.com/beep-test-timer.html">
-
-
 <title>Beep Test Pomodoro Timer</title>
 
 <style>
@@ -1866,108 +1867,82 @@ update();
 }
 
 
+/* =========================
+NEXT INTERVAL
+========================= */
 
 function nextInterval() {
 
-/* =========================
-BEEP TEST
-========================= */
 
-if (state.mode === "beep") {
+/* BEEP TEST */
 
-// Current shuttle has been completed
+if (
+state.mode === "beep"
+) {
+
 state.completed++;
 
 state.shuttle++;
+
 
 const max =
 +$("shuttlesLevel").value;
 
 
-// Finished the level
-if (state.shuttle > max) {
+if (
+state.shuttle > max
+) {
 
 state.level++;
 
-state.shuttle = 1;
+state.shuttle =
+1;
 
-// Update speed for the new level
-const newSpeed = speed();
 
-// Reset timer for first shuttle
-// of the new level
+beepOverlay(
+"LEVEL " +
+state.level,
+"Speed: " +
+speed() +
+" km/h"
+);
+
+}
+
+
 state.remaining =
 shuttleSeconds();
 
 state.total =
 state.remaining;
 
-// Audio announcement
-beep(700, .12);
 
-setTimeout(() => {
-beep(1000, .12);
-}, 140);
-
-// Small visual notification,
-// but DO NOT pause the timer
-$("status").textContent =
-"LEVEL " + state.level;
-
-$("levelText").textContent =
-`Level ${state.level} • Shuttle 1`;
-
-$("nextText").textContent =
-"NEXT: BEEP";
-
-// Return to normal running display
-setTimeout(() => {
-
-if (state.running) {
-
-$("status").textContent =
-"RUNNING";
+beep(
+1000,
+.16
+);
 
 }
 
-}, 700);
 
-}
+/* POMODORO */
 
 else {
 
-// Normal shuttle change
-state.remaining =
-shuttleSeconds();
-
-state.total =
-state.remaining;
-
-// Standard beep
-beep(1000, .14);
-
-}
-
-update();
-
-return;
-}
-
-
-/* =========================
-POMODORO
-========================= */
-
-if (state.phase === "work") {
+if (
+state.phase === "work"
+) {
 
 state.phase =
 "break";
 
 state.remaining =
-+$("break").value * 60;
++$("break").value *
+60;
 
 state.total =
 state.remaining;
+
 
 beepOverlay(
 "RECOVERY",
@@ -1982,12 +1957,14 @@ state.phase =
 "work";
 
 state.remaining =
-+$("work").value * 60;
++$("work").value *
+60;
 
 state.total =
 state.remaining;
 
 state.completed++;
+
 
 beepOverlay(
 "WORK",
@@ -1998,7 +1975,7 @@ beepOverlay(
 
 }
 
-
+}
 
 
 /* =========================
@@ -2760,3 +2737,5 @@ tick
 
 </body>
 </html>
+
+
