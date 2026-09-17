@@ -1439,47 +1439,83 @@ Math.min(max, value)
 );
 }
 
-
 /* =========================================================
-PACE CONVERSION
-=========================================================
-
-Input:
-
-5.5
-
-Means:
-
-5 minutes 30 seconds per km
-
+CORRECT PACE + DISTANCE MATH
 ========================================================= */
 
-function paceToSeconds(decimalMinutes) {
+/*
+PACE INPUT
 
-const value =
-Number(decimalMinutes);
+5.00 = 5:00/km
+5.25 = 5:15/km
+5.50 = 5:30/km
+5.75 = 5:45/km
+6.00 = 6:00/km
+*/
+
+
+function paceToSeconds(paceMinutes) {
+
+const pace =
+Number(paceMinutes);
 
 if (
-!Number.isFinite(value) ||
-value <= 0
+!Number.isFinite(pace) ||
+pace <= 0
 ) {
 return 330;
 }
 
-return value * 60;
+return pace * 60;
 }
 
 
-/* =========================================================
-SECONDS TO CLOCK
-========================================================= */
+/*
+Convert seconds back to MM:SS/km
+
+330 seconds = 5:30
+*/
+
+function secondsToPace(seconds) {
+
+if (
+!Number.isFinite(seconds) ||
+seconds <= 0
+) {
+return "--";
+}
+
+const totalSeconds =
+Math.round(seconds);
+
+const minutes =
+Math.floor(
+totalSeconds / 60
+);
+
+const remainingSeconds =
+totalSeconds % 60;
+
+return (
+minutes +
+":" +
+String(
+remainingSeconds
+).padStart(2, "0")
+);
+}
+
+
+/*
+Convert seconds to timer display.
+*/
 
 function secondsToClock(seconds) {
 
 seconds =
 Math.max(
 0,
-Math.ceil(seconds)
+Math.round(seconds)
 );
 
 const hours =
@@ -1505,7 +1541,6 @@ String(minutes).padStart(2, "0") +
 ":" +
 String(secs).padStart(2, "0")
 );
-
 }
 
 
@@ -1517,36 +1552,171 @@ String(secs).padStart(2, "0")
 }
 
 
-/* =========================================================
-SECONDS TO PACE
-========================================================= */
+/*
+THE MAIN CALCULATION
 
-function secondsToPace(seconds) {
+Distance:
+10 km
+
+Pace:
+5:30/km
+
+Pace in seconds:
+330 seconds/km
+
+Calculation:
+10 × 330
+
+Result:
+3300 seconds
+
+Timer:
+55:00
+*/
+
+function calculateRunTime(
+distanceKm,
+paceSecondsPerKm
+) {
+
+const distance =
+Number(distanceKm);
+
+const pace =
+Number(paceSecondsPerKm);
+
 
 if (
-!Number.isFinite(seconds) ||
-seconds <= 0
+!Number.isFinite(distance) ||
+!Number.isFinite(pace) ||
+distance < 0 ||
+pace <= 0
 ) {
-return "--";
+return 0;
 }
 
-seconds =
-Math.round(seconds);
-
-const minutes =
-Math.floor(
-seconds / 60
-);
-
-const secs =
-seconds % 60;
 
 return (
-minutes +
-":" +
-String(secs).padStart(2, "0")
+distance *
+pace
 );
 }
+
+
+/* =========================================================
+DISTANCE PHASE
+========================================================= */
+
+function distancePhase(
+name,
+description,
+distanceKm,
+paceSecondsPerKm,
+type = "run"
+) {
+
+const distance =
+Number(distanceKm);
+
+const pace =
+Number(paceSecondsPerKm);
+
+
+/*
+EXACT TIMER CALCULATION
+*/
+
+const seconds =
+calculateRunTime(
+distance,
+pace
+);
+
+
+return {
+
+name:
+name,
+
+description:
+description,
+
+distance:
+distance,
+
+pace:
+pace,
+
+seconds:
+seconds,
+
+type:
+type,
+
+distanceDriven:
+true
+};
+}
+
+
+/* =========================================================
+TIME-BASED PHASE
+========================================================= */
+
+function timePhase(
+name,
+description,
+minutes,
+paceSecondsPerKm,
+type = "run"
+) {
+
+const seconds =
+Number(minutes) * 60;
+
+
+/*
+Because this phase is time based,
+distance is only an estimate.
+*/
+
+const estimatedDistance =
+paceSecondsPerKm > 0
+? seconds / paceSecondsPerKm
+: 0;
+
+
+return {
+
+name:
+name,
+
+description:
+description,
+
+distance:
+estimatedDistance,
+
+pace:
+paceSecondsPerKm,
+
+seconds:
+seconds,
+
+type:
+type,
+
+distanceDriven:
+false
+};
+}
+
+
+
+
+
+
+
 
 
 /* =========================================================
