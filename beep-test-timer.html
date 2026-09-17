@@ -1866,82 +1866,108 @@ update();
 }
 
 
-/* =========================
-NEXT INTERVAL
-========================= */
 
 function nextInterval() {
 
+/* =========================
+BEEP TEST
+========================= */
 
-/* BEEP TEST */
+if (state.mode === "beep") {
 
-if (
-state.mode === "beep"
-) {
-
+// Current shuttle has been completed
 state.completed++;
 
 state.shuttle++;
-
 
 const max =
 +$("shuttlesLevel").value;
 
 
-if (
-state.shuttle > max
-) {
+// Finished the level
+if (state.shuttle > max) {
 
 state.level++;
 
-state.shuttle =
-1;
+state.shuttle = 1;
 
+// Update speed for the new level
+const newSpeed = speed();
 
-beepOverlay(
-"LEVEL " +
-state.level,
-"Speed: " +
-speed() +
-" km/h"
-);
-
-}
-
-
+// Reset timer for first shuttle
+// of the new level
 state.remaining =
 shuttleSeconds();
 
 state.total =
 state.remaining;
 
+// Audio announcement
+beep(700, .12);
 
-beep(
-1000,
-.16
-);
+setTimeout(() => {
+beep(1000, .12);
+}, 140);
+
+// Small visual notification,
+// but DO NOT pause the timer
+$("status").textContent =
+"LEVEL " + state.level;
+
+$("levelText").textContent =
+`Level ${state.level} • Shuttle 1`;
+
+$("nextText").textContent =
+"NEXT: BEEP";
+
+// Return to normal running display
+setTimeout(() => {
+
+if (state.running) {
+
+$("status").textContent =
+"RUNNING";
 
 }
 
+}, 700);
 
-/* POMODORO */
+}
 
 else {
 
-if (
-state.phase === "work"
-) {
+// Normal shuttle change
+state.remaining =
+shuttleSeconds();
+
+state.total =
+state.remaining;
+
+// Standard beep
+beep(1000, .14);
+
+}
+
+update();
+
+return;
+}
+
+
+/* =========================
+POMODORO
+========================= */
+
+if (state.phase === "work") {
 
 state.phase =
 "break";
 
 state.remaining =
-+$("break").value *
-60;
++$("break").value * 60;
 
 state.total =
 state.remaining;
-
 
 beepOverlay(
 "RECOVERY",
@@ -1956,14 +1982,12 @@ state.phase =
 "work";
 
 state.remaining =
-+$("work").value *
-60;
++$("work").value * 60;
 
 state.total =
 state.remaining;
 
 state.completed++;
-
 
 beepOverlay(
 "WORK",
@@ -1974,7 +1998,7 @@ beepOverlay(
 
 }
 
-}
+
 
 
 /* =========================
