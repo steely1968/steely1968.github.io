@@ -1,2968 +1,4120 @@
 
+<link rel="canonical" href="https://homerepairs4u.com/marathon-pro-timer.html">
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<link rel="canonical" href="https://homerepairs4u.com/marathon-pro-timer.html">
-<title>Marathon Trainer Pro</title>
+<meta name="viewport"
+content="width=device-width,
+initial-scale=1.0,
+viewport-fit=cover">
+
+<meta name="theme-color" content="#07111f">
+
+<title>Advanced Marathon Trainer</title>
 
 <style>
 
-:root{
+/* =========================================================
+ROOT
+========================================================= */
 
-    --bg:#071018;
+:root {
+--bg: #07111f;
+--panel: #101c2d;
+--panel2: #16253a;
+--border: #263852;
 
-    --panel:#101c27;
+--text: #f5f7fa;
+--muted: #91a0b5;
 
-    --panel2:#162633;
-
-    --border:#263b4b;
-
-    --text:#f5f8fa;
-
-    --muted:#91a5b5;
-
-    --accent:#36e0a0;
-
-    --accent2:#20b77d;
-
-    --warning:#ffc857;
-
-    --danger:#ff5d73;
-
-    --blue:#4da3ff;
-
+--accent: #38bdf8;
+--green: #22c55e;
+--orange: #f59e0b;
+--red: #ef4444;
+--purple: #a78bfa;
 }
 
-*{
 
-    box-sizing:border-box;
+/* =========================================================
+RESET
+========================================================= */
 
-    -webkit-tap-highlight-color:transparent;
-
+* {
+box-sizing: border-box;
 }
 
-html,body{
+html,
+body {
+margin: 0;
+padding: 0;
 
-    margin:0;
+min-height: 100%;
 
-    padding:0;
+background: var(--bg);
+color: var(--text);
 
-    width:100%;
-
-    min-height:100%;
-
-    background:var(--bg);
-
-    color:var(--text);
-
-    font-family:Inter,Arial,Helvetica,sans-serif;
-
+font-family:
+Arial,
+Helvetica,
+sans-serif;
 }
 
-body{
-
-    overflow-x:hidden;
-
+body {
+padding: 20px;
 }
 
-button,
 
-input,
+/* =========================================================
+PSEUDO FULLSCREEN
+========================================================= */
 
-select{
+body.pseudo-fullscreen {
 
-    font:inherit;
+position: fixed;
 
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+overflow: auto;
+
+z-index: 99999;
+
+padding: 10px;
 }
 
-button{
 
-    cursor:pointer;
+/* =========================================================
+MAIN APP
+========================================================= */
 
+.app {
+
+width: min(1200px, 100%);
+
+margin: auto;
 }
 
-.app{
 
-    min-height:100vh;
+/* =========================================================
+HEADER
+========================================================= */
 
-    background:
+header {
 
-        radial-gradient(circle at 50% -20%,rgba(54,224,160,.14),transparent 35%),
+text-align: center;
 
-        var(--bg);
-
+margin-bottom: 20px;
 }
 
-/* HEADER */
+header h1 {
 
-.header{
+margin: 0;
 
-    height:72px;
-
-    padding:12px 22px;
-
-    border-bottom:1px solid var(--border);
-
-    background:rgba(7,16,24,.94);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
+font-size:
+clamp(
+28px,
+5vw,
+48px
+);
 }
 
-.brand{
+header p {
 
-    display:flex;
+margin:
+8px
+0
+0;
 
-    align-items:center;
-
-    gap:12px;
-
+color: var(--muted);
 }
 
-.logo{
 
-    width:43px;
+/* =========================================================
+MAIN GRID
+========================================================= */
 
-    height:43px;
+.grid {
 
-    border-radius:12px;
+display: grid;
 
-    background:var(--accent);
+grid-template-columns:
+360px
+1fr;
 
-    color:#06130e;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:23px;
-
-    font-weight:900;
-
+gap: 18px;
 }
 
-.brand h1{
 
-    margin:0;
+/* =========================================================
+CARDS
+========================================================= */
 
-    font-size:18px;
+.card {
 
-    letter-spacing:.5px;
+background:
+var(--panel);
 
+border:
+1px solid
+var(--border);
+
+border-radius: 18px;
+
+padding: 18px;
+
+box-shadow:
+0 10px 35px
+rgba(0,0,0,.18);
 }
 
-.brand span{
+.card h2 {
 
-    display:block;
+margin-top: 0;
 
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-top:2px;
-
+font-size: 20px;
 }
 
-.header-buttons{
 
-    display:flex;
+/* =========================================================
+FORM ELEMENTS
+========================================================= */
 
-    gap:8px;
+label {
 
-}
+display: block;
 
-/* BUTTONS */
+color: var(--muted);
 
-.btn{
+font-size: 13px;
 
-    border:1px solid var(--border);
-
-    background:var(--panel2);
-
-    color:var(--text);
-
-    min-height:44px;
-
-    padding:0 15px;
-
-    border-radius:10px;
-
-    font-weight:800;
-
-    transition:.15s;
-
-}
-
-.btn:hover{
-
-    border-color:#456073;
-
-}
-
-.btn:active{
-
-    transform:scale(.97);
-
-}
-
-.btn.primary{
-
-    background:var(--accent);
-
-    color:#04130c;
-
-    border-color:var(--accent);
-
-}
-
-.btn.danger{
-
-    background:#321722;
-
-    border-color:#6d2d3b;
-
-    color:#ff9aaa;
-
-}
-
-.btn.fullscreen{
-
-    background:#172734;
-
-}
-
-/* MAIN */
-
-.main{
-
-    width:min(1450px,100%);
-
-    margin:auto;
-
-    padding:20px;
-
-}
-
-.dashboard{
-
-    display:grid;
-
-    grid-template-columns:1fr 360px;
-
-    gap:18px;
-
-}
-
-/* TIMER */
-
-.timer-card{
-
-    background:linear-gradient(145deg,#111f2b,#0d1821);
-
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
-    padding:25px;
-
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
-
-}
-
-.timer-top{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:10px;
-
-}
-
-.session-label{
-
-    color:var(--accent);
-
-    text-transform:uppercase;
-
-    letter-spacing:2px;
-
-    font-size:12px;
-
-    font-weight:900;
-
-}
-
-.session-number{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-}
-
-.phase{
-
-    text-align:center;
-
-    margin-top:28px;
-
-}
-
-.phase-name{
-
-    color:var(--accent);
-
-    font-size:18px;
-
-    font-weight:900;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-
-}
-
-.phase-sub{
-
-    color:var(--muted);
-
-    font-size:13px;
-
-    margin-top:5px;
-
-}
-
-.clock{
-
-    text-align:center;
-
-    font-size:clamp(72px,12vw,145px);
-
-    line-height:1;
-
-    font-weight:900;
-
-    letter-spacing:-5px;
-
-    font-variant-numeric:tabular-nums;
-
-    margin:22px 0;
-
-}
-
-.progress{
-
-    height:11px;
-
-    border-radius:20px;
-
-    background:#1e303d;
-
-    overflow:hidden;
-
-}
-
-.progress-bar{
-
-    width:0%;
-
-    height:100%;
-
-    background:linear-gradient(90deg,var(--accent2),var(--accent));
-
-    transition:width .25s linear;
-
-}
-
-.progress-info{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    margin-top:7px;
-
-    font-size:11px;
-
-    color:var(--muted);
-
-}
-
-/* STATS */
-
-.stats{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:10px;
-
-    margin-top:18px;
-
-}
-
-.stat{
-
-    background:rgba(22,38,51,.75);
-
-    border:1px solid var(--border);
-
-    border-radius:13px;
-
-    padding:13px;
-
-    min-width:0;
-
-}
-
-.stat-value{
-
-    font-size:20px;
-
-    font-weight:900;
-
-    font-variant-numeric:tabular-nums;
-
-    white-space:nowrap;
-
-}
-
-.stat-label{
-
-    color:var(--muted);
-
-    font-size:10px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-    margin-top:4px;
-
-}
-
-/* CONTROLS */
-
-.controls{
-
-    display:grid;
-
-    grid-template-columns:1.5fr 1fr 1fr 1fr;
-
-    gap:9px;
-
-    margin-top:18px;
-
-}
-
-.controls .btn{
-
-    min-height:54px;
-
-}
-
-/* NEXT */
-
-.next-card{
-
-    margin-top:18px;
-
-    padding:15px;
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
-
-    background:#0c1720;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-}
-
-.next-title{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-}
-
-.next-name{
-
-    font-size:18px;
-
-    font-weight:900;
-
-    margin-top:4px;
-
-}
-
-.next-time{
-
-    font-size:25px;
-
-    font-weight:900;
-
-    color:var(--accent);
-
-    font-variant-numeric:tabular-nums;
-
-}
-
-/* RIGHT PANEL */
-
-.sidebar{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:15px;
-
-}
-
-.panel{
-
-    background:var(--panel);
-
-    border:1px solid var(--border);
-
-    border-radius:17px;
-
-    padding:17px;
-
-}
-
-.panel-title{
-
-    font-size:13px;
-
-    font-weight:900;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-
-    margin-bottom:14px;
-
-}
-
-.form-grid{
-
-    display:grid;
-
-    gap:11px;
-
-}
-
-label{
-
-    display:block;
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-bottom:5px;
-
+margin:
+14px
+0
+6px;
 }
 
 input,
+select,
+button {
 
-select{
+width: 100%;
 
-    width:100%;
+border-radius: 10px;
 
-    height:45px;
+border:
+1px solid
+var(--border);
 
-    border:1px solid var(--border);
+background:
+#0b1626;
 
-    border-radius:9px;
+color:
+var(--text);
 
-    background:#0b151e;
+padding: 12px;
 
-    color:var(--text);
-
-    padding:0 11px;
-
-    outline:none;
-
+font-size: 15px;
 }
 
-input:focus,
+button {
 
-select:focus{
+cursor: pointer;
 
-    border-color:var(--accent);
+font-weight: bold;
 
+transition:
+transform .15s,
+opacity .15s;
 }
 
-.plan{
+button:hover {
 
-    display:flex;
-
-    flex-direction:column;
-
-    gap:6px;
-
-    max-height:340px;
-
-    overflow:auto;
-
+transform:
+translateY(-1px);
 }
 
-.plan-row{
+button:active {
 
-    display:grid;
-
-    grid-template-columns:28px 1fr auto;
-
-    align-items:center;
-
-    gap:8px;
-
-    padding:10px;
-
-    background:#0b151e;
-
-    border:1px solid transparent;
-
-    border-radius:9px;
-
-    font-size:12px;
-
+transform:
+translateY(1px);
 }
 
-.plan-row.active{
+button.primary {
 
-    border-color:var(--accent);
+background:
+var(--accent);
 
-    background:#10261f;
+color:
+#00111b;
 
+border: none;
 }
 
-.plan-row.completed{
+button.green {
 
-    opacity:.45;
+background:
+var(--green);
 
+color:
+#03140a;
+
+border: none;
 }
 
-.plan-dot{
+button.orange {
 
-    width:10px;
+background:
+var(--orange);
 
-    height:10px;
+color:
+#1b1000;
 
-    border-radius:50%;
-
-    background:#4b5e6b;
-
+border: none;
 }
 
-.plan-row.active .plan-dot{
+button.red {
 
-    background:var(--accent);
+background:
+var(--red);
 
-    box-shadow:0 0 10px rgba(54,224,160,.7);
+color:
+white;
 
+border: none;
 }
 
-.plan-time{
+button.secondary {
 
-    color:var(--muted);
-
-    font-variant-numeric:tabular-nums;
-
+background:
+var(--panel2);
 }
 
-/* LAP TABLE */
 
-.laps{
+/* =========================================================
+BUTTON ROW
+========================================================= */
 
-    width:100%;
+.button-row {
 
-    border-collapse:collapse;
+display: grid;
 
-    font-size:12px;
+grid-template-columns:
+1fr
+1fr;
 
+gap: 10px;
+
+margin-top: 12px;
 }
 
-.laps th{
 
-    text-align:left;
+/* =========================================================
+HELP TEXT
+========================================================= */
 
-    color:var(--muted);
+.help {
 
-    font-size:10px;
+color:
+var(--muted);
 
-    text-transform:uppercase;
+font-size:
+12px;
 
-    padding:7px;
+line-height:
+1.45;
 
+margin-top:
+8px;
 }
 
-.laps td{
 
-    padding:9px 7px;
+/* =========================================================
+TIMER CARD
+========================================================= */
 
-    border-top:1px solid #20313d;
+.timer-card {
 
-    font-variant-numeric:tabular-nums;
-
+text-align: center;
 }
 
-/* FULLSCREEN */
 
-:fullscreen .app{
+/* =========================================================
+CURRENT PHASE
+========================================================= */
 
-    min-height:100vh;
+.phase-name {
 
+font-size:
+clamp(
+24px,
+5vw,
+42px
+);
+
+font-weight:
+800;
+
+margin-top:
+5px;
 }
 
-.exit-fullscreen{
+.phase-description {
 
-    display:none;
+color:
+var(--muted);
 
+min-height:
+22px;
 }
 
-:fullscreen .exit-fullscreen{
 
-    display:block;
+/* =========================================================
+BIG TIMER
+========================================================= */
 
+.timer {
+
+font-size:
+clamp(
+65px,
+15vw,
+150px
+);
+
+line-height:
+.95;
+
+font-weight:
+900;
+
+letter-spacing:
+2px;
+
+margin:
+25px
+0;
+
+font-variant-numeric:
+tabular-nums;
 }
 
-:fullscreen .normal-fullscreen{
 
-    display:none;
+/* =========================================================
+METRICS
+========================================================= */
 
+.pace-display {
+
+display:
+flex;
+
+gap:
+15px;
+
+flex-wrap:
+wrap;
+
+justify-content:
+center;
+
+margin-bottom:
+15px;
 }
 
-/* MOBILE */
+.metric {
 
-@media(max-width:900px){
+background:
+var(--panel2);
 
-    .dashboard{
+border:
+1px solid
+var(--border);
 
-        grid-template-columns:1fr;
+border-radius:
+12px;
 
-    }
+padding:
+12px
+18px;
 
-    .sidebar{
-
-        display:grid;
-
-        grid-template-columns:1fr 1fr;
-
-    }
-
-    .sidebar .panel:last-child{
-
-        grid-column:1/-1;
-
-    }
-
+min-width:
+120px;
 }
 
-@media(max-width:620px){
+.metric strong {
 
-    .header{
+display:
+block;
 
-        padding:10px 12px;
-
-        height:64px;
-
-    }
-
-    .brand h1{
-
-        font-size:15px;
-
-    }
-
-    .brand span{
-
-        display:none;
-
-    }
-
-    .logo{
-
-        width:38px;
-
-        height:38px;
-
-    }
-
-    .header-buttons .btn{
-
-        padding:0 10px;
-
-        font-size:12px;
-
-    }
-
-    .main{
-
-        padding:10px;
-
-    }
-
-    .timer-card{
-
-        padding:16px;
-
-        border-radius:17px;
-
-    }
-
-    .clock{
-
-        font-size:70px;
-
-        letter-spacing:-3px;
-
-        margin:19px 0;
-
-    }
-
-    .stats{
-
-        grid-template-columns:repeat(2,1fr);
-
-    }
-
-    .controls{
-
-        grid-template-columns:1fr 1fr;
-
-    }
-
-    .controls .btn:first-child{
-
-        grid-column:1/-1;
-
-    }
-
-    .sidebar{
-
-        display:flex;
-
-    }
-
-    .next-card{
-
-        align-items:flex-start;
-
-    }
-
+font-size:
+20px;
 }
 
-/* VERY SMALL PHONES */
+.metric span {
 
-@media(max-width:380px){
+color:
+var(--muted);
 
-    .clock{
-
-        font-size:59px;
-
-    }
-
-    .stat-value{
-
-        font-size:17px;
-
-    }
-
-    .btn{
-
-        padding:0 10px;
-
-    }
-
+font-size:
+12px;
 }
 
-/* FULLSCREEN MOBILE */
 
-@media(orientation:landscape) and (max-height:600px){
+/* =========================================================
+PROGRESS BAR
+========================================================= */
 
-    .header{
+.progress-wrap {
 
-        height:55px;
+height:
+14px;
 
-    }
+background:
+#07101d;
 
-    .main{
+border-radius:
+20px;
 
-        padding:10px;
+overflow:
+hidden;
 
-    }
+border:
+1px solid
+var(--border);
 
-    .timer-card{
+margin:
+20px
+0;
+}
 
-        padding:13px;
+.progress {
 
-    }
+height:
+100%;
 
-    .phase{
+width:
+0%;
 
-        margin-top:8px;
+background:
+var(--accent);
 
-    }
+transition:
+width .15s linear;
+}
 
-    .clock{
 
-        margin:10px 0;
+/* =========================================================
+TIMER CONTROLS
+========================================================= */
 
-        font-size:70px;
+.controls {
 
-    }
+display:
+grid;
 
-    .stats{
+grid-template-columns:
+1.4fr
+1fr
+1fr;
 
-        margin-top:10px;
+gap:
+10px;
+}
 
-    }
 
-    .next-card{
+/* =========================================================
+NEXT PHASE
+========================================================= */
 
-        margin-top:10px;
+.next-box {
 
-    }
+margin-top:
+15px;
 
+background:
+var(--panel2);
+
+padding:
+14px;
+
+border-radius:
+12px;
+
+text-align:
+left;
+}
+
+.next-box small {
+
+color:
+var(--muted);
+}
+
+.next-box strong {
+
+display:
+block;
+
+margin-top:
+5px;
+
+font-size:
+18px;
+}
+
+
+/* =========================================================
+SUMMARY
+========================================================= */
+
+.summary {
+
+display:
+grid;
+
+grid-template-columns:
+repeat(
+4,
+1fr
+);
+
+gap:
+10px;
+
+margin-top:
+18px;
+}
+
+.summary .metric {
+
+min-width:
+0;
+}
+
+
+/* =========================================================
+PLAN
+========================================================= */
+
+.plan-list {
+
+margin-top:
+18px;
+}
+
+.plan-row {
+
+display:
+grid;
+
+grid-template-columns:
+42px
+1fr
+auto;
+
+gap:
+10px;
+
+align-items:
+center;
+
+padding:
+12px;
+
+border-bottom:
+1px solid
+var(--border);
+
+border-radius:
+10px;
+}
+
+.plan-row.active {
+
+background:
+rgba(
+56,
+189,
+248,
+.12
+);
+
+border:
+1px solid
+var(--accent);
+}
+
+.phase-number {
+
+width:
+32px;
+
+height:
+32px;
+
+border-radius:
+50%;
+
+display:
+grid;
+
+place-items:
+center;
+
+background:
+var(--panel2);
+
+color:
+var(--muted);
+
+font-weight:
+bold;
+}
+
+.plan-row.active
+.phase-number {
+
+background:
+var(--accent);
+
+color:
+#00111b;
+}
+
+.plan-title {
+
+font-weight:
+bold;
+}
+
+.plan-details {
+
+color:
+var(--muted);
+
+font-size:
+13px;
+
+margin-top:
+4px;
+}
+
+.plan-time {
+
+font-variant-numeric:
+tabular-nums;
+
+font-weight:
+bold;
+
+text-align:
+right;
+}
+
+
+/* =========================================================
+NOTICE
+========================================================= */
+
+.notice {
+
+padding:
+12px;
+
+border-radius:
+10px;
+
+background:
+rgba(
+245,
+158,
+11,
+.1
+);
+
+border:
+1px solid
+rgba(
+245,
+158,
+11,
+.35
+);
+
+color:
+#ffd98a;
+
+font-size:
+13px;
+
+line-height:
+1.45;
+
+margin-top:
+12px;
+}
+
+
+/* =========================================================
+HIDDEN
+========================================================= */
+
+.hidden {
+display:
+none !important;
+}
+
+
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media (
+max-width: 850px
+) {
+
+body {
+padding:
+10px;
+}
+
+.grid {
+
+grid-template-columns:
+1fr;
+}
+
+.summary {
+
+grid-template-columns:
+repeat(
+2,
+1fr
+);
+}
+
+.controls {
+
+grid-template-columns:
+1fr;
+}
+}
+
+
+/* =========================================================
+SMALL MOBILE
+========================================================= */
+
+@media (
+max-width: 500px
+) {
+
+.card {
+
+padding:
+14px;
+
+border-radius:
+14px;
+}
+
+.button-row {
+
+grid-template-columns:
+1fr;
+}
+
+.plan-row {
+
+grid-template-columns:
+34px
+1fr
+auto;
+
+padding:
+10px
+6px;
+}
+
+.plan-details {
+
+font-size:
+12px;
+}
+
+.timer {
+
+margin:
+18px
+0;
+}
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="app" id="app">
+<div class="app">
 
-<header class="header">
+<header>
 
-    <div class="brand">
+<h1>
+🏃 Advanced Marathon Trainer
+</h1>
 
-        <div class="logo">🏃</div>
-
-        <div>
-
-            <h1>MARATHON TRAINER PRO</h1>
-
-            <span>Advanced running session timer</span>
-
-        </div>
-
-    </div>
-
-    <div class="header-buttons">
-
-        <button
-
-            class="btn fullscreen normal-fullscreen"
-
-            id="fullscreenBtn">
-
-            ⛶ Full Screen
-
-        </button>
-
-        <button
-
-            class="btn fullscreen exit-fullscreen"
-
-            id="exitFullscreenBtn">
-
-            ✕ Exit Full Screen
-
-        </button>
-
-    </div>
+<p>
+Distance + pace driven training timer
+</p>
 
 </header>
 
-<main class="main">
 
-<div class="dashboard">
+<div class="grid">
 
-<!-- ================= TIMER ================= -->
 
-<section class="timer-card">
+<!-- =====================================================
+SETTINGS
+====================================================== -->
 
-    <div class="timer-top">
+<section class="card">
 
-        <div>
+<h2>
+Training Setup
+</h2>
 
-            <div class="session-label">Training Session</div>
 
-            <div class="session-number" id="sessionNumber">
+<label for="workout">
+Workout
+</label>
 
-                SESSION 01
+<select id="workout">
 
-            </div>
+<option value="easy">
+Easy Run
+</option>
 
-        </div>
+<option value="long">
+Long Run
+</option>
 
-        <div class="session-number" id="status">
+<option value="marathon">
+Marathon Pace
+</option>
 
-            READY
+<option value="tempo">
+Tempo Session
+</option>
 
-        </div>
+<option value="interval">
+Interval Session
+</option>
 
-    </div>
+<option value="progressive">
+Progressive Long Run
+</option>
 
-    <div class="phase">
+<option value="race">
+Race Simulation
+</option>
 
-        <div class="phase-name" id="phaseName">
+<option value="recovery">
+Recovery Run
+</option>
 
-            READY
+</select>
 
-        </div>
 
-        <div class="phase-sub" id="phaseDescription">
+<label for="distance">
+Target distance / main workout distance (km)
+</label>
 
-            Configure your marathon session
+<input
+id="distance"
+type="number"
+min="0.1"
+step="0.1"
+value="10"
+>
 
-        </div>
 
-    </div>
+<label for="pace">
+Main target pace (min/km)
+</label>
 
-    <div class="clock" id="clock">
+<input
+id="pace"
+type="number"
+min="2"
+max="15"
+step="0.05"
+value="5.5"
+>
 
-        00:00
+<div class="help">
 
-    </div>
+Example:
+<b>5.5</b>
+=
+<b>5:30/km</b>.
 
-    <div class="progress">
+Distance-driven phases calculate:
 
-        <div
-
-            class="progress-bar"
-
-            id="progressBar">
-
-        </div>
-
-    </div>
-
-    <div class="progress-info">
-
-        <span id="progressText">
-
-            0%
-
-        </span>
-
-        <span id="phaseProgress">
-
-            0 / 0
-
-        </span>
-
-    </div>
-
-    <!-- STATS -->
-
-    <div class="stats">
-
-        <div class="stat">
-
-            <div
-
-                class="stat-value"
-
-                id="elapsed">
-
-                00:00
-
-            </div>
-
-            <div class="stat-label">
-
-                Elapsed
-
-            </div>
-
-        </div>
-
-        <div class="stat">
-
-            <div
-
-                class="stat-value"
-
-                id="distance">
-
-                0.00 km
-
-            </div>
-
-            <div class="stat-label">
-
-                Distance
-
-            </div>
-
-        </div>
-
-        <div class="stat">
-
-            <div
-
-                class="stat-value"
-
-                id="currentPace">
-
-                --:-- /km
-
-            </div>
-
-            <div class="stat-label">
-
-                Target Pace
-
-            </div>
-
-        </div>
-
-        <div class="stat">
-
-            <div
-
-                class="stat-value"
-
-                id="remaining">
-
-                00:00
-
-            </div>
-
-            <div class="stat-label">
-
-                Remaining
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- CONTROLS -->
-
-    <div class="controls">
-
-        <button
-
-            class="btn primary"
-
-            id="startBtn">
-
-            ▶ START
-
-        </button>
-
-        <button
-
-            class="btn"
-
-            id="pauseBtn"
-
-            disabled>
-
-            ⏸ PAUSE
-
-        </button>
-
-        <button
-
-            class="btn"
-
-            id="lapBtn"
-
-            disabled>
-
-            ⏱ LAP
-
-        </button>
-
-        <button
-
-            class="btn danger"
-
-            id="resetBtn">
-
-            ↻ RESET
-
-        </button>
-
-    </div>
-
-    <!-- NEXT -->
-
-    <div class="next-card">
-
-        <div>
-
-            <div class="next-title">
-
-                Next Phase
-
-            </div>
-
-            <div
-
-                class="next-name"
-
-                id="nextName">
-
-                Warm Up
-
-            </div>
-
-        </div>
-
-        <div
-
-            class="next-time"
-
-            id="nextTime">
-
-            00:00
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= SIDEBAR ================= -->
-
-<aside class="sidebar">
-
-<section class="panel">
-
-    <div class="panel-title">
-
-        Training Setup
-
-    </div>
-
-    <div class="form-grid">
-
-        <div>
-
-            <label>
-
-                Training Session
-
-            </label>
-
-            <select id="sessionType">
-
-                <option value="long">
-
-                    Long Run
-
-                </option>
-
-                <option value="tempo">
-
-                    Tempo Run
-
-                </option>
-
-                <option value="interval">
-
-                    Interval Training
-
-                </option>
-
-                <option value="marathon">
-
-                    Marathon Pace
-
-                </option>
-
-                <option value="recovery">
-
-                    Recovery Run
-
-                </option>
-
-                <option value="custom">
-
-                    Custom Session
-
-                </option>
-
-            </select>
-
-        </div>
-
-        <div>
-
-            <label>
-
-                Target Distance (km)
-
-            </label>
-
-            <input
-
-                type="number"
-
-                id="distanceInput"
-
-                value="20"
-
-                min="1"
-
-                max="100"
-
-                step="0.1">
-
-        </div>
-
-        <div>
-
-            <label>
-
-                Target Pace (min/km)
-
-            </label>
-
-            <input
-
-                type="number"
-
-                id="paceInput"
-
-                value="5.5"
-
-                min="3"
-
-                max="12"
-
-                step="0.1">
-
-        </div>
-
-        <div>
-
-            <label>
-
-                Warm Up (minutes)
-
-            </label>
-
-            <input
-
-                type="number"
-
-                id="warmupInput"
-
-                value="10"
-
-                min="0"
-
-                max="60">
-
-        </div>
-
-        <div>
-
-            <label>
-
-                Cool Down (minutes)
-
-            </label>
-
-            <input
-
-                type="number"
-
-                id="cooldownInput"
-
-                value="10"
-
-                min="0"
-
-                max="60">
-
-        </div>
-
-        <button
-
-            class="btn primary"
-
-            id="applyBtn">
-
-            APPLY TRAINING PLAN
-
-        </button>
-
-    </div>
-
-</section>
-
-<!-- PLAN -->
-
-<section class="panel">
-
-    <div class="panel-title">
-
-        Training Plan
-
-    </div>
-
-    <div
-
-        class="plan"
-
-        id="plan">
-
-    </div>
-
-</section>
-
-<!-- LAPS -->
-
-<section class="panel">
-
-    <div class="panel-title">
-
-        Lap Performance
-
-    </div>
-
-    <table class="laps">
-
-        <thead>
-
-            <tr>
-
-                <th>Lap</th>
-
-                <th>Time</th>
-
-                <th>Distance</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody id="lapBody">
-
-            <tr>
-
-                <td colspan="3">
-
-                    No laps recorded
-
-                </td>
-
-            </tr>
-
-        </tbody>
-
-    </table>
-
-</section>
-
-</aside>
+<b>
+distance × pace = timer duration
+</b>
 
 </div>
 
-</main>
+
+<label for="warmup">
+Warm-up (minutes)
+</label>
+
+<input
+id="warmup"
+type="number"
+min="0"
+step="1"
+value="10"
+>
+
+
+<label for="cooldown">
+Cool-down (minutes)
+</label>
+
+<input
+id="cooldown"
+type="number"
+min="0"
+step="1"
+value="5"
+>
+
+
+<div id="intervalSettings">
+
+<label for="repeats">
+Interval repeats
+</label>
+
+<input
+id="repeats"
+type="number"
+min="1"
+step="1"
+value="6"
+>
+
+
+<label for="recovery">
+Recovery between intervals (minutes)
+</label>
+
+<input
+id="recovery"
+type="number"
+min="0"
+step="0.5"
+value="2"
+>
+
+<div class="help">
+
+For intervals, the target distance is
+the total hard-work distance.
+
+It is divided equally between the repeats.
+
+</div>
+
+</div>
+
+
+<div class="button-row">
+
+<button
+class="primary"
+id="buildBtn"
+>
+Update Training Plan
+</button>
+
+<button
+class="secondary"
+id="fullscreenBtn"
+>
+⛶ Fullscreen
+</button>
+
+</div>
+
+
+<div class="button-row">
+
+<button
+class="green"
+id="startBtn"
+>
+▶ Start
+</button>
+
+<button
+class="orange"
+id="pauseBtn"
+>
+Ⅱ Pause
+</button>
+
+</div>
+
+
+<button
+class="red"
+id="resetBtn"
+style="margin-top:10px"
+>
+↺ Reset
+</button>
+
+
+<div class="notice">
+
+Warm-up and cool-down are intentionally
+time-based.
+
+All main workout running phases are calculated
+from their individual distance and target pace.
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+TIMER
+====================================================== -->
+
+<section class="card timer-card">
+
+<div
+class="phase-name"
+id="phaseName"
+>
+Ready
+</div>
+
+
+<div
+class="phase-description"
+id="phaseDescription"
+>
+Build your training plan
+</div>
+
+
+<div
+class="timer"
+id="timer"
+>
+00:00
+</div>
+
+
+<div class="pace-display">
+
+
+<div class="metric">
+
+<strong id="currentPace">
+--
+</strong>
+
+<span>
+PACE / KM
+</span>
+
+</div>
+
+
+<div class="metric">
+
+<strong id="currentDistance">
+0.00
+</strong>
+
+<span>
+PHASE KM
+</span>
+
+</div>
+
+
+<div class="metric">
+
+<strong id="totalDistance">
+0.00
+</strong>
+
+<span>
+TOTAL KM
+</span>
+
+</div>
+
+</div>
+
+
+<div class="progress-wrap">
+
+<div
+class="progress"
+id="progress"
+></div>
+
+</div>
+
+
+<div class="controls">
+
+<button
+class="primary"
+id="startBtn2"
+>
+▶ Start
+</button>
+
+
+<button
+class="secondary"
+id="skipBtn"
+>
+⏭ Skip Phase
+</button>
+
+
+<button
+class="secondary"
+id="voiceBtn"
+>
+🔊 Voice On
+</button>
+
+</div>
+
+
+<div class="next-box">
+
+<small>
+NEXT PHASE
+</small>
+
+<strong id="nextPhase">
+—
+</strong>
+
+</div>
+
+
+<div class="summary">
+
+
+<div class="metric">
+
+<strong id="summaryDistance">
+0 km
+</strong>
+
+<span>
+MAIN DISTANCE
+</span>
+
+</div>
+
+
+<div class="metric">
+
+<strong id="summaryTime">
+00:00
+</strong>
+
+<span>
+EST. TIME
+</span>
+
+</div>
+
+
+<div class="metric">
+
+<strong id="summaryPhases">
+0
+</strong>
+
+<span>
+PHASES
+</span>
+
+</div>
+
+
+<div class="metric">
+
+<strong id="summaryStatus">
+READY
+</strong>
+
+<span>
+STATUS
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =====================================================
+WORKOUT PLAN
+====================================================== -->
+
+<section class="card plan-list">
+
+<h2>
+Workout Plan
+</h2>
+
+<div id="planList"></div>
+
+</section>
+
 
 </div>
 
 <script>
 
+/* =========================================================
+ADVANCED MARATHON TRAINER
+PART 2 — JAVASCRIPT
+========================================================= */
+
 "use strict";
 
-/* =========================================================
-
-   MARATHON TRAINER PRO
-
-========================================================= */
-
-const app = document.getElementById("app");
-
-const clock = document.getElementById("clock");
-
-const phaseName = document.getElementById("phaseName");
-
-const phaseDescription = document.getElementById("phaseDescription");
-
-const elapsedEl = document.getElementById("elapsed");
-
-const distanceEl = document.getElementById("distance");
-
-const paceEl = document.getElementById("currentPace");
-
-const remainingEl = document.getElementById("remaining");
-
-const progressBar = document.getElementById("progressBar");
-
-const progressText = document.getElementById("progressText");
-
-const phaseProgress = document.getElementById("phaseProgress");
-
-const nextName = document.getElementById("nextName");
-
-const nextTime = document.getElementById("nextTime");
-
-const statusEl = document.getElementById("status");
-
-const planEl = document.getElementById("plan");
-
-const lapBody = document.getElementById("lapBody");
-
-const startBtn = document.getElementById("startBtn");
-
-const pauseBtn = document.getElementById("pauseBtn");
-
-const lapBtn = document.getElementById("lapBtn");
-
-const resetBtn = document.getElementById("resetBtn");
-
-const applyBtn = document.getElementById("applyBtn");
-
-const sessionType = document.getElementById("sessionType");
-
-const distanceInput = document.getElementById("distanceInput");
-
-const paceInput = document.getElementById("paceInput");
-
-const warmupInput = document.getElementById("warmupInput");
-
-const cooldownInput = document.getElementById("cooldownInput");
-
-const fullscreenBtn = document.getElementById("fullscreenBtn");
-
-const exitFullscreenBtn = document.getElementById("exitFullscreenBtn");
 
 /* =========================================================
-
-   STATE
-
+GET HTML ELEMENTS
 ========================================================= */
 
-let plan = [];
+const workoutEl =
+document.getElementById("workout");
 
-let currentPhase = 0;
+const distanceEl =
+document.getElementById("distance");
 
-let phaseElapsed = 0;
+const paceEl =
+document.getElementById("pace");
 
-let totalElapsed = 0;
+const warmupEl =
+document.getElementById("warmup");
+
+const cooldownEl =
+document.getElementById("cooldown");
+
+const repeatsEl =
+document.getElementById("repeats");
+
+const recoveryEl =
+document.getElementById("recovery");
+
+const intervalSettings =
+document.getElementById("intervalSettings");
+
+const buildBtn =
+document.getElementById("buildBtn");
+
+const fullscreenBtn =
+document.getElementById("fullscreenBtn");
+
+const startBtn =
+document.getElementById("startBtn");
+
+const startBtn2 =
+document.getElementById("startBtn2");
+
+const pauseBtn =
+document.getElementById("pauseBtn");
+
+const resetBtn =
+document.getElementById("resetBtn");
+
+const skipBtn =
+document.getElementById("skipBtn");
+
+const voiceBtn =
+document.getElementById("voiceBtn");
+
+const phaseNameEl =
+document.getElementById("phaseName");
+
+const phaseDescriptionEl =
+document.getElementById("phaseDescription");
+
+const timerEl =
+document.getElementById("timer");
+
+const currentPaceEl =
+document.getElementById("currentPace");
+
+const currentDistanceEl =
+document.getElementById("currentDistance");
+
+const totalDistanceEl =
+document.getElementById("totalDistance");
+
+const progressEl =
+document.getElementById("progress");
+
+const nextPhaseEl =
+document.getElementById("nextPhase");
+
+const summaryDistanceEl =
+document.getElementById("summaryDistance");
+
+const summaryTimeEl =
+document.getElementById("summaryTime");
+
+const summaryPhasesEl =
+document.getElementById("summaryPhases");
+
+const summaryStatusEl =
+document.getElementById("summaryStatus");
+
+const planListEl =
+document.getElementById("planList");
+
+
+/* =========================================================
+GLOBAL STATE
+========================================================= */
+
+let phases = [];
+
+let currentIndex = 0;
 
 let running = false;
+
+let paused = false;
+
+let remainingSeconds = 0;
+
+let phaseElapsedSeconds = 0;
 
 let lastTimestamp = null;
 
 let animationFrame = null;
 
-let targetDistance = 20;
+let voiceEnabled = true;
 
-let targetPace = 5.5;
-
-let laps = [];
-
-let estimatedDistance = 0;
-
-/* =========================================================
-
-   SESSION TEMPLATES
-
-========================================================= */
-
-function buildPlan(){
-
-    const warm =
-
-        Math.max(
-
-            0,
-
-            Number(warmupInput.value) || 0
-
-        );
-
-    const cool =
-
-        Math.max(
-
-            0,
-
-            Number(cooldownInput.value) || 0
-
-        );
-
-    const type =
-
-        sessionType.value;
-
-    let result = [];
-
-    if(warm > 0){
-
-        result.push({
-
-            name:"Warm Up",
-
-            minutes:warm,
-
-            description:"Easy controlled running"
-
-        });
-
-    }
-
-    if(type === "long"){
-
-        result.push({
-
-            name:"Easy Endurance",
-
-            minutes:30,
-
-            description:"Comfortable aerobic pace"
-
-        });
-
-        result.push({
-
-            name:"Steady Endurance",
-
-            minutes:30,
-
-            description:"Controlled marathon-building effort"
-
-        });
-
-        result.push({
-
-            name:"Easy Endurance",
-
-            minutes:30,
-
-            description:"Settle back into aerobic rhythm"
-
-        });
-
-    }
-
-    else if(type === "tempo"){
-
-        result.push({
-
-            name:"Easy Running",
-
-            minutes:10,
-
-            description:"Prepare for tempo effort"
-
-        });
-
-        result.push({
-
-            name:"Tempo",
-
-            minutes:20,
-
-            description:"Strong controlled sustained effort"
-
-        });
-
-        result.push({
-
-            name:"Recovery",
-
-            minutes:5,
-
-            description:"Easy running"
-
-        });
-
-        result.push({
-
-            name:"Tempo",
-
-            minutes:20,
-
-            description:"Second sustained effort"
-
-        });
-
-    }
-
-    else if(type === "interval"){
-
-        result.push({
-
-            name:"Easy Running",
-
-            minutes:8,
-
-            description:"Prepare the body"
-
-        });
-
-        for(let i=1;i<=5;i++){
-
-            result.push({
-
-                name:"Hard Interval " + i,
-
-                minutes:4,
-
-                description:"Fast controlled effort"
-
-            });
-
-            result.push({
-
-                name:"Recovery " + i,
-
-                minutes:3,
-
-                description:"Easy recovery running"
-
-            });
-
-        }
-
-    }
-
-    else if(type === "marathon"){
-
-        result.push({
-
-            name:"Easy Running",
-
-            minutes:10,
-
-            description:"Settle into rhythm"
-
-        });
-
-        result.push({
-
-            name:"Marathon Pace",
-
-            minutes:30,
-
-            description:"Target marathon pace"
-
-        });
-
-        result.push({
-
-            name:"Marathon Pace",
-
-            minutes:30,
-
-            description:"Maintain target pace"
-
-        });
-
-        result.push({
-
-            name:"Marathon Pace",
-
-            minutes:30,
-
-            description:"Controlled race-specific work"
-
-        });
-
-    }
-
-    else if(type === "recovery"){
-
-        result.push({
-
-            name:"Recovery Running",
-
-            minutes:30,
-
-            description:"Very comfortable effort"
-
-        });
-
-    }
-
-    else if(type === "custom"){
-
-        result.push({
-
-            name:"Custom Training",
-
-            minutes:30,
-
-            description:"Custom aerobic training block"
-
-        });
-
-    }
-
-    if(cool > 0){
-
-        result.push({
-
-            name:"Cool Down",
-
-            minutes:cool,
-
-            description:"Easy running and recovery"
-
-        });
-
-    }
-
-    plan = result;
-
-    currentPhase = 0;
-
-    phaseElapsed = 0;
-
-    totalElapsed = 0;
-
-    renderPlan();
-
-    updateDisplay();
-
-}
-
-/* =========================================================
-
-   FORMAT TIME
-
-========================================================= */
-
-function formatTime(seconds){
-
-    seconds =
-
-        Math.max(
-
-            0,
-
-            Math.floor(seconds)
-
-        );
-
-    const hours =
-
-        Math.floor(seconds / 3600);
-
-    const minutes =
-
-        Math.floor(
-
-            (seconds % 3600) / 60
-
-        );
-
-    const secs =
-
-        seconds % 60;
-
-    if(hours > 0){
-
-        return (
-
-            String(hours).padStart(2,"0")
-
-            + ":" +
-
-            String(minutes).padStart(2,"0")
-
-            + ":" +
-
-            String(secs).padStart(2,"0")
-
-        );
-
-    }
-
-    return (
-
-        String(minutes).padStart(2,"0")
-
-        + ":" +
-
-        String(secs).padStart(2,"0")
-
-    );
-
-}
-
-/* =========================================================
-
-   PACE FORMAT
-
-========================================================= */
-
-function formatPace(decimalMinutes){
-
-    if(
-
-        !Number.isFinite(decimalMinutes) ||
-
-        decimalMinutes <= 0
-
-    ){
-
-        return "--:--";
-
-    }
-
-    const mins =
-
-        Math.floor(decimalMinutes);
-
-    const secs =
-
-        Math.round(
-
-            (decimalMinutes - mins) * 60
-
-        );
-
-    return (
-
-        mins +
-
-        ":" +
-
-        String(secs).padStart(2,"0")
-
-    );
-
-}
-
-/* =========================================================
-
-   PLAN TOTAL
-
-========================================================= */
-
-function totalPlanSeconds(){
-
-    return plan.reduce(
-
-        (total,phase)=>{
-
-            return total + phase.minutes * 60;
-
-        },
-
-        0
-
-    );
-
-}
-
-/* =========================================================
-
-   CURRENT PHASE
-
-========================================================= */
-
-function currentPhaseSeconds(){
-
-    if(!plan[currentPhase]) return 0;
-
-    return plan[currentPhase].minutes * 60;
-
-}
-
-/* =========================================================
-
-   RENDER PLAN
-
-========================================================= */
-
-function renderPlan(){
-
-    planEl.innerHTML = "";
-
-    plan.forEach((item,index)=>{
-
-        const row =
-
-            document.createElement("div");
-
-        row.className =
-
-            "plan-row";
-
-        row.dataset.index =
-
-            index;
-
-        row.innerHTML = `
-
-            <div class="plan-dot"></div>
-
-            <div>
-
-                <strong>${item.name}</strong>
-
-                <div style="color:#718594;font-size:10px;margin-top:2px">
-
-                    ${item.description}
-
-                </div>
-
-            </div>
-
-            <div class="plan-time">
-
-                ${item.minutes} min
-
-            </div>
-
-        `;
-
-        planEl.appendChild(row);
-
-    });
-
-}
-
-/* =========================================================
-
-   UPDATE PLAN HIGHLIGHT
-
-========================================================= */
-
-function updatePlanHighlight(){
-
-    const rows =
-
-        planEl.querySelectorAll(".plan-row");
-
-    rows.forEach((row,index)=>{
-
-        row.classList.toggle(
-
-            "active",
-
-            index === currentPhase
-
-        );
-
-        row.classList.toggle(
-
-            "completed",
-
-            index < currentPhase
-
-        );
-
-    });
-
-}
-
-/* =========================================================
-
-   UPDATE DISPLAY
-
-========================================================= */
-
-function updateDisplay(){
-
-    if(!plan.length){
-
-        clock.textContent = "00:00";
-
-        return;
-
-    }
-
-    const current =
-
-        plan[currentPhase];
-
-    if(!current) return;
-
-    const phaseTotal =
-
-        currentPhaseSeconds();
-
-    const phaseRemaining =
-
-        Math.max(
-
-            0,
-
-            phaseTotal - phaseElapsed
-
-        );
-
-    clock.textContent =
-
-        formatTime(phaseRemaining);
-
-    phaseName.textContent =
-
-        current.name;
-
-    phaseDescription.textContent =
-
-        current.description;
-
-    const total =
-
-        totalPlanSeconds();
-
-    const overallProgress =
-
-        total > 0
-
-        ? Math.min(
-
-            100,
-
-            (totalElapsed / total) * 100
-
-        )
-
-        : 0;
-
-    progressBar.style.width =
-
-        overallProgress + "%";
-
-    progressText.textContent =
-
-        Math.round(overallProgress) + "%";
-
-    phaseProgress.textContent =
-
-        Math.floor(phaseElapsed) +
-
-        " / " +
-
-        phaseTotal +
-
-        " sec";
-
-    elapsedEl.textContent =
-
-        formatTime(totalElapsed);
-
-    remainingEl.textContent =
-
-        formatTime(
-
-            Math.max(
-
-                0,
-
-                total - totalElapsed
-
-            )
-
-        );
-
-    targetDistance =
-
-        Math.max(
-
-            1,
-
-            Number(distanceInput.value) || 20
-
-        );
-
-    targetPace =
-
-        Math.max(
-
-            3,
-
-            Number(paceInput.value) || 5.5
-
-        );
-
-    estimatedDistance =
-
-        totalElapsed /
-
-        (targetPace * 60);
-
-    estimatedDistance =
-
-        Math.min(
-
-            targetDistance,
-
-            estimatedDistance
-
-        );
-
-    distanceEl.textContent =
-
-        estimatedDistance.toFixed(2) +
-
-        " km";
-
-    paceEl.textContent =
-
-        formatPace(targetPace) +
-
-        " /km";
-
-    /* NEXT PHASE */
-
-    const next =
-
-        plan[currentPhase + 1];
-
-    if(next){
-
-        nextName.textContent =
-
-            next.name;
-
-        nextTime.textContent =
-
-            formatTime(
-
-                next.minutes * 60
-
-            );
-
-    }else{
-
-        nextName.textContent =
-
-            "Session Complete";
-
-        nextTime.textContent =
-
-            "✓";
-
-    }
-
-    updatePlanHighlight();
-
-}
-
-/* =========================================================
-
-   START
-
-========================================================= */
-
-function startTraining(){
-
-    if(running) return;
-
-    if(!plan.length){
-
-        buildPlan();
-
-    }
-
-    if(
-
-        currentPhase >= plan.length
-
-    ){
-
-        resetTraining();
-
-    }
-
-    running = true;
-
-    lastTimestamp =
-
-        performance.now();
-
-    statusEl.textContent =
-
-        "RUNNING";
-
-    startBtn.disabled =
-
-        true;
-
-    pauseBtn.disabled =
-
-        false;
-
-    lapBtn.disabled =
-
-        false;
-
-    animationFrame =
-
-        requestAnimationFrame(tick);
-
-}
-
-/* =========================================================
-
-   TIMER ENGINE
-
-========================================================= */
-
-function tick(timestamp){
-
-    if(!running) return;
-
-    if(lastTimestamp === null){
-
-        lastTimestamp = timestamp;
-
-    }
-
-    const delta =
-
-        (timestamp - lastTimestamp) / 1000;
-
-    lastTimestamp =
-
-        timestamp;
-
-    phaseElapsed += delta;
-
-    totalElapsed += delta;
-
-    while(
-
-        currentPhase < plan.length &&
-
-        phaseElapsed >= currentPhaseSeconds()
-
-    ){
-
-        phaseElapsed -=
-
-            currentPhaseSeconds();
-
-        currentPhase++;
-
-        if(
-
-            currentPhase >= plan.length
-
-        ){
-
-            finishTraining();
-
-            return;
-
-        }
-
-        playBeep();
-
-    }
-
-    updateDisplay();
-
-    animationFrame =
-
-        requestAnimationFrame(tick);
-
-}
-
-/* =========================================================
-
-   PAUSE
-
-========================================================= */
-
-function pauseTraining(){
-
-    if(!running) return;
-
-    running = false;
-
-    cancelAnimationFrame(
-
-        animationFrame
-
-    );
-
-    animationFrame = null;
-
-    lastTimestamp = null;
-
-    statusEl.textContent =
-
-        "PAUSED";
-
-    startBtn.disabled =
-
-        false;
-
-    pauseBtn.disabled =
-
-        true;
-
-}
-
-/* =========================================================
-
-   RESET
-
-========================================================= */
-
-function resetTraining(){
-
-    running = false;
-
-    cancelAnimationFrame(
-
-        animationFrame
-
-    );
-
-    animationFrame = null;
-
-    currentPhase = 0;
-
-    phaseElapsed = 0;
-
-    totalElapsed = 0;
-
-    lastTimestamp = null;
-
-    laps = [];
-
-    lapBody.innerHTML = `
-
-        <tr>
-
-            <td colspan="3">
-
-                No laps recorded
-
-            </td>
-
-        </tr>
-
-    `;
-
-    statusEl.textContent =
-
-        "READY";
-
-    startBtn.disabled =
-
-        false;
-
-    pauseBtn.disabled =
-
-        true;
-
-    lapBtn.disabled =
-
-        true;
-
-    buildPlan();
-
-}
-
-/* =========================================================
-
-   COMPLETE
-
-========================================================= */
-
-function finishTraining(){
-
-    running = false;
-
-    cancelAnimationFrame(
-
-        animationFrame
-
-    );
-
-    animationFrame = null;
-
-    currentPhase =
-
-        plan.length - 1;
-
-    phaseElapsed =
-
-        currentPhaseSeconds();
-
-    totalElapsed =
-
-        totalPlanSeconds();
-
-    statusEl.textContent =
-
-        "COMPLETE";
-
-    phaseName.textContent =
-
-        "TRAINING COMPLETE";
-
-    phaseDescription.textContent =
-
-        "Excellent work — session finished";
-
-    clock.textContent =
-
-        "00:00";
-
-    progressBar.style.width =
-
-        "100%";
-
-    progressText.textContent =
-
-        "100%";
-
-    startBtn.disabled =
-
-        false;
-
-    pauseBtn.disabled =
-
-        true;
-
-    lapBtn.disabled =
-
-        true;
-
-    playFinishBeep();
-
-    updateDisplay();
-
-}
-
-/* =========================================================
-
-   LAP
-
-========================================================= */
-
-function recordLap(){
-
-    if(!running) return;
-
-    laps.push({
-
-        number:
-
-            laps.length + 1,
-
-        time:
-
-            totalElapsed,
-
-        distance:
-
-            estimatedDistance
-
-    });
-
-    renderLaps();
-
-}
-
-/* =========================================================
-
-   RENDER LAPS
-
-========================================================= */
-
-function renderLaps(){
-
-    if(!laps.length){
-
-        lapBody.innerHTML = `
-
-            <tr>
-
-                <td colspan="3">
-
-                    No laps recorded
-
-                </td>
-
-            </tr>
-
-        `;
-
-        return;
-
-    }
-
-    lapBody.innerHTML = "";
-
-    laps.forEach(lap=>{
-
-        const row =
-
-            document.createElement("tr");
-
-        row.innerHTML = `
-
-            <td>#${lap.number}</td>
-
-            <td>${formatTime(lap.time)}</td>
-
-            <td>${lap.distance.toFixed(2)} km</td>
-
-        `;
-
-        lapBody.appendChild(row);
-
-    });
-
-}
-
-/* =========================================================
-
-   AUDIO
-
-========================================================= */
+let wakeLock = null;
 
 let audioContext = null;
 
-function beep(
-
-    frequency = 700,
-
-    duration = 0.12
-
-){
-
-    try{
-
-        if(!audioContext){
-
-            audioContext =
-
-                new (
-
-                    window.AudioContext ||
-
-                    window.webkitAudioContext
-
-                )();
-
-        }
-
-        const oscillator =
-
-            audioContext.createOscillator();
-
-        const gain =
-
-            audioContext.createGain();
-
-        oscillator.frequency.value =
-
-            frequency;
-
-        oscillator.type =
-
-            "sine";
-
-        gain.gain.setValueAtTime(
-
-            0.15,
-
-            audioContext.currentTime
-
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-
-            0.001,
-
-            audioContext.currentTime +
-
-            duration
-
-        );
-
-        oscillator.connect(gain);
-
-        gain.connect(
-
-            audioContext.destination
-
-        );
-
-        oscillator.start();
-
-        oscillator.stop(
-
-            audioContext.currentTime +
-
-            duration
-
-        );
-
-    }catch(e){}
-
-}
-
-function playBeep(){
-
-    beep(850,.18);
-
-    setTimeout(
-
-        ()=>beep(1100,.25),
-
-        180
-
-    );
-
-}
-
-function playFinishBeep(){
-
-    beep(700,.2);
-
-    setTimeout(
-
-        ()=>beep(900,.2),
-
-        250
-
-    );
-
-    setTimeout(
-
-        ()=>beep(1200,.4),
-
-        500
-
-    );
-
-}
 
 /* =========================================================
+BASIC HELPERS
+========================================================= */
 
-   FULL SCREEN
+function clamp(value, min, max) {
+
+return Math.max(
+min,
+Math.min(max, value)
+);
+}
+
+
+/* =========================================================
+PACE CONVERSION
+=========================================================
+
+Input:
+
+5.5
+
+Means:
+
+5 minutes 30 seconds per km
 
 ========================================================= */
 
-fullscreenBtn.addEventListener(
+function paceToSeconds(decimalMinutes) {
 
-    "click",
+const value =
+Number(decimalMinutes);
 
-    async ()=>{
+if (
+!Number.isFinite(value) ||
+value <= 0
+) {
+return 330;
+}
 
-        try{
+return value * 60;
+}
 
-            if(app.requestFullscreen){
-
-                await app.requestFullscreen();
-
-            }
-
-        }catch(error){
-
-            console.log(
-
-                "Fullscreen unavailable",
-
-                error
-
-            );
-
-        }
-
-    }
-
-);
-
-exitFullscreenBtn.addEventListener(
-
-    "click",
-
-    async ()=>{
-
-        try{
-
-            if(document.exitFullscreen){
-
-                await document.exitFullscreen();
-
-            }
-
-        }catch(error){
-
-            console.log(error);
-
-        }
-
-    }
-
-);
 
 /* =========================================================
+SECONDS TO CLOCK
+========================================================= */
 
-   BUTTON EVENTS
+function secondsToClock(seconds) {
+
+seconds =
+Math.max(
+0,
+Math.ceil(seconds)
+);
+
+const hours =
+Math.floor(
+seconds / 3600
+);
+
+const minutes =
+Math.floor(
+(seconds % 3600) / 60
+);
+
+const secs =
+seconds % 60;
+
+
+if (hours > 0) {
+
+return (
+String(hours).padStart(2, "0") +
+":" +
+String(minutes).padStart(2, "0") +
+":" +
+String(secs).padStart(2, "0")
+);
+
+}
+
+
+return (
+String(minutes).padStart(2, "0") +
+":" +
+String(secs).padStart(2, "0")
+);
+}
+
+
+/* =========================================================
+SECONDS TO PACE
+========================================================= */
+
+function secondsToPace(seconds) {
+
+if (
+!Number.isFinite(seconds) ||
+seconds <= 0
+) {
+return "--";
+}
+
+seconds =
+Math.round(seconds);
+
+const minutes =
+Math.floor(
+seconds / 60
+);
+
+const secs =
+seconds % 60;
+
+return (
+minutes +
+":" +
+String(secs).padStart(2, "0")
+);
+}
+
+
+/* =========================================================
+DISTANCE FORMAT
+========================================================= */
+
+function formatDistance(distance) {
+
+return Number(
+distance || 0
+).toFixed(2);
+}
+
+
+/* =========================================================
+CREATE DISTANCE-BASED PHASE
+=========================================================
+
+THIS IS THE IMPORTANT PART.
+
+Duration is calculated as:
+
+distance × seconds per kilometre
+
+Example:
+
+5 km × 330 seconds
+
+= 1650 seconds
+
+= 27:30
 
 ========================================================= */
 
-startBtn.addEventListener(
+function distancePhase(
+name,
+description,
+distance,
+pace,
+type
+) {
 
-    "click",
-
-    startTraining
-
+distance =
+Math.max(
+0,
+Number(distance)
 );
 
-pauseBtn.addEventListener(
-
-    "click",
-
-    pauseTraining
-
+pace =
+Math.max(
+1,
+Number(pace)
 );
 
-resetBtn.addEventListener(
+const duration =
+distance * pace;
 
-    "click",
 
-    resetTraining
+return {
 
-);
+name:
+name,
 
-lapBtn.addEventListener(
+description:
+description,
 
-    "click",
+distance:
+distance,
 
-    recordLap
+pace:
+pace,
 
-);
+seconds:
+duration,
 
-applyBtn.addEventListener(
+type:
+type || "run",
 
-    "click",
+distanceDriven:
+true
 
-    ()=>{
+};
+}
 
-        if(running){
-
-            pauseTraining();
-
-        }
-
-        buildPlan();
-
-        statusEl.textContent =
-
-            "PLAN UPDATED";
-
-    }
-
-);
 
 /* =========================================================
+CREATE TIME-BASED PHASE
+========================================================= */
 
-   KEYBOARD SHORTCUTS
+function timePhase(
+name,
+description,
+minutes,
+pace,
+type
+) {
 
+minutes =
+Math.max(
+0,
+Number(minutes)
+);
+
+pace =
+Math.max(
+1,
+Number(pace)
+);
+
+const seconds =
+minutes * 60;
+
+/*
+Distance is estimated from the pace.
+*/
+
+const estimatedDistance =
+seconds / pace;
+
+
+return {
+
+name:
+name,
+
+description:
+description,
+
+distance:
+estimatedDistance,
+
+pace:
+pace,
+
+seconds:
+seconds,
+
+type:
+type || "run",
+
+distanceDriven:
+false
+
+};
+}
+
+
+/* =========================================================
+ADD WARM UP
+========================================================= */
+
+function addWarmup(
+list,
+minutes,
+basePace
+) {
+
+if (minutes <= 0) {
+return;
+}
+
+const warmupPace =
+basePace + 75;
+
+
+list.push(
+timePhase(
+
+"Warm Up",
+
+"Easy controlled running",
+
+minutes,
+
+warmupPace,
+
+"warmup"
+)
+);
+}
+
+
+/* =========================================================
+ADD COOL DOWN
+========================================================= */
+
+function addCooldown(
+list,
+minutes,
+basePace
+) {
+
+if (minutes <= 0) {
+return;
+}
+
+const cooldownPace =
+basePace + 120;
+
+
+list.push(
+timePhase(
+
+"Cool Down",
+
+"Relaxed running",
+
+minutes,
+
+cooldownPace,
+
+"cooldown"
+)
+);
+}
+
+
+/* =========================================================
+BUILD WORKOUT
+========================================================= */
+
+function buildWorkout() {
+
+/*
+Stop the timer before rebuilding.
+*/
+
+running = false;
+
+paused = false;
+
+cancelAnimationFrame(
+animationFrame
+);
+
+lastTimestamp = null;
+
+
+const workout =
+workoutEl.value;
+
+
+const distance =
+Math.max(
+0.1,
+Number(distanceEl.value) || 10
+);
+
+
+const basePace =
+paceToSeconds(
+Number(paceEl.value) || 5.5
+);
+
+
+const warmup =
+Math.max(
+0,
+Number(warmupEl.value) || 0
+);
+
+
+const cooldown =
+Math.max(
+0,
+Number(cooldownEl.value) || 0
+);
+
+
+const repeats =
+Math.max(
+1,
+Math.round(
+Number(repeatsEl.value) || 1
+)
+);
+
+
+const recoveryMinutes =
+Math.max(
+0,
+Number(recoveryEl.value) || 0
+);
+
+
+const list = [];
+
+
+/* =====================================================
+EASY RUN
+===================================================== */
+
+if (
+workout === "easy"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+list.push(
+
+distancePhase(
+
+"Easy Run",
+
+"Steady aerobic running",
+
+distance,
+
+basePace,
+
+"main"
+
+)
+
+);
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/* =====================================================
+LONG RUN
+===================================================== */
+
+else if (
+workout === "long"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+const easyDistance =
+distance * 0.65;
+
+
+const steadyDistance =
+distance -
+easyDistance;
+
+
+list.push(
+
+distancePhase(
+
+"Long Run — Easy",
+
+"Controlled aerobic effort",
+
+easyDistance,
+
+basePace + 30,
+
+"easy"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Long Run — Steady",
+
+"Controlled steady finish",
+
+steadyDistance,
+
+basePace,
+
+"steady"
+
+)
+
+);
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/* =====================================================
+MARATHON PACE
+===================================================== */
+
+else if (
+workout === "marathon"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+const easy1 =
+distance * 0.15;
+
+
+const marathonDistance =
+distance * 0.70;
+
+
+const easy2 =
+distance -
+easy1 -
+marathonDistance;
+
+
+list.push(
+
+distancePhase(
+
+"Easy Build",
+
+"Settle into the workout",
+
+easy1,
+
+basePace + 30,
+
+"easy"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Marathon Pace",
+
+"Target marathon pace",
+
+marathonDistance,
+
+basePace,
+
+"marathon"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Easy Finish",
+
+"Controlled finish",
+
+easy2,
+
+basePace + 45,
+
+"easy"
+
+)
+
+);
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/* =====================================================
+TEMPO
+===================================================== */
+
+else if (
+workout === "tempo"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+const easyDistance =
+distance * 0.15;
+
+
+const tempo1 =
+distance * 0.35;
+
+
+const recoveryDistance =
+distance * 0.15;
+
+
+const tempo2 =
+distance -
+easyDistance -
+tempo1 -
+recoveryDistance;
+
+
+const tempoPace =
+Math.max(
+60,
+basePace - 35
+);
+
+
+list.push(
+
+distancePhase(
+
+"Tempo Build",
+
+"Progress into tempo",
+
+easyDistance,
+
+basePace + 45,
+
+"easy"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Tempo",
+
+"Strong controlled effort",
+
+tempo1,
+
+tempoPace,
+
+"tempo"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Tempo Recovery",
+
+"Easy running recovery",
+
+recoveryDistance,
+
+basePace + 60,
+
+"recovery"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Tempo",
+
+"Second controlled tempo block",
+
+tempo2,
+
+tempoPace,
+
+"tempo"
+
+)
+
+);
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/* =====================================================
+INTERVAL SESSION
+===================================================== */
+
+else if (
+workout === "interval"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+/*
+Target distance is total HARD distance.
+
+Example:
+
+6 km
+6 repeats
+
+= 1 km per interval
+*/
+
+const intervalDistance =
+distance / repeats;
+
+
+const intervalPace =
+Math.max(
+60,
+basePace - 60
+);
+
+
+for (
+let i = 0;
+i < repeats;
+i++
+) {
+
+list.push(
+
+distancePhase(
+
+"Interval " +
+(i + 1),
+
+"Fast controlled effort",
+
+intervalDistance,
+
+intervalPace,
+
+"interval"
+
+)
+
+);
+
+
+/*
+Recovery is intentionally
+time-based.
+*/
+
+if (
+i <
+repeats - 1 &&
+recoveryMinutes > 0
+) {
+
+list.push(
+
+timePhase(
+
+"Recovery " +
+(i + 1),
+
+"Easy recovery before next interval",
+
+recoveryMinutes,
+
+basePace + 90,
+
+"recovery"
+
+)
+
+);
+}
+}
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/* =====================================================
+PROGRESSIVE LONG RUN
+===================================================== */
+
+else if (
+workout === "progressive"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+const easy =
+distance * 0.30;
+
+
+const steady =
+distance * 0.25;
+
+
+const marathon =
+distance * 0.25;
+
+
+const strong =
+distance -
+easy -
+steady -
+marathon;
+
+
+list.push(
+
+distancePhase(
+
+"Progressive — Easy",
+
+"Relaxed opening",
+
+easy,
+
+basePace + 60,
+
+"easy"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Progressive — Steady",
+
+"Controlled progression",
+
+steady,
+
+basePace + 30,
+
+"steady"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Progressive — Marathon",
+
+"Marathon pace",
+
+marathon,
+
+basePace,
+
+"marathon"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Progressive — Strong",
+
+"Strong controlled finish",
+
+strong,
+
+Math.max(
+60,
+basePace - 20
+),
+
+"strong"
+
+)
+
+);
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/* =====================================================
+RACE SIMULATION
+===================================================== */
+
+else if (
+workout === "race"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+const opening =
+distance * 0.10;
+
+
+const marathon =
+distance * 0.50;
+
+
+const push =
+distance * 0.20;
+
+
+const finish =
+distance -
+opening -
+marathon -
+push;
+
+
+list.push(
+
+distancePhase(
+
+"Race Build",
+
+"Controlled opening",
+
+opening,
+
+basePace + 45,
+
+"easy"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Race Pace",
+
+"Marathon pace",
+
+marathon,
+
+basePace,
+
+"marathon"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Race Push",
+
+"Strong race effort",
+
+push,
+
+Math.max(
+60,
+basePace - 20
+),
+
+"strong"
+
+)
+
+);
+
+
+list.push(
+
+distancePhase(
+
+"Race Finish",
+
+"Return to marathon pace",
+
+finish,
+
+basePace,
+
+"marathon"
+
+)
+
+);
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/* =====================================================
+RECOVERY RUN
+===================================================== */
+
+else if (
+workout === "recovery"
+) {
+
+addWarmup(
+list,
+warmup,
+basePace
+);
+
+
+list.push(
+
+distancePhase(
+
+"Recovery Run",
+
+"Very relaxed aerobic running",
+
+distance,
+
+basePace + 90,
+
+"recovery"
+
+)
+
+);
+
+
+addCooldown(
+list,
+cooldown,
+basePace
+);
+}
+
+
+/*
+Save the finished plan.
+*/
+
+phases =
+list;
+
+
+currentIndex =
+0;
+
+
+phaseElapsedSeconds =
+0;
+
+
+remainingSeconds =
+0;
+
+
+/*
+Display everything.
+*/
+
+renderPlan();
+
+updateSummary();
+
+updateIntervalVisibility();
+
+resetDisplay();
+
+}
+
+
+/* =========================================================
+RESET DISPLAY
+========================================================= */
+
+function resetDisplay() {
+
+if (
+phases.length === 0
+) {
+
+phaseNameEl.textContent =
+"Ready";
+
+phaseDescriptionEl.textContent =
+"Build your training plan";
+
+timerEl.textContent =
+"00:00";
+
+currentPaceEl.textContent =
+"--";
+
+currentDistanceEl.textContent =
+"0.00";
+
+totalDistanceEl.textContent =
+"0.00";
+
+nextPhaseEl.textContent =
+"—";
+
+progressEl.style.width =
+"0%";
+
+return;
+}
+
+
+loadPhase(
+0,
+false
+);
+}
+
+
+/* =========================================================
+LOAD PHASE
+========================================================= */
+
+function loadPhase(
+index,
+speak = true
+) {
+
+if (
+phases.length === 0
+) {
+return;
+}
+
+
+currentIndex =
+clamp(
+index,
+0,
+phases.length - 1
+);
+
+
+const phase =
+phases[currentIndex];
+
+
+remainingSeconds =
+phase.seconds;
+
+
+phaseElapsedSeconds =
+0;
+
+
+phaseNameEl.textContent =
+phase.name;
+
+
+phaseDescriptionEl.textContent =
+phase.description;
+
+
+currentPaceEl.textContent =
+secondsToPace(
+phase.pace
+);
+
+
+currentDistanceEl.textContent =
+"0.00";
+
+
+updateNextPhase();
+
+updateProgress();
+
+highlightPlan();
+
+
+if (speak) {
+
+announce(
+
+phase.name +
+". Target pace " +
+secondsToPace(
+phase.pace
+) +
+" per kilometre."
+
+);
+}
+}
+
+
+/* =========================================================
+NEXT PHASE DISPLAY
+========================================================= */
+
+function updateNextPhase() {
+
+if (
+phases.length === 0
+) {
+
+nextPhaseEl.textContent =
+"—";
+
+return;
+}
+
+
+const next =
+phases[
+currentIndex + 1
+];
+
+
+if (!next) {
+
+nextPhaseEl.textContent =
+"Workout complete";
+
+return;
+}
+
+
+nextPhaseEl.textContent =
+
+next.name +
+" • " +
+
+secondsToPace(
+next.pace
+) +
+
+"/km • " +
+
+secondsToClock(
+next.seconds
+);
+}
+
+
+/* =========================================================
+PROGRESS
+========================================================= */
+
+function updateProgress() {
+
+if (
+phases.length === 0
+) {
+
+progressEl.style.width =
+"0%";
+
+return;
+}
+
+
+const phase =
+phases[currentIndex];
+
+
+const elapsed =
+Math.max(
+0,
+phase.seconds -
+remainingSeconds
+);
+
+
+let percent = 0;
+
+
+if (
+phase.seconds > 0
+) {
+
+percent =
+(
+elapsed /
+phase.seconds
+) * 100;
+}
+
+
+progressEl.style.width =
+clamp(
+percent,
+0,
+100
+) + "%";
+
+
+/*
+Calculate current phase distance.
+
+This is exact for distance-driven phases
+and an estimate for time-driven phases.
+*/
+
+let phaseDistance = 0;
+
+
+if (
+phase.pace > 0
+) {
+
+phaseDistance =
+elapsed /
+phase.pace;
+}
+
+
+currentDistanceEl.textContent =
+phaseDistance.toFixed(2);
+
+
+/*
+Calculate total distance.
+*/
+
+let completedDistance = 0;
+
+
+for (
+let i = 0;
+i < currentIndex;
+i++
+) {
+
+completedDistance +=
+phases[i].distance;
+}
+
+
+const total =
+completedDistance +
+phaseDistance;
+
+
+totalDistanceEl.textContent =
+total.toFixed(2);
+}
+
+
+/* =========================================================
+RENDER TIMER
+========================================================= */
+
+function renderTimer() {
+
+timerEl.textContent =
+secondsToClock(
+remainingSeconds
+);
+
+updateProgress();
+}
+
+
+/* =========================================================
+START TIMER
+========================================================= */
+
+function startTimer() {
+
+if (
+phases.length === 0
+) {
+
+buildWorkout();
+}
+
+
+if (
+phases.length === 0
+) {
+return;
+}
+
+
+if (running) {
+return;
+}
+
+
+/*
+If the workout had already finished,
+starting again starts from phase 1.
+*/
+
+if (
+currentIndex >=
+phases.length - 1 &&
+remainingSeconds <= 0
+) {
+
+loadPhase(
+0,
+false
+);
+}
+
+
+running =
+true;
+
+paused =
+false;
+
+
+summaryStatusEl.textContent =
+"RUNNING";
+
+
+lastTimestamp =
+performance.now();
+
+
+requestWakeLock();
+
+
+animationFrame =
+requestAnimationFrame(
+timerLoop
+);
+}
+
+
+/* =========================================================
+MAIN TIMER LOOP
+========================================================= */
+
+function timerLoop(timestamp) {
+
+if (!running) {
+return;
+}
+
+
+if (
+lastTimestamp === null
+) {
+
+lastTimestamp =
+timestamp;
+}
+
+
+/*
+Calculate REAL elapsed time.
+
+No artificial 1-second cap.
+
+This makes the timer much more accurate
+if the browser pauses animation frames.
+*/
+
+const delta =
+(
+timestamp -
+lastTimestamp
+) / 1000;
+
+
+lastTimestamp =
+timestamp;
+
+
+if (
+delta > 0
+) {
+
+advanceTimer(
+delta
+);
+}
+
+
+renderTimer();
+
+
+if (running) {
+
+animationFrame =
+requestAnimationFrame(
+timerLoop
+);
+}
+}
+
+
+/* =========================================================
+ADVANCE TIMER
+========================================================= */
+
+function advanceTimer(delta) {
+
+while (
+delta > 0 &&
+running
+) {
+
+/*
+If current phase has finished,
+move to the next one.
+*/
+
+if (
+remainingSeconds <= 0
+) {
+
+nextPhase();
+
+continue;
+}
+
+
+const consumed =
+Math.min(
+delta,
+remainingSeconds
+);
+
+
+remainingSeconds -=
+consumed;
+
+
+phaseElapsedSeconds +=
+consumed;
+
+
+delta -=
+consumed;
+
+
+/*
+Phase just ended.
+*/
+
+if (
+remainingSeconds <=
+0.000001
+) {
+
+remainingSeconds =
+0;
+
+
+renderTimer();
+
+playBeep();
+
+nextPhase();
+}
+}
+}
+
+
+/* =========================================================
+NEXT PHASE
+========================================================= */
+
+function nextPhase() {
+
+if (
+currentIndex >=
+phases.length - 1
+) {
+
+finishWorkout();
+
+return;
+}
+
+
+currentIndex++;
+
+
+loadPhase(
+currentIndex,
+true
+);
+}
+
+
+/* =========================================================
+FINISH WORKOUT
+========================================================= */
+
+function finishWorkout() {
+
+running =
+false;
+
+paused =
+false;
+
+
+cancelAnimationFrame(
+animationFrame
+);
+
+
+remainingSeconds =
+0;
+
+
+summaryStatusEl.textContent =
+"COMPLETE";
+
+
+phaseNameEl.textContent =
+"🏁 Workout Complete";
+
+
+phaseDescriptionEl.textContent =
+"Excellent work.";
+
+
+timerEl.textContent =
+"00:00";
+
+
+currentPaceEl.textContent =
+"--";
+
+
+currentDistanceEl.textContent =
+"0.00";
+
+
+nextPhaseEl.textContent =
+"Finished";
+
+
+progressEl.style.width =
+"100%";
+
+
+announce(
+"Workout complete. Excellent work."
+);
+
+
+releaseWakeLock();
+}
+
+
+/* =========================================================
+PAUSE
+========================================================= */
+
+function pauseTimer() {
+
+if (!running) {
+return;
+}
+
+
+running =
+false;
+
+paused =
+true;
+
+
+cancelAnimationFrame(
+animationFrame
+);
+
+
+summaryStatusEl.textContent =
+"PAUSED";
+
+
+lastTimestamp =
+null;
+
+
+releaseWakeLock();
+}
+
+
+/* =========================================================
+RESET
+========================================================= */
+
+function resetTimer() {
+
+running =
+false;
+
+paused =
+false;
+
+
+cancelAnimationFrame(
+animationFrame
+);
+
+
+lastTimestamp =
+null;
+
+
+currentIndex =
+0;
+
+
+phaseElapsedSeconds =
+0;
+
+
+releaseWakeLock();
+
+
+if (
+phases.length
+) {
+
+loadPhase(
+0,
+false
+);
+
+} else {
+
+resetDisplay();
+}
+
+
+summaryStatusEl.textContent =
+"READY";
+}
+
+
+/* =========================================================
+SKIP PHASE
+========================================================= */
+
+function skipPhase() {
+
+if (
+phases.length === 0
+) {
+return;
+}
+
+
+if (
+currentIndex >=
+phases.length - 1
+) {
+
+finishWorkout();
+
+return;
+}
+
+
+currentIndex++;
+
+
+loadPhase(
+currentIndex,
+true
+);
+
+
+renderTimer();
+}
+
+
+/* =========================================================
+PLAN DISPLAY
+========================================================= */
+
+function renderPlan() {
+
+planListEl.innerHTML =
+"";
+
+
+phases.forEach(
+(phase, index) => {
+
+const row =
+document.createElement(
+"div"
+);
+
+
+row.className =
+"plan-row";
+
+
+if (
+index ===
+currentIndex
+) {
+
+row.classList.add(
+"active"
+);
+}
+
+
+row.dataset.index =
+index;
+
+
+const number =
+document.createElement(
+"div"
+);
+
+
+number.className =
+"phase-number";
+
+
+number.textContent =
+index + 1;
+
+
+const middle =
+document.createElement(
+"div"
+);
+
+
+const title =
+document.createElement(
+"div"
+);
+
+
+title.className =
+"plan-title";
+
+
+title.textContent =
+phase.name;
+
+
+const details =
+document.createElement(
+"div"
+);
+
+
+details.className =
+"plan-details";
+
+
+if (
+phase.distanceDriven
+) {
+
+details.textContent =
+
+formatDistance(
+phase.distance
+) +
+
+" km × " +
+
+secondsToPace(
+phase.pace
+) +
+
+"/km";
+
+} else {
+
+details.textContent =
+
+"Time based • " +
+
+secondsToPace(
+phase.pace
+) +
+
+"/km • ~" +
+
+formatDistance(
+phase.distance
+) +
+
+" km";
+}
+
+
+middle.appendChild(
+title
+);
+
+middle.appendChild(
+details
+);
+
+
+const time =
+document.createElement(
+"div"
+);
+
+
+time.className =
+"plan-time";
+
+
+time.textContent =
+secondsToClock(
+phase.seconds
+);
+
+
+row.appendChild(
+number
+);
+
+row.appendChild(
+middle
+);
+
+row.appendChild(
+time
+);
+
+
+planListEl.appendChild(
+row
+);
+}
+);
+}
+
+
+/* =========================================================
+SUMMARY
+========================================================= */
+
+function getMainDistance() {
+
+return phases.reduce(
+(
+total,
+phase
+) => {
+
+if (
+phase.distanceDriven
+) {
+
+return (
+total +
+phase.distance
+);
+}
+
+return total;
+},
+0
+);
+}
+
+
+function getTotalTime() {
+
+return phases.reduce(
+(
+total,
+phase
+) => {
+
+return (
+total +
+phase.seconds
+);
+
+},
+0
+);
+}
+
+
+function updateSummary() {
+
+const distance =
+getMainDistance();
+
+
+const time =
+getTotalTime();
+
+
+summaryDistanceEl.textContent =
+distance.toFixed(2) +
+" km";
+
+
+summaryTimeEl.textContent =
+secondsToClock(
+time
+);
+
+
+summaryPhasesEl.textContent =
+phases.length;
+
+
+if (!running) {
+
+summaryStatusEl.textContent =
+phases.length
+? "READY"
+: "EMPTY";
+}
+}
+
+
+/* =========================================================
+PLAN HIGHLIGHT
+========================================================= */
+
+function highlightPlan() {
+
+document
+.querySelectorAll(
+".plan-row"
+)
+.forEach(
+(
+row,
+index
+) => {
+
+row.classList.toggle(
+"active",
+index ===
+currentIndex
+);
+}
+);
+
+
+const active =
+document.querySelector(
+'.plan-row[data-index="' +
+currentIndex +
+'"]'
+);
+
+
+if (active) {
+
+active.scrollIntoView({
+
+behavior:
+"smooth",
+
+block:
+"nearest"
+});
+}
+}
+
+
+/* =========================================================
+INTERVAL SETTINGS VISIBILITY
+========================================================= */
+
+function updateIntervalVisibility() {
+
+if (
+workoutEl.value ===
+"interval"
+) {
+
+intervalSettings
+.classList
+.remove(
+"hidden"
+);
+
+} else {
+
+intervalSettings
+.classList
+.add(
+"hidden"
+);
+}
+}
+
+
+/* =========================================================
+AUDIO BEEP
+========================================================= */
+
+function playBeep() {
+
+try {
+
+if (!audioContext) {
+
+audioContext =
+new (
+window.AudioContext ||
+window.webkitAudioContext
+)();
+}
+
+
+if (
+audioContext.state ===
+"suspended"
+) {
+
+audioContext.resume();
+}
+
+
+const oscillator =
+audioContext
+.createOscillator();
+
+
+const gain =
+audioContext
+.createGain();
+
+
+oscillator.frequency.value =
+880;
+
+
+gain.gain.value =
+0.08;
+
+
+oscillator.connect(
+gain
+);
+
+
+gain.connect(
+audioContext.destination
+);
+
+
+oscillator.start();
+
+
+oscillator.stop(
+audioContext.currentTime +
+0.18
+);
+
+} catch (error) {
+
+console.log(
+"Audio unavailable"
+);
+}
+}
+
+
+/* =========================================================
+VOICE
+========================================================= */
+
+function announce(text) {
+
+if (
+!voiceEnabled
+) {
+return;
+}
+
+
+if (
+!("speechSynthesis" in window)
+) {
+return;
+}
+
+
+try {
+
+window.speechSynthesis.cancel();
+
+
+const speech =
+new SpeechSynthesisUtterance(
+text
+);
+
+
+speech.rate =
+0.95;
+
+
+speech.pitch =
+1;
+
+
+speech.volume =
+1;
+
+
+window.speechSynthesis.speak(
+speech
+);
+
+} catch (error) {
+
+console.log(
+"Voice unavailable"
+);
+}
+}
+
+
+/* =========================================================
+WAKE LOCK
+========================================================= */
+
+async function requestWakeLock() {
+
+try {
+
+if (
+"wakeLock" in navigator &&
+navigator.wakeLock
+) {
+
+wakeLock =
+await navigator.wakeLock.request(
+"screen"
+);
+}
+
+} catch (error) {
+
+console.log(
+"Wake lock unavailable"
+);
+}
+}
+
+
+async function releaseWakeLock() {
+
+if (!wakeLock) {
+return;
+}
+
+
+try {
+
+await wakeLock.release();
+
+} catch (error) {}
+
+
+wakeLock =
+null;
+}
+
+
+/* =========================================================
+FULLSCREEN
+========================================================= */
+
+async function toggleFullscreen() {
+
+try {
+
+/*
+Native fullscreen
+*/
+
+if (
+!document.fullscreenElement
+) {
+
+if (
+document.documentElement
+.requestFullscreen
+) {
+
+await document.documentElement
+.requestFullscreen();
+
+} else {
+
+document.body
+.classList
+.add(
+"pseudo-fullscreen"
+);
+}
+
+
+fullscreenBtn.textContent =
+"⛶ Exit Fullscreen";
+
+} else {
+
+await document.exitFullscreen();
+
+
+fullscreenBtn.textContent =
+"⛶ Fullscreen";
+}
+
+} catch (error) {
+
+/*
+iPhone/Safari fallback
+*/
+
+document.body
+.classList
+.toggle(
+"pseudo-fullscreen"
+);
+
+
+const active =
+document.body
+.classList
+.contains(
+"pseudo-fullscreen"
+);
+
+
+fullscreenBtn.textContent =
+active
+? "⛶ Exit Fullscreen"
+: "⛶ Fullscreen";
+}
+}
+
+
+/* =========================================================
+FULLSCREEN CHANGE
 ========================================================= */
 
 document.addEventListener(
+"fullscreenchange",
+() => {
 
-    "keydown",
+if (
+!document.fullscreenElement
+) {
 
-    event=>{
-
-        if(
-
-            event.target.tagName === "INPUT" ||
-
-            event.target.tagName === "SELECT"
-
-        ){
-
-            return;
-
-        }
-
-        if(event.code === "Space"){
-
-            event.preventDefault();
-
-            if(running){
-
-                pauseTraining();
-
-            }else{
-
-                startTraining();
-
-            }
-
-        }
-
-        if(event.key.toLowerCase() === "l"){
-
-            recordLap();
-
-        }
-
-        if(event.key.toLowerCase() === "r"){
-
-            resetTraining();
-
-        }
-
-    }
-
+fullscreenBtn.textContent =
+"⛶ Fullscreen";
+}
+}
 );
 
+
 /* =========================================================
-
-   INITIALISE
-
+EVENT LISTENERS
 ========================================================= */
 
-buildPlan();
+buildBtn.addEventListener(
+"click",
+buildWorkout
+);
+
+
+startBtn.addEventListener(
+"click",
+startTimer
+);
+
+
+startBtn2.addEventListener(
+"click",
+startTimer
+);
+
+
+pauseBtn.addEventListener(
+"click",
+pauseTimer
+);
+
+
+resetBtn.addEventListener(
+"click",
+resetTimer
+);
+
+
+skipBtn.addEventListener(
+"click",
+skipPhase
+);
+
+
+fullscreenBtn.addEventListener(
+"click",
+toggleFullscreen
+);
+
+
+voiceBtn.addEventListener(
+"click",
+() => {
+
+voiceEnabled =
+!voiceEnabled;
+
+
+voiceBtn.textContent =
+voiceEnabled
+? "🔊 Voice On"
+: "🔇 Voice Off";
+
+
+if (
+voiceEnabled
+) {
+
+announce(
+"Voice enabled"
+);
+}
+}
+);
+
+
+workoutEl.addEventListener(
+"change",
+() => {
+
+updateIntervalVisibility();
+
+if (!running) {
+buildWorkout();
+}
+}
+);
+
+
+/* =========================================================
+AUTOMATIC PLAN UPDATES
+========================================================= */
+
+[
+distanceEl,
+paceEl,
+warmupEl,
+cooldownEl,
+repeatsEl,
+recoveryEl
+
+].forEach(
+element => {
+
+element.addEventListener(
+"change",
+() => {
+
+if (!running) {
+
+buildWorkout();
+}
+}
+);
+}
+);
+
+
+/* =========================================================
+VISIBILITY CHANGE
+========================================================= */
+
+document.addEventListener(
+"visibilitychange",
+async () => {
+
+if (
+document.visibilityState ===
+"visible"
+) {
+
+if (running) {
+
+await requestWakeLock();
+
+/*
+Reset timestamp.
+
+The timer itself uses real elapsed
+time between animation frames.
+*/
+
+lastTimestamp =
+performance.now();
+}
+}
+}
+);
+
+
+/* =========================================================
+KEYBOARD CONTROLS
+========================================================= */
+
+document.addEventListener(
+"keydown",
+event => {
+
+/*
+Space = Start/Pause
+*/
+
+if (
+event.code ===
+"Space" &&
+
+event.target.tagName !==
+"INPUT" &&
+
+event.target.tagName !==
+"SELECT"
+) {
+
+event.preventDefault();
+
+
+if (running) {
+
+pauseTimer();
+
+} else {
+
+startTimer();
+}
+}
+
+
+/*
+Right arrow = next phase
+*/
+
+if (
+event.code ===
+"ArrowRight"
+) {
+
+skipPhase();
+}
+
+
+/*
+Escape = leave fullscreen
+*/
+
+if (
+event.code ===
+"Escape"
+) {
+
+if (
+document.fullscreenElement
+) {
+
+document.exitFullscreen();
+}
+}
+}
+);
+
+
+/* =========================================================
+INITIALISE
+========================================================= */
+
+updateIntervalVisibility();
+
+buildWorkout();
 
 </script>
 
 </body>
-
 </html>
+
+
