@@ -1,0 +1,2736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="theme-color" content="#080c18">
+
+<title>Beep Test Pomodoro Timer</title>
+
+<style>
+
+:root {
+--bg: #080c18;
+--panel: rgba(17, 24, 43, 0.82);
+--panel2: rgba(255,255,255,0.055);
+
+--text: #f5f7ff;
+--muted: #9da8c2;
+
+--accent: #65d7ff;
+--accent2: #8b5cf6;
+
+--green: #45e6a0;
+--red: #ff5c78;
+--yellow: #ffd166;
+
+--shadow: 0 25px 70px rgba(0,0,0,.42);
+--radius: 24px;
+}
+
+* {
+box-sizing: border-box;
+}
+
+html,
+body {
+margin: 0;
+min-height: 100%;
+font-family:
+Inter,
+ui-sans-serif,
+system-ui,
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+sans-serif;
+
+background:
+radial-gradient(
+circle at 15% 10%,
+rgba(101,215,255,.13),
+transparent 30%
+),
+radial-gradient(
+circle at 85% 90%,
+rgba(139,92,246,.16),
+transparent 32%
+),
+var(--bg);
+
+color: var(--text);
+}
+
+body {
+padding: 18px;
+display: flex;
+justify-content: center;
+}
+
+button,
+input,
+select {
+font: inherit;
+}
+
+.app {
+width: min(1180px, 100%);
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+/* =========================
+TOP BAR
+========================= */
+
+.topbar {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 12px;
+}
+
+.brand {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.logo {
+width: 45px;
+height: 45px;
+
+border-radius: 14px;
+
+display: grid;
+place-items: center;
+
+background:
+linear-gradient(
+135deg,
+var(--accent),
+var(--accent2)
+);
+
+box-shadow:
+0 8px 30px rgba(101,215,255,.18);
+
+font-size: 22px;
+}
+
+h1 {
+font-size: clamp(19px, 3vw, 28px);
+margin: 0;
+}
+
+.sub {
+color: var(--muted);
+font-size: 12px;
+}
+
+.actions {
+display: flex;
+gap: 8px;
+flex-wrap: wrap;
+justify-content: flex-end;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.btn {
+border: 1px solid rgba(255,255,255,.1);
+
+background: var(--panel2);
+
+color: var(--text);
+
+border-radius: 13px;
+
+padding: 10px 14px;
+
+cursor: pointer;
+
+transition:
+.2s ease;
+
+backdrop-filter: blur(12px);
+}
+
+.btn:hover {
+transform: translateY(-1px);
+
+border-color:
+rgba(101,215,255,.5);
+}
+
+.btn.primary {
+background:
+linear-gradient(
+135deg,
+#179dcc,
+#7651e8
+);
+
+border: 0;
+}
+
+.big {
+min-width: 130px;
+
+padding:
+14px 22px;
+
+font-weight: 800;
+}
+
+/* =========================
+MAIN GRID
+========================= */
+
+.grid {
+display: grid;
+
+grid-template-columns:
+1.45fr
+.8fr;
+
+gap: 16px;
+}
+
+/* =========================
+CARDS
+========================= */
+
+.card {
+background: var(--panel);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+border-radius: var(--radius);
+
+box-shadow: var(--shadow);
+
+backdrop-filter: blur(18px);
+}
+
+/* =========================
+TIMER CARD
+========================= */
+
+.timer-card {
+padding:
+clamp(18px,4vw,34px);
+
+display: flex;
+
+flex-direction: column;
+
+align-items: center;
+
+justify-content: center;
+
+min-height: 610px;
+
+position: relative;
+
+overflow: hidden;
+}
+
+.timer-card::before {
+content: "";
+
+position: absolute;
+
+inset: -40%;
+
+background:
+conic-gradient(
+from 0deg,
+transparent,
+rgba(101,215,255,.08),
+transparent 28%
+);
+
+animation:
+spin 18s linear infinite;
+
+pointer-events: none;
+}
+
+@keyframes spin {
+
+to {
+transform: rotate(360deg);
+}
+
+}
+
+/* =========================
+TIMER TEXT
+========================= */
+
+.status {
+position: relative;
+
+z-index: 1;
+
+color: var(--accent);
+
+font-weight: 800;
+
+letter-spacing: 2px;
+
+text-transform: uppercase;
+
+font-size: 12px;
+
+margin-bottom: 10px;
+}
+
+.level {
+position: relative;
+
+z-index: 1;
+
+font-size:
+clamp(14px,2vw,18px);
+
+color: var(--muted);
+
+margin-bottom: 10px;
+}
+
+/* =========================
+TIMER RING
+========================= */
+
+.ring {
+position: relative;
+
+width: min(58vw,390px);
+height: min(58vw,390px);
+
+max-width: 390px;
+max-height: 390px;
+
+display: grid;
+
+place-items: center;
+}
+
+.ring svg {
+position: absolute;
+
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+transform:
+rotate(-90deg);
+}
+
+.track {
+fill: none;
+
+stroke:
+rgba(255,255,255,.07);
+
+stroke-width: 10;
+}
+
+.progress {
+fill: none;
+
+stroke:
+url(#grad);
+
+stroke-width: 10;
+
+stroke-linecap: round;
+
+transition:
+stroke-dashoffset .15s linear;
+}
+
+.time {
+position: relative;
+
+z-index: 2;
+
+font-size:
+clamp(55px,10vw,92px);
+
+font-weight: 800;
+
+letter-spacing: -4px;
+
+font-variant-numeric:
+tabular-nums;
+}
+
+.next {
+position: relative;
+
+z-index: 2;
+
+color: var(--muted);
+
+font-size: 13px;
+
+margin-top: -2px;
+}
+
+/* =========================
+CONTROLS
+========================= */
+
+.controls {
+position: relative;
+
+z-index: 2;
+
+display: flex;
+
+gap: 10px;
+
+margin-top: 28px;
+
+flex-wrap: wrap;
+
+justify-content: center;
+}
+
+/* =========================
+STATS
+========================= */
+
+.stats {
+position: relative;
+
+z-index: 2;
+
+display: grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap: 8px;
+
+width: 100%;
+
+margin-top: 28px;
+}
+
+.stat {
+background:
+rgba(255,255,255,.045);
+
+border-radius: 14px;
+
+padding: 12px;
+
+text-align: center;
+}
+
+.stat b {
+display: block;
+
+font-size: 18px;
+}
+
+.stat span {
+font-size: 10px;
+
+color: var(--muted);
+
+text-transform: uppercase;
+
+letter-spacing: 1px;
+}
+
+/* =========================
+SIDE PANEL
+========================= */
+
+.side {
+padding: 18px;
+
+display: flex;
+
+flex-direction: column;
+
+gap: 12px;
+}
+
+.section-title {
+font-weight: 800;
+
+font-size: 14px;
+
+margin:
+3px 2px;
+}
+
+/* =========================
+MODE SELECTOR
+========================= */
+
+.mode {
+display: grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap: 7px;
+}
+
+.mode button {
+padding: 9px 4px;
+
+border-radius: 10px;
+
+border:
+1px solid rgba(255,255,255,.08);
+
+background:
+rgba(255,255,255,.04);
+
+color: var(--muted);
+
+cursor: pointer;
+}
+
+.mode button.active {
+background:
+rgba(101,215,255,.13);
+
+color: var(--accent);
+
+border-color:
+rgba(101,215,255,.35);
+}
+
+/* =========================
+SHUTTLE INFO
+========================= */
+
+.shuttle {
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+background:
+linear-gradient(
+135deg,
+rgba(101,215,255,.08),
+rgba(139,92,246,.08)
+);
+
+padding: 12px;
+
+border-radius: 13px;
+}
+
+.shuttle strong {
+font-size: 20px;
+}
+
+.shuttle small {
+color: var(--muted);
+}
+
+/* =========================
+SETTINGS
+========================= */
+
+.settings {
+display: grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap: 10px;
+}
+
+.field {
+display: flex;
+
+flex-direction: column;
+
+gap: 6px;
+}
+
+.field.full {
+grid-column:
+1 / -1;
+}
+
+label {
+font-size: 11px;
+
+color: var(--muted);
+
+text-transform: uppercase;
+
+letter-spacing: .7px;
+}
+
+input,
+select {
+width: 100%;
+
+background:
+#0d1427;
+
+border:
+1px solid rgba(255,255,255,.1);
+
+color: var(--text);
+
+border-radius: 11px;
+
+padding: 11px;
+
+outline: none;
+}
+
+input:focus,
+select:focus {
+border-color:
+var(--accent);
+}
+
+.range {
+display: flex;
+
+align-items: center;
+
+gap: 8px;
+}
+
+.range input {
+padding: 0;
+
+accent-color:
+var(--accent);
+}
+
+.value {
+min-width: 42px;
+
+text-align: right;
+
+font-weight: 700;
+
+font-size: 12px;
+}
+
+/* =========================
+PRESETS
+========================= */
+
+.preset {
+display: grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap: 8px;
+}
+
+.preset .btn {
+text-align: left;
+
+font-size: 12px;
+}
+
+/* =========================
+HISTORY
+========================= */
+
+.history {
+max-height: 210px;
+
+overflow: auto;
+
+display: flex;
+
+flex-direction: column;
+
+gap: 6px;
+}
+
+.history-row {
+display: grid;
+
+grid-template-columns:
+1fr auto;
+
+gap: 8px;
+
+padding: 9px 10px;
+
+background:
+rgba(255,255,255,.035);
+
+border-radius: 10px;
+
+font-size: 11px;
+}
+
+.history-row span {
+color: var(--muted);
+}
+
+/* =========================
+BEEP OVERLAY
+========================= */
+
+.beep {
+position: fixed;
+
+inset: 0;
+
+display: none;
+
+place-items: center;
+
+background:
+rgba(5,8,17,.86);
+
+z-index: 20;
+}
+
+.beep.show {
+display: grid;
+}
+
+.beep-box {
+text-align: center;
+
+padding: 35px;
+}
+
+.beep-box h2 {
+font-size:
+clamp(40px,9vw,80px);
+
+margin:
+0 0 8px;
+}
+
+.beep-box p {
+color: var(--muted);
+}
+
+/* =========================
+TOAST
+========================= */
+
+.toast {
+position: fixed;
+
+left: 50%;
+
+bottom: 22px;
+
+transform:
+translate(-50%,20px);
+
+opacity: 0;
+
+background:
+#121a30;
+
+border:
+1px solid rgba(255,255,255,.1);
+
+padding:
+12px 16px;
+
+border-radius: 12px;
+
+z-index: 30;
+
+transition:
+.25s;
+
+font-size: 13px;
+}
+
+.toast.show {
+opacity: 1;
+
+transform:
+translate(-50%,0);
+}
+
+/* =========================
+FULLSCREEN
+========================= */
+
+.fullscreen .side {
+display: none;
+}
+
+.fullscreen .grid {
+grid-template-columns:
+1fr;
+}
+
+.fullscreen .timer-card {
+min-height:
+calc(100vh - 100px);
+}
+
+/* =========================
+TABLET / MOBILE
+========================= */
+
+@media(max-width:800px) {
+
+body {
+padding: 10px;
+}
+
+.grid {
+grid-template-columns:
+1fr;
+}
+
+.timer-card {
+min-height:
+560px;
+}
+
+.side {
+order: 2;
+}
+
+.stats {
+grid-template-columns:
+repeat(2,1fr);
+}
+
+.topbar {
+align-items:
+flex-start;
+}
+
+.brand .sub {
+display:
+none;
+}
+}
+
+/* =========================
+SMALL PHONES
+========================= */
+
+@media(max-width:480px) {
+
+.actions .btn span {
+display:
+none;
+}
+
+.settings {
+grid-template-columns:
+1fr;
+}
+
+.field.full {
+grid-column:
+auto;
+}
+
+.ring {
+width: 82vw;
+height: 82vw;
+}
+
+.timer-card {
+padding: 18px;
+
+min-height:
+520px;
+}
+
+.time {
+font-size:
+18vw;
+}
+
+.controls {
+margin-top:
+20px;
+}
+
+.big {
+min-width:
+115px;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app" id="app">
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header class="topbar">
+
+<div class="brand">
+
+<div class="logo">
+⚡
+</div>
+
+<div>
+
+<h1>
+Beep Test Pomodoro
+</h1>
+
+<div class="sub">
+Interval training • focus • recovery
+</div>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="btn"
+id="soundBtn">
+
+🔊
+<span>
+Sound
+</span>
+
+</button>
+
+<button
+class="btn"
+id="fullscreenBtn">
+
+⛶
+<span>
+Full Screen
+</span>
+
+</button>
+
+</div>
+
+</header>
+
+
+<!-- =========================
+MAIN
+========================= -->
+
+<main class="grid">
+
+
+<!-- =========================
+TIMER
+========================= -->
+
+<section class="card timer-card">
+
+<div
+class="status"
+id="status">
+
+READY
+
+</div>
+
+
+<div
+class="level"
+id="levelText">
+
+Level 1 • Shuttle 1
+
+</div>
+
+
+<!-- TIMER RING -->
+
+<div class="ring">
+
+<svg
+viewBox="0 0 200 200"
+aria-hidden="true">
+
+<defs>
+
+<linearGradient
+id="grad"
+x1="0"
+x2="1">
+
+<stop
+offset="0%"
+stop-color="#65d7ff"/>
+
+<stop
+offset="100%"
+stop-color="#8b5cf6"/>
+
+</linearGradient>
+
+</defs>
+
+
+<circle
+class="track"
+cx="100"
+cy="100"
+r="86"/>
+
+
+<circle
+class="progress"
+id="progress"
+cx="100"
+cy="100"
+r="86"/>
+
+</svg>
+
+
+<div
+style="text-align:center">
+
+<div
+class="time"
+id="time">
+
+01:00
+
+</div>
+
+<div
+class="next"
+id="nextText">
+
+Next: BEEP
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<div class="controls">
+
+<button
+class="btn primary big"
+id="start">
+
+▶ Start
+
+</button>
+
+<button
+class="btn big"
+id="pause">
+
+Ⅱ Pause
+
+</button>
+
+<button
+class="btn big"
+id="reset">
+
+↻ Reset
+
+</button>
+
+</div>
+
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+
+<b id="shuttles">
+0
+</b>
+
+<span>
+Shuttles
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="elapsed">
+00:00
+</b>
+
+<span>
+Elapsed
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="distance">
+0 m
+</b>
+
+<span>
+Distance
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<b id="sessions">
+0
+</b>
+
+<span>
+Sessions
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+SIDE PANEL
+========================= -->
+
+<aside class="card side">
+
+
+<div class="section-title">
+Training mode
+</div>
+
+
+<div class="mode">
+
+<button
+data-mode="beep"
+class="active">
+
+Beep Test
+
+</button>
+
+
+<button
+data-mode="pomodoro">
+
+Pomodoro
+
+</button>
+
+
+<button
+data-mode="custom">
+
+Custom
+
+</button>
+
+</div>
+
+
+<!-- PACE -->
+
+<div class="shuttle">
+
+<div>
+
+<small>
+Current pace
+</small>
+
+<br>
+
+<strong id="pace">
+8.0 km/h
+</strong>
+
+</div>
+
+
+<div style="text-align:right">
+
+<small>
+Distance / shuttle
+</small>
+
+<br>
+
+<strong>
+20 m
+</strong>
+
+</div>
+
+</div>
+
+
+<!-- SETTINGS -->
+
+<div class="section-title">
+Timer settings
+</div>
+
+
+<div class="settings">
+
+
+<div class="field">
+
+<label>
+Level
+</label>
+
+<input
+id="level"
+type="number"
+min="1"
+max="30"
+value="1">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Shuttles / level
+</label>
+
+<input
+id="shuttlesLevel"
+type="number"
+min="1"
+max="20"
+value="7">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Distance (m)
+</label>
+
+<input
+id="distanceInput"
+type="number"
+min="5"
+max="100"
+value="20">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Start speed
+</label>
+
+<input
+id="speed"
+type="number"
+min="5"
+max="20"
+step=".1"
+value="8">
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Speed increase / level
+</label>
+
+<div class="range">
+
+<input
+id="speedInc"
+type="range"
+min=".1"
+max="2"
+step=".1"
+value=".5">
+
+<span
+class="value"
+id="speedIncVal">
+
+0.5
+
+</span>
+
+</div>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Pomodoro work (minutes)
+</label>
+
+<input
+id="work"
+type="number"
+min="1"
+max="120"
+value="25">
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Recovery / break (minutes)
+</label>
+
+<input
+id="break"
+type="number"
+min="1"
+max="60"
+value="5">
+
+</div>
+
+
+</div>
+
+
+<!-- PRESETS -->
+
+<div class="section-title">
+Quick presets
+</div>
+
+
+<div class="preset">
+
+<button
+class="btn"
+data-preset="classic">
+
+25 / 5 Focus
+
+</button>
+
+
+<button
+class="btn"
+data-preset="short">
+
+15 / 3 Sprint
+
+</button>
+
+
+<button
+class="btn"
+data-preset="long">
+
+50 / 10 Deep
+
+</button>
+
+
+<button
+class="btn"
+data-preset="beep">
+
+20 m Beep
+
+</button>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="section-title">
+Session history
+</div>
+
+
+<div
+class="history"
+id="history">
+
+<div class="history-row">
+
+<span>
+No sessions yet
+</span>
+
+<span>
+—
+</span>
+
+</div>
+
+</div>
+
+
+<button
+class="btn"
+id="clearHistory">
+
+Clear history
+
+</button>
+
+
+</aside>
+
+</main>
+
+</div>
+
+
+<!-- =========================
+BEEP OVERLAY
+========================= -->
+
+<div
+class="beep"
+id="overlay">
+
+<div class="beep-box">
+
+<h2
+id="overlayTitle">
+
+BEEP
+
+</h2>
+
+<p
+id="overlayText">
+
+Get ready
+
+</p>
+
+<button
+class="btn primary"
+id="overlayClose">
+
+Continue
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+class="toast"
+id="toast">
+
+</div>
+
+
+<script>
+
+(() => {
+
+
+/* =========================
+SHORTCUT
+========================= */
+
+const $ = id =>
+document.getElementById(id);
+
+
+/* =========================
+TIMER RING
+========================= */
+
+const progress =
+$("progress");
+
+const radius = 86;
+
+const circumference =
+2 * Math.PI * radius;
+
+progress.style.strokeDasharray =
+circumference;
+
+
+/* =========================
+STATE
+========================= */
+
+let state = {
+
+mode: "beep",
+
+running: false,
+
+paused: false,
+
+phase: "work",
+
+remaining: 60,
+
+total: 60,
+
+level: 1,
+
+shuttle: 1,
+
+completed: 0,
+
+elapsed: 0,
+
+last: performance.now(),
+
+sound: true,
+
+audio: null,
+
+sessionStart: null
+
+};
+
+
+/* =========================
+AUDIO
+========================= */
+
+function beep(
+freq = 880,
+duration = .11
+) {
+
+if (!state.sound)
+return;
+
+try {
+
+state.audio ||=
+new (
+window.AudioContext ||
+window.webkitAudioContext
+)();
+
+const oscillator =
+state.audio.createOscillator();
+
+const gain =
+state.audio.createGain();
+
+
+oscillator.frequency.value =
+freq;
+
+oscillator.type =
+"sine";
+
+
+gain.gain.setValueAtTime(
+.0001,
+state.audio.currentTime
+);
+
+
+gain.gain.exponentialRampToValueAtTime(
+.18,
+state.audio.currentTime + .01
+);
+
+
+gain.gain.exponentialRampToValueAtTime(
+.0001,
+state.audio.currentTime + duration
+);
+
+
+oscillator.connect(gain);
+
+gain.connect(
+state.audio.destination
+);
+
+
+oscillator.start();
+
+oscillator.stop(
+state.audio.currentTime +
+duration +
+.02
+);
+
+}
+
+catch (e) {
+
+console.log(
+"Audio unavailable"
+);
+
+}
+
+}
+
+
+/* =========================
+FORMAT TIME
+========================= */
+
+function fmt(sec) {
+
+sec =
+Math.max(
+0,
+Math.ceil(sec)
+);
+
+return (
+String(
+Math.floor(sec / 60)
+).padStart(2,"0")
++
+":"
++
+String(
+sec % 60
+).padStart(2,"0")
+);
+
+}
+
+
+/* =========================
+TOAST
+========================= */
+
+function showToast(text) {
+
+const toast =
+$("toast");
+
+toast.textContent =
+text;
+
+toast.classList.add(
+"show"
+);
+
+setTimeout(() => {
+
+toast.classList.remove(
+"show"
+);
+
+}, 1800);
+
+}
+
+
+/* =========================
+BEEP OVERLAY
+========================= */
+
+function beepOverlay(
+title,
+text
+) {
+
+$("overlayTitle").textContent =
+title;
+
+$("overlayText").textContent =
+text;
+
+$("overlay").classList.add(
+"show"
+);
+
+
+beep(
+1050,
+.2
+);
+
+
+setTimeout(() => {
+
+beep(
+1250,
+.22
+);
+
+},230);
+
+}
+
+
+/* =========================
+CURRENT SPEED
+========================= */
+
+function speed() {
+
+return +(
++$("speed").value +
+(state.level - 1) *
++$("speedInc").value
+).toFixed(1);
+
+}
+
+
+/* =========================
+SHUTTLE TIME
+========================= */
+
+function shuttleSeconds() {
+
+const kmh =
+speed();
+
+const distance =
++$("distanceInput").value;
+
+
+return (
+distance /
+(kmh * 1000 / 3600)
+);
+
+}
+
+
+/* =========================
+CHANGE MODE
+========================= */
+
+function setMode(mode) {
+
+state.mode =
+mode;
+
+
+document
+.querySelectorAll(
+".mode button"
+)
+.forEach(button => {
+
+button.classList.toggle(
+"active",
+button.dataset.mode === mode
+);
+
+});
+
+
+if (
+mode === "beep"
+) {
+
+state.remaining =
+shuttleSeconds();
+
+state.total =
+state.remaining;
+
+}
+
+else {
+
+state.phase =
+"work";
+
+state.remaining =
++$("work").value *
+60;
+
+state.total =
+state.remaining;
+
+}
+
+
+update();
+
+}
+
+
+/* =========================
+RESET
+========================= */
+
+function reset() {
+
+state.running =
+false;
+
+state.paused =
+false;
+
+state.level =
++$("level").value ||
+1;
+
+state.shuttle =
+1;
+
+state.completed =
+0;
+
+state.elapsed =
+0;
+
+state.phase =
+"work";
+
+
+state.remaining =
+state.mode === "beep"
+
+? shuttleSeconds()
+
+: +$("work").value * 60;
+
+
+state.total =
+state.remaining;
+
+
+$("start").textContent =
+"▶ Start";
+
+
+update();
+
+}
+
+
+/* =========================
+NEXT INTERVAL
+========================= */
+
+function nextInterval() {
+
+
+/* BEEP TEST */
+
+if (
+state.mode === "beep"
+) {
+
+state.completed++;
+
+state.shuttle++;
+
+
+const max =
++$("shuttlesLevel").value;
+
+
+if (
+state.shuttle > max
+) {
+
+state.level++;
+
+state.shuttle =
+1;
+
+
+beepOverlay(
+"LEVEL " +
+state.level,
+"Speed: " +
+speed() +
+" km/h"
+);
+
+}
+
+
+state.remaining =
+shuttleSeconds();
+
+state.total =
+state.remaining;
+
+
+beep(
+1000,
+.16
+);
+
+}
+
+
+/* POMODORO */
+
+else {
+
+if (
+state.phase === "work"
+) {
+
+state.phase =
+"break";
+
+state.remaining =
++$("break").value *
+60;
+
+state.total =
+state.remaining;
+
+
+beepOverlay(
+"RECOVERY",
+"Take a short break"
+);
+
+}
+
+else {
+
+state.phase =
+"work";
+
+state.remaining =
++$("work").value *
+60;
+
+state.total =
+state.remaining;
+
+state.completed++;
+
+
+beepOverlay(
+"WORK",
+"Back to work"
+);
+
+}
+
+}
+
+}
+
+
+/* =========================
+UPDATE UI
+========================= */
+
+function update() {
+
+
+$("time").textContent =
+fmt(
+state.remaining
+);
+
+
+$("elapsed").textContent =
+fmt(
+state.elapsed
+);
+
+
+$("shuttles").textContent =
+state.completed;
+
+
+$("distance").textContent =
+(
+state.completed *
++$("distanceInput").value
+)
++
+" m";
+
+
+const sessions =
+JSON.parse(
+localStorage.getItem(
+"btSessions"
+) || "[]"
+);
+
+
+$("sessions").textContent =
+sessions.length;
+
+
+$("pace").textContent =
+speed() +
+" km/h";
+
+
+$("speedIncVal").textContent =
+(+$("speedInc").value)
+.toFixed(1);
+
+
+/* BEEP MODE */
+
+if (
+state.mode === "beep"
+) {
+
+$("status").textContent =
+state.running
+? "RUNNING"
+: "READY";
+
+
+$("levelText").textContent =
+`Level ${state.level} • Shuttle ${state.shuttle}`;
+
+
+$("nextText").textContent =
+"Next: BEEP";
+
+}
+
+
+/* POMODORO */
+
+else {
+
+$("status").textContent =
+state.running
+? (
+state.phase === "work"
+? "WORK"
+: "RECOVERY"
+)
+: "READY";
+
+
+$("levelText").textContent =
+state.phase === "work"
+? "Focus interval"
+: "Recovery interval";
+
+
+$("nextText").textContent =
+state.phase === "work"
+? "Next: RECOVERY"
+: "Next: WORK";
+
+}
+
+
+/* RING */
+
+const ratio =
+state.total
+? state.remaining /
+state.total
+: 0;
+
+
+progress.style.strokeDashoffset =
+circumference *
+(1 - ratio);
+
+}
+
+
+/* =========================
+TIMER LOOP
+========================= */
+
+function tick(now) {
+
+
+if (
+state.running &&
+!state.paused
+) {
+
+const dt =
+(
+now -
+state.last
+) / 1000;
+
+
+state.last =
+now;
+
+
+state.elapsed +=
+dt;
+
+
+state.remaining -=
+dt;
+
+
+if (
+state.remaining <= 0
+) {
+
+nextInterval();
+
+}
+
+
+update();
+
+}
+
+else {
+
+state.last =
+now;
+
+}
+
+
+requestAnimationFrame(
+tick
+);
+
+}
+
+
+/* =========================
+START
+========================= */
+
+function start() {
+
+if (
+state.running &&
+!state.paused
+)
+return;
+
+
+if (
+!state.sessionStart
+)
+state.sessionStart =
+Date.now();
+
+
+state.running =
+true;
+
+state.paused =
+false;
+
+
+$("start").textContent =
+"▶ Running";
+
+
+beep(
+760,
+.1
+);
+
+
+update();
+
+}
+
+
+/* =========================
+PAUSE
+========================= */
+
+function pause() {
+
+if (
+!state.running
+)
+return;
+
+
+state.paused =
+!state.paused;
+
+
+$("start").textContent =
+state.paused
+? "▶ Resume"
+: "▶ Running";
+
+
+showToast(
+state.paused
+? "Paused"
+: "Resumed"
+);
+
+}
+
+
+/* =========================
+SAVE SESSION
+========================= */
+
+function finishSession() {
+
+if (
+state.elapsed < 3
+)
+return;
+
+
+const sessions =
+JSON.parse(
+localStorage.getItem(
+"btSessions"
+) || "[]"
+);
+
+
+sessions.unshift({
+
+date:
+new Date()
+.toLocaleString(),
+
+mode:
+state.mode,
+
+elapsed:
+Math.round(
+state.elapsed
+),
+
+shuttles:
+state.completed,
+
+level:
+state.level
+
+});
+
+
+localStorage.setItem(
+"btSessions",
+JSON.stringify(
+sessions.slice(
+0,
+20
+)
+)
+);
+
+
+renderHistory();
+
+}
+
+
+/* =========================
+HISTORY
+========================= */
+
+function renderHistory() {
+
+const sessions =
+JSON.parse(
+localStorage.getItem(
+"btSessions"
+) || "[]"
+);
+
+
+const box =
+$("history");
+
+
+if (
+!sessions.length
+) {
+
+box.innerHTML = `
+
+<div class="history-row">
+
+<span>
+No sessions yet
+</span>
+
+<span>
+—
+</span>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML =
+sessions
+.map(
+session => `
+
+<div class="history-row">
+
+<span>
+${
+session.mode
+.toUpperCase()
+}
+•
+${
+session.date
+}
+</span>
+
+<b>
+${
+session.shuttles
+}
+shuttles
+</b>
+
+</div>
+
+`
+)
+.join("");
+
+}
+
+
+/* =========================
+BUTTON EVENTS
+========================= */
+
+$("start").onclick =
+start;
+
+
+$("pause").onclick =
+pause;
+
+
+$("reset").onclick =
+() => {
+
+finishSession();
+
+reset();
+
+};
+
+
+/* =========================
+SOUND
+========================= */
+
+$("soundBtn").onclick =
+() => {
+
+state.sound =
+!state.sound;
+
+
+$("soundBtn").innerHTML =
+(
+state.sound
+? "🔊"
+: "🔇"
+)
++
+"<span>Sound</span>";
+
+
+if (
+state.sound
+)
+beep();
+
+};
+
+
+/* =========================
+FULLSCREEN
+========================= */
+
+$("fullscreenBtn").onclick =
+async () => {
+
+try {
+
+if (
+!document.fullscreenElement
+) {
+
+await document
+.documentElement
+.requestFullscreen();
+
+}
+
+else {
+
+await document
+.exitFullscreen();
+
+}
+
+}
+
+catch (error) {
+
+showToast(
+"Fullscreen unavailable"
+);
+
+}
+
+};
+
+
+/* =========================
+OVERLAY
+========================= */
+
+$("overlayClose").onclick =
+() => {
+
+$("overlay")
+.classList.remove(
+"show"
+);
+
+};
+
+
+/* =========================
+CLEAR HISTORY
+========================= */
+
+$("clearHistory").onclick =
+() => {
+
+localStorage.removeItem(
+"btSessions"
+);
+
+
+renderHistory();
+
+update();
+
+};
+
+
+/* =========================
+MODES
+========================= */
+
+document
+.querySelectorAll(
+".mode button"
+)
+.forEach(button => {
+
+button.onclick =
+() => {
+
+setMode(
+button.dataset.mode
+);
+
+};
+
+});
+
+
+/* =========================
+PRESETS
+========================= */
+
+document
+.querySelectorAll(
+"[data-preset]"
+)
+.forEach(button => {
+
+button.onclick =
+() => {
+
+const preset =
+button.dataset.preset;
+
+
+if (
+preset === "classic"
+) {
+
+$("work").value =
+25;
+
+$("break").value =
+5;
+
+setMode(
+"pomodoro"
+);
+
+}
+
+
+if (
+preset === "short"
+) {
+
+$("work").value =
+15;
+
+$("break").value =
+3;
+
+setMode(
+"pomodoro"
+);
+
+}
+
+
+if (
+preset === "long"
+) {
+
+$("work").value =
+50;
+
+$("break").value =
+10;
+
+setMode(
+"pomodoro"
+);
+
+}
+
+
+if (
+preset === "beep"
+) {
+
+$("distanceInput").value =
+20;
+
+$("speed").value =
+8;
+
+$("speedInc").value =
+.5;
+
+setMode(
+"beep"
+);
+
+}
+
+
+reset();
+
+};
+
+});
+
+
+/* =========================
+SETTINGS
+========================= */
+
+[
+"level",
+"shuttlesLevel",
+"distanceInput",
+"speed",
+"speedInc",
+"work",
+"break"
+
+].forEach(id => {
+
+$(id).addEventListener(
+"change",
+() => {
+
+if (
+!state.running
+)
+reset();
+
+update();
+
+}
+);
+
+});
+
+
+/* =========================
+KEYBOARD
+========================= */
+
+window.addEventListener(
+"keydown",
+event => {
+
+/* SPACE */
+
+if (
+event.code === "Space"
+) {
+
+event.preventDefault();
+
+state.running
+? pause()
+: start();
+
+}
+
+
+/* RESET */
+
+if (
+event.key.toLowerCase()
+=== "r"
+) {
+
+reset();
+
+}
+
+
+/* FULLSCREEN */
+
+if (
+event.key.toLowerCase()
+=== "f"
+) {
+
+$("fullscreenBtn")
+.click();
+
+}
+
+
+/* CLOSE OVERLAY */
+
+if (
+event.key === "Escape"
+) {
+
+$("overlay")
+.classList.remove(
+"show"
+);
+
+}
+
+}
+);
+
+
+/* =========================
+TAB VISIBILITY
+========================= */
+
+document.addEventListener(
+"visibilitychange",
+() => {
+
+state.last =
+performance.now();
+
+}
+);
+
+
+/* =========================
+INITIALISE
+========================= */
+
+renderHistory();
+
+reset();
+
+requestAnimationFrame(
+tick
+);
+
+})();
+
+</script>
+
+</body>
+</html>
