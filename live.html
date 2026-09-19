@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Football In-Play Odds Calculator</title>
+    
+    <!-- Canonical Link -->
+    <link rel="canonical" href="https://homerepairs4u.com/live.html" >
+
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --primary: #1e3a8a;
+            --primary-hover: #172554;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border: #e2e8f0;
+            --text: #1e293b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--primary);
+            text-align: center;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .controls-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .btn-calc { background-color: var(--primary); }
+        .btn-start { background-color: var(--success); }
+        .btn-stop { background-color: var(--danger); }
+
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        .results-table th, .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .results-table th {
+            background-color: #f8fafc;
+            color: var(--primary);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background: #e2e8f0;
+        }
+        
+        .status-active { background: #d1fae5; color: #065f46; }
+
+        .note {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Live In-Play Odds Calculator</h2>
+    <div id="timerStatus" class="status-badge">Timer: Stopped</div>
+
+    <!-- Pre-Match Odds Section -->
+    <div class="section">
+        <div class="section-title">Pre-Match Odds (Decimal Format)</div>
+        <div class="grid-3">
+            <div class="input-group">
+                <label for="preHome">Home Odds</label>
+                <input type="number" id="preHome" value="1.80" step="0.01" min="1.01">
+            </div>
+            <div class="input-group">
+                <label for="preDraw">Draw Odds</label>
+                <input type="number" id="preDraw" value="3.00" step="0.01" min="1.01">
+            </div>
+            <div class="input-group">
+                <label for="preAway">Away Odds</label>
+                <input type="number" id="preAway" value="5.00" step="0.01" min="1.01">
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Match State Section -->
+    <div class="section">
+        <div class="section-title">Current Match Situation</div>
+        <div class="grid-3">
+            <div class="input-group">
+                <label for="scoreHome">Home Score</label>
+                <input type="number" id="scoreHome" value="2" min="0">
+            </div>
+            <div class="input-group">
+                <label for="scoreAway">Away Score</label>
+                <input type="number" id="scoreAway" value="0" min="0">
+            </div>
+            <div class="input-group">
+                <label for="minsLeft">Mins Remaining</label>
+                <input type="number" id="minsLeft" value="30" min="0" max="90" step="1">
+            </div>
+        </div>
+    </div>
+
+    <div class="controls-row">
+        <button class="btn-calc" onclick="calculateLiveOdds()">Recalculate</button>
+        <button id="toggleTimerBtn" class="btn-start" onclick="toggleTimer()">Start Live Timer</button>
+    </div>
+
+    <!-- Results Display -->
+    <table class="results-table">
+        <thead>
+            <tr>
+                <th>Outcome</th>
+                <th>Implied Prob.</th>
+                <th>Live Decimal</th>
+                <th>Live Fractional</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Home Win</strong></td>
+                <td id="probHome">0%</td>
+                <td id="decHome">-</td>
+                <td id="fracHome">-</td>
+            </tr>
+            <tr>
+                <td><strong>Draw</strong></td>
+                <td id="probDraw">0%</td>
+                <td id="decDraw">-</td>
+                <td id="fracDraw">-</td>
+            </tr>
+            <tr>
+                <td><strong>Away Win</strong></td>
+                <td id="probAway">0%</td>
+                <td id="decAway">-</td>
+                <td id="fracAway">-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        Note: Calculations use an adjusted Poisson distribution baseline assuming a 2.6 average match total goal expectancy.
+    </div>
+</div>
+
+<script>
+    let timerInterval = null;
+
+    function factorial(n) {
+        if (n === 0 || n === 1) return 1;
+        let res = 1;
+        for (let i = 2; i <= n; i++) res *= i;
+        return res;
+    }
+
+    function poisson(x, lambda) {
+        return (Math.pow(lambda, x) * Math.exp(-lambda)) / factorial(x);
+    }
+
+    function decimalToFraction(decimal) {
+        if (!isFinite(decimal) || decimal >= 1000) return "999/1";
+        if (decimal <= 1.01) return "1/100";
+        
+        let target = decimal - 1;
+        let bestNum = 1;
+        let bestDen = 1;
+        let minDiff = 1e9;
+        
+        for (let den = 1; den <= 50; den++) {
+            let num = Math.round(target * den);
+            let diff = Math.abs((num / den) - target);
+            if (diff < minDiff) {
+                minDiff = diff;
+                bestNum = num;
+                bestDen = den;
+            }
+        }
+        return bestNum === 0 ? "1/100" : bestNum + "/" + bestDen;
+    }
+
+    function toggleTimer() {
+        const btn = document.getElementById('toggleTimerBtn');
+        const status = document.getElementById('timerStatus');
+        const minsInput = document.getElementById('minsLeft');
+
+        if (timerInterval) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            btn.innerText = "Start Live Timer";
+            btn.className = "btn-start";
+            status.innerText = "Timer: Stopped";
+            status.className = "status-badge";
+        } else {
+            if (parseFloat(minsInput.value) <= 0) return;
+            
+            btn.innerText = "Stop Live Timer";
+            btn.className = "btn-stop";
+            status.innerText = "Timer: Live Running";
+            status.className = "status-badge status-active";
+
+            timerInterval = setInterval(() => {
+                let currentMins = parseFloat(minsInput.value);
+                if (currentMins > 0) {
+                    currentMins = Math.max(0, currentMins - (1 / 60)); 
+                    minsInput.value = currentMins.toFixed(2);
+                    calculateLiveOdds();
+                } else {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    btn.innerText = "Start Live Timer";
+                    btn.className = "btn-start";
+                    status.innerText = "Match Finished";
+                    status.className = "status-badge";
+                }
+            }, 1000);
+        }
+    }
+
+    function calculateLiveOdds() {
+        const preHome = parseFloat(document.getElementById('preHome').value) || 1.80;
+        const preDraw = parseFloat(document.getElementById('preDraw').value) || 3.00;
+        const preAway = parseFloat(document.getElementById('preAway').value) || 5.00;
+
+        const currentHomeScore = parseInt(document.getElementById('scoreHome').value) || 0;
+        const currentAwayScore = parseInt(document.getElementById('scoreAway').value) || 0;
+        const minsLeft = parseFloat(document.getElementById('minsLeft').value) || 0;
+
+        const rawProbHome = 1 / preHome;
+        const rawProbDraw = 1 / preDraw;
+        const rawProbAway = 1 / preAway;
+        const totalRawProb = rawProbHome + rawProbDraw + rawProbAway;
+        const pHome = rawProbHome / totalRawProb;
+        const pAway = rawProbAway / totalRawProb;
+
+        // 2. Extrapolate baseline target team strengths over 90 mins
+        const totalExpectedGoals = 2.6; 
+        const homeAttackRatio = pHome / (pHome + pAway);
+        
+        const homeBaselineLambda = totalExpectedGoals * homeAttackRatio;
+        const awayBaselineLambda = totalExpectedGoals * (1 - homeAttackRatio);
+
+        // 3. Scale math matrix variables down for time decay
+        const timeFraction = minsLeft / 90;
+        const remainingHomeLambda = homeBaselineLambda * timeFraction;
+        const remainingAwayLambda = awayBaselineLambda * timeFraction;
+
+        // 4. Matrix combination scoring processing loops
+        let liveProbHome = 0;
+        let liveProbDraw = 0;
+        let liveProbAway = 0;
+
+        for (let x = 0; x <= 8; x++) {
+            for (let y = 0; y <= 8; y++) {
+                let scenarioProb = poisson(x, remainingHomeLambda) * poisson(y, remainingAwayLambda);
+                let finalHomeScore = currentHomeScore + x;
+                let finalAwayScore = currentAwayScore + y;
+
+                if (finalHomeScore > finalAwayScore) {
+                    liveProbHome += scenarioProb;
+                } else if (finalHomeScore === finalAwayScore) {
+                    liveProbDraw += scenarioProb;
+                } else {
+                    liveProbAway += scenarioProb;
+                }
+            }
+        }
+
+        const totalLiveProb = liveProbHome + liveProbDraw + liveProbAway || 1;
+        const finalProbHome = liveProbHome / totalLiveProb;
+        const finalProbDraw = liveProbDraw / totalLiveProb;
+        const finalProbAway = liveProbAway / totalLiveProb;
+
+        // 5. Generate metrics adjustments
+        const liveDecHome = 1 / (finalProbHome || 0.001);
+        const liveDecDraw = 1 / (finalProbDraw || 0.001);
+        const liveDecAway = 1 / (finalProbAway || 0.001);
+
+        // 6. Push values to page UI elements
+        document.getElementById('probHome').innerText = (finalProbHome * 100).toFixed(1) + "%";
+        document.getElementById('probDraw').innerText = (finalProbDraw * 100).toFixed(1) + "%";
+        document.getElementById('probAway').innerText = (finalProbAway * 100).toFixed(1) + "%";
+
+        document.getElementById('decHome').innerText = finalProbHome > 0.0001 ? liveDecHome.toFixed(2) : "1000.00+";
+        document.getElementById('decDraw').innerText = finalProbDraw > 0.0001 ? liveDecDraw.toFixed(2) : "1000.00+";
+        document.getElementById('decAway').innerText = finalProbAway > 0.0001 ? liveDecAway.toFixed(2) : "1000.00+";
+
+        document.getElementById('fracHome').innerText = decimalToFraction(liveDecHome);
+        document.getElementById('fracDraw').innerText = decimalToFraction(liveDecDraw);
+        document.getElementById('fracAway').innerText = decimalToFraction(liveDecAway);
+    }
+
+    window.onload = calculateLiveOdds;
+</script>
+
+</body>
+</html>
+
+
+
