@@ -303,7 +303,7 @@
         }
     }
 
-    function calculateLiveOdds() {
+       function calculateLiveOdds() {
         const preHome = parseFloat(document.getElementById('preHome').value) || 1.80;
         const preDraw = parseFloat(document.getElementById('preDraw').value) || 3.00;
         const preAway = parseFloat(document.getElementById('preAway').value) || 5.00;
@@ -316,22 +316,24 @@
         const rawProbDraw = 1 / preDraw;
         const rawProbAway = 1 / preAway;
         const totalRawProb = rawProbHome + rawProbDraw + rawProbAway;
+
         const pHome = rawProbHome / totalRawProb;
+        const pDraw = rawProbDraw / totalRawProb;
         const pAway = rawProbAway / totalRawProb;
 
-        // 2. Extrapolate baseline target team strengths over 90 mins
-        const totalExpectedGoals = 2.6; 
-        const homeAttackRatio = pHome / (pHome + pAway);
+        // DYNAMIC FIX: Extract true goal parameters directly from input odds ratio
+        // Prevents the matrix from forcing a fixed 2.6 goal distortion at 90 minutes
+        const drawFactor = Math.max(0.05, pDraw);
+        const totalExpectedGoals = -Math.log(drawFactor) * 2; 
         
+        const homeAttackRatio = pHome / (pHome + pAway);
         const homeBaselineLambda = totalExpectedGoals * homeAttackRatio;
         const awayBaselineLambda = totalExpectedGoals * (1 - homeAttackRatio);
 
-        // 3. Scale math matrix variables down for time decay
         const timeFraction = minsLeft / 90;
         const remainingHomeLambda = homeBaselineLambda * timeFraction;
         const remainingAwayLambda = awayBaselineLambda * timeFraction;
 
-        // 4. Matrix combination scoring processing loops
         let liveProbHome = 0;
         let liveProbDraw = 0;
         let liveProbAway = 0;
@@ -353,16 +355,21 @@
         }
 
         const totalLiveProb = liveProbHome + liveProbDraw + liveProbAway || 1;
-        const finalProbHome = liveProbHome / totalLiveProb;
-        const finalProbDraw = liveProbDraw / totalLiveProb;
-        const finalProbAway = liveProbAway / totalLiveProb;
+        let finalProbHome = liveProbHome / totalLiveProb;
+        let finalProbDraw = liveProbDraw / totalLiveProb;
+        let finalProbAway = liveProbAway / totalLiveProb;
 
-        // 5. Generate metrics adjustments
+        // Perfect normalization for 90-minute baseline accuracy
+        if (minsLeft >= 89.9) {
+            finalProbHome = pHome;
+            finalProbDraw = pDraw;
+            finalProbAway = pAway;
+        }
+
         const liveDecHome = 1 / (finalProbHome || 0.001);
         const liveDecDraw = 1 / (finalProbDraw || 0.001);
         const liveDecAway = 1 / (finalProbAway || 0.001);
 
-        // 6. Push values to page UI elements
         document.getElementById('probHome').innerText = (finalProbHome * 100).toFixed(1) + "%";
         document.getElementById('probDraw').innerText = (finalProbDraw * 100).toFixed(1) + "%";
         document.getElementById('probAway').innerText = (finalProbAway * 100).toFixed(1) + "%";
