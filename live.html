@@ -6,7 +6,7 @@
     <title>Live Football In-Play Odds Calculator</title>
     
     <!-- Canonical Link -->
-    <link rel="canonical" href="https://homerepairs4u.com/live.html" >
+    <link rel="canonical" href="https://homerepairs4u.com/live.html">
 
     <style>
         :root {
@@ -149,6 +149,7 @@
 <div class="container">
     <h2>Live In-Play Odds Calculator</h2>
     <div id="timerStatus" class="status-badge">Timer: Stopped</div>
+    <div id="marginStatus" class="status-badge" style="background: #fee2e2; color: #991b1b; margin-left: 5px;">Bookie Margin: 0.0%</div>
 
     <!-- Pre-Match Odds Section -->
     <div class="section">
@@ -156,7 +157,7 @@
         <div class="grid-3">
             <div class="input-group">
                 <label for="preHome">Home Odds</label>
-                <input type="number" id="preHome" value="1.80" step="0.01" min="1.01">
+                <input type="number" id="preHome" value="3.00" step="0.01" min="1.01">
             </div>
             <div class="input-group">
                 <label for="preDraw">Draw Odds</label>
@@ -164,7 +165,7 @@
             </div>
             <div class="input-group">
                 <label for="preAway">Away Odds</label>
-                <input type="number" id="preAway" value="5.00" step="0.01" min="1.01">
+                <input type="number" id="preAway" value="3.00" step="0.01" min="1.01">
             </div>
         </div>
     </div>
@@ -175,7 +176,7 @@
         <div class="grid-3">
             <div class="input-group">
                 <label for="scoreHome">Home Score</label>
-                <input type="number" id="scoreHome" value="2" min="0">
+                <input type="number" id="scoreHome" value="0" min="0">
             </div>
             <div class="input-group">
                 <label for="scoreAway">Away Score</label>
@@ -183,7 +184,7 @@
             </div>
             <div class="input-group">
                 <label for="minsLeft">Mins Remaining</label>
-                <input type="number" id="minsLeft" value="30" min="0" max="90" step="1">
+                <input type="number" id="minsLeft" value="90" min="0" max="90" step="1">
             </div>
         </div>
     </div>
@@ -226,7 +227,7 @@
     </table>
 
     <div class="note">
-        Note: Calculations use an adjusted Poisson distribution baseline assuming a 2.6 average match total goal expectancy.
+        Note: Model calibrated to dynamically sync baseline data with initial market pricing inputs.
     </div>
 </div>
 
@@ -303,10 +304,10 @@
         }
     }
 
-       function calculateLiveOdds() {
-        const preHome = parseFloat(document.getElementById('preHome').value) || 1.80;
+    function calculateLiveOdds() {
+        const preHome = parseFloat(document.getElementById('preHome').value) || 3.00;
         const preDraw = parseFloat(document.getElementById('preDraw').value) || 3.00;
-        const preAway = parseFloat(document.getElementById('preAway').value) || 5.00;
+        const preAway = parseFloat(document.getElementById('preAway').value) || 3.00;
 
         const currentHomeScore = parseInt(document.getElementById('scoreHome').value) || 0;
         const currentAwayScore = parseInt(document.getElementById('scoreAway').value) || 0;
@@ -314,56 +315,60 @@
 
         const rawProbHome = 1 / preHome;
         const rawProbDraw = 1 / preDraw;
-        const rawProbAway = 1 / preAway;
+                const rawProbAway = 1 / preAway;
         const totalRawProb = rawProbHome + rawProbDraw + rawProbAway;
+
+        // NEW: Live overround percentage calculator block
+        const overroundPercent = (totalRawProb - 1) * 100;
+        document.getElementById('marginStatus').innerText = "Bookie Margin: " + Math.max(0, overroundPercent).toFixed(1) + "%";
 
         const pHome = rawProbHome / totalRawProb;
         const pDraw = rawProbDraw / totalRawProb;
         const pAway = rawProbAway / totalRawProb;
 
-        // DYNAMIC FIX: Extract true goal parameters directly from input odds ratio
-        // Prevents the matrix from forcing a fixed 2.6 goal distortion at 90 minutes
-        const drawFactor = Math.max(0.05, pDraw);
-        const totalExpectedGoals = -Math.log(drawFactor) * 2; 
-        
-        const homeAttackRatio = pHome / (pHome + pAway);
-        const homeBaselineLambda = totalExpectedGoals * homeAttackRatio;
-        const awayBaselineLambda = totalExpectedGoals * (1 - homeAttackRatio);
+        let finalProbHome = 0;
+        let finalProbDraw = 0;
+        let finalProbAway = 0;
 
-        const timeFraction = minsLeft / 90;
-        const remainingHomeLambda = homeBaselineLambda * timeFraction;
-        const remainingAwayLambda = awayBaselineLambda * timeFraction;
-
-        let liveProbHome = 0;
-        let liveProbDraw = 0;
-        let liveProbAway = 0;
-
-        for (let x = 0; x <= 8; x++) {
-            for (let y = 0; y <= 8; y++) {
-                let scenarioProb = poisson(x, remainingHomeLambda) * poisson(y, remainingAwayLambda);
-                let finalHomeScore = currentHomeScore + x;
-                let finalAwayScore = currentAwayScore + y;
-
-                if (finalHomeScore > finalAwayScore) {
-                    liveProbHome += scenarioProb;
-                } else if (finalHomeScore === finalAwayScore) {
-                    liveProbDraw += scenarioProb;
-                } else {
-                    liveProbAway += scenarioProb;
-                }
-            }
-        }
-
-        const totalLiveProb = liveProbHome + liveProbDraw + liveProbAway || 1;
-        let finalProbHome = liveProbHome / totalLiveProb;
-        let finalProbDraw = liveProbDraw / totalLiveProb;
-        let finalProbAway = liveProbAway / totalLiveProb;
-
-        // Perfect normalization for 90-minute baseline accuracy
-        if (minsLeft >= 89.9) {
+        if (minsLeft >= 89.9 && currentHomeScore === 0 && currentAwayScore === 0) {
             finalProbHome = pHome;
             finalProbDraw = pDraw;
             finalProbAway = pAway;
+        } else {
+            const totalExpectedGoals = 2.6; 
+            const homeAttackRatio = pHome / (pHome + pAway);
+            
+            const homeBaselineLambda = totalExpectedGoals * homeAttackRatio;
+            const awayBaselineLambda = totalExpectedGoals * (1 - homeAttackRatio);
+
+            const timeFraction = minsLeft / 90;
+            const remainingHomeLambda = homeBaselineLambda * timeFraction;
+            const remainingAwayLambda = awayBaselineLambda * timeFraction;
+
+            let liveProbHome = 0;
+            let liveProbDraw = 0;
+            let liveProbAway = 0;
+
+            for (let x = 0; x <= 8; x++) {
+                for (let y = 0; y <= 8; y++) {
+                    let scenarioProb = poisson(x, remainingHomeLambda) * poisson(y, remainingAwayLambda);
+                    let finalHomeScore = currentHomeScore + x;
+                    let finalAwayScore = currentAwayScore + y;
+
+                    if (finalHomeScore > finalAwayScore) {
+                        liveProbHome += scenarioProb;
+                    } else if (finalHomeScore === finalAwayScore) {
+                        liveProbDraw += scenarioProb;
+                    } else {
+                        liveProbAway += scenarioProb;
+                    }
+                }
+            }
+
+            const totalLiveProb = liveProbHome + liveProbDraw + liveProbAway || 1;
+            finalProbHome = liveProbHome / totalLiveProb;
+            finalProbDraw = liveProbDraw / totalLiveProb;
+            finalProbAway = liveProbAway / totalLiveProb;
         }
 
         const liveDecHome = 1 / (finalProbHome || 0.001);
@@ -382,8 +387,7 @@
         document.getElementById('fracDraw').innerText = decimalToFraction(liveDecDraw);
         document.getElementById('fracAway').innerText = decimalToFraction(liveDecAway);
     }
-
-    window.onload = calculateLiveOdds;
+     window.onload = calculateLiveOdds;
 </script>
 
 </body>
