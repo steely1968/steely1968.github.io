@@ -266,7 +266,7 @@
         return bestNum === 0 ? "1/100" : bestNum + "/" + bestDen;
     }
 
-    function toggleTimer() {
+        function toggleTimer() {
         const btn = document.getElementById('toggleTimerBtn');
         const status = document.getElementById('timerStatus');
         const minsInput = document.getElementById('minsLeft');
@@ -279,49 +279,54 @@
             status.innerText = "Timer: Stopped";
             status.className = "status-badge";
         } else {
-            if (parseFloat(minsInput.value) <= 0) return;
+            const currentVal = parseFloat(minsInput.value);
+            if (isNaN(currentVal) || currentVal <= 0) return;
             
             btn.innerText = "Stop Live Timer";
             btn.className = "btn-stop";
             status.innerText = "Timer: Live Running";
             status.className = "status-badge status-active";
 
+            // Establish precisely when this countdown session must conclude in true system time
+            targetEndTime = Date.now() + (currentVal * 60 * 1000);
+
             timerInterval = setInterval(() => {
-                let currentMins = parseFloat(minsInput.value);
+                // Measure remaining distance in real world time milliseconds
+                let msLeft = targetEndTime - Date.now();
+                let currentMins = msLeft / 1000 / 60;
+
                 if (currentMins > 0) {
-                    currentMins = Math.max(0, currentMins - (1 / 60)); 
                     minsInput.value = currentMins.toFixed(2);
                     calculateLiveOdds();
                 } else {
                     clearInterval(timerInterval);
                     timerInterval = null;
+                    minsInput.value = "0.00";
                     btn.innerText = "Start Live Timer";
                     btn.className = "btn-start";
                     status.innerText = "Match Finished";
                     status.className = "status-badge";
+                    calculateLiveOdds(); // Final update to print terminal 90-minute data
                 }
             }, 1000);
         }
     }
 
     function calculateLiveOdds() {
-    // 1. THIS HELPER FUNCTION DETECTS AND SPLITS THE SLASH (/) CHARACTER
-    function parseOddsInput(val) {
-        let str = val.toString().trim();
-        if (str.includes('/')) {
-            let parts = str.split('/');
-            let num = parseFloat(parts[0]);
-            let den = parseFloat(parts[1]);
-            if (den > 0) return (num / den) + 1; // Formula converts fraction to decimal
+        function parseOddsInput(val) {
+            let str = val.toString().trim();
+            if (str.includes('/')) {
+                let parts = str.split('/');
+                let num = parseFloat(parts[0]);
+                let den = parseFloat(parts[1]);
+                if (den > 0) return (num / den) + 1; 
+            }
+            return parseFloat(str); 
         }
-        return parseFloat(str); // If you type a standard decimal, it uses it normally
-    }
 
-    // 2. THESE THREE LINES NOW USE THE PARSER INSTEAD OF REGULAR PARSEFLOAT
-    const preHome = parseOddsInput(document.getElementById('preHome').value) || 1.80;
-    const preDraw = parseOddsInput(document.getElementById('preDraw').value) || 3.00;
-    const preAway = parseOddsInput(document.getElementById('preAway').value) || 5.00;
-
+        const preHome = parseOddsInput(document.getElementById('preHome').value) || 1.80;
+        const preDraw = parseOddsInput(document.getElementById('preDraw').value) || 3.00;
+        const preAway = parseOddsInput(document.getElementById('preAway').value) || 5.00;
 
         const currentHomeScore = parseInt(document.getElementById('scoreHome').value) || 0;
         const currentAwayScore = parseInt(document.getElementById('scoreAway').value) || 0;
@@ -329,10 +334,9 @@
 
         const rawProbHome = 1 / preHome;
         const rawProbDraw = 1 / preDraw;
-                const rawProbAway = 1 / preAway;
+        const rawProbAway = 1 / preAway;
         const totalRawProb = rawProbHome + rawProbDraw + rawProbAway;
 
-        // NEW: Live overround percentage calculator block
         const overroundPercent = (totalRawProb - 1) * 100;
         document.getElementById('marginStatus').innerText = "Bookie Margin: " + Math.max(0, overroundPercent).toFixed(1) + "%";
 
@@ -401,11 +405,8 @@
         document.getElementById('fracDraw').innerText = decimalToFraction(liveDecDraw);
         document.getElementById('fracAway').innerText = decimalToFraction(liveDecAway);
     }
-     window.onload = calculateLiveOdds;
-</script>
 
+    window.onload = calculateLiveOdds;
+</script>
 </body>
 </html>
-
-
-
