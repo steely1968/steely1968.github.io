@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Level 2 Food Hygiene & Safety for Catering v18 Exam Suite</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #2563eb;
+            --success: #10b981;
+            --danger: #ef4444;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-700: #374151;
+            --text: #1f2937;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f1f5f9;
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: 10px auto;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h1 { 
+            margin: 0; 
+            color: var(--primary); 
+            font-size: 1.4rem; 
+        }
+        .subtitle { 
+            color: var(--gray-700); 
+            margin: 5px 0 0 0; 
+            font-size: 0.9rem; 
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--gray-100);
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
+        }
+        .question-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .question-text {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .option-item {
+            margin-bottom: 10px;
+        }
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            font-size: 0.95rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .option-label:hover { background-color: #f8fafc; }
+        .option-label input { 
+            margin-right: 12px; 
+            transform: scale(1.3); 
+            flex-shrink: 0; 
+        }
+        
+        .correct-answer { border-color: var(--success) !important; background-color: #ecfdf5 !important; font-weight: 600; }
+        .wrong-answer { border-color: var(--danger) !important; background-color: #fef2f2 !important; }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.2s;
+            -webkit-appearance: none;
+        }
+        .btn:hover { background: var(--primary-light); }
+        .btn-reset { background: #475569; }
+        .btn-reset:hover { background: #334155; }
+        
+        .results-box {
+            text-align: center;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .pass { background: #d1fae5; color: #065f46; border: 2px solid var(--success); }
+        .fail { background: #fee2e2; color: #991b1b; border: 2px solid var(--danger); }
+
+        @media (min-width: 600px) {
+            body { padding: 20px; }
+            .container { padding: 30px; margin: 20px auto; }
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 1rem; }
+            .stats-bar { flex-direction: row; gap: 0; text-align: left; padding: 12px 20px; }
+            .question-card { padding: 20px; margin-bottom: 20px; }
+            .question-text { font-size: 1.1rem; }
+            .option-label { padding: 12px 15px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <header>
+        <h1>Level 2 Food Hygiene & Safety for Catering</h1>
+        <p class="subtitle">v18 Syllabus Compliant Mock Simulator (30 Random Questions)</p>
+    </header>
+
+    <div class="stats-bar">
+        <div>Progress: <span id="q-count">0/30 Answered</span></div>
+        <div>Pass Mark: 80% (24 / 30 Correct)</div>
+    </div>
+
+    <div id="results" class="results-box"></div>
+
+    <form id="quiz-form">
+        <div id="quiz-container"></div>
+        <button type="submit" id="submit-btn" class="btn">Submit Test for Grading</button>
+    </form>
+    
+    <button id="reset-btn" class="btn btn-reset" style="display:none;">Reset Test (Generate Completely New Permutations)</button>
+</div>
+
+  <script>
+const rawFoods = ["raw minced beef", "raw diced chicken", "raw pork chops", "fresh raw duck legs", "raw lamb shoulder patties"];
+const readyToEatFoods = ["sliced roast turkey", "cooked ham slices", "prepared chicken salad", "pork pies", "quiche slices"];
+const coreHighRisk = ["Cooked rice", "Fresh unpasteurised shellfish", "Fresh egg mayonnaise", "Meat gravies and stocks", "Fresh cream eclairs"];
+const allergens = ["Celery", "Cereals containing gluten", "Crustaceans", "Eggs", "Fish", "Lupin", "Milk", "Molluscs", "Mustard", "Nuts", "Peanuts", "Sesame seeds", "Soya", "Sulphur dioxide"];
+const bacteriaPool = [
+    { name: "Salmonella", source: "Poultry, eggs, and raw meats" },
+    { name: "Campylobacter", source: "Raw or undercooked poultry and unpasteurised milk" },
+    { name: "E. coli O157", source: "Raw beef, unwashed vegetables, and contaminated water" },
+    { name: "Listeria monocytogenes", source: "Chilled ready-to-eat foods, soft cheeses, and pâté" },
+    { name: "Clostridium perfringens", source: "Large rolled joints of meat, stews, and gravies left cooling too long" }
+];
+const boardsPool = [
+    { color: "Red", item: "Raw Meat" },
+    { color: "Blue", item: "Raw Fish" },
+    { color: "Yellow", item: "Cooked Meat" },
+    { color: "Green", item: "Salad and Fruit" },
+    { color: "Brown", item: "Unwashed Vegetables" },
+    { color: "White", item: "Dairy and Bakery Items" }
+];
+const pestSigns = [
+    { type: "Rats", sign: "Blunt droppings approx 15-20mm long, gnaw marks on wooden structures, and greasy smear tracks" },
+    { type: "Mice", sign: "Small spindle-shaped droppings approx 3-7mm long and strong ammonia-like urine odours" },
+    { type: "Cockroaches", sign: "Tiny pepper-like black speckles in cracks, amber egg cases (oothecae), and musty smells" },
+    { type: "Flies", sign: "Small dark vomit dots on high light fittings, walls, and food contact surfaces" }
+];
+const abbreviationsPool = [
+    { acronym: "HACCP", correct: "Hazard Analysis and Critical Control Point", decoys: ["Hygiene Audit and Chemical Control Protocol", "Healthy Allergen Contamination Control Plan", "High-risk Analysis and Critical Compliance Parameter"] },
+    { acronym: "COSHH", correct: "Control of Substances Hazardous to Health Regulations", decoys: ["Chemicals Safety Handling and Hygiene Rules", "Control of Severe Hazards in Hospitality", "Core Occupational Safety and Health Guidelines"] },
+    { acronym: "FIFO", correct: "First In, First Out (Stock Rotation Rule)", decoys: ["Food Inspection and Food Order", "Find Infection and Fast Obliterate", "Fixed Inventory and Finished Outcomes"] },
+    { acronym: "EHO", correct: "Environmental Health Officer", decoys: ["Emergency Hygiene Order", "Environmental Hazard Observer", "Executive Health Overseer"] },
+    { acronym: "FSA", correct: "Food Standards Agency", decoys: ["Food Safety Authority", "Federal Standard Assessment", "Food Systems Audit"] },
+    { acronym: "SFBB", correct: "Safer Food, Better Business", decoys: ["Safety First in British Bakeries", "Sanitised Food and Biological Balance", "Standard Food Business Bureau"] },
+    { acronym: "RIDDOR", correct: "Reporting of Injuries, Diseases and Dangerous Occurrences Regulations", decoys: ["Reporting of Infections and Daily Danger Operations Rule", "Regulatory Inspection of Delivery Damages and Order Returns", "Regional Industries Disease Defense and Operational Rules"] }
+];
+
+const templateFactories = [
+    () => {
+        const food = rawFoods[Math.floor(Math.random() * rawFoods.length)];
+        return {
+            q: `Where should ${food} be safely placed inside a commercial walk-in catering refrigerator?`,
+            a: [`On the absolute bottom shelf, securely covered, to completely prevent juices dripping onto other foods`, `On the highest available shelf to maximise standard cool fan distribution profiles`, `Directly beside cooked deli platters to save physical kitchen footprint options`, `Uncovered on any middle wire tray to let the surface dry out`],
+            c: 0
+        };
+    },
+    () => {
+        const board = boardsPool[Math.floor(Math.random() * boardsPool.length)];
+        const incorrect = boardsPool.filter(b => b.color !== board.color);
+        return {
+            q: `According to standard UK colour-coded guidelines, which board must you use for prepping ${board.item}?`,
+            a: [`The ${board.color} chopping board`, `The ${incorrect.color} chopping board`, `Any perfectly sanitised wooden chopping surface`, `A steel prep table surface uncovered`],
+            c: 0
+        };
+    },
+    () => {
+        const food = readyToEatFoods[Math.floor(Math.random() * readyToEatFoods.length)];
+        return {
+            q: `What is the primary food safety risk associated with using the same knife to slice raw poultry and then instantly slicing ${food}?`,
+            a: [`Direct microbial cross-contamination of pathogenic bacteria from the raw item to the ready-to-eat item`, `The loss of product texture on the outer edges of the cooked dish`, `Chemical contamination from structural handle compounds`, `A violation of strict stock rotation laws`],
+            c: 0
+        };
+    },
+    () => {
+        return {
+            q: "What is the primary structural purpose of physically separating raw preparation zones from ready-to-eat service lines?",
+            a: ["To eliminate the risk of cross-contamination via hands, utensils, or work surfaces", "To ensure kitchen porters can clean both zones at exactly the same time", "To comply with national fire safety escape corridor dimensions", "To make it easier for supervisors to count stock inventory levels"],
+            c: 0
+        };
+    },
+    () => {
+        return {
+            q: "When receiving a delivery of ambient dry goods, what is the best practice to prevent physical contamination?",
+            a: ["De-box outer cardboard packaging in a dedicated delivery zone before moving items into the main clean store", "Store outer cardboard packaging directly on food prep lines", "Wipe down all outer cardboard shipping boxes with water only", "Submerge all raw packaging boxes in industrial sanitiser tanks"],
+            c: 0
+        };
+    },
+    () => {
+        const bug = bacteriaPool[Math.floor(Math.random() * bacteriaPool.length)];
+        return {
+            q: `Which option describes the primary common source or vehicle associated with the pathogen ${bug.name}?`,
+            a: [`${bug.source}`, `Deep-fried pastries and sugary glaze ingredients`, `Canned carbonated soft drinks stored at ambient room temperature`, `Polystyrene catering food boxes and packaging wraps`],
+            c: 0
+        };
+    },
+    () => {
+        return {
+            q: "What four key physical parameters do pathogenic bacteria require to multiply rapidly in catering environments?",
+            a: ["Warmth, food (nutrients), moisture, and time", "Light, oxygen, cold temperatures, and plastic surfaces", "Sanitiser, clean cloth fibers, high acidity, and darkness", "Airflow, stainless steel, friction, and freezing spaces"],
+            c: 0
+        };
+    },
+    () => {
+        const bug = bacteriaPool[Math.floor(Math.random() * bacteriaPool.length)];
+        return {
+            q: `How do most food poisoning bacteria like ${bug.name} replicate when exposed to ideal conditions inside the danger zone?`,
+            a: ["By dividing rapidly into two every 10 to 20 minutes through binary fission", "By laying microscopically visible shell-coated eggs onto food surfaces", "By creating expansive spore networks that can only travel inside dynamic steam vents", "By fusing together with chemical soap residues left on plates"],
+            c: 0
+        };
+    },
+    () => {
+        return {
+            q: "If a food handler experiences acute diarrhoea or vomiting, what is the mandatory stand-down period before returning to food duties?",
+            a: ["48 hours completely clear of all clinical symptoms without the assistance of anti-diarrheal medication", "24 hours from the initial onset of the stomach bug symptoms", "As soon as they feel physically strong enough to carry heavy stock boxes", "Exactly 12 hours after their final recorded bathroom episode"],
+            c: 0
+        };
+    },
+    () => {
+        return {
+            q: "Why are bacterial spores uniquely dangerous to food safety systems during cooling stages?",
+            a: ["They can survive normal cooking temperatures and germinate into active, multiplying bacteria if food is cooled too slowly", "They chemically alter food colorings to make items taste intensely metallic", "They multiply instantly at deep freezing conditions of -18°C", "They actively consume commercial chemical sanitisers as an alternate food source"],
+            c: 0
+        };
+    },
+    () => {
+        const hr = coreHighRisk[Math.floor(Math.random() * coreHighRisk.length)];
+        return {
+            q: `Why is ${hr} defined specifically as a 'high-risk food' within a catering environment?`,
+            a: ["Because it is ready-to-eat, contains moisture and protein, and easily supports the growth of pathogenic bacteria without further cooking", "Because it is highly expensive to purchase from wholesale markets", "Because it requires specialist thermal protective clothing to handle manually", "Because it has a very low pH level that actively eats through storage containers"],
+            c: 0
+        };
+    },
+    () => {
+        return {
+            q: "What is the definitive difference between food poisoning pathogens and food spoilage organisms?",
+            a: ["Pathogens cause illness but usually do not change the look, smell, or taste of food; spoilage organisms simply rot food", "Spoilage organisms are always lethal, while food pathogens are completely harmless", "Pathogens are highly visible to the naked eye under normal kitchen light panels", "Spoilage organisms only grow inside high-temperature commercial pizza ovens"],
+Use code with caution.
+c: 0
+};
+},
+() => {
+return {
+q: "What is the exact temperature range officially designated as the 'Food Danger Zone' in UK food safety guidelines?",
+a: ["5°C to 63°C", "0°C to 5°C", "10°C to 75°C", "-18°C to 4°C"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the legal maximum temperature ceiling for operating standard chilled storage units and displaying cold foods in the UK?",
+a: ["8°C (with 1°C to 5°C recommended as ideal commercial industry standard)", "12°C", "4°C strict absolute legal requirement for raw root vegetables", "15°C across open air retail store displays"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the recommended legal minimum internal core temperature for cooking raw meat products in England to kill pathogens?",
+a: ["75°C for at least 30 seconds (or equivalent time/temperature combinations like 70°C for 2 minutes)", "63°C for at least 5 minutes total immersion", "90°C until the food item begins to show heavy surface charring", "55°C to keep meat juices running fully pink for maximum tenderness"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the legal minimum internal core temperature required for hot-holding pre-cooked food items on a buffet line?",
+a: ["63°C", "57°C", "75°C", "50°C"],
+c: 0
+};
+},
+() => {
+return {
+q: "Under the legal '8°C cold-holding exemption rule', what is the maximum time threshold cold food can be displayed outside refrigeration?",
+a: ["A single, non-repeatable period of up to 4 hours, after which it must be discarded or chilled back down", "Exactly 8 hours matching standard shift rotations", "Up to 2 hours maximum before it must be re-blitzed in a microwave", "There is no limit as long as the ambient room has air conditioning running"],
+c: 0
+};
+},
+() => {
+return {
+q: "Under the legal '63°C hot-holding exemption rule', how long can hot food be displayed below 63°C before it must be thrown away?",
+a: ["One single window of up to 2 hours maximum, then it must be discarded or used immediately", "Exactly 4 hours total time", "Up to 6 hours provided it remains covered in foil sheets", "Indefinitely as long as it is labeled as a specialty item"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the ideal target storage temperature for commercial deep-freeze units preserving food over long periods?",
+a: ["-18°C or colder", "-5°C to -10°C", "0°C matching standard water freezing properties", "-40°C absolute vacuum benchmark requirement"],
+c: 0
+};
+},
+() => {
+return {
+q: "When validating a temperature reading using a dial or digital probe thermometer, how should the probe be safely sanitised?",
+a: ["By thoroughly wiping the shaft with a dedicated probe-wipe containing anti-bacterial formulation before and after every reading", "By briefly rinsing the tip under a warm water tap for three seconds", "By wiping it down firmly with a dry, clean tea towel hanging from an apron", "By dipping it into a glass of ice-cold soda water between readings"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the primary danger of reheating previously cooked batch items multiple times over several days?",
+a: ["It allows heat-resistant toxins or spore-forming bacteria to survive and multiply, creating serious poisoning risks", "It causes food to lose its natural moisture and look unappealing to customers", "It breaches standard commercial utility consumption targets for green operations", "It causes salt values to crystallise into dangerous sharp compounds"],
+c: 0
+};
+},
+() => {
+return {
+q: "According to best practices, what is the safest method for thawing a frozen raw turkey or joint of meat?",
+a: ["Inside a dedicated defrosting fridge at 1°C to 5°C so the outer surfaces stay out of the danger zone during the process", "Placing it in a large sink basin filled with hot water from the kettle overnight", "Leaving it open on the main kitchen counter directly next to ambient line equipment", "Placing it under a standard desk fan unit in the staff break room"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the correct sequencing and minimum duration for washing hands effectively in a food premises?",
+a: ["Wet hands, apply soap, rub vigorously for 20 seconds covering all surfaces, rinse under warm running water, and dry with a single-use paper towel", "Rinse hands under cold water, apply sanitiser gel, and wipe on trousers for 5 seconds", "Apply soap to dry hands, rub palms together briefly, and dry with a fabric tea towel", "Scrub hands with a stiff vegetable brush and boiling water for 2 minutes straight"],
+c: 0
+};
+},
+() => {
+return {
+q: "Why are jewel-encrusted rings and watches explicitly banned from being worn by food handlers in preparation lines?",
+a: ["They harbour pathogenic bacteria in crevices and act as a direct physical hazard if gems fall into food products", "They are highly expensive and might get damaged by heavy pots", "They distract team members from reading order tickets correctly", "They interfere with the operational frequencies of kitchen induction hobs"],
+c: 0
+};
+},
+() => {
+return {
+q: "If a chef cuts their finger during service, what action must be taken before they can continue handling food?",
+a: ["Clean the wound and cover it completely with a bright blue, waterproof plaster that contains a metal-detectable strip", "Wrap the cut securely in clear kitchen cling film and secure it with an elastic band", "Apply a normal skin-toned plaster and continue working without a glove", "Apply flour to stop the bleeding and avoid touching raw items directly"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the primary hygiene purpose of wearing clean protective clothing, such as whites, aprons, and hairnets, in a kitchen?",
+a: ["To prevent hairs, skin cells, and clothing fibres from contaminating food items", "To make sure all staff members look smart and identical for customer reviews", "To protect the worker's own personal street clothes from grease stains", "To insulate food handlers against temperature drops in walk-in freezers"],
+c: 0
+};
+},
+() => {
+return {
+q: "Which hand-washing facility rule is mandatory under UK food premises infrastructure legislation?",
+a: ["Wash hand basins must be dedicated solely to washing hands, and equipped with hot and cold running water, soap, and hygienic drying materials", "Hand basins can be used to wash small salad items if the main sinks are busy", "Every hand basin must have a foot-operated warm water mixer valve set exactly to 45°C", "Hand basins must be located outside the building next to garbage collection zones"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the major danger of using a single cardboard box to store both raw root vegetables and clean dessert bowls?",
+a: ["Physical transfer of soil debris, bacteria, and pests into clean service assets", "It causes the card materials to warp and collapse under physical load variations", "It ruins the premium aesthetic presentation value of the desserts", "It forces the kitchen to pay extra waste disposal recycling fees"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the critical structural difference between a standard detergent chemical and a disinfectant sanitiser?",
+a: ["Detergents dissolve grease and loosen surface dirt; sanitisers actively reduce pathogenic micro-organisms to safe levels", "Sanitisers clean away heavy grease, while detergents are strictly used to kill pests", "Detergents must always be diluted with white vinegar, while sanitisers are used dry", "There is no difference; they are identical chemical compounds sold under variant brands"],
+c: 0
+};
+},
+() => {
+return {
+q: "What standard criteria validates that a chemical sanitiser is legally compliant for use in a commercial food kitchen environment?",
+a: ["It must conform to British Standard BS EN 1276 or BS EN 13697 compliance benchmarks", "It displays a clear non-toxic green manufacturing leaf logo on the front label", "It completely removes hard water scale build-up in under 5 seconds", "It is scented with natural citrus essential oils to mask ambient kitchen odours"],
+c: 0
+};
+},
+() => {
+return {
+q: "What does 'contact time' refer to when applying a chemical sanitizer to a food preparation surface?",
+a: ["The exact amount of time the chemical must remain wet on a surface to effectively kill bacteria before being wiped off", "The total time it takes for a chemical supplier to deliver boxes to the kitchen", "The time required to rub the surface with a microfiber cloth until it shines", "The shelf life of the chemical solution once it has been mixed with warm water"],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the correct sequence of steps for the standard six-stage cleaning method used on food contact surfaces?",
+a: ["Pre-clean (scrape), main clean (detergent), rinse, disinfect (sanitiser), final rinse, and air dry", "Sanitise, scrape debris, apply soap, rinse with cold water, towel dry, and polish", "Spray sanitiser, scrape grease blocks, towel dry instantly, sweep floor, wash hands, and vent", "Apply hot water, brush surfaces firmly, apply detergent, dry with a cloth, polish with oil, and reset"],
+c: 0
+};
+},
+() => {
+return {
+q: "Where should industrial cleaning chemicals and concentrated stock containers be stored on a catering property?",
+a: ["In a secure, locked cupboard or designated room completely away from any food storage or preparation zones", "On the bottom shelf of the main ambient ingredient dry storage larder", "Directly on the floor under the main raw meat preparation tables for easy access", "In clean, unlabelled plastic water bottles kept on top of cold store units"],
+c: 0
+};
+},
+() => {
+return {
+q: "Why is the use of fabric tea towels for drying food preparation surfaces generally discouraged in professional kitchens?",
+a: ["They transfer and spread bacteria across surfaces if reused, running high cross-contamination risks", "They take too long to dry when hung up over commercial gas lines", "They are too expensive to clean in commercial laundry facilities", "They leave small lint fragments that alter the nutritional value of dishes"],
+c: 0
+};
+},
+() => {
+const pest = pestSigns[Math.floor(Math.random() * pestSigns.length)];
+return {
+q: During a routine inspection, finding ${pest.sign} indicates an active infestation of which pest?,
+a: [${pest.type}, Pigeons or related avian invaders, Stored product woodworms, Pharaoh ants],
+c: 0
+};
+},
+() => {
+return {
+q: "What is the primary role of an Environmental Health Officer (EHO) during a routine food premises visit?",
+a: ["To check compliance with food safety legislation, inspect hygiene practices, and ensure the public is protected", "To calculate the business's tax bills based on food sales data", "To audit staff attendance sheets and verify minimum wage compliance metrics", "To help chefs rewrite their seasonal menus to improve profitability margins"],
+c: 0
+};
+},
+() => {
+const allergen = allergens[Math.floor(Math.random() * allergens.length)];
+return {
+q: Under current food labeling regulations, why must ${allergen} be clearly highlighted on a menu or product packaging?,
+a: [Because it is one of the 14 legally recognized allergens that can trigger dangerous hypersensitivity or anaphylactic reactions, Because it has a high calorie count that must be monitored by national health targets, Because it is a imported product subject to unique customs declarations, Because it indicates the food contains high amounts of artificial preservatives],
+c: 0
+};
+},
+() => {
+return {
+q: "What legal power does an Environmental Health Officer (EHO) hold if they discover an imminent risk to public health on a premises?",
+a: ["They can issue a Hygiene Emergency Prohibition Notice to instantly close down the food business", "They can fine the head chef on the spot and take their professional qualifications away", "They can re-write the business's food safety logs on the spot using their own templates", "They can force the company to change its name and logo within 24 hours"],
+c: 0
+};
+},
+() => {
+return {
+q: "Which specific regulation governs the fundamental statutory duties for design, maintenance, layout, and cleanability of food premises in the UK?",
+a: ["Regulation (EC) No 852/2004 on the hygiene of foodstuffs", "The Health and Safety at Work etc. Act 1974", "The Management of Houses in Multiple Occupation Regulations 2006", "The Environmental Protection Act 1990"],
+c: 0
+};
+},
+() => {
+const item = abbreviationsPool[Math.floor(Math.random() * abbreviationsPool.length)];
+return {
+q: In Level 2 Food Safety frameworks, what does the regulatory industry abbreviation or acronym "${item.acronym}" officially stand for?,
+a: [
+item.correct,
+item.decoys[0],
+item.decoys[1],
+item.decoys[2]
+],
+c: 0
+};
+}
+];
+
+
+ ```html
+function shuffleAndTrack(questionObj) {
+    let originalAnswerText = questionObj.a[questionObj.c];
+    let shuffledArray = [...questionObj.a];
+    
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    }
+    
+    questionObj.a = shuffledArray;
+    questionObj.c = shuffledArray.indexOf(originalAnswerText);
+    return questionObj;
+}
+
+let activeQuestions = [];
+
+function generateUniqueExam() {
+    activeQuestions = [];
+    
+    while (activeQuestions.length < 30) {
+        let factory = templateFactories[Math.floor(Math.random() * templateFactories.length)];
+        let candidate = shuffleAndTrack(factory());
+        
+        if (!activeQuestions.some(item => item.q === candidate.q)) {
+            activeQuestions.push(candidate);
+        }
+    }
+    
+    renderExamUI();
+}
+
+function renderExamUI() {
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = "";
+    
+    document.getElementById("results").style.display = "none";
+    document.getElementById("submit-btn").style.display = "block";
+    document.getElementById("reset-btn").style.display = "none";
+    document.getElementById("q-count").innerText = `0/30 Answered`;
+
+    activeQuestions.forEach((qObj, qIdx) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+        card.id = `q-box-${qIdx}`;
+        
+        const qText = document.createElement("div");
+        qText.className = "question-text";
+        qText.innerText = `${qIdx + 1}. ${qObj.q}`;
+        card.appendChild(qText);
+        
+        const optsList = document.createElement("ul");
+        optsList.className = "options-list";
+        
+        qObj.a.forEach((optText, oIdx) => {
+            const li = document.createElement("li");
+            li.className = "option-item";
+            
+            const label = document.createElement("label");
+            label.className = "option-label";
+            label.id = `label-${qIdx}-${oIdx}`;
+            
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `question-${qIdx}`;
+            radio.value = oIdx;
+            radio.required = true;
+            
+            radio.addEventListener("change", () => {
+                const checkedCount = document.querySelectorAll('input[type="radio"]:checked').length;
+                document.getElementById("q-count").innerText = `${checkedCount}/30 Answered`;
+            });
+            
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(optText));
+            li.appendChild(label);
+            optsList.appendChild(li);
+        });
+        
+        card.appendChild(optsList);
+        container.appendChild(card);
+    });
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById("quiz-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    let score = 0;
+    
+    activeQuestions.forEach((qObj, qIdx) => {
+        const selected = document.querySelector(`input[name="question-${qIdx}"]:checked`);
+        const chosenIdx = selected ? parseInt(selected.value) : -1;
+        
+        qObj.a.forEach((_, oIdx) => {
+            const targetLabel = document.getElementById(`label-${qIdx}-${oIdx}`);
+            if (oIdx === qObj.c) {
+                targetLabel.classList.add("correct-answer");
+            } else if (chosenIdx === oIdx) {
+                targetLabel.classList.add("wrong-answer");
+            }
+        });
+        
+        if (chosenIdx === qObj.c) {
+            score++;
+        }
+    });
+    
+    const percentage = Math.round((score / 30) * 100);
+    const passRate = 80;
+    const isPass = percentage >= passRate;
+    
+    const resultsBox = document.getElementById("results");
+    resultsBox.style.display = "block";
+    
+    if (isPass) {
+        resultsBox.className = "results-box pass";
+        resultsBox.innerHTML = `<h2>Exam Passed! — ${percentage}%</h2><p>Excellent compliance execution. You correctly answered ${score} out of 30 mock questions.</p>`;
+    } else {
+        resultsBox.className = "results-box fail";
+        resultsBox.innerHTML = `<h2>Exam Failed — ${percentage}%</h2><p>You scored ${score} out of 30. A minimum of 80% (24 correct answers) is required to pass the Level 2 Catering Framework.</p>`;
+    }
+    
+    document.getElementById("submit-btn").style.display = "none";
+    document.getElementById("reset-btn").style.display = "block";
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+document.getElementById("reset-btn").addEventListener("click", generateUniqueExam);
+
+generateUniqueExam();
+</script>
+</body>
+</html>   
