@@ -1,1 +1,713 @@
+<!DOCTYPE html>
 
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Random Question Quiz</title>
+
+<style>
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    background: #f1f3f5;
+
+    margin: 0;
+
+    padding: 20px;
+
+}
+
+.quiz-container {
+
+    max-width: 650px;
+
+    margin: 20px auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px #0002;
+
+}
+
+h1 { text-align: center; }
+
+#progress, #score {
+
+    text-align: center;
+
+    font-weight: bold;
+
+    margin: 15px 0;
+
+}
+
+#question {
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    margin: 25px 0;
+
+}
+
+.answer {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin: 10px 0;
+
+    text-align: left;
+
+    font-size: 16px;
+
+    border: 1px solid #bbb;
+
+    border-radius: 7px;
+
+    background: white;
+
+    cursor: pointer;
+
+}
+
+.answer:hover:not(:disabled) {
+
+    background: #e8f0fe;
+
+}
+
+.answer:disabled { cursor: default; }
+
+.correct {
+
+    background: #d4edda !important;
+
+    border-color: #238636;
+
+}
+
+.wrong {
+
+    background: #f8d7da !important;
+
+    border-color: #dc3545;
+
+}
+
+#feedback {
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    border-radius: 7px;
+
+    line-height: 1.5;
+
+    display: none;
+
+}
+
+#next, #restart {
+
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 15px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    color: white;
+
+    background: #1769aa;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+}
+
+#next:disabled { background: #999; cursor: default; }
+
+#result { text-align: center; line-height: 1.8; }
+
+.hidden { display: none; }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<h1>Knowledge Quiz</h1>
+
+<p style="text-align:center">
+
+Answer 30 random questions. Choose one answer for each question.
+
+</p>
+
+<div id="quiz">
+
+    <div id="progress"></div>
+
+    <div id="question"></div>
+
+    <div id="answers"></div>
+
+    <div id="feedback"></div>
+
+    <button id="next" disabled>Next Question</button>
+
+</div>
+
+<div id="result" class="hidden"></div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+
+q:"What is the capital of France?",
+
+a:["London","Paris","Rome","Madrid"], c:1,
+
+e:"Paris is the capital city of France."
+
+},
+
+{
+
+q:"How many sides does a hexagon have?",
+
+a:["Five","Six","Seven","Eight"], c:1,
+
+e:"A hexagon has six sides."
+
+},
+
+{
+
+q:"Which planet is known as the Red Planet?",
+
+a:["Venus","Jupiter","Mars","Mercury"], c:2,
+
+e:"Mars looks reddish because of iron oxide, or rust, on its surface."
+
+},
+
+{
+
+q:"How many days are there in a leap year?",
+
+a:["364","365","366","367"], c:2,
+
+e:"A leap year has 366 days, including 29 February."
+
+},
+
+{
+
+q:"What is H2O commonly known as?",
+
+a:["Oxygen","Hydrogen","Salt","Water"], c:3,
+
+e:"H2O is the chemical formula for water."
+
+},
+
+{
+
+q:"Which animal is the largest mammal?",
+
+a:["Elephant","Blue whale","Giraffe","Great white shark"], c:1,
+
+e:"The blue whale is the largest known animal and the largest mammal."
+
+},
+
+{
+
+q:"How many minutes are in one hour?",
+
+a:["30","45","60","100"], c:2,
+
+e:"One hour contains 60 minutes."
+
+},
+
+{
+
+q:"Which gas do plants absorb from the atmosphere?",
+
+a:["Oxygen","Carbon dioxide","Helium","Hydrogen"], c:1,
+
+e:"Plants absorb carbon dioxide during photosynthesis."
+
+},
+
+{
+
+q:"What is 12 multiplied by 8?",
+
+a:["86","94","96","108"], c:2,
+
+e:"12 × 8 = 96."
+
+},
+
+{
+
+q:"Which is the largest ocean on Earth?",
+
+a:["Atlantic","Indian","Arctic","Pacific"], c:3,
+
+e:"The Pacific Ocean is the largest ocean on Earth."
+
+},
+
+{
+
+q:"What is the freezing point of water at normal atmospheric pressure?",
+
+a:["0°C","10°C","32°C","100°C"], c:0,
+
+e:"Water freezes at 0°C under normal atmospheric pressure."
+
+},
+
+{
+
+q:"Which country is famous for the pyramids of Giza?",
+
+a:["Greece","Egypt","Mexico","India"], c:1,
+
+e:"The famous pyramids of Giza are in Egypt."
+
+},
+
+{
+
+q:"How many legs does a spider have?",
+
+a:["Six","Eight","Ten","Twelve"], c:1,
+
+e:"Spiders are arachnids and have eight legs."
+
+},
+
+{
+
+q:"Which organ pumps blood around the human body?",
+
+a:["Lungs","Brain","Heart","Liver"], c:2,
+
+e:"The heart pumps blood through the circulatory system."
+
+},
+
+{
+
+q:"What is the opposite of north on a compass?",
+
+a:["East","West","South","North-east"], c:2,
+
+e:"South is the opposite direction to north."
+
+},
+
+{
+
+q:"Which instrument measures temperature?",
+
+a:["Barometer","Thermometer","Speedometer","Compass"], c:1,
+
+e:"A thermometer measures temperature."
+
+},
+
+{
+
+q:"What is the largest land animal?",
+
+a:["Rhinoceros","Hippopotamus","African elephant","Polar bear"], c:2,
+
+e:"The African elephant is the largest living land animal."
+
+},
+
+{
+
+q:"How many colours are traditionally named in a rainbow?",
+
+a:["Five","Six","Seven","Eight"], c:2,
+
+e:"The traditional list includes red, orange, yellow, green, blue, indigo and violet."
+
+},
+
+{
+
+q:"Which metal is liquid at ordinary room temperature?",
+
+a:["Iron","Mercury","Copper","Aluminium"], c:1,
+
+e:"Mercury is a metal that is liquid at ordinary room temperature."
+
+},
+
+{
+
+q:"Which is the closest star to Earth?",
+
+a:["Sirius","The Sun","Polaris","Proxima Centauri"], c:1,
+
+e:"The Sun is the closest star to Earth."
+
+},
+
+{
+
+q:"What is 100 divided by 4?",
+
+a:["20","25","40","50"], c:1,
+
+e:"100 ÷ 4 = 25."
+
+},
+
+{
+
+q:"Which part of a plant usually absorbs water from the soil?",
+
+a:["Flowers","Leaves","Roots","Fruit"], c:2,
+
+e:"Roots absorb water and minerals from the soil."
+
+},
+
+{
+
+q:"Which bird is commonly associated with delivering babies in folklore?",
+
+a:["Eagle","Stork","Robin","Owl"], c:1,
+
+e:"The stork is associated with delivering babies in European folklore."
+
+},
+
+{
+
+q:"What is the main language spoken in Brazil?",
+
+a:["Spanish","French","Portuguese","Italian"], c:2,
+
+e:"Portuguese is the official language of Brazil."
+
+},
+
+{
+
+q:"Which shape has three sides?",
+
+a:["Square","Triangle","Pentagon","Circle"], c:1,
+
+e:"A triangle has three sides."
+
+},
+
+{
+
+q:"How many months are there in a year?",
+
+a:["10","11","12","13"], c:2,
+
+e:"There are 12 months in a calendar year."
+
+},
+
+{
+
+q:"Which part of the body is primarily used for hearing?",
+
+a:["Eyes","Ears","Nose","Hands"], c:1,
+
+e:"The ears detect sound and help with balance."
+
+},
+
+{
+
+q:"What is the chemical symbol for gold?",
+
+a:["Ag","Go","Gd","Au"], c:3,
+
+e:"Au is the chemical symbol for gold, derived from its Latin name, aurum."
+
+},
+
+{
+
+q:"Which season comes after spring in the UK?",
+
+a:["Autumn","Winter","Summer","Spring"], c:2,
+
+e:"Summer follows spring in the usual UK seasonal calendar."
+
+},
+
+{
+
+q:"How many wheels does a standard car usually have?",
+
+a:["Two","Three","Four","Six"], c:2,
+
+e:"A standard car normally has four wheels."
+
+}
+
+];
+
+let remaining = [];
+
+let current = null;
+
+let questionNumber = 0;
+
+let correctCount = 0;
+
+let answered = false;
+
+const quiz = document.getElementById("quiz");
+
+const questionEl = document.getElementById("question");
+
+const answersEl = document.getElementById("answers");
+
+const feedbackEl = document.getElementById("feedback");
+
+const progressEl = document.getElementById("progress");
+
+const nextBtn = document.getElementById("next");
+
+const resultEl = document.getElementById("result");
+
+function startQuiz() {
+
+    remaining = questions.map((_, i) => i);
+
+    // Randomise the order so questions do not repeat.
+
+    for (let i = remaining.length - 1; i > 0; i--) {
+
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [remaining[i], remaining[j]] =
+
+        [remaining[j], remaining[i]];
+
+    }
+
+    questionNumber = 0;
+
+    correctCount = 0;
+
+    answered = false;
+
+    resultEl.classList.add("hidden");
+
+    quiz.classList.remove("hidden");
+
+    showQuestion();
+
+}
+
+function showQuestion() {
+
+    current = questions[remaining[questionNumber]];
+
+    answered = false;
+
+    progressEl.textContent =
+
+        "Question " + (questionNumber + 1) +
+
+        " of " + questions.length;
+
+    questionEl.textContent = current.q;
+
+    answersEl.innerHTML = "";
+
+    feedbackEl.style.display = "none";
+
+    feedbackEl.innerHTML = "";
+
+    nextBtn.disabled = true;
+
+    current.a.forEach((answer, index) => {
+
+        const btn = document.createElement("button");
+
+        btn.className = "answer";
+
+        btn.textContent =
+
+            String.fromCharCode(65 + index) + ". " + answer;
+
+        btn.addEventListener("click", () => {
+
+            checkAnswer(index, btn);
+
+        });
+
+        answersEl.appendChild(btn);
+
+    });
+
+    nextBtn.textContent =
+
+        questionNumber === questions.length - 1
+
+        ? "View Final Result"
+
+        : "Next Question";
+
+}
+
+function checkAnswer(selected, selectedBtn) {
+
+    if (answered) return;
+
+    answered = true;
+
+    const buttons = answersEl.querySelectorAll("button");
+
+    buttons.forEach(btn => btn.disabled = true);
+
+    const isCorrect = selected === current.c;
+
+    if (isCorrect) {
+
+        correctCount++;
+
+        selectedBtn.classList.add("correct");
+
+        feedbackEl.style.background = "#d4edda";
+
+        feedbackEl.innerHTML =
+
+            "<strong>Correct!</strong><br>" + current.e;
+
+    } else {
+
+        selectedBtn.classList.add("wrong");
+
+        buttons[current.c].classList.add("correct");
+
+        feedbackEl.style.background = "#f8d7da";
+
+        feedbackEl.innerHTML =
+
+            "<strong>Incorrect.</strong><br>" +
+
+            "Your answer: " + current.a[selected] + "<br>" +
+
+            "Correct answer: " + current.a[current.c] + "<br><br>" +
+
+            "<strong>Explanation:</strong> " + current.e;
+
+    }
+
+    feedbackEl.style.display = "block";
+
+    nextBtn.disabled = false;
+
+}
+
+function finishQuiz() {
+
+    const percentage =
+
+        Math.round((correctCount / questions.length) * 100);
+
+    quiz.classList.add("hidden");
+
+    resultEl.classList.remove("hidden");
+
+    resultEl.innerHTML = `
+
+        <h2>Quiz Complete!</h2>
+
+        <p>You answered ${correctCount} out of
+
+        ${questions.length} questions correctly.</p>
+
+        <h1>${percentage}%</h1>
+
+        <p>${percentage >= 80
+
+            ? "Well done! You passed."
+
+            : "You did not reach the 80% pass mark. Try again!"}
+
+        </p>
+
+        <button id="restart">Restart Quiz</button>
+
+    `;
+
+    document.getElementById("restart")
+
+        .addEventListener("click", startQuiz);
+
+}
+
+nextBtn.addEventListener("click", () => {
+
+    if (!answered) return;
+
+    questionNumber++;
+
+    if (questionNumber >= questions.length) {
+
+        finishQuiz();
+
+    } else {
+
+        showQuestion();
+
+    }
+
+});
+
+startQuiz();
+
+</script>
+
+</body>
+
+</html>
